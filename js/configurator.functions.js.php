@@ -1338,7 +1338,7 @@ jQuery.noConflict();
 	    	if($(elid).val() != null){
 		    	var imageTitle  = $(elid).val(); 
 		    	var updatedTitle = imageTitle;
-		    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span><span class="upload-logo-container"><a href="#" class="upload-logo">Upload?</a></span>');
+		    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span><span class="upload-logo-container">(<a href="#" class="upload-logo">upload new</a>)</span>');
 		    	$('.logo-preview').each(function(){
 					$(this).attr('title', '');
 		    		$(this).qtip({

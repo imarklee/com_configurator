@@ -413,7 +413,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 #tips p{font:normal 11px/15px arial;margin:0 0 0 3px;}
 #tips a{background:transparent url(../images/close-tip.png) no-repeat;width:15px;height:15px;display:block;position:absolute;top:5px;right:6px;text-indent:-7998px;}
 #minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}
-.logo-preview{display:block;width:16px;height:16px;background:transparent url(../images/eye.png) no-repeat 0 0;position:absolute;top:9px;right:55px;}
+.logo-preview{display:block;width:16px;height:16px;background:transparent url(../images/eye.png) no-repeat 0 0;position:absolute;top:9px;right:100px;}
 .logo-preview span{display:none;}
 .logo-preview:hover span{display:block;}
 img.logo-preview-image{margin:-10px;}
@@ -563,3 +563,6 @@ p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF310
 .toolguides.ui-dialog-content{padding:5px;}
 .themelet-options{font:normal 11px arial;color:#ccc;padding:8px 36px 0 0;float:right;}
 .dialog-msg{padding:15px;font:normal 15px arial;}
+.upload-logo-container{font-size:11px;padding-left:30px;color:#666;}
+.upload-logo{}
+#logologo_image{width:130px;}

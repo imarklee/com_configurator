@@ -10,7 +10,7 @@
 #install-title h2{color:#444;margin:0;padding:0 0 0 20px;font:normal 15px/51px arial;text-shadow:0 1px 0 #fff;float:left;}
 #install-title h2 strong{color:#333;font-style:normal;}
 #install-title a{float:right;font:normal 13px arial;color:#666;margin:17px 15px 0 0;padding-right:25px;background:transparent url(../images/lifebuoy.png) no-repeat 99% 50%;}
-#install-body{background:transparent url(../images/bg-step1.jpg) no-repeat 100% 60%;border-top:1px solid #fff;border-bottom:3px solid #9AA3AE;padding:10px 200px 20px 20px;font:normal 18px/27px arial;position:relative;}
+#install-body{background:transparent url(../images/bg-step1.jpg) no-repeat 100% 0%;border-top:1px solid #fff;border-bottom:3px solid #9AA3AE;padding:10px 200px 20px 20px;font:normal 18px/27px arial;position:relative;}
 .step2 #install-body{background:transparent url(../images/bg-step2.jpg) no-repeat 100% 0%;padding-bottom:40px;}
 .step3 #install-body{background:transparent url(../images/bg-step3.jpg) no-repeat 100% 60%;padding-bottom:40px;}
 #install-body.complete{background:transparent url(../images/bg-complete.jpg) no-repeat 100% 0%;padding-bottom:40px;}
@@ -61,3 +61,4 @@
 #saving div{margin:35% 45%;width:215px;font:bold 15px arial;color:#fff;position:relative;}
 #saving div span{position:absolute;left:20px;top:-1px;}
 #minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}
+.installer-help{padding:0 1em;}

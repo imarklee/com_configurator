@@ -283,13 +283,18 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 .footer-links li h4{color:#fff;font-size:13px;margin:0;padding:0;}
 #uploader{overflow:hidden;}
 #uploader .upload-tool,#uploader .upload-info{width:48%;float:left;}
-#uploader .upload-info{float:right;}
+#uploader .upload-info{float:right;background:#eee;padding:0;border:1px solid #ccc;}
+#uploader .upload-info h4{background:#ddd;padding:5px 10px;font:bold 17px arial;border-bottom: 1px solid #ccc;}
+#uploader .upload-info p{margin:0 15px 15px 15px;}
 #uploader h3{font:bold 25px arial;}
-#uploader h4{font:bold 20px arial;}
-#uploader legend{font:bold 17px arial;color:#999;}
-#uploader label{cursor:pointer;}
+#uploader legend{font:bold 17px arial;color:#999;margin:0;padding:0;}
+#install-type label{cursor:pointer;position:relative;padding:4px 7px;border:1px solid #ccc;background:#eee;color:#999;}
+#install-type label:hover{color:#333;border:1px solid #666;}
+#install-type input{position:absolute;left:-7998px;}
+#install-type .label-selected{border:1px solid #507B21;background:#99CC66;color:#507B21;}
 #uploader legend strong{color:#555;}
-#uploader fieldset{padding:1em 0;border:0;border-bottom:1px dashed #ccc;}
+#uploader fieldset{margin:0 0 1em;padding:1em 0 1.8em;border:0;border-bottom:1px dashed #ccc;}
+#uploader fieldset#upload-install{border:0;}
 #conf-login{position:relative;background:#000000 url(../images/bokeh-bg.jpg) no-repeat 50% 50%;color:#313131;width:100%;padding:50px 0;display:block;text-align:left;}
 #conf-login h2{font:bold 32px Arial;margin:0 0 10px 0;padding:0;}
 #conf-login p{margin:0 0 15px 0;padding:0;font:normal 13px/17px Arial;width:360px;}
@@ -550,44 +555,11 @@ a.disabled{opacity:0.5;cursor:default;}
 #preferences-screen li span{width:240px;float:left;display:block;}
 #preferences-screen input.btn-prefs{width:254px;height:40px;overflow:hidden;border:0;background:#666;padding:40px 0 0 0;margin:0;background:#eee url(../images/btn-save-prefs.png) no-repeat;cursor:pointer;}
 #preferences-screen input.btn-prefs:hover{background-position:bottom left;}
-
 #toolbar-apply a{color: #608000;}
 #toolbar-apply span.icon-32-apply{background:transparent url(../images/icon-save.png) no-repeat 50% 100%;}
 #toolbar-Link span.icon-32-back{background:transparent url(../images/icon-dashboard.png) no-repeat 50% 100%;}
 p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF3100;width:325px;}
-
 .quicktips-box { margin: 0 auto; width: 615px; padding: 5px; }
-
-.toolguides.ui-dialog-content{
-padding:5px;
-}
-.themelet-options{
-font:normal 11px arial;
-color: #ccc;
-padding:8px 36px 0 0;
-float:right;
-}
-#install-type label{
-position:relative;
-padding:4px 7px;
-border:1px solid #ccc;
-background:#eee;
-color:#999;
-}
-#install-type label:hover{
-color: #333;
-border:1px solid #666;
-}
-#install-type input{
-position:absolute;
-left:-7998px;
-}
-#install-type .label-selected{
-border:1px solid #999;
-background:#ccc;
-color:#444;
-}
-.dialog-msg{
-padding:15px;
-font:normal 15px arial;
-}
+.toolguides.ui-dialog-content{padding:5px;}
+.themelet-options{font:normal 11px arial;color:#ccc;padding:8px 36px 0 0;float:right;}
+.dialog-msg{padding:15px;font:normal 15px arial;}

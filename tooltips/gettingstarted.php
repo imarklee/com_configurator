@@ -24,9 +24,10 @@
 		</div>
 		<div id="splashtab-fullscreen" class="splashtabs">
 			<h3>Working in Fullscreen mode</h3>
-			<p class="intro">We all know how having that extra bit of real estate can really help your productivity, so we decided to add a feature allowing you to easily toggle between fullscreen mode and normal mode in Configurator. There are two ways that you can use this feature:</p>
+			<p class="intro">We all know how having that extra bit of real estate can really help your productivity, so we decided to add a feature allowing you to easily toggle between fullscreen mode and normal mode in Configurator.</p> 
+			<p><img src="../administrator/components/com_configurator/images/splash-fullscreen-bg.png" alt="maskot" border="0" align="right" style="margin:-5px -7px 0 15px" />There are two ways that you can use this feature:</p>
 			<h4>Fullscreen link in the top shelf</h4>
-			<p><img src="../administrator/components/com_configurator/images/splash-fullscreen-bg.png" alt="maskot" border="0" align="right" style="margin:-5px -7px 0 15px" />Click the "Fullscreen mode" link in the top toolbar (see screenshot).</p>
+			<p>Click the "Fullscreen mode" link in the top toolbar (see screenshot).</p>
 			<h4>Built in shortcuts</h4>
 			<p>The easier way is to use the built in keyboard shortcuts. If you are on a mac, simply press <strong>cmd + f</strong> to toggle between the two views. All other users (windows, linux, etc) can use <strong>ctrl + f</strong>.</p>
 		</div>
@@ -42,23 +43,24 @@
 		<div id="splashtab-assets" class="splashtabs">
 			<h3>Working with your sites assets</h3>
 			<p class="intro">The term <em>"assets"</em> refers to the digital media specific to your project, such as your sites custom backgrounds, logos, themelets, etc. The assets tab allows you to manage these without having to use an ftp client.</p>
-			<p><img src="../administrator/components/com_configurator/images/splash-assets-bg.png" alt="maskot" border="0" align="right" style="margin: -20px 0px 0 15px" />The assets folder currently only consists of your custom backgrounds, logos and themelets. We plan on extending this to include various different types of backups as well as different graphic "packs".</p>
+			<p><img src="../administrator/components/com_configurator/images/splash-assets-bg.png" alt="maskot" border="0" align="right" style="margin: -20px 0px 0 15px" />The assets folder currently only consists of your custom backgrounds, logos and themelets.</p> 
+			<p>We plan on extending this to include various different types of backups as well as different graphic "packs".</p>
 			<p>The reason why these are stored together is so they can be stored outside your templates folder, allowing you to upgrade Morph without overriding your custom images, themelets, etc.</p>
 		</div>
 		<div id="splashtab-methods" class="splashtabs">
 			<h3>Understanding Morphs methods of control</h3>
 			<p class="intro">If you use the analogy of Morph as a sports car, the core framework would be the engine, the themelet would be the design/body of the car and Morph’s Configurator would be the dashboard.</p>
-			<p>In order to have total control, even at high speeds, you (the driver) have a wide variety of methods at your fingertips to control the powerful machine, to make it do exactly what is desired. A comprehensive dashboard as well as various controls, like steering wheel, pedals, gears etc, make up the different methods of control you need for your car. As a user of Morph, you now have similar ways to control your Joomla site.</p>
+			<p>In order to have total control, even at high speeds, you (the driver) have a wide variety of methods at your fingertips to control the powerful machine, to make it do exactly what is desired.</p>
 			<h4>Two methods of control</h4>
 			<p>Configurator is one of two methods of control in Morph. The other method of control is the <strong>FX Range</strong>, divided into <em>PageFX, MenuFX, ModuleFX &amp; ContentFX</em>. These are stemmed from Joomla's "suffix" feature, which in its simplest form is a way of appending a custom class to a page, module or menu.</p>
-			<p>Using a combination of different page or module suffixes, not only are you able to transform your sites layout on a page-by-page basis, but also mix &amp; match your own custom module styles.</p>
+			<p>Use a combination of different page or module suffixes to transform your sites layout on a page-by-page basis. You can also mix &amp; match your own custom module styles.</p>
 			<p>We highly recommend that you checkout the relevant quick start guides in order to get the most out of the FX Range of features.</p>
 		</div>
 		<div id="splashtab-guides" class="splashtabs">
 			<h3>Quick start guides to get you going</h3>
 			<p class="intro">The Quick Start Guides are the quickest way for you to take advantage of Morphs FX Range and are close at hand in Configurators top shelf.</p>
-			<p><strong>The Block &amp; Position Maps</strong> give you a visual representation of Morph's building blocks and the various module positions available. </p>
-			<p><img src="../administrator/components/com_configurator/images/splash-guides-bg.png" alt="maskot" border="0" align="right" style="margin: 15px 0px 0 15px" /><strong>The ModuleFX guide</strong> lists the various module heading, background &amp; icon styles you have at your disposal.</p>
+			<p><img src="../administrator/components/com_configurator/images/splash-guides-bg.png" alt="maskot" border="0" align="right" style="margin: 15px 0px 0 15px" /><strong>The Block &amp; Position Maps</strong> give you a visual representation of Morph's building blocks and the various module positions available. </p>
+			<p><strong>The ModuleFX guide</strong> lists the various module heading, background &amp; icon styles you have at your disposal.</p>
 			<p><strong>The PageFX guide</strong> lists all the page suffixes you can use to change your sites layouts on a page by page basis.</p>
 			<p><strong>The MenuFX guide</strong> lists the suffixes used to activate the various menu options built into Morph.</p>
 		</div>
@@ -95,14 +97,14 @@
 		</div>
 		<div id="splashtab-prefs" class="splashtabs">
 			<h3>Setting your preferences</h3>
-			<p class="intro">The preferences pane can either by accessed from the link in the top shelf, or using the built in keyboard shortcut <strong><?php echo whichKey(get_os()); ?> + P</strong>.</p>			
+			<p class="intro">The preferences pane can be accessed from either the link in the top shelf or using the built in keyboard shortcut <strong><?php echo whichKey(get_os()); ?> + P</strong>.</p>			
 			<h4>Preferences options:</h4>
 			<ul>
-			<li>Enable / disable keyboard shortcuts</li>
-			<li>Change the shelf position (top or bottom)</li>
-			<li>Re-activate tab intros</li>
-			<li>Disable updates notification</li>
-			<li>Enable / disable tips</li>			
+			<li>Enable / disable quick tips</li>
+			<li>Enable / disable tab introductions</li>
+			<li>Enable / disable sortable tabs</li>
+			<li>Enable / disable automatic check for updates</li>
+			<li>Enable / disable keyboard shortcuts</li>			
 			</ul>
 		</div>
 		<div id="splashtab-feedback" class="splashtabs">

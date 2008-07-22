@@ -16,7 +16,11 @@ return $pageURL;
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
-		
+		$("input[type=text], textarea").focus(function(){
+		    // Select field contents
+		    this.select();
+		});
+				
 		/* Version checker --------------------
 	    ------------------------------------ */
 	   	function getUpdates(elm, time){
@@ -94,7 +98,7 @@ jQuery.noConflict();
 //		$('#help').hover(function() {
 //		  $(this).addClass('hover');
 //		}, function() {
-//		  $(this).removeClass('hover');
+//		  $(this).removeClass('hover');	
 //		});
 
 		// var items = ['list item 1', 'list item 2', 'list item 3'];
@@ -168,7 +172,8 @@ jQuery.noConflict();
 		var subtabs = $("#tools-tabs").tabs();
 		maintabs.tabs("select",3);
 		subtabs.tabs("select",0);
-		$("#upload_themelet").attr("checked",true);
+		$('#install-type label.label-selected').removeClass('label-selected');
+		$("#upload_themelet").attr("checked",true).parent().addClass('label-selected');
 		return false;
 		});
 				
@@ -177,7 +182,8 @@ jQuery.noConflict();
 		var subtabs = $("#tools-tabs").tabs();
 		maintabs.tabs("select",3);
 		subtabs.tabs("select",0);
-		$("#upload_logo").attr("checked",true);
+		$('#install-type label.label-selected').removeClass('label-selected');
+		$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
 		return false;
 		});
 
@@ -186,7 +192,8 @@ jQuery.noConflict();
 		var subtabs = $("#tools-tabs").tabs();
 		maintabs.tabs("select",3);
 		subtabs.tabs("select",0);
-		$("#upload_background").attr("checked",true);
+		$('#install-type label.label-selected').removeClass('label-selected');
+		$("#upload_background").attr("checked",true).parent().addClass('label-selected');
 		return false;
 		});
 
@@ -351,6 +358,21 @@ jQuery.noConflict();
 		    $(this).parents("label.label-username,label.label-password").removeClass("label-focus");
 		});
 		
+//		$('#install-type input[type=radio]').click(function(){
+//			if ($(this).attr('checked')){
+//				$(this).parents("label").addClass("label-selected");
+//			} else {
+//				$(this).parents("label").removeClass("label-selected");
+//			}
+//		});
+
+	$('#install-type input[type="radio"]').focus( function(){
+		$('#install-type label.label-selected').removeClass('label-selected');
+		$(this).parent().addClass('label-selected');
+		//$(this).children("#install-type input[type=radio]").click();
+	});
+		
+
 		$('textarea').autoResize({ extraSpace:40, animate:false });
 					
 	    /* Inputs and checkboxes --------------
@@ -505,14 +527,14 @@ jQuery.noConflict();
 			$("#themelets-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
 				$.cookie('themelets-view', 'list', options);
-				return(false);		
+				return false;		
 			});
 		}, function () {
 			$(this).removeClass("swap");
 			$("#themelets-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
 				$.cookie('themelets-view', 'thumb', options);
-				return(false);		
+				return false;		
 			});
 		}); 
 		
@@ -522,14 +544,14 @@ jQuery.noConflict();
 			$("#backgrounds-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
 				$.cookie('backgrounds-view', 'list', options);
-				return(false);
+				return false;
 			});
 		}, function () {
 			$(this).removeClass("swap");
 			$("#backgrounds-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
 				$.cookie('backgrounds-view', 'thumb', options);
-				return(false);
+				return false;
 			});
 		}); 
 		
@@ -538,14 +560,14 @@ jQuery.noConflict();
 			$("#logos-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
 				$.cookie('logos-view', 'list', options);
-				return(false);
+				return false;
 			});
 		}, function () {
 			$(this).removeClass("swap");
 			$("#logos-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
 				$.cookie('logos-view', 'thumb', options);
-				return(false);
+				return false;
 			});
 		}); 
 
@@ -563,6 +585,7 @@ jQuery.noConflict();
 		});
 		$('#report-bug-link').click(function() {
 			$('#report-bug').dialog('open');
+			return false;
 		});
 		
 		$('#ff-reset').click(function(){ 
@@ -1543,7 +1566,7 @@ jQuery.noConflict();
 					   			draggable: false,
 					   			minHeight: 20,
 					   			modal: true,
-					   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+					   			title: 'Error',
 			   					overlay: {
 			   						backgroundColor: '#000000', 
 			   						opacity: 0.8 
@@ -1555,7 +1578,7 @@ jQuery.noConflict();
 									}
 								}
 							});
-							$('#upload-message').html(data.error);
+							$('#upload-message').html('<div class="dialog-msg">'+data.error+'</div>');
 							$('#upload-message').dialog('show');
 						}
 					}else{
@@ -1566,7 +1589,7 @@ jQuery.noConflict();
 				   			draggable: false,
 				   			minHeight: 20,
 				   			modal: true,
-				   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Success</span>',
+				   			title: 'Success',
 		   					overlay: {
 		   						backgroundColor: '#000', 
 		   						opacity: 0.8 
@@ -1614,7 +1637,7 @@ jQuery.noConflict();
 										}
 										checkChanges(actLogo);
 									},
-									'Goto Logo Settings': function(){
+									'Go to Logo Settings': function(){
 										var $tabs = $('#tabs').tabs();
 										var logoTabs = $('#site-tabs').tabs();
 										$tabs.tabs('select', 0);
@@ -1687,10 +1710,6 @@ jQuery.noConflict();
 							}
 						}
 					}
-					
-				},
-				error: function (data, status, e){
-					console.log(e);
 				}
 			});
 			return false;
@@ -2138,8 +2157,8 @@ jQuery.noConflict();
     	});
     	
     	function logoutCfg() {
-    		$('#content-box').after('<div id="logout-message" style="display:none;">You are about to logout. Please ensure you have saved your changes.<br /></br />'
-									+'<strong>Please remember: You will need to be connected to the internet to login again.</strong></div>');
+    		$('#content-box').after('<div id="logout-message" class="dialog-msg" style="display:none;"><p>You are about to logout. Please ensure you have saved your changes.</p>'
+									+'<p><strong>Please remember: You will need to be connected to the internet to login again.</strong></p></div>');
 			hideScroll();
 			$('#logout-message').dialog({
 	   			autoOpen: true, 
@@ -2148,7 +2167,7 @@ jQuery.noConflict();
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Logout</span>',
+	   			title: 'Logout',
 	   			overlay: {
 	   				backgroundColor: '#000', 
 	   				opacity: 0.5 

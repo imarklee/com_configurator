@@ -309,7 +309,7 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #conf-login label.label-focus{background:#ddd url(../images/input-bg.jpg) repeat-x;border:1px solid #688F3A;}
 #conf-login #alf-cont label.label-focus span{background:#688F3A;color:#fff;}
 #conf-login #alf-cont label.label-username input.alf-input,
-#conf-login #alf-cont label.label-password input.alf-input{width:230px;height:27px;margin:0;position:absolute;top:0;right:10px;color:#555;border:0;background:none;border:none;padding:6px 0 0 10px;font:normal 15px/35px arial;}
+#conf-login #alf-cont label.label-password input.alf-input{width:230px;height:26px;margin:0;position:absolute;top:1px;right:17px;color:#555;border:0;background:none;border:none;padding:6px 0 0 0;font:normal 15px/35px arial;}
 #conf-login #alf-cont label.label-username input.alf-input.focus,
 #conf-login #alf-cont label.label-password input.alf-input.focus{background:#ddd url(../images/input-bg.jpg) repeat-x;color:#222;}
 #am-login-form #alf-cont{overflow:hidden;width:355px;}

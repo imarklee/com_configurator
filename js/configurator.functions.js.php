@@ -1335,30 +1335,50 @@ jQuery.noConflict();
 		/* Logo Options -----------------------
 	    ------------------------------------ */
 	    function logoPreview(elid){
-	    	var imageTitle  = $(elid).val(); 
-	    	var updatedTitle = imageTitle;
-	    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span>');
-	    	$('.logo-preview').each(function(){
-				$(this).attr('title', '');
-	    		$(this).qtip({
-	       		    content: '<img class="logo-preview-image" src="../templates/morph/assets/logos/'+updatedTitle+'" />',
-				    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
-					    style: { tip: { corner:'bottomMiddle' }, name: 'dark', background: '#fff', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' },
-				});
-			});
-	    	$(elid).change(function(){
-	    		$(elid +' option:selected').each(function(){
-	    			$('.logo-preview').attr('title', $(this).val());
-	    			$('.logo-preview').qtip("destroy");
-	    			$('.logo-preview').attr('title', '');
-	    			$('.logo-preview').qtip({
-					   	content: '<img src="../templates/morph/assets/logos/'+this.value+'" />',
+	    	if($(elid).val() != null){
+		    	var imageTitle  = $(elid).val(); 
+		    	var updatedTitle = imageTitle;
+		    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span><span class="upload-logo-container"><a href="#" class="upload-logo">Upload?</a></span>');
+		    	$('.logo-preview').each(function(){
+					$(this).attr('title', '');
+		    		$(this).qtip({
+		       		    content: '<img class="logo-preview-image" src="../morph_assets/logos/'+updatedTitle+'" />',
 					    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
-					    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' },
+						    style: { tip: { corner:'bottomMiddle' }, name: 'dark', background: '#fff', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' },
 					});
-					return updatedTitle = this.value;
-	    		});
-			});
+				});
+				$(".upload-logo").click(function(){
+					var maintabs = $("#tabs").tabs();
+					var subtabs = $("#tools-tabs").tabs();
+					maintabs.tabs("select",3);
+					subtabs.tabs("select",0);
+					$("#upload_logo").attr("checked",true);
+					return false;
+				});
+		    	$(elid).change(function(){
+		    		$(elid +' option:selected').each(function(){
+		    			$('.logo-preview').attr('title', $(this).val());
+		    			$('.logo-preview').qtip("destroy");
+		    			$('.logo-preview').attr('title', '');
+		    			$('.logo-preview').qtip({
+						   	content: '<img src="../morph_assets/logos/'+this.value+'" />',
+						    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
+						    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' },
+						});
+						return updatedTitle = this.value;
+		    		});
+				});
+			}else{
+				$(elid).css('display', 'none').after('<span class="no-logo">No Logos. <a href="#" class="upload-logo">Upload?</a></span>');
+				$(".upload-logo").click(function(){
+					var maintabs = $("#tabs").tabs();
+					var subtabs = $("#tools-tabs").tabs();
+					maintabs.tabs("select",3);
+					subtabs.tabs("select",0);
+					$("#upload_logo").attr("checked",true);
+					return false;
+				});
+			}
 	    }
 	    
 	    logoPreview('#logologo_image');

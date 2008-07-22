@@ -1639,8 +1639,8 @@ jQuery.noConflict();
 									},
 									'Go to Logo Settings': function(){
 										var $tabs = $('#tabs').tabs();
-										var logoTabs = $('#site-tabs').tabs();
-										$tabs.tabs('select', 0);
+										var logoTabs = $('#themelet-tabs').tabs();
+										$tabs.tabs('select', 1);
 										logoTabs.tabs('select', 1); 
   									  	$(this).dialog('destroy');
   									  	showScroll();

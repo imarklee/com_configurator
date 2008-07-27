@@ -66,3 +66,7 @@
 #dialog p small{padding:2px 0;background:yellow;line-height:1.6em;font-size:11px;}
 .installer-help{font:normal 15px/21px arial;padding:0 1em 1em 1em;}
 .installer-help h3{font:bold 20px/17px arial;margin:1em 0 0 0;}
+#install-body #install-summary{font:normal 13px/20px arial;color:#2E6502;margin:0 0 0 5px;}
+#install-body #install-summary li{padding-left:25px;background:#fff url(../images/summary-icons.jpg) no-repeat 0 2px;}
+#install-body #install-summary .tick-off{background:#fff url(../images/summary-icons.jpg) no-repeat 0 -23px;color:#999;text-decoration:line-through;}
+#install-body.complete h4{font-size:15px;color:#333;}

@@ -27,9 +27,7 @@ function summaryclass($cookie){
 	<div id="install-body" class="complete">
 		<h3>Congratulations! Your installation was successful!</h3>
 		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	
-	
-		<p><strong>Summary of what has been done:</strong></p>
-		
+		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
 			<li<?php echo summaryclass('installed_cfg'); ?>>Installed Morph's Configurator component</li>
 			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of existing version of the Morph template</li>
@@ -43,7 +41,6 @@ function summaryclass($cookie){
 			<li<?php echo summaryclass('installed_samplemods'); ?>>Loaded sample modules</li>
 		</ul>
 	</div>
-
 	<div id="install-foot">
 		<ul id="action">
 			<li class="previous"><a href="#" class="btn-skip back-step3"><span>&raquo; </span>Previous step</a></li>

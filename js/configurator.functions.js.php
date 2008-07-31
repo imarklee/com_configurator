@@ -1026,6 +1026,7 @@ jQuery.noConflict();
 						var subTabs = $('#themelet-tabs').tabs();
 						mainTabs.tabs('select', 1);
 						subTabs.tabs('select', 1);
+						window.location.reload(true);
 		   			},
 					buttons: { 
 						'Yes, configure logo': function(){
@@ -1039,8 +1040,8 @@ jQuery.noConflict();
 			   		}
 			   	});
 			   	
-		   		var setLogo = $(this).attr('name');
-		   		var logoOption = $('#logologo_image > option[value='+setLogo+']').attr('selected', true);
+		   		var setLogo = a.attr('name');
+		   		var logoOption = $('#logologo_image option[value='+setLogo+']').attr('selected', true);
 		   		$('#templateform').submit(function(){
 		   			$(this).ajaxSubmit({
 		   				type: 'POST',
@@ -1056,7 +1057,7 @@ jQuery.noConflict();
 	  						$("#system-message dd.message").corners("10px");		
 							$("#system-message dd.message ul").corners("10px");		
 							$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
-			   				$('.lgdlg').dialog('open');
+			   				$('.dialog-msg').dialog('open');
 			   				$('#logos-list ul li.tl-active ul li.btn-activate a, #logos-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
 			   				$('#logos-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
 			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
@@ -1097,6 +1098,7 @@ jQuery.noConflict();
 						subTabs.tabs('select', 2);
 						$(this).remove();
 						showScroll();
+						window.location.reload(true);
 					},
 					buttons: { 
 						'Yes, configure background': function(){
@@ -1128,7 +1130,7 @@ jQuery.noConflict();
 	  						$("#system-message dd.message").corners("10px");		
 							$("#system-message dd.message ul").corners("10px");		
 							$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
-			   				$('.bgdlg').dialog('open');
+			   				$('.dialog-msg').dialog('open');
 			   				$('#backgrounds-list ul li.tl-active ul li.btn-activate a, #backgrounds-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
 			   				$('#backgrounds-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
 			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
@@ -1743,7 +1745,8 @@ jQuery.noConflict();
 											var $tabs = $('#tabs').tabs();
 											var logoTabs = $('#themelet-tabs').tabs();
 											$tabs.tabs('select', 1);
-											logoTabs.tabs('select', 1); 
+											logoTabs.tabs('select', 1);
+											window.location.reload(true); 
 	  									  	$(this).dialog('destroy');
 	  									  	showScroll();
 										}
@@ -1774,7 +1777,8 @@ jQuery.noConflict();
 											var $tabs = $('#tabs').tabs();
 											var bgTabs = $('#themelet-tabs').tabs();
 											$tabs.tabs('select', 1);
-											bgTabs.tabs('select', 2); 
+											bgTabs.tabs('select', 2);
+											window.location.reload(true);
 	  									  	$(this).dialog('destroy');
 	  									  	showScroll();
 										}

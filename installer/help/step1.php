@@ -4,5 +4,5 @@
 
 <h3>Not sure which file to install?</h3>
 <p>If you haven't downloaded Morph yet, you will need to login to the club downloads area and <a href="http://www.joomlajunkie.com/member/downloads/" title="login to the club downloads to get the latest versions">grab the latest version</a> of the Morph template.</p>
-<p>The file is called <strong>morph_template_v0.09.zip</strong>, with <em>v0.09</em> referencing the version you have downloaded and will be installing.</p>
+<p>The file you are looking for starts with <strong>morph_template_</strong>, with followed by the version and date stamp. An example of this is template_morph_v009_1248716802.zip.</p>
 </div>

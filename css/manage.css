@@ -407,6 +407,7 @@ img.logo-preview-image{margin:-10px;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-progressive a { background-position: 8px -632px; } 
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-themelets a { background-position: 8px -769px; } 
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-topnav a { background-position: 8px -860px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-iphone a{background:transparent url(../images/iphone-icon.png) no-repeat 8px 52%;}
 ul.morph-resources,ul.morph-resources li{margin:0;padding:0;}
 ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 #dashboard{width:640px;padding-left:310px;margin:3em auto 2em auto;padding-bottom:2em;background:#fff url(../images/maskot.png) 0 5px no-repeat;}

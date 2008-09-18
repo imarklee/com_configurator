@@ -2,7 +2,7 @@
 	<div id="outer-sidebar-options" class="options-panel">
 	    <h3>Outer Sidebar (Left) Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('outersidebar', 'innersidebardata')); ?>
+			<?php echo renderParams($params->renderToArray('outersidebar', 'outersidebardata')); ?>
 		</ol>
 	    <h3>Split Left Settings</h3>
 		<ol class="forms">

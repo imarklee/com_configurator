@@ -40,3 +40,4 @@ a.btn-primary:hover{-moz-box-shadow:0 0 5px #598C13;}
 #cfg #tabs ol.forms li.palette .color-preview{top:8px;}
 #cfg #tabs ol.forms li.palette .color-preview{top:7px;}
 #cfg #tabs ol.forms li.palette{height:32px;}
+#shelf #utilities ul li.logged-in span.shelf-notice{-moz-border-radius:7px;}

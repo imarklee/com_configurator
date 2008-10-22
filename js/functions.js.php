@@ -1982,7 +1982,7 @@ jQuery.noConflict();
 				if(uploaderid == 'insfile') { return false; event.preventDefault(); }
 				$.cookie('formChanges', true);
 				var ih = $('#utilities li.logged-in').html();
-				$('#utilities li.logged-in').html(ih+'&nbsp;&nbsp;|&nbsp;&nbsp;<span class="shelf-notice">You have made some changes which are not saved.</span>');
+				$('#utilities li.logged-in').html(ih+'&nbsp;&nbsp;|&nbsp;&nbsp;<span class="shelf-notice">You have unsaved changes</span>');
 			}
 		});
 		

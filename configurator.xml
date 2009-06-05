@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<install type="component" version="1.5.0">
+    <name>Configurator</name>
+    <shortname>configurator</shortname>
+    <foldername>com_configurator</foldername>
+    <creationDate>May 2009</creationDate>
+    <author>JoomlaJunkie</author>
+    <authorEmail>norepy@joomlajunkie.com</authorEmail>
+    <authorUrl>http://www.joomlajunkie.com</authorUrl>
+    <copyright>Copyright 2009 Web Monkeys</copyright>
+    <license>GPL V2</license>
+    <version>0.03</version>
+	<installfile>install.configurator.php</installfile>
+	<uninstallfile>uninstall.configurator.php</uninstallfile>
+    <install>
+        <sql>
+            <file charset="utf8" driver="mysql">install.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file charset="utf8" driver="mysql">uninstall.sql</file>
+        </sql>
+    </uninstall>    
+    <administration>
+        <menu link="option=com_configurator&amp;task=dashboard" img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
+        <submenu>
+            <menu link="option=com_configurator&amp;task=dashboard" img="js/ThemeOffice/cpanel.png">Dashboard</menu>
+            <menu link="option=com_configurator&amp;task=manage" img="js/ThemeOffice/config.png">Manage</menu>
+        </submenu>        
+        <files folder="admin">
+            <filename>admin.configurator.html.php</filename>
+            <filename>admin.configurator.php</filename>
+            <filename>configuration.php</filename>    
+        	<filename>configurator.class.php</filename>
+        	<filename>configurator.common.php</filename>
+        	<filename>configurator.html.php</filename>
+        	<filename>configurator.loader.php</filename>
+        	<filename>configurator.php</filename>
+            <filename>controller.php</filename>
+            <folder>css</folder>
+            <folder>images</folder>
+            <folder>includes</folder>
+            <filename>index.html</filename>
+            <filename>install.sql</filename>
+            <folder>js</folder>
+            <folder>language</folder>
+            <filename>sample.sql</filename>
+            <folder>tables</folder>
+            <filename>toolbar.configurator.html.php</filename>
+            <filename>toolbar.configurator.php</filename>             
+            <folder>tooltips</folder>
+            <filename>uninstall.sql</filename>
+        </files>        
+    </administration>
+</install>

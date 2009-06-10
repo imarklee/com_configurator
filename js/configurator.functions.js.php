@@ -1,7 +1,7 @@
 <?php 
 header('content-type: text/javascript; charset: UTF-8');
 ?>
-$.noConflict();
+jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
 	
@@ -11,6 +11,8 @@ $.noConflict();
 		$('#welcome-box').corners('10px top');
 		$('#wb-header').corners('10px top');
 		$('#wb-footer').corners('10px bottom');
+		$('#conf-login').corners('5px');
+		$('#cl-inner').corners('3px');
 		
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
@@ -19,6 +21,14 @@ $.noConflict();
      		imageheight : 27,
      		imagewidth : 81,
      		width : 217
+ 		});
+ 		
+ 		$('.alf-input').focus(function(){
+ 			if(this.value == 'username' || this.value == 'password'){ 
+ 				$(this).val(''); 
+ 			}
+ 		}).blur(function(){
+ 			if(this.value == ''){ $(this).val($(this).attr('title')); }
  		});
  		
  		/* Welcome Box ------------------------
@@ -637,5 +647,109 @@ $.noConflict();
 	    
 	    logoPreview('#logologo_image');
 	    
+	    /* Login ------------------------------
+	    ------------------------------------ */
+	    $('.alf-check').change(function(){
+	    	$('#alf-warning').html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>'
+									+'<span class="error-text">If this is a public or shared computer, please uncheck this.</span></p>');
+			
+			$('#alf-warning').dialog({
+	   			autoOpen: true, 
+	   			bgiframe: true, 
+	   			resizable: false,
+	   			draggable: false,
+	   			height: 20,
+	   			modal: true, 
+	   			title: 'Warning',
+	   			overlay: {
+	   				backgroundColor: '#000', 
+	   				opacity: 0.5 
+	   			},
+				buttons: {
+					'OK': function(){
+						$(this).dialog('destroy');
+					},
+					'Uncheck': function(){
+						$(this).dialog('destroy');
+						$('.alf-check').attr('checked', false);
+					}
+				}
+			});
+		});
+			
+	    function loginUser(){
+	    	var username = $('input[name="am-username"]').val();
+	    	var password = $('input[name="am-password"]').val();
+	    	
+	    	if(username != 'username' || password != 'password'){
+	    	
+		    	$.ajax({
+		    		type: 'POST',
+		    		url: '../administrator/index.php?option=com_configurator&task=makehash&format=raw',
+		    		data: {
+		    			'tempuserpass': password
+		    		},
+		    		success: function(d,t){
+		    			if(d != ''){
+		    				
+		    				var passhash = d;
+		    				var retval;
+							var rurl = 'http://www.joomlajunkie.com/configurator/logging.php?jsoncallback=?';
+		
+							ret = jQuery.ajax({
+								dataType: 'jsonp',
+								url: rurl,
+								data: {
+									'do': 'check',
+									'user': username,
+									'hash': passhash
+								},
+								contentType: "application/json; charset=utf-8",
+								success: function(rdata, textstatus){
+									if(rdata.retcode == 'fail'){
+										retval = 'Login Failed: '+rdata.message;
+									}else{
+										retval = 'Login Success: Redirecting';
+									}
+									alert(retval);
+									// todo: output return val
+									
+									
+								
+								}
+							});
+						}
+					}
+				});
+			}else{
+				$('#alf-warning').html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>'
+									+'<span class="error-text">Please enter a username and password in the fields below. Thanks.</span></p>');
+				$('#alf-warning').dialog({
+		   			autoOpen: true, 
+		   			bgiframe: true, 
+		   			resizable: false,
+		   			draggable: false,
+		   			height: 20,
+		   			modal: true, 
+		   			title: 'Error',
+		   			overlay: {
+		   				backgroundColor: '#000', 
+		   				opacity: 0.5 
+		   			},
+					buttons: {
+						'OK': function(){
+							$(this).dialog('destroy');
+						}
+					}
+				});
+
+	
+			
+			}
+		return false;
+		}
+		
+		$('.alf-login').click(loginUser);
+		
 	});
 })(jQuery);

@@ -166,7 +166,7 @@ function xml2array($url, $get_attributes = 1, $priority = 'tag')
 // CSS and JS Packing
 if(isset($_GET['pack'])){
 	setcookie('pack', 'true', 0);
-	header('Location: ../administrator/index.php?option=com_configuratorh&task=manage');
+	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
 }
 elseif(isset($_GET['unpack'])){
 	setcookie('pack', 'true', time() - 3600);

@@ -9,6 +9,6 @@ include('jquery.corners.min.js');
 include('jquery.filestyle.min.js');
 include('jquery.qtip-1.0.0-rc3.min.js');
 include('jquery.fileupload.js');
-include('morphFunctions.js.php');
+include('configurator.functions.js.php');
 ob_end_flush();
 ?>

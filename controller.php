@@ -566,5 +566,17 @@ class ConfiguratorController extends JController {
 			die('Accessed outside of installer');
 		}
 	}
+	
+	function makehash(){
+		if(isset($_POST['tempuserpass'])){
+			$pass = $_POST['tempuserpass'];
+			if($pass){
+				$salt = 'we are the champions, my friend';
+				echo sha1(md5($pass.$salt));
+			}
+		}else{
+			die('no post data');
+		}
+	}
 }
 ?>

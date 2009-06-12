@@ -129,12 +129,6 @@ class ConfiguratorController extends JController {
 			}
 
 			$lists['themelets_dir'] = $themelet_dir;
-
-			// Load list of favicons (if they exist).
-			$favicon_dir = JPATH_ROOT . DS . 'templates' . DS . $params->name . DS . 'assets'.DS.'favicons';
-			if(is_dir($favicon_dir)) $lists['favicons'] = JFolder::files( $favicon_dir, '.ico|.png|.gif' );
-			else $lists['favicons'] = null;
-			$lists['favicons_dir'] = $favicon_dir;
 			
 			// Load list of logos (if they exist).
 			$logo_dir = JPATH_ROOT . DS . 'templates' . DS . $params->name . DS . 'assets'.DS.'logos';
@@ -148,8 +142,6 @@ class ConfiguratorController extends JController {
 			else $lists['backgrounds'] = null;
 			$lists['bg_dir'] = $bg_dir;
 			
-			if(!is_dir($favicon_dir) && $params->use_favicons) $lists['err_messages'][] = 'The favicon folder does not exist.';
-			elseif(!is_writable($favicon_dir) && $params->use_favicons) $lists['err_messages'][] = 'The favicon folder is not writeable';
 			unset($xmlDoc);
 
 		}

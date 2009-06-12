@@ -15,6 +15,7 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery-ui-1.7.1.custom.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/cookie.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/colorpicker.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jqbrowser.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.corners.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.filestyle.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.qtip-1.0.0-rc3.min.js');
@@ -46,6 +47,8 @@ function manage( &$params, &$lists, $morph_installed ) {
 	        //if found morph	
         } else {	
 	        $template_dir = JPATH_SITE . DS . 'templates' . DS . 'morph';
+	        $jVer 		= new JVersion();
+			$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
 	        
 	        // Show a specific template in editable mode.
 	        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#FFFFFF;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>
@@ -173,6 +176,10 @@ function manage( &$params, &$lists, $morph_installed ) {
 						
 						<h3><span class="ui-icon ui-foot-settings"></span> <a href="#">Footer Settings</a></h3>
 						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('footer', 'footerdata')); ?></div>
+		            </div>
+		            <div id="login-details">
+		            	<p class="ld-float-user"><span title="Logged in as: <?php echo $_COOKIE['am_logged_in_user']; ?>"class="ld-username">Logged in as: </span><?php echo $_COOKIE['am_logged_in_user']; ?></p>
+		            	<p><a href="#" class="logout-configurator"><span class="ld-logout">Logout</span></a></p>
 		            </div>
 					<div id="tabs">
 						<ul class="ui-tabs-nav">

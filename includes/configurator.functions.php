@@ -167,6 +167,19 @@ function xml2array($url, $get_attributes = 1, $priority = 'tag')
     }
     return ($xml_array);
 }
+
+function pageURL() {
+	$pageURL = 'http';
+	if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+	$pageURL .= "://";
+	if ($_SERVER["SERVER_PORT"] != "80") {
+		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+	} else {
+		$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+	}
+return $pageURL;
+}
+
 // CSS and JS Packing
 if(isset($_GET['pack'])){
 	setcookie('pack', 'true', 0);

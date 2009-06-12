@@ -75,6 +75,7 @@ $component_arr = $component_details['install'];
 	} else {
 		$lists['themelets'] = null;
 	}
+	
 	if( count($lists['themelets'])  <= '1' ){
 		echo '<tr class="other-themelet no-themelets"><td>There are no other themelets installed</td></tr>';
     }else{

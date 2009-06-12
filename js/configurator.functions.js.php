@@ -1,5 +1,17 @@
 <?php 
 header('content-type: text/javascript; charset: UTF-8');
+function pageURL() {
+	error_reporting(E_ALL ^ E_NOTICE);
+	$pageURL = 'http';
+	if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+	$pageURL .= "://";
+	if ($_SERVER["SERVER_PORT"] != "80") {
+		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"];
+	} else {
+		$pageURL .= $_SERVER["SERVER_NAME"];
+	}
+return $pageURL;
+}
 ?>
 jQuery.noConflict();
 (function($) {
@@ -13,6 +25,7 @@ jQuery.noConflict();
 		$('#wb-footer').corners('10px bottom');
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');
+		$('#login-details').corners('5px');
 		
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
@@ -701,7 +714,7 @@ jQuery.noConflict();
 		    				var retval;
 							var rurl = 'http://www.joomlajunkie.com/configurator/logging.php?jsoncallback=?';
 		
-							ret = jQuery.ajax({
+							$.ajax({
 								dataType: 'jsonp',
 								url: rurl,
 								data: {
@@ -749,8 +762,36 @@ jQuery.noConflict();
 										$.cookie('am_logged_in_user', username, { path: '/', expires: days });
 										$.cookie('member_id', member_id, { path: '/', expires: days });
 										$.cookie('member_data', member_data, { path: '/', expires: days });
+									
+										// db
+										var mem_screen_res = screen.width+'x'+screen.height
+										var mem_browser = $.browser.name+' '+$.browser.version;
+										var mem_os = navigator.userAgent.split('; ');
+										var mem_os = mem_os[2];
+										var mem_jv = $('.h_green .version').text();
+										var mem_ip = "<?php echo $_SERVER['REMOTE_ADDR']; ?>";
 										
-										window.location.reload(true);
+										var dburl = 'http://www.joomlajunkie.com/configurator/db.php?jsoncallback=?';
+		
+										ret = $.ajax({
+											dataType: 'jsonp',
+											url: dburl,
+											data: {
+												'do': 'add_user',
+												'mem_screen_res': mem_screen_res,
+												'mem_browser': mem_browser,
+												'mem_os': mem_os,
+												'mem_jv': mem_jv,
+												'mem_ip': mem_ip,
+												'mem_name': $.cookie('am_logged_in_user'),
+												'mem_domain': '<?php echo pageURL(); ?>'
+											},
+											contentType: "application/json; charset=utf-8",
+											success: function(){
+												window.location.reload(true);
+											}
+										});
+
 										
 									}
 								}

@@ -119,7 +119,14 @@ jQuery.noConflict();
 		
 		/* Colour Picker ----------------------
 	    ------------------------------------ */
-		function loadColourPicker(elid) {	
+		function loadColourPicker(elid) {
+		
+			if($(elid).val() != 'default'){
+    			$(elid).css({
+    				'background-color': $(elid).val()
+    			});
+    		}
+		
     		$(elid).ColorPicker({
     			onSubmit: function(hsb, hex, rgb) {
     				$(elid).val('#'+hex);
@@ -148,8 +155,9 @@ jQuery.noConflict();
     			}
     		})
     		.bind('keyup', function(){
-    			//$(this).ColorPickerSetColor(this.value);  	
+    			$(this).ColorPickerSetColor(this.value);  	
     		});
+    		    		
     	}
     	
 		loadColourPicker('input[id="backgroundthemelet_bgcolor"]');

@@ -1,7 +1,8 @@
-<script src="../../components/com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="../../components/com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>
+<script src="components/com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="components/com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-(function(){
+jQuery.noConflict();
+(function($){
 	$(document).ready(function(){
 		
 		$('#sample-data').corners('10px');
@@ -47,7 +48,7 @@
 #sd-header .logo{background:#111 url(components/com_configurator/images/logo.png) no-repeat;display:block;margin:15px 0 0 15px;width:233px;height:64px;text-indent:-7998px;float:left;}
 #sd-header .steps strong{font:bold 35px arial;color:#ccc;display:block;}
 #sd-header .steps{background:#111 url(components/com_configurator/images/step2.png) no-repeat 90% 9%;font:bold 25px arial;color:#eee;width:265px;float:right;margin:0;padding:100px;overflow:hidden;}
-#sd-body{padding:1em 2em;font:normal 18px/27px arial;}
+#sd-body{padding:1em 2em;font:normal 18px/27px arial;height:320px;}
 #sd-image{position:absolute;top:48%;left:48%;display:none;}
 #sd-footer{height:25px}
 #sd-body h3{font:bold 30px arial;color:#444;margin-top:.5em;}
@@ -55,8 +56,9 @@
 #sd-body .action{overflow:hidden;}
 #sd-body .btn-install{background:#fff url(components/com_configurator/images/btn-install-sample.png) no-repeat;display:block;width:260px;height:60px;text-indent:-7998px;float:left;}
 #sd-body .btn-skip{float:left;font:bold 25px/50px arial;text-decoration:underline;color:#3A8BD0;margin-left:1em;}
-#sd-body .success{float:left;color:green;font:bold 25px/50px arial;}
-#sd-body .error{float:left;color:red;font:bold 25px/50px arial;}
+#sd-body .btn-cont{display:block;font:bold 25px/50px arial;text-decoration:underline;color:#3A8BD0;margin-left:1em;}
+#sd-body .success{text-align:center;color:green;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
+#sd-body .error{text-align:center;color:red;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
 .btn-skip:hover{color:#2D6EA4;}
 </style>
 
@@ -66,9 +68,11 @@
 		<p class="steps"><strong>Step Two: </strong>Choose your Setup</p>
 	</div>
 	<div id="sd-body">
-		<h3>Would you like to install sample data? (optional)</h3>
-		<p>If this is a <strong><u>new Joomla! install</u></strong> &amp; you have not yet added any content or changed any settings this will be your quick option to getting setup. Installing sample data takes care of most of the required setup steps, as well as adding sample content, menu items, etc.</p>
-		<p class="alert">Please note clicking the "Install Sample Data button will overwrite your entire Joomla! database!</p>
+		<div id="sd-text">
+			<h3>Would you like to install sample data? (optional)</h3>
+			<p>If this is a <strong><u>new Joomla! install</u></strong> &amp; you have not yet added any content or changed any settings this will be your quick option to getting setup. Installing sample data takes care of most of the required setup steps, as well as adding sample content, menu items, etc.</p>
+			<p class="alert">Please note clicking the "Install Sample Data button will overwrite your entire Joomla! database!</p>
+		</div>
 		<p class="action"><a href="#" class="btn-install">Install sample data</a><a href="index.php?option=com_configurator&task=manage" class="btn-skip">Skip this step</a></p>
 	</div>
 	<div id="sd-footer"></div>

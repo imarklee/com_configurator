@@ -77,8 +77,9 @@ function manage( &$params, &$lists, $morph_installed ) {
 					</div>
 				</div>
 	        <?php }else{ ?>
-	        	<a href="#" class="logout-configurator">logout</a>
-		        <?php if(!isset($_COOKIE['configurator_welcome'])){ ?>
+	        	<?php if(!isset($_COOKIE['configurator_welcome'])){ ?>
+	        	
+	        	
 		        <div id="welcome-box">
 		        	<div id="wb-header">
 		        		<div id="wbh-left">

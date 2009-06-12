@@ -712,7 +712,7 @@ jQuery.noConflict();
 		    				
 		    				var passhash = d;
 		    				var retval;
-							var rurl = 'http://www.joomlajunkie.com/configurator/logging.php?jsoncallback=?';
+							var rurl = 'http://www.joomlajunkie.com/secure/configurator/logging.php?jsoncallback=?';
 		
 							$.ajax({
 								dataType: 'jsonp',
@@ -771,7 +771,7 @@ jQuery.noConflict();
 										var mem_jv = $('.h_green .version').text();
 										var mem_ip = "<?php echo $_SERVER['REMOTE_ADDR']; ?>";
 										
-										var dburl = 'http://www.joomlajunkie.com/configurator/db.php?jsoncallback=?';
+										var dburl = 'http://www.joomlajunkie.com/secure/configurator/db.php?jsoncallback=?';
 		
 										ret = $.ajax({
 											dataType: 'jsonp',

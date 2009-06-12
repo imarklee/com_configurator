@@ -650,17 +650,18 @@ jQuery.noConflict();
 	    /* Login ------------------------------
 	    ------------------------------------ */
 	    $('.alf-check').change(function(){
-	    	$('#alf-warning').html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>'
-									+'<span class="error-text">If this is a public or shared computer, please uncheck this.</span></p>');
+	    	$('#alf-warning').html('<p><span class="error-text"><strong>Selecting this will keep you logged in for an infinite period.</strong><br /><br />'
+									+'Please note that, a cookie will be set to keep you logged in until you log out manually or delete your '
+									+'cookies.</span></p>');
 			
 			$('#alf-warning').dialog({
 	   			autoOpen: true, 
 	   			bgiframe: true, 
 	   			resizable: false,
 	   			draggable: false,
-	   			height: 20,
+	   			minHeight: 20,
 	   			modal: true, 
-	   			title: 'Warning',
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Warning</span>',
 	   			overlay: {
 	   				backgroundColor: '#000', 
 	   				opacity: 0.5 
@@ -680,8 +681,12 @@ jQuery.noConflict();
 	    function loginUser(){
 	    	var username = $('input[name="am-username"]').val();
 	    	var password = $('input[name="am-password"]').val();
+	    	var setcookie = $('input[name="am-keep-login"]').attr('checked')
 	    	
 	    	if(username != 'username' || password != 'password'){
+	    	
+	    		$('#alf-image').css('display','block');
+				$('#cl-inner').fadeTo("fast", 0.1);
 	    	
 		    	$.ajax({
 		    		type: 'POST',
@@ -706,32 +711,63 @@ jQuery.noConflict();
 								},
 								contentType: "application/json; charset=utf-8",
 								success: function(rdata, textstatus){
+									
 									if(rdata.retcode == 'fail'){
+										
+										$('#alf-image').css('display','none');
+										$('#cl-inner').fadeTo(10, 1);
+										
 										retval = 'Login Failed: '+rdata.message;
+										$('#alf-output').html('<p><span class="error-text">'+retval+'</span></p>');
+										$('#alf-output').dialog({
+								   			autoOpen: true, 
+								   			bgiframe: true, 
+								   			resizable: false,
+								   			draggable: false,
+								   			minHeight: 20,
+								   			modal: true, 
+								   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Login Error</span>',
+								   			overlay: {
+								   				backgroundColor: '#000', 
+								   				opacity: 0.5 
+								   			},
+											buttons: {
+												'OK': function(){
+													$(this).dialog('destroy');
+												}
+											}
+										});
 									}else{
-										retval = 'Login Success: Redirecting';
+										
+										var days;
+										var member_id = rdata.data.member_id;
+										var member_data = rdata.data.sdata;
+										
+										if(setcookie == true){ days = 365; }else{ days = null; }
+										
+										$.cookie('am_logged_in', 'true', { path: '/', expires: days });
+										$.cookie('am_logged_in_user', username, { path: '/', expires: days });
+										$.cookie('member_id', member_id, { path: '/', expires: days });
+										$.cookie('member_data', member_data, { path: '/', expires: days });
+										
+										window.location.reload(true);
+										
 									}
-									alert(retval);
-									// todo: output return val
-									
-									
-								
 								}
 							});
 						}
 					}
 				});
 			}else{
-				$('#alf-warning').html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>'
-									+'<span class="error-text">Please enter a username and password in the fields below. Thanks.</span></p>');
+				$('#alf-warning').html('<p><span class="error-text">Please enter a username and password in the fields below. Thanks.</span></p>');
 				$('#alf-warning').dialog({
 		   			autoOpen: true, 
 		   			bgiframe: true, 
 		   			resizable: false,
 		   			draggable: false,
-		   			height: 20,
+		   			minHeight: 20,
 		   			modal: true, 
-		   			title: 'Error',
+		   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
 		   			overlay: {
 		   				backgroundColor: '#000', 
 		   				opacity: 0.5 
@@ -742,14 +778,45 @@ jQuery.noConflict();
 						}
 					}
 				});
-
-	
-			
 			}
 		return false;
 		}
-		
 		$('.alf-login').click(loginUser);
+		
+		/* Logout --------------------------
+		--------------------------------- */
+		
+		$('a.logout-configurator').click(function(){
+		
+			$('#content-box').after('<div id="logout-message" style="display:none;">You are about to logout. Please ensure you have saved your changes.<br /></br />'
+									+'<strong>Please remember: You will need to be connected to the internet to login again.</strong></div>');
+			$('#logout-message').dialog({
+	   			autoOpen: true, 
+	   			bgiframe: true, 
+	   			resizable: false,
+	   			draggable: false,
+	   			minHeight: 20,
+	   			modal: true, 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Logout</span>',
+	   			overlay: {
+	   				backgroundColor: '#000', 
+	   				opacity: 0.5 
+	   			},
+				buttons: {
+					'Log Out': function(){
+						$.cookie('am_logged_in', null, { path: '/', expires: -1 });
+						$.cookie('am_logged_in_user', null, { path: '/', expires: -1 });
+						$.cookie('member_id', null, { path: '/', expires: -1 });
+						$.cookie('member_data', null, { path: '/', expires: -1 });
+						window.location.reload(true);
+					},
+					'Remain Logged In': function(){
+						$(this).dialog('destroy');
+					}
+				}	
+			});
+		return false;
+		});
 		
 	});
 })(jQuery);

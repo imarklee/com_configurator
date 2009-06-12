@@ -61,7 +61,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<input type="text" class="alf-input" name="am-username" value="username" title="username" />
 									<input type="password" class="alf-input" name="am-password" value="password" title="password" />
 									<input class="alf-check" type="checkbox" name="am-keep-login" value="true" />
-									<label for="am-keep-login">Keep me logged in for two weeks</label>
+									<label for="am-keep-login">Keep me logged in</label>
 								</div>
 								<input class="alf-login" type="button" name="am-do-login" value="am-login-true" />
 							</div>				
@@ -69,10 +69,13 @@ function manage( &$params, &$lists, $morph_installed ) {
 						<div id="alf-warning"></div>
 						<div id="alf-output"></div>
 					</div>
+					<div id="alf-image">
+						<img src="../administrator/components/com_configurator/images/ajax-loader-dark.gif" height="31" width="31" border="1" alt="Loading" />
+					</div>
 				</div>
-	        <?php }else{
-	        
-		        if(!isset($_COOKIE['configurator_welcome'])){ ?>
+	        <?php }else{ ?>
+	        	<a href="#" class="logout-configurator">logout</a>
+		        <?php if(!isset($_COOKIE['configurator_welcome'])){ ?>
 		        <div id="welcome-box">
 		        	<div id="wb-header">
 		        		<div id="wbh-left">

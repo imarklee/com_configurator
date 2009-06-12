@@ -10,16 +10,7 @@
 		$('#sd-footer').corners('5px bottom');
 		
 		$('.btn-install').click(function(){
-		
-		$('#sd-image').css('display','none');
-					$('#sd-body').fadeTo("fast", 1);
-					$('#sd-text').css('display', 'none');
-					$('.btn-install').hide();
-					$('.btn-skip').hide();
-					$('.action').before('<span class="success">Sample data installed successfully! <a href="index.php?option=com_configurator&task=manage" class="btn-cont">Continue</a></span>');
-
-
-			/*$.ajax({
+			$.ajax({
 				url: '../administrator/index.php?option=com_configurator&task=install_sample&do=install&formsat=raw',
 				beforeSend: function(){
 					$('#sd-image').css('display','block');
@@ -41,7 +32,7 @@
 					$('.action').before('<span class="error">There was an error installing the Sample Data.</span>');
 					$('.btn-skip').text('Continue');
 				}
-			});*/
+			});
 		return false;
 		});
 	

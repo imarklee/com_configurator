@@ -25,6 +25,10 @@ function renderParams($array){
 	}
 }
 
+function decode_data($data){
+	return (array)unserialize(str_replace('\\', '', urldecode($data)));
+}
+
 function xml2array($url, $get_attributes = 1, $priority = 'tag')
 {
     $contents = "";

@@ -230,20 +230,23 @@ textarea{width:195px!important;}
 
 .logo-preview { width: 16px; height: 16px; background: transparent url('../images/ico_eye.png') no-repeat 0 0; position:absolute;top:7px; right: 65px;}
 
-#conf-login { background:#9d9e9e;color:#313131;width:100%;padding: 1px 0;display:block;text-align:center;}
+#conf-login {position:relative;background:#9d9e9e;color:#313131;width:100%;padding: 1px 0;display:block;text-align:center;}
 #conf-login h2 { margin-top:40px; font:bold 32px Arial; }
 #conf-login p { margin: -14px 0 0 0;padding:0;font: normal 18px/16px Arial; }
-#cl-inner {display: block;margin:7px 8px;height:322px;overflow: hidden;background: transparent url('../images/login-bg.png') repeat-x 0 0;color: #313131;border: 1px solid #919292; }
+#cl-inner {display: block;margin:7px 8px;height:322px;overflow: hidden;background: #fff url('../images/login-bg.png') repeat-x 0 0;color: #313131;border: 1px solid #919292; }
 #am-login-form #alf-cont { width: 480px;margin:30px auto;position: relative; }
 #am-login-form #alf-cont .alf-input { display: block;padding: 10px 0 0 10px;margin-bottom: 9px;height: 32px;width: 300px;background: transparent url(../images/login-input-bg.png) no-repeat 0 0;color: #898989; border: none; text-align: left;font: normal 18px/32px Arial; }
+#am-login-form #alf-cont .alf-input:focus { background: transparent url(../images/login-input-bg-focus.png) no-repeat 0 0;color: #00b0ff;}
 #am-login-form #alf-cont #alf-inp-cont { position: absolute;left: 0;top: 0; text-align: left; }
 #am-login-form #alf-cont #alf-inp-cont .alf-check {display: block;float: left; }
 #am-login-form #alf-cont #alf-inp-cont label {display: block;float: left; padding: 5px 0 0 0; }
 #am-login-form .alf-login { position: absolute;left: 320px; text-indent: -5000px;border: 0; background: transparent url(../images/login-button-sprite.png) no-repeat 0 0; height: 98px; width: 158px; -moz-outline: 0 none;  }
-#am-login-form .alf-login:hover { background-position: -159px 0; cursor: pointer; }
+#am-login-form .alf-login:hover,
+#am-login-form .alf-login:focus { background-position: -159px 0; cursor: pointer; }
 #am-login-form .alf-login:active { background-position: -319px 0; cursor: pointer; }
 #am-login-form input:focus { -moz-outline:0;outline:0;outline-offset:0; }
 #alf-warning, #alf-output { text-align: left; padding-top:10px; }
+#alf-image{position:absolute;top:46%;left:48%;display:none;z-index:50;}
 
 button::-moz-focus-inner,
 input[type="reset"]::-moz-focus-inner,

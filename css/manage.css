@@ -278,7 +278,10 @@ padding: 20px;
 #assets .ui-tabs .ui-tabs-nav li a,
 #subtabs.ui-tabs .ui-tabs-nav,
 #subtabs.ui-tabs .ui-tabs-nav li,
-#subtabs.ui-tabs .ui-tabs-nav li a {
+#subtabs.ui-tabs .ui-tabs-nav li a,
+#block-settings.ui-tabs .ui-tabs-nav,
+#block-settings.ui-tabs .ui-tabs-nav li,
+#block-settings.ui-tabs .ui-tabs-nav li a {
 padding: 0;
 margin: 0;
 border: 0;
@@ -287,7 +290,8 @@ background: none;
 }
 #tools .ui-tabs .ui-tabs-nav,
 #assets .ui-tabs .ui-tabs-nav,
-#subtabs.ui-tabs .ui-tabs-nav {
+#subtabs.ui-tabs .ui-tabs-nav,
+#block-settings.ui-tabs .ui-tabs-nav {
 background: #ccc url(../images/gradient1.jpg) repeat-x;
 border: 1px solid #ccc;
 color: #222;
@@ -295,38 +299,44 @@ margin: 10px 0 0 0;
 }
 #tools .ui-tabs .ui-tabs-nav li,
 #assets .ui-tabs .ui-tabs-nav li,
-#subtabs.ui-tabs .ui-tabs-nav li {
+#subtabs.ui-tabs .ui-tabs-nav li,
+#block-settings.ui-tabs .ui-tabs-nav li {
 border-right: 1px solid #ccc;
 }
 #tools .ui-tabs .ui-tabs-nav li a,
 #assets .ui-tabs .ui-tabs-nav li a,
-#subtabs.ui-tabs .ui-tabs-nav li a {
+#subtabs.ui-tabs .ui-tabs-nav li a,
+#block-settings.ui-tabs .ui-tabs-nav li a {
 padding: 5px 10px;
 color: #444;
 }
 #tools .ui-tabs .ui-tabs-nav li a:hover,
 #assets .ui-tabs .ui-tabs-nav li a:hover,
-#subtabs.ui-tabs .ui-tabs-nav li a:hover {
+#subtabs.ui-tabs .ui-tabs-nav li a:hover,
+#block-settings.ui-tabs .ui-tabs-nav li a:hover {
 text-decoration: underline;
 }
 #tools .ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active,
 #assets .ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active,
-#subtabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active {
+#subtabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active,
+#block-settings.ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active {
 background: #fff;
 font-weight: bold;
 }
 #tools .ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a,
 #assets .ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a,
-#subtabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a {
+#subtabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a,
+#block-settings.ui-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a {
 color: #555;
 }
 #tools .ui-tabs-panel,
-#subtabs .ui-tabs-panel {
+#subtabs .ui-tabs-panel,
+#block-settings .ui-tabs-panel {
 background: #fff;
 padding: 20px 0 0 0;
 }
 
-
+#block-settings .ui-tabs-panel,
 #subtabs .ui-tabs-panel {
 overflow: hidden;
 }
@@ -444,6 +454,108 @@ margin-left: 100px;
 width: auto;
 }
 
+#block-settings ol.forms {
+float: left;
+list-style: none;
+width: 100%;
+padding-top: 2px;
+border-top: 1px dashed #ccc;
+}
+#block-settings ol.forms li {
+clear: both;
+border-bottom: 1px dashed #ccc;
+float: left;
+margin: 0 0 2px 0;
+padding-bottom: 2px;
+width: 100%;
+color: #111;
+position: relative;
+}
+#block-settings ol.forms li .tooltip {
+position: absolute;
+top: 13px;
+left: 210px;
+background: none;
+border: 0;
+text-decoration: none;
+text-indent: -7998px;
+width: 16px;
+height: 16px;
+display: block;
+}
+#block-settings ol.forms li .tt-inline {
+background: transparent url(../images/info.png) no-repeat;
+}
+#block-settings ol.forms li .tt-modal {
+background: transparent url(../images/help.png) no-repeat;
+}
+#block-settings ol.forms .radio {
+margin: 0 0 2px 0;
+padding-bottom: 2px;
+overflow: hidden;
+display: block;
+}
+#block-settings ol.forms .radio li {
+clear: none;
+float: none;
+width: 50px;
+margin: 0;
+padding: 0 10px 0 0;
+border: 0;
+display: inline;
+}
+#block-settings ol.forms label {
+cursor: pointer;
+display: block;
+float: left;
+font-weight: bold;
+margin: 0 10px 0 0;
+padding: 10px 0 0 10px;
+width: 230px;
+color: #111;
+background: #eee;
+height: 30px;
+line-height: 30px;
+font: normal 15px arial;
+}
+#block-settings ol.forms input,
+#block-settings ol.forms textarea {
+font: inherit;
+padding: 2px;
+width: 200px;
+margin-top: 8px;
+}
+#block-settings ol.forms select {
+margin-top: 9px;
+}
+#block-settings ol.forms textarea {
+height: 250px;
+}
+#block-settings ol.forms li.radio ul {
+list-style: none;
+margin-left: 20px;
+border: 0;
+background: 0;
+margin: 13px 0 0 215px;
+}
+#block-settings ol.forms li.radio ul label {
+display: inline;
+float: none;
+font-weight: normal;
+margin: 0 0 0 10px;
+width: auto;
+background: none;
+padding: 0;
+}
+#block-settings ol.forms li.radio ul input {
+width: auto;
+margin: 0;
+}
+#block-settings ol.forms li.buttons {
+float: none;
+margin-left: 100px;
+width: auto;
+}
 
 
 #browse-assets .ui-tabs-panel{

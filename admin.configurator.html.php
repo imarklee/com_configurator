@@ -129,8 +129,75 @@ function manage( &$params, &$lists, $morph_installed ) {
 						</div>
 						
 						<div id="blocks" class="ui-tabs-hide">
-							<h3>Block Settings</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<div id="block-settings">
+								<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
+									<li><a href="#toolbar-block" class="ui-corner-left">Toolbar</a></li>
+									<li><a href="#master-head-block">Master Head</a></li>
+									<li><a href="#sub-head-block">Sub Head</a></li>
+									<li><a href="#top-navigation-block">Top Navigation</a></li>
+									<li><a href="#top-bottom-shelf-block">Top &amp; Bottom Shelf</a></li>
+									<li><a href="#user1-2-block">User 1 &amp; User 2</a></li>
+									<li><a href="#inset-block">Inset</a></li>
+									<li><a href="#main-block">Main</a></li>
+								</ul>
+							
+								<div id="toolbar-block">
+									<h3>Toolbar Block</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?>
+									</ol>
+								</div>
+								
+								<div id="master-head-block" class="ui-tabs-hide">
+									<h3>Master Head Block</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('masterhead', 'masterheaddata')); ?>
+									</ol>
+								</div>
+							
+								<div id="sub-head-block" class="ui-tabs-hide">
+									<h3>Sub Head Block</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('subhead', 'subheaddata')); ?>
+									</ol>
+								</div>
+			
+								<div id="top-navigation-block" class="ui-tabs-hide">
+									<h3>Top Navigation Block</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
+									</ol>
+								</div>
+											
+								<div id="top-bottom-shelf-block" class="ui-tabs-hide">
+									<h3>Top &amp; Bottom Shelf Blocks</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('shelves', 'shelvesdata')); ?>
+									</ol>
+								</div>
+							
+								<div id="user1-2-block" class="ui-tabs-hide">
+									<h3>User 1 &amp; User 2 Blocks</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('inlineshelves', 'inlineshelvesdata')); ?>
+									</ol>
+								</div>
+							
+								<div id="inset-block" class="ui-tabs-hide">
+									<h3>Inset Blocks</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('insets', 'insetsdata')); ?>
+									</ol>
+								</div>
+								
+								<div id="main-block" class="ui-tabs-hide">
+									<h3>Main Block</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('main', 'maindata')); ?>
+									</ol>
+								</div>
+								
+							</div>
 						</div>
 						
 						<div id="tools" class="ui-tabs-hide">

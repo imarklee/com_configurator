@@ -27,11 +27,9 @@ function renderParams($array){
 			$class = 'class="row-heading"';
 		}
 	
-		echo "\n\t\t".'<div '.$class.'>' . "\n";
 		for($n = 0; $n < 2; $n++){
 			echo "\t\t\t".$params[$i][$n]."\n";
 		}
-		echo "\t\t".'</div>'."\n";
 	}
 }
 

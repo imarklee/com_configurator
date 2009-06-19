@@ -12,7 +12,7 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/configurator.css.php');
 }else{
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery-1.3.2.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery-ui-1.7.1.custom.min.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery-ui-1.7.2.custom.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/cookie.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/colorpicker.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jqbrowser.js');
@@ -21,9 +21,15 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.qtip-1.0.0-rc3.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.fileupload.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.functions.js.php');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/configurator.css');
+
+//$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/configurator.css');
+$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/jquery-ui-1.7.2.custom.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/colorpicker.css');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/jquery-ui-1.7.1.custom.css');
+$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/reset.css');
+$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/text.css');
+$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/960.css');
+$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/manage.css');
+
 }
 ?>
 <?php
@@ -77,149 +83,110 @@ function manage( &$params, &$lists, $morph_installed ) {
 					</div>
 				</div>
 	        <?php }else{ ?>
-	        	<?php if(!isset($_COOKIE['configurator_welcome'])){ ?>
 	        	
-	        	
-		        <div id="welcome-box">
-		        	<div id="wb-header">
-		        		<div id="wbh-left">
-		        			<h2>Getting Started with Morph &amp; Configurator</h2>
-		        		</div>
-		        		<div id="wbh-right">
-		        			<a href="#" class="wbh-hide-show">hide</a> | 
-		        			<a href="#" class="wbh-close">close x</a>
-		        		</div>
-		        	</div>
-		        	<div id="wb-content">
-		        		<div id="wbc-col1">
-		        			<h3>Visual Reference Maps</h3>
-		        			<p>There are two visual references to show how Morph's different "blocks" and the various module positions that you have available in each.</p>
-		        			<p class="buttons"><a href="../administrator/components/com_configurator/images/visual-reference-positions.png" class="btn" onclick="return false"><span>By Position</span></a> <a href="../administrator/components/com_configurator/images/visual-reference-blocks.png" class="btn" onclick="return false"><span>By Block</span></a></p>
-		        			<small>* There are links to these in the Help tab.</small>
-		        		</div>
-		        		<div id="wbc-col2">
-		        			<h3>Inline Help - Every Step of the way</h3>
-		        			<p>We have tried to make the config options as easy to use
-		        			and undersand as possible, but some of the concepts &amp; terminology
-		        			are new and require reading the inline help to properly
-		        			understand them.</p>
-		        			<h3>Look for these icons to get contextual help:</h3>
-		        			<ul class="infobuttons">
-		        				<li class="helpicon">The help icon indicates that there is an inline guide available.</li>
-		        				<li class="infoicon">The info icon indicates that there is a tooltip description available.</li>
-		        			</ul>
-		        		</div>
-		        		<div id="wbc-col3">
-		        			<h3>What to do if you get stuck</h3>
-		        			<p>If you are not able to find the answer to your question in the inline help,
-		        			the next step is to.</p>
-		        			<ul>
-								<li>Check the <a href="http://www.joomlajunkie.com/morph/documentation">Online Documentation</a>.</li>
-		        				<li>Post on our <a href="http://www.joomlajunkie.com/member">Support Forum</a>.</li>
-		        				<li><a href="#">Report a bug</a> in our <a href="#">Issue Tracker</a>.</li>
-							</ul>
-		        		</div>
-		        	</div>
-		         	<div id="wb-footer">&nbsp;</div>
-		        </div>
-		        <?php } ?>        
-		           
-		        <div id="configurator-wrap">
-		        	<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">   
-		            <div id="accordion">
-		            	<h3 class="general-settings"><span class="ui-icon ui-gen-settings"></span> <a href="#">General Settings</a></h3>
-						<div class="themelet-options"><?php echo renderParams($params->renderToArray('general','generaldata')); ?></div>
-							
-						<h3 class="general-settings"><span class="ui-icon ui-logo-settings"></span> <a href="#">Logo Settings</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('logo', 'logodata')); ?></div>
-						
-						<h3 class="general-settings"><span class="ui-icon ui-bg-settings"></span> <a href="#">Background Settings</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('background', 'backgrounddata')); ?></div>
-						
-						<h3 class="general-settings"><span class="ui-icon ui-color-settings"></span> <a href="#">Color Settings</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('color', 'colordata')); ?></div>
-						
-						<h3 class="general-settings"><span class="ui-icon ui-prog-settings"></span> <a href="#">Progressive Enhancements</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('progressive', 'progressivedata')); ?></div>
-						
-						<h3 class="general-settings"><span class="ui-icon ui-menu-settings"></span> <a href="#">Menu Settings</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('menu', 'menudata')); ?></div>						
+	        	<div id="wrap" class="container_16">
+					<div id="shelf" class="open">
+						<?php include 'includes/shelf.php' ?>
+					</div>
+				
+					<div class="clear spacer">&nbsp;</div>
 		
-						<h3 class="general-settings"><span class="ui-icon ui-per-settings"></span> <a href="#">Performance Settings</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('performance', 'performancedata')); ?></div>
-						
-						<h3 class="general-settings"><span class="ui-icon ui-adv-settings"></span> <a href="#">Miscellaneous Settings</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('advanced', 'advanceddata')); ?></div>
-		
-						<h3><span class="ui-icon ui-tool-settings"></span> <a href="#">Toolbar Block</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?></div>
-						
-						<h3><span class="ui-icon ui-main-settings"></span> <a href="#">Master Head Block</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('masterhead', 'masterheaddata')); ?></div>
-						
-						<h3><span class="ui-icon ui-sub-settings"></span> <a href="#">Sub Head Block</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('subhead', 'subheaddata')); ?></div>
-		
-						<h3><span class="ui-icon ui-sub-settings"></span> <a href="#">Top Navigation Block</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?></div>
-										
-						<h3><span class="ui-icon ui-tbshelf-settings"></span> <a href="#">Top &amp; Bottom Shelf Blocks</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('shelves', 'shelvesdata')); ?></div>
-						
-						<h3><span class="ui-icon ui-us12-settings"></span> <a href="#">User 1 &amp; User 2 Block</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('inlineshelves', 'inlineshelvesdata')); ?></div>
-						
-						<h3><span class="ui-icon ui-ins14-settings"></span> <a href="#">Inset Blocks</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('insets', 'insetsdata')); ?></div>
-		
-						<h3><span class="ui-icon ui-main-settings"></span> <a href="#">Main Block</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('main', 'maindata')); ?></div>
-						
-						<h3><span class="ui-icon ui-foot-settings"></span> <a href="#">Footer Settings</a></h3>
-						<div class="themelet-options ui-main-tabs-hide"><?php echo renderParams($params->renderToArray('footer', 'footerdata')); ?></div>
-		            </div>
-		            <div id="login-details">
-		            	<p class="ld-float-user"><span title="Logged in as: <?php echo $_COOKIE['am_logged_in_user']; ?>"class="ld-username">Logged in as: </span><?php echo $_COOKIE['am_logged_in_user']; ?></p>
-		            	<p><a href="#" class="logout-configurator"><span class="ld-logout">Logout</span></a></p>
-		            </div>
 					<div id="tabs">
-						<ul class="ui-tabs-nav">
-						   	<li class="ui-tabs-nav-item ui-tabs-selected"><a href="#summary" class="tabs-sum-icon" onclick="return false;">Summary</a></li>
-						    <li class="ui-tabs-nav-item"><a class="tabs-ins-icon" href="#installer" onclick="return false;">Installer</a></li>
-						    <li class="ui-tabs-nav-item"><a href="#backup" class="tabs-bac-icon" onclick="return false;">Backups</a></li>
-						    <li class="ui-tabs-nav-item"><a href="#helptab" class="tabs-help-icon" onclick="return false;">Help &amp; Support</a></li>
+						<ul class="primary">
+							<li class="tab-general"><a href="#general"><strong>General Settings </strong>Everything under the hood</a></li>
+							<li class="tab-block"><a href="#blocks"><strong>Block Settings </strong>Your sites building blocks</a></li>
+							<li class="tab-tools"><a href="#tools"><strong>Morph's Tools </strong>Installer, backups &amp; more</a></li>
+							<li class="tab-assets"><a href="#assets"><strong>Your Assets </strong>Themelets, logos, etc</a></li>
+							<li class="tab-help last"><a href="#help"><strong>Help &amp; Support </strong>List of additional resources</a></li>
 						</ul>
-						<div id="summary" class="ui-tabs-panel">
-							<?php include_once("../administrator/components/com_configurator/includes/tabs/summarytab.php"); ?>
-							<?php
-							if(isset($_GET['do']) && $_GET['do'] == 'delete'){
-		    					include_once('../administrator/components/com_configurator/includes/deletethemelet.php');
-		    				}
-		    				?>
-						</div>
-						<div id="installer" class="ui-main-tabs-panel ui-main-tabs-hide">
-		          			<?php include_once("../administrator/components/com_configurator/includes/tabs/installertab.php"); ?>	
-						</div>
-						<div id="backup" class="ui-tabs-panel ui-tabs-hide">
-							<?php include_once("../administrator/components/com_configurator/includes/tabs/backuptab.php"); ?>
-						</div>
-						<div id="helptab" class="ui-tabs-panel ui-tabs-hide">
-							<?php include_once("../administrator/components/com_configurator/includes/tabs/helptab.php"); ?>
-						</div>
 						
-						<div id="changes-dialog" style="display:none;">
-							<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
-							<span class="error-text">You have made changes in your settings. Would you like to apply these settings?</span></p>
-						</div>
-						
-		            </div>		
-					<?php include_once("../administrator/components/com_configurator/includes/ptcredits.php"); ?>	
+						<div id="general">
 		
-		            <input type = "hidden" name = "option" value = "<?php echo $option; ?>"/>
-		            <input type = "hidden" name = "t" value = "morph"/>
-		            <input type = "hidden" name = "task" value = "list" />
-		        </form>
-	        </div>
+							<div id="subtabs">
+								<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
+									<li><a href="#start" class="ui-corner-left">Start</a></li>
+									<li><a href="#logos">Logos</a></li>
+									<li><a href="#backgrounds">Backgrounds</a></li>
+									<li><a href="#colors">Colors</a></li>
+									<li><a href="#menus">Menus</a></li>
+									<li><a href="#progressive">Progressive Enhancements</a></li>
+									<li><a href="#performance">Performance</a></li>
+									<li><a href="#miscellaneous">Miscellaneous</a></li>
+								</ul>
+								<div id="start">
+									<?php include 'includes/tabs/general-start.php' ?>							
+								</div>
+								<div id="logos" class="ui-tabs-hide"></div>
+								<div id="backgrounds" class="ui-tabs-hide"></div>
+								<div id="colors" class="ui-tabs-hide">
+									<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>
+								</div>
+								<div id="menus" class="ui-tabs-hide"></div>
+								<div id="progressive" class="ui-tabs-hide"></div>
+								<div id="performance" class="ui-tabs-hide"></div>
+								<div id="miscellaneous" class="ui-tabs-hide"></div>
+							</div>
+						
+						</div>
+						
+						<div id="blocks" class="ui-tabs-hide">
+							<h3>Block Settings</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						</div>
+						
+						<div id="tools" class="ui-tabs-hide">
+							<div id="browse-tools">
+								<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
+									<li><a href="#tools-installer" class="ui-corner-left">Universal Installer</a></li>
+									<li><a href="#tools-backups">Backups</a></li>
+									<li><a href="#tools-profiles">Profiles</a></li>
+								</ul>
+								<div id="tools-installer">
+									<?php include 'includes/tools/uploader.php' ?>
+								</div>
+								<div id="tools-backups" class="ui-tabs-hide">
+									<?php include 'includes/tools/backups.php' ?>
+								</div>
+								<div id="tools-profiles" class="ui-tabs-hide">
+									<?php include 'includes/tools/profiles.php' ?>
+								</div>
+							</div>
+						</div>
+						
+						<div id="assets" class="ui-tabs-hide">
+							<div id="browse-assets">
+							
+								<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
+									<li><a href="#assets-themelets" class="ui-corner-left">Themelets</a></li>
+									<li><a href="#assets-logos">Logos</a></li>
+									<li><a href="#assets-backgrounds">Backgrounds</a></li>
+									<li><a href="#assets-backups">Backups</a></li>
+								</ul>				
+								<div id="assets-themelets">
+									<?php include 'includes/tabs/themelets.php' ?>
+								</div>
+								<div id="assets-logos" class="ui-tabs-hide">
+									<?php include 'includes/tabs/logos.php' ?>						
+								</div>
+								<div id="assets-backgrounds" class="ui-tabs-hide">
+									<?php include 'includes/tabs/backgrounds.php' ?>						
+								</div>
+								<div id="assets-backups" class="ui-tabs-hide">
+									<?php include 'includes/tabs/backups.php' ?>						
+								</div>						
+							</div>
+						</div>
+						
+						
+						<div id="help" class="ui-tabs-hide">
+							<?php include 'includes/help.php' ?>
+						</div>
+					</div>
+						
+					<div class="clear">&nbsp;</div>
+						<?php include 'includes/footer.php' ?>
+				</div>
+				<?php include 'includes/report-bug.php' ?>
 <?php
 			}
 	 	}      

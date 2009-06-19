@@ -20,12 +20,42 @@ jQuery.noConflict();
 		/* Generic ----------------------------
 	    ------------------------------------ */
 		$("#submenu li:last").addClass("last");
-		$('#welcome-box').corners('10px top');
-		$('#wb-header').corners('10px top');
-		$('#wb-footer').corners('10px bottom');
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');
 		$('#login-details').corners('5px');
+		
+		$("#assets .ui-tabs-nav li:first").addClass('subnav-first');
+		$("#subtabs .ui-tabs-nav li:first").addClass('subnav-first');
+		$("#browse-tools .ui-tabs-nav li:first").addClass('subnav-first');
+	
+		$("#assets .ui-tabs-nav").corners("5px");
+		$("#subtabs .ui-tabs-nav").corners("5px");
+		$("#browse-tools .ui-tabs-nav").corners("5px");
+		
+		$(".buttons li a").corners("5px");
+		
+		$("#subtabs .ui-tabs-nav li.subnav-first").corners("3px left");
+		$("#assets .ui-tabs-nav li.subnav-first").corners("3px left");
+		$("#browse-tools .ui-tabs-nav li.subnav-first").corners("3px left");
+	
+		$("#tabs li a").corners("10px top");
+		$("#shelf-contents").corners("10px bottom");
+		$("#element-box .m").corners("7px");
+		$("#shelf").corners("10px");
+		$("#shelf.open #utilities").corners("10px top");
+		$("#shelf.closed #utilities").corners("10px");
+		$("ul.assets-headers").corners("5px top");
+		
+		
+		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
+			$(this).fadeTo('fast', 0.2);
+			$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').each(function(){
+				$(this).attr('href', '#inactive');
+				$(this).click(function(){ 
+					return false; 
+				});
+			});
+		});
 		
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
@@ -43,40 +73,6 @@ jQuery.noConflict();
  		}).blur(function(){
  			if(this.value == ''){ $(this).val($(this).attr('title')); }
  		});
- 		
- 		/* Welcome Box ------------------------
-	    ------------------------------------ */
-	   	$('.wbh-hide-show').click(function(){
-	   		$('#wb-content').slideToggle(hideShowContent('#wb-content', $(this)));
-	   		return false;
-	   	});
-	   	
-	   	var cookie_name = 'welcome_hide';
-	   	var options = { path: '/', expires: 10 };
-
-	   	function hideShowContent(elm,link){
-	   		if(!$.cookie(cookie_name)){
-	   			$.cookie(cookie_name, 'true', options);
-	   			link.text('show');
-	   		}else{
-	   			$.cookie(cookie_name, null, options);
-	   			link.text('hide');
-	   		}
-	   	}
-	   	
-	   	if(!$.cookie(cookie_name)){			
-			$('.wbh-hide-show').text('hide');			
-			$('#wb-content').show();
-		}else{
-			$('.wbh-hide-show').text('show');			
-			$('#wb-content').hide();
-		}
-	    
-	    $('.wbh-close').click(function(){
-	    	$('#welcome-box').hide('slow');
-	    	$.cookie('configurator_welcome', 'true', '/');
-	    	return false;
-	    });
 
  		
  		/* Backup Message ---------------------
@@ -88,34 +84,16 @@ jQuery.noConflict();
 	   
 	   	/* Tabs -------------------------------
 	    ------------------------------------ */
-    	$("#tabs").tabs({cookie: {expires: 7, path: '/'}});
-    	$("#tabs").corners("10px");
-    	$(".to-heading").corners("5px");
-    	$("#tabs .ui-tabs-nav-item").corners("5px top");
-    	$("#tabs .ui-tabs-panel").corners("5px bottom");
-    	
-    	$("#installer-tabs").tabs({cookie: {expires: 7, path: '/'}});
-    	$("#installer-tabs").corners("10px");
-    	$("#installer-tabs .ui-ins-tabs-nav-item").corners("5px top-left");
-    	$("#installer-tabs .ui-ins-tabs-panel").corners("5px right");
-
-    	/* Accordion --------------------------
-	    ------------------------------------ */
-    	var menu = $("#accordion"); 
-    	var index = $.cookie("accordion");
-        var active;
-        if (index !== undefined) {
-                active = menu.find("h3:eq(" + index + ")");
-        } 
-    	menu.accordion({
-			collapsible: true,
-			autoHeight: false,
-			active: active,
-			change: function(event, ui) {
-            	var index = $(this).find("h3").index ( ui.newHeader[0] );
-                $.cookie("accordion", index);
-            } 	
+    	$('#tabs').tabs({ 			cookie: {				name: 'maintabs',				expires: 30,				path: '/',		 	}
 		});
+		$('#subtabs').tabs({
+			fx: { opacity: 'toggle' },
+			cookie: {				name: 'subtabs',				expires: 30,				path: '/',		 	} 		});	
+		$('#browse-assets').tabs({
+			fx: { opacity: 'toggle' },			cookie: {				name: 'assetstabs',				expires: 30,				path: '/',		 	} 		});	
+		$('#browse-tools').tabs({
+			fx: { opacity: 'toggle' },			cookie: {				name: 'toolstabs',				expires: 30,				path: '/',		 	} 		});	
+    	
 		
 		/* Colour Picker ----------------------
 	    ------------------------------------ */
@@ -168,7 +146,109 @@ jQuery.noConflict();
      	loadColourPicker('input[id="colorcolor_h5"]');    		
       	loadColourPicker('input[id="colorcolor_links"]');
       	loadColourPicker('input[id="colorcolor_linkshover"]');
-     	loadColourPicker('input[id="colorcolor_bodytext"]');     	
+     	loadColourPicker('input[id="colorcolor_bodytext"]');
+     	
+     	
+     	//all hover and click logic for buttons
+		$(".fg-button:not(.ui-state-disabled)")
+		.hover(
+			function(){ 
+				$(this).addClass("ui-state-hover"); 
+			},
+			function(){ 
+				$(this).removeClass("ui-state-hover"); 
+			}
+		)
+		.mousedown(function(){
+				$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+				if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }
+				else { $(this).addClass("ui-state-active"); }	
+		})
+		.mouseup(function(){
+			if(! $(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+				$(this).removeClass("ui-state-active");
+			}
+		});
+					
+	
+	
+		$("#toggle-shelf").click(function(){
+			$(".open").switchClass('open', 'closed', 300);
+			$(".closed").switchClass('closed', 'open', 300);
+			return false;	
+		});
+	
+	
+	
+	
+	
+		var options = { path: '/', expires: 30 };
+	
+		$("#themelet-switch a.switch_thumb").toggle(function(){
+			$(this).addClass("swap");
+			$("#themelets-list").fadeOut("fast", function() {
+				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
+				$.cookie('themelets-view', 'list', options);
+				return(false);		
+			});
+		}, function () {
+			$(this).removeClass("swap");
+			$("#themelets-list").fadeOut("fast", function() {
+				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
+				$.cookie('themelets-view', 'thumb', options);
+				return(false);		
+			});
+		}); 
+		
+		
+		$("#backgrounds-switch a.switch_thumb").toggle(function(){
+			$(this).addClass("swap");
+			$("#backgrounds-list").fadeOut("fast", function() {
+				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
+				$.cookie('backgrounds-view', 'list', options);
+				return(false);
+			});
+		}, function () {
+			$(this).removeClass("swap");
+			$("#backgrounds-list").fadeOut("fast", function() {
+				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
+				$.cookie('backgrounds-view', 'thumb', options);
+				return(false);
+			});
+		}); 
+		
+		$("#logos-switch a.switch_thumb").toggle(function(){
+			$(this).addClass("swap");
+			$("#logos-list").fadeOut("fast", function() {
+				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
+				$.cookie('logos-view', 'list', options);
+				return(false);
+			});
+		}, function () {
+			$(this).removeClass("swap");
+			$("#logos-list").fadeOut("fast", function() {
+				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
+				$.cookie('logos-view', 'thumb', options);
+				return(false);
+			});
+		}); 
+		
+		
+		
+		
+	
+		$("#report-bug").dialog({
+			bgiframe: true,
+			autoOpen: false,
+			height: 450,
+			width: 400,
+			modal: true
+		});				
+		
+		$('#report-bug-link').click(function() {
+			$('#report-bug').dialog('open');
+		})
+     	     	
 		
 		/* Tooltips ----------------------
 		------------------------------- */
@@ -316,14 +396,14 @@ jQuery.noConflict();
 			
 	   	});
 	   	
-	   	$('a.modal-link').each(function(){
+	   	$('li a.modal-link').each(function(){
 	   	
 	   		$(this).click(function(){ return false; });
 	    
 	    	var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
 	   		var qtLink = docroot+$(this).attr("href");
 	   		var qtTitle = $(this).attr('title');
-			
+	   		
 			$(this).qtip({
 				content: {
 					title: {
@@ -337,8 +417,7 @@ jQuery.noConflict();
 					corner: 'center' // ...at the center of the viewport
 				},
 				show: {
-					when: 'click', // Show it on click
-					solo: true // And hide all other tooltips
+					when: 'click'
 				},
 				hide: false,
 				style: {
@@ -355,12 +434,10 @@ jQuery.noConflict();
 					name: 'dark'
 				},
 				api: {
-					beforeShow: function(){
-						$("body").css('overflow', 'hidden');
+					beforeShow: function(){						
 						$('#qtip-blanket').fadeIn(this.options.show.effect.length);
 					},
 					beforeHide: function(){
-						$("body").css('overflow', 'auto');
 						$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
 					},
 					onShow: function(){
@@ -403,7 +480,6 @@ jQuery.noConflict();
 				}
 			});
 			
-			return false;
 	   	});
 	   	
 	   	$('.ttim').each(function(){
@@ -433,21 +509,20 @@ jQuery.noConflict();
 			$(this).attr('title', '');
 	    });
 	   	
-	   	$('.sd-label-themelet').each(function(){
+	   	$('ul.assets-list ul.buttons li.btn-preview a').each(function(){
 	   		
-	   		var title = $(this).attr('title');
-	   		$(this).attr('title', ''); 
+	   		var title = $(this).attr('href');
 	   		
 	   		var content = '<img src="';
      		content += title;
-      		content += '" alt="Loading thumbnail..." height="144" width="176" />';
+      		content += '" alt="Loading thumbnail..." height="100" width="200" />';
 	   		
 	   		$(this).qtip({
 	   		     content: content,
 			     position: {
 			        corner: {
-			           tooltip: 'leftMiddle',
-			           target: 'rightMiddle'
+			           tooltip: 'bottomMiddle',
+			           target: 'topMiddle'
 			        }
 			     },
 			     style: {
@@ -459,7 +534,7 @@ jQuery.noConflict();
          			},
          			padding: '0 0 0 0',
          			width: {
-         				max: '193'
+         				max: '216'
          			}
 				}
 
@@ -566,33 +641,41 @@ jQuery.noConflict();
 				   		updateURL = 'https://www.joomlajunkie.com/versions/mhups.php?return=json&type=themelet&type_name='+name+'&callback=?';
 				   	}
 			   		
-			   		var installedVersion = $(elm).children('td.installed-version').text();
-				   	var outputVersion = $(elm).children('td.current-version');
-				   	var outputButton = $(elm).children('td.status');
-			   			   		
-			   		$.getJSON(updateURL, function(obj){
-			   			
-			   			
-			   			
+				   	$.getJSON(updateURL, function(obj){
 			   			if(!isOtherThemelet){ 
+			   				var installedVersion = $(elm).next('dd.current').text();
+				   			var outputVersion = $(elm+'+ dd.current + dd.latest');
+						   	var outputButton = $(elm+'+ dd.current + dd.latest + dd.icon');
+				   	
 			   				if(obj.version > installedVersion){
 			   					outputVersion.html('<a href="'+obj.download+'">'+obj.version+'</a>');
-			   					outputButton.html('<span class="update-yes">Update Available</span>');
+			   					outputButton.html('<span class="update-no" title="There is an update available">Update Available</span>');
 			   				} else {
 			   					outputVersion.html(obj.version);
-			   					outputButton.html('<span class="update-no">Up to date</span>');
+			   					outputButton.html('<span class="update-yes" title="You are up to date">Up to date</span>');
 			   				}
-			   			}			
+			   			}else{
+			   				var installedVersion = $(elm +'> li.tl-installed').text();
+						   	var outputVersion = $(elm+'> li.tl-current');
+						   	
+						   	if(obj.version > installedVersion){
+			   					outputVersion.html('<strong>Current version: </strong><a href="'+obj.download+'">'+obj.version+'</a>');
+//			   					outputButton.html('<span class="update-no" title="There is an update available">Update Available</span>');
+			   				} else {
+			   					outputVersion.html('<strong>Current version: </strong>'+obj.version);
+//			   					outputButton.html('<span class="update-yes" title="You are up to date">Up to date</span>');
+			   				}
+			   			}
 			   		});
 		   		}
 	   		}
 	   		
 	   	};
 	   	
-	   	getUpdateStatus('tr#us-configurator');
-	   	getUpdateStatus('tr#us-morph');
-		getUpdateStatus('tr#us-themelet');
-	   	getUpdateStatus('tr.other-themelet','true');
+	   	getUpdateStatus('dt#us-configurator');
+	   	getUpdateStatus('dt#us-morph');
+		getUpdateStatus('dt#us-themelet');
+	   	getUpdateStatus('.themelet-summary','true');
 
 	   	/* Save Form Data ---------------------
 	    ------------------------------------ */

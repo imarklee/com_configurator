@@ -113,17 +113,65 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<li><a href="#miscellaneous">Miscellaneous</a></li>
 								</ul>
 								<div id="start">
-									<?php include 'includes/tabs/general-start.php' ?>							
+									<div id="general-options" class="options-panel">
+										<h3>General Settings</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('general','generaldata')); ?>
+										</ol>
+									</div>
+									<div id="general-info" class="info-panel">
+										<h4>What is a themelet?</h4>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>	
+										
+										<ul class="buttons">
+											<li><a href="byblock.html" title="Visual Reference: By Block" class="modal-link ui-state-default">More about this feature</a></li>
+											<li><a href="byblock.html" title="Visual Reference: By Block" class="modal-link fg-button">Online documentation</a></li>
+										</ul>	
+										<div class="clear">&nbsp;</div>
+									</div>
 								</div>
-								<div id="logos" class="ui-tabs-hide"></div>
-								<div id="backgrounds" class="ui-tabs-hide"></div>
+								<div id="logos" class="ui-tabs-hide">
+									<h3>Logo Settings</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('logo', 'logodata')); ?>
+									</ol>
+								</div>
+								<div id="backgrounds" class="ui-tabs-hide">
+									<h3>Background Settings</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('background', 'backgrounddata')); ?>
+									</ol>
+								</div>
 								<div id="colors" class="ui-tabs-hide">
+									<h3>Color Settings</h3>
+									<ol class="forms">
 									<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>
+									</ol>
 								</div>
-								<div id="menus" class="ui-tabs-hide"></div>
-								<div id="progressive" class="ui-tabs-hide"></div>
-								<div id="performance" class="ui-tabs-hide"></div>
-								<div id="miscellaneous" class="ui-tabs-hide"></div>
+								<div id="menus" class="ui-tabs-hide">
+									<h3>Menu Settings</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('menu', 'menudata')); ?>						
+									</ol>
+								</div>
+								<div id="progressive" class="ui-tabs-hide">
+									<h3>Progressive Enhancements</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('progressive', 'progressivedata')); ?>
+									</ol>
+								</div>
+								<div id="performance" class="ui-tabs-hide">
+									<h3>Performance Settings</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('performance', 'performancedata')); ?>
+									</ol>
+								</div>
+								<div id="miscellaneous" class="ui-tabs-hide">
+									<h3>Miscellaneous Settings</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('advanced', 'advanceddata')); ?>
+									</ol>
+								</div>
 							</div>
 						
 						</div>
@@ -139,6 +187,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<li><a href="#user1-2-block">User 1 &amp; User 2</a></li>
 									<li><a href="#inset-block">Inset</a></li>
 									<li><a href="#main-block">Main</a></li>
+									<li><a href="#footer-block">Footer</a></li>
 								</ul>
 							
 								<div id="toolbar-block">
@@ -194,6 +243,13 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<h3>Main Block</h3>
 									<ol class="forms">
 									<?php echo renderParams($params->renderToArray('main', 'maindata')); ?>
+									</ol>
+								</div>
+								
+								<div id="footer-block" class="ui-tabs-hide">
+									<h3>Main Block</h3>
+									<ol class="forms">
+									<?php echo renderParams($params->renderToArray('footer', 'footerdata')); ?>
 									</ol>
 								</div>
 								

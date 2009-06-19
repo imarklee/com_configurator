@@ -2,8 +2,7 @@
 $logo_dir = JPATH_ROOT . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 'logos';
 $logo_url = JURI::root() . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 'logos';
 if(is_dir($logo_dir)) {
-	$lists['logos'] = JFolder::folders( $logo_dir );
-	print_r($lists['logos']);
+	$lists['logos'] = JFolder::files( $logo_dir );
 } else {
 	$lists['logos'] = null;
 }
@@ -27,24 +26,27 @@ if(is_dir($logo_dir)) {
 	<ul class="assets-list">
 		<?php
 		foreach ($lists['logos'] as $logo){
-    		
-    		echo $logo;
-			if( $themelet !== $params->get('themelet') ) { $themelet_class = 'tl-inactive'; } else { $themelet_class = 'tl-active'; }
+			//if( $themelet !== $params->get('themelet') ) { $themelet_class = 'tl-inactive'; } else { $themelet_class = 'tl-active'; }
+			$logo_src = $logo_url.DS.$logo;
+			$logo_size = getimagesize($logo_dir.DS.$logo);
+			$logo_width =  $logo_size[0];
+			$logo_height =  $logo_size[1];
+			$logo_size = formatBytes(filesize($logo_dir.DS.$logo));
 		?>	
 		<li>
-			<h3>logo.jpg</h3>
+			<h3><?php echo $logo; ?></h3>
 			<div class="image-container">
-				<div style="background-image: url(images/logos/logo.png);">&nbsp;</div>
+				<div style="background-image: url(<?php echo $logo_src; ?>);">&nbsp;</div>
 			</div>
 			<ul class="logo-summary">
-				<li class="tl-installed"><strong>File size: </strong>26kb</li>
-				<li class="tl-current"><strong>Width: </strong>200px</li>
-				<li class="tl-date"><strong>Height: </strong>150px</li>
+				<li class="tl-installed"><strong>File size: </strong><?php echo $logo_size; ?></li>
+				<li class="tl-current"><strong>Width: </strong><?php echo $logo_width; ?>px</li>
+				<li class="tl-date"><strong>Height: </strong><?php echo $logo_height; ?>px</li>
 			</ul>
 			<ul class="buttons">
-				<li class="btn-activate"><a href="#" title="Activate themelet">Activate</a></li>
-				<li class="btn-delete"><a href="#" title="Delete themelet">Delete</a></li>
-				<li class="btn-preview"><a href="#" title="Preview themelet">Preview</a></li>
+				<li class="btn-activate"><a href="#" title="Activate Logo">Activate</a></li>
+				<li class="btn-delete"><a href="#" title="Delete Logo">Delete</a></li>
+				<li class="btn-preview"><a href="<?php echo $logo_src; ?>" title="Preview Logo">Preview</a></li>
 			</ul>
 		</li>
 		<?php } ?>

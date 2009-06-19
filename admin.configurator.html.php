@@ -99,214 +99,219 @@ function manage( &$params, &$lists, $morph_installed ) {
 							<li class="tab-help last"><a href="#help"><strong>Help &amp; Support </strong>List of additional resources</a></li>
 						</ul>
 						
-						<div id="general">
-		
-							<div id="subtabs">
-								<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
-									<li><a href="#start" class="ui-corner-left">Start</a></li>
-									<li><a href="#logos">Logos</a></li>
-									<li><a href="#backgrounds">Backgrounds</a></li>
-									<li><a href="#colors">Colors</a></li>
-									<li><a href="#menus">Menus</a></li>
-									<li><a href="#progressive">Progressive Enhancements</a></li>
-									<li><a href="#performance">Performance</a></li>
-									<li><a href="#miscellaneous">Miscellaneous</a></li>
-								</ul>
-								<div id="start">
-									<div id="general-options" class="options-panel">
-										<h3>General Settings</h3>
+						<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">
+							<div id="general">
+			
+								<div id="subtabs">
+									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
+										<li><a href="#start" class="ui-corner-left">Start</a></li>
+										<li><a href="#logos">Logos</a></li>
+										<li><a href="#backgrounds">Backgrounds</a></li>
+										<li><a href="#colors">Colors</a></li>
+										<li><a href="#menus">Menus</a></li>
+										<li><a href="#progressive">Progressive Enhancements</a></li>
+										<li><a href="#performance">Performance</a></li>
+										<li><a href="#miscellaneous">Miscellaneous</a></li>
+									</ul>
+									<div id="start">
+										<div id="general-options" class="options-panel">
+											<h3>General Settings</h3>
+											<ol class="forms">
+											<?php echo renderParams($params->renderToArray('general','generaldata')); ?>
+											</ol>
+										</div>
+										<div id="general-info" class="info-panel">
+											<h4>What is a themelet?</h4>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>	
+											
+											<ul class="buttons">
+												<li><a href="byblock.html" title="Visual Reference: By Block" class="modal-link ui-state-default">More about this feature</a></li>
+												<li><a href="byblock.html" title="Visual Reference: By Block" class="modal-link fg-button">Online documentation</a></li>
+											</ul>	
+											<div class="clear">&nbsp;</div>
+										</div>
+									</div>
+									<div id="logos" class="ui-tabs-hide">
+										<h3>Logo Settings</h3>
 										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('general','generaldata')); ?>
+										<?php echo renderParams($params->renderToArray('logo', 'logodata')); ?>
 										</ol>
 									</div>
-									<div id="general-info" class="info-panel">
-										<h4>What is a themelet?</h4>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>	
-										
-										<ul class="buttons">
-											<li><a href="byblock.html" title="Visual Reference: By Block" class="modal-link ui-state-default">More about this feature</a></li>
-											<li><a href="byblock.html" title="Visual Reference: By Block" class="modal-link fg-button">Online documentation</a></li>
-										</ul>	
-										<div class="clear">&nbsp;</div>
+									<div id="backgrounds" class="ui-tabs-hide">
+										<h3>Background Settings</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('background', 'backgrounddata')); ?>
+										</ol>
+									</div>
+									<div id="colors" class="ui-tabs-hide">
+										<h3>Color Settings</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>
+										</ol>
+									</div>
+									<div id="menus" class="ui-tabs-hide">
+										<h3>Menu Settings</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('menu', 'menudata')); ?>						
+										</ol>
+									</div>
+									<div id="progressive" class="ui-tabs-hide">
+										<h3>Progressive Enhancements</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('progressive', 'progressivedata')); ?>
+										</ol>
+									</div>
+									<div id="performance" class="ui-tabs-hide">
+										<h3>Performance Settings</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('performance', 'performancedata')); ?>
+										</ol>
+									</div>
+									<div id="miscellaneous" class="ui-tabs-hide">
+										<h3>Miscellaneous Settings</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('advanced', 'advanceddata')); ?>
+										</ol>
 									</div>
 								</div>
-								<div id="logos" class="ui-tabs-hide">
-									<h3>Logo Settings</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('logo', 'logodata')); ?>
-									</ol>
-								</div>
-								<div id="backgrounds" class="ui-tabs-hide">
-									<h3>Background Settings</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('background', 'backgrounddata')); ?>
-									</ol>
-								</div>
-								<div id="colors" class="ui-tabs-hide">
-									<h3>Color Settings</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>
-									</ol>
-								</div>
-								<div id="menus" class="ui-tabs-hide">
-									<h3>Menu Settings</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('menu', 'menudata')); ?>						
-									</ol>
-								</div>
-								<div id="progressive" class="ui-tabs-hide">
-									<h3>Progressive Enhancements</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('progressive', 'progressivedata')); ?>
-									</ol>
-								</div>
-								<div id="performance" class="ui-tabs-hide">
-									<h3>Performance Settings</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('performance', 'performancedata')); ?>
-									</ol>
-								</div>
-								<div id="miscellaneous" class="ui-tabs-hide">
-									<h3>Miscellaneous Settings</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('advanced', 'advanceddata')); ?>
-									</ol>
+							
+							</div>
+							
+							<div id="blocks" class="ui-tabs-hide">
+								<div id="block-settings">
+									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
+										<li><a href="#toolbar-block" class="ui-corner-left">Toolbar</a></li>
+										<li><a href="#master-head-block">Master Head</a></li>
+										<li><a href="#sub-head-block">Sub Head</a></li>
+										<li><a href="#top-navigation-block">Top Navigation</a></li>
+										<li><a href="#top-bottom-shelf-block">Top &amp; Bottom Shelf</a></li>
+										<li><a href="#user1-2-block">User 1 &amp; User 2</a></li>
+										<li><a href="#inset-block">Inset</a></li>
+										<li><a href="#main-block">Main</a></li>
+										<li><a href="#footer-block">Footer</a></li>
+									</ul>
+								
+									<div id="toolbar-block">
+										<h3>Toolbar Block</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?>
+										</ol>
+									</div>
+									
+									<div id="master-head-block" class="ui-tabs-hide">
+										<h3>Master Head Block</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('masterhead', 'masterheaddata')); ?>
+										</ol>
+									</div>
+								
+									<div id="sub-head-block" class="ui-tabs-hide">
+										<h3>Sub Head Block</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('subhead', 'subheaddata')); ?>
+										</ol>
+									</div>
+				
+									<div id="top-navigation-block" class="ui-tabs-hide">
+										<h3>Top Navigation Block</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
+										</ol>
+									</div>
+												
+									<div id="top-bottom-shelf-block" class="ui-tabs-hide">
+										<h3>Top &amp; Bottom Shelf Blocks</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('shelves', 'shelvesdata')); ?>
+										</ol>
+									</div>
+								
+									<div id="user1-2-block" class="ui-tabs-hide">
+										<h3>User 1 &amp; User 2 Blocks</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('inlineshelves', 'inlineshelvesdata')); ?>
+										</ol>
+									</div>
+								
+									<div id="inset-block" class="ui-tabs-hide">
+										<h3>Inset Blocks</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('insets', 'insetsdata')); ?>
+										</ol>
+									</div>
+									
+									<div id="main-block" class="ui-tabs-hide">
+										<h3>Main Block</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('main', 'maindata')); ?>
+										</ol>
+									</div>
+									
+									<div id="footer-block" class="ui-tabs-hide">
+										<h3>Main Block</h3>
+										<ol class="forms">
+										<?php echo renderParams($params->renderToArray('footer', 'footerdata')); ?>
+										</ol>
+									</div>
+									
 								</div>
 							</div>
-						
-						</div>
-						
-						<div id="blocks" class="ui-tabs-hide">
-							<div id="block-settings">
-								<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
-									<li><a href="#toolbar-block" class="ui-corner-left">Toolbar</a></li>
-									<li><a href="#master-head-block">Master Head</a></li>
-									<li><a href="#sub-head-block">Sub Head</a></li>
-									<li><a href="#top-navigation-block">Top Navigation</a></li>
-									<li><a href="#top-bottom-shelf-block">Top &amp; Bottom Shelf</a></li>
-									<li><a href="#user1-2-block">User 1 &amp; User 2</a></li>
-									<li><a href="#inset-block">Inset</a></li>
-									<li><a href="#main-block">Main</a></li>
-									<li><a href="#footer-block">Footer</a></li>
-								</ul>
 							
-								<div id="toolbar-block">
-									<h3>Toolbar Block</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?>
-									</ol>
-								</div>
-								
-								<div id="master-head-block" class="ui-tabs-hide">
-									<h3>Master Head Block</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('masterhead', 'masterheaddata')); ?>
-									</ol>
-								</div>
-							
-								<div id="sub-head-block" class="ui-tabs-hide">
-									<h3>Sub Head Block</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('subhead', 'subheaddata')); ?>
-									</ol>
-								</div>
-			
-								<div id="top-navigation-block" class="ui-tabs-hide">
-									<h3>Top Navigation Block</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
-									</ol>
-								</div>
-											
-								<div id="top-bottom-shelf-block" class="ui-tabs-hide">
-									<h3>Top &amp; Bottom Shelf Blocks</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('shelves', 'shelvesdata')); ?>
-									</ol>
-								</div>
-							
-								<div id="user1-2-block" class="ui-tabs-hide">
-									<h3>User 1 &amp; User 2 Blocks</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('inlineshelves', 'inlineshelvesdata')); ?>
-									</ol>
-								</div>
-							
-								<div id="inset-block" class="ui-tabs-hide">
-									<h3>Inset Blocks</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('insets', 'insetsdata')); ?>
-									</ol>
-								</div>
-								
-								<div id="main-block" class="ui-tabs-hide">
-									<h3>Main Block</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('main', 'maindata')); ?>
-									</ol>
-								</div>
-								
-								<div id="footer-block" class="ui-tabs-hide">
-									<h3>Main Block</h3>
-									<ol class="forms">
-									<?php echo renderParams($params->renderToArray('footer', 'footerdata')); ?>
-									</ol>
-								</div>
-								
-							</div>
-						</div>
-						
-						<div id="tools" class="ui-tabs-hide">
-							<div id="browse-tools">
-								<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
-									<li><a href="#tools-installer" class="ui-corner-left">Universal Installer</a></li>
-									<li><a href="#tools-backups">Backups</a></li>
-									<li><a href="#tools-profiles">Profiles</a></li>
-								</ul>
-								<div id="tools-installer">
-									<?php include 'includes/tools/uploader.php' ?>
-								</div>
-								<div id="tools-backups" class="ui-tabs-hide">
-									<?php include 'includes/tools/backups.php' ?>
-								</div>
-								<div id="tools-profiles" class="ui-tabs-hide">
-									<?php include 'includes/tools/profiles.php' ?>
+							<div id="tools" class="ui-tabs-hide">
+								<div id="browse-tools">
+									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
+										<li><a href="#tools-installer" class="ui-corner-left">Universal Installer</a></li>
+										<li><a href="#tools-backups">Backups</a></li>
+										<li><a href="#tools-profiles">Profiles</a></li>
+									</ul>
+									<div id="tools-installer">
+										<?php include 'includes/tools/uploader.php' ?>
+									</div>
+									<div id="tools-backups" class="ui-tabs-hide">
+										<?php include 'includes/tools/backups.php' ?>
+									</div>
+									<div id="tools-profiles" class="ui-tabs-hide">
+										<?php include 'includes/tools/profiles.php' ?>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div id="assets" class="ui-tabs-hide">
-							<div id="browse-assets">
 							
-								<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
-									<li><a href="#assets-themelets" class="ui-corner-left">Themelets</a></li>
-									<li><a href="#assets-logos">Logos</a></li>
-									<li><a href="#assets-backgrounds">Backgrounds</a></li>
-									<li><a href="#assets-backups">Backups</a></li>
-								</ul>				
-								<div id="assets-themelets">
-									<?php include 'includes/tabs/themelets.php' ?>
+							<div id="assets" class="ui-tabs-hide">
+								<div id="browse-assets">
+								
+									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
+										<li><a href="#assets-themelets" class="ui-corner-left">Themelets</a></li>
+										<li><a href="#assets-logos">Logos</a></li>
+										<li><a href="#assets-backgrounds">Backgrounds</a></li>
+										<li><a href="#assets-backups">Backups</a></li>
+									</ul>				
+									<div id="assets-themelets">
+										<?php include 'includes/tabs/themelets.php' ?>
+									</div>
+									<div id="assets-logos" class="ui-tabs-hide">
+										<?php include 'includes/tabs/logos.php' ?>						
+									</div>
+									<div id="assets-backgrounds" class="ui-tabs-hide">
+										<?php include 'includes/tabs/backgrounds.php' ?>						
+									</div>
+									<div id="assets-backups" class="ui-tabs-hide">
+										<?php include 'includes/tabs/backups.php' ?>						
+									</div>						
 								</div>
-								<div id="assets-logos" class="ui-tabs-hide">
-									<?php include 'includes/tabs/logos.php' ?>						
-								</div>
-								<div id="assets-backgrounds" class="ui-tabs-hide">
-									<?php include 'includes/tabs/backgrounds.php' ?>						
-								</div>
-								<div id="assets-backups" class="ui-tabs-hide">
-									<?php include 'includes/tabs/backups.php' ?>						
-								</div>						
+							</div>
+							
+							
+							<div id="help" class="ui-tabs-hide">
+								<?php include 'includes/help.php' ?>
 							</div>
 						</div>
-						
-						
-						<div id="help" class="ui-tabs-hide">
-							<?php include 'includes/help.php' ?>
-						</div>
-					</div>
+						<input type = "hidden" name = "option" value = "<?php echo $option; ?>"/>
+			            <input type = "hidden" name = "t" value = "morph"/>
+			            <input type = "hidden" name = "task" value = "list" />
+			        </form>
 						
 					<div class="clear">&nbsp;</div>
-						<?php include 'includes/footer.php' ?>
+					<?php include 'includes/footer.php' ?>
 				</div>
 				<?php include 'includes/report-bug.php' ?>
 <?php

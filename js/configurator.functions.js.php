@@ -265,7 +265,7 @@ jQuery.noConflict();
 	       	backgroundColor: 'black',
 	        zIndex: 5000
 		})
-	    .appendTo(document.body) // Append to the document body
+	    .appendTo($('html')) // Append to the document body
 	    .hide();
 	    
 	    /* Live Content for Tooltips ----------

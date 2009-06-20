@@ -20,6 +20,7 @@ jQuery.noConflict();
 		/* Generic ----------------------------
 	    ------------------------------------ */
 		$("#submenu li:last").addClass("last");
+		$("#tabs ol.forms li:last-child").addClass("last");		
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');
 		$('#login-details').corners('5px');
@@ -59,6 +60,15 @@ jQuery.noConflict();
 			});
 		});
 		
+		$("input, textarea", $("form")).focus(function(){
+		$(this).addClass("focus");
+		$(this).parents("ol.forms").addClass("cur");
+		});
+		$("input, textarea", $("form")).blur(function(){
+		    $(this).removeClass("focus");
+		    $(this).parents("ol.forms").removeClass("cur");
+		});	
+			
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
 	    $("input.input-installer").filestyle({ 

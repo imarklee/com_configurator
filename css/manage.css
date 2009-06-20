@@ -337,6 +337,26 @@ width: 350px;
 float: right;
 font: normal 12px/20px arial;
 }
+.info-panel h3{
+font: normal 23px/25px arial;
+margin: 0 0 10px 0;
+padding: 0;
+
+}
+.info-panel h4{
+font: bold 15px arial;
+margin: 0 0 7px 0;
+padding: 0;
+color:#333;
+}
+.info-panel .teaser{
+font: normal 15px/20px arial;
+margin: 0 0 10px 0;
+padding-bottom:10px;
+color:#666;
+border-bottom: 1px dashed #ccc;
+}
+
 #subtabs ol.forms li.buttons {
 float: none;
 margin-left: 100px;

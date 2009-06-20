@@ -19,11 +19,11 @@ jQuery.noConflict();
 	
 		/* Generic ----------------------------
 	    ------------------------------------ */
-	    $("#tabs ol.forms input").css("border", null); 
 		$("#submenu li:last").addClass("last");
 		$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
 		$("#tabs ol.forms li:first-child").addClass("first");		
 		$("#tabs ol.forms li:last-child").addClass("last");		
+		$("#tabs ol.forms li:odd").addClass("alt");		
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');
 		$('#login-details').corners('5px');

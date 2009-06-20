@@ -377,7 +377,6 @@ width: 546px;
 padding: 1px;
 margin:0;
 border:1px solid #fff;
-background: #fff url(../images/form-bg.jpg) repeat-y;
 }
 #tabs ol.forms li {
 border-bottom:1px solid #ddd;
@@ -391,6 +390,10 @@ position:relative;
 width:513px;
 height:30px;
 font: normal 13px/30px arial;
+background: #fff url(../images/form-bg.jpg) repeat-y;
+}
+#tabs ol.forms li.alt {
+background-color: #FEFDEE;
 }
 #tabs ol.forms li.first{
 border-top: 0;
@@ -430,6 +433,10 @@ padding:0;
 #tabs ol.forms textarea {
 font: normal 13px arial!important;
 color:#111;
+-moz-border-radius: 4px;
+}
+#tabs ol.forms input{
+padding-left: 3px;
 }
 #tabs ol.forms li .tooltip {
 position: absolute;

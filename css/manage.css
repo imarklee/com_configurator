@@ -346,9 +346,9 @@ width: auto;
 float: left;
 list-style: none;
 width: 530px;
-padding: 2px 3px 0 3px;
+padding: 3px 4px;
 margin:0;
-border:1px solid #EFCC2C;
+border:5px solid #eee;
 
 }
 #tabs ol.forms li {
@@ -359,10 +359,11 @@ padding:10px;
 width: 96%;
 color: #111;
 position: relative;
-border-bottom:1px solid #EFCC2C;
+border-bottom:1px dotted #ccc;
 }
 #tabs ol.forms li.last {
 border:0;
+margin:0;
 }
 #tabs ol.forms label,
 #tabs ol.forms li.radio-item label.to-label {
@@ -376,7 +377,7 @@ text-align:right;
 height:17px;
 line-height:15px;
 color: #111;
-background:#FAFFCF;
+background:#eee;
 font: bold 15px arial;
 }
 #tabs ol.forms li.radio-item label {

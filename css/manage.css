@@ -328,8 +328,9 @@ padding: 20px 0 0 0;
 overflow: hidden;
 }
 .options-panel {
-width: 550px;
+width: 535px;
 float: left;
+border:5px solid #ddd;
 }
 .info-panel {
 width: 350px;
@@ -341,28 +342,35 @@ float: none;
 margin-left: 100px;
 width: auto;
 }
-
+.options-inner {
+border:1px solid #ccc;
+overflow: hidden;
+}
 #tabs ol.forms {
 float: left;
 list-style: none;
-width: 530px;
-padding: 3px 4px;
+width: 546px;
+padding: 1px;
 margin:0;
-border:5px solid #eee;
-
+border:1px solid #fff;
+background: #fff url(../images/form-bg.jpg) repeat-y;
 }
 #tabs ol.forms li {
-clear: both;
-float: left;
-margin: 0 0 2px 0;
+border-bottom:1px solid #ddd;
+border-top:1px solid #fff;
+clear:both;
+color:#111111;
+float:left;
+margin:0 0 0 -2px;
 padding:10px;
-width: 96%;
-color: #111;
-position: relative;
-border-bottom:1px dotted #ccc;
+position:relative;
+width:513px;
+}
+#tabs ol.forms li.first{
+border-top: 0;
 }
 #tabs ol.forms li.last {
-border:0;
+border-bottom:0;
 margin:0;
 }
 #tabs ol.forms label,
@@ -370,21 +378,20 @@ margin:0;
 cursor: pointer;
 display: block;
 float: left;
-margin: -9px 20px -10px -10px;
-padding: 10px 40px 10px 10px;
+margin: 0 20px 0 0;
+padding: 0 40px 0 0;
 width: 200px;
 text-align:right;
-height:17px;
-line-height:15px;
+height:20px;
+line-height:20px;
 color: #111;
-background:#eee;
-font: bold 15px arial;
+font: normal 15px arial;
 }
 #tabs ol.forms li.radio-item label {
 display: inline;
 float: none;
 font-weight: normal;
-margin: 0 0 0 10px;
+margin: 0 10px 0 0;
 width: auto;
 background: none;
 padding: 0;
@@ -396,15 +403,7 @@ padding:0;
 }
 #tabs ol.forms input,
 #tabs ol.forms textarea {
-font: inherit;
 padding: 2px;
-width: 200px;
-}
-#tabs ol.forms select {
-margin-top: 0;
-}
-#tabs ol.forms textarea {
-height: 250px;
 }
 #tabs ol.forms li .tooltip {
 position: absolute;
@@ -423,27 +422,6 @@ background: transparent url(../images/info.png) no-repeat;
 }
 #tabs ol.forms li .tt-modal {
 background: transparent url(../images/help.png) no-repeat;
-}
-
-#tabs ol.forms li.radio ul {
-list-style: none;
-margin-left: 20px;
-border: 0;
-background: 0;
-margin: 13px 0 0 215px;
-}
-#tabs ol.forms li.radio ul label {
-display: inline;
-float: none;
-font-weight: normal;
-margin: 0 0 0 10px;
-width: auto;
-background: none;
-padding: 0;
-}
-#tabs ol.forms li.radio ul input {
-width: auto;
-margin: 0;
 }
 #tabs ol.forms li.buttons {
 float: none;

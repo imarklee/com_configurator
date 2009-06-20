@@ -20,6 +20,8 @@ jQuery.noConflict();
 		/* Generic ----------------------------
 	    ------------------------------------ */
 		$("#submenu li:last").addClass("last");
+		$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
+		$("#tabs ol.forms li:first-child").addClass("first");		
 		$("#tabs ol.forms li:last-child").addClass("last");		
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');

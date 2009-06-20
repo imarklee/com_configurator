@@ -184,10 +184,12 @@ function manage( &$params, &$lists, $morph_installed ) {
 										<li><a href="#master-head-block">Master Head</a></li>
 										<li><a href="#sub-head-block">Sub Head</a></li>
 										<li><a href="#top-navigation-block">Top Navigation</a></li>
-										<li><a href="#top-bottom-shelf-block">Top &amp; Bottom Shelf</a></li>
-										<li><a href="#user1-2-block">User 1 &amp; User 2</a></li>
+										<li><a href="#top-bottom-shelf-block">Top Shelf</a></li>
+										<li><a href="#user1-2-block">User1 Shelf</a></li>
 										<li><a href="#inset-block">Inset</a></li>
 										<li><a href="#main-block">Main</a></li>
+										<li><a href="#user1-2-block">User2 Shelf</a></li>
+										<li><a href="#user1-2-block">Bottom Shelf</a></li>
 										<li><a href="#footer-block">Footer</a></li>
 									</ul>
 									<?php include 'includes/tabs/blocks-toolbar.php' ?>

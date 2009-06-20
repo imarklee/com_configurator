@@ -19,6 +19,7 @@ jQuery.noConflict();
 	
 		/* Generic ----------------------------
 	    ------------------------------------ */
+	    $("#tabs ol.forms input").css("border", null); 
 		$("#submenu li:last").addClass("last");
 		$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
 		$("#tabs ol.forms li:first-child").addClass("first");		
@@ -503,7 +504,7 @@ jQuery.noConflict();
 			   	show: 'mouseover',
 			   	hide: 'mouseout',
 			   	style: {
-			   		name: 'cream',
+			   		name: 'blue',
 			   		border: {
 			   			width: 5,
 			   			radius: 5

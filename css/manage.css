@@ -210,6 +210,7 @@ margin: 0 1px 0 0;
 #tabs.ui-tabs li strong {
 display: block;
 font: bold 18px Arial;
+color: #eee;
 }
 #tabs,
 #tabs .primary,
@@ -240,6 +241,9 @@ border-bottom: 1px solid #fff;
 background: #fff url(../images/cog.png) no-repeat 20px 50%;
 color: #333;
 padding-left: 53px;
+}
+#tabs .primary li.ui-tabs-selected.ui-state-active a strong{
+color: #333;
 }
 #tabs .primary li.tab-block.ui-state-active a {
 background: #fff url(../images/blocks.png) no-repeat 20px 50%;
@@ -330,7 +334,7 @@ overflow: hidden;
 .options-panel {
 width: 535px;
 float: left;
-border:5px solid #ddd;
+border:5px solid #9FBF6B;
 }
 .info-panel {
 width: 350px;
@@ -363,7 +367,7 @@ margin-left: 100px;
 width: auto;
 }
 .options-inner {
-border:1px solid #ccc;
+border:1px solid #546F29;
 overflow: hidden;
 }
 #tabs ol.forms {
@@ -379,33 +383,31 @@ background: #fff url(../images/form-bg.jpg) repeat-y;
 border-bottom:1px solid #ddd;
 border-top:1px solid #fff;
 clear:both;
-color:#111111;
+color:#222;
 float:left;
 margin:0 0 0 -2px;
-padding:10px;
+padding: 0 10px;
 position:relative;
 width:513px;
+height:30px;
+font: normal 13px/30px arial;
 }
 #tabs ol.forms li.first{
 border-top: 0;
 }
 #tabs ol.forms li.last {
 border-bottom:0;
-margin:0;
 }
-#tabs ol.forms label,
+#tabs ol.forms label, 
 #tabs ol.forms li.radio-item label.to-label {
-cursor: pointer;
-display: block;
-float: left;
-margin: 0 20px 0 0;
-padding: 0 40px 0 0;
-width: 200px;
+color:#455C21;
+cursor:pointer;
+display:block;
+float:left;
+margin:0 21px 0 0;
+padding:0 15px 0 0;
 text-align:right;
-height:20px;
-line-height:20px;
-color: #111;
-font: normal 15px arial;
+width:163px;
 }
 #tabs ol.forms li.radio-item label {
 display: inline;
@@ -415,26 +417,30 @@ margin: 0 10px 0 0;
 width: auto;
 background: none;
 padding: 0;
+color:#222;
 }
 #tabs ol.forms li.radio-item input {
 width: auto;
 margin: 0;
 padding:0;
 }
+#tabs ol.forms select,
+#tabs ol.forms option,
 #tabs ol.forms input,
 #tabs ol.forms textarea {
-padding: 2px;
+font: normal 13px arial!important;
+color:#111;
 }
 #tabs ol.forms li .tooltip {
 position: absolute;
-top: 13px;
-left: 221px;
+top: 5px;
+left: 176px;
 background: none;
 border: 0;
 text-decoration: none;
 text-indent: -7998px;
-width: 16px;
-height: 16px;
+width: 20px;
+height: 20px;
 display: block;
 }
 #tabs ol.forms li .tt-inline {
@@ -442,6 +448,13 @@ background: transparent url(../images/info.png) no-repeat;
 }
 #tabs ol.forms li .tt-modal {
 background: transparent url(../images/help.png) no-repeat;
+}
+.qtip.qtip-cream .qtip-content.qtip-content{
+color: #9F6827!important;
+}
+.qtip-content.qtip-content{
+font: bold 12px/17px arial!important;
+padding: 1em!important;
 }
 #tabs ol.forms li.buttons {
 float: none;

@@ -461,7 +461,22 @@ float: none;
 margin-left: 100px;
 width: auto;
 }
-
+#tabs ol.forms li.heading{
+height: 33px;
+background: #fff;
+}
+#tabs ol.forms li.heading.first{
+height: 32px;
+}
+#tabs ol.forms li.heading h3{
+text-indent:200px;
+background: url(../images/heading-bg.jpg) repeat-x left bottom;
+border: 1px solid #92A64D;
+margin: 0px -9px 2px -9px;
+}
+#tabs ol.forms li.heading.first h3{
+margin: -1px -9px 2px -9px;
+}
 #browse-assets .ui-tabs-panel {
 padding: 0;
 }

@@ -46,7 +46,7 @@ function manage( &$params, &$lists, $morph_installed ) {
         
         if (!$morph_installed){
 	        echo '<center>';
-	        echo '<h1>Morph template was not found!</h1>';	
+	        echo '<h1>It seems that Morph has not yet been installed.</h1>';	
 	        echo '<h3>Please, <a href="index.php?option=com_installer">Morph</a> before continue...</h3>';	
 	        echo '</center>';	
 	        //if found morph	
@@ -190,70 +190,15 @@ function manage( &$params, &$lists, $morph_installed ) {
 										<li><a href="#main-block">Main</a></li>
 										<li><a href="#footer-block">Footer</a></li>
 									</ul>
-								
-									<div id="toolbar-block">
-										<h3>Toolbar Block</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?>
-										</ol>
-									</div>
-									
-									<div id="master-head-block" class="ui-tabs-hide">
-										<h3>Master Head Block</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('masterhead', 'masterheaddata')); ?>
-										</ol>
-									</div>
-								
-									<div id="sub-head-block" class="ui-tabs-hide">
-										<h3>Sub Head Block</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('subhead', 'subheaddata')); ?>
-										</ol>
-									</div>
-				
-									<div id="top-navigation-block" class="ui-tabs-hide">
-										<h3>Top Navigation Block</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
-										</ol>
-									</div>
-												
-									<div id="top-bottom-shelf-block" class="ui-tabs-hide">
-										<h3>Top &amp; Bottom Shelf Blocks</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('shelves', 'shelvesdata')); ?>
-										</ol>
-									</div>
-								
-									<div id="user1-2-block" class="ui-tabs-hide">
-										<h3>User 1 &amp; User 2 Blocks</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('inlineshelves', 'inlineshelvesdata')); ?>
-										</ol>
-									</div>
-								
-									<div id="inset-block" class="ui-tabs-hide">
-										<h3>Inset Blocks</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('insets', 'insetsdata')); ?>
-										</ol>
-									</div>
-									
-									<div id="main-block" class="ui-tabs-hide">
-										<h3>Main Block</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('main', 'maindata')); ?>
-										</ol>
-									</div>
-									
-									<div id="footer-block" class="ui-tabs-hide">
-										<h3>Main Block</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('footer', 'footerdata')); ?>
-										</ol>
-									</div>
-									
+									<?php include 'includes/tabs/blocks-toolbar.php' ?>
+									<?php include 'includes/tabs/blocks-masthead.php' ?>
+									<?php include 'includes/tabs/blocks-subhead.php' ?>
+									<?php include 'includes/tabs/blocks-topnav.php' ?>
+									<?php include 'includes/tabs/blocks-shelves.php' ?>
+									<?php include 'includes/tabs/blocks-ishelves.php' ?>
+									<?php include 'includes/tabs/blocks-inset.php' ?>
+									<?php include 'includes/tabs/blocks-main.php' ?>
+									<?php include 'includes/tabs/blocks-footer.php' ?>
 								</div>
 							</div>
 							

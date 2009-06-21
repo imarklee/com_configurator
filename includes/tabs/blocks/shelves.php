@@ -5,12 +5,18 @@
 		</ol>
 	</div>
 	<div id="general-info" class="info-panel">
-		<h4>What is a themelet?</h4>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>	
+		<h3>Top &amp; bottom shelves</h3>
+		<p class="teaser">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		
-		<ul class="buttons">
-			<li><a href="byblock.html" title="Visual Reference: By Block" class="ui-state-default">More about this feature</a></li>
-			<li><a href="byblock.html" title="Visual Reference: By Block" class="fg-button">Online documentation</a></li>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+			
+		<h4>Possible ways to use this block:</h4>
+		<ul>
+			<li>Login form</li>
+			<li>Newsticker</li>
+			<li>Skip to content links</li>
+			<li>Breadcrumbs / pathway</li>
+			<li>Slider</li>
 		</ul>
 	</div>
 </div>

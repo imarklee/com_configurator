@@ -470,6 +470,13 @@ float: none;
 margin-left: 100px;
 width: auto;
 }
+#tabs ol.forms li.textarea{
+height: auto;
+}
+#tabs ol.forms li.textarea textarea{
+margin-top:5px;
+}
+
 #tabs ol.forms li.heading{
 height: 33px;
 background: #fff;

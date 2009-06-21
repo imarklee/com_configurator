@@ -6,17 +6,8 @@
 	</div>
 	<div id="color-info" class="info-panel">
 		<h3>Color overview</h3>
-		<p class="teaser">The toolbar block is a general utilities bar and can be used for a number of different functions.</p>
+		<p class="teaser">We realize that not every themelet is ever going to be a 100% perfect fit for your business, so we have given you a couple of options to customize the colors to fit you own brand.</p>
 		
-		<p>The toolbar block is a general utilities bar and can be used for a number of different functions. This block can be positioned in 4 different areas, giving you additional flexibility with how you use it.</p>	
-			
-		<h4>Possible ways to use this block:</h4>
-		<ul>
-			<li>Login form</li>
-			<li>Newsticker</li>
-			<li>Skip to content links</li>
-			<li>Breadcrumbs / pathway</li>
-			<li>Slider</li>
-		</ul>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
 	</div>
 </div>

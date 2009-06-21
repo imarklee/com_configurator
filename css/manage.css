@@ -42,6 +42,7 @@ height: 30px;
 display: block;
 float: left;
 font: normal 11px/30px Arial;
+color: #222;
 }
 #utilities .toggle-shelf a {
 background: transparent url(../images/toggle.png) no-repeat 91% 52%;
@@ -143,7 +144,7 @@ height: 100px;
 }
 #current-themelet .thumb img {
 position: absolute;
-top: 5px;
+top: 8px;
 left: 5px;
 }
 #current-themelet .thumb span {
@@ -151,6 +152,7 @@ position: absolute;
 width: 117px;
 height: 100px;
 z-index: 999;
+top: 6px;
 background: transparent url(../images/screen.png) no-repeat;
 }
 #current-themelet img {

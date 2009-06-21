@@ -127,15 +127,13 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="block-settings">
 									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
 										<li><a href="#toolbar-block" class="ui-corner-left">Toolbar</a></li>
-										<li><a href="#master-head-block">Master Head</a></li>
-										<li><a href="#sub-head-block">Sub Head</a></li>
+										<li><a href="#master-head-block">Master Header</a></li>
+										<li><a href="#sub-head-block">Sub Header</a></li>
 										<li><a href="#top-navigation-block">Top Navigation</a></li>
-										<li><a href="#top-bottom-shelf-block">Top Shelf</a></li>
-										<li><a href="#user1-2-block">User1 Shelf</a></li>
-										<li><a href="#inset-block">Inset</a></li>
+										<li><a href="#top-bottom-shelf-block">Outer Shelves</a></li>
+										<li><a href="#user1-2-block">Inline Shelves</a></li>
+										<li><a href="#inset-block">Insets</a></li>
 										<li><a href="#main-block">Main</a></li>
-										<li><a href="#user1-2-block">User2 Shelf</a></li>
-										<li><a href="#user1-2-block">Bottom Shelf</a></li>
 										<li><a href="#footer-block">Footer</a></li>
 									</ul>
 									<?php include 'includes/tabs/blocks/toolbar.php' ?>

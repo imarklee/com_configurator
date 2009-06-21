@@ -304,7 +304,7 @@ jQuery.noConflict();
 			   	show: 'mouseover',
 			   	hide: 'mouseout',
 			   	style: {
-			   		name: 'cream',
+			   		name: 'red',
 			   		border: {
 			   			width: 5,
 			   			radius: 5
@@ -504,7 +504,7 @@ jQuery.noConflict();
 			   	show: 'mouseover',
 			   	hide: 'mouseout',
 			   	style: {
-			   		name: 'blue',
+			   		name: 'dark',
 			   		border: {
 			   			width: 5,
 			   			radius: 5

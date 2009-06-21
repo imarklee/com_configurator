@@ -101,7 +101,6 @@ function manage( &$params, &$lists, $morph_installed ) {
 						
 						<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">
 							<div id="general">
-			
 								<div id="subtabs">
 									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
 										<li><a href="#start" class="ui-corner-left">Start</a></li>
@@ -113,70 +112,17 @@ function manage( &$params, &$lists, $morph_installed ) {
 										<li><a href="#performance">Performance</a></li>
 										<li><a href="#miscellaneous">Miscellaneous</a></li>
 									</ul>
-									<div id="start">
-										<div id="general-options" class="options-panel">
-											<h3>General Settings</h3>
-											<ol class="forms">
-											<?php echo renderParams($params->renderToArray('general','generaldata')); ?>
-											</ol>
-										</div>
-										<div id="general-info" class="info-panel">
-											<h4>What is a themelet?</h4>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>	
-											
-											<ul class="buttons">
-												<li><a href="byblock.html" title="Visual Reference: By Block" class="modal-link ui-state-default">More about this feature</a></li>
-												<li><a href="byblock.html" title="Visual Reference: By Block" class="modal-link fg-button">Online documentation</a></li>
-											</ul>	
-											<div class="clear">&nbsp;</div>
-										</div>
-									</div>
-									<div id="logos" class="ui-tabs-hide">
-										<h3>Logo Settings</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('logo', 'logodata')); ?>
-										</ol>
-									</div>
-									<div id="backgrounds" class="ui-tabs-hide">
-										<h3>Background Settings</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('background', 'backgrounddata')); ?>
-										</ol>
-									</div>
-									<div id="colors" class="ui-tabs-hide">
-										<h3>Color Settings</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>
-										</ol>
-									</div>
-									<div id="menus" class="ui-tabs-hide">
-										<h3>Menu Settings</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('menu', 'menudata')); ?>						
-										</ol>
-									</div>
-									<div id="progressive" class="ui-tabs-hide">
-										<h3>Progressive Enhancements</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('progressive', 'progressivedata')); ?>
-										</ol>
-									</div>
-									<div id="performance" class="ui-tabs-hide">
-										<h3>Performance Settings</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('performance', 'performancedata')); ?>
-										</ol>
-									</div>
-									<div id="miscellaneous" class="ui-tabs-hide">
-										<h3>Miscellaneous Settings</h3>
-										<ol class="forms">
-										<?php echo renderParams($params->renderToArray('advanced', 'advanceddata')); ?>
-										</ol>
-									</div>
+									<?php include 'includes/tabs/general/start.php' ?>
+									<?php include 'includes/tabs/general/logos.php' ?>
+									<?php include 'includes/tabs/general/backgrounds.php' ?>
+									<?php include 'includes/tabs/general/colors.php' ?>
+									<?php include 'includes/tabs/general/menus.php' ?>
+									<?php include 'includes/tabs/general/progressive.php' ?>
+									<?php include 'includes/tabs/general/performance.php' ?>
+									<?php include 'includes/tabs/general/miscellaneous.php' ?>
 								</div>
-							
 							</div>
-							
+
 							<div id="blocks" class="ui-tabs-hide">
 								<div id="block-settings">
 									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
@@ -192,15 +138,15 @@ function manage( &$params, &$lists, $morph_installed ) {
 										<li><a href="#user1-2-block">Bottom Shelf</a></li>
 										<li><a href="#footer-block">Footer</a></li>
 									</ul>
-									<?php include 'includes/tabs/blocks-toolbar.php' ?>
-									<?php include 'includes/tabs/blocks-masthead.php' ?>
-									<?php include 'includes/tabs/blocks-subhead.php' ?>
-									<?php include 'includes/tabs/blocks-topnav.php' ?>
-									<?php include 'includes/tabs/blocks-shelves.php' ?>
-									<?php include 'includes/tabs/blocks-ishelves.php' ?>
-									<?php include 'includes/tabs/blocks-inset.php' ?>
-									<?php include 'includes/tabs/blocks-main.php' ?>
-									<?php include 'includes/tabs/blocks-footer.php' ?>
+									<?php include 'includes/tabs/blocks/toolbar.php' ?>
+									<?php include 'includes/tabs/blocks/masthead.php' ?>
+									<?php include 'includes/tabs/blocks/subhead.php' ?>
+									<?php include 'includes/tabs/blocks/topnav.php' ?>
+									<?php include 'includes/tabs/blocks/shelves.php' ?>
+									<?php include 'includes/tabs/blocks/ishelves.php' ?>
+									<?php include 'includes/tabs/blocks/inset.php' ?>
+									<?php include 'includes/tabs/blocks/main.php' ?>
+									<?php include 'includes/tabs/blocks/footer.php' ?>
 								</div>
 							</div>
 							
@@ -211,42 +157,26 @@ function manage( &$params, &$lists, $morph_installed ) {
 										<li><a href="#tools-backups">Backups</a></li>
 										<li><a href="#tools-profiles">Profiles</a></li>
 									</ul>
-									<div id="tools-installer">
-										<?php include 'includes/tools/uploader.php' ?>
-									</div>
-									<div id="tools-backups" class="ui-tabs-hide">
-										<?php include 'includes/tools/backups.php' ?>
-									</div>
-									<div id="tools-profiles" class="ui-tabs-hide">
-										<?php include 'includes/tools/profiles.php' ?>
-									</div>
+									<?php include 'includes/tools/uploader.php' ?>
+									<?php include 'includes/tools/backups.php' ?>
+									<?php include 'includes/tools/profiles.php' ?>
 								</div>
 							</div>
 							
 							<div id="assets" class="ui-tabs-hide">
 								<div id="browse-assets">
-								
 									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
 										<li><a href="#assets-themelets" class="ui-corner-left">Themelets</a></li>
 										<li><a href="#assets-logos">Logos</a></li>
 										<li><a href="#assets-backgrounds">Backgrounds</a></li>
 										<li><a href="#assets-backups">Backups</a></li>
 									</ul>				
-									<div id="assets-themelets">
-										<?php include 'includes/tabs/themelets.php' ?>
-									</div>
-									<div id="assets-logos" class="ui-tabs-hide">
-										<?php include 'includes/tabs/logos.php' ?>						
-									</div>
-									<div id="assets-backgrounds" class="ui-tabs-hide">
-										<?php include 'includes/tabs/backgrounds.php' ?>						
-									</div>
-									<div id="assets-backups" class="ui-tabs-hide">
-										<?php include 'includes/tabs/backups.php' ?>						
-									</div>						
+									<?php include 'includes/tabs/themelets.php' ?>
+									<?php include 'includes/tabs/logos.php' ?>
+									<?php include 'includes/tabs/backgrounds.php' ?>
+									<?php include 'includes/tabs/backups.php' ?>		
 								</div>
 							</div>
-							
 							
 							<div id="help" class="ui-tabs-hide">
 								<?php include 'includes/help.php' ?>

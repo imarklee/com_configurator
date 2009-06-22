@@ -19,7 +19,7 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.corners.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.filestyle.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.qtip-1.0.0-rc3.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.fileupload.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.fileupload.js');$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.autoresize.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.functions.js.php');
 
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/jquery-ui-1.7.2.custom.css');

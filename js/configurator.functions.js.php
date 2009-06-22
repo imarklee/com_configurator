@@ -70,7 +70,20 @@ jQuery.noConflict();
 		$("input, textarea", $("form")).blur(function(){
 		    $(this).removeClass("focus");
 		    $(this).parents("ol.forms").removeClass("cur");
-		});	
+		});
+		
+		$('textarea').autoResize({
+			// On resize:
+		    onResize : function() {
+		        $(this).css({opacity:0.8});
+		    },
+		    // After resize:
+		    animateCallback : function() {
+		        $(this).css({opacity:1});
+		    },
+		    // Quite slow animation:
+		    animateDuration : 300
+		});
 			
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
@@ -278,7 +291,7 @@ jQuery.noConflict();
 					width:		arrPageSizes[0],
 					height:		arrPageSizes[1]
 				});
-		}
+		});
 		$('<div id="qtip-blanket">').css({
 			position: 'absolute',
 	        top: $(document).scrollTop(),
@@ -289,7 +302,7 @@ jQuery.noConflict();
 	       	backgroundColor: 'black',
 	        zIndex: 5000
 		})
-	    .appendTo($('html')) // Append to the document body
+	    .appendTo($('body')) // Append to the document body
 	    .hide();
 	    
 	    /* Live Content for Tooltips ----------

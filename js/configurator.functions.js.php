@@ -270,6 +270,15 @@ jQuery.noConflict();
 		/* Tooltips ----------------------
 		------------------------------- */
 		var arrPageSizes = ___getPageSize();
+		$(window).resize(function() {
+				// Get page sizes
+				var arrPageSizes = ___getPageSize();
+				// Style overlay and show it
+				$('#jquery-overlay').css({
+					width:		arrPageSizes[0],
+					height:		arrPageSizes[1]
+				});
+		}
 		$('<div id="qtip-blanket">').css({
 			position: 'absolute',
 	        top: $(document).scrollTop(),

@@ -226,9 +226,37 @@ float: left;
 #wrap ul.buttons a:hover {
 color: #fff;
 }
+
+#tabs .tab-desc{
+margin-bottom: 1.5em;
+border:5px solid #EF9700;
+}
+#tabs .tab-desc p{
+margin:0;
+padding:1em;
+color: #AF3E00;
+font: normal 15px/20px arial;
+background:#FFDC9F;
+border:1px solid #AF3E00;
+position:relative;
+}
+#tabs .tab-desc p a{
+color: #fff;
+font: normal 12px/20px arial;
+background:#EF9700;
+text-decoration: underline;
+position:absolute;
+bottom: -1px;
+right: -1px;
+padding: 2px 0 0 7px;
+border-top: 1px solid #AF3E00;
+border-left: 1px solid #AF3E00;
+}
+
 .ui-tabs {
 overflow: hidden;
 }
+
 #tabs.ui-tabs .ui-tabs-nav li {
 font: normal 13px Arial;
 color: #fff;

@@ -125,6 +125,12 @@ function manage( &$params, &$lists, $morph_installed ) {
 
 							<div id="blocks" class="ui-tabs-hide">
 								<div id="block-settings">
+								<div id="block-desc" class="tab-desc" <?php if (isset ($_COOKIE['block-desc'])) { ?> style="display:none;"<?php } ?>>
+									<p>
+									Think of blocks as the lego pieces that make up your website. Each one of the different blocks can be configured to work in a multitude of ways.
+									<a href="#">hide</a>
+									</p>
+								</div>
 									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
 										<li><a href="#toolbar-block" class="ui-corner-left">Toolbar</a></li>
 										<li><a href="#master-head-block">Master Header</a></li>

@@ -72,6 +72,16 @@ jQuery.noConflict();
 		    $(this).parents("ol.forms").removeClass("cur");
 		});	
 			
+		
+		$('#block-desc a').click(function(){
+			$('#block-desc').hide('slow');
+			$.cookie('block-desc', true,{path:'/',expires:30});
+			return false; 
+		});
+		
+		
+		
+		
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
 	    $("input.input-installer").filestyle({ 

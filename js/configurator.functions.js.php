@@ -52,7 +52,12 @@ jQuery.noConflict();
 		$("#shelf.open #utilities").corners("10px top");
 		$("#shelf.closed #utilities").corners("10px");
 		$("ul.assets-headers").corners("5px top");
-		
+		$('#block-desc a').click(function(){
+			$('#block-desc').hide('slow');
+			$.cookie('block-desc', true,{path:'/',expires:30});
+			return false; 
+		});
+			
 		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
 			$(this).fadeTo('fast', 0.2);
 			$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').each(function(){

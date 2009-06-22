@@ -11,6 +11,7 @@ if(is_dir($logo_dir)) {
 <div id="assets-logos" class="ui-tabs-hide">
 	<div id="logos-switch" class="switch">
 		<h2>Logos</h2>
+		<p class="assets-location">Your logos are located in: <strong>"<?php echo $logo_dir; ?>"</strong>.</p>
 		<a href="#" class="switch_thumb">Switch View</a>
 	</div>
 	
@@ -52,6 +53,5 @@ if(is_dir($logo_dir)) {
 			</li>
 			<?php } ?>
 		</ul>
-		<p class="assets-location">Your logos are located in: <strong>"<?php echo $logo_dir; ?>"</strong>.</p>
 	</div>
 </div>

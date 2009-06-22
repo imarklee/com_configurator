@@ -10,6 +10,7 @@ if(is_dir($background_dir)) {
 <div id="assets-backgrounds" class="ui-tabs-hide">
 	<div id="backgrounds-switch" class="switch">
 		<h2>Backgrounds</h2>
+		<p class="assets-location">Your backgrounds are located in: <strong>"<?php echo $background_dir; ?>"</strong>.</p>
 		<a href="#" class="switch_thumb">Switch View</a>
 	</div>
 	
@@ -51,6 +52,5 @@ if(is_dir($background_dir)) {
 			</li>
 			<?php } ?>
 		</ul>
-		<p class="assets-location">Your backgrounds are located in: <strong>"<?php echo $background_dir; ?>"</strong>.</p>
 	</div>
 </div>

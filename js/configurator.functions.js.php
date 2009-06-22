@@ -274,7 +274,7 @@ jQuery.noConflict();
 				// Get page sizes
 				var arrPageSizes = ___getPageSize();
 				// Style overlay and show it
-				$('#jquery-overlay').css({
+				$('#qtip-blanket').css({
 					width:		arrPageSizes[0],
 					height:		arrPageSizes[1]
 				});

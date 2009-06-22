@@ -189,14 +189,15 @@ jQuery.noConflict();
 	
 	
 		$("#toggle-shelf").click(function(){
-			$(".open").switchClass('open', 'closed', 300);
-			$(".closed").switchClass('closed', 'open', 300);
+			if(!$.cookie('shelf')){
+				$('.open').switchClass('open', 'closed', 300);
+				$.cookie('shelf', 'hide', { path: '/', expires: 30 });
+			}else{
+				$('.closed').switchClass('closed', 'open', 300);
+				$.cookie('shelf', null, { path: '/', expires: 30 });
+			}
 			return false;	
 		});
-	
-	
-	
-	
 	
 		var options = { path: '/', expires: 30 };
 	
@@ -294,6 +295,54 @@ jQuery.noConflict();
 				});
 
 	    };
+	    
+	    var welcome = $('body').qtip({
+	    	content: {
+				title: {
+					text: 'Welcome to Configurator',
+					button: 'Close'
+				},
+				url: '../administrator/components/com_configurator/tooltips/gettingstarted.html'
+			},
+			position: {
+				target: $(document.body), // Position it via the document body...
+				corner: 'center' // ...at the center of the viewport
+			},
+			show: {
+				when: false,
+				solo: true // And hide all other tooltips
+			},
+			fixed: true,
+			hide: {
+				when: false
+			},
+			style: {
+				padding: 0,
+				background: '#fff',
+				color: '#111',
+				border: {
+     				width: 3,
+     				radius: 8
+     			},
+     			width: {
+     				max: '780'
+     			},
+				name: 'dark'
+			},
+			api: {
+				beforeShow: function(){
+					$('#qtip-blanket').fadeIn(this.options.show.effect.length);
+				},
+				beforeHide: function(){
+					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
+				}
+			}
+	    })
+	    
+	    if(!$.cookie('welcome_screen')){
+	    	welcome.qtip('show');
+	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
+	    }
 	    
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 

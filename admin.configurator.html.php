@@ -84,7 +84,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 	        <?php }else{ ?>
 	        	
 	        	<div id="wrap" class="container_16">
-					<div id="shelf" class="open">
+					<div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 						<?php include 'includes/shelf.php' ?>
 					</div>
 				

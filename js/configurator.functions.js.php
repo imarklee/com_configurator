@@ -70,26 +70,29 @@ jQuery.noConflict();
 		$("input, textarea", $("form")).blur(function(){
 		    $(this).removeClass("focus");
 		    $(this).parents("ol.forms").removeClass("cur");
-		});	
-			
-		
-		$('#block-desc a').click(function(){
-			$('#block-desc').hide('slow');
-			$.cookie('block-desc', true,{path:'/',expires:30});
-			return false; 
 		});
-		
-		
-		
-		
+			
+		$('textarea').autoResize({
+			// On resize:
+		    onResize : function() {
+		        $(this).css({opacity:0.8});
+		    },
+		    // After resize:
+		    animateCallback : function() {
+		        $(this).css({opacity:1});
+		    },
+		    // Quite slow animation:
+		    animateDuration : 300
+		});
+			
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
-	    $("input.input-installer").filestyle({ 
+	    /*$("input.input-installer").filestyle({ 
      		image: "components/com_configurator/images/select-btn.png",
      		imageheight : 27,
      		imagewidth : 81,
      		width : 217
- 		});
+ 		});*/
  		
  		$('.alf-input').focus(function(){
  			if(this.value == 'username' || this.value == 'password'){ 
@@ -199,14 +202,15 @@ jQuery.noConflict();
 	
 	
 		$("#toggle-shelf").click(function(){
-			$(".open").switchClass('open', 'closed', 300);
-			$(".closed").switchClass('closed', 'open', 300);
+			if(!$.cookie('shelf')){
+				$('.open').switchClass('open', 'closed', 300);
+				$.cookie('shelf', 'hide', { path: '/', expires: 30 });
+			}else{
+				$('.closed').switchClass('closed', 'open', 300);
+				$.cookie('shelf', null, { path: '/', expires: 30 });
+			}
 			return false;	
 		});
-	
-	
-	
-	
 	
 		var options = { path: '/', expires: 30 };
 	
@@ -278,17 +282,27 @@ jQuery.noConflict();
 		
 		/* Tooltips ----------------------
 		------------------------------- */
+		var arrPageSizes = ___getPageSize();
+		$(window).resize(function() {
+				// Get page sizes
+				var arrPageSizes = ___getPageSize();
+				// Style overlay and show it
+				$('#qtip-blanket').css({
+					width:		arrPageSizes[0],
+					height:		arrPageSizes[1]
+				});
+		});
 		$('<div id="qtip-blanket">').css({
 			position: 'absolute',
 	        top: $(document).scrollTop(),
 	        left: 0,
-	        height: '100%',
-	        width: '100%',
-	  		opacity: 0.7,
+	        width: arrPageSizes[0],
+			height: arrPageSizes[1],
+	        opacity: 0.7,
 	       	backgroundColor: 'black',
 	        zIndex: 5000
 		})
-	    .appendTo($('html')) // Append to the document body
+	    .appendTo($('body')) // Append to the document body
 	    .hide();
 	    
 	    /* Live Content for Tooltips ----------
@@ -304,6 +318,54 @@ jQuery.noConflict();
 				});
 
 	    };
+	    
+	    var welcome = $('body').qtip({
+	    	content: {
+				title: {
+					text: 'Welcome to Configurator',
+					button: 'Close'
+				},
+				url: '../administrator/components/com_configurator/tooltips/gettingstarted.html'
+			},
+			position: {
+				target: $(document.body), // Position it via the document body...
+				corner: 'center' // ...at the center of the viewport
+			},
+			show: {
+				when: false,
+				solo: true // And hide all other tooltips
+			},
+			fixed: true,
+			hide: {
+				when: false
+			},
+			style: {
+				padding: 0,
+				background: '#fff',
+				color: '#111',
+				border: {
+     				width: 3,
+     				radius: 8
+     			},
+     			width: {
+     				max: '780'
+     			},
+				name: 'dark'
+			},
+			api: {
+				beforeShow: function(){
+					$('#qtip-blanket').fadeIn(this.options.show.effect.length);
+				},
+				beforeHide: function(){
+					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
+				}
+			}
+	    })
+	    
+	    if(!$.cookie('welcome_screen')){
+	    	welcome.qtip('show');
+	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
+	    }
 	    
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 
@@ -973,6 +1035,54 @@ jQuery.noConflict();
 			});
 		return false;
 		});
+		
+		/**
+		/ Third Party Function
+		* getPageSize() by quirksmode.com
+		* @return Array Return an array with page width, height and window width, height
+		*/
+		function ___getPageSize() {
+			var xScroll, yScroll;
+			if (window.innerHeight && window.scrollMaxY) {	
+				xScroll = window.innerWidth + window.scrollMaxX;
+				yScroll = window.innerHeight + window.scrollMaxY;
+			} else if (document.body.scrollHeight > document.body.offsetHeight){ // all but Explorer Mac
+				xScroll = document.body.scrollWidth;
+				yScroll = document.body.scrollHeight;
+			} else { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari
+				xScroll = document.body.offsetWidth;
+				yScroll = document.body.offsetHeight;
+			}
+			var windowWidth, windowHeight;
+			if (self.innerHeight) {	// all except Explorer
+				if(document.documentElement.clientWidth){
+					windowWidth = document.documentElement.clientWidth; 
+				} else {
+					windowWidth = self.innerWidth;
+				}
+				windowHeight = self.innerHeight;
+			} else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
+				windowWidth = document.documentElement.clientWidth;
+				windowHeight = document.documentElement.clientHeight;
+			} else if (document.body) { // other Explorers
+				windowWidth = document.body.clientWidth;
+				windowHeight = document.body.clientHeight;
+			}	
+			// for small pages with total height less then height of the viewport
+			if(yScroll < windowHeight){
+				pageHeight = windowHeight;
+			} else { 
+				pageHeight = yScroll;
+			}
+			// for small pages with total width less then width of the viewport
+			if(xScroll < windowWidth){	
+				pageWidth = xScroll;		
+			} else {
+				pageWidth = windowWidth;
+			}
+			arrayPageSize = new Array(pageWidth,pageHeight,windowWidth,windowHeight);
+			return arrayPageSize;
+		};
 		
 	});
 })(jQuery);

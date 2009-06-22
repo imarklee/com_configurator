@@ -152,12 +152,8 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="browse-tools">
 									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
 										<li><a href="#tools-installer" class="ui-corner-left">Universal Installer</a></li>
-										<li><a href="#tools-backups">Backups</a></li>
-										<li><a href="#tools-profiles">Profiles</a></li>
 									</ul>
-									<?php include 'includes/tools/uploader.php' ?>
-									<?php include 'includes/tools/backups.php' ?>
-									<?php include 'includes/tools/profiles.php' ?>
+									<?php include 'includes/tabs/tools/uploader.php' ?>
 								</div>
 							</div>
 							
@@ -167,12 +163,10 @@ function manage( &$params, &$lists, $morph_installed ) {
 										<li><a href="#assets-themelets" class="ui-corner-left">Themelets</a></li>
 										<li><a href="#assets-logos">Logos</a></li>
 										<li><a href="#assets-backgrounds">Backgrounds</a></li>
-										<li><a href="#assets-backups">Backups</a></li>
 									</ul>				
-									<?php include 'includes/tabs/themelets.php' ?>
-									<?php include 'includes/tabs/logos.php' ?>
-									<?php include 'includes/tabs/backgrounds.php' ?>
-									<?php include 'includes/tabs/backups.php' ?>		
+									<?php include 'includes/tabs/assets/themelets.php' ?>
+									<?php include 'includes/tabs/assets/logos.php' ?>
+									<?php include 'includes/tabs/assets/backgrounds.php' ?>
 								</div>
 							</div>
 							

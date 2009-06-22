@@ -71,7 +71,8 @@ jQuery.noConflict();
 		    $(this).removeClass("focus");
 		    $(this).parents("ol.forms").removeClass("cur");
 		});
-			
+
+
 		$('textarea').autoResize({
 			// On resize:
 		    onResize : function() {

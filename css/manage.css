@@ -518,6 +518,45 @@ margin: 0px -9px 2px -9px;
 #tabs ol.forms li.heading.first h3{
 margin: -1px -9px 2px -9px;
 }
+#tabs #colors li.palette{
+position: relative;
+}
+#tabs #colors li.palette .picker{
+width: 50px;
+height: 20px;
+line-height: 20px;
+padding-left: 18px;
+display:block;
+position: absolute;
+top:4px;
+right:90px;
+cursor:pointer;
+text-decoration: underline;
+font-size: 11px;
+background: transparent url(../images/colorpicker-bg.png) no-repeat 0;
+}
+#tabs #colors li.palette .picker span{
+display:none;
+}
+#tabs #colors li.palette a:hover.picker span{
+display:inline;
+}
+#tabs #colors li.palette a:hover.picker{
+
+}
+#tabs #colors li.palette .color-preview{
+width: 15px;
+height: 15px;
+display:block;
+position: absolute;
+top:7px;
+right:169px;
+background: red;
+-moz-border-radius: 3px;
+}
+
+
+
 #browse-assets .ui-tabs-panel {
 padding: 0;
 }
@@ -540,7 +579,7 @@ width: 145px;
 height: 30px;
 line-height: 30px;
 padding: 0;
-margin: 0;
+margin: -35px 0 0 0;
 display: block;
 background: url(../images/switch-layout.png) no-repeat left bottom;
 outline: none;
@@ -592,6 +631,7 @@ width: 200px;
 font: bold 12px arial;
 width: 120px;
 display: inline-block;
+color: #444;
 }
 #assets .thumb-view h3 {
 font: bold 17px arial;
@@ -855,11 +895,11 @@ margin-left: 30px;
 width: 70px;
 }
 #wrap #assets p.assets-location {
-margin: 0;
+margin: 30px 0 0;
 padding: 0;
 clear: both;
-font: normal 12px/40px arial;
-color: #444;
+font: normal 12px arial;
+color: #999;
 }
 #help.ui-tabs-panel {
 overflow: hidden;
@@ -1079,4 +1119,56 @@ border: none;
 }
 .icon-48-configurator {
 background: transparent url(../images/icon-48-configurator.png) 0;
+}
+
+#getting-started{
+padding:1em 1em 0em 1em;
+}
+#getting-started h1{
+font: bold 30px arial;
+margin:0 0 .5em 0;
+padding:0;
+color: #222;
+}
+#getting-started h2{
+font: bold 20px arial;
+margin:0 0 .5em 0;
+padding:.5em 0 0 0;
+color: #3A6F29;
+border-top:5px solid #eee;
+}
+#getting-started p.intro{
+font: normal 20px arial;
+margin:0 0 1em 0;
+padding:0;
+color: #555;
+}
+#getting-started p{
+font: normal 15px arial;
+margin:0 0 1em 0;
+padding:0;
+color: #555;
+}
+#getting-started ul{
+font: normal 15px arial;
+margin:0 0 1em 0;
+padding:0;
+color: #555;
+}
+#getting-started ul.key li{
+list-style:none;
+margin:0;
+padding-left: 25px;
+height: 25px;
+line-height: 25px;
+}
+#getting-started ul.key li.help-icon{
+background:#fff url(../images/help-icon.png) no-repeat 0 50%;
+}
+#getting-started ul.key li.info-icon{
+background:#fff url(../images/info-icon.png) no-repeat 0 50%;
+}
+#tabs .modal-link{
+color:#546F29;
+text-decoration:underline;
 }

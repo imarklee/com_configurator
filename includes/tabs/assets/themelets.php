@@ -10,6 +10,7 @@ if(is_dir($themelet_dir)) {
 <div id="assets-themelets">
 	<div id="themelet-switch" class="switch">
 		<h2>Themelets</h2>
+		<p class="assets-location">Your themelets are located in: <strong>"<?php echo $themelet_dir; ?>"</strong>.</p>
 		<a href="#" class="switch_thumb">Switch View</a>
 	</div>
 	
@@ -51,6 +52,5 @@ if(is_dir($themelet_dir)) {
 				 
 			<?php } ?>
 		</ul>
-		<p class="assets-location">Your themelets are located in: <strong>"<?php echo $themelet_dir; ?>"</strong>.</p>
 	</div>
 </div>

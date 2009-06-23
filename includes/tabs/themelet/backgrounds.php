@@ -7,20 +7,15 @@
 	<div id="backgrounds-info" class="info-panel">
 		<h3>Backgrounds overview</h3>
 		<p class="teaser">These options allow you to easily customize your sites background.</p>
-		
-		<p>Looking for a custom background pattern that you can use for your site? We have compiled a comprehensive list of different resources to help you build your perfect site. 
-		<a href="#">Click here for more info</a>.</p>
 
-
-		<p>Not sure about which colors to choose? Here is a list of our favorite (free) color palette generators:</p>
+		<p>Looking for a custom background image? Here is a list of our favorite (free) background pattern generators:</p>
 		
 		<ul class="morph-resources">
-			<li><a href="http://www.colorotate.org" title="click here to open this site in a new window" target="_blank">ColoRotate</a></li>
-			<li><a href="http://aviary.com/tools/toucan" title="click here to open this site in a new window" target="_blank">Toucan</a></li>
-			<li><a href="http://www.colourlovers.com/copaso" title="click here to open this site in a new window" target="_blank">Copaso</a></li>
-			<li><a href="http://kuler.adobe.com" title="click here to open this site in a new window" target="_blank">Adobe Kuler</a></li>
-			<li><a href="http://colorschemedesigner.com" title="click here to open this site in a new window" target="_blank">Color Scheme Designer</a></li>
-			<li><a href="http://colorexplorer.com" title="click here to open this site in a new window" target="_blank">ColorExplorer</a></li>
+			<li><a href="http://pattern8.com" title="click here to open this site in a new window" target="_blank">Pattern8</a></li>
+			<li><a href="http://bgpatterns.com" title="click here to open this site in a new window" target="_blank">BgPatterns</a></li>
+			<li><a href="http://www.stripemania.com" title="click here to open this site in a new window" target="_blank">StripeMania</a></li>
+			<li><a href="http://www.tartanmaker.com" title="click here to open this site in a new window" target="_blank">TartanMaker</a></li>
+			<li><a href="http://www.colourlovers.com/patterns/add" title="click here to open this site in a new window" target="_blank">ColourLovers</a></li>
 		</ul>
 	</div>
 </div>

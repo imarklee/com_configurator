@@ -62,7 +62,7 @@ $component_arr = $component_details['install'];
 				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">Troubleshooting</a></li>
 				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">ModuleFX</a></li>
 				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">PageFX</a></li>
-				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">MenuFX</a></li>
+				<li><a class="modal-link" href="menufx.html" title="Visual Reference: By Block">MenuFX</a></li>
 				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">ContentFX</a></li>
 			</ul>
 	</div>

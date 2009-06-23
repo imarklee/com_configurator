@@ -146,56 +146,55 @@ jQuery.noConflict();
 		/* Colour Picker ----------------------
 	    ------------------------------------ */
 		function loadColourPicker(elid) {
-		
-			if($(elid).val() != 'default'){
+			
+			// keep applied colour
+			if($(elid).prev().val() != 'default'){
     			$(elid).css({
-    				'background-color': $(elid).val()
+    				'background-color': '#'+$(elid).prev().val()
     			});
     		}
-		
+			// load the colour picker
     		$(elid).ColorPicker({
-    			onSubmit: function(hsb, hex, rgb) {
-    				$(elid).val('#'+hex);
-    				$('.colorpicker').hide();
-    			},
-    			onBeforeShow: function () {
-    				if($(this).val() == 'default'){
-    					$(this).ColorPickerSetColor('#ffffff');
-    				}else{
-    					$(this).ColorPickerSetColor(this.value);
-    				}
-    			},
-    			onChange: function(hsb, hex, rgb){
-    				$(elid).val('#'+hex);
-    			
-    				if(hex == 'ffffff'){
-    					color = '000000';
-    				}else{
-    					color = 'ffffff';
-    				}
-    			
-    				$(elid).css({
-    					'background-color': '#'+hex,
-    					'color': '#'+color
-    				});
-    			}
-    		})
-    		.bind('keyup', function(){
-    			$(this).ColorPickerSetColor(this.value);  	
-    		});
-    		    		
+       			flat: true,
+       			onShow: function (colpkr) {
+					$(colpkr).fadeIn(500);
+					return false;
+				},
+    			onSubmit: function(hsb, hex, rgb){
+					var cpDiv = $(elid).children().attr('id');
+					$(this).prev().val('#'+hex);
+					alert(hsb);
+					$('#'+cpDiv).fadeOut(500);
+					//$(colpkr).fadeOut(500);
+				},
+				onHide: function (colpkr) {
+					$(colpkr).fadeOut(500);
+					return false;
+				},
+				onChange: function (hsb, hex, rgb) {
+					$(elid).prev().val('#'+hex);
+					$(elid).css('background-color', '#' + hex);
+				}
+    		}).bind('keyup', function(){ // set colour picker to use current value
+				$(elid).ColorPickerSetColor($(this).prev().val());
+			});
+		
     	}
     	
-		loadColourPicker('input[id="backgroundthemelet_bgcolor"]');
-		loadColourPicker('input[id="colorcolor_h1"]');
-     	loadColourPicker('input[id="colorcolor_h2"]');
-     	loadColourPicker('input[id="colorcolor_h3"]');
-      	loadColourPicker('input[id="colorcolor_h4"]');
-     	loadColourPicker('input[id="colorcolor_h5"]');    		
-      	loadColourPicker('input[id="colorcolor_links"]');
-      	loadColourPicker('input[id="colorcolor_linkshover"]');
-     	loadColourPicker('input[id="colorcolor_bodytext"]');
-     	
+    	$('a.picker').click(function(){
+       		loadColourPicker($(this).prev());
+    		$('.colorpicker').css({
+    			'z-index': '20000',
+    			'display': 'block',
+    			//'position': 'absolute',
+    			//'bottom': '20px',
+    			'left': '200px',
+    		});
+    		parent = $(this).prev().children();
+    		parent.css('display','block');
+    		return false;
+    	});
+     	 
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")

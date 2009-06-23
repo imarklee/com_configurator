@@ -554,14 +554,15 @@ background: #ccc;
 -moz-border-radius: 3px;
 }
 
-
-
+#assets-tabs ul.assets-list ul li.alt{
+margin-left: 0;
+}
 #browse-assets .ui-tabs-panel{
 padding: 0;
 }
 .switch{
 overflow: hidden;
-margin: 20px 0 0 0;
+margin: 0;
 }
 .switch h2{
 margin: 0;
@@ -634,7 +635,7 @@ color: #444;
 }
 #assets .thumb-view h3{
 font: bold 17px arial;
-width: 300px;
+width: 200px;
 position: absolute;
 top: 13px;
 left: 235px;
@@ -654,15 +655,15 @@ line-height: 17px;
 border: 0;
 margin-top: 0;
 padding: 0;
-width: 300px;
+width: 200px;
 }
 #assets .thumb-view ul.buttons{
-width: 300px;
-position: absolute;
-top: 98px;
-margin: 0;
-padding: 0;
-left: 235px;
+left:235px;
+margin:0;
+padding:0;
+position:absolute;
+top:98px;
+width:212px;
 }
 #assets .thumb-view ul.buttons li{
 background: none;
@@ -1221,11 +1222,12 @@ border-left: 1px solid #AF3E00;
 #tabs .ui-widget-content {
 float:left;
 position:relative;
-width:98%;
+width:920px;
 }
 
 
 .docs-wrap{background:#fff;color:#111;padding:10px 2em 1.5em 2em;margin:-1em;max-height:500px;overflow:auto;}
+.docs-wrap h2{font-size:25px;margin:20px 0 15px 0;}
 .docs-wrap h3{font-size:20px;margin:10px 0 10px 0;}
 .docs-wrap p{font:normal 12px/18px arial;}
 .docs-wrap dd a{text-decoration:underline!important;}

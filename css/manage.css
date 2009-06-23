@@ -880,6 +880,11 @@ background: #fff url(../images/nerd.jpg) no-repeat 95% 100%;
 width: 300px;
 float: left;
 }
+#help a:link,
+#help a:visited{
+color:#546F29;
+text-decoration:underline;
+}
 #help .help-block1{
 margin-right: 40px;
 width: 250px;
@@ -1143,13 +1148,23 @@ color:#546F29;
 text-decoration:underline;
 }
 
+#tabs .desc-overlay{
+position:absolute;
+width: 100%;
+height: 100%;
+background: #fff;
+z-index: 99;
+filter:alpha(opacity=70);
+opacity: 0.7;
+-moz-opacity:0.7;
+}
 #tabs .tab-desc{
 margin-bottom: 1.5em;
 border:5px solid #EF9700;
 position:absolute;
 width: 700px;
 height: auto;
-z-index: 9999;
+z-index: 99;
 top:60px;
 left:100px;
 }
@@ -1176,14 +1191,4 @@ border-left: 1px solid #AF3E00;
 }
 #tabs .ui-widget-content{
 position:relative;
-}
-#tabs .desc-overlay{
-position:absolute;
-width: 100%;
-height: 100%;
-background: #fff;
-z-index: 99;
-filter:alpha(opacity=70);
-opacity: 0.7;
--moz-opacity:0.7;
 }

@@ -490,7 +490,7 @@ margin: -1px -9px 2px -9px;
 #tabs #colors li.palette{
 position: relative;
 }
-#tabs #colors li.palette .picker{
+#tabs #colors-tab li.palette .picker{
 width: 50px;
 height: 20px;
 line-height: 20px;
@@ -504,18 +504,18 @@ text-decoration: underline;
 font-size: 11px;
 background: transparent url(../images/colorpicker-bg.png) no-repeat 0;
 }
-#tabs #colors li.palette .picker span{
+#tabs #colors-tab li.palette .picker span{
 display:none;
 }
-#tabs #colors li.palette a:hover.picker span{
+#tabs #colors-tab li.palette a:hover.picker span{
 display:inline;
 }
-#tabs #colors li.palette a:hover.picker{
+#tabs #colors-tab li.palette a:hover.picker{
 
 }
-#tabs #colors li.palette .color-preview{
-width: 15px;
-height: 15px;
+#tabs #colors-tab li.palette .color-preview{
+width: 16px;
+height: 16px;
 display:block;
 position: absolute;
 top:7px;

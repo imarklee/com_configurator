@@ -1,4 +1,4 @@
-<div id="menus" class="ui-tabs-hide">
+<div id="menus-tab" class="ui-tabs-hide">
 	<div id="menu-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('menu', 'menudata')); ?>

@@ -1,4 +1,4 @@
-<div id="colors" class="ui-tabs-hide">
+<div id="colors-tab">
 	<div id="color-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>

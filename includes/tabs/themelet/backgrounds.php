@@ -1,4 +1,4 @@
-<div id="backgrounds" class="ui-tabs-hide">
+<div id="backgrounds-tab" class="ui-tabs-hide">
 	<div id="backgrounds-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('backgrounds', 'backgrounddata')); ?>

@@ -82,7 +82,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 					</div>
 				</div>
 	        <?php }else{ ?>
-	        	
+	        	<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">
 	        	<div id="wrap" class="container_16">
 					<div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 						<?php include 'includes/shelf.php' ?>
@@ -106,7 +106,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 							<li class="assets-icon"><a href="#assets">Your Assets</a></li>
 							<li class="help-icon last"><a href="#help">Help &amp; Support</a></li>
 						</ul>		
-						<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">
+						
 							
 							<div id="site">					
 								<div id="site-tabs" class="subtabs">
@@ -196,15 +196,16 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<?php include 'includes/help.php' ?>
 							</div>
 						</div>
-						<input type = "hidden" name = "option" value = "<?php echo $option; ?>"/>
-			            <input type = "hidden" name = "t" value = "morph"/>
-			            <input type = "hidden" name = "task" value = "list" />
-			        </form>
+						
 						
 					<div class="clear">&nbsp;</div>
 					<?php include 'includes/footer.php' ?>
 				</div>
 				<?php include 'includes/report-bug.php' ?>
+				<input type = "hidden" name = "option" value = "<?php echo $option; ?>"/>
+			    <input type = "hidden" name = "t" value = "morph"/>
+				<input type = "hidden" name = "task" value = "list" />
+				</form>
 <?php
 			}
 	 	}      

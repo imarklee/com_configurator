@@ -328,21 +328,8 @@ jQuery.noConflict();
 	    .appendTo($('body')) // Append to the document body
 	    .hide();
 	    
-	    /* Live Content for Tooltips ----------
-	    ------------------------------------ */
-	    function liveContent(pagename){
-	    	var docroot = 'http://www.joomlajunkie.com/livedocs_test/gridsplit.html';	    	
-	    	liveContent = $.ajax({
-				  url: docroot,
-				  cache: false,
-				  success: function(html){
-				    alert(html);
-				  }
-				});
-
-	    };
-	    
 	    var welcome = $('body').qtip({
+	    	delay: 200,
 	    	content: {
 				title: {
 					text: 'Welcome to Configurator',
@@ -356,7 +343,6 @@ jQuery.noConflict();
 			},
 			show: {
 				when: false,
-				solo: true // And hide all other tooltips
 			},
 			fixed: true,
 			hide: {
@@ -366,13 +352,8 @@ jQuery.noConflict();
 				padding: 0,
 				background: '#fff',
 				color: '#111',
-				border: {
-     				width: 3,
-     				radius: 8
-     			},
-     			width: {
-     				max: '780'
-     			},
+				border: { width: 3, radius: 8 },
+     			width: '780',
 				name: 'dark'
 			},
 			api: {
@@ -387,7 +368,7 @@ jQuery.noConflict();
 			}
 	    })
 	    
-	    if(!$.cookie('welcome_screen')){
+	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
 	    	welcome.qtip('show');
 	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
 	    }
@@ -630,7 +611,7 @@ jQuery.noConflict();
 	   		
 	   		var content = '<img src="';
      		content += title;
-      		content += '" alt="Loading thumbnail..." height="100" width="200" />';
+      		content += '" alt="Loading thumbnail..." height="133" width="200" />';
 	   		
 	   		$(this).qtip({
 	   		     content: content,
@@ -641,16 +622,16 @@ jQuery.noConflict();
 			        }
 			     },
 			     style: {
-			        tip: true, // Give it a speech bubble tip with automatic corner detection
+			        tip: true,
 			        name: 'dark',
 			        border: {
          				width: 3,
          				radius: 8
          			},
-         			padding: '0 0 0 0',
-         			width: {
-         				max: '216'
-         			}
+         			padding: '0px',
+         			margin: '0px',
+         			width: '200px',
+         			height: '133px'
 				}
 
 			});

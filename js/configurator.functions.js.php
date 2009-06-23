@@ -39,31 +39,31 @@ jQuery.noConflict();
 
 		$('#site-desc a').click(function(){
 			$('#site-desc').hide('slow');
-			$('.desc-overlay').fadeTo('fast',0).remove();
+			$('#site-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('site-desc', true,{path:'/',expires:30});
 			return false; 
 		});
 		$('#themelet-desc a').click(function(){
 			$('#themelet-desc').hide('slow');
-			$('.desc-overlay').fadeTo('fast',0).remove();
+			$('#themelet-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('themelet-desc', true,{path:'/',expires:30});
 			return false; 
 		});
 		$('#tools-desc a').click(function(){
 			$('#tools-desc').hide('slow');
-			$('.desc-overlay').fadeTo('fast',0).remove();
+			$('#tools-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('tools-desc', true,{path:'/',expires:30});
 			return false; 
 		});
 		$('#assets-desc a').click(function(){
 			$('#assets-desc').hide('slow');
-			$('.desc-overlay').fadeTo('fast',0).remove();
+			$('#assets-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('assets-desc', true,{path:'/',expires:30});
 			return false; 
 		});
 		$('#blocks-desc a').click(function(){
 			$('#blocks-desc').hide('slow');
-			$('.desc-overlay').fadeTo('fast',0).remove();
+			$('#blocks-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('blocks-desc', true,{path:'/',expires:30});
 			return false; 
 		});

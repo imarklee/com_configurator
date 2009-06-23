@@ -156,19 +156,12 @@ jQuery.noConflict();
 			// load the colour picker
     		$(elid).ColorPicker({
        			flat: true,
-       			onShow: function (colpkr) {
-					$(colpkr).fadeIn(500);
-					return false;
-				},
     			onSubmit: function(hsb, hex, rgb){
-					var cpDiv = $(elid).children().attr('id');
+					var cp = $(elid).children().attr('id');
 					$(this).prev().val('#'+hex);
-					alert(hsb);
-					$('#'+cpDiv).fadeOut(500);
-					//$(colpkr).fadeOut(500);
+					$('#'+cp).fadeOut(500);
 				},
-				onHide: function (colpkr) {
-					$(colpkr).fadeOut(500);
+				onHide: function () {
 					return false;
 				},
 				onChange: function (hsb, hex, rgb) {
@@ -184,14 +177,13 @@ jQuery.noConflict();
     	$('a.picker').click(function(){
        		loadColourPicker($(this).prev());
     		$('.colorpicker').css({
-    			'z-index': '20000',
-    			'display': 'block',
-    			//'position': 'absolute',
-    			//'bottom': '20px',
-    			'left': '200px',
+    			'z-index': '9999',
+    			'position': 'absolute',
+    			'bottom': '20px',
+    			'left': '-200px'
     		});
-    		parent = $(this).prev().children();
-    		parent.css('display','block');
+    		cp = $(this).prev().children().attr('id');
+    		$('#'+cp).css('display','block');
     		return false;
     	});
      	 
@@ -776,10 +768,10 @@ jQuery.noConflict();
 	   		
 	   	};
 	   	
-	   	getUpdateStatus('dt#us-configurator');
-	   	getUpdateStatus('dt#us-morph');
-		getUpdateStatus('dt#us-themelet');
-	   	getUpdateStatus('.themelet-summary','true');
+//	   	getUpdateStatus('dt#us-configurator');
+//	   	getUpdateStatus('dt#us-morph');
+//		getUpdateStatus('dt#us-themelet');
+//	   	getUpdateStatus('.themelet-summary','true');
 
 	   	/* Save Form Data ---------------------
 	    ------------------------------------ */

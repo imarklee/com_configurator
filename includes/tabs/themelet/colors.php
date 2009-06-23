@@ -12,7 +12,6 @@
 		
 		<ul class="morph-resources">
 			<li><a href="http://www.colorotate.org" title="click here to open this site in a new window" target="_blank">ColoRotate</a></li>
-			<li><a href="http://aviary.com/tools/toucan" title="click here to open this site in a new window" target="_blank">Toucan</a></li>
 			<li><a href="http://www.colourlovers.com/copaso" title="click here to open this site in a new window" target="_blank">Copaso</a></li>
 			<li><a href="http://kuler.adobe.com" title="click here to open this site in a new window" target="_blank">Adobe Kuler</a></li>
 			<li><a href="http://colorschemedesigner.com" title="click here to open this site in a new window" target="_blank">Color Scheme Designer</a></li>

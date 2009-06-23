@@ -1,10 +1,10 @@
-<div id="top-navigation-block" class="ui-tabs-hide">
-	<div id="general-options" class="options-panel">
+<div id="topnav-tab" class="ui-tabs-hide">
+	<div id="topnav-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
 		</ol>
 	</div>
-	<div id="general-info" class="info-panel">
+	<div id="topnav-info" class="info-panel">
 		<h3>Top Navigation block</h3>
 		<p class="teaser">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		

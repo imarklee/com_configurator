@@ -1,10 +1,10 @@
-<div id="master-head-block" class="ui-tabs-hide">
+<div id="masthead-tab" class="ui-tabs-hide">
 	<div id="masthead-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('masterhead', 'masterheaddata')); ?>
 		</ol>
 	</div>
-	<div id="general-info" class="info-panel">
+	<div id="masthead-info" class="info-panel">
 		<h3>Master head block</h3>
 		<p class="teaser">This block is typically used for your sites branding/logo. Check the <a href="">logo tab</a> to customize your logo settings.</p>
 		

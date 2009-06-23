@@ -21,7 +21,7 @@ $component_arr = $component_details['install'];
 			<li class="logged-in">Logged in as: <strong><?php echo $_COOKIE['am_logged_in_user']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a></li>
 			<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf">Toggle display</a></li>
 			<li class="report-bug"><a href="#" title="" id="report-bug-link">Report a bug</a></li>
-			<li class="preferences"><a href="#" title="">Preferences</a></li>
+			<li class="preferences" class="disabled"><a href="#" title="">Preferences</a></li>
 		</ul>
 	</div>
 	<div id="shelf-contents" class="ui-widget-content">

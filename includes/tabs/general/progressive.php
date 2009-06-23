@@ -1,4 +1,4 @@
-<div id="progressive" class="ui-tabs-hide">
+<div id="progressive-tab" class="ui-tabs-hide">
 	<div id="progressive-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('progressive', 'progressivedata')); ?>

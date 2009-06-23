@@ -1,4 +1,4 @@
-<div id="logos" class="ui-tabs-hide">
+<div id="logos-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="logo-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('logo', 'logodata')); ?>

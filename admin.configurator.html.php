@@ -90,57 +90,71 @@ function manage( &$params, &$lists, $morph_installed ) {
 				
 					<div class="clear spacer">&nbsp;</div>
 		
-					<div id="tabs">
-						<ul class="primary">
+					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+						<!--<ul class="primary">
 							<li class="tab-general"><a href="#general"><strong>General Settings </strong>Everything under the hood</a></li>
 							<li class="tab-block"><a href="#blocks"><strong>Block Settings </strong>Your sites building blocks</a></li>
 							<li class="tab-tools"><a href="#tools"><strong>Morph's Tools </strong>Installer, backups &amp; more</a></li>
 							<li class="tab-assets"><a href="#assets"><strong>Your Assets </strong>Themelets, logos, etc</a></li>
 							<li class="tab-help last"><a href="#help"><strong>Help &amp; Support </strong>List of additional resources</a></li>
-						</ul>
-						
+						</ul>-->
+						<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+							<li class="site-icon ui-tabs-selected"><a href="#site">Site Settings</a></li>
+							<li class="themelet-icon"><a href="#themelets">Themelet Settings</a></li>
+							<li class="blocks-icon"><a href="#blocks">Block Settings</a></li>
+							<li class="tools-icon"><a href="#tools">Morph Tools</a></li>
+							<li class="assets-icon"><a href="#assets">Your Assets</a></li>
+							<li class="help-icon last"><a href="#help">Help &amp; Support</a></li>
+						</ul>		
 						<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">
-							<div id="general">
-								<div id="subtabs">
-									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
-										<li><a href="#start" class="ui-corner-left">Start</a></li>
-										<li><a href="#logos">Logos</a></li>
-										<li><a href="#backgrounds">Backgrounds</a></li>
-										<li><a href="#colors">Colors</a></li>
-										<li><a href="#menus">Menus</a></li>
-										<li><a href="#progressive">Progressive Enhancements</a></li>
-										<li><a href="#performance">Performance</a></li>
-										<li><a href="#miscellaneous">Miscellaneous</a></li>
+							
+							<div id="site">					
+								<div id="site-tabs" class="subtabs">
+									<?php if (!isset ($_COOKIE['site-desc'])) { include 'includes/tabs/desc/desc-site.php'; } ?>
+									<ul class="ui-helper-clearfix ui-tabs-nav">
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
+										<li><a href="#logos-tab">Logos</a></li>
+										<li><a href="#progressive-tab">Progressive Enhancements</a></li>
+										<li><a href="#performance-tab">Performance</a></li>
+										<li><a href="#debugging-tab">Debugging</a></li>
+										<li><a href="#miscellaneous-tab">Miscellaneous</a></li>
 									</ul>
-									<?php include 'includes/tabs/general/start.php' ?>
+									<?php include 'includes/tabs/general/general.php' ?>
 									<?php include 'includes/tabs/general/logos.php' ?>
-									<?php include 'includes/tabs/general/backgrounds.php' ?>
-									<?php include 'includes/tabs/general/colors.php' ?>
-									<?php include 'includes/tabs/general/menus.php' ?>
 									<?php include 'includes/tabs/general/progressive.php' ?>
 									<?php include 'includes/tabs/general/performance.php' ?>
+									<?php include 'includes/tabs/general/debugging.php' ?>
 									<?php include 'includes/tabs/general/miscellaneous.php' ?>
 								</div>
 							</div>
-
-							<div id="blocks" class="ui-tabs-hide">
-								<div id="block-settings">
-								<div id="block-desc" class="tab-desc" <?php if (isset ($_COOKIE['block-desc'])) { ?> style="display:none;"<?php } ?>>
-									<p>
-									Think of blocks as the lego pieces that make up your website. Each one of the different blocks can be configured to work in a multitude of ways.
-									<a href="#">hide</a>
-									</p>
+							
+							<div id="themelets" class="ui-tabs-hide">
+								<div id="themelet-tabs" class="subtabs">
+									<?php if (!isset ($_COOKIE['themelet-desc'])) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
+									<ul class="ui-helper-clearfix ui-tabs-nav">
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#colors-tab">Colors</a></li>
+										<li><a href="#backgrounds-tab">Backgrounds</a></li>
+										<li><a href="#menus-tab">Menus</a></li>
+									</ul>
+									<?php include 'includes/tabs/themelet/colors.php' ?>
+									<?php include 'includes/tabs/themelet/backgrounds.php' ?>
+									<?php include 'includes/tabs/themelet/menus.php' ?>
 								</div>
-									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
-										<li><a href="#toolbar-block" class="ui-corner-left">Toolbar</a></li>
-										<li><a href="#master-head-block">Master Header</a></li>
-										<li><a href="#sub-head-block">Sub Header</a></li>
-										<li><a href="#top-navigation-block">Top Navigation</a></li>
-										<li><a href="#top-bottom-shelf-block">Outer Shelves</a></li>
-										<li><a href="#user1-2-block">Inline Shelves</a></li>
-										<li><a href="#inset-block">Insets</a></li>
-										<li><a href="#main-block">Main</a></li>
-										<li><a href="#footer-block">Footer</a></li>
+							</div>
+							
+							<div id="blocks" class="ui-tabs-hide">
+								<div id="blocks-tabs" class="subtabs">
+									<?php if (!isset ($_COOKIE['blocks-desc'])) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
+									<ul class="ui-helper-clearfix ui-tabs-nav">
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#toolbar-tab">Toolbar</a></li>
+										<li><a href="#masthead-tab">Master Header</a></li>
+										<li><a href="#subhead-tab">Sub Header</a></li>
+										<li><a href="#topnav-tab">Top Navigation</a></li>
+										<li><a href="#shelves-tab">Outer Shelves</a></li>
+										<li><a href="#user-tab">Inline Shelves</a></li>
+										<li><a href="#insets-tab">Insets</a></li>
+										<li><a href="#main-tab">Main</a></li>
+										<li><a href="#footer-tab">Footer</a></li>
 									</ul>
 									<?php include 'includes/tabs/blocks/toolbar.php' ?>
 									<?php include 'includes/tabs/blocks/masthead.php' ?>
@@ -155,16 +169,18 @@ function manage( &$params, &$lists, $morph_installed ) {
 							</div>
 							
 							<div id="tools" class="ui-tabs-hide">
-								<div id="browse-tools">
-									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
-										<li><a href="#tools-installer" class="ui-corner-left">Universal Installer</a></li>
+								<div id="tools-tabs" class="subtabs">
+									<?php if (!isset ($_COOKIE['tools-desc'])) { include 'includes/tabs/desc/desc-tools.php'; } ?>
+									<ul class="ui-helper-clearfix ui-tabs-nav">
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tools-installer" class="ui-corner-left">Universal Installer</a></li>
 									</ul>
 									<?php include 'includes/tabs/tools/uploader.php' ?>
 								</div>
 							</div>
 							
-							<div id="assets" class="ui-tabs-hide">
-								<div id="browse-assets">
+							<div id="assets" class="ui-tabs-hide">	
+								<div id="assets-tabs" class="subtabs">
+									<?php if (!isset ($_COOKIE['assets-desc'])) { include 'includes/tabs/desc/desc-assets.php'; } ?>
 									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
 										<li><a href="#assets-themelets" class="ui-corner-left">Themelets</a></li>
 										<li><a href="#assets-logos">Logos</a></li>

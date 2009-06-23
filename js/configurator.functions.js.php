@@ -26,24 +26,8 @@ jQuery.noConflict();
 		$("#tabs ol.forms li:odd").addClass("alt");		
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');
-		$('#login-details').corners('5px');
-		
-		$("#assets .ui-tabs-nav li:first").addClass('subnav-first');
-		$("#subtabs .ui-tabs-nav li:first").addClass('subnav-first');
-		$("#browse-tools .ui-tabs-nav li:first").addClass('subnav-first');
-		$("#block-settings .ui-tabs-nav li:first").addClass('subnav-first');
-	
-		$("#assets .ui-tabs-nav").corners("5px");
-		$("#subtabs .ui-tabs-nav").corners("5px");
-		$("#browse-tools .ui-tabs-nav").corners("5px");
-		$("#block-settings .ui-tabs-nav").corners("5px");
-		
+		$('#login-details').corners('5px');	
 		$(".buttons li a").corners("5px");
-		
-		$("#subtabs .ui-tabs-nav li.subnav-first").corners("3px left");
-		$("#assets .ui-tabs-nav li.subnav-first").corners("3px left");
-		$("#browse-tools .ui-tabs-nav li.subnav-first").corners("3px left");
-		$("#block-settings .ui-tabs-nav").corners("5px");
 	
 		$("#tabs li a").corners("10px top");
 		$("#shelf-contents").corners("10px bottom");
@@ -52,12 +36,38 @@ jQuery.noConflict();
 		$("#shelf.open #utilities").corners("10px top");
 		$("#shelf.closed #utilities").corners("10px");
 		$("ul.assets-headers").corners("5px top");
-		$('#block-desc a').click(function(){
-			$('#block-desc').hide('slow');
-			$.cookie('block-desc', true,{path:'/',expires:30});
+
+		$('#site-desc a').click(function(){
+			$('#site-desc').hide('slow');
+			$('.desc-overlay').fadeTo('fast',0);
+			$.cookie('site-desc', true,{path:'/',expires:30});
 			return false; 
 		});
-		
+		$('#themelet-desc a').click(function(){
+			$('#themelet-desc').hide('slow');
+			$('.desc-overlay').fadeTo('fast',0);
+			$.cookie('themelet-desc', true,{path:'/',expires:30});
+			return false; 
+		});
+		$('#tools-desc a').click(function(){
+			$('#tools-desc').hide('slow');
+			$('.desc-overlay').fadeTo('fast',0);
+			$.cookie('tools-desc', true,{path:'/',expires:30});
+			return false; 
+		});
+		$('#assets-desc a').click(function(){
+			$('#assets-desc').hide('slow');
+			$('.desc-overlay').fadeTo('fast',0);
+			$.cookie('assets-desc', true,{path:'/',expires:30});
+			return false; 
+		});
+		$('#blocks-desc a').click(function(){
+			$('#blocks-desc').hide('slow');
+			$('.desc-overlay').fadeTo('fast',0);
+			$.cookie('blocks-desc', true,{path:'/',expires:30});
+			return false; 
+		});
+	
 		
 		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
 			$(this).fadeTo('fast', 0.2);
@@ -118,17 +128,20 @@ jQuery.noConflict();
 	   
 	   	/* Tabs -------------------------------
 	    ------------------------------------ */
-    	$('#tabs').tabs({ 			cookie: {				name: 'maintabs',				expires: 30,				path: '/',		 	}
+    	$('#tabs').tabs({ 			cookie: {				name: 'main-tabs',				expires: 30,				path: '/',		 	}
 		});
-		$('#subtabs').tabs({
+		$('#site-tabs').tabs({
 			fx: { opacity: 'toggle' },
-			cookie: {				name: 'subtabs',				expires: 30,				path: '/',		 	} 		});	
-		$('#browse-assets').tabs({
-			fx: { opacity: 'toggle' },			cookie: {				name: 'assetstabs',				expires: 30,				path: '/',		 	} 		});	
-		$('#browse-tools').tabs({
-			fx: { opacity: 'toggle' },			cookie: {				name: 'toolstabs',				expires: 30,				path: '/',		 	} 		});	
-    	$('#block-settings').tabs({
-			fx: { opacity: 'toggle' },			cookie: {				name: 'blockstabs',				expires: 30,				path: '/',		 	} 		});	
+			cookie: {				name: 'site-tabs',				expires: 30,				path: '/',		 	}		});
+		$('#themelet-tabs').tabs({
+			fx: { opacity: 'toggle' },
+			cookie: {				name: 'themelet-tabs',				expires: 30,				path: '/',		 	} 		});
+    	$('#blocks-tabs').tabs({
+			fx: { opacity: 'toggle' },			cookie: {				name: 'block-tabs',				expires: 30,				path: '/',		 	} 		});
+		$('#tools-tabs').tabs({
+			fx: { opacity: 'toggle' },			cookie: {				name: 'tools-tabs',				expires: 30,				path: '/',		 	} 		});
+		$('#assets-tabs').tabs({
+			fx: { opacity: 'toggle' },			cookie: {				name: 'assets-tabs',				expires: 30,				path: '/',		 	} 		});
 		
 		/* Colour Picker ----------------------
 	    ------------------------------------ */
@@ -215,7 +228,7 @@ jQuery.noConflict();
 				$('.closed').switchClass('closed', 'open', 300);
 				$.cookie('shelf', null, { path: '/', expires: 30 });
 			}
-			return false;	
+			return false;
 		});
 	
 		var options = { path: '/', expires: 30 };
@@ -771,7 +784,7 @@ jQuery.noConflict();
 
 	   	/* Save Form Data ---------------------
 	    ------------------------------------ */
-	    $('#accordion').change(function () {
+	    $('#tabs').change(function () {
 		   	$.cookie('changes', 'true', '/');
 	   	});
 	   	

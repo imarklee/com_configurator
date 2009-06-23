@@ -1,7 +1,7 @@
-<div id="miscellaneous" class="ui-tabs-hide">
+<div id="miscellaneous-tab" class="ui-tabs-hide">
 	<div id="miscellaneous-options" class="options-panel">
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('advanced', 'advanceddata')); ?>
+			<?php echo renderParams($params->renderToArray('miscellaneous', 'miscellaneousdata')); ?>
 		</ol>
 	</div>
 	<div id="miscellaneous-info" class="info-panel">

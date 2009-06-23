@@ -1,10 +1,10 @@
-<div id="toolbar-block">
-	<div id="general-options" class="options-panel">
+<div id="toolbar-tab">
+	<div id="toolbar-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?>
 		</ol>
 	</div>
-	<div id="general-info" class="info-panel">
+	<div id="toolbar-info" class="info-panel">
 		<h3>Toolbar block overview</h3>
 		<p class="teaser">The toolbar block is a general utilities bar and can be used for a number of different functions.</p>
 		

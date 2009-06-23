@@ -1,4 +1,4 @@
-<div id="performance" class="ui-tabs-hide">
+<div id="performance-tab" class="ui-tabs-hide">
 	<div id="performance-options" class="options-panel">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('performance', 'performancedata')); ?>

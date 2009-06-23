@@ -232,7 +232,7 @@ color: #fff;
 overflow: hidden;
 }
 #tabs.ui-tabs .ui-tabs-nav li{
-font: normal 13px Arial;
+font: normal 17px Arial;
 color: #fff;
 margin: 0 1px 0 0;
 }
@@ -267,7 +267,7 @@ color: #fff;
 border-bottom: 1px solid #fff;
 background: #fff url(../images/cog.png) no-repeat 20px 50%;
 color: #333;
-padding-left: 53px;
+padding-left: 45px;
 }
 #tabs .primary li.ui-tabs-selected.ui-state-active a strong{
 color: #333;

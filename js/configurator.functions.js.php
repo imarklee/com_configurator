@@ -67,6 +67,18 @@ jQuery.noConflict();
 			$.cookie('blocks-desc', true,{path:'/',expires:30});
 			return false; 
 		});
+		
+		function hideScroll(){
+			$(document).bind('scroll', function(){return false;});
+			$('html').css({'overflow-y': 'hidden', paddingRight: '15px'});
+			$('#qtip-blanket').css({ width: arrPageSizes[0]+15 });
+		}
+		
+		function showScroll(){
+			$(document).bind('scroll', function(){return false;});
+			$('html').css({'overflow-y': 'scroll', paddingRight: '0'});
+//			$('#qtip-blanket').css({ width: arrPageSizes[0]+15 });
+		}
 	
 		
 		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
@@ -304,7 +316,7 @@ jQuery.noConflict();
 		});
 		$('<div id="qtip-blanket">').css({
 			position: 'absolute',
-	        top: $(document).scrollTop(),
+	        top: 0,
 	        left: 0,
 	        width: arrPageSizes[0],
 			height: arrPageSizes[1],
@@ -363,12 +375,14 @@ jQuery.noConflict();
 				name: 'dark'
 			},
 			api: {
-				beforeShow: function(){
+				beforeShow: function(){	
+					hideScroll();	
 					$('#qtip-blanket').fadeIn(this.options.show.effect.length);
 				},
 				beforeHide: function(){
+					showScroll();
 					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-				}
+				},
 			}
 	    })
 	    
@@ -444,10 +458,12 @@ jQuery.noConflict();
 					name: 'dark'
 				},
 				api: {
-					beforeShow: function(){
+					beforeShow: function(){	
+						hideScroll();	
 						$('#qtip-blanket').fadeIn(this.options.show.effect.length);
 					},
 					beforeHide: function(){
+						showScroll();
 						$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
 					},
 					onShow: function(){
@@ -530,10 +546,12 @@ jQuery.noConflict();
 					name: 'dark'
 				},
 				api: {
-					beforeShow: function(){						
+					beforeShow: function(){	
+						hideScroll();	
 						$('#qtip-blanket').fadeIn(this.options.show.effect.length);
 					},
 					beforeHide: function(){
+						showScroll();
 						$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
 					},
 					onShow: function(){
@@ -676,14 +694,14 @@ jQuery.noConflict();
          			padding: '0'
 				},
 				api: {
-					beforeShow: function(){
-						// Fade in the modal "blanket" using the defined show speed
+					beforeShow: function(){	
+						hideScroll();	
 						$('#qtip-blanket').fadeIn(this.options.show.effect.length);
 					},
 					beforeHide: function(){
-						// Fade out the modal "blanket" using the defined hide speed
+						showScroll();
 						$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-					}
+					},
 				}
 	   		});
 	   	});

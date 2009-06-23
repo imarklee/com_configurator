@@ -332,6 +332,7 @@ overflow: hidden;
 width: 535px;
 float: left;
 border:5px solid #9FBF6B;
+z-index: 10;
 }
 .info-panel{
 width: 355px;
@@ -507,6 +508,9 @@ cursor:pointer;
 text-decoration: underline;
 font-size: 11px;
 background: transparent url(../images/colorpicker-bg.png) no-repeat 0;
+}
+.newColorpicker {
+z-index: 9999;
 }
 #tabs #colors-tab li.palette .picker span{
 display:none;

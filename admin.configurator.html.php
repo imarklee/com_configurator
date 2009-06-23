@@ -102,9 +102,9 @@ function manage( &$params, &$lists, $morph_installed ) {
 							<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
 							<li class="themelet-icon"><a href="#themelets">Themelet Settings</a></li>
 							<li class="blocks-icon"><a href="#blocks">Block Settings</a></li>
-							<li class="tools-icon"><a href="#tools">Tools</a></li>
-							<li class="assets-icon"><a href="#assets">Assets</a></li>
-							<li class="help-icon last"><a href="#help">Help</a></li>
+							<li class="tools-icon"><a href="#tools">Toolbox</a></li>
+							<li class="assets-icon"><a href="#assets">Your Assets</a></li>
+							<li class="help-icon last"><a href="#help">Help &amp; Support</a></li>
 						</ul>		
 						<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">
 							

@@ -272,16 +272,16 @@ padding-left: 45px;
 #tabs .primary li.ui-tabs-selected.ui-state-active a strong{
 color: #333;
 }
-#tabs .primary li.tab-block.ui-state-active a{
+#tabs .primary li.blocks-icon.ui-state-active a{
 background: #fff url(../images/blocks.png) no-repeat 20px 50%;
 }
-#tabs .primary li.tab-assets.ui-state-active a{
+#tabs .primary li.assets-icon.ui-state-active a{
 background: #fff url(../images/assets.png) no-repeat 20px 50%;
 }
-#tabs .primary li.tab-tools.ui-state-active a{
+#tabs .primary li.tools-icon.ui-state-active a{
 background: #fff url(../images/tools.png) no-repeat 20px 50%;
 }
-#tabs .primary li.tab-help.ui-state-active a{
+#tabs .primary li.help-icon.ui-state-active a{
 background: #fff url(../images/lifebuoy.png) no-repeat 20px 50%;
 }
 #tabs .ui-tabs-panel{
@@ -311,6 +311,7 @@ border-right: 1px solid #ccc;
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a{
 padding: 5px 10px;
 color: #444;
+font-size: 13px;
 }
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a:hover{
 text-decoration: underline;
@@ -883,6 +884,11 @@ background: #fff url(../images/nerd.jpg) no-repeat 95% 100%;
 width: 300px;
 float: left;
 }
+#help a:link,
+#help a:visited{
+color:#546F29;
+text-decoration:underline;
+}
 #help .help-block1{
 margin-right: 40px;
 width: 250px;
@@ -1146,13 +1152,23 @@ color:#546F29;
 text-decoration:underline;
 }
 
+#tabs .desc-overlay{
+position:absolute;
+width: 100%;
+height: 100%;
+background: #fff;
+z-index: 99;
+filter:alpha(opacity=70);
+opacity: 0.7;
+-moz-opacity:0.7;
+}
 #tabs .tab-desc{
 margin-bottom: 1.5em;
 border:5px solid #EF9700;
 position:absolute;
 width: 700px;
 height: auto;
-z-index: 9999;
+z-index: 99;
 top:60px;
 left:100px;
 }
@@ -1179,14 +1195,4 @@ border-left: 1px solid #AF3E00;
 }
 #tabs .ui-widget-content{
 position:relative;
-}
-#tabs .desc-overlay{
-position:absolute;
-width: 100%;
-height: 100%;
-background: #fff;
-z-index: 99;
-filter:alpha(opacity=70);
-opacity: 0.7;
--moz-opacity:0.7;
 }

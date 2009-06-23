@@ -190,9 +190,9 @@ jQuery.noConflict();
        		loadColourPicker($(this).prev());
     		$('.colorpicker').css({
     			'z-index': '9999',
-    			'position': 'absolute',
-    			'bottom': '20px',
-    			'left': '-200px'
+    			'position': 'relative',
+    			'bottom': '33px',
+    			'right': '-23px'
     		});
     		cp = $(this).prev().children().attr('id');
     		$('#'+cp).css('display','block');

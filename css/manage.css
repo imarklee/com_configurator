@@ -350,6 +350,9 @@ margin: 0 0 7px 0;
 padding: 0;
 color:#333;
 }
+.info-panel ul.morph-resources{
+margin-top:-10px;
+}
 .info-panel .teaser{
 font: normal 15px/20px arial;
 margin: 0 0 10px 0;
@@ -521,7 +524,7 @@ display:block;
 position: absolute;
 top:7px;
 right:169px;
-background: red;
+background: #ccc;
 -moz-border-radius: 3px;
 }
 
@@ -880,8 +883,8 @@ background: #fff url(../images/nerd.jpg) no-repeat 95% 100%;
 width: 300px;
 float: left;
 }
-#help a:link,
-#help a:visited{
+#tabs a:link,
+#tabs a:visited{
 color:#546F29;
 text-decoration:underline;
 }

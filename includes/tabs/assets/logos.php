@@ -3,6 +3,8 @@ $logo_dir = JPATH_ROOT . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 
 $logo_url = JURI::root() . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 'logos';
 if(is_dir($logo_dir)) {
 	$lists['logos'] = JFolder::files( $logo_dir );
+	unset($lists['logos'][0]);
+	$lists['logos'] = array_values($lists['logos']);
 } else {
 	$lists['logos'] = null;
 }

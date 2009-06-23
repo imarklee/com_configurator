@@ -57,7 +57,8 @@ jQuery.noConflict();
 			$.cookie('block-desc', true,{path:'/',expires:30});
 			return false; 
 		});
-			
+		
+		
 		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
 			$(this).fadeTo('fast', 0.2);
 			$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').each(function(){

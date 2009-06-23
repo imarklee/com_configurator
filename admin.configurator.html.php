@@ -99,12 +99,12 @@ function manage( &$params, &$lists, $morph_installed ) {
 							<li class="tab-help last"><a href="#help"><strong>Help &amp; Support </strong>List of additional resources</a></li>
 						</ul>-->
 						<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
-							<li class="site-icon ui-tabs-selected"><a href="#site">Site Settings</a></li>
+							<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
 							<li class="themelet-icon"><a href="#themelets">Themelet Settings</a></li>
 							<li class="blocks-icon"><a href="#blocks">Block Settings</a></li>
-							<li class="tools-icon"><a href="#tools">Morph Tools</a></li>
-							<li class="assets-icon"><a href="#assets">Your Assets</a></li>
-							<li class="help-icon last"><a href="#help">Help &amp; Support</a></li>
+							<li class="tools-icon"><a href="#tools">Tools</a></li>
+							<li class="assets-icon"><a href="#assets">Assets</a></li>
+							<li class="help-icon last"><a href="#help">Help</a></li>
 						</ul>		
 						<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">
 							

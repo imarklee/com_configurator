@@ -272,16 +272,16 @@ padding-left: 45px;
 #tabs .primary li.ui-tabs-selected.ui-state-active a strong{
 color: #333;
 }
-#tabs .primary li.tab-block.ui-state-active a{
+#tabs .primary li.blocks-icon.ui-state-active a{
 background: #fff url(../images/blocks.png) no-repeat 20px 50%;
 }
-#tabs .primary li.tab-assets.ui-state-active a{
+#tabs .primary li.assets-icon.ui-state-active a{
 background: #fff url(../images/assets.png) no-repeat 20px 50%;
 }
-#tabs .primary li.tab-tools.ui-state-active a{
+#tabs .primary li.tools-icon.ui-state-active a{
 background: #fff url(../images/tools.png) no-repeat 20px 50%;
 }
-#tabs .primary li.tab-help.ui-state-active a{
+#tabs .primary li.help-icon.ui-state-active a{
 background: #fff url(../images/lifebuoy.png) no-repeat 20px 50%;
 }
 #tabs .ui-tabs-panel{
@@ -311,6 +311,7 @@ border-right: 1px solid #ccc;
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a{
 padding: 5px 10px;
 color: #444;
+font-size: 13px;
 }
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a:hover{
 text-decoration: underline;

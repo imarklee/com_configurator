@@ -439,6 +439,9 @@ font: normal 13px arial!important;
 color:#111;
 -moz-border-radius: 4px;
 }
+#tabs ol.forms textarea{
+padding: 3px;
+}
 #tabs ol.forms input{
 padding-left: 3px;
 }

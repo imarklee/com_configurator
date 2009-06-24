@@ -1045,6 +1045,52 @@ jQuery.noConflict();
 			});
 		return false;
 		});
+
+		/* Uploader ------------------------
+		--------------------------------- */
+		
+		$('#uploader-button').click(function(){
+			var uploadType = $('input[name="upload_type"]').val();
+			$.ajaxFileUpload({
+				url: '../administrator/index.php?option=com_configurator&task=uni_installer&format=raw&do=upload&itype='+uploadType,
+				fileElementId:'insfile',
+				dataType: 'json',
+				success: function (data, status){
+					$('#upload-message').dialog({
+			   			bgiframe: true, 
+			   			resizable: false,
+			   			draggable: false,
+			   			minHeight: 20,
+			   			modal: true,
+			   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Alert</span>',
+	   					overlay: {
+	   						backgroundColor: '#000', 
+	   						opacity: 0.5 
+	   					},
+						buttons: {
+							'OK': function(){
+								$(this).dialog('destroy');
+							}
+						}
+					});
+					
+					if(typeof(data.error) != 'undefined'){						
+						if(data.error != ''){
+							$('#upload-message').html(data.error);
+							$('#upload-message').dialog('moveToTop').dialog('show');
+						}else{
+							$('#upload-message').html(data.message);
+							$('#upload-message').dialog('moveToTop').dialog('show');
+						}
+					}
+				},
+				error: function (data, status, e){
+					console.log(e);
+				}
+			});
+			return false;
+		});		
+		
 		
 		/**
 		/ Third Party Function

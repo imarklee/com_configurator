@@ -302,228 +302,10 @@ class ConfiguratorController extends JController {
 		
 		}
 		$mainframe->redirect( "index2.php?option={$option}&task=manage&t={$template}", 'New Favicon uploaded successfully' );
-	}
-	
-	
-	function parsexml_themelet_file($themeletDir){
-		// Check of the xml file exists
-		if(!is_file($themeletDir.DS.'themeletDetails.xml')) {
-			return false;
-		}
-		
-		$xml = JApplicationHelper::parseXMLInstallFile($themeletDir.DS.'themeletDetails.xml');
-		
-		if ($xml['type'] != 'themelet') {
-			return false;
-		}
-		
-		$data = new StdClass();
-		$data->directory = $themeletDir;
-		
-		foreach($xml as $key => $value) {
-			$data->$key = $value;
-		}
-		
-		$data->checked_out = 0;
-		$data->mosname = JString::strtolower(str_replace(' ', '_', $data->name));
-		
-		return $data;
-	}   
-	
-	
-	function themelet_upload() {
-		global $mainframe;
-		$option = JRequest::getVar('option');
-		$template = JRequest::getVar('t');
-		
-		$themelet_details = JRequest::getVar( 'themeletfile', null, 'files', 'array' );
-		if($themelet_details['error'] != 4) {
-			$themelet_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS. 'assets' .DS. 'themelets';
-			if($themelet_details['error']) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Upload error ('.$themelet_details['error'].')' );
-		
-			if(!is_uploaded_file($themelet_details['tmp_name'])) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Not an uploaded file! Hack attempt?' );
-		
-			if(file_exists($themelet_dir . DS . strtolower( basename( $themelet_details['name'] ) ) ) ) $mainframe->redirect( "index2.php?option={$option}&page=list", 'A file with that name already exists!' );
-		
-			if(!is_dir($themelet_dir)) {
-				// Directory doesnt exist, try to create it.
-				if(!mkdir($themelet_dir)) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not save file, directory does not exist!' );
-				else JPath::setPermissions($themelet_dir);
-			}
-		
-			if(!is_writable($themelet_dir)) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not save file, permission error!' );
-		
-			if(!move_uploaded_file( $themelet_details['tmp_name'], $themelet_dir . DS . strtolower( basename( $themelet_details['name'] ) ) ) ) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not move file to required location!' );
-		
-			JPath::setPermissions($themelet_dir . DS . strtolower( basename( $themelet_details['name'] ) ) );
-		
-			$package = $this->unpackThemelet($themelet_dir . DS . strtolower( basename( $themelet_details['name'] ) ) );
-			$this->cleanupThemeletInstall($package['packagefile'], $package['extractdir']);
-		
-		}
-		$mainframe->redirect( "index2.php?option={$option}&task=manage", 'New Themelet uploaded successfully' );
-	}
-	
-	
-	function unpackThemelet($p_filename){
-		// Path to the archive
-		$archivename = $p_filename;
-		
-		// Temporary folder to extract the archive into
-		$tmpdir = uniqid('install_');
-		
-		// Clean the paths to use for archive extraction
-		$extractdir = JPath::clean(dirname($p_filename).DS.$tmpdir);
-		$archivename = JPath::clean($archivename);
-		
-		// do the unpacking of the archive
-		$result = JArchive::extract( $archivename, $extractdir);
-		
-		if ( $result === false ) {
-			return false;
-		}
-	
-	
-		$retval['extractdir'] = $extractdir;
-		$retval['packagefile'] = $archivename;
-		
-		$dirList = array_merge(JFolder::files($extractdir, ''), JFolder::folders($extractdir, ''));
-		
-		if (JFile::exists($extractdir.DS.'themeletDetails.xml')){
-			$themelet_params = $this->parsexml_themelet_file($extractdir);
-		}
-		
-		//get install dir
-		if ($themelet_params)
-		$_themeletdir = trim( strtolower(str_replace('_','-',$themelet_params->mosname)) );
-		
-		if (!$_themeletdir){		
-			if (count($dirList) == 1){
-				if (JFolder::exists($extractdir.DS.$dirList[0])){
-					$extractdir = JPath::clean($extractdir.DS.$dirList[0]);
-				}
-			}
-		} else {
-			JFolder::move($extractdir, dirname($p_filename).DS.$_themeletdir);	
-		}
-		
-		if (JFolder::exists( dirname($p_filename).DS.$_themeletdir ) )
-		$retval['dir'] = $extractdir;
-		
-		return $retval;
-	}
-	
-	function cleanupThemeletInstall($package, $resultdir){
-		$config =& JFactory::getConfig();
-	
-		// Does the unpacked extension directory exist?
-		if (is_dir($resultdir)) {
-			JFolder::delete($resultdir);
-		}
-	
-		// Is the package file a valid file?
-		if (is_file($package)) {
-			JFile::delete($package);
-		} elseif (is_file(JPath::clean($config->getValue('config.tmp_path').DS.$package))) {
-			// It might also be just a base filename
-		JFile::delete(JPath::clean($config->getValue('config.tmp_path').DS.$package));
-		}
-	}	
-	
-	
-	function logo_upload() {
-		global $mainframe;
-		$database = &JFactory::getDBO();
-		$option = JRequest::getVar('option');
-		$template = JRequest::getVar('t');
-		
-		$logo_details = JRequest::getVar( 'logofile', null, 'files', 'array' );
-		if($logo_details['error'] != 4) {
-		$logo_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS.'assets'.DS.'logos';
-		if($logo_details['error']) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Upload error ('.$logo_details['error'].')' );
-		
-		if(!is_uploaded_file($logo_details['tmp_name'])) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Not an uploaded file! Hack attempt?' );
-		
-		if(file_exists($logo_dir . DS . strtolower( basename( $logo_details['name'] ) ) ) ) $mainframe->redirect( "index2.php?option={$option}&page=list", 'A file with that name already exists!' );
-		
-		if(!is_dir($logo_dir)) {
-			// Directory doesnt exist, try to create it.
-			if(!mkdir($logo_dir)) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not save file, directory does not exist!' );
-			else JPath::setPermissions($logo_dir);
-		}
-		
-		if(!is_writable($logo_dir)) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not save file, permission error!' );
-		
-		if(!move_uploaded_file( $logo_details['tmp_name'], $logo_dir . DS . strtolower( basename( $logo_details['name'] ) ) ) ) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not move file to required location!' );
-		
-		JPath::setPermissions($logo_dir . DS . strtolower( basename( $logo_details['name'] ) ) );
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
-		$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
-		//$setting = new ConfiguratorTemplateSettings( $database );
-		$setting->template_name = $template;
-		$setting->param_name = 'templatelogo';
-		$setting->loadByKey();
-		$setting->param_value = strtolower( basename( $logo_details['name'] ) );
-		$setting->store();
-		
-		}
-		$mainframe->redirect( "index2.php?option={$option}&task=manage&t={$template}", 'New Logo uploaded successfully' );
-	}
-	
-	function remove_logo() {
-		global $mainframe;
-		$database = &JFactory::getDBO();
-		$option = JRequest::getVar('option');
-		
-		$template = JRequest::getVar('t',null);
-		$filename = JRequest::getVar('logo',null);
-		$filename = preg_replace("/[^a-z0-9-.]/","-",strtolower($filename));
-		$full_filename = JPATH_ROOT . DS . 'templates' . DS . $template . DS . 'images'.DS.'logos' . DS . $filename;
-		//TODO: clean the filename!!!!
-		if(!empty($filename) && file_exists($full_filename)) unlink($full_filename);
-		$mainframe->redirect( "index2.php?option={$option}&task=manage&t={$template}", 'Logo file removed!' );
-	}
+	}  
 	
 	function dashboard() {
 		HTML_configurator_admin::dashboard();
-	}
-	
-	function bg_upload() {
-		global $mainframe;
-		$database = &JFactory::getDBO();
-		$option = JRequest::getVar('option');
-		$template = JRequest::getVar('t');
-		
-		$bg_details = JRequest::getVar( 'bgfile', null, 'files', 'array' );
-		if($bg_details['error'] != 4) {
-		$bg_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS.'assets'.DS.'backgrounds';
-		if($bg_details['error']) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Upload error ('.$bg_details['error'].')' );
-		
-		if(!is_uploaded_file($bg_details['tmp_name'])) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Not an uploaded file! Hack attempt?' );
-		
-		if(file_exists($bg_dir . DS . strtolower( basename( $bg_details['name'] ) ) ) ) $mainframe->redirect( "index2.php?option={$option}&page=list", 'A file with that name already exists!' );
-		
-		if(!is_dir($bg_dir)) {
-			// Directory doesnt exist, try to create it.
-			if(!mkdir($bg_dir)) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not save file, directory does not exist!' );
-			else JPath::setPermissions($bg_dir);
-			}
-		
-		if(!is_writable($bg_dir)) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not save file, permission error!' );
-		
-		if(!move_uploaded_file( $bg_details['tmp_name'], $bg_dir . DS . strtolower( basename( $bg_details['name'] ) ) ) ) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not move file to required location!' );
-		
-		JPath::setPermissions($bg_dir . DS . strtolower( basename( $bg_details['name'] ) ) );
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
-		$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
-		$setting->template_name = $template;
-		$setting->param_name = 'templatebg';
-		$setting->loadByKey();
-		$setting->param_value = strtolower( basename( $bg_details['name'] ) );
-		$setting->store();
-		
-		}
-		$mainframe->redirect( "index2.php?option={$option}&task=manage&t={$template}", 'New background uploaded successfully' );
 	}
 	
 	function display(){
@@ -572,5 +354,183 @@ class ConfiguratorController extends JController {
 			die('no post data');
 		}
 	}
+	
+	function uni_installer(){
+		$error = "";
+		$msg = "";
+		$ret = '{';
+		if( JRequest::getVar('do') && JRequest::getVar('do') == 'upload' ){
+			$install_type =  JRequest::getVar('itype');
+			switch($install_type){
+				default:
+				$error = 'Type of uploaded file undefined';
+				break;
+				case 'themelet':
+				$msg = $this->themelet_upload();
+				break;
+				case 'logo':
+				//logo_upload();
+				break;
+				case 'background':
+				//background_upload();
+				break;
+				case 'favicon':
+				//favicon_upload();
+				break;
+			}
+		}else{
+			$error = 'Upload failed: No Post Data!';
+		}
+		
+		$ret .= 'message: "'.$msg.'", error: "'.$error.'"';
+		$ret .= '}';
+		echo $ret;
+	}
+	
+	function themelet_upload() {
+		$msg = '';
+		$error = '';
+		$template = 'morph';
+		$themelet_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		
+		if($themelet_details['type'] != 'application/zip'){
+			$error = 'This is not a valid ZIP file. Please try again with a valid ZIP file';
+			return $error;
+		}else{
+			// if there is no file error then continue
+			if($themelet_details['error'] != 4) {
+				$themelet_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS. 'assets' .DS. 'themelets';
+				
+				// errors
+				if( $themelet_details['error'] ){
+					$error = 'Upload error ('.$themelet_details['error'].')';
+					return $error;
+				}
+				if( !is_uploaded_file($themelet_details['tmp_name']) ){ 
+					$error = 'Not an uploaded file! Hack attempt?';
+					return $error;
+				}
+				if( file_exists($themelet_dir . DS . strtolower(basename($themelet_details['name']))) ) {
+					$error = 'A file with that name already exists!';
+					return $error;
+				}
+				if( !is_dir($themelet_dir) ) {
+					// Directory doesnt exist, try to create it.
+					if( !mkdir($themelet_dir) ){
+						$error = 'Could not save file, directory does not exist!';
+						return $error;
+					}else{
+						JPath::setPermissions($themelet_dir);
+					}
+				}
+				if( !is_writable($themelet_dir) ){
+					$error = 'Could not save file, permission error!';
+					return $error;
+				}
+				if( !move_uploaded_file($themelet_details['tmp_name'], $themelet_dir . DS . strtolower(basename($themelet_details['name']))) ){
+					$error = 'Could not move file to required location!';
+					return $error;
+				}
+			
+				JPath::setPermissions($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
+				$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
+				return $msg;
+			}
+			$error = 'There was an error uploading the file. Please try again.';
+			return $error;
+		}
+	}
+	
+	function unpackThemelet($p_filename){
+		$archivename = $p_filename;
+		$dirname = uniqid('themelet_');
+		$extractdir = JPath::clean($dirname);
+		$archivename = JPath::clean($archivename);
+		
+		$result = JArchive::extract( $archivename, $extractdir);
+		if ( $result === false ) {
+			return false;
+		}
+	
+		$retval['extractdir'] = $extractdir;
+		$retval['packagefile'] = $archivename;
+		
+		if (JFile::exists($extractdir.DS.'themeletDetails.xml')){
+			$themelet_params = $this->parsexml_themelet_file($extractdir);
+		}else{
+			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
+			$error = "This is not a valid Themelet Package:<br />The file 'themeletDetails.xml' doesn't exist or is incorrectly structured!";
+			return $error;
+		}
+		
+		//get install dir
+		if ($themelet_params) {
+			$_themeletdir = trim( strtolower(str_replace(array(' ','_'),'-',$themelet_params->name)) );
+		}
+		
+		if (!$_themeletdir){		
+			if (count($dirList) == 1){
+				if (JFolder::exists($extractdir.DS.$dirList[0])){
+					$extractdir = JPath::clean($extractdir.DS.$dirList[0]);
+					echo $extractdir;
+					return false;
+				}
+			}
+		} else {
+			JFolder::move($extractdir, dirname($p_filename).DS.$_themeletdir);	
+		}
+		
+		if (JFolder::exists( dirname($p_filename).DS.$_themeletdir ) ) {
+			$retval['dir'] = $extractdir;
+			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
+			$success = 'Themelet Successfully Installed';
+			return $success;
+		}
+		
+	}
+	
+	function cleanupThemeletInstall($package, $resultdir){
+		$config =& JFactory::getConfig();
+	
+		// Does the unpacked extension directory exist?
+		if (is_dir($resultdir)) {
+			JFolder::delete($resultdir);
+		}
+	
+		// Is the package file a valid file?
+		if (is_file($package)) {
+			JFile::delete($package);
+		} elseif (is_file(JPath::clean($config->getValue('config.tmp_path').DS.$package))) {
+			// It might also be just a base filename
+		JFile::delete(JPath::clean($config->getValue('config.tmp_path').DS.$package));
+		}
+	}
+	
+	function parsexml_themelet_file($themeletDir){
+		// Check of the xml file exists
+		if(!is_file($themeletDir.DS.'themeletDetails.xml')) {
+			return false;
+		}
+		
+		$xml = JApplicationHelper::parseXMLInstallFile($themeletDir.DS.'themeletDetails.xml');
+		
+		if ($xml['type'] != 'themelet') {
+			return false;
+		}
+		
+		$data = new StdClass();
+		$data->directory = $themeletDir;
+		
+		foreach($xml as $key => $value) {
+			$data->$key = $value;
+		}
+		
+		$data->checked_out = 0;
+		$data->mosname = JString::strtolower(str_replace(' ', '_', $data->name));
+		
+		return $data;
+	} 
+	
+	
 }
 ?>

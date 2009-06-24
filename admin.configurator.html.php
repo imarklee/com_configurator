@@ -201,11 +201,11 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<div class="clear">&nbsp;</div>
 					<?php include 'includes/footer.php' ?>
 				</div>
-				<?php include 'includes/report-bug.php' ?>
 				<input type = "hidden" name = "option" value = "<?php echo $option; ?>"/>
 			    <input type = "hidden" name = "t" value = "morph"/>
 				<input type = "hidden" name = "task" value = "list" />
 				</form>
+				<?php include 'includes/report-bug.php' ?>
 <?php
 			}
 	 	}      

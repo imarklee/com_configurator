@@ -40,6 +40,8 @@ jQuery.noConflict();
 		
 		$('#fullscreen').click(function(){
 			$('#minwidth-body').toggleClass("full-mode");
+			$('#fullscreen').toggleClass("normal-mode");
+			if($('#screenmode').text() == 'Fullscreen Mode'){ $('#screenmode').text('Normal Mode'); }else{ $('#screenmode').text('Fullscreen Mode'); }
 			return false; 
 		});
 		

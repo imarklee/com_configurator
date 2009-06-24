@@ -112,19 +112,17 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="site-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['site-desc'])) { include 'includes/tabs/desc/desc-site.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
-										<li><a href="#logos-tab">Logos</a></li>
-										<li><a href="#progressive-tab">Progressive Enhancements</a></li>
-										<li><a href="#performance-tab">Performance</a></li>
-										<li><a href="#debugging-tab">Debugging</a></li>
-										<li><a href="#miscellaneous-tab">Miscellaneous</a></li>
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">general</a></li>
+										<li><a href="#logos-tab">configure your logo</a></li>
+										<li><a href="#progressive-tab">progressive enhancements</a></li>
+										<li><a href="#performance-tab">performance tuning</a></li>
+										<li><a href="#debugging-tab">debugging</a></li>
 									</ul>
 									<?php include 'includes/tabs/general/general.php' ?>
 									<?php include 'includes/tabs/general/logos.php' ?>
 									<?php include 'includes/tabs/general/progressive.php' ?>
 									<?php include 'includes/tabs/general/performance.php' ?>
 									<?php include 'includes/tabs/general/debugging.php' ?>
-									<?php include 'includes/tabs/general/miscellaneous.php' ?>
 								</div>
 							</div>
 							
@@ -132,9 +130,9 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="themelet-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['themelet-desc'])) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#colors-tab">Colors</a></li>
-										<li><a href="#backgrounds-tab">Backgrounds</a></li>
-										<li><a href="#menus-tab">Menus</a></li>
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#colors-tab">customizing colors</a></li>
+										<li><a href="#backgrounds-tab">your sites background</a></li>
+										<li><a href="#menus-tab">working with menus</a></li>
 									</ul>
 									<?php include 'includes/tabs/themelet/colors.php' ?>
 									<?php include 'includes/tabs/themelet/backgrounds.php' ?>
@@ -146,24 +144,26 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="blocks-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['blocks-desc'])) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#toolbar-tab">Toolbar</a></li>
-										<li><a href="#masthead-tab">Master Header</a></li>
-										<li><a href="#subhead-tab">Sub Header</a></li>
-										<li><a href="#topnav-tab">Top Navigation</a></li>
-										<li><a href="#shelves-tab">Outer Shelves</a></li>
-										<li><a href="#user-tab">Inline Shelves</a></li>
-										<li><a href="#insets-tab">Insets</a></li>
-										<li><a href="#main-tab">Main</a></li>
-										<li><a href="#footer-tab">Footer</a></li>
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#toolbar-tab">toolbar</a></li>
+										<li><a href="#mainhead-tab">main header</a></li>
+										<li><a href="#subhead-tab">sub header</a></li>
+										<li><a href="#topnav-tab">top navigation</a></li>
+										<li><a href="#outer-shelves-tab">top &amp; bottom shelves</a></li>
+										<li><a href="#inner-shelves-tab">user1 &amp; user2 shelves</a></li>
+										<li><a href="#main-tab">main block</a></li>
+										<li><a href="#sidebars-tab">sidebars</a></li>
+										<li><a href="#insets-tab">insets</a></li>
+										<li><a href="#footer-tab">footer</a></li>
 									</ul>
 									<?php include 'includes/tabs/blocks/toolbar.php' ?>
-									<?php include 'includes/tabs/blocks/masthead.php' ?>
+									<?php include 'includes/tabs/blocks/mainhead.php' ?>
 									<?php include 'includes/tabs/blocks/subhead.php' ?>
 									<?php include 'includes/tabs/blocks/topnav.php' ?>
-									<?php include 'includes/tabs/blocks/shelves.php' ?>
-									<?php include 'includes/tabs/blocks/ishelves.php' ?>
+									<?php include 'includes/tabs/blocks/outer-shelves.php' ?>
+									<?php include 'includes/tabs/blocks/inner-shelves.php' ?>
 									<?php include 'includes/tabs/blocks/inset.php' ?>
 									<?php include 'includes/tabs/blocks/main.php' ?>
+									<?php include 'includes/tabs/blocks/sidebars.php' ?>
 									<?php include 'includes/tabs/blocks/footer.php' ?>
 								</div>
 							</div>

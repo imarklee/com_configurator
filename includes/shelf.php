@@ -22,7 +22,7 @@ $component_arr = $component_details['install'];
 			<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf">Toggle display</a></li>
 			<li class="report-bug"><a href="#" title="" id="report-bug-link">Report a bug</a></li>
 			<li class="preferences disabled"><a href="#" title="">Preferences</a></li>
-			<li class="preferences disabled" id="fullscreen"><a href="#" title="">Toggle Fullscreen Mode</a></li>
+			<li class="full-mode" id="fullscreen"><a href="#" title="">Fullscreen Mode</a></li>
 		</ul>
 	</div>
 	<div id="shelf-contents" class="ui-widget-content">

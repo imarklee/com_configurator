@@ -6,8 +6,8 @@
 	</div>
 	<div id="debugging-info" class="info-panel">
 		<h3>Debugging overview</h3>
-		<p class="teaser">Our aim is to make Morph as optimized as possible &amp; though this is something we will constantly improve &amp; build on, there are already a number of ways you can take advantage of.</p>
+		<p class="teaser">These options are useful when developing your site and can be used to help you debug any issues you may encounter.</p>
 		
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+		<p>The <strong>Debug Modules</strong> option will globabally change all modules to use the "outline" module chrome, thus giving you a visual breakdown of all the module positions that are being used.</p>
 	</div>
 </div>

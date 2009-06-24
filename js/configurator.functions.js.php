@@ -30,7 +30,7 @@ jQuery.noConflict();
 		$('#login-details').corners('5px');	
 		$(".buttons li a").corners("5px");
 	
-		$("#tabs li a").corners("10px top");
+		$("#tabs .primary.ui-tabs-nav li a").corners("10px top");
 		$("#shelf-contents").corners("10px bottom");
 		$("#element-box .m").corners("7px");
 		$("#shelf").corners("10px");

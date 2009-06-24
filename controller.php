@@ -445,8 +445,8 @@ class ConfiguratorController extends JController {
 	
 	function unpackThemelet($p_filename){
 		$archivename = $p_filename;
-		$dirname = uniqid('themelet_');
-		$extractdir = JPath::clean($dirname);
+		$dirname = uniqid('themeletins_');
+		$extractdir = JPath::clean(dirname($p_filename).DS.$dirname);
 		$archivename = JPath::clean($archivename);
 		
 		$result = JArchive::extract( $archivename, $extractdir);

@@ -29,12 +29,9 @@ background: #ccc url(../images/gradient1.jpg) repeat-x;
 }
 #utilities ul{
 overflow: hidden;
+margin-left: 10px;
 }
-#utilities ul li{
-display: block;
-float: right;
-margin-left: 0;
-}
+
 #shelf #utilities ul li.logged-in{
 display: block;
 float: left;
@@ -59,25 +56,37 @@ font-size:12px;
 color: #000;
 text-decoration:underline;
 }
-
+#utilities ul li{
+display: block;
+float: right;
+margin-left: 10px;
+}
 #utilities ul li a{
-padding: 0 30px 0 10px;
+padding: 0 0 0 30px;
 height: 30px;
 display: block;
+border-left: 1px solid #ccc;
 float: left;
 font: normal 12px/30px Arial;
 color: #222;
 }
 #utilities .toggle-shelf a{
-background: transparent url(../images/toggle.png) no-repeat 91% 52%;
+background: transparent url(../images/toggle.png) no-repeat 10px 51%;
+padding: 0 10px 0 30px;
 }
 #utilities .report-bug a{
-background: transparent url(../images/bug.png) no-repeat 91% 52%;
+background: transparent url(../images/bug.png) no-repeat 10px 51%;
 }
 #utilities .preferences a{
-background: transparent url(../images/preferences.png) no-repeat 91% 52%;
-padding-right: 31px;
+background: transparent url(../images/preferences.png) no-repeat 10px 51%;
 }
+#utilities .full-mode a{
+background: transparent url(../images/full-mode.png) no-repeat 10px 51%;
+}
+#utilities .normal-mode a{
+background: transparent url(../images/normal-mode.png) no-repeat 10px 51%;
+}
+
 #shelf{
 margin: 10px 0 20px 0;
 }
@@ -439,6 +448,9 @@ font: normal 13px arial!important;
 color:#111;
 -moz-border-radius: 4px;
 }
+#tabs ol.forms textarea{
+padding: 3px;
+}
 #tabs ol.forms input{
 padding-left: 3px;
 }
@@ -480,20 +492,21 @@ margin-top:5px;
 }
 
 #tabs ol.forms li.heading{
-height: 33px;
+height: 35px;
 background: #fff;
 }
 #tabs ol.forms li.heading.first{
-height: 32px;
+height: 34px;
 }
+
 #tabs ol.forms li.heading h3{
 text-indent:200px;
 background: url(../images/heading-bg.jpg) repeat-x left bottom;
 border: 1px solid #92A64D;
-margin: 0px -9px 2px -9px;
+margin: 1px -9px 2px -10px;
 }
 #tabs ol.forms li.heading.first h3{
-margin: -1px -9px 2px -9px;
+margin: 0 -9px 2px -10px;
 }
 #tabs #colors li.palette{
 position: relative;
@@ -1250,3 +1263,29 @@ width:920px;
 .docs-wrap table td{font:normal 13px/160% Arial;text-align:center;border-right:1px solid #ccc;background:#eee;color:#666;}
 .docs-wrap table td td{border:1px solid #ccc;background:#eee;color:#666;}
 .docs-wrap .docs-il-outer{padding:3px 0;border:1px solid #FF9C60;background:#FFE390;color:#BB5517;}
+
+
+#minwidth-body.full-mode{position:relative;background:#0c0c0c;}
+#minwidth-body.full-mode #border-top,
+#minwidth-body.full-mode #header-box,
+#minwidth-body.full-mode #content-box,
+#minwidth-body.full-mode .padding,
+#minwidth-body.full-mode .m,
+#minwidth-body.full-mode .t{
+background:#0c0c0c;
+border:0!important;
+margin:0;
+}
+#minwidth-body.full-mode #content-box .padding #element-box{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+z-index:999;
+background:#0c0c0c;
+}
+#minwidth-body.full-mode #content-box .padding #element-box .m{
+background:#0c0c0c;
+padding:0;
+margin:0;
+}

@@ -6,8 +6,8 @@
 	</div>
 	<div id="main-info" class="info-panel">
 		<h3>Main block</h3>
-		<p class="teaser">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p class="teaser">The main block wraps around your sites content &amp; sidebars.</p>
 		
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+		<p>Everything related to the inner (right) and outer (left) sidebars can be found in the <a href="http://" title="">sidebars tab</a>.</p>
 	</div>
 </div>

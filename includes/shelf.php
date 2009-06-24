@@ -21,7 +21,8 @@ $component_arr = $component_details['install'];
 			<li class="logged-in">Logged in as: <strong><?php echo $_COOKIE['am_logged_in_user']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a></li>
 			<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf">Toggle display</a></li>
 			<li class="report-bug"><a href="#" title="" id="report-bug-link">Report a bug</a></li>
-			<li class="preferences" class="disabled"><a href="#" title="">Preferences</a></li>
+			<li class="preferences disabled"><a href="#" title="">Preferences</a></li>
+			<li class="full-mode" id="fullscreen"><a href="#" title="">Fullscreen Mode</a></li>
 		</ul>
 	</div>
 	<div id="shelf-contents" class="ui-widget-content">
@@ -52,18 +53,18 @@ $component_arr = $component_details['install'];
 			<li><span>Version: </span><?php echo $themelet_arr['version']; ?></li>
 			<li class="thumb"><span>&nbsp;</span><img src="<?php echo $themelet_url . $params->get('themelet'); ?>/themelet_thumb.png" width="108" height="72" align="middle" alt="<?php echo $themelet_arr['name']; ?>" /></li>
 		</ul>
-	</div> 
+	</div>
 	<div id="visual-refs">
 		<h3>Quick reference guides</h3>
 			<ul class="buttons">
-				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">Quick Start</a></li>
-				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">Block Map</a></li>
-				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">Position Map</a></li>
-				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">Troubleshooting</a></li>
-				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">ModuleFX</a></li>
-				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">PageFX</a></li>
-				<li><a class="modal-link" href="menufx.html" title="Visual Reference: By Block">MenuFX</a></li>
-				<li><a class="modal-link" href="gettingstarted.html" title="Visual Reference: By Block">ContentFX</a></li>
+				<li><a class="modal-link" href="gettingstarted.html" title="Configurator quick start guide">Quick Start</a></li>
+				<li><a class="modal-link" href="../administrator/components/com_morph/images/visual-reference-blocks.png" title="Visual Reference: By Block">Block Map</a></li>
+				<li><a class="modal-link" href="../administrator/components/com_morph/images/visual-reference-positions.png" title="Visual Reference: By Block">Position Map</a></li>
+				<li><a class="modal-link" href="troubleshooting.html" title="Morph troubleshooting guide">Troubleshooting</a></li>
+				<li><a class="modal-link" href="modfx.html" title="Getting started with ModuleFX">ModuleFX</a></li>
+				<li><a class="modal-link" href="pagefx.html" title="Getting started with PageFX">PageFX</a></li>
+				<li><a class="modal-link" href="menufx.html" title="Getting started with MenuFX">MenuFX</a></li>
+				<li><a class="modal-link" href="contentfx.html" title="Getting started with ContentFX">ContentFX</a></li>
 			</ul>
 	</div>
 </div>

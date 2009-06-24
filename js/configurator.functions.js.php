@@ -37,7 +37,12 @@ jQuery.noConflict();
 		$("#shelf.open #utilities").corners("10px top");
 		$("#shelf.closed #utilities").corners("10px");
 		$("ul.assets-headers").corners("5px top");
-
+		
+		$('#fullscreen').click(function(){
+			$('#minwidth-body').toggleClass("full-mode");
+			return false; 
+		});
+		
 		$('#site-desc a').click(function(){
 			$('#site-desc').hide('slow');
 			$('#site-tabs .desc-overlay').fadeTo('fast',0).remove();

@@ -517,7 +517,7 @@ height:15px;
 padding:2px 0;
 width:64px;
 }
-#tabs #colors-tab li.palette .picker{
+#tabs li.palette .picker{
 width: 50px;
 height: 20px;
 line-height: 20px;
@@ -534,16 +534,13 @@ background: transparent url(../images/colorpicker-bg.png) no-repeat 0;
 .newColorpicker {
 z-index: 9999;
 }
-#tabs #colors-tab li.palette .picker span{
+#tabs li.palette .picker span{
 display:none;
 }
-#tabs #colors-tab li.palette a:hover.picker span{
+#tabs li.palette a:hover.picker span{
 display:inline;
 }
-#tabs #colors-tab li.palette a:hover.picker{
-
-}
-#tabs #colors-tab li.palette .color-preview{
+#tabs li.palette .color-preview{
 width: 16px;
 height: 16px;
 display:block;

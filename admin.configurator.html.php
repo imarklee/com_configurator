@@ -84,10 +84,8 @@ function manage( &$params, &$lists, $morph_installed ) {
 	        <?php }else{ ?>
 	        	<form action = "index.php" method = "post" name = "adminForm" id="templateform" enctype="multipart/form-data">
 	        	<div id="wrap" class="container_16">
-					<div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
-						<?php include 'includes/shelf.php' ?>
-					</div>
-				
+					<?php include 'includes/top.php' ?>
+					<?php include 'includes/shelf.php' ?>				
 					<div class="clear spacer">&nbsp;</div>
 		
 					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">

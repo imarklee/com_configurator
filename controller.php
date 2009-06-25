@@ -277,34 +277,7 @@ class ConfiguratorController extends JController {
 		
 		$msg = JText::_('Successfully saved your settings!');
 		$mainframe->redirect("index2.php?option={$option}&task=dashboard",$msg);
-	}
-	
-	function favicon_upload() {
-		global $mainframe;
-		$option = JRequest::getVar('option');
-		$template = JRequest::getVar('t');
-		
-		$favicon_details = JRequest::getVar( 'faviconfile', null, 'files', 'array' );
-		if($favicon_details['error'] !== 4) {
-			
-			$favicon_dir = JPATH_ROOT . DS .'templates'. DS . $template;
-			if($favicon_details['error']) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Upload error ('.$favicon_details['error'].')' );
-		
-			if(!is_uploaded_file($favicon_details['tmp_name'])) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Not an uploaded file! Hack attempt?' );
-			
-			if($favicon_details['type'] !== 'application/octet-stream') $mainframe->redirect( "index2.php?option={$option}&task=manage&t={$template}", $favicon_details['type'].'Not an ICO file. Please ensure the file is named "favicon.ico"' );
-			
-			//if(file_exists($favicon_dir . DS . strtolower( basename( $favicon_details['name'] ) ) ) ) $mainframe->redirect( "index2.php?option={$option}&page=list", 'A file with that name already exists!' );		
-			
-			if(!is_writable($favicon_dir)) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not save file, permission error!' );
-		
-			if(!move_uploaded_file( $favicon_details['tmp_name'], $favicon_dir . DS . strtolower( basename( 'favicon.ico' ) ) ) ) $mainframe->redirect( "index2.php?option={$option}&page=list", 'Could not move file to required location!' );
-		
-			JPath::setPermissions($favicon_dir . DS . strtolower( basename( 'favicon.ico' ) ) );
-		
-		}
-		$mainframe->redirect( "index2.php?option={$option}&task=manage&t={$template}", 'New Favicon uploaded successfully' );
-	}  
+	} 
 	
 	function dashboard() {
 		HTML_configurator_admin::dashboard();
@@ -358,34 +331,43 @@ class ConfiguratorController extends JController {
 	}
 	
 	function uni_installer(){
-		$error = "";
-		$msg = "";
-		$ret = '{';
+		$return = '';		
 		if( JRequest::getVar('do') && JRequest::getVar('do') == 'upload' ){
 			$install_type =  JRequest::getVar('itype');
-			switch($install_type){
-				default:
-				$error = 'Type of uploaded file undefined';
-				break;
-				case 'themelet':
-				$msg = $this->themelet_upload();
-				break;
-				case 'logo':
-				//logo_upload();
-				break;
-				case 'background':
-				//background_upload();
-				break;
-				case 'favicon':
-				//favicon_upload();
-				break;
+			$the_files = JRequest::getVar( 'insfile', null, 'files', 'array' );
+			if($install_type != 'undefined'){
+				if($the_files['name'] != ''){
+					switch($install_type){
+						case 'themelet':
+						$return = $this->themelet_upload();
+						break;
+						case 'logo':
+						$return = $this->logo_upload();
+						break;
+						case 'background':
+						$return = $this->background_upload();
+						break;
+						case 'favicon':
+						$return = $this->favicon_upload();
+						break;
+					}
+				}else{
+					$return = 'error: "No file specified.<br />Please select a file in Step 2!"';
+					$ret = ' {'.$return.'}';
+					echo $ret;
+					return false;
+				}
+			}else{
+				$return = 'error: "Type of file to be installed was undefined.<br />Please choose an install type in Step 1!"';
+				$ret = ' {'.$return.'}';
+				echo $ret;
+				return false;
 			}
 		}else{
-			$error = 'Upload failed: No Post Data!';
+			$return = 'error: "Upload failed: No Post Data!"';
 		}
 		
-		$ret .= 'message: "'.$msg.'", error: "'.$error.'"';
-		$ret .= '}';
+		$ret = '{'.$return.'}';
 		echo $ret;
 	}
 	
@@ -396,7 +378,7 @@ class ConfiguratorController extends JController {
 		$themelet_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		
 		if($themelet_details['type'] != 'application/zip'){
-			$error = 'This is not a valid ZIP file. Please try again with a valid ZIP file';
+			$error = 'error: "This is not a valid themelet package.<br />Please try again with a valid themelet package (zip file)"';
 			return $error;
 		}else{
 			// if there is no file error then continue
@@ -405,32 +387,32 @@ class ConfiguratorController extends JController {
 				
 				// errors
 				if( $themelet_details['error'] ){
-					$error = 'Upload error ('.$themelet_details['error'].')';
+					$error = 'error: "Upload error ('.$themelet_details['error'].')"';
 					return $error;
 				}
 				if( !is_uploaded_file($themelet_details['tmp_name']) ){ 
-					$error = 'Not an uploaded file! Hack attempt?';
+					$error = 'error: "Not an uploaded file! Hack attempt?"';
 					return $error;
 				}
 				if( file_exists($themelet_dir . DS . strtolower(basename($themelet_details['name']))) ) {
-					$error = 'A file with that name already exists!';
+					$error = 'error: "A file with that name already exists!"';
 					return $error;
 				}
 				if( !is_dir($themelet_dir) ) {
 					// Directory doesnt exist, try to create it.
 					if( !mkdir($themelet_dir) ){
-						$error = 'Could not save file, directory does not exist!';
+						$error = 'error: "Could not save file, directory does not exist!"';
 						return $error;
 					}else{
 						JPath::setPermissions($themelet_dir);
 					}
 				}
 				if( !is_writable($themelet_dir) ){
-					$error = 'Could not save file, permission error!';
+					$error = 'error: "Could not save file, permission error!"';
 					return $error;
 				}
 				if( !move_uploaded_file($themelet_details['tmp_name'], $themelet_dir . DS . strtolower(basename($themelet_details['name']))) ){
-					$error = 'Could not move file to required location!';
+					$error = 'error: "Could not move file to required location!"';
 					return $error;
 				}
 			
@@ -438,7 +420,7 @@ class ConfiguratorController extends JController {
 				$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
 				return $msg;
 			}
-			$error = 'There was an error uploading the file. Please try again.';
+			$error = 'error: "There was an error uploading the file. Please try again."';
 			return $error;
 		}
 	}
@@ -461,7 +443,7 @@ class ConfiguratorController extends JController {
 			$themelet_params = $this->parsexml_themelet_file($extractdir);
 		}else{
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
-			$error = "This is not a valid Themelet Package:<br />The file 'themeletDetails.xml' doesn't exist or is incorrectly structured!";
+			$error = 'error: "This is not a valid Themelet Package:<br />The file <strong>themeletDetails.xml</strong> doesn\'t exist or is incorrectly structured!"';
 			return $error;
 		}
 		
@@ -474,8 +456,6 @@ class ConfiguratorController extends JController {
 			if (count($dirList) == 1){
 				if (JFolder::exists($extractdir.DS.$dirList[0])){
 					$extractdir = JPath::clean($extractdir.DS.$dirList[0]);
-					echo $extractdir;
-					return false;
 				}
 			}
 		} else {
@@ -485,7 +465,7 @@ class ConfiguratorController extends JController {
 		if (JFolder::exists( dirname($p_filename).DS.$_themeletdir ) ) {
 			$retval['dir'] = $extractdir;
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
-			$success = 'Themelet Successfully Installed';
+			$success = 'success: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'"';
 			return $success;
 		}
 		
@@ -493,13 +473,7 @@ class ConfiguratorController extends JController {
 	
 	function cleanupThemeletInstall($package, $resultdir){
 		$config =& JFactory::getConfig();
-	
-		// Does the unpacked extension directory exist?
-		if (is_dir($resultdir)) {
-			JFolder::delete($resultdir);
-		}
-	
-		// Is the package file a valid file?
+		if (is_dir($resultdir)) { JFolder::delete($resultdir); }
 		if (is_file($package)) {
 			JFile::delete($package);
 		} elseif (is_file(JPath::clean($config->getValue('config.tmp_path').DS.$package))) {
@@ -509,7 +483,7 @@ class ConfiguratorController extends JController {
 	}
 	
 	function parsexml_themelet_file($themeletDir){
-		// Check of the xml file exists
+		// Check if the xml file exists
 		if(!is_file($themeletDir.DS.'themeletDetails.xml')) {
 			return false;
 		}
@@ -531,7 +505,193 @@ class ConfiguratorController extends JController {
 		$data->mosname = JString::strtolower(str_replace(' ', '_', $data->name));
 		
 		return $data;
-	} 
+	}
+	
+	function logo_upload() {
+		$msg = '';
+		$error = '';
+		$template = 'morph';
+		$logo_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$image_type = $logo_details['type'];
+		$allowed_types = array('image/jpeg','image/png', 'image/jpg', 'image/gif');
+	
+		if(!in_array($image_type, $allowed_types)){
+			$error = 'error: "This is not a valid logo file.<br />Please try again with a valid logo (png/gif/jpg)"';
+			return $error;
+		}else{
+			// if there is no file error then continue
+			if($logo_details['error'] != 4) {
+				$logo_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS. 'assets' .DS. 'logos';
+				
+				// errors
+				if( $logo_details['error'] ){
+					$error = 'error: "Upload error ('.$logo_details['error'].')"';
+					return $error;
+				}
+				if( !is_uploaded_file($logo_details['tmp_name']) ){ 
+					$error = 'error: "Not an uploaded file! Hack attempt?"';
+					return $error;
+				}
+				if( file_exists($logo_dir . DS . strtolower(basename($logo_details['name']))) ) {
+					$error = 'error: "A file with that name already exists!"';
+					return $error;
+				}
+				if( !is_dir($logo_dir) ) {
+					// Directory doesnt exist, try to create it.
+					if( !mkdir($logo_dir) ){
+						$error = 'error: "Could not save file, directory does not exist!"';
+						return $error;
+					}else{
+						JPath::setPermissions($logo_dir);
+					}
+				}
+				if( !is_writable($logo_dir) ){
+					$error = 'error: "Could not save file, permission error!"';
+					return $error;
+				}
+				if( !move_uploaded_file($logo_details['tmp_name'], $logo_dir . DS . strtolower(basename($logo_details['name']))) ){
+					$error = 'error: "Could not move file to required location!"';
+					return $error;
+				}
+			
+				JPath::setPermissions($logo_dir . DS . strtolower( basename( $logo_details['name'] ) ) );
+				JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
+				$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting->template_name = $template;
+				$setting->param_name = 'templatelogo';
+				$setting->loadByKey();
+				$setting->param_value = strtolower( basename( $logo_details['name'] ) );
+				$setting->store();
+				$msg = 'success: "Logo Uploaded Successfully", logo: "'.$logo_details['name'].'"';
+				return $msg;
+			}
+			
+			$error = 'error: "There was an error uploading the file. Please try again."';
+			return $error;
+		}
+	}
+	
+	function background_upload() {
+		$msg = '';
+		$error = '';
+		$template = 'morph';
+		$background_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$image_type = $background_details['type'];
+		$allowed_types = array('image/jpeg','image/png', 'image/jpg', 'image/gif');
+	
+		if(!in_array($image_type, $allowed_types)){
+			$error = 'error: "This is not a valid background file.<br />Please try again with a valid background (png/gif/jpg)"';
+			return $error;
+		}else{
+			// if there is no file error then continue
+			if($background_details['error'] != 4) {
+				$background_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS. 'assets' .DS. 'backgrounds';
+				
+				// errors
+				if( $background_details['error'] ){
+					$error = 'error: "Upload error ('.$background_details['error'].')"';
+					return $error;
+				}
+				if( !is_uploaded_file($background_details['tmp_name']) ){ 
+					$error = 'error: "Not an uploaded file! Hack attempt?"';
+					return $error;
+				}
+				if( file_exists($background_dir . DS . strtolower(basename($background_details['name']))) ) {
+					$error = 'error: "A file with that name already exists!"';
+					return $error;
+				}
+				if( !is_dir($background_dir) ) {
+					// Directory doesnt exist, try to create it.
+					if( !mkdir($background_dir) ){
+						$error = 'error: "Could not save file, directory does not exist!"';
+						return $error;
+					}else{
+						JPath::setPermissions($background_dir);
+					}
+				}
+				if( !is_writable($background_dir) ){
+					$error = 'error: "Could not save file, permission error!"';
+					return $error;
+				}
+				if( !move_uploaded_file($background_details['tmp_name'], $background_dir . DS . strtolower(basename($background_details['name']))) ){
+					$error = 'error: "Could not move file to required location!"';
+					return $error;
+				}
+			
+				JPath::setPermissions($background_dir . DS . strtolower( basename( $background_details['name'] ) ) );
+				JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
+				$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting->template_name = $template;
+				$setting->param_name = 'templatebackground';
+				$setting->loadByKey();
+				$setting->param_value = strtolower( basename( $background_details['name'] ) );
+				$setting->store();
+				$msg = 'success: "Background Uploaded Successfully", background: "'.$background_details['name'].'"';
+				return $msg;
+			}
+			
+			$error = 'error: "There was an error uploading the file. Please try again."';
+			return $error;
+		}
+	}
+	
+	function favicon_upload() {
+		$msg = '';
+		$error = '';
+		$overwrite = '';
+		$template = 'morph';
+		$favicon_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$image_type = $favicon_details['type'];
+		$allowed_types = array('image/png', 'image/gif', 'image/ico', 'image/x-icon');
+	
+		if(!in_array($image_type, $allowed_types)){
+			$error = 'error: "This is not a valid favicon file.<br />Please try again with a valid favicon (ico/gif/png)"';
+			return $error;
+		}else{
+			// if there is no file error then continue
+			if($favicon_details['error'] != 4) {
+				$favicon_dir = JPATH_ROOT . DS .'templates'. DS . $template;
+				
+				// errors
+				if( $favicon_details['error'] ){
+					$error = 'error: "Upload error ('.$favicon_details['error'].')"';
+					return $error;
+				}
+				if( !is_uploaded_file($favicon_details['tmp_name']) ){ 
+					$error = 'error: "Not an uploaded file! Hack attempt?"';
+					return $error;
+				}
+				if( file_exists($favicon_dir . DS . strtolower(basename('favicon.ico'))) ) {
+					$overwrite = 'overwrite: "A favicon file already exists.<br />Overwrite?"';
+					return $overwrite;
+				}
+				if( !is_dir($favicon_dir) ) {
+					// Directory doesnt exist, try to create it.
+					if( !mkdir($favicon_dir) ){
+						$error = 'error: "Could not save file, directory does not exist!"';
+						return $error;
+					}else{
+						JPath::setPermissions($favicon_dir);
+					}
+				}
+				if( !is_writable($favicon_dir) ){
+					$error = 'error: "Could not save file, permission error!"';
+					return $error;
+				}
+				if( !move_uploaded_file($favicon_details['tmp_name'], $favicon_dir . DS . strtolower(basename('favicon.ico'))) ){
+					$error = 'error: "Could not move file to required location!"';
+					return $error;
+				}
+			
+				JPath::setPermissions($favicon_dir . DS . strtolower( basename( $favicon_details['name'] ) ) );
+				$msg = 'success: "Favicon Uploaded Successfully"';
+				return $msg;
+			}
+			
+			$error = 'error: "There was an error uploading the file. Please try again."';
+			return $error;
+		}
+	}
 	
 	
 }

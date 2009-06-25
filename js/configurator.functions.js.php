@@ -241,9 +241,11 @@ jQuery.noConflict();
 			if(!$.cookie('shelf')){
 				$('.open').switchClass('open', 'closed', 300);
 				$.cookie('shelf', 'hide', { path: '/', expires: 30 });
+				$(this).text('Show Shelf');
 			}else{
 				$('.closed').switchClass('closed', 'open', 300);
 				$.cookie('shelf', null, { path: '/', expires: 30 });
+				$(this).text('Hide Shelf');
 			}
 			return false;
 		});
@@ -1063,39 +1065,145 @@ jQuery.noConflict();
 		--------------------------------- */
 		
 		$('#uploader-button').click(function(){
-			var uploadType = $('input[name="upload_type"]').val();
+			var uploadType = $('input[type="radio"]:checked','#install-type').val();
 			$.ajaxFileUpload({
 				url: '../administrator/index.php?option=com_configurator&task=uni_installer&format=raw&do=upload&itype='+uploadType,
 				fileElementId:'insfile',
 				dataType: 'json',
 				success: function (data, status){
-					$('#upload-message').dialog({
-			   			bgiframe: true, 
-			   			resizable: false,
-			   			draggable: false,
-			   			minHeight: 20,
-			   			modal: true,
-			   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Alert</span>',
-	   					overlay: {
-	   						backgroundColor: '#000', 
-	   						opacity: 0.5 
-	   					},
-						buttons: {
-							'OK': function(){
-								$(this).dialog('destroy');
-							}
-						}
-					});
-					
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
+							$('#upload-message').dialog({
+					   			bgiframe: true, 
+					   			resizable: false,
+					   			draggable: false,
+					   			minHeight: 20,
+					   			modal: true,
+					   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+			   					overlay: {
+			   						backgroundColor: '#000', 
+			   						opacity: 0.5 
+			   					},
+								buttons: {
+									'OK': function(){
+										$(this).dialog('destroy');
+									}
+								}
+							});
 							$('#upload-message').html(data.error);
-							$('#upload-message').dialog('moveToTop').dialog('show');
-						}else{
-							$('#upload-message').html(data.message);
+							$('#upload-message').dialog('show');
+						}
+					}else{
+						$('#upload-message').dialog({
+				   			bgiframe: true, 
+				   			resizable: false,
+				   			draggable: false,
+				   			minHeight: 20,
+				   			modal: true,
+				   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Success</span>',
+		   					overlay: {
+		   						backgroundColor: '#000', 
+		   						opacity: 0.5 
+		   					}
+		   				});
+		   				
+						if(uploadType == 'themelet'){
+							$('#upload-message').html(data.success);
+							$('#upload-message').dialog(
+								'option', 'buttons', { 
+									'Activate Themelet': function(){
+										var setThemelet = data.themelet;
+										var themeletOption = $('#generalthemelet option:last').after('<option selected="selected" value="'+setThemelet+'">'+setThemelet+'</option>');
+	   									submitbutton('applytemplate');
+								   		$(this).dialog('destroy');
+									},
+									'Do Nothing': function(){
+										$(this).dialog('destroy');
+									}
+								}
+							);
+							$('#upload-message').dialog('show');
+						}
+						
+						if(uploadType == 'logo'){
+							$('#upload-message').html(data.success);
+							$('#upload-message').dialog(
+								'option', 'buttons', { 
+									'Activate Logo': function(){
+										var setLogo = data.logo;
+										var logoOption = $('#logologo_image option:last').after('<option selected="selected" value="'+setLogo+'">'+setLogo+'</option>');
+	   									submitbutton('applytemplate');
+	   									var $tabs = $('#tabs').tabs();
+										var logoTabs = $('#site-tabs').tabs();
+										$tabs.tabs('select', 0);
+										logoTabs.tabs('select', 1);
+										$(this).dialog('destroy');
+									},
+									'Goto Logo Settings': function(){
+										var $tabs = $('#tabs').tabs();
+										var logoTabs = $('#site-tabs').tabs();
+										$tabs.tabs('select', 0);
+										logoTabs.tabs('select', 1); 
+  									  	$(this).dialog('destroy');
+									}
+								}
+							);
 							$('#upload-message').dialog('moveToTop').dialog('show');
 						}
+						if(uploadType == 'background'){
+							$('#upload-message').html(data.success);
+							$('#upload-message').dialog(
+								'option', 'buttons', { 
+									'Activate Background': function(){
+										var setBg = data.background;
+										var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
+	   									submitbutton('applytemplate');
+	   									var $tabs = $('#tabs').tabs();
+										var bgTabs = $('#site-tabs').tabs();
+										$tabs.tabs('select', 1);
+										logoTabs.tabs('select', 1);
+										$(this).dialog('destroy');
+									},
+									'Goto Background Settings': function(){
+										var $tabs = $('#tabs').tabs();
+										var bgTabs = $('#site-tabs').tabs();
+										$tabs.tabs('select', 1);
+										bgTabs.tabs('select', 1); 
+  									  	$(this).dialog('destroy');
+									}
+								}
+							);
+							$('#upload-message').dialog('moveToTop').dialog('show');
+						}
+						if(uploadType == 'favicon'){
+							if(typeof(data.overwrite) == 'undefined'){
+								$('#upload-message').html(data.success);
+								$('#upload-message').dialog(
+									'option', 'buttons', { 
+										'OK': function(){
+											$(this).dialog('destroy');
+										}
+									}
+								);
+								$('#upload-message').dialog('moveToTop').dialog('show');
+							}else{
+								$('#upload-message').html(data.overwrite);
+								$('#upload-message').dialog('option', 'title', '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Overwrite Warning</span>');
+								$('#upload-message').dialog(
+									'option', 'buttons', { 
+										'Yes': function(){
+											$(this).dialog('destroy');
+										},
+										'No': function(){
+											$(this).dialog('destroy');
+										}
+									}
+								);
+								$('#upload-message').dialog('moveToTop').dialog('show');
+							}
+						}
 					}
+					
 				},
 				error: function (data, status, e){
 					console.log(e);

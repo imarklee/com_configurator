@@ -35,7 +35,7 @@ margin-left: 10px;
 #shelf #utilities ul li.logged-in{
 display: block;
 float: left;
-margin:0 0 0 5px;
+margin:0 0 0 8px;
 padding:0 0 0 20px;
 height:30px;
 line-height:30px;
@@ -1321,7 +1321,7 @@ width:920px;
 padding:0!important;
 }
 #minwidth-body .m #templateform{
-background: #000 url(../images/bokeh3.jpg) repeat-x 50% 0;
+background: #000 url(../images/bokeh3.jpg) repeat-x 0 -70px;
 }
 
 #minwidth-body.full-mode{position:relative;background:#000;margin:0;}

@@ -782,7 +782,7 @@ border-right: 0;
 }
 #assets .list-view ul{
 overflow: hidden;
-width: 100%;
+width: 918px;
 margin: 0;
 border: 1px solid #ccc;
 }
@@ -862,7 +862,7 @@ width: 150px;
 #assets .list-view ul.buttons{
 position: absolute;
 top: 0;
-width: 450px;
+width: 350px;
 left: 581px;
 margin: 0;
 padding: 0;
@@ -902,7 +902,7 @@ margin-left: 35px;
 #assets .list-view ul.buttons li.btn-preview{
 width: 115px;
 display: block;
-border-right: 1px solid #ccc;
+border-right:0;
 }
 #assets .list-view ul.buttons li.btn-preview a{
 margin-left: 30px;

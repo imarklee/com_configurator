@@ -1,6 +1,6 @@
 <div id="top">
 	<div id="branding">
-		<img src="../administrator/components/com_configurator/images/morph-logo.png" alt="morph logo" width="183" height="62" border="0" />
+		<img src="../administrator/components/com_configurator/images/morph-logo.png" alt="morph logo" width="173" height="60" border="0" />
 	</div>
 	<?php if (!isset ($_COOKIE['quicktips'])) { ?>
 	<div id="quicktips">

@@ -29,6 +29,8 @@ jQuery.noConflict();
 		$('#cl-inner').corners('3px');
 		$('#login-details').corners('5px');	
 		$(".buttons li a").corners("5px");
+		$('#minwidth-body .m #templateform').corners('7px');	
+		$('#quicktips .inner').corners('7px');	
 	
 		$("#tabs .primary.ui-tabs-nav li a").corners("10px top");
 		$("#shelf-contents").corners("10px bottom");
@@ -44,7 +46,11 @@ jQuery.noConflict();
 			if($('#screenmode').text() == 'Fullscreen Mode'){ $('#screenmode').text('Normal Mode'); }else{ $('#screenmode').text('Fullscreen Mode'); }
 			return false; 
 		});
-		
+		$('#quicktips a').click(function(){
+			$('#quicktips').remove();
+			$.cookie('quicktips', true,{path:'/',expires:30});
+			return false; 
+		});		
 		$('#site-desc a').click(function(){
 			$('#site-desc').hide('slow');
 			$('#site-tabs .desc-overlay').fadeTo('fast',0).remove();

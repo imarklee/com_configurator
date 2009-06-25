@@ -1,7 +1,7 @@
 
 
 <div id="footer">
-		<img src="../administrator/components/com_configurator/images/ptlogo.png" alt="prothemer logo" width="166" height="45" border="0" />
+		<a href="http://www.prothemer.com" target="_blank" class="ptlogo">ProThemer</a>
 		<ul class="footer-links">
 			<li class="fa">
 				<h4>JoomlaJunkie</h4>

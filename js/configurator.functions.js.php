@@ -1081,8 +1081,8 @@ jQuery.noConflict();
 					   			modal: true,
 					   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
 			   					overlay: {
-			   						backgroundColor: '#000', 
-			   						opacity: 0.5 
+			   						backgroundColor: '#000000', 
+			   						opacity: 0.8 
 			   					},
 								buttons: {
 									'OK': function(){
@@ -1103,7 +1103,7 @@ jQuery.noConflict();
 				   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Success</span>',
 		   					overlay: {
 		   						backgroundColor: '#000', 
-		   						opacity: 0.5 
+		   						opacity: 0.8 
 		   					}
 		   				});
 		   				
@@ -1161,7 +1161,7 @@ jQuery.noConflict();
 	   									var $tabs = $('#tabs').tabs();
 										var bgTabs = $('#site-tabs').tabs();
 										$tabs.tabs('select', 1);
-										logoTabs.tabs('select', 1);
+										bgTabs.tabs('select', 1);
 										$(this).dialog('destroy');
 									},
 									'Goto Background Settings': function(){
@@ -1210,7 +1210,75 @@ jQuery.noConflict();
 				}
 			});
 			return false;
-		});		
+		});	
+		
+		
+		/* Conditionals --------------------
+		--------------------------------- */	
+		
+		function LogoOptions(){
+			switcher($('#logologo_type > option:selected').val());
+			
+			$('#logologo_type').change(function(){
+				var logoType = $(this).val();
+				switcher(logoType);
+			});
+			
+
+			$('#logo-options li #logodisplay_slogan1').click(function(){
+				$('#logo-options li #logoslogan_text').parent().css('display', 'block');
+				$('#logo-options li #logoslogan_textcolor').parent().css('display', 'block');
+				$('#logo-options li #logoslogan_fontsize').parent().css('display', 'block');
+				$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'block');
+			});
+			$('#logo-options li #logodisplay_slogan0').click(function(){
+				$('#logo-options li #logoslogan_text').parent().css('display', 'none');
+				$('#logo-options li #logoslogan_textcolor').parent().css('display', 'none');
+				$('#logo-options li #logoslogan_fontsize').parent().css('display', 'none');
+				$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'none');
+			});
+			
+			function switcher(v){
+				switch(v){
+					case '0':
+					$('#logo-options li').css('display', 'none');
+					$('#logo-options li.heading').css('display', 'block');
+					$('#logologo_type').parent().css('display', 'block');
+					$('#logo-options li #logologo_image').parent().css('display', 'block');
+					$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
+					$('#logo-options li #logologo_alttext').parent().css('display', 'block');
+					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
+					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+					break;
+					case '1':
+					$('#logo-options li').css('display', 'none');
+					$('#logo-options li.heading').css('display', 'block');
+					$('#logologo_type').parent().css('display', 'block');
+					$('#logo-options li #logologo_textcolor').parent().css('display', 'block');
+					$('#logo-options li #logologo_fontsize').parent().css('display', 'block');
+					$('#logo-options li #logologo_fontfamily').parent().css('display', 'block');
+					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+					break;
+					case '2':
+					$('#logo-options li').css('display', 'none');
+					$('#logo-options li.heading').css('display', 'block');
+					$('#logologo_type').parent().css('display', 'block');
+					$('#logo-options li #logologo_image').parent().css('display', 'block');
+					$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
+					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
+					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+					break;
+					case '3':
+					$('#logo-options li').css('display', 'none');
+					$('#logo-options li.heading:first').css('display', 'block');
+					$('#logologo_type').parent().css('display', 'block');
+					break;
+				}
+			}
+			
+		}
+		LogoOptions();
+		
 		
 		
 		/**

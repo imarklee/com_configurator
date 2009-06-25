@@ -1365,31 +1365,21 @@ margin-top: 15px;
 #quicktips{
 width:500px;
 float:right;
-background: transparent url(../images/top-maskot.png) no-repeat 98% 2%;
+background: transparent url(../images/maskot-top.png) no-repeat 98% 2%;
 height: 90px;
-position:relative;
 }
-#tips{
-padding: 7px;
-color:#222;
-margin: 15px 100px 0 0;
-position:absolute;
-top: 0;
-left: 0;
-width: 400px;
-height: 80px;
+#tips {
+background:transparent url(../images/tips-bg.png) no-repeat scroll 100% 25%;
+color:#222222;
+margin:11px 0 0;
+width:424px;
 }
-#quicktips .inner{
-background: #fff;
-margin: 13px 100px 0 0;
-filter: alpha(opacity=75);
-opacity: .65;
--ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
-position:absolute;
-top: 0;
-left: 0;
-width: 400px;
-height: 65px;
+#tips .inner {
+background:#FFFFFF none repeat scroll 0 0;
+color:#222222;
+padding:10px;
+width:370px;
+position: relative;
 }
 #tips h4{
 font:bold 13px arial;
@@ -1406,6 +1396,11 @@ height:15px;
 display:block;
 position:absolute;
 top:5px;
-right:21px;
+right:6px;
 text-indent:-7998px;
+}
+
+#minwidth-body .ui-widget-overlay {
+background:#000000 none repeat scroll 0 0;
+opacity:0.9;
 }

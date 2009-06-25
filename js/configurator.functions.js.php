@@ -30,7 +30,7 @@ jQuery.noConflict();
 		$('#login-details').corners('5px');	
 		$(".buttons li a").corners("5px");
 		$('#minwidth-body .m #templateform').corners('7px');	
-		$('#quicktips .inner').corners('7px');	
+		$('#tips .inner').corners('7px');	
 	
 		$("#tabs .primary.ui-tabs-nav li a").corners("10px top");
 		$("#shelf-contents").corners("10px bottom");
@@ -47,8 +47,8 @@ jQuery.noConflict();
 			return false; 
 		});
 		$('#quicktips a').click(function(){
-			$('#quicktips').remove();
-			$.cookie('quicktips', true,{path:'/',expires:30});
+			$('#tips').remove();
+			$.cookie('tips', true,{path:'/',expires:30});
 			return false; 
 		});		
 		$('#site-desc a').click(function(){
@@ -311,7 +311,7 @@ jQuery.noConflict();
 			height: 450,
 			width: 400,
 			modal: true
-		});				
+		});
 		
 		$('#report-bug-link').click(function() {
 			$('#report-bug').dialog('open');

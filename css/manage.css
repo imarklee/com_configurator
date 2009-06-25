@@ -88,7 +88,7 @@ background: transparent url(../images/normal-mode.png) no-repeat 10px 51%;
 }
 
 #shelf{
-margin: 10px 0 20px 0;
+margin: 0 0 20px 0;
 }
 #shelf #shelf-contents{
 border-top: 0;
@@ -938,6 +938,16 @@ margin: 0 0 10px 0;
 font: normal 13px/20px arial;
 color: #222;
 }
+
+
+#footer{
+overflow:hidden;
+}
+#footer img{
+width: 170px;
+float:left;
+margin-top:15px
+}
 .footer-links,
 .footer-links li{
 margin: 0;
@@ -945,17 +955,37 @@ padding: 0;
 list-style: none;
 }
 .footer-links{
-text-align: center;
-margin-top: 10px;
+float:right;
+width:750px;
+margin: 10px 0 0 10px;
 }
 .footer-links li{
-display: inline;
-margin: 0 5px 0 5px;
+display: block;
+float:left;
+margin: 0 65px 0 0;
+}
+.footer-links li.fd{
+margin: 0 0 0 0;
+}
+.footer-links li li{
+display: block;
+float:none;
+margin: 0;
 }
 .footer-links li a{
 color: #666;
 font-size: 11px;
 }
+.footer-links li h4{
+color: #999;
+font-size: 13px;
+margin:0;
+padding:0;
+}
+
+
+
+
 #uploader{
 overflow: hidden;
 }
@@ -1264,6 +1294,12 @@ width:920px;
 .docs-wrap table td td{border:1px solid #ccc;background:#eee;color:#666;}
 .docs-wrap .docs-il-outer{padding:3px 0;border:1px solid #FF9C60;background:#FFE390;color:#BB5517;}
 
+#minwidth-body .m{
+padding:0!important;
+}
+#minwidth-body .m #templateform{
+background: #000 url(../images/bokeh3.jpg) repeat-x 50% 0;
+}
 
 #minwidth-body.full-mode{position:relative;background:#0c0c0c;}
 #minwidth-body.full-mode #border-top,
@@ -1288,4 +1324,64 @@ background:#0c0c0c;
 background:#0c0c0c;
 padding:0;
 margin:0;
+}
+
+#top{
+height: 90px;
+overflow:hidden;
+}
+#branding{
+width:200px;
+float:left;
+height: 90px;
+}
+#branding img{
+margin-top: 15px;
+}
+#quicktips{
+width:500px;
+float:right;
+background: transparent url(../images/top-maskot.png) no-repeat 98% 2%;
+height: 90px;
+position:relative;
+}
+#tips{
+padding: 7px;
+color:#222;
+margin: 15px 100px 0 0;
+position:absolute;
+top: 0;
+left: 0;
+width: 400px;
+height: 80px;
+}
+#quicktips .inner{
+background: #fff;
+margin: 13px 100px 0 0;
+filter: alpha(opacity=75);
+opacity: .65;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+position:absolute;
+top: 0;
+left: 0;
+width: 400px;
+height: 65px;
+}
+#tips h4{
+font:bold 13px arial;
+margin:0 0 2px 3px;
+}
+#tips p{
+font:normal 11px/15px arial;
+margin:0 0 0 3px;
+}
+#tips a{
+background: transparent url(../images/close-tip.png) no-repeat;
+width:15px;
+height:15px;
+display:block;
+position:absolute;
+top:5px;
+right:20px;
+text-indent:-7998px;
 }

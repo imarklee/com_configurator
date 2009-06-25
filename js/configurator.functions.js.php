@@ -1081,8 +1081,8 @@ jQuery.noConflict();
 					   			modal: true,
 					   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
 			   					overlay: {
-			   						backgroundColor: '#000', 
-			   						opacity: 0.5 
+			   						backgroundColor: '#000000', 
+			   						opacity: 0.8 
 			   					},
 								buttons: {
 									'OK': function(){
@@ -1103,7 +1103,7 @@ jQuery.noConflict();
 				   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Success</span>',
 		   					overlay: {
 		   						backgroundColor: '#000', 
-		   						opacity: 0.5 
+		   						opacity: 0.8 
 		   					}
 		   				});
 		   				

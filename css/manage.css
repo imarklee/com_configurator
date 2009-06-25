@@ -1349,6 +1349,32 @@ background:#000;
 padding:0;
 margin:0;
 }
+#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{
+position:absolute;
+top:5px;
+right:0;
+z-index:1000;
+width:145px;
+height:5px;
+float: none;
+}
+#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{
+background: #000;
+}
+#minwidth-body.full-mode #toolbar-box #toolbar .toolbar span{
+display:none;
+}
+#minwidth-body.full-mode #toolbar-box #toolbar .toolbar a{
+border:1px solid #444;
+background: #222;
+color:#eee;
+}
+#minwidth-body.full-mode #toolbar-box #toolbar .toolbar td {
+color:#666666;
+height:25px;
+padding:0;
+text-align:center;
+}
 
 #top{
 height: 90px;

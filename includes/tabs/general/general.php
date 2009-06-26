@@ -10,5 +10,9 @@
 		
 		<h4>Vote for your favorite themelets!</h4>
 		<p>Checkout our <a href="http://www.joomlajunkie.com/themelets" title="clicking this link will open the voting site in a new window." target="_blank">themelet voting site</a> and cast your vote for which themelets should be coded next!</p>
+
+
+		<p><a href="#" class="upload-themelet">Install a new themelet</a> - <a href="#" class="themelet-tab">Customize your themelet</a></p>
+
 	</div>
 </div>

@@ -11,6 +11,6 @@
 		<p>We highly recommended that you click on the help icon next to the "<strong>Logo type</strong>" option and take a minute to read over the different the different ways you can output your sites logo. </p>		
 		<h4>Why the ie6 logo option?</h4>
 		<p>The ie6 alternate logo option is a way that you can use a transparent png for all modern browsers that support transparency properly and then use a transparent gif, which isnt as smooth, but works.</p>
-		<p><a href="#" class="upload-logo">Upload a new logo</a></p>
+		<p><a href="#" class="upload-logo">Upload a new logo</a> - <a href="#" class="masthead-tab">Configure your main header tab</a></p>
 	</div>
 </div>

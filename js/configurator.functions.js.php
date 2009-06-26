@@ -28,7 +28,6 @@ jQuery.noConflict();
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');
 		$('#login-details').corners('5px');	
-		$(".buttons li a").corners("5px");
 		$('#minwidth-body .m #templateform').corners('7px');	
 		$('#tips .inner').corners('7px');	
 		$("#tabs .primary.ui-tabs-nav li a").corners("7px top");
@@ -38,11 +37,14 @@ jQuery.noConflict();
 		$("#shelf.open #utilities").corners("7px top");
 		$("#shelf.closed #utilities").corners("7px");
 		$("ul.assets-headers").corners("5px top");
+		$("a.btn-link").corners("10px");
 
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
-		
+//		if ($("#install-type input").hasClass("focus")){
+//		$("#install-type label").addClass("active-radio");
+//		}	
 		$(".upload-themelet").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
@@ -305,14 +307,14 @@ jQuery.noConflict();
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")
-		.hover(
-			function(){ 
-				$(this).addClass("ui-state-hover"); 
-			},
-			function(){ 
-				$(this).removeClass("ui-state-hover"); 
-			}
-		)
+//		.hover(
+//			function(){ 
+//				$(this).addClass("ui-state-hover"); 
+//			},
+//			function(){ 
+//				$(this).removeClass("ui-state-hover"); 
+//			}
+//		)
 		.mousedown(function(){
 				$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
 				if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }

@@ -1431,9 +1431,77 @@ jQuery.noConflict();
 					
 			}	
 		}
-		LogoOptions();
+		$(function(){ LogoOptions(); });
 		
+		function blockSettingsOptions(elid, hideid){
 		
+			$(hideid+'_gridsplit').parent().css('display', 'none');
+			$(hideid+'_equalize1').parent().css('display', 'none');
+			
+			$(elid).change(function(){
+				var option = $(this).val();
+				switcher(option);
+			});
+			
+			switcher($(elid+' > option:selected').val());
+			
+			function switcher(v){
+				switch(v){
+					case 'custom2':
+						$(hideid+'_gridsplit').parent().css('display', 'block');
+						$(hideid+'_equalize1').parent().css('display', 'block');
+					break;
+					case 'custom3':
+						$(hideid+'_gridsplit').parent().css('display', 'block');
+						$(hideid+'_equalize1').parent().css('display', 'block');
+					break;
+					default:
+						$(hideid+'_gridsplit').parent().css('display', 'none');
+						$(hideid+'_equalize1').parent().css('display', 'none');
+				}
+			}
+		}
+		$(function(){ 
+			blockSettingsOptions('#toolbartoolbar_chrome','#toolbartoolbar');
+			blockSettingsOptions('#masterheadmasthead_chrome','#masterheadmasthead');
+			blockSettingsOptions('#subheadsubhead_chrome','#subheadsubhead');
+			blockSettingsOptions('#topnavtopnav_chrome','#topnavtopnav');
+			blockSettingsOptions('#shelvestopshelf_chrome','#shelvestopshelf');
+			blockSettingsOptions('#shelvesbottomshelf_chrome','#shelvesbottomshelf');
+			blockSettingsOptions('#inlineshelvesuser1_chrome','#inlineshelvesuser1');
+			blockSettingsOptions('#inlineshelvesuser2_chrome','#inlineshelvesuser2');
+			blockSettingsOptions('#insetsinset1_chrome','#insetsinset1');
+			blockSettingsOptions('#insetsinset2_chrome','#insetsinset2');
+			blockSettingsOptions('#insetsinset3_chrome','#insetsinset3');
+			blockSettingsOptions('#insetsinset4_chrome','#insetsinset4');
+			blockSettingsOptions('#footerfooter_chrome','#footerfooter');
+		});
+		
+		function sliderOptionsOn(elid, hideid){
+			if($(elid).attr('checked')){
+				$(hideid).parent().css('display', 'block');
+			}
+			$(elid).click(function(){
+				$(hideid).parent().css('display', 'block');
+			});
+		}
+		function sliderOptionsOff(elid, hideid){
+			if($(elid).attr('checked')){
+				$(hideid).parent().css('display', 'none');
+			}
+			$(elid).click(function(){
+				$(hideid).parent().css('display', 'none');
+			});
+		}
+		
+		$(function(){
+			sliderOptionsOn('#toolbartoolbar_slider1','#toolbartoolbar_slider_text');
+			sliderOptionsOff('#toolbartoolbar_slider0','#toolbartoolbar_slider_text');
+			sliderOptionsOn('#shelvesbottomshelf_slider1','#shelvesbottomshelf_slider_text');
+			sliderOptionsOff('#shelvesbottomshelf_slider0','#shelvesbottomshelf_slider_text');
+			sliderOptionsOn('#shelvestopshelf_slider1','#shelvestopshelf_slider_text');
+			sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
+		});
 		
 		/**
 		/ Third Party Function

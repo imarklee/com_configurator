@@ -48,6 +48,22 @@ jQuery.noConflict();
 		});
 
 		$('#quicktips a').click(function(){
+			$(this).after('<div id="tips-dialog">Tips can be re-enabled in the Preferences.</div>');
+			$('#tips-dialog').dialog({
+				bgiframe: true,
+				modal: true,
+				maxHeight: 100,
+				buttons: {
+					'Ok': function(){
+						$(this).dialog('destroy');
+					}
+				},
+				overlay: {
+					'background-color': '#000',
+					opacity: 0.9
+				},
+				title: 'Tips'
+			});
 			$('#tips').remove();
 			$.cookie('tips', true,{path:'/',expires:30});
 			return false; 
@@ -1212,6 +1228,24 @@ jQuery.noConflict();
 			});
 			return false;
 		});	
+		
+		/* Tips ----------------------------
+		--------------------------------- */
+		fader = function (selector, speed, seconds) {
+            $(selector).hide();
+            var i = $(selector).length - 1;
+            var toggle = function() {
+                    $(selector).eq(i).fadeOut(speed, function() {
+                            i = ++i % $(selector).length;
+                            $(selector).eq(i).fadeIn(speed, function() {
+                                    setTimeout(toggle, seconds*1000)
+                            });
+
+                    });
+            };                      
+            toggle();
+        };
+        new fader('#tips-content p', 'slow', 3);
 		
 		
 		/* Conditionals --------------------

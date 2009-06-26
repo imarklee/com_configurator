@@ -17,7 +17,7 @@ $themelet_arr = $themelet_details['install'];
 $component_arr = $component_details['install'];
 ?>
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
-	<div id="utilities" class="ui-widget-header">
+	<div id="utilities">
 			<ul>
 				<li class="logged-in">Logged in as: <strong><?php echo $_COOKIE['am_logged_in_user']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a></li>
 				<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf"><?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Open Shelf'; } ?></a></li>
@@ -26,7 +26,7 @@ $component_arr = $component_details['install'];
 				<li class="full-mode" id="fullscreen"><a href="#" title="" id="screenmode">Fullscreen Mode</a></li>
 			</ul>
 		</div>
-		<div id="shelf-contents" class="ui-widget-content">
+		<div id="shelf-contents">
 		<div id="updates-summary">
 			<h3>Updates summary</h3>
 				<dl>

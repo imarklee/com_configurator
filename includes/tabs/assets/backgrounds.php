@@ -47,9 +47,9 @@ if(is_dir($background_dir)) {
 					<li class="tl-date"><strong>Height: </strong><?php echo $background_height; ?>px</li>
 				</ul>
 				<ul class="buttons">
-					<li class="btn-activate"><a href="#" title="Activate background" class="btn-link">Activate</a></li>
-					<li class="btn-delete"><a href="#" title="Delete background" class="btn-link">Delete</a></li>
-					<li class="btn-preview"><a href="<?php echo $background_src; ?>" title="Preview background" class="btn-link">Preview</a></li>
+					<li class="btn-activate"><a href="#" title="Activate background">Activate</a></li>
+					<li class="btn-delete"><a href="#" title="Delete background">Delete</a></li>
+					<li class="btn-preview"><a href="<?php echo $background_src; ?>" title="Preview background">Preview</a></li>
 				</ul>
 			</li>
 			<?php } ?>

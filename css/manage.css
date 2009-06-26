@@ -27,6 +27,18 @@ overflow: hidden;
 height: 30px;
 background: #ccc url(../images/gradient1.jpg) repeat-x;
 }
+#shelf.open #utilities{
+-moz-border-radius-bottomleft:0;
+-moz-border-radius-bottomright:0;
+-moz-border-radius-topleft:7px;
+-moz-border-radius-topright:7px;
+}
+#shelf.closed #utilities{
+-moz-border-radius-bottomleft:7px;
+-moz-border-radius-bottomright:7px;
+-moz-border-radius-topleft:7px;
+-moz-border-radius-topright:7px;
+}
 #utilities ul{
 overflow: hidden;
 margin-left: 10px;
@@ -89,7 +101,8 @@ background: transparent url(../images/full-mode.png) no-repeat 10px 51%;
 #utilities .normal-mode a{
 background: transparent url(../images/normal-mode.png) no-repeat 10px 51%;
 }
-
+#fullscreen{
+}
 #shelf{
 margin: 0 0 20px 0;
 }
@@ -677,8 +690,6 @@ padding: 0;
 #assets .thumb-view li.tl-active ul.buttons li.btn-delete a,
 #assets .thumb-view li.tl-active ul.buttons li.btn-delete a:hover{
 cursor: default;
-color: #fff;
-background-color: transparent;
 }
 #assets .thumb-view ul.buttons li.btn-preview{
 display: none;
@@ -857,24 +868,22 @@ display: block;
 width: 110px;
 }
 #assets .list-view ul.buttons li.btn-activate a{
-margin-left: 30px;
+margin-left: 3px;
 }
 #assets .list-view li.tl-active ul.buttons li.btn-activate a,
 #assets .list-view li.tl-active ul.buttons li.btn-activate a:hover,
 #assets .list-view li.tl-active ul.buttons li.btn-delete a,
 #assets .list-view li.tl-active ul.buttons li.btn-delete a:hover{
 cursor: default;
-color: #fff;
-background-color: transparent;
 }
 #assets .list-view ul.buttons li.btn-delete{
-width: 110px;
+width: 103px;
 }
 #assets .list-view ul.buttons li.btn-delete a{
-margin-left: 35px;
+margin-left: -3p;
 }
 #assets .list-view ul.buttons li.btn-preview{
-width: 115px;
+width: 75px;
 display: block;
 border-right:0;
 }
@@ -1403,6 +1412,7 @@ opacity:0.9;
 .logo-preview span {display: none;}
 .logo-preview:hover span { display: block; }
 
+#wrap .thumb-view ul.buttons li a,
 #wrap a.btn-link{
 background: #fff url(../images/btn-link-bg.jpg) repeat-x;
 font: bold 11px/25px arial;
@@ -1411,6 +1421,7 @@ text-decoration: none;
 color: #444;
 padding: 4px 8px;
 }
+#wrap .thumb-view ul.buttons li a:hover,
 #wrap a.btn-link:hover{
 background: #fff url(../images/btn-link-bg-over.jpg) repeat-x;
 color: #666;

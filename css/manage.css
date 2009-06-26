@@ -74,6 +74,9 @@ color: #222;
 background: transparent url(../images/toggle.png) no-repeat 10px 51%;
 padding: 0 10px 0 30px;
 }
+#shelf.closed #utilities .toggle-shelf a{
+background: transparent url(../images/toggle-open.png) no-repeat 10px 51%;
+}
 #utilities .report-bug a{
 background: transparent url(../images/bug.png) no-repeat 10px 51%;
 }

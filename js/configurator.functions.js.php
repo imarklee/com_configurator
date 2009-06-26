@@ -110,10 +110,21 @@ jQuery.noConflict();
 		return false;
 		});	
 		
+		if($.cookie('fullscreen') == 'true'){
+			$('#minwidth-body').addClass('full-mode');
+			$('#screenmode').text('Normal Mode');
+		}
+		
 		$('#fullscreen').click(function(){
 			$('#minwidth-body').toggleClass("full-mode");
 			$('#fullscreen').toggleClass("normal-mode");
-			if($('#screenmode').text() == 'Fullscreen Mode'){ $('#screenmode').text('Normal Mode'); }else{ $('#screenmode').text('Fullscreen Mode'); }
+			if($('#screenmode').text() == 'Fullscreen Mode'){ 
+				$('#screenmode').text('Normal Mode'); 
+				$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
+			}else{ 
+				$('#screenmode').text('Fullscreen Mode'); 
+				$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
+			}
 			return false; 
 		});
 

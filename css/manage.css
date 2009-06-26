@@ -1399,16 +1399,6 @@ text-indent:-7998px;
 background:#000000 none repeat scroll 0 0;
 opacity:0.9;
 }
-
-#wrap a.btn-link{
-background: #fff url(../images/btn-link-bg.jpg) repeat-x;
-font: bold 11px/25px arial;
-border: 1px solid #ccc;
-text-decoration: none;
-color: #444;
-padding: 4px 8px;
-}
-#wrap a.btn-link:hover{
-background: #fff url(../images/btn-link-bg-over.jpg) repeat-x;
-color: #666;
-}
+.logo-preview { display: block; width: 100px; height: 16px; background: transparent url(../images/ico_eye.png) no-repeat 0 0; position:absolute;top:7px; right: 100px;}
+.logo-preview span {display: none;}
+.logo-preview:hover span { display: block; }

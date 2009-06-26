@@ -225,7 +225,7 @@ textarea{width:195px!important;}
 #wb-footer{height:10px;}
 .wb-footer-black { background: #000; }
 
-.logo-preview { width: 16px; height: 16px; background: transparent url('../images/ico_eye.png') no-repeat 0 0; position:absolute;top:7px; right: 65px;}
+.logo-preview { display: block; border: 1px solid red;width: 16px; height: 16px; background: transparent url(../images/ico_eye.png) no-repeat 0 0; position:absolute;top:7px; right: 65px; !important}
 
 #conf-login {position:relative;background:#9d9e9e;color:#313131;width:100%;padding: 1px 0;display:block;text-align:center;}
 #conf-login h2 { margin-top:40px; font:bold 32px Arial; }

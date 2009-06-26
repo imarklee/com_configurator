@@ -112,10 +112,21 @@ jQuery.noConflict();
 		return false;
 		});	
 		
+		if($.cookie('fullscreen') == 'true'){
+			$('#minwidth-body').addClass('full-mode');
+			$('#screenmode').text('Normal Mode');
+		}
+		
 		$('#fullscreen').click(function(){
 			$('#minwidth-body').toggleClass("full-mode");
 			$('#fullscreen').toggleClass("normal-mode");
-			if($('#screenmode').text() == 'Fullscreen Mode'){ $('#screenmode').text('Normal Mode'); }else{ $('#screenmode').text('Fullscreen Mode'); }
+			if($('#screenmode').text() == 'Fullscreen Mode'){ 
+				$('#screenmode').text('Normal Mode'); 
+				$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
+			}else{ 
+				$('#screenmode').text('Fullscreen Mode'); 
+				$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
+			}
 			return false; 
 		});
 
@@ -278,9 +289,9 @@ jQuery.noConflict();
 					$(this).prev().val('#'+hex);
 					$('#'+cp).fadeOut(500);
 				},
-				onHide: function () {
-					return false;
-				},
+//				onHide: function () {
+					//
+//				},
 				onChange: function (hsb, hex, rgb) {
 					$(elid).prev().val('#'+hex);
 					$(elid).css('background-color', '#' + hex);
@@ -288,12 +299,12 @@ jQuery.noConflict();
     		}).bind('keyup', function(){ // set colour picker to use current value
 				$(elid).ColorPickerSetColor($(this).prev().val());
 			});
-		
     	}
     	
     	$('a.picker').click(function(){
        		loadColourPicker($(this).prev());
     		$('.colorpicker').css({
+    			'display': 'block',
     			'z-index': '9999',
     			'position': 'relative',
     			'bottom': '33px',
@@ -303,7 +314,6 @@ jQuery.noConflict();
     		$('#'+cp).css('display','block');
     		return false;
     	});
-     	 
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")
@@ -713,11 +723,18 @@ jQuery.noConflict();
 	   	
 	   	$('ul.assets-list ul.buttons li.btn-preview a').each(function(){
 	   		
-	   		var title = $(this).attr('href');
+	   		if($(this).hasClass('assets-logo-preview')){
+	   			imWidth = '';
+	   			imHeight = '';
+	   		}else{
+	   			imWidth = '200';
+	   			imHeight = '133';
+	   		}
 	   		
+	   		var title = $(this).attr('href');
 	   		var content = '<img src="';
      		content += title;
-      		content += '" alt="Loading thumbnail..." height="133" width="200" />';
+      		content += '" alt="Loading thumbnail..." height="'+imHeight+'" width="'+imWidth+'" />';
 	   		
 	   		$(this).qtip({
 	   		     content: content,
@@ -736,8 +753,8 @@ jQuery.noConflict();
          			},
          			padding: '0px',
          			margin: '0px',
-         			width: '200px',
-         			height: '133px'
+         			//width: '200px',
+         			//height: '133px'
 				}
 
 			});
@@ -927,12 +944,12 @@ jQuery.noConflict();
 	    function logoPreview(elid){
 	    	var imageTitle  = $(elid).val(); 
 	    	var updatedTitle = imageTitle;
-	    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;</span>');
+	    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span>');
 	    	$('.logo-preview').each(function(){
-	    		$(this).attr('title', '');
+				$(this).attr('title', '');
 	    		$(this).qtip({
 	       		    content: '<img src="../templates/morph/assets/logos/'+updatedTitle+'" />',
-				    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
+				    position: { corner: { tooltip: 'bottomMiddle', target: 'topLeft' } },
 					    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0 0 0 0', margin: '0 0 0 0' },
 				});
 			});

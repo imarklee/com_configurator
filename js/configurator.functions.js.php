@@ -46,6 +46,7 @@ jQuery.noConflict();
 			if($('#screenmode').text() == 'Fullscreen Mode'){ $('#screenmode').text('Normal Mode'); }else{ $('#screenmode').text('Fullscreen Mode'); }
 			return false; 
 		});
+
 		$('#quicktips a').click(function(){
 			$('#tips').remove();
 			$.cookie('tips', true,{path:'/',expires:30});

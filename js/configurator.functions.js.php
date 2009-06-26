@@ -39,6 +39,42 @@ jQuery.noConflict();
 		$("#shelf.open #utilities").corners("10px top");
 		$("#shelf.closed #utilities").corners("10px");
 		$("ul.assets-headers").corners("5px top");
+
+		$(".upload-themelet").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#tools-tabs").tabs();
+		maintabs.tabs("select",3);
+		subtabs.tabs("select",0);
+		$("#upload_themelet").attr("checked",true);
+		return false;
+		});
+				
+		$(".upload-logo").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#tools-tabs").tabs();
+		maintabs.tabs("select",3);
+		subtabs.tabs("select",0);
+		$("#upload_logo").attr("checked",true);
+		return false;
+		});
+
+		$(".upload-bg").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#tools-tabs").tabs();
+		maintabs.tabs("select",3);
+		subtabs.tabs("select",0);
+		$("#upload_background").attr("checked",true);
+		return false;
+		});
+
+		$(".logo-tab").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#tools-tabs").tabs();
+		maintabs.tabs("select",3);
+		subtabs.tabs("select",0);
+		return false;
+		});
+		
 		
 		$('#fullscreen').click(function(){
 			$('#minwidth-body').toggleClass("full-mode");

@@ -1,4 +1,22 @@
 <?php
+
+function showTips(){
+	$f = ('../administrator/components/com_configurator/includes/tips.txt');
+	$fo = fopen($f, 'r');
+	while($tips = fgets($fo)){
+		$tips_array[] = $tips;
+	}
+	fclose($fo);
+	return $tips_array;
+}
+function array_shuffle($array) {
+    if (shuffle($array)) {
+        return $array;
+    } else {
+        return FALSE;
+    }
+} 
+
 function formatBytes($bytes, $precision = 2) {
     $units = array('b', 'kb', 'mb', 'gb', 'tb');
   

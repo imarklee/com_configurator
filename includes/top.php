@@ -7,7 +7,14 @@
 		<div id="tips">
 			<div class="inner">
 				<h4>Quick tips on using Morph &amp; Configurator:</h4>
-				<p>You can upload &amp; install your own custom backgrounds, logos, themelets or favicons using the universal install in the toolbox tab.</p>
+				<div id="tips-content">
+				<?php
+				 
+					foreach(array_shuffle(showTips()) as $tip){
+						echo '<p>'.$tip.'</p>';
+					}
+				?>
+				</div>
 				<a href="#"><span>close </span>x</a>
 			</div>
 		</div>

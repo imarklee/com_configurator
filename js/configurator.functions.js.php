@@ -1364,6 +1364,12 @@ jQuery.noConflict();
 				$('#logo-options li #logoslogan_fontsize').parent().css('display', 'none');
 				$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'none');
 			});
+			$('#logo-options li #logodisplay_ie_logo1').click(function(){
+				$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
+			});
+			$('#logo-options li #logodisplay_ie_logo0').click(function(){
+				$('#logo-options li #logologo_image_ie').parent().css('display', 'none');
+			});
 			
 			function switcher(v){
 				switch(v){
@@ -1372,7 +1378,7 @@ jQuery.noConflict();
 					$('#logo-options li.heading').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
 					$('#logo-options li #logologo_image').parent().css('display', 'block');
-					$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
+					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
 					$('#logo-options li #logologo_alttext').parent().css('display', 'block');
 					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
@@ -1391,7 +1397,7 @@ jQuery.noConflict();
 					$('#logo-options li.heading').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
 					$('#logo-options li #logologo_image').parent().css('display', 'block');
-					$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
+					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
 					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
 					break;
@@ -1401,8 +1407,28 @@ jQuery.noConflict();
 					$('#logologo_type').parent().css('display', 'block');
 					break;
 				}
-			}
-			
+				
+				if($('#logo-options li #logodisplay_slogan0').attr('checked') == 'checked'){
+					$('#logo-options li #logoslogan_text').parent().css('display', 'none');
+					$('#logo-options li #logoslogan_textcolor').parent().css('display', 'none');
+					$('#logo-options li #logoslogan_fontsize').parent().css('display', 'none');
+					$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'none');
+				}
+				if($('#logo-options li #logodisplay_slogan1').attr('checked')){
+					$('#logo-options li #logoslogan_text').parent().css('display', 'block');
+					$('#logo-options li #logoslogan_textcolor').parent().css('display', 'block');
+					$('#logo-options li #logoslogan_fontsize').parent().css('display', 'block');
+					$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'block');
+				}
+				
+				if($('#logo-options li #logodisplay_ie_logo1').attr('checked')){
+					$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
+				}
+				if($('#logo-options li #logodisplay_ie_logo0').attr('checked')){
+					$('#logo-options li #logologo_image_ie').parent().css('display', 'none');
+				}
+					
+			}	
 		}
 		LogoOptions();
 		

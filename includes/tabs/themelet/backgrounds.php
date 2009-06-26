@@ -7,6 +7,7 @@
 	<div id="backgrounds-info" class="info-panel">
 		<h3>Backgrounds overview</h3>
 		<p class="teaser">These options allow you to easily customize your sites background.</p>
+		<p><a href="#" class="upload-bg">Upload a new background image</a></p>
 
 		<p>Looking for a custom background image? Here is a list of our favorite (free) background pattern generators:</p>
 		

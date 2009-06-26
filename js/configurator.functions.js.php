@@ -31,15 +31,18 @@ jQuery.noConflict();
 		$(".buttons li a").corners("5px");
 		$('#minwidth-body .m #templateform').corners('7px');	
 		$('#tips .inner').corners('7px');	
-	
-		$("#tabs .primary.ui-tabs-nav li a").corners("10px top");
-		$("#shelf-contents").corners("10px bottom");
+		$("#tabs .primary.ui-tabs-nav li a").corners("7px top");
+		$("#shelf-contents").corners("7px bottom");
 		$("#element-box .m").corners("7px");
-		$("#shelf").corners("10px");
-		$("#shelf.open #utilities").corners("10px top");
-		$("#shelf.closed #utilities").corners("10px");
+		$("#shelf").corners("7px");
+		$("#shelf.open #utilities").corners("7px top");
+		$("#shelf.closed #utilities").corners("7px");
 		$("ul.assets-headers").corners("5px top");
 
+		if ($("#backgroundsbg_image option:first").val() == ""){
+		$("#backgroundsbg_image option:first").text("Use themelets default");
+		}
+		
 		$(".upload-themelet").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
@@ -69,26 +72,48 @@ jQuery.noConflict();
 
 		$(".logo-tab").click(function(){
 		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",3);
+		var subtabs = $("#themelet-tabs").tabs();
+		maintabs.tabs("select",1);
+		subtabs.tabs("select",1);
+		return false;
+		});
+		
+		$(".masthead-tab").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#blocks-tabs").tabs();
+		maintabs.tabs("select",2);
+		subtabs.tabs("select",1);
+		return false;
+		});		
+
+		$(".themelet-tab").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#themelet-tabs").tabs();
+		maintabs.tabs("select",1);
 		subtabs.tabs("select",0);
 		return false;
 		});
 		
-		if($.cookie('fullscreen') == 'true'){
-			$('#minwidth-body').addClass('full-mode');
-			$('#screenmode').text('Normal Mode');
-		}
+		$(".topnav-tab").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#blocks-tabs").tabs();
+		maintabs.tabs("select",2);
+		subtabs.tabs("select",3);
+		return false;
+		});		
+
+		$(".menu-tab").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#themelet-tabs").tabs();
+		maintabs.tabs("select",1);
+		subtabs.tabs("select",3);
+		return false;
+		});	
+		
 		$('#fullscreen').click(function(){
 			$('#minwidth-body').toggleClass("full-mode");
 			$('#fullscreen').toggleClass("normal-mode");
-			if($('#screenmode').text() == 'Fullscreen Mode'){ 
-				$('#screenmode').text('Normal Mode'); 
-				$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
-			}else{ 
-				$('#screenmode').text('Fullscreen Mode'); 
-				$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
-			}
+			if($('#screenmode').text() == 'Fullscreen Mode'){ $('#screenmode').text('Normal Mode'); }else{ $('#screenmode').text('Fullscreen Mode'); }
 			return false; 
 		});
 
@@ -231,6 +256,8 @@ jQuery.noConflict();
 		$('#assets-tabs').tabs({
 			fx: { opacity: 'toggle' },			cookie: {				name: 'assets-tabs',				expires: 30,				path: '/',		 	} 		});
 		
+		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
+
 		/* Colour Picker ----------------------
 	    ------------------------------------ */
 		function loadColourPicker(elid) {
@@ -566,7 +593,7 @@ jQuery.noConflict();
 			
 	   	});
 	   	
-	   	$('li a.modal-link').each(function(){
+	   	$('a.modal-link').each(function(){
 	   	
 	   		$(this).click(function(){ return false; });
 	    

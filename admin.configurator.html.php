@@ -98,8 +98,8 @@ function manage( &$params, &$lists, $morph_installed ) {
 						</ul>-->
 						<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 							<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
-							<li class="themelet-icon"><a href="#themelets">Themelet Settings</a></li>
-							<li class="blocks-icon"><a href="#blocks">Block Settings</a></li>
+							<li class="themelet-icon"><a href="#themelets">Customization</a></li>
+							<li class="blocks-icon"><a href="#blocks">Building Blocks</a></li>
 							<li class="tools-icon"><a href="#tools">Toolbox</a></li>
 							<li class="assets-icon"><a href="#assets">Your Assets</a></li>
 							<li class="help-icon last"><a href="#help">Help &amp; Support</a></li>
@@ -111,13 +111,11 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<?php if (!isset ($_COOKIE['site-desc'])) { include 'includes/tabs/desc/desc-site.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
 										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">general</a></li>
-										<li><a href="#logos-tab">configure your logo</a></li>
 										<li><a href="#progressive-tab">progressive enhancements</a></li>
 										<li><a href="#performance-tab">performance tuning</a></li>
 										<li><a href="#debugging-tab">debugging</a></li>
 									</ul>
 									<?php include 'includes/tabs/general/general.php' ?>
-									<?php include 'includes/tabs/general/logos.php' ?>
 									<?php include 'includes/tabs/general/progressive.php' ?>
 									<?php include 'includes/tabs/general/performance.php' ?>
 									<?php include 'includes/tabs/general/debugging.php' ?>
@@ -128,11 +126,13 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="themelet-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['themelet-desc'])) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#colors-tab">customizing colors</a></li>
-										<li><a href="#backgrounds-tab">your sites background</a></li>
-										<li><a href="#menus-tab">working with menus</a></li>
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#colors-tab">color settings</a></li>
+										<li><a href="#logos-tab">logo settings</a></li>
+										<li><a href="#backgrounds-tab">background settings</a></li>
+										<li><a href="#menus-tab">menu settings</a></li>
 									</ul>
 									<?php include 'includes/tabs/themelet/colors.php' ?>
+									<?php include 'includes/tabs/general/logos.php' ?>
 									<?php include 'includes/tabs/themelet/backgrounds.php' ?>
 									<?php include 'includes/tabs/themelet/menus.php' ?>
 								</div>

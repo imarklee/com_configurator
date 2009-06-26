@@ -50,7 +50,7 @@ if(is_dir($logo_dir)) {
 				<ul class="buttons">
 					<li class="btn-activate"><a href="#" title="Activate Logo">Activate</a></li>
 					<li class="btn-delete"><a href="#" title="Delete Logo">Delete</a></li>
-					<li class="btn-preview"><a href="<?php echo $logo_src; ?>" title="Preview Logo">Preview</a></li>
+					<li class="btn-preview"><a class="assets-logo-preview" href="<?php echo $logo_src; ?>" title="Preview Logo">Preview</a></li>
 				</ul>
 			</li>
 			<?php } ?>

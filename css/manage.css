@@ -1433,3 +1433,6 @@ text-indent:-7998px;
 background:#000000 none repeat scroll 0 0;
 opacity:0.9;
 }
+.logo-preview { display: block; width: 100px; height: 16px; background: transparent url(../images/ico_eye.png) no-repeat 0 0; position:absolute;top:7px; right: 100px;}
+.logo-preview span {display: none;}
+.logo-preview:hover span { display: block; }

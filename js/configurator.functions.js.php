@@ -43,9 +43,9 @@ jQuery.noConflict();
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
-//		if ($("#install-type input").hasClass("focus")){
-//		$("#install-type label").addClass("active-radio");
-//		}	
+		$("#install-type input[type=radio]").click(function(){
+		$(this).parent().addClass("active-radio");
+		});	
 		$(".upload-themelet").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
@@ -1066,13 +1066,18 @@ jQuery.noConflict();
 										var days;
 										var member_id = rdata.data.member_id;
 										var member_data = rdata.data.sdata;
+										var member_email = rdata.data.email;
+										var member_name = rdata.data.name_f;
+										var member_surname = rdata.data.name_l;
 										
 										if(setcookie == true){ days = 365; }else{ days = null; }
 										
 										$.cookie('am_logged_in', 'true', { path: '/', expires: days });
 										$.cookie('am_logged_in_user', username, { path: '/', expires: days });
 										$.cookie('member_id', member_id, { path: '/', expires: days });
-										$.cookie('member_data', member_data, { path: '/', expires: days });
+										$.cookie('member_email', member_email, { path: '/', expires: days });
+										$.cookie('member_name', member_name, { path: '/', expires: days });
+										$.cookie('member_surname', member_surname, { path: '/', expires: days });
 									
 										// db
 										var mem_screen_res = screen.width+'x'+screen.height

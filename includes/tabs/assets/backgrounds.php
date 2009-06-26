@@ -11,9 +11,8 @@ if(is_dir($background_dir)) {
 ?>
 <div id="assets-backgrounds" class="ui-tabs-hide">
 	<div id="backgrounds-switch" class="switch">
-		<h2>Backgrounds</h2>
-		<p class="assets-location">Your backgrounds are located in: <strong>"<?php echo $background_dir; ?>"</strong>.</p>
-		<a href="#" class="switch_thumb">Switch View</a>
+		<h2>Manage your assets: <strong>Backgrounds</strong></h2>
+		<p><a href="#" class="backgrounds-link btn-link">Customize background settings</a>&nbsp;&nbsp;<a href="#" class="upload-background btn-link">Upload a new background</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>
 	</div>
 	
 	<div id="backgrounds-list" class="assets-layout <?php if(isset($_COOKIE['backgrounds-view']) && $_COOKIE['backgrounds-view'] == 'list') { echo 'list-view'; } else { echo 'thumb-view'; } ?>">
@@ -54,5 +53,6 @@ if(is_dir($background_dir)) {
 			</li>
 			<?php } ?>
 		</ul>
+	<!--<p class="assets-location">Your backgrounds are located in: <strong>"<?php echo $background_dir; ?>"</strong>.</p>-->
 	</div>
 </div>

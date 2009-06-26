@@ -24,7 +24,7 @@ jQuery.noConflict();
 		$("#tabs ol.forms li:first-child").addClass("first");		
 		$("#tabs ol.forms li:last-child").addClass("last");		
 		$("#tabs ol.forms li:odd").addClass("alt");	
-		$("#assets-tabs ul.assets-list li:odd").addClass("alt");			
+		$("#assets-tabs ul.assets-list li:even").addClass("alt");			
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');
 		$('#login-details').corners('5px');	
@@ -38,6 +38,7 @@ jQuery.noConflict();
 //		$("#shelf.closed #utilities").corners("7px");
 		$("ul.assets-headers").corners("5px top");
 		$("a.btn-link").corners("10px");
+		$("a.switch-view").corners("10px");
 		$("#assets-tabs .thumb-view ul.buttons li a").corners("10px");
 
 		if ($("#backgroundsbg_image option:first").val() == ""){
@@ -354,7 +355,7 @@ jQuery.noConflict();
 	
 		var options = { path: '/', expires: 30 };
 	
-		$("#themelet-switch a.switch_thumb").toggle(function(){
+		$("#themelet-switch a.switch-view").toggle(function(){
 			$(this).addClass("swap");
 			$("#themelets-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
@@ -371,7 +372,7 @@ jQuery.noConflict();
 		}); 
 		
 		
-		$("#backgrounds-switch a.switch_thumb").toggle(function(){
+		$("#backgrounds-switch a.switch-view").toggle(function(){
 			$(this).addClass("swap");
 			$("#backgrounds-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
@@ -387,7 +388,7 @@ jQuery.noConflict();
 			});
 		}); 
 		
-		$("#logos-switch a.switch_thumb").toggle(function(){
+		$("#logos-switch a.switch-view").toggle(function(){
 			$(this).addClass("swap");
 			$("#logos-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");

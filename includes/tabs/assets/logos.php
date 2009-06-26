@@ -12,11 +12,9 @@ if(is_dir($logo_dir)) {
 
 <div id="assets-logos" class="ui-tabs-hide">
 	<div id="logos-switch" class="switch">
-		<h2>Logos</h2>
-		<p class="assets-location">Your logos are located in: <strong>"<?php echo $logo_dir; ?>"</strong>.</p>
-		<a href="#" class="switch_thumb">Switch View</a>
+		<h2>Manage your assets: <strong>Logos</strong></h2>
+		<p><a href="#" class="logo-tab btn-link">Customize logo settings</a>&nbsp;&nbsp;<a href="#" class="upload-logo btn-link">Upload a new logo</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>
 	</div>
-	
 	<div id="logos-list" class="assets-layout <?php if(isset($_COOKIE['logos-view']) && $_COOKIE['logos-view'] == 'list') { echo 'list-view'; } else { echo 'thumb-view'; } ?>">
 		<ul id="logos-headers" class="assets-headers">
 			<li class="th-name">File name</li>
@@ -55,5 +53,6 @@ if(is_dir($logo_dir)) {
 			</li>
 			<?php } ?>
 		</ul>
+	<!--<p class="assets-location">Your logos are located in: <strong>"<?php echo $logo_dir; ?>"</strong>.</p>-->
 	</div>
 </div>

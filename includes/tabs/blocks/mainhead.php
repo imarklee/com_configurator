@@ -10,7 +10,7 @@
 		
 		<p>In most cases this area will be used for your sites branding / logo, but in order to make Morph as flexible as possible, we have given you the option to use a module position instead (branding). The module chrome option on the left is only relevant if the module option is chosen.</p>
 
-		<p><a href="#" class="upload-logo">Upload a new logo</a> - <a href="#" class="logo-tab">Configure your logo settings</a></p>
+		<p><a href="#" class="upload-logo btn-link">Upload a new logo</a>&nbsp;&nbsp;<a href="#" class="logo-tab btn-link">Configure your logo settings</a></p>
 
 	</div>
 </div>

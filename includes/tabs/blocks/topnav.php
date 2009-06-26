@@ -8,8 +8,8 @@
 		<h3>Top Navigation block</h3>
 		<p class="teaser">This block is used for your sites horizontal navigation (if enabled) &amp; can be positioned above or below the branding block.</p>
 		
-		<p>The settings this tab only control how the top navigation block is structured. In order to actually configure how your sites navigation works, you'll need to configure the <a href="http://" title="">menu tab</a>.</p>
+		<p>The settings this tab only control how the top navigation block is structured. In order to actually configure how your sites navigation works, you'll need to configure the menu tab using the link below.</p>
 
-		<p><a href="#" class="menu-tab">Configure your menu settings</a></p>
+		<p><a href="#" class="menu-tab btn-link">Configure your menu settings</a></p>
 	</div>
 </div>

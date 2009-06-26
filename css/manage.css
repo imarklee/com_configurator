@@ -137,7 +137,7 @@ background: transparent url(../images/yes.png) no-repeat;
 background: transparent url(../images/no.png) no-repeat;
 }
 #current-themelet{
-width: 285px;
+width: 270px;
 float: left;
 padding-right: 20px;
 }
@@ -174,12 +174,12 @@ position: relative;
 width: 65px;
 display: inline-block;
 }
-#current-themelet .thumb{
-position: relative;
-top: -90px;
-right: -160px;
-width: 117px;
-height: 100px;
+#current-themelet .thumb {
+height:100px;
+position:relative;
+right:-150px;
+top:-85px;
+width:117px;
 }
 #current-themelet .thumb img{
 position: absolute;
@@ -208,37 +208,16 @@ margin: 0;
 padding: 0;
 }
 #visual-refs{
-width: 370px;
+width: 375px;
 float: left;
 }
-#wrap .buttons,
-#wrap ul.buttons{
-overflow: hidden;
-margin: 0;
-padding: 0;
+.buttons li {
+display:block;
+float:left;
+margin:0 7px 5px 0!important;
 }
-#wrap ul.buttons li{
-list-style: none;
-float: left;
-display: block;
-margin: 0 10px 10px 0;
-padding: 0;
-}
-#wrap .buttons a,
-#wrap ul.buttons a{
-font: bold 11px arial;
-display: block;
-text-decoration: none;
-padding: 2px 5px;
-background: #ccc url(../images/gradient2.jpg) repeat-x scroll 0;
-border: 1px solid #636363;
-color: #ccc;
-}
-#wrap .buttons a{
-float: left;
-}
-#wrap ul.buttons a:hover{
-color: #fff;
+.buttons li.last{
+margin-right: 0!important;
 }
 #tabs.ui-tabs .ui-tabs-nav li{
 font: normal 17px Arial;
@@ -692,14 +671,6 @@ width: auto;
 margin: 0 10px 0 0;
 border: 0;
 padding: 0;
-}
-#assets .thumb-view ul.buttons li a{
-float: left;
-display: block;
-}
-#assets .thumb-view ul.buttons .btn-delete{
-}
-#assets .thumb-view ul.buttons .btn-activate{
 }
 #assets .thumb-view li.tl-active ul.buttons li.btn-activate a,
 #assets .thumb-view li.tl-active ul.buttons li.btn-activate a:hover,
@@ -1239,11 +1210,6 @@ background:#fff url(../images/help-icon.png) no-repeat 0 50%;
 #getting-started ul.key li.info-icon{
 background:#fff url(../images/info-icon.png) no-repeat 0 50%;
 }
-#tabs .modal-link{
-color:#546F29;
-text-decoration:underline;
-}
-
 #tabs .desc-overlay{
 position:absolute;
 width: 100%;
@@ -1432,4 +1398,17 @@ text-indent:-7998px;
 #minwidth-body .ui-widget-overlay {
 background:#000000 none repeat scroll 0 0;
 opacity:0.9;
+}
+
+#wrap a.btn-link{
+background: #fff url(../images/btn-link-bg.jpg) repeat-x;
+font: bold 11px/25px arial;
+border: 1px solid #ccc;
+text-decoration: none;
+color: #444;
+padding: 4px 8px;
+}
+#wrap a.btn-link:hover{
+background: #fff url(../images/btn-link-bg-over.jpg) repeat-x;
+color: #666;
 }

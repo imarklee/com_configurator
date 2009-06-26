@@ -658,8 +658,8 @@ jQuery.noConflict();
 	   		var content = '<img src="';
 	   		content += $(this).attr('href');
 	   		content += '" alt="'+title+'" height="608" width="600" />';
-	   		
-	   		$(this).qtip({
+				   		
+	   		$('.refimages').qtip({
 	   			content: {
 	   				title: {
 	   					text: title,

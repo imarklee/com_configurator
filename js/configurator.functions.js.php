@@ -34,10 +34,11 @@ jQuery.noConflict();
 		$("#shelf-contents").corners("7px bottom");
 		$("#element-box .m").corners("7px");
 		$("#shelf").corners("7px");
-		$("#shelf.open #utilities").corners("7px top");
-		$("#shelf.closed #utilities").corners("7px");
+//		$("#shelf.open #utilities").corners("7px top");
+//		$("#shelf.closed #utilities").corners("7px");
 		$("ul.assets-headers").corners("5px top");
 		$("a.btn-link").corners("10px");
+		$("#assets-tabs .thumb-view ul.buttons li a").corners("10px");
 
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
@@ -196,7 +197,7 @@ jQuery.noConflict();
 	
 		
 		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
-			$(this).fadeTo('fast', 0.2);
+			$(this).children().fadeTo('fast', 0.5);
 			$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').each(function(){
 				$(this).attr('href', '#inactive');
 				$(this).click(function(){ 

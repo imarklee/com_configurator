@@ -6,11 +6,10 @@
 	</div>
 	<div id="general-info" class="info-panel">
 		<h3>Not sure what a themelet is?</h3>
-		<p class="teaser">This is where you set your sites width and which themelet you would like to use. Themelets (also known as child themes) handle the visual aspect of Morph. <a class="modal-link" href="blockinner.html" title="What is a themelet?">Click here to learn more</a></p>
+		<p class="teaser">This is where you set your sites width and which themelet you would like to use. Themelets (also known as child themes) handle the visual aspect of Morph. <a class="modal-link" href="themelets.html" title="What is a themelet?">Click here to learn more</a></p>
 		
-		<h4>Vote for your favorite themelets!</h4>
-		<p>Checkout our <a href="http://www.joomlajunkie.com/themelets" title="clicking this link will open the voting site in a new window." target="_blank">themelet voting site</a> and cast your vote for which themelets should be coded next!</p>
-
+		<h4>Where to from here?</h4>
+		<p>New themelets can be installed from the <strong>Toolbox</strong> tab, viewed in the <strong>Assets</strong> tab and customized in the <strong>Customize</strong> tab.</p>
 
 		<p><a href="#" class="upload-themelet btn-link">Install a new themelet</a>&nbsp;&nbsp;<a href="#" class="themelet-tab btn-link">Customize your themelet</a></p>
 

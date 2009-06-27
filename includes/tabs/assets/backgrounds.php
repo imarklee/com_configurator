@@ -12,7 +12,7 @@ if(is_dir($background_dir)) {
 <div id="assets-backgrounds" class="ui-tabs-hide">
 	<div id="backgrounds-switch" class="switch">
 		<h2>Manage your assets: <strong>Backgrounds</strong></h2>
-		<p><a href="#" class="backgrounds-link btn-link">Customize background settings</a>&nbsp;&nbsp;<a href="#" class="upload-background btn-link">Upload a new background</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>
+		<p><a href="#" class="backgrounds-tab btn-link">Customize background settings</a>&nbsp;&nbsp;<a href="#" class="upload-bg btn-link">Upload a new background</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>
 	</div>
 	
 	<div id="backgrounds-list" class="assets-layout <?php if(isset($_COOKIE['backgrounds-view']) && $_COOKIE['backgrounds-view'] == 'list') { echo 'list-view'; } else { echo 'thumb-view'; } ?>">

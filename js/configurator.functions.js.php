@@ -13,10 +13,17 @@ function pageURL() {
 return $pageURL;
 }
 ?>
+
+jQuery.fn.delay = function(time,func){
+    return this.each(function(){
+        setTimeout(func,time);
+    });
+};
+
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
-	
+  		$.preloadCssImages();	
 		/* Generic ----------------------------
 	    ------------------------------------ */
 		$("#submenu li:last").addClass("last");
@@ -34,6 +41,9 @@ jQuery.noConflict();
 		$("#shelf-contents").corners("7px bottom");
 		$("#element-box .m").corners("7px");
 		$("#shelf").corners("7px");
+		$("#system-message dd.message").corners("10px");		
+		$("#system-message dd.message ul").corners("10px");		
+		$('#system-message').delay(3000, function(){$('#system-message').fadeOut()})
 //		$("#shelf.open #utilities").corners("7px top");
 //		$("#shelf.closed #utilities").corners("7px");
 		$("ul.assets-headers").corners("5px top");
@@ -45,13 +55,18 @@ jQuery.noConflict();
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
 
+	    $('').css('top', $(this).scrollTop() + "px");
+
+	    $("#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar").css("position", "fixed");
+    	$("#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar").css("top", $(window).scrollTop() + "px");
+
+
 	   $("#footer").fadeTo("slow", 0.6); // This sets the opacity of the thumbs to fade down to 30% when the page loads
 	   $("#footer").hover(function(){
 	   $(this).fadeTo("slow", 1.0); // This should set the opacity to 100% on hover
 	   },function(){
 	   $(this).fadeTo("slow", 0.6); // This should set the opacity back to 30% on mouseout
 	   });
-
 
 //		if ($("#install-type input").hasClass("focus")){
 //		$("#install-type label").addClass("active-radio");
@@ -99,6 +114,14 @@ jQuery.noConflict();
 		return false;
 		});		
 
+		$(".backgrounds-tab").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#backgrounds-tab").tabs();
+		maintabs.tabs("select",1);
+		subtabs.tabs("select",2);
+		return false;
+		});
+		
 		$(".themelet-tab").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#themelet-tabs").tabs();

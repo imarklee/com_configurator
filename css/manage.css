@@ -875,7 +875,7 @@ padding: 5px 0 0 0;
 text-align: center;
 }
 #assets .list-view ul.buttons li a{
-margin: 0 auto;
+margin: 3px auto 0 auto;
 display: block;
 }
 #assets .list-view ul.buttons li.btn-activate{
@@ -1336,7 +1336,7 @@ padding:0;
 margin:0;
 }
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{
-position:absolute;
+position: absolute;
 top:5px;
 right:0;
 z-index:1000;
@@ -1436,4 +1436,34 @@ padding: 4px 8px;
 #wrap a.btn-link:hover{
 background: #fff url(../images/btn-link-bg-over.jpg) repeat-x;
 color: #666;
+}
+
+#minwidth-body.full-mode #system-message{
+position:relative;
+z-index:11000;
+top:-190px;
+margin:0 40px 0 40px;
+background:#000;
+height:90px;
+filter: alpha(opacity=95);
+opacity: .95;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+padding-top:40px;
+}
+#minwidth-body #system-message dd.message{
+background:#648A3F url(../images/message-bg.jpg) repeat-x;
+margin:0;
+padding:0;
+border:1px solid #6C9435;
+}
+#minwidth-body #system-message dd.message ul{
+background:transparent url(../images/success.png) no-repeat 10px;
+color:#fff;
+margin:0;
+padding:7px 0 7px 0;
+font:bold 20px arial;
+border:1px solid #C0DA4E;
+}
+#minwidth-body #system-message dd.message li{
+margin-left: 15px;
 }

@@ -180,10 +180,10 @@ function manage( &$params, &$lists, $morph_installed ) {
 							<div id="assets" class="ui-tabs-hide">	
 								<div id="assets-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['assets-desc'])) { include 'includes/tabs/desc/desc-assets.php'; } ?>
-									<ul class="ui-widget-header ui-corner-all ui-helper-clearfix">
-										<li><a href="#assets-themelets" class="ui-corner-left">Themelets</a></li>
-										<li><a href="#assets-logos">Logos</a></li>
-										<li><a href="#assets-backgrounds">Backgrounds</a></li>
+									<ul class="ui-helper-clearfix">
+										<li class="icon-themelets"><a href="#assets-themelets">Themelets</a></li>
+										<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
+										<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
 									</ul>				
 									<?php include 'includes/tabs/assets/themelets.php' ?>
 									<?php include 'includes/tabs/assets/logos.php' ?>

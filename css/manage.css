@@ -576,9 +576,10 @@ margin-left: 0;
 #browse-assets .ui-tabs-panel{
 padding: 0;
 }
-
-
-
+#tabs #assets.ui-widget-content,
+#tabs #assets-tabs.ui-widget-content{
+width:920px;
+}
 
 .switch{
 overflow: hidden;
@@ -1433,7 +1434,7 @@ text-indent:-7998px;
 background:#000000 none repeat scroll 0 0;
 opacity:0.9;
 }
-.logo-preview { display: block; width: 100px; height: 16px; background: transparent url(../images/ico_eye.png) no-repeat 0 0; position:absolute;top:7px; right: 31px;}
+.logo-preview { display: block; width: 100px; height: 16px; background: transparent url(../images/eye.png) no-repeat 0 0; position:absolute;top:9px; right: 30px;}
 .logo-preview span {display: none;}
 .logo-preview:hover span { display: block; }
 
@@ -1495,25 +1496,19 @@ padding-left:31px!important;
 border-left:0 solid #fff;
 padding: 5px 11px 5px 10px;
 }
-#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.last{
-margin-right:-1px;
-padding-right:2px;
-}
 #tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active{
 border-left:1px solid #222;
 }
-#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active.last a{
-border-right:1px solid #222;
-padding-right:4px;
-margin-right:0;
-}
-
-#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active.icon-footer{
-border-right:0 solid #222;
-margin-right:-1px;
-}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer {
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer{
 border-right:0;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a{
+border-right:0;
+padding-right:14px;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer.ui-tabs-selected.ui-state-active{
+margin-right:-1px;
+padding-right:4px;
 }
 
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-general a {
@@ -1552,7 +1547,7 @@ background:transparent url(../images/acc-mhead-settings.png) no-repeat 7px 50%;
 background:transparent url(../images/acc-shead-settings.png) no-repeat 7px 50%;
 }
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-topnav a {
-background:transparent url(../images/acc-menu-settings.png) no-repeat 7px 50%;
+background:transparent url(../images/acc-topnav-settings.png) no-repeat 7px 50%;
 }
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-oshelves a {
 background:transparent url(../images/acc-oshelves-settings.png) no-repeat 7px 50%;
@@ -1571,4 +1566,16 @@ background:transparent url(../images/acc-insets-settings.png) no-repeat 7px 50%;
 }
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a {
 background:transparent url(../images/acc-footer-settings.png) no-repeat 7px 50%;
+}
+
+
+ul.morph-resources,
+ul.morph-resources li{
+margin:0;
+padding:0;
+}
+ul.morph-resources li{
+display: inline;
+list-style:none;
+padding-right:5px;
 }

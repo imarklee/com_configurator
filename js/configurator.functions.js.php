@@ -20,6 +20,8 @@ jQuery.fn.delay = function(time,func){
     });
 };
 
+
+
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
@@ -27,11 +29,30 @@ jQuery.noConflict();
 		/* Generic ----------------------------
 	    ------------------------------------ */
 		$("#submenu li:last").addClass("last");
+		$("#blocks-tabs .ui-tabs-nav li:last").addClass("last");
+		
 		$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
 		$("#tabs ol.forms li:first-child").addClass("first");		
 		$("#tabs ol.forms li:last-child").addClass("last");		
 		$("#tabs ol.forms li:odd").addClass("alt");	
-		$("#assets-tabs ul.assets-list li:even").addClass("alt");			
+
+		$("#assets-tabs #themelets-list li:even").addClass("alt");			
+		$("#assets-tabs #logos-list li:even").addClass("alt");			
+		$("#assets-tabs #backgrounds-list li:even").addClass("alt");			
+	
+//		$('#help').hover(function() {
+//		  $(this).addClass('hover');
+//		}, function() {
+//		  $(this).removeClass('hover');
+//		});
+
+$("#help").hover(function () {
+      $(this).switchClass("on", "off", 15000);
+		}, function() {
+      $(this).switchClass("off", "on", 15000);
+    });
+
+		$('#tabs .ui-tabs-panel').corners('0px 40px 40px 40px');
 		$('#conf-login').corners('5px');
 		$('#cl-inner').corners('3px');
 		$('#login-details').corners('5px');	
@@ -55,17 +76,11 @@ jQuery.noConflict();
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
 
-	    $('').css('top', $(this).scrollTop() + "px");
-
-	    $("#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar").css("position", "fixed");
-    	$("#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar").css("top", $(window).scrollTop() + "px");
-
-
-	   $("#footer").fadeTo("slow", 0.6); // This sets the opacity of the thumbs to fade down to 30% when the page loads
+	   $("#footer").fadeTo("slow", 0.3); // This sets the opacity of the thumbs to fade down to 30% when the page loads
 	   $("#footer").hover(function(){
 	   $(this).fadeTo("slow", 1.0); // This should set the opacity to 100% on hover
 	   },function(){
-	   $(this).fadeTo("slow", 0.6); // This should set the opacity back to 30% on mouseout
+	   $(this).fadeTo("slow", 0.3); // This should set the opacity back to 30% on mouseout
 	   });
 
 //		if ($("#install-type input").hasClass("focus")){
@@ -116,7 +131,7 @@ jQuery.noConflict();
 
 		$(".backgrounds-tab").click(function(){
 		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#backgrounds-tab").tabs();
+		var subtabs = $("#themelet-tabs").tabs();
 		maintabs.tabs("select",1);
 		subtabs.tabs("select",2);
 		return false;
@@ -304,7 +319,8 @@ jQuery.noConflict();
 			fx: { opacity: 'toggle' },			cookie: {				name: 'assets-tabs',				expires: 30,				path: '/',		 	} 		});
 		
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
-
+		$("#themelets").removeClass("ui-widget-content");			
+		
 		/* Colour Picker ----------------------
 	    ------------------------------------ */
 		function loadColourPicker(elid) {

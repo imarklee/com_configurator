@@ -111,10 +111,10 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="site-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['site-desc'])) { include 'includes/tabs/desc/desc-site.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">general</a></li>
-										<li><a href="#progressive-tab">progressive enhancements</a></li>
-										<li><a href="#performance-tab">performance tuning</a></li>
-										<li><a href="#debugging-tab">debugging</a></li>
+										<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
+										<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
+										<li class="icon-performance"><a href="#performance-tab">Performance Tuning</a></li>
+										<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
 									</ul>
 									<?php include 'includes/tabs/general/general.php' ?>
 									<?php include 'includes/tabs/general/progressive.php' ?>
@@ -127,10 +127,10 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="themelet-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['themelet-desc'])) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#colors-tab">color settings</a></li>
-										<li><a href="#logos-tab">logo settings</a></li>
-										<li><a href="#backgrounds-tab">background settings</a></li>
-										<li><a href="#menus-tab">menu settings</a></li>
+										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active icon-colors"><a href="#colors-tab">Color Settings</a></li>
+										<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
+										<li class="icon-backgrounds"><a href="#backgrounds-tab">Background Settings</a></li>
+										<li class="icon-menus"><a href="#menus-tab">Menu Settings</a></li>
 									</ul>
 									<?php include 'includes/tabs/themelet/colors.php' ?>
 									<?php include 'includes/tabs/general/logos.php' ?>
@@ -143,16 +143,16 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="blocks-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['blocks-desc'])) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#toolbar-tab">toolbar</a></li>
-										<li><a href="#mainhead-tab">main header</a></li>
-										<li><a href="#subhead-tab">sub header</a></li>
-										<li><a href="#topnav-tab">top navigation</a></li>
-										<li><a href="#outer-shelves-tab">top &amp; bottom shelves</a></li>
-										<li><a href="#inner-shelves-tab">user1 &amp; user2 shelves</a></li>
-										<li><a href="#main-tab">main block</a></li>
-										<li><a href="#sidebars-tab">sidebars</a></li>
-										<li><a href="#insets-tab">insets</a></li>
-										<li><a href="#footer-tab">footer</a></li>
+										<li class="icon-toolbar ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#toolbar-tab">Toolbar</a></li>
+										<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
+										<li class="icon-subhead"><a href="#subhead-tab">Sub Header</a></li>
+										<li class="icon-topnav"><a href="#topnav-tab">Top Menu</a></li>
+										<li class="icon-oshelves"><a href="#outer-shelves-tab">Outer Shelf</a></li>
+										<li class="icon-ishelves"><a href="#inner-shelves-tab">Inner Shelf</a></li>
+										<li class="icon-main"><a href="#main-tab">Main</a></li>
+										<li class="icon-sidebars"><a href="#sidebars-tab">Sidebars</a></li>
+										<li class="icon-insets"><a href="#insets-tab">Insets</a></li>
+										<li class="icon-footer"><a href="#footer-tab">Footer</a></li>
 									</ul>
 									<?php include 'includes/tabs/blocks/toolbar.php' ?>
 									<?php include 'includes/tabs/blocks/mainhead.php' ?>
@@ -191,7 +191,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 								</div>
 							</div>
 							
-							<div id="help" class="ui-tabs-hide">
+							<div id="help" class="ui-tabs-hide off">
 								<?php include 'includes/help.php' ?>
 							</div>
 						</div>

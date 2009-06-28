@@ -288,9 +288,11 @@ background: #fff url(../images/tools.png) no-repeat 20px 50%;
 #tabs .primary li.help-icon.ui-state-active a{
 background: #fff url(../images/lifebuoy.png) no-repeat 20px 50%;
 }
-#tabs .ui-tabs-panel{
-background: #fff;
-padding: 20px;
+#tabs .ui-tabs-panel {
+background:#fff none repeat scroll 0 0;
+float:left;
+padding:20px;
+width:100%;
 }
 
 /* sub tabs styling */
@@ -304,7 +306,8 @@ background: none;
 -moz-border-radius: 0;
 }
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav{
-background: #ccc url(../images/gradient1.jpg) repeat-x;
+/*background: #ccc url(../images/gradient1.jpg) repeat-x;*/
+background: #ccc url(../images/subtabs-bg.jpg) repeat-x;
 border: 1px solid #ccc;
 color: #222;
 margin: 0 0 2em 0;
@@ -318,13 +321,15 @@ color: #444;
 font-size: 13px;
 text-decoration: none;
 }
+
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a:hover{
 text-decoration: underline;
 }
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active{
-background:#587D24 url(../images/active-tab.jpg) repeat-x scroll 0 0;
-border:1px solid #5B7F27;
-font-weight:bold;
+/*background:#587D24 url(../images/active-tab.jpg) repeat-x scroll 0 0;*/
+/*border:1px solid #5B7F27;*/
+background:#222 url(../images/active-tab-dark.jpg) repeat-x scroll 0 0;
+border:1px solid #222;
 height:26px;
 margin:-1px 0;
 position:relative;
@@ -341,11 +346,12 @@ float: left;
 .options-panel {
 border:5px solid #9FBF6B;
 float:left;
-width:538px;
+width:462px;
 z-index:10;
 }
 .info-panel{
-width: 355px;
+padding-right:10px;
+width:450px;
 float: right;
 font: normal 12px/20px arial;
 }
@@ -380,7 +386,7 @@ width: auto;
 .options-inner{
 border:1px solid #546F29;
 float:left;
-width:536px;
+width:460px;
 }
 #tabs ol.forms {
 border:1px solid #FFFFFF;
@@ -390,7 +396,7 @@ list-style-position:outside;
 list-style-type:none;
 margin:0 0 0 2px;
 padding:1px;
-width:530px;
+width:454px;
 }
 #tabs ol.forms li{
 border-bottom:1px solid #ddd;
@@ -401,7 +407,7 @@ float:left;
 margin:0 0 0 -2px;
 padding: 0 10px;
 position:relative;
-width:513px;
+width:438px;
 height:30px;
 font: normal 13px/30px arial;
 background: #fff url(../images/form-bg.jpg) repeat-y;
@@ -416,15 +422,15 @@ border-top: 0;
 border-bottom:0;
 }
 #tabs ol.forms label, 
-#tabs ol.forms li.radio-item label.to-label{
+#tabs ol.forms li.radio-item label.to-label {
 color:#455C21;
 cursor:pointer;
 display:block;
 float:left;
 margin:0 21px 0 0;
-padding:0 15px 0 0;
+padding:0 35px 0 0;
 text-align:right;
-width:163px;
+width:140px;
 }
 #tabs ol.forms li.radio-item label{
 display: inline;
@@ -457,21 +463,20 @@ padding-left: 3px;
 }
 #tabs ol.forms li .tooltip{
 position: absolute;
-top: 5px;
-left: 176px;
-background: none;
+top: 7px;
+left: 160px;
 border: 0;
 text-decoration: none;
 text-indent: -7998px;
-width: 20px;
-height: 20px;
+width: 30px;
+height: 15px;
 display: block;
 }
 #tabs ol.forms li .tt-inline{
-background: transparent url(../images/info.png) no-repeat;
+background: transparent url(../images/tooltip-info.png) no-repeat;
 }
 #tabs ol.forms li .tt-modal{
-background: transparent url(../images/help.png) no-repeat;
+background: transparent url(../images/tooltip-help.png) no-repeat;
 }
 .qtip.qtip-cream .qtip-content.qtip-content{
 color: #9F6827!important;
@@ -538,8 +543,8 @@ line-height: 20px;
 padding-left: 21px;
 display:block;
 position: absolute;
-top:4px;
-right:90px;
+top:5px;
+right:18px;
 cursor:pointer;
 text-decoration: underline;
 font-size: 11px;
@@ -560,7 +565,7 @@ height: 16px;
 display:block;
 position: absolute;
 top:7px;
-right:169px;
+right:97px;
 background: #ccc;
 -moz-border-radius: 3px;
 }
@@ -915,14 +920,20 @@ clear: both;
 font: normal 12px arial;
 color: #999;
 }
+
 #help.ui-tabs-panel{
 overflow: hidden;
 padding: 30px 20px 20px 30px;
-background: #fff url(../images/nerd.jpg) no-repeat 95% 100%;
+}
+#tabs #help.off{
+background: #fff url(http://localhost/morph/administrator/components/com_configurator/images/maskot-sitting.png) no-repeat 5% 70%;
+}
+#tabs #help.on{
+background: #fff url(http://localhost/morph/administrator/components/com_configurator/images/maskot-sitting.png) no-repeat 5% 70%;
 }
 #help div{
-width: 300px;
-float: left;
+width: 30%;
+float: right;
 }
 #tabs a:link,
 #tabs a:visited{
@@ -930,8 +941,8 @@ color:#546F29;
 text-decoration:underline;
 }
 #help .help-block1{
-margin-right: 40px;
-width: 250px;
+margin-left: 40px;
+width: 30%;
 }
 #help h3{
 font: bold 17px arial;
@@ -942,10 +953,16 @@ margin: 0 0 10px 0;
 font: normal 13px/20px arial;
 color: #222;
 }
+#help p.help-links{
+margin-top:-10px;
+}
 
 
 #footer{
 overflow:hidden;
+filter:alpha(opacity=60);
+opacity: 0.6;
+-moz-opacity:0.6;
 }
 #footer:hover{
 overflow:hidden;
@@ -987,11 +1004,11 @@ float:none;
 margin: 0;
 }
 .footer-links li a{
-color: #666;
+color: #ccc;
 font-size: 11px;
 }
 .footer-links li h4{
-color: #999;
+color: #fff;
 font-size: 13px;
 margin:0;
 padding:0;
@@ -1271,7 +1288,7 @@ border-left: 1px solid #AF3E00;
 #tabs .ui-widget-content {
 float:left;
 position:relative;
-width:920px;
+width:960px;
 }
 
 
@@ -1307,7 +1324,7 @@ width:920px;
 padding:0!important;
 }
 #minwidth-body .m #templateform{
-background: #000 url(../images/bokeh3.jpg) repeat-x 0 -70px;
+background: #000 url(../images/bokeh3.jpg) repeat-x scroll 50% 0;
 }
 
 #minwidth-body.full-mode{position:relative;background:#000;margin:0;}
@@ -1416,7 +1433,7 @@ text-indent:-7998px;
 background:#000000 none repeat scroll 0 0;
 opacity:0.9;
 }
-.logo-preview { display: block; width: 100px; height: 16px; background: transparent url(../images/ico_eye.png) no-repeat 0 0; position:absolute;top:7px; right: 100px;}
+.logo-preview { display: block; width: 100px; height: 16px; background: transparent url(../images/ico_eye.png) no-repeat 0 0; position:absolute;top:7px; right: 31px;}
 .logo-preview span {display: none;}
 .logo-preview:hover span { display: block; }
 
@@ -1466,4 +1483,92 @@ border:1px solid #C0DA4E;
 }
 #minwidth-body #system-message dd.message li{
 margin-left: 15px;
+}
+
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a {
+padding-left: 30px;
+}
+#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li a {
+padding-left:31px!important;
+}
+#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li a{
+border-left:0 solid #fff;
+padding: 5px 11px 5px 10px;
+}
+#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.last{
+margin-right:-1px;
+padding-right:2px;
+}
+#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active{
+border-left:1px solid #222;
+}
+#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active.last a{
+border-right:1px solid #222;
+padding-right:4px;
+margin-right:0;
+}
+
+#tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active.icon-footer{
+border-right:0 solid #222;
+margin-right:-1px;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer {
+border-right:0;
+}
+
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-general a {
+background:transparent url(../images/acc-gen-settings.png) no-repeat 8px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-progressive a {
+background:transparent url(../images/acc-prog-settings.png) no-repeat 8px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-performance a {
+background:transparent url(../images/acc-per-settings.png) no-repeat 8px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-debugging a {
+background:transparent url(../images/acc-bug-settings.png) no-repeat 8px 49%;
+}
+
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-colors a {
+background:transparent url(../images/acc-color-settings.png) no-repeat 8px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-logos a {
+background:transparent url(../images/acc-logo-settings.png) no-repeat 8px 70%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-backgrounds a {
+background:transparent url(../images/acc-cust-settings.png) no-repeat 8px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-menus a {
+background:transparent url(../images/acc-menu-settings.png) no-repeat 10px 50%;
+}
+
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-toolbar a {
+background:transparent url(../images/acc-tool-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-mainhead a {
+background:transparent url(../images/acc-mhead-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-subhead a {
+background:transparent url(../images/acc-shead-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-topnav a {
+background:transparent url(../images/acc-menu-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-oshelves a {
+background:transparent url(../images/acc-oshelves-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-ishelves a {
+background:transparent url(../images/acc-ishelves-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-main a {
+background:transparent url(../images/acc-main-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-sidebars a {
+background:transparent url(../images/acc-side-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-insets a {
+background:transparent url(../images/acc-insets-settings.png) no-repeat 7px 50%;
+}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a {
+background:transparent url(../images/acc-footer-settings.png) no-repeat 7px 50%;
 }

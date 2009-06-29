@@ -547,12 +547,17 @@ $("#help").hover(function () {
    				content: qtTitle ,
 			   	show: 'mouseover',
 			   	hide: 'mouseout',
-			   	style: {
-			   		name: 'red',
-			   		border: {
-			   			width: 5,
-			   			radius: 5
-			   		},
+				style: { 
+				      width: 300,
+				      padding: 10,
+				      background: '#BEDCE7',
+				      color: 'black',
+				      textAlign: 'left',
+				      border: {
+				         width: 7,
+				         radius: 5,
+				         color: '#006699'
+				      },
 			   		tip: 'bottomLeft'
 			   	},
 			   	position: {
@@ -593,17 +598,17 @@ $("#help").hover(function () {
 				},
 				hide: false,
 				style: {
-					padding: 0,
-					background: '#fff',
-					color: '#111',
-					border: {
-	     				width: 3,
-	     				radius: 8
-	     			},
-         			width: {
-         				max: '780'
-         			},
-					name: 'dark'
+				      width: 300,
+				      padding: 10,
+				      background: '#E8DF96',
+				      color: 'black',
+				      textAlign: 'left',
+				      border: {
+				         width: 7,
+				         radius: 5,
+				         color: '#536E28'
+				      },
+					name: 'light'
 				},
 				api: {
 					beforeShow: function(){	

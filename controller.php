@@ -169,16 +169,16 @@ class ConfiguratorController extends JController {
 		$template_name = JRequest::getVar('t');
 		$option = JRequest::getVar('option');
 		
-		$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
+		//$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
 		$params[1] = JRequest::getVar( 'general', null, 'post', 'array' );
 		$params[2] = JRequest::getVar( 'logo', null, 'post', 'array' );
-		$params[3] = JRequest::getVar( 'background', null, 'post', 'array' );
+		$params[3] = JRequest::getVar( 'backgrounds', null, 'post', 'array' );
 		$params[4] = JRequest::getVar( 'color', null, 'post', 'array' );
 		$params[5] = JRequest::getVar( 'progressive', null, 'post', 'array' );
 		$params[6] = JRequest::getVar( 'menu', null, 'post', 'array' );
 		$params[7] = JRequest::getVar( 'performance', null, 'post', 'array' );
 		$params[8] = JRequest::getVar( 'debugging', null, 'post', 'array' );
-		$params[9] = JRequest::getVar( 'miscellaneous', null, 'post', 'array' );
+		//$params[9] = JRequest::getVar( 'miscellaneous', null, 'post', 'array' );
 		$params[10] = JRequest::getVar( 'toolbar', null, 'post', 'array' );
 		$params[11] = JRequest::getVar( 'masterhead', null, 'post', 'array' );
 		$params[12] = JRequest::getVar( 'subhead', null, 'post', 'array' );
@@ -192,10 +192,10 @@ class ConfiguratorController extends JController {
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
-		
+				
 		foreach ($params as $currentblock){      
 	
-			foreach($currentblock as $param_key=>$param_value) {
+			foreach($currentblock as $param_key => $param_value) {
 			
 				$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template_name;
@@ -215,9 +215,14 @@ class ConfiguratorController extends JController {
 				$setting = null;        	
 			}
 		}      
-	
-		$msg = JText::_('Successfully saved your settings');
-		$mainframe->redirect("index2.php?option={$option}&task=manage",$msg);
+		if(!isset($_GET['isajax'])){
+			$msg = JText::_('Successfully saved your settings');
+			$mainframe->redirect("index2.php?option={$option}&task=manage",$msg);
+		}else{
+			echo 'shoulda worked now';
+			return true;
+		}
+		
 	}    
 	
 	function savetemplate() {

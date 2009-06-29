@@ -67,16 +67,21 @@ function manage( &$params, &$lists, $morph_installed ) {
 						<form id="am-login-form" method="post">
 							<div id="alf-cont">
 								<div id="alf-inp-cont">
+									<label for="am-username" class="label-username"> Username:
 									<input type="text" class="alf-input" name="am-username" value="username" title="username" />
+									</label>
+									<label for="am-password" class="label-password"> Password:
 									<input type="password" class="alf-input" name="am-password" value="password" title="password" />
-									<input class="alf-check" type="checkbox" name="am-keep-login" value="true" />
-									<label for="am-keep-login">Keep me logged in</label>
+									</label>
+									
+									<label for="am-keep-login" class="login-checkbox"><input class="alf-check" type="checkbox" name="am-keep-login" value="true" /> Keep me logged in</label>
 								</div>
-								<input class="alf-login" type="button" name="am-do-login" value="am-login-true" />
+								<input class="alf-login" type="submit" name="am-do-login" value="am-login-true" />
 							</div>				
 						</form>
 						<div id="alf-warning"></div>
 						<div id="alf-output"></div>
+						<span class="mascot"></span>
 					</div>
 					<div id="alf-image">
 						<img src="../administrator/components/com_configurator/images/ajax-loader-dark.gif" height="31" width="31" border="1" alt="Loading" />

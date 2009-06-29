@@ -54,7 +54,7 @@ $("#help").hover(function () {
 
 		$('#tabs .ui-tabs-panel').corners('0px 40px 40px 40px');
 		$('#conf-login').corners('5px');
-		$('#cl-inner').corners('3px');
+		$('#cl-inner').corners('7px');
 		$('#login-details').corners('5px');	
 		$('#minwidth-body .m #templateform').corners('7px');	
 		$('#tips .inner').corners('7px');	

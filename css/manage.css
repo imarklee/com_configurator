@@ -665,6 +665,9 @@ background: #E3E3E3 url(../images/assets-active-bg.jpg) repeat-x;
 padding: 15px;
 border: 1px solid #fff;
 }
+#assets .thumb-view li.tl-active{
+border:1px solid #8FAB60;
+}
 #assets .thumb-view li.tl-active .assets-inner{
 background: transparent url(../images/active-badge.png) no-repeat top right;
 }
@@ -1069,46 +1072,144 @@ padding: 1em;
 border-right: 1px solid #ccc;
 border-bottom: 1px solid #ccc;
 }
-#install-type{
-}
-#select-file{
-}
-#upload-install{
-}
+
 #conf-login{
 position: relative;
-background: #9d9e9e;
+background: #000;
 color: #313131;
 width: 100%;
-padding: 1px 0;
+padding: 50px 0;
 display: block;
-text-align: center;
+text-align: left;
 }
 #conf-login h2{
-margin-top: 40px;
 font: bold 32px Arial;
+margin:0 0 10px 0;
+padding:0;
 }
 #conf-login p{
-margin: -14px 0 0 0;
-padding: 0;
-font: normal 18px/16px Arial;
+margin:0 0 20px 0;
+padding:0;
+font: normal 15px/20px Arial;
+width:355px;
 }
-#cl-inner{
+#cl-inner {
+background:#fff;
+border:5px solid #111;
+color:#313131;
+display:block;
+height:280px;
+padding: 20px;
+margin:0 auto;
+position: relative;
+width:550px;
+}
+#conf-login label.label-username,
+#conf-login label.label-password{
+width:350px;
+height:33px;
+margin:0 0 10px 0;
+padding:0;
+background:#ddd;
+position:relative;
+border:1px solid #ccc;
+text-indent:10px;
+font: normal 15px/35px arial;
 display: block;
-margin: 7px 8px;
-height: 322px;
-overflow: hidden;
-background: #fff url('../images/login-bg.png') repeat-x 0 0;
-color: #313131;
-border: 1px solid #919292;
+float: left;
+}
+#conf-login label.label-username{
+margin:0 0 20px 0;
+}
+#conf-login #alf-cont label.label-username input.alf-input,
+#conf-login #alf-cont label.label-password input.alf-input{
+width:230px;
+height:27px;
+margin:0;
+position:absolute;
+top:0;
+right:0;
+background:#ddd url(../images/input-bg.jpg) repeat-x;
+color:#555;
+border: 0;
+border-left: 1px solid #ccc;
+padding: 6px 0 0 13px;
+font: normal 15px/35px arial;
+}
+#conf-login #alf-cont label.label-username input.alf-input.focus,
+#conf-login #alf-cont label.label-password input.alf-input.focus{
+background:#ddd url(../images/input-bg.jpg) repeat-x;
+color:#555;
+border: 0;
+border-left: 1px solid #ccc;
+padding: 6px 0 0 13px;
+font: normal 15px/35px arial;
 }
 #am-login-form #alf-cont{
-width: 480px;
-margin: 30px auto;
-position: relative;
+overflow:hidden;
+width:355px;
 }
-#am-login-form #alf-cont .alf-input{
+#conf-login span.mascot{
+width:156px;
+height:376px;
+background: transparent url(../images/login-mascot.png) no-repeat;
 display: block;
+position: absolute;
+top: -50px;
+right: 10px;
+}
+#conf-login #am-login-form .alf-login{
+width:250px;
+height:40px;
+overflow: hidden;
+border:0;
+background:none;
+padding:40px 0 0 0;
+margin:10px 0 0 0;
+background: transparent url(../images/btn-configurator-login.png) no-repeat;
+cursor: pointer;
+}
+#conf-login #am-login-form .alf-login:hover,
+#conf-login #am-login-form .alf-login:focus{
+background-position: left center;
+}
+#conf-login label.login-checkbox{
+font:normal 13px arial;
+color: #999;
+margin-bottom: 10px;
+}
+
+#am-login-form .alf-login{
+/*position: absolute;
+left: 320px;
+text-indent: -5000px;
+border: 0;
+background: transparent url(../images/login-button-sprite.png) no-repeat 0 0;
+height: 98px;
+width: 158px;
+-moz-outline: 0 none;*/
+}
+#am-login-form .alf-login:hover,
+#am-login-form .alf-login:focus{
+/*background-position: -159px 0;
+cursor: pointer;*/
+}
+#am-login-form .alf-login:active{
+/*background-position: -319px 0;
+cursor: pointer;*/
+}
+#am-login-form input:focus{
+/*-moz-outline: 0;
+outline: 0;
+outline-offset: 0;*/
+}
+
+
+
+
+
+#am-login-form #alf-cont .alf-input{
+/*display: block;
 padding: 10px 0 0 10px;
 margin-bottom: 9px;
 height: 32px;
@@ -1117,50 +1218,48 @@ background: transparent url(../images/login-input-bg.png) no-repeat 0 0;
 color: #898989;
 border: none;
 text-align: left;
-font: normal 18px/32px Arial;
+font: normal 18px/32px Arial;*/
 }
 #am-login-form #alf-cont .alf-input:focus{
-background: transparent url(../images/login-input-bg-focus.png) no-repeat 0 0;
-color: #00b0ff;
+/*background: transparent url(../images/login-input-bg-focus.png) no-repeat 0 0;
+color: #00b0ff;*/
 }
 #am-login-form #alf-cont #alf-inp-cont{
-position: absolute;
+/*position: absolute;
 left: 0;
 top: 0;
-text-align: left;
+text-align: left;*/
 }
 #am-login-form #alf-cont #alf-inp-cont .alf-check{
-display: block;
-float: left;
+/*display: block;
+float: left;*/
 }
 #am-login-form #alf-cont #alf-inp-cont label{
-display: block;
-float: left;
-padding: 5px 0 0 0;
+
 }
 #am-login-form .alf-login{
-position: absolute;
+/*position: absolute;
 left: 320px;
 text-indent: -5000px;
 border: 0;
 background: transparent url(../images/login-button-sprite.png) no-repeat 0 0;
 height: 98px;
 width: 158px;
--moz-outline: 0 none;
+-moz-outline: 0 none;*/
 }
 #am-login-form .alf-login:hover,
 #am-login-form .alf-login:focus{
-background-position: -159px 0;
-cursor: pointer;
+/*background-position: -159px 0;
+cursor: pointer;*/
 }
 #am-login-form .alf-login:active{
-background-position: -319px 0;
-cursor: pointer;
+/*background-position: -319px 0;
+cursor: pointer;*/
 }
 #am-login-form input:focus{
--moz-outline: 0;
+/*-moz-outline: 0;
 outline: 0;
-outline-offset: 0;
+outline-offset: 0;*/
 }
 #alf-warning,#alf-output{
 text-align: left;
@@ -1477,20 +1576,20 @@ background: #fff url(../images/btn-link-bg-over.jpg) repeat-x;
 color: #666;
 }
 
-#wrap #assets-tabs ul.buttons li a{
+#wrap #assets-tabs .thumb-view ul.buttons li a{
 padding: 0!important;
 display: block;
 line-height: 1;
 }
-#wrap #assets-tabs ul.buttons li a span{
+#wrap #assets-tabs .thumb-view ul.buttons li a span{
 padding: 4px 29px 4px 8px;
 border: 1px solid #fff;
 display: block;
 }
-#wrap #assets-tabs ul.buttons li.btn-activate a span{
+#wrap #assets-tabs .thumb-view ul.buttons li.btn-activate a span{
 background: transparent url(../images/btn-icon-activate.png) no-repeat scroll 88% 50%;
 }
-#wrap #assets-tabs ul.buttons li.btn-delete a span{
+#wrap #assets-tabs .thumb-view ul.buttons li.btn-delete a span{
 background: transparent url(../images/btn-icon-delete.png) no-repeat scroll 84% 50%;
 padding: 4px 26px 4px 8px;
 }

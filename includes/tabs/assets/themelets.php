@@ -35,6 +35,7 @@ if(is_dir($themelet_dir)) {
 			?>	
 				
 			<li class="<?php echo $themelet_class; ?>">
+				<div class="assets-inner">
 				<h3><?php echo $themelet_uc; ?></h3>
 				<div class="chrome-wrap"><img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail"></div>
 				<ul class="themelet-summary <?php echo $themelet_arr['foldername']; ?>">
@@ -47,6 +48,7 @@ if(is_dir($themelet_dir)) {
 					<li class="btn-delete"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Delete <?php echo $themelet_uc; ?>"><span>Delete</span></a></li>
 					<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" title="Preview <?php echo $themelet_uc; ?>"><span>Preview</span></a></li>
 				</ul>
+				</div>
 			</li>	
 				 
 			<?php } ?>

@@ -345,8 +345,7 @@ width: 100%;
 float: left;
 }
 .options-panel {
-/*border:5px solid #9FBF6B;*/
-border:5px solid #DBDBDB;
+border:5px solid #E3E3E3;
 float:left;
 width:462px;
 z-index:10;
@@ -416,7 +415,7 @@ font: normal 13px/30px arial;
 background: #fff url(../images/form-bg2.jpg) repeat-y;
 }
 #tabs ol.forms li.alt{
-background-color: #FEFDEE;
+background: #FEFDEE url(../images/form-bg3.jpg) repeat-y;
 }
 #tabs ol.forms li.first{
 border-top: 0;
@@ -511,7 +510,7 @@ height: 26px;
 }
 
 #tabs ol.forms li.heading h3{
-text-align:center;
+text-align:ce;
 background: url(../images/heading-bg2.jpg) repeat-x left bottom;
 /*border: 1px solid #92A64D;*/
 border: 1px solid #999;
@@ -648,18 +647,28 @@ list-style: none;
 font: normal 12px arial;
 }
 #assets .thumb-view li{
-width: 419px;
+width: 448px;
 float: left;
 margin-top: 20px;
-background: #E3E3E3;
-border-right: 1px solid #ccc;
-border-bottom: 1px solid #ccc;
-padding: 15px;
+background: #E3E3E3 url(../images/assets-inactive-bg.jpg) repeat-x;
+border: 1px solid #ccc;
+padding: 0;
 position: relative;
 }
 #assets .thumb-view li.alt{
 margin-left: 20px;
 }
+#assets .thumb-view li.tl-active{
+background: #E3E3E3 url(../images/assets-active-bg.jpg) repeat-x;
+}
+#assets .thumb-view li .assets-inner{
+padding: 15px;
+border: 1px solid #fff;
+}
+#assets .thumb-view li.tl-active .assets-inner{
+background: transparent url(../images/active-badge.png) no-repeat top right;
+}
+
 #assets .thumb-view li .chrome-wrap{
 width: 200px;
 height: 100px;

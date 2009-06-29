@@ -36,7 +36,7 @@ if(is_dir($themelet_dir)) {
 				
 			<li class="<?php echo $themelet_class; ?>">
 				<h3><?php echo $themelet_uc; ?></h3>
-				<div class="chrome-wrap"><img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="200" height="133" border="0" alt="themelet thumbnail"></div>
+				<img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="200" height="133" border="0" alt="themelet thumbnail">
 				<ul class="themelet-summary <?php echo $themelet_arr['foldername']; ?>">
 					<li class="tl-installed"><strong>Installed version: </strong><?php echo $themelet_arr['version']; ?></li>
 					<li class="tl-current"><strong>Current version: </strong></li>

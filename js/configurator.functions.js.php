@@ -70,7 +70,7 @@ $("#help").hover(function () {
 		$("ul.assets-headers").corners("5px top");
 		$("#qtip-content .docs-wrap a.btn-link").corners("10px");
 		$("a.btn-link,a.switch-view").corners("10px");
-		$("#assets-tabs .thumb-view ul.buttons a,#assets-tabs .thumb-view ul.buttons a span").corners("10px");
+		$("#assets-tabs .thumb-view ul.buttons li a").corners("10px");
 
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
@@ -588,6 +588,15 @@ $("#help").hover(function () {
 					},
 					url: qtLink
 				},
+				position: {
+					target: $(document.body), // Position it via the document body...
+					corner: 'center' // ...at the center of the viewport
+				},
+				show: {
+					when: 'click', // Show it on click
+					solo: true // And hide all other tooltips
+				},
+				hide: false,
 				style: {
 				      width: 300,
 				      padding: 10,
@@ -601,15 +610,6 @@ $("#help").hover(function () {
 				      },
 					name: 'light'
 				},
-				position: {
-					target: $(document.body), // Position it via the document body...
-					corner: 'center' // ...at the center of the viewport
-				},
-				show: {
-					when: 'click', // Show it on click
-					solo: true // And hide all other tooltips
-				},
-				hide: false,
 				api: {
 					beforeShow: function(){	
 						hideScroll();	
@@ -686,20 +686,17 @@ $("#help").hover(function () {
 				},
 				hide: false,
 				style: {
-				      width: 300,
-				      padding: 10,
-				      background: '#E8DF96',
-				      color: 'black',
-				      textAlign: 'left',
-				      border: {
-				         width: 7,
-				         radius: 5,
-				         color: '#536E28'
-				      },
+					padding: 0,
+					background: '#fff',
+					color: '#111',
+					border: {
+	     				width: 3,
+	     				radius: 8
+	     			},
          			width: {
          				max: '780'
          			},
-					name: 'light'
+					name: 'dark'
 				},
 				api: {
 					beforeShow: function(){	
@@ -751,7 +748,6 @@ $("#help").hover(function () {
 			});
 			
 	   	});
-
 	   	
 	   	$('.ttim').each(function(){
 	    	var thetitle = $(this).attr("title");
@@ -761,16 +757,10 @@ $("#help").hover(function () {
 			   	show: 'mouseover',
 			   	hide: 'mouseout',
 			   	style: {
-			   		name: 'light',
-				    background: '#E8DF96',
-				    color: 'black',
- 			        textAlign: 'left',
-				    width: 300,
-				    padding: 10,
+			   		name: 'dark',
 			   		border: {
-			   		  width: 2,
-			   		  radius: 5,
-				      color: '#536E28'
+			   			width: 5,
+			   			radius: 5
 			   		},
 			   		tip: true,
 			   		margin: 0,
@@ -875,58 +865,166 @@ $("#help").hover(function () {
 				}
 	   		});
 	   	});
-	   	
 	   	/* Activate functions -----------------
 	    ------------------------------------ */
 	   	$('li.tl-inactive ul li.btn-activate a').click(function(){
 	   		var setThemelet = $(this).attr('name');
-	   		var themeletOption = $('#generalthemelet > option[value='+setThemelet+']');
-	   		themeletOption.attr('selected', true);
-	   		submitbutton('applytemplate');
+	   		$('#generalthemelet option[value="'+setThemelet+'"]').attr('selected', true);
+	   		$('#templateform input[name="task"]').remove();
+	   		$('#templateform').submit(function(){
+	   			$(this).ajaxSubmit({
+	   				type: 'POST',
+	   				url: '../administrator/index.php?option=com_configurator&task=applytemplate&format=raw&isajax=true',
+		   			success: function(data, textStatus){
+						$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').fadeTo('fast', 1).each(function(){
+							$(this).attr('href', '#active');
+							$(this).css('cursor', 'pointer');
+						});
+						$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"], li.tl-inactive ul li.btn-delete a[name="'+setThemelet+'"]').fadeTo('fast', 0.5).each(function(){
+							$(this).attr('href', '#inactive');
+							$(this).css('cursor', 'default');
+							$(this).click(function(){
+								return false;
+							});
+						});
+						
+						$('#current-themelet li.ct-name').html('<span>Name: </span>'+$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"]').attr('title').replace('Activate ', ''));
+						$('#current-themelet li.ct-version').html('<span>Version: </span>'+$('ul.'+setThemelet+' li.tl-installed').text().replace('Installed version: ',''));
+						$('#current-themelet li.ct-thumb').html('<span>&nbsp;</span><img src="../templates/morph/assets/themelets/'+setThemelet+'/themelet_thumb.png" width="108" height="72" align="middle" alt="'+$('#current-themelet li.ct-name').text()+'" />');
+						
+						$('#footer').after('<div id="activatetl-output" style="display:none;">Your new themelet is activated. <br />Would you like to configure this themelet?</div>');
+				   		$('#activatetl-output').dialog({
+				   			bgiframe: true,
+				   			autoOpen: true,
+				   			resizable: false,
+				   			draggable: false,
+				   			minHeight: 20,
+				   			modal: true, 
+				   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+				   			overlay: {
+				   				'background-color': '#000', 
+				   				opacity: 0.8 
+				   			},
+							buttons: { 
+								'Yes, configure themelet': function(){
+									$('#activatetl-output').dialog('destroy');
+									$('#activatetl-output').remove();
+									setTimeout(function(){
+						   				var mainTabs = $('#tabs').tabs();
+										var subTabs = $('#site-tabs').tabs();
+										mainTabs.tabs('select', 1);
+										subTabs.tabs('select', 0);
+									}, 500);
+					   			},
+					   			'No thanks': function(){
+					   				$(this).dialog('destroy');
+					   			}
+					   		}
+					   	});
+						
+					}
+	   			});
+	   			return false;
+	   		});
+		    $('#templateform').trigger("submit");
 	   		return false;
 	   	});
 	   	
 	   	$('li.logo-item ul li.btn-activate a').click(function(){
 	   		var setLogo = $(this).attr('name');
-	   		var logoOption = $('#logologo_image > option[value='+setLogo+']');
-	   		logoOption.attr('selected', true);
-	   		var theOptions = $('#logo-options').html()
-	   		$('#footer').after('<div id="activate-output" style="display:none;"></div>');
-	   		$('#activate-output').html(theOptions);
-	   		$('#activate-output').dialog({
-	   			bgiframe: true,
-	   			autoOpen: true,
-	   			resizable: false,
-	   			draggable: false,
-	   			minHeight: 20,
-	   			width: 600,
-	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
-	   			overlay: {
-	   				'background-color': '#000', 
-	   				opacity: 0.8 
-	   			},
-				buttons: { 
-					'Activate Logo': function(){
-		   				//submitbutton('applytemplate');
-		   			},
-		   			'Cancel': function(){
-		   				$(this).dialog('destroy');
-		   			}
-		   		}
+	   		var logoOption = $('#logologo_image > option[value='+setLogo+']').attr('selected', true);
+	   		$('#templateform').submit(function(){
+	   			$(this).ajaxSubmit({
+	   				type: 'POST',
+	   				url: '../administrator/index.php?option=com_configurator&task=applytemplate&format=raw&isajax=true',
+		   			success: function(data, textStatus){
+		   			
+		   				$('#footer').after('<div id="activatelogo-output" style="display:none;">Your new logo is activated. <br />Would you like to configure the logo options?</div>');
+				   		$('#activatelogo-output').dialog({
+				   			bgiframe: true,
+				   			autoOpen: true,
+				   			resizable: false,
+				   			draggable: false,
+				   			minHeight: 20,
+				   			modal: true, 
+				   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+				   			overlay: {
+				   				'background-color': '#000', 
+				   				opacity: 0.8 
+				   			},
+							buttons: { 
+								'Yes, configure logo': function(){
+									$('#activatelogo-output').dialog('destroy');
+									$('#activatelogo-output').remove();
+									
+						   			var mainTabs = $('#tabs').tabs();
+									var subTabs = $('#themelet-tabs').tabs();
+									mainTabs.tabs('select', 1);
+									subTabs.tabs('select', 1);
+									
+					   			},
+					   			'No thanks': function(){
+					   				$(this).dialog('destroy');
+					   			}
+					   		}
+					   	});
+		   			
+	   				}
+	   			});
+	   			return false;
 		   	});
-	   			
+	   		$('#templateform').trigger("submit");
 	   		return false;
 	   	});
 	   	
 	   	$('li.background-item ul li.btn-activate a').click(function(){
-	   		var setThemelet = $(this).attr('name');
-	   		var themeletOption = $('#generalthemelet > option[value='+setThemelet+']');
-	   		themeletOption.attr('selected', true);
-	   		submitbutton('applytemplate');
+	   		var setBackground = $(this).attr('name');
+	   		var backgroundOption = $('#backgroundsbg_image > option[value='+setBackground+']');
+	   		backgroundOption.attr('selected', true);
+	   		$('#templateform').submit(function(){
+	   			$(this).ajaxSubmit({
+	   				type: 'POST',
+	   				url: '../administrator/index.php?option=com_configurator&task=applytemplate&format=raw&isajax=true',
+		   			success: function(data, textStatus){
+		   			
+		   				$('#footer').after('<div id="activatebg-output" style="display:none;">Your new background is activated. <br />Would you like to configure the background options?</div>');
+				   		$('#activatebg-output').dialog({
+				   			bgiframe: true,
+				   			autoOpen: true,
+				   			resizable: false,
+				   			draggable: false,
+				   			minHeight: 20,
+				   			modal: true, 
+				   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+				   			overlay: {
+				   				'background-color': '#000', 
+				   				opacity: 0.8 
+				   			},
+							buttons: { 
+								'Yes, configure background': function(){
+									$('#activatebg-output').remove();
+									$('#activatebg-output').dialog('destroy');
+					   				var mainTabs = $('#tabs').tabs();
+									var subTabs = $('#themelet-tabs').tabs();
+									mainTabs.tabs('select', 1);
+									subTabs.tabs('select', 2);
+					   			},
+					   			'No thanks': function(){
+					   				$(this).dialog('destroy');
+					   			}
+					   		}
+					   	});
+		   			
+	   				}
+	   			});
+	   			$('#activatebg-output').remove();
+	   			return false;
+		   	});
+	   		$('#templateform').trigger("submit");
+	   		$('#activatebg-output').remove();
 	   		return false;
 	   	});
-	   	
+	   		   	
 	   	/* Delete functions -------------------
 	    ------------------------------------ */
 	    // themelets

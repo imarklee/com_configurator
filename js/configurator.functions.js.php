@@ -71,6 +71,9 @@ $("#help").hover(function () {
 		$("#qtip-content .docs-wrap a.btn-link").corners("10px");
 		$("a.btn-link,a.switch-view").corners("10px");
 		$("#assets-tabs .thumb-view ul.buttons li a").corners("10px");
+		$("#assets-tabs .thumb-view ul.buttons li a span").corners("10px");
+		$("#conf-login label.label-username,#conf-login label.label-password").corners("10px");
+		$("#conf-login #alf-cont label span").corners("top-left bottom-left 11px");
 
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
@@ -1375,7 +1378,7 @@ $("#help").hover(function () {
 	    	if(username != 'username' || password != 'password'){
 	    	
 	    		$('#alf-image').css('display','block');
-				$('#cl-inner').fadeTo("fast", 0.1);
+				//$('#cl-inner').fadeTo("fast", 0.1);
 	    	
 		    	$.ajax({
 		    		type: 'POST',

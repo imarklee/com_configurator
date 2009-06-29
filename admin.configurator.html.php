@@ -62,16 +62,19 @@ function manage( &$params, &$lists, $morph_installed ) {
 			
 			<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>
 				<div id="conf-login">
+					<div id="cl-top">
+					<img src="../administrator/components/com_configurator/images/morph-logo.png" alt="morph logo" width="173" height="60" border="0" />
+					</div>
 					<div id="cl-inner">
 						<h2>Configurator for Morph</h2>
 						<p>Please log in using your Joomla!Junkie Club Membership details</p>
 						<form id="am-login-form" method="post">
 							<div id="alf-cont">
 								<div id="alf-inp-cont">
-									<label for="am-username" class="label-username"> Username:
+									<label for="am-username" class="label-username"><span>Username:</span>
 									<input type="text" class="alf-input" name="am-username" value="username" title="username" />
 									</label>
-									<label for="am-password" class="label-password"> Password:
+									<label for="am-password" class="label-password"><span>Password:</span>
 									<input type="password" class="alf-input" name="am-password" value="password" title="password" />
 									</label>
 									
@@ -85,7 +88,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 						<span class="mascot"></span>
 					</div>
 					<div id="alf-image">
-						<img src="../administrator/components/com_configurator/images/ajax-loader-dark.gif" height="31" width="31" border="1" alt="Loading" />
+						<img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" />
 					</div>
 				</div>
 	        <?php }else{ ?>

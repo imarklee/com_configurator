@@ -1074,7 +1074,7 @@ border-bottom: 1px solid #ccc;
 
 #conf-login{
 position: relative;
-background: #000;
+background: #000000 url(../images/bokeh-bg.jpg) no-repeat 50% 50%;
 color: #313131;
 width: 100%;
 padding: 50px 0;
@@ -1091,6 +1091,14 @@ margin:0 0 20px 0;
 padding:0;
 font: normal 15px/20px Arial;
 width:355px;
+}
+#cl-top {
+padding: 0;
+margin:0 auto;
+width:590px;
+}
+#cl-top img{
+margin:0 0 10px 0;
 }
 #cl-inner {
 background:#fff;
@@ -1109,7 +1117,7 @@ width:350px;
 height:33px;
 margin:0 0 10px 0;
 padding:0;
-background:#ddd;
+background:#ddd url(../images/input-bg.jpg) repeat-x;
 position:relative;
 border:1px solid #ccc;
 text-indent:10px;
@@ -1120,6 +1128,17 @@ float: left;
 #conf-login label.label-username{
 margin:0 0 20px 0;
 }
+#conf-login #alf-cont label.label-username span,
+#conf-login #alf-cont label.label-password span{
+background:#ddd;
+border-right:1px solid #ccc;
+width:95px;
+height:33px;
+display: block;
+position:absolute;
+top:0;
+left:0;
+}
 #conf-login #alf-cont label.label-username input.alf-input,
 #conf-login #alf-cont label.label-password input.alf-input{
 width:230px;
@@ -1127,35 +1146,31 @@ height:27px;
 margin:0;
 position:absolute;
 top:0;
-right:0;
-background:#ddd url(../images/input-bg.jpg) repeat-x;
+right:10px;
 color:#555;
 border: 0;
-border-left: 1px solid #ccc;
-padding: 6px 0 0 13px;
+background:none;
+border:none;
+padding: 6px 0 0 10px;
 font: normal 15px/35px arial;
 }
 #conf-login #alf-cont label.label-username input.alf-input.focus,
 #conf-login #alf-cont label.label-password input.alf-input.focus{
 background:#ddd url(../images/input-bg.jpg) repeat-x;
-color:#555;
-border: 0;
-border-left: 1px solid #ccc;
-padding: 6px 0 0 13px;
-font: normal 15px/35px arial;
+color:#222;
 }
 #am-login-form #alf-cont{
 overflow:hidden;
 width:355px;
 }
-#conf-login span.mascot{
-width:156px;
-height:376px;
-background: transparent url(../images/login-mascot.png) no-repeat;
-display: block;
-position: absolute;
-top: -50px;
-right: 10px;
+#conf-login span.mascot {
+background:transparent url(../images/login-mascot.png) no-repeat scroll 0 0;
+display:block;
+height:450px;
+position:absolute;
+right:10px;
+top:-101px;
+width:195px;
 }
 #conf-login #am-login-form .alf-login{
 width:250px;
@@ -1171,6 +1186,9 @@ cursor: pointer;
 #conf-login #am-login-form .alf-login:hover,
 #conf-login #am-login-form .alf-login:focus{
 background-position: left center;
+}
+#conf-login #am-login-form .alf-login:focus{
+opacity:0.5;
 }
 #conf-login label.login-checkbox{
 font:normal 13px arial;
@@ -1266,10 +1284,17 @@ padding-top: 10px;
 }
 #alf-image{
 position: absolute;
-top: 46%;
-left: 48%;
+top: 0;
+left: 0;
 display: none;
 z-index: 50;
+background: #000;
+width: 100%;
+height: 500px;
+opacity: 0.9;
+}
+#alf-image img{
+margin: 240px 50%;
 }
 #login-details{
 padding: .6em;
@@ -1574,7 +1599,7 @@ padding: 4px 8px;
 background: #fff url(../images/btn-link-bg-over.jpg) repeat-x;
 color: #666;
 }
-<<<<<<< HEAD:css/manage.css
+
 #wrap #assets-tabs .thumb-view ul.buttons li a{
 padding: 0!important;
 display: block;
@@ -1592,9 +1617,7 @@ background: transparent url(../images/btn-icon-activate.png) no-repeat scroll 88
 background: transparent url(../images/btn-icon-delete.png) no-repeat scroll 84% 50%;
 padding: 4px 26px 4px 8px;
 }
-=======
 
->>>>>>> 678d4afd29050a62d47e2149c7f719384e93500c:css/manage.css
 #minwidth-body.full-mode #system-message{
 position:relative;
 z-index:11000;

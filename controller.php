@@ -693,6 +693,56 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
+	function deleteAsset(){
+		$type = $_GET['deltype'];
+		$asset = $_GET['asset'];
+		$assetsdir = JPATH_SITE . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS;
+		
+		switch($type){
+		
+			case 'themelet':
+			$assetsdir .= 'themelets';
+			$assetsfile = $assetsdir . DS . $asset;
+			if (is_dir($assetsdir)) {
+				if(JFolder::delete($assetsfile)){
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+			break;
+			case 'logo':
+			$assetsdir .= 'logos';
+			$assetsfile = $assetsdir . DS . $asset;			
+			if (is_dir($assetsdir)) {
+				if(JFile::delete($assetsfile)){
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+			break;
+			case 'background':
+			$assetsdir .= 'backgrounds';
+			$assetsfile = $assetsdir . DS . $asset;			
+			if (is_dir($assetsdir)) {
+				if(JFile::delete($assetsfile)){
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+			break;
+		
+		}		
+	}
+	
 	
 }
 ?>

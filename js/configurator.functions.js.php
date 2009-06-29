@@ -812,36 +812,239 @@ jQuery.noConflict();
 	   		});
 	   	});
 	   	
-	   	/* Activate themelet function ---------
+	   	/* Activate functions -----------------
 	    ------------------------------------ */
-	   	$('a.act-themelet').click(function(){
+	   	$('li.tl-inactive ul li.btn-activate a').click(function(){
 	   		var setThemelet = $(this).attr('name');
 	   		var themeletOption = $('#generalthemelet > option[value='+setThemelet+']');
-	   		
 	   		themeletOption.attr('selected', true);
 	   		submitbutton('applytemplate');
 	   		return false;
 	   	});
 	   	
-	   	/* Delete themelet function -----------
-	    ------------------------------------ */
-	   	$('a.del-themelet').click(function(){
-	   		var setThemelet = $(this).attr('name');
-	   		var setThemeletName = $(this).attr('title').replace('Delete ', '').replace(' Themelet', '');
-	   		
-	   		var alertMessage = 'Are you sure you want to delete the "'+setThemeletName+'" themelet?\nThis is irreversible!';
-	   		if(confirm(alertMessage)){
-	   			$.ajax({
-	   				type: 'GET',
-	   				url: '../administrator/index.php?option=com_configurator&task=manage&do=delete&themelet='+setThemelet,
-	   				success: function(data, textStatus){
-	   					if(textStatus == 'success'){
-	   						$('tr.'+setThemelet).hide('slow', function(){ alert('Themelet deleted successfully'); });
-	   					}
-	   				}
-	   			});
+	   	$('li.logo-item ul li.btn-activate a').click(function(){
+	   		var setLogo = $(this).attr('name');
+	   		var logoOption = $('#logologo_image > option[value='+setLogo+']');
+	   		logoOption.attr('selected', true);
+	   		var theOptions = $('#logo-options').html()
+	   		$('#footer').after('<div id="activate-output" style="display:none;"></div>');
+	   		$('#activate-output').html(theOptions);
+	   		$('#activate-output').dialog({
+	   			bgiframe: true,
+	   			autoOpen: true,
+	   			resizable: false,
+	   			draggable: false,
+	   			minHeight: 20,
+	   			width: 600,
+	   			modal: true, 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+	   			overlay: {
+	   				'background-color': '#000', 
+	   				opacity: 0.8 
+	   			},
+				buttons: { 
+					'Activate Logo': function(){
+		   				//submitbutton('applytemplate');
+		   			},
+		   			'Cancel': function(){
+		   				$(this).dialog('destroy');
+		   			}
+		   		}
+		   	});
 	   			
-	   		}
+	   		return false;
+	   	});
+	   	
+	   	$('li.background-item ul li.btn-activate a').click(function(){
+	   		var setThemelet = $(this).attr('name');
+	   		var themeletOption = $('#generalthemelet > option[value='+setThemelet+']');
+	   		themeletOption.attr('selected', true);
+	   		submitbutton('applytemplate');
+	   		return false;
+	   	});
+	   	
+	   	/* Delete functions -------------------
+	    ------------------------------------ */
+	    // themelets
+	   	$('li.tl-inactive ul li.btn-delete a').click(function(){
+			
+	   		var setThemelet = $(this).attr('name');
+	   		var setThemeletName = $(this).attr('title').replace('Delete ', '').replace(' Themelet', '');	   		
+	   		var alertMessage = 'Are you sure you want to delete the "'+setThemeletName+'" themelet?<br />This is irreversible!';
+	   		
+	   		$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+	   		$('#assets-output').html(alertMessage);
+	   		
+			$('#assets-output').dialog({
+	   			bgiframe: true,
+	   			autoOpen: true,
+	   			resizable: false,
+	   			draggable: false,
+	   			minHeight: 20,
+	   			modal: true, 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			overlay: {
+	   				'background-color': '#000', 
+	   				opacity: 0.8 
+	   			},
+				buttons: { 
+					'Yes': function(){
+						$(this).dialog('destroy');
+						$.ajax({
+			   				type: 'GET',
+			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=themelet&asset='+setThemelet,
+			   				success: function(data, textStatus){
+			   					if(textStatus == 'success'){
+			   						$('a[name="'+setThemelet+'"]').parent().parent().parent().hide('slow');			   						
+			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+			   						$('#assets-output').html('Themelet deleted successfully');
+						   			$('#assets-output').dialog({
+						   				bgiframe: true,
+							   			autoOpen: true,
+							   			resizable: false,
+							   			draggable: false,
+							   			minHeight: 20,
+							   			modal: true, 
+							   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+							   			overlay: {
+							   				'background-color': '#000', 
+							   				opacity: 0.8 
+							   			},
+										buttons: { 
+											'OK': function(){ $(this).dialog('destroy'); }
+										}
+									});
+			   					}
+			   				}
+			   			});
+					},
+					'No': function(){
+						$(this).dialog('destroy');
+					}
+				}
+			});
+
+   		return false;
+	   	});
+	   	// backgrounds
+	   	$('li.background-item ul li.btn-delete a').click(function(){
+	   		var setBackground = $(this).attr('name');
+	   		var setBackgroundName = $(this).attr('title').replace('Delete ', '').replace(' background image', '');
+	   		var alertMessage = 'Are you sure you want to delete the "'+setBackgroundName+'" background?<br />This is irreversible!';
+			
+			$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+	   		$('#assets-output').html(alertMessage);
+	   		
+			$('#assets-output').dialog({
+	   			bgiframe: true,
+	   			autoOpen: true,
+	   			resizable: false,
+	   			draggable: false,
+	   			minHeight: 20,
+	   			modal: true, 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			overlay: {
+	   				'background-color': '#000', 
+	   				opacity: 0.8 
+	   			},
+				buttons: { 
+					'Yes': function(){
+						$(this).dialog('destroy');
+						$.ajax({
+			   				type: 'GET',
+			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=background&asset='+setBackground,
+			   				success: function(data, textStatus){
+			   					if(textStatus == 'success'){
+			   						$('a[name="'+setBackground+'"]').parent().parent().parent().hide('slow');			   						
+			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+			   						$('#assets-output').html('Background deleted successfully');
+						   			$('#assets-output').dialog({
+						   				bgiframe: true,
+							   			autoOpen: true,
+							   			resizable: false,
+							   			draggable: false,
+							   			minHeight: 20,
+							   			modal: true, 
+							   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+							   			overlay: {
+							   				'background-color': '#000', 
+							   				opacity: 0.8 
+							   			},
+										buttons: { 
+											'OK': function(){ $(this).dialog('destroy'); }
+										}
+									});
+			   					}
+			   				}
+			   			});
+					},
+					'No': function(){
+						$(this).dialog('destroy');
+					}
+				}
+			});
+			
+	   		return false;
+	   	});
+	   	// logos
+	   	$('li.logo-item ul li.btn-delete a').click(function(){
+	   		var setLogo = $(this).attr('name');
+	   		var setLogoName = $(this).attr('title').replace('Delete ', '').replace(' background image', '');
+	   		var alertMessage = 'Are you sure you want to delete the "'+setLogoName+'" logo?<br />This is irreversible!';
+	   		
+	   		$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+	   		$('#assets-output').html(alertMessage);
+	   		
+			$('#assets-output').dialog({
+	   			bgiframe: true,
+	   			autoOpen: true,
+	   			resizable: false,
+	   			draggable: false,
+	   			minHeight: 20,
+	   			modal: true, 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			overlay: {
+	   				'background-color': '#000', 
+	   				opacity: 0.8 
+	   			},
+				buttons: { 
+					'Yes': function(){
+						$(this).dialog('destroy');
+						$.ajax({
+			   				type: 'GET',
+			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=logo&asset='+setLogo,
+			   				success: function(data, textStatus){
+			   					if(textStatus == 'success'){			   						
+			   						$('a[name="'+setLogo+'"]').parent().parent().parent().hide('slow');
+			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+			   						$('#assets-output').html('Logo deleted successfully');
+						   			$('#assets-output').dialog({
+						   				bgiframe: true,
+							   			autoOpen: true,
+							   			resizable: false,
+							   			draggable: false,
+							   			minHeight: 20,
+							   			modal: true, 
+							   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+							   			overlay: {
+							   				'background-color': '#000', 
+							   				opacity: 0.8 
+							   			},
+										buttons: { 
+											'OK': function(){ $(this).dialog('destroy'); }
+										}
+									});
+			   					}
+			   				}
+			   			});
+					},
+					'No': function(){
+						$(this).dialog('destroy');
+					}
+				}
+			});
+	   		
+	   		return false;
 	   	});
 	   	
 	   	/* Version checker --------------------

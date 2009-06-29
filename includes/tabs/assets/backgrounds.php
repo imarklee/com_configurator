@@ -36,20 +36,20 @@ if(is_dir($background_dir)) {
 				$background_height =  $background_size[1];
 				$background_size = formatBytes(filesize($background_dir.DS.$background));
 			?>	
-			<li>
+			<li class="background-item">
 				<h3><?php echo $background; ?></h3>
 				<div class="image-container">
 					<div style="background-image: url(<?php echo $background_src; ?>);">&nbsp;</div>
 				</div>
-				<ul class="background-summary">
+				<ul class="background-summary <?php echo $background; ?>">
 					<li class="tl-installed"><strong>File size: </strong><?php echo $background_size; ?></li>
 					<li class="tl-current"><strong>Width: </strong><?php echo $background_width; ?>px</li>
 					<li class="tl-date"><strong>Height: </strong><?php echo $background_height; ?>px</li>
 				</ul>
 				<ul class="buttons">
-					<li class="btn-activate"><a href="#" title="Activate background">Activate</a></li>
-					<li class="btn-delete"><a href="#" title="Delete background">Delete</a></li>
-					<li class="btn-preview"><a href="<?php echo $background_src; ?>" title="Preview background">Preview</a></li>
+					<li class="btn-activate"><a name="<?php echo $background; ?>" href="#" title="Activate <?php echo $background; ?>">Activate</a></li>
+					<li class="btn-delete"><a name="<?php echo $background; ?>" href="#" title="Delete <?php echo $background; ?>">Delete</a></li>
+					<li class="btn-preview"><a href="<?php echo $background_src; ?>" title="Preview <?php echo $background; ?>">Preview</a></li>
 				</ul>
 			</li>
 			<?php } ?>

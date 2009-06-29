@@ -35,7 +35,7 @@ if(is_dir($logo_dir)) {
 				$logo_height =  $logo_size[1];
 				$logo_size = formatBytes(filesize($logo_dir.DS.$logo));
 			?>	
-			<li>
+			<li class="logo-item">
 				<h3><?php echo $logo; ?></h3>
 				<div class="image-container">
 					<div style="background-image: url(<?php echo $logo_src; ?>);">&nbsp;</div>
@@ -46,8 +46,8 @@ if(is_dir($logo_dir)) {
 					<li class="tl-date"><strong>Height: </strong><?php echo $logo_height; ?>px</li>
 				</ul>
 				<ul class="buttons">
-					<li class="btn-activate"><a href="#" title="Activate Logo">Activate</a></li>
-					<li class="btn-delete"><a href="#" title="Delete Logo">Delete</a></li>
+					<li class="btn-activate"><a name="<?php echo $logo; ?>" href="#" title="Activate <?php echo $logo; ?>">Activate</a></li>
+					<li class="btn-delete"><a name="<?php echo $logo; ?>" href="#" title="Delete <?php echo $logo; ?>">Delete</a></li>
 					<li class="btn-preview"><a class="assets-logo-preview" href="<?php echo $logo_src; ?>" title="Preview Logo">Preview</a></li>
 				</ul>
 			</li>

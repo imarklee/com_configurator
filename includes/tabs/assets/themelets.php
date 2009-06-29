@@ -9,9 +9,8 @@ if(is_dir($themelet_dir)) {
 ?>
 <div id="assets-themelets">
 	<div id="themelet-switch" class="switch">
-		<h2>Themelets</h2>
-		<p class="assets-location">Your themelets are located in: <strong>"<?php echo $themelet_dir; ?>"</strong>.</p>
-		<a href="#" class="switch_thumb">Switch View</a>
+		<h2>Manage your assets: <strong>Themelets</strong></h2>
+		<p><a href="#" class="themelet-tab btn-link">Customize themelet</a>&nbsp;&nbsp;<a href="#" class="upload-themelet btn-link">Upload a new themelet</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>
 	</div>
 	
 	<div id="themelets-list" class="assets-layout <?php if(isset($_COOKIE['themelets-view']) && $_COOKIE['themelets-view'] == 'list') { echo 'list-view'; } else { setcookie('themelets_view', 'thumb',60*60*24*30, '/'); echo 'thumb-view'; } ?>">
@@ -52,5 +51,6 @@ if(is_dir($themelet_dir)) {
 				 
 			<?php } ?>
 		</ul>
+		<!--<p class="assets-location">Your themelets are located in: <strong>"<?php echo $themelet_dir; ?>"</strong>.</p>-->
 	</div>
 </div>

@@ -172,7 +172,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<div id="tools-tabs" class="subtabs">
 									<?php if (!isset ($_COOKIE['tools-desc'])) { include 'includes/tabs/desc/desc-tools.php'; } ?>
 									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tools-installer" class="ui-corner-left">Universal Installer</a></li>
+										<li class="icon-installer ui-tabs-selected ui-state-active"><a href="#tools-installer">Universal Installer</a></li>
 									</ul>
 									<?php include 'includes/tabs/tools/uploader.php' ?>
 								</div>

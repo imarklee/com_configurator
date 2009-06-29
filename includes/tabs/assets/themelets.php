@@ -35,6 +35,7 @@ if(is_dir($themelet_dir)) {
 			?>	
 				
 			<li class="<?php echo $themelet_class; ?>">
+				<div class="assets-inner">
 				<h3><?php echo $themelet_uc; ?></h3>
 				<img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="200" height="133" border="0" alt="themelet thumbnail">
 				<ul class="themelet-summary <?php echo $themelet_arr['foldername']; ?>">
@@ -43,10 +44,11 @@ if(is_dir($themelet_dir)) {
 					<li class="tl-date"><strong>Last update: </strong><?php echo $themelet_arr['creationDate']; ?></li>
 				</ul>
 				<ul class="buttons">
-					<li class="btn-activate"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Activate <?php echo $themelet_uc; ?>">Activate</a></li>
-					<li class="btn-delete"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Delete <?php echo $themelet_uc; ?>">Delete</a></li>
-					<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" title="Preview <?php echo $themelet_uc; ?>">Preview</a></li>
+					<li class="btn-activate"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Activate <?php echo $themelet_uc; ?>"><span>Activate</span></a></li>
+					<li class="btn-delete"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Delete <?php echo $themelet_uc; ?>"><span>Delete</span></a></li>
+					<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" title="Preview <?php echo $themelet_uc; ?>"><span>Preview</span></a></li>
 				</ul>
+				</div>
 			</li>	
 				 
 			<?php } ?>

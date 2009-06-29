@@ -657,11 +657,27 @@ position: relative;
 #assets .thumb-view li.alt{
 margin-left: 20px;
 }
+#assets .thumb-view li.tl-active{
+background: #E3E3E3 url(../images/assets-active-bg.jpg) repeat-x;
+}
+#assets .thumb-view li .assets-inner{
+padding: 15px;
+border: 1px solid #fff;
+}
+#assets .thumb-view li.tl-active .assets-inner{
+background: transparent url(../images/active-badge.png) no-repeat top right;
+}
+
+#assets .thumb-view li .chrome-wrap{
+width: 200px;
+height: 100px;
+background: transparent url(../images/browsers/safari-sml.png) no-repeat 0 0px;
+padding-top: 18px;
+overflow: hidden;
+border-bottom: 1px solid #ccc;
+}
 #assets .thumb-view li img{
 border: 1px solid #ccc;
-padding: 1px;
-background: #fff;
-width: 200px;
 }
 #assets .thumb-view ul li strong{
 font: bold 12px arial;

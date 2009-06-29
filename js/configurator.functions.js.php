@@ -75,12 +75,17 @@ $("#help").hover(function () {
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
+
 	   $("#footer").fadeTo("slow", 0.3); // This sets the opacity of the thumbs to fade down to 30% when the page loads
 	   $("#footer").hover(function(){
 	   $(this).fadeTo("slow", 1.0); // This should set the opacity to 100% on hover
 	   },function(){
 	   $(this).fadeTo("slow", 0.3); // This should set the opacity back to 30% on mouseout
 	   });
+
+//		if ($("#install-type input").hasClass("focus")){
+//		$("#install-type label").addClass("active-radio");
+//		}	
 		$(".upload-themelet").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();

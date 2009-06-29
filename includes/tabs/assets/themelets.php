@@ -36,15 +36,15 @@ if(is_dir($themelet_dir)) {
 				
 			<li class="<?php echo $themelet_class; ?>">
 				<h3><?php echo $themelet_uc; ?></h3>
-				<img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="200" height="133" border="0" alt="themelet thumbnail">
+				<div class="chrome-wrap"><img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="200" height="133" border="0" alt="themelet thumbnail"></div>
 				<ul class="themelet-summary <?php echo $themelet_arr['foldername']; ?>">
 					<li class="tl-installed"><strong>Installed version: </strong><?php echo $themelet_arr['version']; ?></li>
 					<li class="tl-current"><strong>Current version: </strong></li>
 					<li class="tl-date"><strong>Last update: </strong><?php echo $themelet_arr['creationDate']; ?></li>
 				</ul>
 				<ul class="buttons">
-					<li class="btn-activate"><a href="#" title="Activate themelet">Activate</a></li>
-					<li class="btn-delete"><a href="#" title="Delete themelet">Delete</a></li>
+					<li class="btn-activate"><a href="#" title="Activate themelet"><span>Activate</span></a></li>
+					<li class="btn-delete"><a href="#" title="Delete themelet"><span>Delete</span></a></li>
 					<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" title="Preview themelet">Preview</a></li>
 				</ul>
 			</li>	

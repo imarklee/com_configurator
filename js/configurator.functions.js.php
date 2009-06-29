@@ -70,7 +70,7 @@ $("#help").hover(function () {
 		$("ul.assets-headers").corners("5px top");
 		$("#qtip-content .docs-wrap a.btn-link").corners("10px");
 		$("a.btn-link,a.switch-view").corners("10px");
-		$("#assets-tabs .thumb-view ul.buttons li a").corners("10px");
+		$("#assets-tabs .thumb-view ul.buttons a,#assets-tabs .thumb-view ul.buttons a span").corners("10px");
 
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
@@ -588,15 +588,6 @@ $("#help").hover(function () {
 					},
 					url: qtLink
 				},
-				position: {
-					target: $(document.body), // Position it via the document body...
-					corner: 'center' // ...at the center of the viewport
-				},
-				show: {
-					when: 'click', // Show it on click
-					solo: true // And hide all other tooltips
-				},
-				hide: false,
 				style: {
 				      width: 300,
 				      padding: 10,
@@ -610,6 +601,15 @@ $("#help").hover(function () {
 				      },
 					name: 'light'
 				},
+				position: {
+					target: $(document.body), // Position it via the document body...
+					corner: 'center' // ...at the center of the viewport
+				},
+				show: {
+					when: 'click', // Show it on click
+					solo: true // And hide all other tooltips
+				},
+				hide: false,
 				api: {
 					beforeShow: function(){	
 						hideScroll();	
@@ -686,17 +686,20 @@ $("#help").hover(function () {
 				},
 				hide: false,
 				style: {
-					padding: 0,
-					background: '#fff',
-					color: '#111',
-					border: {
-	     				width: 3,
-	     				radius: 8
-	     			},
+				      width: 300,
+				      padding: 10,
+				      background: '#E8DF96',
+				      color: 'black',
+				      textAlign: 'left',
+				      border: {
+				         width: 7,
+				         radius: 5,
+				         color: '#536E28'
+				      },
          			width: {
          				max: '780'
          			},
-					name: 'dark'
+					name: 'light'
 				},
 				api: {
 					beforeShow: function(){	
@@ -748,6 +751,7 @@ $("#help").hover(function () {
 			});
 			
 	   	});
+
 	   	
 	   	$('.ttim').each(function(){
 	    	var thetitle = $(this).attr("title");
@@ -757,10 +761,16 @@ $("#help").hover(function () {
 			   	show: 'mouseover',
 			   	hide: 'mouseout',
 			   	style: {
-			   		name: 'dark',
+			   		name: 'light',
+				    background: '#E8DF96',
+				    color: 'black',
+ 			        textAlign: 'left',
+				    width: 300,
+				    padding: 10,
 			   		border: {
-			   			width: 5,
-			   			radius: 5
+			   		  width: 2,
+			   		  radius: 5,
+				      color: '#536E28'
 			   		},
 			   		tip: true,
 			   		margin: 0,

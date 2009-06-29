@@ -1574,7 +1574,6 @@ padding: 4px 8px;
 background: #fff url(../images/btn-link-bg-over.jpg) repeat-x;
 color: #666;
 }
-
 #wrap #assets-tabs .thumb-view ul.buttons li a{
 padding: 0!important;
 display: block;
@@ -1592,7 +1591,6 @@ background: transparent url(../images/btn-icon-activate.png) no-repeat scroll 88
 background: transparent url(../images/btn-icon-delete.png) no-repeat scroll 84% 50%;
 padding: 4px 26px 4px 8px;
 }
-
 #minwidth-body.full-mode #system-message{
 position:relative;
 z-index:11000;

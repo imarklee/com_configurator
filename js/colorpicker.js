@@ -1,9 +1,3 @@
-/**
- *
- * Color picker
- * Author: Stefan Petre www.eyecon.ro
- * 
- */
 (function ($) {
 	var ColorPicker = function () {
 		var
@@ -447,4 +441,5 @@
 		ColorPickerShow: ColorPicker.show,
 		ColorPickerSetColor: ColorPicker.setColor
 	});
-})(jQuery)
+})
+(jQuery);

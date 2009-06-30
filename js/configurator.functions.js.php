@@ -277,7 +277,7 @@ jQuery.noConflict();
 		    $(this).parents("label.label-username,label.label-password").removeClass("label-focus");
 		});
 		
-		$('textarea').elastic();
+		$('textarea').autoResize({ extraSpace:40, animate:false });
 					
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
@@ -461,7 +461,7 @@ jQuery.noConflict();
 	
 		$("#report-bug").dialog({
 			bgiframe: true,
-			autoOpen: true,
+			autoOpen: false,
 			minHeight: 300,
 			buttons: false,
 			width: 600,
@@ -478,8 +478,7 @@ jQuery.noConflict();
 		
 		$('#ff-reset').click(function(){ $('#report-bug').dialog('close'); });
 		
-		$('#feedbackform').submit(function(){ //return false; });
-		//$('#ff-submit').click(function(){
+		$('#feedbackform').submit(function(){ 
 			
 			$(this).ajaxSubmit({
 				type: 'GET',
@@ -503,6 +502,7 @@ jQuery.noConflict();
 						}
 					}else{
 						alert(data.message);
+						$('#feedbackform').resetForm();
 						$('#report-bug').dialog('close');	
 					}
 				},
@@ -861,55 +861,90 @@ jQuery.noConflict();
 			
 	   	});
 	   	
-	   	$('.refimages').each(function(){
-	   		var title = $(this).text();
-	   		var content = '<img src="';
-	   		content += $(this).attr('href');
-	   		content += '" alt="'+title+'" height="608" width="600" />';
-				   		
-	   		$('.refimages').qtip({
-	   			content: {
-	   				title: {
-	   					text: title,
-	   					button: 'Close'
-	   				},
-	   				text: content
-	   			},
-	   			position: {
-					target: $(document.body), // Position it via the document body...
-					corner: 'center' // ...at the center of the viewport
+	   	$('.refimage-block').qtip({
+   			content: {
+   				title: {
+   					text: 'Visual Reference - Blocks',
+   					button: 'Close'
+   				},
+   				text: '<img src="../administrator/components/com_configurator/images/visual-reference-blocks.png" alt="Visual Reference - Blocks" height="608" width="600" />'
+   			},
+   			position: {
+				target: $(document.body), // Position it via the document body...
+				corner: 'center' // ...at the center of the viewport
+			},
+   			show: {
+   				when: 'click'
+   			},
+			hide: false,
+			style: {
+				name: 'dark',
+				border: {
+     				width: 3,
+     				radius: 8
+     			},
+     			width: {
+     				max: '600'
+     			},
+     			height: {
+     				max: '608'
+     			},
+     			padding: '0'
+			},
+			api: {
+				beforeShow: function(){	
+					hideScroll();	
+					$('#qtip-blanket').fadeIn(this.options.show.effect.length);
 				},
-	   			show: {
-					when: 'click', // Show it on click
-					solo: true // And hide all other tooltips
+				beforeHide: function(){
+					showScroll();
+					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
 				},
-				hide: false,
-				style: {
-					name: 'dark',
-					border: {
-         				width: 3,
-         				radius: 8
-         			},
-         			width: {
-         				max: '600'
-         			},
-         			height: {
-         				max: '608'
-         			},
-         			padding: '0'
+			}
+   		});
+	   	
+	   	$('.refimage-position').qtip({
+   			content: {
+   				title: {
+   					text: 'Visual Reference - Positions',
+   					button: 'Close'
+   				},
+   				text: '<img src="../administrator/components/com_configurator/images/visual-reference-positions.png" alt="Visual Reference - Positions" height="608" width="600" />'
+   			},
+   			position: {
+				target: $(document.body), // Position it via the document body...
+				corner: 'center' // ...at the center of the viewport
+			},
+   			show: {
+   				when: 'click'
+   			},
+			hide: false,
+			style: {
+				name: 'dark',
+				border: {
+     				width: 3,
+     				radius: 8
+     			},
+     			width: {
+     				max: '600'
+     			},
+     			height: {
+     				max: '608'
+     			},
+     			padding: '0'
+			},
+			api: {
+				beforeShow: function(){	
+					hideScroll();	
+					$('#qtip-blanket').fadeIn(this.options.show.effect.length);
 				},
-				api: {
-					beforeShow: function(){	
-						hideScroll();	
-						$('#qtip-blanket').fadeIn(this.options.show.effect.length);
-					},
-					beforeHide: function(){
-						showScroll();
-						$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-					},
-				}
-	   		});
-	   	});
+				beforeHide: function(){
+					showScroll();
+					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
+				},
+			}
+   		});
+
 	   	/* Activate functions -----------------
 	    ------------------------------------ */
 	   	$('li.tl-inactive ul li.btn-activate a').click(function(){
@@ -1306,10 +1341,8 @@ jQuery.noConflict();
 						   	
 						   	if(obj.version > installedVersion){
 			   					outputVersion.html('<strong>Current version: </strong><a href="'+obj.download+'">'+obj.version+'</a>');
-//			   					outputButton.html('<span class="update-no" title="There is an update available">Update Available</span>');
 			   				} else {
 			   					outputVersion.html('<strong>Current version: </strong>'+obj.version);
-//			   					outputButton.html('<span class="update-yes" title="You are up to date">Up to date</span>');
 			   				}
 			   			}
 			   		});
@@ -1318,54 +1351,11 @@ jQuery.noConflict();
 	   		
 	   	};
 	   	
-//	   	getUpdateStatus('dt#us-configurator');
-//	   	getUpdateStatus('dt#us-morph');
-//		getUpdateStatus('dt#us-themelet');
-//	   	getUpdateStatus('.themelet-summary','true');
-
-	   	/* Save Form Data ---------------------
-	    ------------------------------------ */
-	    $('#tabs').change(function () {
-		   	$.cookie('changes', 'true', '/');
-	   	});
-	   	
-	   	function checkChanges(elid, func){
-	   		$("#changes-dialog").dialog({
-	   			autoOpen: false, 
-	   			bgiframe: true, 
-	   			resizable: false, 
-	   			height: 140, 
-	   			modal: true, 
-	   			overlay: {
-	   				backgroundColor: '#000', 
-	   				opacity: 0.5 
-	   			},
-				buttons: {
-					'Yes': function() {
-						submitbutton('applytemplate');
-						submitbutton(func);
-					},
-					'No': function() {
-						submitbutton(func);
-					}
-				}
-			});
-
-	   		$(elid).click(function(){
-		   		if($.cookie('changes')){
-		   			$("#changes-dialog").dialog('open');
-		   			$.cookie('changes', null, '/');
-		   		}else{
-		   			submitbutton(func);
-		   		}
-		   	});
-		};
-		
-		checkChanges('.button-logo', 'logo_upload');
-		checkChanges('.button-background', 'bg_upload');
-		checkChanges('.button-favicon', 'upload_favicon');
-		checkChanges('.button-themelet', 'upload_themelet');
-		
+	   	getUpdateStatus('dt#us-configurator');
+	   	getUpdateStatus('dt#us-morph');
+		getUpdateStatus('dt#us-themelet');
+	   	getUpdateStatus('.themelet-summary','true');
+				
 		/* Logo Options -----------------------
 	    ------------------------------------ */
 	    function logoPreview(elid){

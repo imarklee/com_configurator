@@ -207,12 +207,11 @@ return $pageURL;
 }
 
 // CSS and JS Packing
-if(isset($_GET['pack'])){
-	setcookie('pack', 'true', 0);
+if(isset($_GET['unpack'])){
+	setcookie('unpack', 'true', 0);
 	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
-}
-elseif(isset($_GET['unpack'])){
-	setcookie('pack', 'true', time() - 3600);
+}elseif(isset($_GET['pack'])){
+	setcookie('upack', 'true', time()-3600);
 	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
 }
 ?>

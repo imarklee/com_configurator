@@ -188,5 +188,5 @@ jQuery.extend({
 			//alert(jQuery('param', data).each(function(){alert(jQuery(this).attr('value'));}));
         return data;
     }
-})
+});
 

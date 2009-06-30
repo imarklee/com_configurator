@@ -7,7 +7,7 @@ $document 	=& JFactory::getDocument();
 $option 	= JRequest::getVar('option','com_configurator');
 $task 		= JRequest::getCmd('task');
 
-if(isset($_COOKIE['pack'])){
+if(!isset($_COOKIE['unpack'])){
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.js.php');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/configurator.css.php');
 }else{

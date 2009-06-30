@@ -1,8 +1,8 @@
-<!--<script src="components/com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="components/com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>-->
-<script src="../com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="../com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>
-<link href="../com_configurator/css/install.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="components/com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="components/com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>
+<!--<script src="../com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="../com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>-->
+<link href="components/com_configurator/css/install.css" media="screen" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 jQuery.noConflict();

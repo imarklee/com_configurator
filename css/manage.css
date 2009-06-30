@@ -1220,84 +1220,6 @@ text-decoration:underline;
 #am-login-form #alf-cont #alf-inp-cont{
 margin: 5px 0 20px 0;
 }
-
-#am-login-form .alf-login{
-/*position: absolute;
-left: 320px;
-text-indent: -5000px;
-border: 0;
-background: transparent url(../images/login-button-sprite.png) no-repeat 0 0;
-height: 98px;
-width: 158px;
--moz-outline: 0 none;*/
-}
-#am-login-form .alf-login:hover,
-#am-login-form .alf-login:focus{
-/*background-position: -159px 0;
-cursor: pointer;*/
-}
-#am-login-form .alf-login:active{
-/*background-position: -319px 0;
-cursor: pointer;*/
-}
-#am-login-form input:focus{
-/*-moz-outline: 0;
-outline: 0;
-outline-offset: 0;*/
-}
-
-
-
-
-
-#am-login-form #alf-cont .alf-input{
-/*display: block;
-padding: 10px 0 0 10px;
-margin-bottom: 9px;
-height: 32px;
-width: 300px;
-background: transparent url(../images/login-input-bg.png) no-repeat 0 0;
-color: #898989;
-border: none;
-text-align: left;
-font: normal 18px/32px Arial;*/
-}
-#am-login-form #alf-cont .alf-input:focus{
-/*background: transparent url(../images/login-input-bg-focus.png) no-repeat 0 0;
-color: #00b0ff;*/
-}
-
-#am-login-form #alf-cont #alf-inp-cont .alf-check{
-/*display: block;
-float: left;*/
-}
-#am-login-form #alf-cont #alf-inp-cont label{
-
-}
-#am-login-form .alf-login{
-/*position: absolute;
-left: 320px;
-text-indent: -5000px;
-border: 0;
-background: transparent url(../images/login-button-sprite.png) no-repeat 0 0;
-height: 98px;
-width: 158px;
--moz-outline: 0 none;*/
-}
-#am-login-form .alf-login:hover,
-#am-login-form .alf-login:focus{
-/*background-position: -159px 0;
-cursor: pointer;*/
-}
-#am-login-form .alf-login:active{
-/*background-position: -319px 0;
-cursor: pointer;*/
-}
-#am-login-form input:focus{
-/*-moz-outline: 0;
-outline: 0;
-outline-offset: 0;*/
-}
 #alf-warning,#alf-output{
 text-align: left;
 padding-top: 10px;
@@ -1795,12 +1717,100 @@ padding-right:5px;
 #dashboard p.config-morph a{text-indent:-7998px;display:block;width:250px;height:40px;background:#fff url(../images/btn-configure-morph.jpg) no-repeat 0 0;}
 #dashboard p.config-morph a:hover{background-position: 0 -40px; background-repeat: no-repeat;}
 
-#report-bug p { margin: 0; padding: 0px 0px 6px; 0px }
-#report-bug #feedbackform { margin-top: 15px; }
-#feedbackform label { clear: left; display: block; float: left; margin-right: 10px; width: 140px; text-align: right; height: 25px; }
-#feedbackform input { float: left; display: block; margin-bottom: 8px; padding: 2px; width: 180px; }
-#feedbackform span { float: left; display: block; margin-right: 10px; min-width: 65px; }
-#feedbackform span input { float: left; }
-#feedbackform textarea { display: block; }
-#feedbackform div { display: block; margin-left: 150px; }
-#feedbackform .ff-button { float: left; margin-right: 10px; margin-top: 15px;}
+
+
+
+#report-bug{
+padding:1.2em;
+overflow:hidden;
+font:normal 12px arial;
+}
+#report-bug fieldset{
+margin:0;
+padding:10px 0 0 0;
+border:0;
+border-top:1px solid #ccc;
+width:100%;
+}
+#report-bug input{
+float:left;
+}
+#report-bug #feedbackform ul,
+#report-bug #feedbackform ul ul,
+#report-bug #feedbackform ul li,
+#report-bug #feedbackform ul li li{
+margin:0;
+padding:0;
+list-style:none;
+}
+#report-bug #feedbackform ul li{
+width:100%;
+overflow:hidden;
+padding-bottom:15px;
+display:block;
+clear:both;
+position:relative;
+padding:5px 0;
+}
+#report-bug #feedbackform ul li label{
+float:left;
+font-weight:bold;
+display:block;
+width:130px;
+}
+#report-bug #feedbackform ul li ul.inline{
+float:left;
+margin:0;
+padding:0;
+}
+#report-bug #feedbackform ul.inline li{
+width:auto;
+display:inline;
+clear:none;
+float:left;
+overflow:hidden;
+border:0;
+padding-right:10px;
+}
+#report-bug #feedbackform ul.inline li label{
+width:100px;
+font-weight:normal;
+}
+#report-bug #feedbackform ul.inline li span{
+padding:0 0 0 5px;
+line-height:20px;
+}
+#report-bug #feedbackform ul li.fb-subject input{
+width:400px;
+padding:5px 10px;
+}
+#report-bug #feedbackform ul li.fb-message textarea{
+width:400px;
+padding:5px 10px;
+}
+#report-bug #feedbackform ul li.fb-buttons{
+padding:5px 0 15px 130px;
+}
+#report-bug #feedbackform ul li.fb-buttons input#ff-submit{
+width:250px;
+height:40px;
+overflow: hidden;
+border:0;
+background:none;
+padding:40px 0 0 0;
+margin:0;
+background: transparent url(../images/btn-send-feedback.png) no-repeat;
+cursor: pointer;
+}
+#report-bug #feedbackform ul li.fb-buttons input#ff-submit:hover{
+background-position: bottom left;
+}
+#report-bug #feedbackform ul li.fb-buttons a#ff-reset{
+font: bold 20px/35px arial;
+color: #648A3F;
+text-decoration: underline;
+margin-left: -10px;
+}
+#report-bug p.teaser{
+font: normal 15px/20px arial;
+}

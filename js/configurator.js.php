@@ -8,7 +8,6 @@ include('preloadCssImages.jQuery_v5.js');
 include('colorpicker.js');
 include('jqbrowser.js');
 include('jquery.corners.min.js');
-include('jquery.filestyle.min.js');
 include('jquery.qtip-1.0.0-rc3.min.js');
 include('jquery.fileupload.js');
 include('jquery.autoresize.min.js');

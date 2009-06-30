@@ -30,7 +30,6 @@ $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurat
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/text.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/960.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/manage.css');
-
 }
 ?>
 <?php
@@ -48,7 +47,7 @@ function manage( &$params, &$lists, $morph_installed ) {
         
         if (!$morph_installed){
 	        echo '<center>';
-	        echo '<h1>It seems that Morph has not yet been installed.</h1>';	
+	        echo '<h1>Morph needs to be installed in order to work.</h1>';	
 	        echo '<h3>Please, <a href="index.php?option=com_installer">Morph</a> before continue...</h3>';	
 	        echo '</center>';	
 	        //if found morph	
@@ -79,8 +78,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 									</label>
 									
 									<p class="login-sub"><label for="am-keep-login" class="login-checkbox"><input class="alf-check" type="checkbox" name="am-keep-login" value="true" /> Stay logged in</label>&nbsp;&nbsp;|&nbsp;<label for="show-password" class="login-checkbox"><input id="showpass" type="checkbox" name="show-password" value="true" /> Show password</label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://" title="">Forgot password?</a></p>
-									<!--<p class="login-sub"><a href="http://" title="">Forgot your password?</a> | <a href="http://" title="">Trouble logging in?</a></p>-->
-																	</div>
+								</div>
 								<input class="alf-login" type="submit" name="am-do-login" value="am-login-true" />
 							</div>				
 						</form>
@@ -89,12 +87,14 @@ function manage( &$params, &$lists, $morph_installed ) {
 						<span class="mascot"></span>
 					</div>
 					<div id="alf-image">
-						<img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" />
-						<form action="https://www.joomlajunkie.com/secure/sendpass.php" method="post" name="sendpass" style="display:none;">
+						<div>
+						<img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /> <span>Logging in..</span>
+						<!--<form action="https://www.joomlajunkie.com/secure/sendpass.php" method="post" name="sendpass" style="display:none;">
 							<label for="lost-password">Enter your email address or username:</label>
 							<input type="text" id="lost-password" class="text-input" style="padding: 5px;" size="47" name="login"/><br/>
 							<input type="submit" value="Get Password"/>
-						</form>
+						</form>-->
+						</div>
 					</div>
 				</div>
 	        <?php }else{ ?>
@@ -105,13 +105,6 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<div class="clear spacer">&nbsp;</div>
 		
 					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-						<!--<ul class="primary">
-							<li class="tab-general"><a href="#general"><strong>General Settings </strong>Everything under the hood</a></li>
-							<li class="tab-block"><a href="#blocks"><strong>Block Settings </strong>Your sites building blocks</a></li>
-							<li class="tab-tools"><a href="#tools"><strong>Morph's Tools </strong>Installer, backups &amp; more</a></li>
-							<li class="tab-assets"><a href="#assets"><strong>Your Assets </strong>Themelets, logos, etc</a></li>
-							<li class="tab-help last"><a href="#help"><strong>Help &amp; Support </strong>List of additional resources</a></li>
-						</ul>-->
 						<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 							<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
 							<li class="themelet-icon"><a href="#themelets">Customization</a></li>
@@ -119,99 +112,96 @@ function manage( &$params, &$lists, $morph_installed ) {
 							<li class="tools-icon"><a href="#tools">Toolbox</a></li>
 							<li class="assets-icon"><a href="#assets">Your Assets</a></li>
 							<li class="help-icon last"><a href="#help">Help &amp; Support</a></li>
-						</ul>		
-						
-							
-							<div id="site">					
-								<div id="site-tabs" class="subtabs">
-									<?php if (!isset ($_COOKIE['site-desc'])) { include 'includes/tabs/desc/desc-site.php'; } ?>
-									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
-										<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
-										<li class="icon-performance"><a href="#performance-tab">Performance Tuning</a></li>
-										<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
-									</ul>
-									<?php include 'includes/tabs/general/general.php' ?>
-									<?php include 'includes/tabs/general/progressive.php' ?>
-									<?php include 'includes/tabs/general/performance.php' ?>
-									<?php include 'includes/tabs/general/debugging.php' ?>
-								</div>
-							</div>
-							
-							<div id="themelets" class="ui-tabs-hide">
-								<div id="themelet-tabs" class="subtabs">
-									<?php if (!isset ($_COOKIE['themelet-desc'])) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
-									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active icon-colors"><a href="#colors-tab">Color Settings</a></li>
-										<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
-										<li class="icon-backgrounds"><a href="#backgrounds-tab">Background Settings</a></li>
-										<li class="icon-menus"><a href="#menus-tab">Menu Settings</a></li>
-									</ul>
-									<?php include 'includes/tabs/themelet/colors.php' ?>
-									<?php include 'includes/tabs/general/logos.php' ?>
-									<?php include 'includes/tabs/themelet/backgrounds.php' ?>
-									<?php include 'includes/tabs/themelet/menus.php' ?>
-								</div>
-							</div>
-							
-							<div id="blocks" class="ui-tabs-hide">
-								<div id="blocks-tabs" class="subtabs">
-									<?php if (!isset ($_COOKIE['blocks-desc'])) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
-									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="icon-toolbar ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#toolbar-tab">Toolbar</a></li>
-										<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
-										<li class="icon-subhead"><a href="#subhead-tab">Sub Header</a></li>
-										<li class="icon-topnav"><a href="#topnav-tab">Top Menu</a></li>
-										<li class="icon-oshelves"><a href="#outer-shelves-tab">Outer Shelf</a></li>
-										<li class="icon-ishelves"><a href="#inner-shelves-tab">Inner Shelf</a></li>
-										<li class="icon-main"><a href="#main-tab">Main</a></li>
-										<li class="icon-sidebars"><a href="#sidebars-tab">Sidebars</a></li>
-										<li class="icon-insets"><a href="#insets-tab">Insets</a></li>
-										<li class="icon-footer"><a href="#footer-tab">Footer</a></li>
-									</ul>
-									<?php include 'includes/tabs/blocks/toolbar.php' ?>
-									<?php include 'includes/tabs/blocks/mainhead.php' ?>
-									<?php include 'includes/tabs/blocks/subhead.php' ?>
-									<?php include 'includes/tabs/blocks/topnav.php' ?>
-									<?php include 'includes/tabs/blocks/outer-shelves.php' ?>
-									<?php include 'includes/tabs/blocks/inner-shelves.php' ?>
-									<?php include 'includes/tabs/blocks/inset.php' ?>
-									<?php include 'includes/tabs/blocks/main.php' ?>
-									<?php include 'includes/tabs/blocks/sidebars.php' ?>
-									<?php include 'includes/tabs/blocks/footer.php' ?>
-								</div>
-							</div>
-							
-							<div id="tools" class="ui-tabs-hide">
-								<div id="tools-tabs" class="subtabs">
-									<?php if (!isset ($_COOKIE['tools-desc'])) { include 'includes/tabs/desc/desc-tools.php'; } ?>
-									<ul class="ui-helper-clearfix ui-tabs-nav">
-										<li class="icon-installer ui-tabs-selected ui-state-active"><a href="#tools-installer">Universal Installer</a></li>
-									</ul>
-									<?php include 'includes/tabs/tools/uploader.php' ?>
-								</div>
-							</div>
-							
-							<div id="assets" class="ui-tabs-hide">	
-								<div id="assets-tabs" class="subtabs">
-									<?php if (!isset ($_COOKIE['assets-desc'])) { include 'includes/tabs/desc/desc-assets.php'; } ?>
-									<ul class="ui-helper-clearfix">
-										<li class="icon-themelets"><a href="#assets-themelets">Themelets</a></li>
-										<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
-										<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
-									</ul>				
-									<?php include 'includes/tabs/assets/themelets.php' ?>
-									<?php include 'includes/tabs/assets/logos.php' ?>
-									<?php include 'includes/tabs/assets/backgrounds.php' ?>
-								</div>
-							</div>
-							
-							<div id="help" class="ui-tabs-hide off">
-								<?php include 'includes/help.php' ?>
+						</ul>
+						<div id="site">					
+							<div id="site-tabs" class="subtabs">
+								<?php if (!isset ($_COOKIE['site-desc'])) { include 'includes/tabs/desc/desc-site.php'; } ?>
+								<ul class="ui-helper-clearfix ui-tabs-nav">
+									<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
+									<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
+									<li class="icon-performance"><a href="#performance-tab">Performance Tuning</a></li>
+									<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
+								</ul>
+								<?php include 'includes/tabs/general/general.php' ?>
+								<?php include 'includes/tabs/general/progressive.php' ?>
+								<?php include 'includes/tabs/general/performance.php' ?>
+								<?php include 'includes/tabs/general/debugging.php' ?>
 							</div>
 						</div>
-						
-						
+
+						<div id="themelets" class="ui-tabs-hide">
+							<div id="themelet-tabs" class="subtabs">
+								<?php if (!isset ($_COOKIE['themelet-desc'])) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
+								<ul class="ui-helper-clearfix ui-tabs-nav">
+									<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
+									<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
+									<li class="icon-backgrounds"><a href="#backgrounds-tab">Background Settings</a></li>
+									<li class="icon-menus"><a href="#menus-tab">Menu Settings</a></li>
+								</ul>
+								<?php include 'includes/tabs/themelet/colors.php' ?>
+								<?php include 'includes/tabs/general/logos.php' ?>
+								<?php include 'includes/tabs/themelet/backgrounds.php' ?>
+								<?php include 'includes/tabs/themelet/menus.php' ?>
+							</div>
+						</div>
+
+						<div id="blocks" class="ui-tabs-hide">
+							<div id="blocks-tabs" class="subtabs">
+								<?php if (!isset ($_COOKIE['blocks-desc'])) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
+								<ul class="ui-helper-clearfix ui-tabs-nav">
+									<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab">Toolbar</a></li>
+									<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
+									<li class="icon-subhead"><a href="#subhead-tab">Sub Header</a></li>
+									<li class="icon-topnav"><a href="#topnav-tab">Top Menu</a></li>
+									<li class="icon-oshelves"><a href="#outer-shelves-tab">Outer Shelf</a></li>
+									<li class="icon-ishelves"><a href="#inner-shelves-tab">Inner Shelf</a></li>
+									<li class="icon-main"><a href="#main-tab">Main</a></li>
+									<li class="icon-sidebars"><a href="#sidebars-tab">Sidebars</a></li>
+									<li class="icon-insets"><a href="#insets-tab">Insets</a></li>
+									<li class="icon-footer"><a href="#footer-tab">Footer</a></li>
+								</ul>
+								<?php include 'includes/tabs/blocks/toolbar.php' ?>
+								<?php include 'includes/tabs/blocks/mainhead.php' ?>
+								<?php include 'includes/tabs/blocks/subhead.php' ?>
+								<?php include 'includes/tabs/blocks/topnav.php' ?>
+								<?php include 'includes/tabs/blocks/outer-shelves.php' ?>
+								<?php include 'includes/tabs/blocks/inner-shelves.php' ?>
+								<?php include 'includes/tabs/blocks/inset.php' ?>
+								<?php include 'includes/tabs/blocks/main.php' ?>
+								<?php include 'includes/tabs/blocks/sidebars.php' ?>
+								<?php include 'includes/tabs/blocks/footer.php' ?>
+							</div>
+						</div>
+
+						<div id="tools" class="ui-tabs-hide">
+							<div id="tools-tabs" class="subtabs">
+								<?php if (!isset ($_COOKIE['tools-desc'])) { include 'includes/tabs/desc/desc-tools.php'; } ?>
+								<ul class="ui-helper-clearfix ui-tabs-nav">
+									<li class="icon-installer ui-tabs-selected"><a href="#tools-installer">Universal Installer</a></li>
+								</ul>
+								<?php include 'includes/tabs/tools/uploader.php' ?>
+							</div>
+						</div>
+
+						<div id="assets" class="ui-tabs-hide">	
+							<div id="assets-tabs" class="subtabs">
+								<?php if (!isset ($_COOKIE['assets-desc'])) { include 'includes/tabs/desc/desc-assets.php'; } ?>
+								<ul class="ui-helper-clearfix">
+									<li class="icon-themelets"><a href="#assets-themelets">Themelets</a></li>
+									<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
+									<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
+								</ul>				
+								<?php include 'includes/tabs/assets/themelets.php' ?>
+								<?php include 'includes/tabs/assets/logos.php' ?>
+								<?php include 'includes/tabs/assets/backgrounds.php' ?>
+							</div>
+						</div>
+							
+						<div id="help" class="ui-tabs-hide off">
+							<?php include 'includes/help.php' ?>
+						</div>
+					</div>
+
 					<div class="clear">&nbsp;</div>
 					<?php include 'includes/footer.php' ?>
 				</div>

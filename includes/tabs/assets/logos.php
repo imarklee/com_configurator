@@ -36,6 +36,7 @@ if(is_dir($logo_dir)) {
 				$logo_size = formatBytes(filesize($logo_dir.DS.$logo));
 			?>	
 			<li class="logo-item">
+				<div class="assets-inner">
 				<h3><?php echo $logo; ?></h3>
 				<div class="image-container">
 					<div style="background-image: url(<?php echo $logo_src; ?>);">&nbsp;</div>
@@ -46,10 +47,11 @@ if(is_dir($logo_dir)) {
 					<li class="tl-date"><strong>Height: </strong><?php echo $logo_height; ?>px</li>
 				</ul>
 				<ul class="buttons">
-					<li class="btn-activate"><a name="<?php echo $logo; ?>" href="#" title="Activate <?php echo $logo; ?>">Activate</a></li>
-					<li class="btn-delete"><a name="<?php echo $logo; ?>" href="#" title="Delete <?php echo $logo; ?>">Delete</a></li>
-					<li class="btn-preview"><a class="assets-logo-preview" href="<?php echo $logo_src; ?>" title="Preview Logo">Preview</a></li>
+					<li class="btn-activate"><a name="<?php echo $logo; ?>" href="#" title="Activate <?php echo $logo; ?>"><span>Activate</span></a></li>
+					<li class="btn-delete"><a name="<?php echo $logo; ?>" href="#" title="Delete <?php echo $logo; ?>"><span>Delete</span></a></li>
+					<li class="btn-preview"><a class="assets-logo-preview" href="<?php echo $logo_src; ?>" title="Preview Logo"><span>Preview</span></a></li>
 				</ul>
+				</div>
 			</li>
 			<?php } ?>
 		</ul>

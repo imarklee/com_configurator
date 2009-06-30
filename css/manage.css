@@ -511,10 +511,10 @@ height: 26px;
 #tabs ol.forms li.heading h3{
 text-align:ce;
 background: url(../images/heading-bg2.jpg) repeat-x left bottom;
-/*border: 1px solid #92A64D;*/
 border: 1px solid #999;
 border-bottom: 1px solid #fff;
 margin:-2px -11px 0 -12px;
+text-align: center;
 }
 #tabs ol.forms li.heading.first h3{
 margin: -3px -11px -2px -12px;
@@ -670,15 +670,22 @@ border:1px solid #8FAB60;
 #assets .thumb-view li.tl-active .assets-inner{
 background: transparent url(../images/active-badge.png) no-repeat top right;
 }
-
+#assets .thumb-view li .image-container,
 #assets .thumb-view li .chrome-wrap{
-width: 200px;
+width: 198px;
 height: 100px;
 background: transparent url(../images/browsers/safari-sml.png) no-repeat 0 0px;
 padding-top: 18px;
 overflow: hidden;
 border-bottom: 1px solid #ccc;
 }
+#assets .thumb-view li .image-container{
+border: 1px solid #ccc;
+}
+#assets .thumb-view li .image-container div{
+border: 5px solid #fff;
+}
+
 #assets .thumb-view li img{
 border: 1px solid #ccc;
 }
@@ -743,7 +750,7 @@ height: 100px;
 border: 1px solid #ccc;
 }
 .image-container div{
-width: 190px;
+width: 188px;
 height: 90px;
 border: 5px solid #eee;
 background-repeat: repeat;
@@ -1314,8 +1321,17 @@ width: 100%;
 height: 500px;
 opacity: 0.9;
 }
-#alf-image img{
-margin: 240px 50%;
+#alf-image div{
+margin: 240px 47%;
+width: 115px;
+font: bold 15px arial;
+color: #fff;
+position: relative;
+}
+#alf-image div span{
+position: absolute;
+left: 20px;
+top: -1px;
 }
 #login-details{
 padding: .6em;
@@ -1544,7 +1560,9 @@ height:25px;
 padding:0;
 text-align:center;
 }
-
+#logologo_image{
+width:175px;
+}
 #top{
 height: 90px;
 overflow:hidden;
@@ -1599,7 +1617,7 @@ text-indent:-7998px;
 background:#000000 none repeat scroll 0 0;
 opacity:0.9;
 }
-.logo-preview { display: block; width: 100px; height: 16px; background: transparent url(../images/eye.png) no-repeat 0 0; position:absolute;top:9px; right: 30px;}
+.logo-preview { display: block; width: 16px; height: 16px; background: transparent url(../images/eye.png) no-repeat 0 0; position:absolute;top:9px; right: 55px;}
 .logo-preview span {display: none;}
 .logo-preview:hover span { display: block; }
 
@@ -1643,13 +1661,14 @@ padding: 4px 26px 4px 8px;
 position:relative;
 z-index:11000;
 top:-190px;
-margin:0 40px 0 40px;
+margin:0;
 background:#000;
-height:90px;
+height:71px;
 filter: alpha(opacity=95);
 opacity: .95;
 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
-padding-top:40px;
+padding:20px 20px 0 20px;
+display: block;
 }
 #minwidth-body #system-message dd.message{
 background:#648A3F url(../images/message-bg.jpg) repeat-x;
@@ -1769,3 +1788,9 @@ display: inline;
 list-style:none;
 padding-right:5px;
 }
+
+#dashboard{width:640px;padding-left:310px;margin:3em auto 2em auto;padding-bottom:2em;background:#fff url(../images/maskot.png) 0 5px no-repeat;}
+#dashboard h1{margin:0;padding:0;font:bold 40px Arial;color:#666;}
+#dashboard p{margin-top:20px;font:bold 20px Arial;color:#666;}
+#dashboard p.config-morph a{text-indent:-7998px;display:block;width:250px;height:40px;background:#fff url(../images/btn-configure-morph.jpg) no-repeat 0 0;}
+#dashboard p.config-morph a:hover{background-position: 0 -40px; background-repeat: no-repeat;}

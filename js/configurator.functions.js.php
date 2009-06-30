@@ -277,19 +277,8 @@ jQuery.noConflict();
 		    $(this).parents("label.label-username,label.label-password").removeClass("label-focus");
 		});
 		
-		$('textarea').autoResize({
-			// On resize:
-		    onResize : function() {
-		        $(this).css({opacity:0.8});
-		    },
-		    // After resize:
-		    animateCallback : function() {
-		        $(this).css({opacity:1});
-		    },
-		    // Quite slow animation:
-		    animateDuration : 300
-		});
-			
+		$('textarea').elastic();
+					
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
 	    /*$("input.input-installer").filestyle({ 
@@ -472,15 +461,32 @@ jQuery.noConflict();
 	
 		$("#report-bug").dialog({
 			bgiframe: true,
-			autoOpen: false,
-			height: 450,
-			width: 400,
+			autoOpen: true,
+			minHeight: 300,
+			buttons: false,
+			width: 600,
 			modal: true
 		});
 		
 		$('#report-bug-link').click(function() {
 			$('#report-bug').dialog('open');
-		})
+		});
+		
+		$('#ff-reset').click(function(){ $('#report-bug').dialog('close'); });
+		
+		$('#feedbackform').submit(function(){ //return false; });
+//		$('#ff-submit').click(function(){
+			
+			$(this).ajaxSubmit({
+				type: 'GET',
+				dataType: 'jsonp',
+				url: 'http://www.joomlajunkie.com/secure/configurator/bug-report.php',
+				success: function(data, status, error){
+					alert(status);
+				}
+			});
+			return false;
+		});
      	     	
 		
 		/* Tooltips ----------------------

@@ -957,10 +957,10 @@ overflow: hidden;
 padding: 30px 20px 20px 30px;
 }
 #tabs #help.off{
-background: #fff url(http://localhost/morph/administrator/components/com_configurator/images/maskot-sitting.png) no-repeat 5% 70%;
+background: #fff url(../images/maskot-sitting.png) no-repeat 5% 70%;
 }
 #tabs #help.on{
-background: #fff url(http://localhost/morph/administrator/components/com_configurator/images/maskot-sitting.png) no-repeat 5% 70%;
+background: #fff url(../images/maskot-sitting.png) no-repeat 5% 70%;
 }
 #help div{
 width: 30%;
@@ -1813,4 +1813,8 @@ margin-left: -10px;
 }
 #report-bug p.teaser{
 font: normal 15px/20px arial;
+}
+a.disabled{
+opacity:0.5;
+cursor:default;
 }

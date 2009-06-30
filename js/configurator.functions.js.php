@@ -465,7 +465,11 @@ jQuery.noConflict();
 			minHeight: 300,
 			buttons: false,
 			width: 600,
-			modal: true
+			modal: true,
+			overlay: {
+				'background-color': '#000',
+				opacity: 0.8
+			}
 		});
 		
 		$('#report-bug-link').click(function() {
@@ -475,14 +479,34 @@ jQuery.noConflict();
 		$('#ff-reset').click(function(){ $('#report-bug').dialog('close'); });
 		
 		$('#feedbackform').submit(function(){ //return false; });
-//		$('#ff-submit').click(function(){
+		//$('#ff-submit').click(function(){
 			
 			$(this).ajaxSubmit({
 				type: 'GET',
 				dataType: 'jsonp',
-				url: 'http://www.joomlajunkie.com/secure/configurator/bug-report.php',
+				contentType: "application/json; charset=utf-8",
+				url: 'http://www.joomlajunkie.com/secure/configurator/bug-report.php?jsoncallback=?',
+				data: {
+					do: 'send-feedback',
+					'ff-name': $('#feedbackform input[name="name"]').val(),
+					'ff-email': $('#feedbackform input[name="email"]').val(),
+					'ff-type': $('#feedbackform input[name="type"]').val(),
+					'ff-category': $('#feedbackform input[name="category"]').val(),
+					'ff-title': $('#feedbackform input[name="title"]').val(),
+					'ff-message': $('#feedbackform textarea[name="message"]').val(),
+					'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
+				},
 				success: function(data, status, error){
-					alert(status);
+					if(typeof(data.error) != 'undefined'){						
+						if(data.error != ''){
+							alert(data.error);
+						}
+					}else{
+						alert(data.message);
+					}
+				},
+				error: function(data){
+					alert(data);
 				}
 			});
 			return false;

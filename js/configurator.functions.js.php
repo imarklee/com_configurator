@@ -493,7 +493,7 @@ jQuery.noConflict();
 					'ff-type': $('#feedbackform input[name="type"]').val(),
 					'ff-category': $('#feedbackform input[name="category"]').val(),
 					'ff-title': $('#feedbackform input[name="title"]').val(),
-					'ff-message': $('#feedbackform textarea[name="message"]').val(),
+					'ff-message': $('#feedbackform textarea[name="description"]').val(),
 					'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
 				},
 				success: function(data, status, error){
@@ -503,6 +503,7 @@ jQuery.noConflict();
 						}
 					}else{
 						alert(data.message);
+						$('#report-bug').dialog('close');	
 					}
 				},
 				error: function(data){

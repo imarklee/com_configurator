@@ -24,7 +24,7 @@
 		<label for="description">Describe what happened</label>
 		<textarea name="description" id="ff-description" rows="4" cols="40" class="text ui-widget-content ui-corner-all"></textarea>
 		<label for="specs">Specifications *</label>
-		<textarea name="specs" id="ff-specs" style="display:none;"rows="4" cols="40" ></textarea>
+		<textarea name="specs" style="display:none;"rows="4" cols="40" ></textarea>
 		<div id="ff-specs">
 			<p><strong>Configurator: </strong>Version <?php echo $component_arr['version']; ?><br />
 			<strong>Morph: </strong>Version <?php echo $template_arr['version']; ?><br />

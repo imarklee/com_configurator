@@ -67,7 +67,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 					</div>
 					<div id="cl-inner">
 						<h2>Configurator for Morph</h2>
-						<p>Please log in using your Joomla!Junkie Club Membership details</p>
+						<p>Please log in using your Joomla!Junkie Club Membership details. Not a member? <a href="http://www.joomlajunkie.com/secure" title="this link opens our subscription comparison page in a new window" target="_blank">Click here</a> to sign up!</p>
 						<form id="am-login-form" method="post">
 							<div id="alf-cont">
 								<div id="alf-inp-cont">
@@ -75,11 +75,12 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<input type="text" class="alf-input" name="am-username" value="username" title="username" />
 									</label>
 									<label for="am-password" class="label-password"><span>Password:</span>
-									<input type="password" class="alf-input" name="am-password" value="password" title="password" />
+									<input type="password" id="loginpass" class="alf-input" name="am-password" value="password" title="password" />
 									</label>
 									
-									<label for="am-keep-login" class="login-checkbox"><input class="alf-check" type="checkbox" name="am-keep-login" value="true" /> Keep me logged in</label>
-								</div>
+									<p class="login-sub"><label for="am-keep-login" class="login-checkbox"><input class="alf-check" type="checkbox" name="am-keep-login" value="true" /> Stay logged in</label>&nbsp;&nbsp;|&nbsp;<label for="show-password" class="login-checkbox"><input id="showpass" type="checkbox" name="show-password" value="true" /> Show password</label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://" title="">Forgot password?</a></p>
+									<!--<p class="login-sub"><a href="http://" title="">Forgot your password?</a> | <a href="http://" title="">Trouble logging in?</a></p>-->
+																	</div>
 								<input class="alf-login" type="submit" name="am-do-login" value="am-login-true" />
 							</div>				
 						</form>
@@ -89,6 +90,11 @@ function manage( &$params, &$lists, $morph_installed ) {
 					</div>
 					<div id="alf-image">
 						<img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" />
+						<form action="https://www.joomlajunkie.com/secure/sendpass.php" method="post" name="sendpass" style="display:none;">
+							<label for="lost-password">Enter your email address or username:</label>
+							<input type="text" id="lost-password" class="text-input" style="padding: 5px;" size="47" name="login"/><br/>
+							<input type="submit" value="Get Password"/>
+						</form>
 					</div>
 				</div>
 	        <?php }else{ ?>

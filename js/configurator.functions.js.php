@@ -46,15 +46,15 @@ jQuery.noConflict();
 //		  $(this).removeClass('hover');
 //		});
 
-$("#help").hover(function () {
-      $(this).switchClass("on", "off", 15000);
-		}, function() {
-      $(this).switchClass("off", "on", 15000);
-    });
+		$("#help").hover(function () {
+	      $(this).switchClass("on", "off", 15000);
+			}, function() {
+	      $(this).switchClass("off", "on", 15000);
+	    });
 
 		$('#tabs .ui-tabs-panel').corners('0px 40px 40px 40px');
-		$('#conf-login').corners('5px');
-		$('#cl-inner').corners('7px');
+		$('#conf-login').corners('10px');
+		$('#cl-inner').corners('10px');
 		$('#login-details').corners('5px');	
 		$('#minwidth-body .m #templateform').corners('7px');	
 		$('#tips .inner').corners('7px');	
@@ -65,19 +65,28 @@ $("#help").hover(function () {
 		$("#system-message dd.message").corners("10px");		
 		$("#system-message dd.message ul").corners("10px");		
 		$('#system-message').delay(3000, function(){$('#system-message').fadeOut()})
-//		$("#shelf.open #utilities").corners("7px top");
-//		$("#shelf.closed #utilities").corners("7px");
 		$("ul.assets-headers").corners("5px top");
 		$("#qtip-content .docs-wrap a.btn-link").corners("10px");
 		$("a.btn-link,a.switch-view").corners("10px");
 		$("#assets-tabs .thumb-view ul.buttons li a").corners("10px");
 		$("#assets-tabs .thumb-view ul.buttons li a span").corners("10px");
 		$("#conf-login label.label-username,#conf-login label.label-password").corners("10px");
-		$("#conf-login #alf-cont label span").corners("top-left bottom-left 11px");
+		$("#conf-login #alf-cont label span").corners("top-left bottom-left 8px");
 
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
+
+//		$("#loginpass").each(function(){
+//			$(this).attr('type', 'text');
+//		});
+//		$("#showpass").click(function(){
+//		if ($("#showpass").attr("checked")){
+//			$("#loginpass").attr("type","text");
+//		}else {
+//		$("#loginpass").attr("type","password");
+//		}
+//		});
 
 	   $("#footer").fadeTo("slow", 0.3); // This sets the opacity of the thumbs to fade down to 30% when the page loads
 	   $("#footer").hover(function(){
@@ -88,7 +97,7 @@ $("#help").hover(function () {
 
 //		if ($("#install-type input").hasClass("focus")){
 //		$("#install-type label").addClass("active-radio");
-//		}	
+//		}
 		$(".upload-themelet").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
@@ -260,10 +269,12 @@ $("#help").hover(function () {
 		$("input, textarea", $("form")).focus(function(){
 		$(this).addClass("focus");
 		$(this).parents("ol.forms").addClass("cur");
+		$(this).parents("label.label-username,label.label-password").addClass("label-focus");
 		});
 		$("input, textarea", $("form")).blur(function(){
 		    $(this).removeClass("focus");
 		    $(this).parents("ol.forms").removeClass("cur");
+		    $(this).parents("label.label-username,label.label-password").removeClass("label-focus");
 		});
 		
 		$('textarea').autoResize({
@@ -1347,13 +1358,14 @@ $("#help").hover(function () {
 									+'cookies.</span></p>');
 			
 			$('#alf-warning').dialog({
+	   			width: 500, 
 	   			autoOpen: true, 
 	   			bgiframe: true, 
 	   			resizable: false,
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Warning</span>',
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;">Warning</span>',
 	   			overlay: {
 	   				backgroundColor: '#000', 
 	   				opacity: 0.5 

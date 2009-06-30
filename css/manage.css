@@ -1789,12 +1789,8 @@ list-style:none;
 padding-right:5px;
 }
 
-#report-bug p { margin: 0; padding: 0px 0px 6px; 0px }
-#report-bug #feedbackform { margin-top: 15px; }
-#feedbackform label { clear: left; display: block; float: left; margin-right: 10px; width: 140px; text-align: right; height: 25px; }
-#feedbackform input { float: left; display: block; margin-bottom: 8px; padding: 2px; width: 180px; }
-#feedbackform span { float: left; display: block; margin-right: 10px; min-width: 65px; }
-#feedbackform span input { float: left; }
-#feedbackform textarea { display: block; }
-#feedbackform div { display: block; margin-left: 150px; }
-#feedbackform .ff-button { float: left; margin-right: 10px; margin-top: 15px;}
+#dashboard{width:640px;padding-left:310px;margin:3em auto 2em auto;padding-bottom:2em;background:#fff url(../images/maskot.png) 0 5px no-repeat;}
+#dashboard h1{margin:0;padding:0;font:bold 40px Arial;color:#666;}
+#dashboard p{margin-top:20px;font:bold 20px Arial;color:#666;}
+#dashboard p.config-morph a{text-indent:-7998px;display:block;width:250px;height:40px;background:#fff url(../images/btn-configure-morph.jpg) no-repeat 0 0;}
+#dashboard p.config-morph a:hover{background-position: 0 -40px; background-repeat: no-repeat;}

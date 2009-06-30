@@ -35,6 +35,10 @@ class HTML_configuratorhelper_admin {
 		$task = JRequest::getCmd('task');
 	
 	?>
+	<style type="text/css">
+	#content-box #element-box .m{background:#fff!important;}
+	</style>
+	
 	<div id="dashboard">
 	<h1>Configurators Dashboard is under construction ;)</h1>
 	<p>We plan on updating configurator to have a really slick dashboard, but this is on the backburner until both Morph &amp; Configurator are 100% stable.</p>

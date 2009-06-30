@@ -1,0 +1,18 @@
+#install-wrap{background: #000000 url(../images/bokeh-bg.jpg) no-repeat 50% 0%;padding: 20px 0;}
+#sample-data{width:800px;margin:2em auto;font:normal 76%/160% arial;position:relative;}
+#sd-header{height:95px;overflow:hidden;}
+#sd-header img{margin:15px 0 0 0;width:173px;float:left;}
+#sd-header .steps strong{font:bold 35px/1 arial;color:#333;display:block;}
+#sd-header .steps{font:bold 25px arial;color:#666;width:250px;float:right;margin:15px 0 0 0;}
+#sd-body{background: #fff;padding:1em 2em;font:normal 18px/27px arial;height:310px;}
+#sd-image{position:absolute;top:48%;left:48%;display:none;}
+#sd-footer{height:25px}
+#sd-body h3{font:bold 30px arial;color:#444;margin:.5em 0;}
+#sd-body .alert{background:#FFFF99;padding:5px 10px;font-size: 15px;font-weight: bold;margin:20px 0 25px 0;color:#990000;border-top:1px solid #FFCC00;border-bottom:1px solid #FFCC00;}
+#sd-body .action{overflow:hidden;}
+#sd-body .btn-install{background:#fff url(../images/btn-install-sample1.png) no-repeat;display:block;width:250px;height:40px;text-indent:-7998px;float:left;}
+#sd-body .btn-skip{float:left;font:normal 20px/33px arial;text-decoration:underline;color:#648A3F;margin-left:1em;}
+#sd-body .btn-cont{display:block;font:bold 25px/50px arial;text-decoration:underline;color:#3A8BD0;margin-left:1em;}
+#sd-body .success{text-align:center;color:green;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
+#sd-body .error{text-align:center;color:red;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
+.btn-skip:hover{color:#2D6EA4;}

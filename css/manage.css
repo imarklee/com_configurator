@@ -511,10 +511,10 @@ height: 26px;
 #tabs ol.forms li.heading h3{
 text-align:ce;
 background: url(../images/heading-bg2.jpg) repeat-x left bottom;
-/*border: 1px solid #92A64D;*/
 border: 1px solid #999;
 border-bottom: 1px solid #fff;
 margin:-2px -11px 0 -12px;
+text-align: center;
 }
 #tabs ol.forms li.heading.first h3{
 margin: -3px -11px -2px -12px;
@@ -570,7 +570,7 @@ height: 16px;
 display:block;
 position: absolute;
 top:7px;
-right:97px;
+right:98px;
 background: #ccc;
 -moz-border-radius: 3px;
 }
@@ -670,15 +670,22 @@ border:1px solid #8FAB60;
 #assets .thumb-view li.tl-active .assets-inner{
 background: transparent url(../images/active-badge.png) no-repeat top right;
 }
-
+#assets .thumb-view li .image-container,
 #assets .thumb-view li .chrome-wrap{
-width: 200px;
+width: 198px;
 height: 100px;
 background: transparent url(../images/browsers/safari-sml.png) no-repeat 0 0px;
 padding-top: 18px;
 overflow: hidden;
 border-bottom: 1px solid #ccc;
 }
+#assets .thumb-view li .image-container{
+border: 1px solid #ccc;
+}
+#assets .thumb-view li .image-container div{
+border: 5px solid #fff;
+}
+
 #assets .thumb-view li img{
 border: 1px solid #ccc;
 }
@@ -743,7 +750,7 @@ height: 100px;
 border: 1px solid #ccc;
 }
 .image-container div{
-width: 190px;
+width: 188px;
 height: 90px;
 border: 5px solid #eee;
 background-repeat: repeat;
@@ -1087,10 +1094,10 @@ margin:0 0 10px 0;
 padding:0;
 }
 #conf-login p{
-margin:0 0 20px 0;
+margin:0 0 15px 0;
 padding:0;
-font: normal 15px/20px Arial;
-width:355px;
+font: normal 13px/17px Arial;
+width:360px;
 }
 #cl-top {
 padding: 0;
@@ -1102,10 +1109,10 @@ margin:0 0 10px 0;
 }
 #cl-inner {
 background:#fff;
-border:5px solid #111;
+border:1px solid #111;
 color:#313131;
 display:block;
-height:280px;
+height:290px;
 padding: 20px;
 margin:0 auto;
 position: relative;
@@ -1138,6 +1145,14 @@ display: block;
 position:absolute;
 top:0;
 left:0;
+}
+#conf-login label.label-focus{
+background:#ddd url(../images/input-bg.jpg) repeat-x;
+border:1px solid #688F3A;
+}
+#conf-login #alf-cont label.label-focus span{
+background:#688F3A;
+color: #fff;
 }
 #conf-login #alf-cont label.label-username input.alf-input,
 #conf-login #alf-cont label.label-password input.alf-input{
@@ -1179,7 +1194,7 @@ overflow: hidden;
 border:0;
 background:none;
 padding:40px 0 0 0;
-margin:10px 0 0 0;
+margin:0;
 background: transparent url(../images/btn-configurator-login.png) no-repeat;
 cursor: pointer;
 }
@@ -1191,9 +1206,19 @@ background-position: left center;
 opacity:0.5;
 }
 #conf-login label.login-checkbox{
-font:normal 13px arial;
-color: #999;
+font:normal 11px arial;
+color: #777;
 margin-bottom: 10px;
+}
+#conf-login p.login-sub{
+color:#999;
+font-size:11px;
+}
+#conf-login p a{
+text-decoration:underline;
+}
+#am-login-form #alf-cont #alf-inp-cont{
+margin: 5px 0 20px 0;
 }
 
 #am-login-form .alf-login{
@@ -1241,12 +1266,7 @@ font: normal 18px/32px Arial;*/
 /*background: transparent url(../images/login-input-bg-focus.png) no-repeat 0 0;
 color: #00b0ff;*/
 }
-#am-login-form #alf-cont #alf-inp-cont{
-/*position: absolute;
-left: 0;
-top: 0;
-text-align: left;*/
-}
+
 #am-login-form #alf-cont #alf-inp-cont .alf-check{
 /*display: block;
 float: left;*/
@@ -1282,6 +1302,14 @@ outline-offset: 0;*/
 text-align: left;
 padding-top: 10px;
 }
+#alf-warning p{
+margin: 5px 0 0 0;
+font: normal 12px/17px arial;
+}
+#alf-warning p strong{
+margin: 0;
+font: bold 15px arial;
+}
 #alf-image{
 position: absolute;
 top: 0;
@@ -1293,8 +1321,17 @@ width: 100%;
 height: 500px;
 opacity: 0.9;
 }
-#alf-image img{
-margin: 240px 50%;
+#alf-image div{
+margin: 240px 47%;
+width: 115px;
+font: bold 15px arial;
+color: #fff;
+position: relative;
+}
+#alf-image div span{
+position: absolute;
+left: 20px;
+top: -1px;
 }
 #login-details{
 padding: .6em;
@@ -1523,7 +1560,9 @@ height:25px;
 padding:0;
 text-align:center;
 }
-
+#logologo_image{
+width:175px;
+}
 #top{
 height: 90px;
 overflow:hidden;
@@ -1578,7 +1617,7 @@ text-indent:-7998px;
 background:#000000 none repeat scroll 0 0;
 opacity:0.9;
 }
-.logo-preview { display: block; width: 100px; height: 16px; background: transparent url(../images/eye.png) no-repeat 0 0; position:absolute;top:9px; right: 30px;}
+.logo-preview { display: block; width: 16px; height: 16px; background: transparent url(../images/eye.png) no-repeat 0 0; position:absolute;top:9px; right: 55px;}
 .logo-preview span {display: none;}
 .logo-preview:hover span { display: block; }
 
@@ -1622,13 +1661,14 @@ padding: 4px 26px 4px 8px;
 position:relative;
 z-index:11000;
 top:-190px;
-margin:0 40px 0 40px;
+margin:0;
 background:#000;
-height:90px;
+height:71px;
 filter: alpha(opacity=95);
 opacity: .95;
 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
-padding-top:40px;
+padding:20px 20px 0 20px;
+display: block;
 }
 #minwidth-body #system-message dd.message{
 background:#648A3F url(../images/message-bg.jpg) repeat-x;

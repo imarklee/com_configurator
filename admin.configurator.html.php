@@ -22,6 +22,7 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.qtip-1.0.0-rc3.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.fileupload.js');$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.autoresize.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.form.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.showPassword.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.functions.js.php');
 
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/jquery-ui-1.7.2.custom.css');
@@ -77,7 +78,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<input type="password" id="loginpass" class="alf-input" name="am-password" value="password" title="password" />
 									</label>
 									
-									<p class="login-sub"><label for="am-keep-login" class="login-checkbox"><input class="alf-check" type="checkbox" name="am-keep-login" value="true" /> Stay logged in</label>&nbsp;&nbsp;|&nbsp;<label for="show-password" class="login-checkbox"><input id="showpass" type="checkbox" name="show-password" value="true" /> Show password</label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://" title="">Forgot password?</a></p>
+									<p class="login-sub"><label for="am-keep-login" class="login-checkbox"><input class="alf-check" type="checkbox" name="am-keep-login" value="true" /> Stay logged in</label>&nbsp;&nbsp;|&nbsp;<label for="show-password" class="login-checkbox"><span class="sp-check"></span></label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://" title="">Forgot password?</a></p>
 								</div>
 								<input class="alf-login" type="submit" name="am-do-login" value="am-login-true" />
 							</div>				

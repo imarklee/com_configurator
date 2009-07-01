@@ -38,7 +38,9 @@ jQuery.noConflict();
 
 		$("#assets-tabs #themelets-list li:even").addClass("alt");			
 		$("#assets-tabs #logos-list li:even").addClass("alt");			
-		$("#assets-tabs #backgrounds-list li:even").addClass("alt");			
+		$("#assets-tabs #backgrounds-list li:even").addClass("alt");
+		
+		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
 	
 //		$('#help').hover(function() {
 //		  $(this).addClass('hover');

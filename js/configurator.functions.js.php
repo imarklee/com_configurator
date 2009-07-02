@@ -551,13 +551,14 @@ jQuery.noConflict();
 	    
 	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
 	    	$('#getting-started').dialog({
-	    		width: '700px',
+	    		width: '920px',
 	    		bgiframe: true,
 	   			autoOpen: true,
 	   			minHeight: 20,
 	   			stack: false,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+	   			dialogClass: 'welcome',
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Welcome to Configurator</span>',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 

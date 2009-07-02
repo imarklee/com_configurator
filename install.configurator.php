@@ -43,7 +43,7 @@ jQuery.noConflict();
 <div id="install-wrap">
 <div id="sample-data">
 	<div id="sd-header">
-		<img src="../com_configurator/images/morph-logo.png" alt="morph logo" width="173" height="60" border="0" />
+		<img src="components/com_configurator/images/morph-logo.png" alt="morph logo" width="173" height="60" border="0" />
 		<p class="steps"><strong>Step Two: </strong>Choose your Setup</p>
 	</div>
 	<div id="sd-body">

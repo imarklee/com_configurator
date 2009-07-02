@@ -174,7 +174,15 @@ jQuery.noConflict();
 		subtabs.tabs("select",3);
 		return false;
 		});	
-		
+
+		$(".sidebar-tab").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#blocks-tabs").tabs();
+		maintabs.tabs("select",2);
+		subtabs.tabs("select",7);
+		return false;
+		});	
+				
 		if($.cookie('fullscreen') == 'true'){
 			$('#minwidth-body').addClass('full-mode');
 			$('#screenmode').text('Normal Mode');

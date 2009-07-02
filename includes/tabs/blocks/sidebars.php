@@ -12,6 +12,8 @@
 		<h4>Understanding the Inner &amp; Outer layouts</h4>
 		<p>The <strong>outer layout</strong> refers to the width and position of your <strong>secondary content</strong>, whereas the <strong>inner layout</strong> refers to the width and position of your <strong>tertiary content</strong>.</p>
 		
-		<p>Setting the inner &amp; outer layout defaults is only the tip of the iceberg. The true power of these is the ability to control them on a page by page basis, using our PageFX feature. <a href="http://" title="">Learn more about PageFX</a>.</p>
+		<p>Setting the inner &amp; outer layout defaults is only the tip of the iceberg. The true power of these is the ability to control them on a page by page basis, using our PageFX feature.</p>
+		
+		<p><a class="modal-link btn-link" href="pagefx.html" title="Getting started with PageFX">Learn more about PageFX</a></p>
 	</div>
 </div>

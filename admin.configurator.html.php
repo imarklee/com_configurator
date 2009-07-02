@@ -180,7 +180,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="icon-installer ui-tabs-selected"><a href="#tools-installer">Universal Installer</a></li>
 								</ul>
-								<?php include 'includes/tabs/tools/uploader.php' ?>
+								<?php include 'includes/tabs/tools/uploader.php'; ?>
 							</div>
 						</div>
 
@@ -192,19 +192,24 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
 									<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
 								</ul>				
-								<?php include 'includes/tabs/assets/themelets.php' ?>
-								<?php include 'includes/tabs/assets/logos.php' ?>
-								<?php include 'includes/tabs/assets/backgrounds.php' ?>
+								<?php include 'includes/tabs/assets/themelets.php'; ?>
+								<?php include 'includes/tabs/assets/logos.php'; ?>
+								<?php include 'includes/tabs/assets/backgrounds.php'; ?>
 							</div>
 						</div>
 							
 						<div id="help" class="ui-tabs-hide off">
-							<?php include 'includes/help.php' ?>
+							<?php include 'includes/help.php'; ?>
 						</div>
 					</div>
 
 					<div class="clear">&nbsp;</div>
-					<?php include 'includes/footer.php' ?>
+					<?php include 'includes/footer.php'; ?>
+					<?php if(!isset($_COOKIE['welcome_screen'])){
+						include 'tooltips/gettingstarted.html';
+					}
+					?>
+					
 				</div>
 				<input type="hidden" name="option" value="<?php echo $option; ?>"/>
 			    <input type="hidden" name="t" value="morph"/>

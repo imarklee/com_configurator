@@ -549,49 +549,20 @@ jQuery.noConflict();
 	    .appendTo($('body')) // Append to the document body
 	    .hide();
 	    
-	    var welcome = $('#tabs').qtip({
-	    	delay: 200,
-	    	content: {
-	    		prerender: true,
-	    		title: {
-					text: 'Welcome to Configurator',
-					button: 'Close'
-				},
-				url: '../administrator/components/com_configurator/tooltips/gettingstarted.html'
-			},
-			position: {
-				//adjust: { screen: true },
-				target: $(document.body), // Position it via the document body...
-				corner: 'center' // ...at the center of the viewport
-			},
-			show: {
-				when: false
-			},
-			hide: {
-				when: false
-			},
-			style: {
-				padding: 0,
-				background: '#fff',
-				color: '#111',
-				border: { width: 3, radius: 8 },
-     			width: '780',
-				name: 'dark'
-			},
-			api: {
-				beforeShow: function(){	
-					hideScroll();	
-					$('#qtip-blanket').fadeIn(this.options.show.effect.length);
-				},
-				beforeHide: function(){
-					showScroll();
-					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-				},
-			}
-	    });
-	    
 	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
-	    	welcome.qtip('show');
+	    	$('#getting-started').dialog({
+	    		width: '700px',
+	    		bgiframe: true,
+	   			autoOpen: true,
+	   			minHeight: 20,
+	   			stack: false,
+	   			modal: true, 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+	   			overlay: {
+	   				'background-color': '#000', 
+	   				opacity: 0.8 
+	   			}
+	    	});
 //	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
 	    }
 	    

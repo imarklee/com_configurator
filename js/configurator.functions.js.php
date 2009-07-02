@@ -541,23 +541,24 @@ jQuery.noConflict();
 	    .appendTo($('body')) // Append to the document body
 	    .hide();
 	    
-	    var welcome = $('body').qtip({
+	    var welcome = $('#tabs').qtip({
 	    	delay: 200,
 	    	content: {
-				title: {
+	    		prerender: true,
+	    		title: {
 					text: 'Welcome to Configurator',
 					button: 'Close'
 				},
 				url: '../administrator/components/com_configurator/tooltips/gettingstarted.html'
 			},
 			position: {
+				//adjust: { screen: true },
 				target: $(document.body), // Position it via the document body...
 				corner: 'center' // ...at the center of the viewport
 			},
 			show: {
-				when: false,
+				when: false
 			},
-			fixed: true,
 			hide: {
 				when: false
 			},
@@ -579,11 +580,11 @@ jQuery.noConflict();
 					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
 				},
 			}
-	    })
+	    });
 	    
 	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
 	    	welcome.qtip('show');
-	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
+//	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
 	    }
 	    
 	    $('.tt-inline').each(function(){

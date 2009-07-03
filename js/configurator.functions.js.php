@@ -1315,20 +1315,58 @@ jQuery.noConflict();
 	   	
 	   	/* Version checker --------------------
 	    ------------------------------------ */
-	   	function versionCheck(){
+	   	function getUpdateStatus(elm,isOtherThemelet){
 	   		if(!$.cookie('noupdates')){
-	   			updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
-	   			$.getJSON(updateURL, function(obj){
-	   				var morph = obj.template.morph.version;
-	   				$.cookie
-	   			});
-	   			
-	   			alert(morph);
+		   		if($(elm).attr('class') !== undefined){
+			   		var classes = $(elm).attr('class').split(' ');
+			   		var type = classes[0];
+			   		var name = classes[1];
+			   		var updateURL;
+			   		
+			   		if(name !== 'no-themelets'){
+			   		
+				   		if(!isOtherThemelet){
+					   		updateURL = 'https://www.joomlajunkie.com/versions/mhups.php?return=json&type='+type+'&type_name='+name+'&callback=?';
+					   	}else{
+					   		updateURL = 'https://www.joomlajunkie.com/versions/mhups.php?return=json&type=themelet&type_name='+name+'&callback=?';
+					   	}
+				   		
+					   	$.getJSON(updateURL, function(obj){
+				   			if(!isOtherThemelet){ 
+				   				var installedVersion = $(elm).next('dd.current').text();
+					   			var outputVersion = $(elm+'+ dd.current + dd.latest');
+							   	var outputButton = $(elm+'+ dd.current + dd.latest + dd.icon');
+					   	
+				   				if(obj.version > installedVersion){
+				   					outputVersion.html('<a href="'+obj.download+'">'+obj.version+'</a>');
+				   					outputButton.html('<span class="update-no" title="There is an update available">Update Available</span>');
+				   				} else {
+				   					outputVersion.html(obj.version);
+				   					outputButton.html('<span class="update-yes" title="You are up to date">Up to date</span>');
+				   				}
+				   			}else{
+				   				var installedVersion = $(elm +'> li.tl-installed').text();
+							   	var outputVersion = $(elm+'> li.tl-current');
+							   	
+							   	if(obj.version > installedVersion){
+				   					outputVersion.html('<strong>Current version: </strong><a href="'+obj.download+'">'+obj.version+'</a>');
+				   				} else {
+				   					outputVersion.html('<strong>Current version: </strong>'+obj.version);
+				   				}
+				   			}
+				   		});
+			   		}
+		   		}
 			}else{
 				return false;
 			}	   		
 	   	};
-	   	versionCheck();
+	   	
+	   	getUpdateStatus('dt#us-configurator');
+	   	getUpdateStatus('dt#us-morph');
+		getUpdateStatus('dt#us-themelet');
+	   	getUpdateStatus('.themelet-summary','true');
+>>>>>>> d6537019ec0be42acac44b6ad5397302139206ae:js/configurator.functions.js.php
 				
 		/* Logo Options -----------------------
 	    ------------------------------------ */

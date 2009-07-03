@@ -207,8 +207,9 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<?php if(!isset($_COOKIE['welcome_screen'])){ ?>
 					<div id="welcome">
 						<?php include 'tooltips/gettingstarted.html'; ?>
-					<?php } ?>
-					
+					<?php }
+					include 'includes/preferences.php'; ?>
+										
 				</div>
 				<input type="hidden" name="option" value="<?php echo $option; ?>"/>
 			    <input type="hidden" name="t" value="morph"/>

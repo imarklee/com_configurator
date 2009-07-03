@@ -568,6 +568,10 @@ jQuery.noConflict();
 	    	});
 	    	$('#getting-started').dialog('open');
 //	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
+			$(".close-welcome").click(function(){
+				$('#getting-started').dialog("destroy")
+				return false;
+			});
 	    }
 	    
 	    $('.info-link').click(function(){
@@ -590,7 +594,7 @@ jQuery.noConflict();
    			}
     	});
     	$('a.preferences').click(function(){ $('#preferences').dialog('open'); return false; });
-	    
+	    $('#getting-started a.close-welcome').corners('bottom-left 10px');
 	    
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 

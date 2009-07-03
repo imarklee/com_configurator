@@ -22,7 +22,7 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.qtip-1.0.0-rc3.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.fileupload.js');$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.autoresize.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.form.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.showPassword.min.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.showpassword.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.functions.js.php');
 
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/jquery-ui-1.7.2.custom.css');
@@ -42,9 +42,7 @@ function manage( &$params, &$lists, $morph_installed ) {
         $option = JRequest::getVar('option');
    
         JToolBarHelper::title( 'Configurator', 'configurator' );
-        JToolBarHelper::save('savetemplate');
-        JToolBarHelper::apply('applytemplate');
-        JToolBarHelper::cancel('dashboard');
+        
         
         if (!$morph_installed){
 	        echo '<center>';
@@ -209,8 +207,9 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<?php if(!isset($_COOKIE['welcome_screen'])){ ?>
 					<div id="welcome">
 						<?php include 'tooltips/gettingstarted.html'; ?>
-					<?php } ?>
-					
+					<?php }
+					include 'includes/preferences.php'; ?>
+										
 				</div>
 				<input type="hidden" name="option" value="<?php echo $option; ?>"/>
 			    <input type="hidden" name="t" value="morph"/>

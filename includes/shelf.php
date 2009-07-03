@@ -22,7 +22,7 @@ $component_arr = $component_details['install'];
 				<li class="logged-in">Logged in as: <strong><?php echo $_COOKIE['am_logged_in_user']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a></li>
 				<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf"><?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Open Shelf'; } ?></a></li>
 				<li class="report-bug"><a href="#" title="" id="report-bug-link">Submit Feedback</a></li>
-				<li class="preferences disabled"><a href="#" title="">Preferences</a></li>
+				<li class="preferences"><a href="#" title="">Preferences</a></li>
 				<li class="full-mode" id="fullscreen"><a href="#" title="" id="screenmode">Fullscreen Mode</a></li>
 			</ul>
 		</div>
@@ -58,7 +58,7 @@ $component_arr = $component_details['install'];
 		<div id="visual-refs">
 			<h3>Quick reference guides</h3>
 				<ul class="buttons">
-					<li><a class="modal-link btn-link" href="gettingstarted.html" title="Configurator quick start guide">Quick Start</a></li>
+					<li><a class="info-link btn-link" href="gettingstarted.html" title="Configurator quick start guide">Quick Start</a></li>
 					<li><a class="refimage-block btn-link" onclick="return false;" href="../administrator/components/com_configurator/images/visual-reference-blocks.png" title="Visual Reference: By Block">Block Map</a></li>
 					<li><a class="refimage-position btn-link" onclick="return false;" href="../administrator/components/com_configurator/images/visual-reference-positions.png" title="Visual Reference: By Block">Position Map</a></li>
 					<li class="last"><a class="modal-link btn-link" href="troubleshooting.html" title="Morph troubleshooting guide">Troubleshooting</a></li>

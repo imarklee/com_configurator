@@ -454,3 +454,66 @@ ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 #report-bug #feedbackform ul li.fb-buttons a#ff-reset{font:bold 20px/35px arial;color:#648A3F;text-decoration:underline;margin-left:-10px;}
 #report-bug p.teaser{font:normal 15px/20px arial;}
 a.disabled{opacity:0.5;cursor:default;}
+
+#getting-started.docs-wrap{
+margin:0;
+padding:0;
+background:#000;
+padding:5px;
+font:normal 12px arial;
+}
+.ui-dialog.welcome .ui-dialog-titlebar{
+display:none;
+}
+#getting-started h3{
+margin-top: 0;
+font: bold 30px arial;
+}
+#welcome-tabs,
+#welcome-tabs li{
+margin:0;
+padding:0;
+background:none;
+list-style:none;
+border:0;
+-moz-border-radius:0;
+width:200px;
+}
+#welcome-tabs {
+float:left;
+}
+#welcome-tabs li{
+
+}
+#welcome-tabs li a {
+display:block;
+width:200px;
+padding:10px;
+background:#222;
+display:block;
+text-decoration:none;
+font-weight:bold;
+font-size:1em;
+font-style:normal;
+color:#999;
+}
+#welcome-tabs li a:hover {
+background:#999;
+color: #555;
+}
+#welcome-tabs li.ui-tabs-selected a {
+background:#fff;
+color:#000;
+cursor:default;
+width:201px;
+border-right: 0;
+}
+.tabContainer {
+width:687px;
+height:450px;
+margin:0;
+padding:0;
+background:#fff;
+float:right;
+border:1px solid #ccc;
+}

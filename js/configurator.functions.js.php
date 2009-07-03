@@ -39,7 +39,7 @@ jQuery.noConflict();
 		$("#assets-tabs #backgrounds-list li:even").addClass("alt");
 		
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
-	
+
 //		$('#help').hover(function() {
 //		  $(this).addClass('hover');
 //		}, function() {
@@ -328,6 +328,11 @@ jQuery.noConflict();
 			fx: { opacity: 'toggle' },			cookie: {				name: 'tools-tabs',				expires: 30,				path: '/',		 	} 		});
 		$('#assets-tabs').tabs({
 			fx: { opacity: 'toggle' },			cookie: {				name: 'assets-tabs',				expires: 30,				path: '/',		 	} 		});
+
+		$('#getting-started').tabs({
+			fx: { opacity: 'toggle' },			cookie: {				name: 'welcome-screen',				expires: 30,				path: '/',		 	}
+		 			});
+
 		
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#themelets").removeClass("ui-widget-content");			
@@ -548,13 +553,14 @@ jQuery.noConflict();
 	    
 	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
 	    	$('#getting-started').dialog({
-	    		width: '700px',
+	    		width: '920px',
 	    		bgiframe: true,
 	   			autoOpen: false,
 	   			minHeight: 20,
 	   			stack: false,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+	   			dialogClass: 'welcome',
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Welcome to Configurator</span>',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 

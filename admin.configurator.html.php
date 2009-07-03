@@ -203,11 +203,11 @@ function manage( &$params, &$lists, $morph_installed ) {
 
 					<div class="clear">&nbsp;</div>
 					<?php include 'includes/footer.php'; ?>
-					<?php if(!isset($_COOKIE['welcome_screen'])){
-						include 'tooltips/gettingstarted.html';
-					}
-					include 'includes/preferences.php';
-					?>
+					
+					<?php if(!isset($_COOKIE['welcome_screen'])){ ?>
+					<div id="welcome">
+						<?php include 'tooltips/gettingstarted.html'; ?>
+					<?php } ?>
 					
 				</div>
 				<input type="hidden" name="option" value="<?php echo $option; ?>"/>

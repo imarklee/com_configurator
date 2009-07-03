@@ -22,7 +22,7 @@ $component_arr = $component_details['install'];
 				<li class="logged-in">Logged in as: <strong><?php echo $_COOKIE['am_logged_in_user']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a></li>
 				<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf"><?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Open Shelf'; } ?></a></li>
 				<li class="report-bug"><a href="#" title="" id="report-bug-link">Submit Feedback</a></li>
-				<li class="preferences disabled"><a href="#" title="">Preferences</a></li>
+				<li class="preferences"><a href="#" title="">Preferences</a></li>
 				<li class="full-mode" id="fullscreen"><a href="#" title="" id="screenmode">Fullscreen Mode</a></li>
 			</ul>
 		</div>

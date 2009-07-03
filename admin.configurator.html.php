@@ -15,14 +15,14 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery-ui-1.7.2.custom.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/cookie.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/preloadCssImages.jQuery_v5.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/colorpicker.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/color_picker.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jqbrowser.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.corners.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.filestyle.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.qtip-1.0.0-rc3.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.fileupload.js');$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.autoresize.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.form.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.showPassword.min.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.showpassword.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.functions.js.php');
 
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/jquery-ui-1.7.2.custom.css');
@@ -42,9 +42,7 @@ function manage( &$params, &$lists, $morph_installed ) {
         $option = JRequest::getVar('option');
    
         JToolBarHelper::title( 'Configurator', 'configurator' );
-        JToolBarHelper::save('savetemplate');
-        JToolBarHelper::apply('applytemplate');
-        JToolBarHelper::cancel('dashboard');
+        
         
         if (!$morph_installed){
 	        echo '<center>';
@@ -208,6 +206,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<?php if(!isset($_COOKIE['welcome_screen'])){
 						include 'tooltips/gettingstarted.html';
 					}
+					include 'includes/preferences.php';
 					?>
 					
 				</div>

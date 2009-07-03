@@ -1,5 +1,5 @@
 <?php 
-header('content-type: text/javascript; charset: UTF-8');
+header('content-type: text/html; charset: UTF-8');
 function pageURL() {
 	error_reporting(E_ALL ^ E_NOTICE);
 	$pageURL = 'http';
@@ -13,18 +13,16 @@ function pageURL() {
 return $pageURL;
 }
 ?>
-
-jQuery.fn.delay = function(time,func){
-    return this.each(function(){
-        setTimeout(func,time);
-    });
-};
-
-
-
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
+	
+		jQuery.fn.delay = function(time,func){
+    		return this.each(function(){
+	    	    setTimeout(func,time);
+    		});
+		};
+	
   		$.preloadCssImages();	
 		/* Generic ----------------------------
 	    ------------------------------------ */
@@ -256,7 +254,7 @@ jQuery.noConflict();
 		function hideScroll(){
 			$(document).bind('scroll', function(){return false;});
 			$('html').css({'overflow-y': 'hidden', paddingRight: '15px'});
-			$('#qtip-blanket').css({ width: arrPageSizes[0]+15 });
+			$('#qtip-blanket, #alf-image').css({ width: arrPageSizes[0]+15 });
 		}
 		
 		function showScroll(){
@@ -334,49 +332,49 @@ jQuery.noConflict();
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#themelets").removeClass("ui-widget-content");			
 		
-		/* Colour Picker ----------------------
-	    ------------------------------------ */
-		function loadColourPicker(elid) {
-			
+//		/* Colour Picker ----------------------
+//	    ------------------------------------ */
+//		function loadColourPicker(elid) {
+//			
 			// keep applied colour
-			if($(elid).prev().val() != 'default'){
-    			$(elid).css({
-    				'background-color': '#'+$(elid).prev().val()
-    			});
-    		}
+//			if($(elid).prev().val() != 'default'){
+//    			$(elid).css({
+//    				'background-color': '#'+$(elid).prev().val()
+//    			});
+//    		}
 			// load the colour picker
-    		$(elid).ColorPicker({
-       			flat: true,
-    			onSubmit: function(hsb, hex, rgb){
-					var cp = $(elid).children().attr('id');
-					$(this).prev().val('#'+hex);
-					$('#'+cp).fadeOut(500);
-				},
+//    		$(elid).ColorPicker({
+//       			flat: true,
+//    			onSubmit: function(hsb, hex, rgb){
+//					var cp = $(elid).children().attr('id');
+//					$(this).prev().val('#'+hex);
+//					$('#'+cp).fadeOut(500);
+//				},
 //				onHide: function () {
 					//
 //				},
-				onChange: function (hsb, hex, rgb) {
-					$(elid).prev().val('#'+hex);
-					$(elid).css('background-color', '#' + hex);
-				}
-    		}).bind('keyup', function(){ // set colour picker to use current value
-				$(elid).ColorPickerSetColor($(this).prev().val());
-			});
-    	}
-    	
-    	$('a.picker').click(function(){
-       		loadColourPicker($(this).prev());
-    		$('.colorpicker').css({
-    			'display': 'block',
-    			'z-index': '9999',
-    			'position': 'relative',
-    			'bottom': '33px',
-    			'right': '-23px'
-    		});
-    		cp = $(this).prev().children().attr('id');
-    		$('#'+cp).css('display','block');
-    		return false;
-    	});
+//				onChange: function (hsb, hex, rgb) {
+//					$(elid).prev().val('#'+hex);
+//					$(elid).css('background-color', '#' + hex);
+//				}
+//    		}).bind('keyup', function(){ // set colour picker to use current value
+//				$(elid).ColorPickerSetColor($(this).prev().val());
+//			});
+//    	}
+//    	
+//    	$('a.picker').click(function(){
+//       		loadColourPicker($(this).prev());
+//    		$('.colorpicker').css({
+//    			'display': 'block',
+//    			'z-index': '9999',
+//    			'position': 'relative',
+//    			'bottom': '33px',
+//    			'right': '-23px'
+//    		});
+//    		cp = $(this).prev().children().attr('id');
+//    		$('#'+cp).css('display','block');
+//    		return false;
+//    	});
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")
@@ -481,7 +479,6 @@ jQuery.noConflict();
 				opacity: 0.8
 			}
 		});
-		
 		$('#report-bug-link').click(function() {
 			$('#report-bug').dialog('open');
 		});
@@ -496,7 +493,7 @@ jQuery.noConflict();
 				contentType: "application/json; charset=utf-8",
 				url: 'http://www.joomlajunkie.com/secure/configurator/bug-report.php?jsoncallback=?',
 				data: {
-					do: 'send-feedback',
+					'do': 'send-feedback',
 					'ff-name': $('#feedbackform input[name="name"]').val(),
 					'ff-email': $('#feedbackform input[name="email"]').val(),
 					'ff-type': $('#feedbackform input[name="type"]').val(),
@@ -531,7 +528,7 @@ jQuery.noConflict();
 				// Get page sizes
 				var arrPageSizes = ___getPageSize();
 				// Style overlay and show it
-				$('#qtip-blanket').css({
+				$('#qtip-blanket, #alfimage').css({
 					width:		arrPageSizes[0],
 					height:		arrPageSizes[1]
 				});
@@ -553,7 +550,7 @@ jQuery.noConflict();
 	    	$('#getting-started').dialog({
 	    		width: '700px',
 	    		bgiframe: true,
-	   			autoOpen: true,
+	   			autoOpen: false,
 	   			minHeight: 20,
 	   			stack: false,
 	   			modal: true, 
@@ -563,8 +560,26 @@ jQuery.noConflict();
 	   				opacity: 0.8 
 	   			}
 	    	});
+	    	$('#getting-started').dialog('open');
 //	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
 	    }
+	    
+	    // prefs
+	    $('#preferences').dialog({
+    		width: '700px',
+    		bgiframe: true,
+   			autoOpen: false,
+   			minHeight: 20,
+   			stack: false,
+   			modal: true, 
+   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+   			overlay: {
+   				'background-color': '#000', 
+   				opacity: 0.8 
+   			}
+    	});
+    	$('a.preferences').click(function(){ $('#preferences').dialog('open'); return false; });
+	    
 	    
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 
@@ -1905,6 +1920,106 @@ jQuery.noConflict();
 			sliderOptionsOn('#shelvestopshelf_slider1','#shelvestopshelf_slider_text');
 			sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
 		});
+		
+		// Keyboard Shortcuts
+		$(window).keydown(function(e){
+			if($.cookie('am_logged_in')){
+				var keycode = (e.keyCode || e.which);
+				var os = $.os.name;
+				
+				function save(){
+					$('<div id="alf-image"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
+					hideScroll();
+					$('#alf-image').css({
+						'display': 'block',
+						'z-index': '9998',
+						position: 'absolute',
+				        top: 0,
+				        left: 0,
+				        width: arrPageSizes[0],
+						height: arrPageSizes[1],
+					});
+					setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+					e.preventDefault();
+					return false;
+				}
+				
+				function fullscreen(){
+					e.preventDefault();
+					$('#minwidth-body').toggleClass("full-mode");
+					$('#fullscreen').toggleClass("normal-mode");
+					if($('#screenmode').text() == 'Fullscreen Mode'){ 
+						$('#screenmode').text('Normal Mode'); 
+						$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
+					}else{ 
+						$('#screenmode').text('Fullscreen Mode'); 
+						$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
+					}
+					e.preventDefault();
+					return false;
+				}
+				
+				function preview(){
+					var thisurl = $('.preview a').attr('href');
+					window.open(thisurl);
+					e.preventDefault();
+					return false;
+				}
+				
+				function info(){
+					$('#getting-started').dialog('open');
+					e.preventDefault();
+					return false;
+				}
+				
+				function bugreport(){
+					$('#bug-report').dialog('open');
+					e.preventDefault();
+					return false;
+				}
+				
+				function prefs(){
+					$('#preferences').dialog('open'); 
+					e.preventDefault();
+					return false;
+				}
+				
+				if(os == 'mac'){
+					if(keycode == 224 || keycode == 91 || keycode == 17){ return false; } // disable keycode return on CMD key
+					if(keycode == 83 && e.metaKey && !e.ctrlKey){ return save(); }
+					if(keycode == 70 && e.metaKey && !e.ctrlKey){ return fullscreen(); }
+					if(keycode == 86 && e.metaKey && !e.ctrlKey){ return preview(); }
+					if(keycode == 73 && e.metaKey && !e.ctrlKey){ return info(); }
+					if(keycode == 69 && e.metaKey && !e.ctrlKey){ return bugreport(); }
+					if(keycode == 80 && e.metaKey && !e.ctrlKey){ return prefs(); }
+				}else{
+					if(keycode == 17){ return false; } // disable keycode return on CTRL key
+					if(keycode == 83 && (e.ctrlKey || e.metaKey)){ return save(); }
+					if(keycode == 70 && (e.ctrlKey || e.metaKey)){ 
+						if($.browser.name == 'safari'){
+							e.preventDefault();
+							return fullscreen();
+						}
+						if($.browser.name == 'opera'){
+							e.preventDefault();
+							return false;
+						}
+						return fullscreen(); 
+					}
+					if(keycode == 86 && (e.ctrlKey || e.metaKey)){ return preview(); }
+					if(keycode == 73 && (e.ctrlKey || e.metaKey)){ return info(); }
+					if(keycode == 69 && (e.ctrlKey || e.metaKey)){ return bugreport(); }
+					if(keycode == 80 && (e.ctrlKey || e.metaKey)){ return prefs(); }
+				}
+				
+				
+			}		
+		});
+
+		
+	 	
+
+
 		
 		/**
 		/ Third Party Function

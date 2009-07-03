@@ -1979,7 +1979,7 @@ jQuery.noConflict();
 				}
 				
 				function bugreport(){
-					$('#bug-report').dialog('open');
+					$('#report-bug').dialog('open');
 					e.preventDefault();
 					return false;
 				}

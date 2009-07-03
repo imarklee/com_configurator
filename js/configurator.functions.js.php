@@ -568,15 +568,7 @@ jQuery.noConflict();
 	    	});
 	    	$('#getting-started').dialog('open');
 //	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
-<<<<<<< HEAD:js/configurator.functions.js.php
-			$(".close-welcome").click(function(){
-				$('#getting-started').dialog("destroy")
-				return false;
-			});
-	    }
-	    
-	    
-=======
+
 	    }
 	    
 	    $('.info-link').click(function(){
@@ -599,8 +591,6 @@ jQuery.noConflict();
    			}
     	});
     	$('a.preferences').click(function(){ $('#preferences').dialog('open'); return false; });
-	    
->>>>>>> d6537019ec0be42acac44b6ad5397302139206ae:js/configurator.functions.js.php
 	    
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 

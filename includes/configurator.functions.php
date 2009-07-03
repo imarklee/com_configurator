@@ -214,4 +214,21 @@ if(isset($_GET['unpack'])){
 	setcookie('upack', 'true', time()-3600);
 	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
 }
+
+if(isset($_GET['noshortkey'])){
+	setcookie('noshortkey', 'true', 0);
+	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
+}elseif(isset($_GET['shortkey'])){
+	setcookie('noshortkey', 'true', time()-3600);
+	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
+}
+
+if(isset($_GET['noupdates'])){
+	setcookie('noupdates', 'true', 0);
+	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
+}elseif(isset($_GET['updates'])){
+	setcookie('noupdates', 'true', time()-3600);
+	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
+}
+
 ?>

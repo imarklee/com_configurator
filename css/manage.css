@@ -461,6 +461,16 @@ padding:0;
 background:#000;
 padding:5px;
 font:normal 12px arial;
+position:relative;
+height:436px!important;
+}
+#getting-started .close-welcome{
+position:absolute;
+top:0;
+right:0;
+background:#000;
+padding:10px;
+color:#fff;
 }
 .ui-dialog.welcome .ui-dialog-titlebar{
 display:none;
@@ -479,41 +489,94 @@ border:0;
 -moz-border-radius:0;
 width:200px;
 }
-#welcome-tabs {
-float:left;
+#getting-started #welcome-tabs {
+position: absolute;
+top: 4px;
+left: 4px;
+height:438px;
+background:#222;
+width:220px;
+margin-bottom: 0;
+overflow: hidden;
 }
-#welcome-tabs li{
-
+#getting-started #welcome-tabs li{
+width:220px;
+border-bottom: 1px solid #484848;
+background:#222 url(../images/splash-tab-bg.jpg) repeat-x;
 }
 #welcome-tabs li a {
-display:block;
-width:200px;
-padding:10px;
-background:#222;
-display:block;
-text-decoration:none;
-font-weight:bold;
-font-size:1em;
-font-style:normal;
 color:#999;
+display:block;
+font: normal 13px/40px arial;
+height:40px;
+padding:0 10px 0 35px;
+text-decoration:none;
+width:200px;
+}
+#welcome-tabs li.splash-start a {
+background: transparent url(../images/splash-start.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-fullscreen a {
+background: transparent url(../images/splash-fullscreen.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-updates a {
+background: transparent url(../images/splash-updates.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-assets a {
+background: transparent url(../images/splash-assets.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-methods a {
+background: transparent url(../images/splash-methods.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-guides a {
+background: transparent url(../images/splash-guides.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-contextual a {
+background: transparent url(../images/splash-contextual.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-shortcuts a {
+background: transparent url(../images/splash-shortcuts.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-prefs a {
+background: transparent url(../images/splash-prefs.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-feedback a {
+background: transparent url(../images/splash-feedback.png) no-repeat 4% 50%;
+}
+#welcome-tabs li.splash-docs a {
+background: transparent url(../images/splash-docs.png) no-repeat 4% 50%;
 }
 #welcome-tabs li a:hover {
-background:#999;
-color: #555;
+color: #ccc;
+}
+#getting-started #welcome-tabs li.ui-tabs-selected {
+background-color:#fff;
+background-image: none;;
+}
+#getting-started #welcome-tabs li.ui-state-hover a:hover{
+background-color:none!important;
 }
 #welcome-tabs li.ui-tabs-selected a {
-background:#fff;
 color:#000;
 cursor:default;
-width:201px;
+width:202px;
 border-right: 0;
 }
 .tabContainer {
-width:687px;
-height:450px;
+width:692px;
+height:438px;
 margin:0;
 padding:0;
 background:#fff;
-float:right;
-border:1px solid #ccc;
+position: absolute;
+top:4px;
+right:4px;
+overflow: hidden;
 }
+#getting-started .tabContainer .splashtabs{
+padding:2em 2.1em;
+}
+
+/*#getting-started .tabContainer #splashtab-start{
+background: #fff url(../images/maskot-right.png) no-repeat 95% 95%;
+}*/

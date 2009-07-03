@@ -338,7 +338,8 @@ jQuery.noConflict();
 		
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#themelets").removeClass("ui-widget-content");			
-		
+		$('#getting-started a.close-welcome').corners('bottom-left 10px');
+
 		/* Colour Picker ----------------------
 	    ------------------------------------ */
 		function loadColourPicker(elid) {
@@ -570,7 +571,13 @@ jQuery.noConflict();
 	   			}
 	    	});
 //	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
+			$(".close-welcome").click(function(){
+				$('#getting-started').dialog("destroy")
+				return false;
+			});
 	    }
+	    
+	    
 	    
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 

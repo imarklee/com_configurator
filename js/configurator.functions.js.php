@@ -1319,6 +1319,7 @@ jQuery.noConflict();
 	   	
 	   	/* Version checker --------------------
 	    ------------------------------------ */
+
 	   	function getUpdateStatus(elm,isOtherThemelet){
 	   		if(!$.cookie('noupdates')){
 		   		if($(elm).attr('class') !== undefined){

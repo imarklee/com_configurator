@@ -576,7 +576,10 @@ overflow: hidden;
 #getting-started .tabContainer .splashtabs{
 padding:2em 2.1em;
 }
-
+#getting-started h4{
+font-size:17px;
+margin-bottom: 3px;
+}
 /*#getting-started .tabContainer #splashtab-start{
 background: #fff url(../images/maskot-right.png) no-repeat 95% 95%;
 }*/

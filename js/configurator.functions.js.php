@@ -1371,7 +1371,6 @@ jQuery.noConflict();
 	   	getUpdateStatus('dt#us-morph');
 		getUpdateStatus('dt#us-themelet');
 	   	getUpdateStatus('.themelet-summary','true');
->>>>>>> d6537019ec0be42acac44b6ad5397302139206ae:js/configurator.functions.js.php
 				
 		/* Logo Options -----------------------
 	    ------------------------------------ */

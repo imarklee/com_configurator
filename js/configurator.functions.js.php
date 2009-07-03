@@ -590,6 +590,7 @@ jQuery.noConflict();
    			}
     	});
     	$('a.preferences').click(function(){ $('#preferences').dialog('open'); return false; });
+
 	    
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 

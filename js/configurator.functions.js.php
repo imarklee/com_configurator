@@ -570,6 +570,11 @@ jQuery.noConflict();
 //	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
 	    }
 	    
+	    $('.info-link').click(function(){
+	    	$('#getting-started').dialog('open');
+	    	return false;
+	    });
+	    
 	    // prefs
 	    $('#preferences').dialog({
     		width: '700px',

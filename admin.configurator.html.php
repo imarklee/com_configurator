@@ -15,7 +15,7 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery-ui-1.7.2.custom.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/cookie.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/preloadCssImages.jQuery_v5.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/color_picker.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/colorpicker.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jqbrowser.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.corners.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.filestyle.min.js');

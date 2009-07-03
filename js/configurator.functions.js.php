@@ -568,7 +568,6 @@ jQuery.noConflict();
 	    	});
 	    	$('#getting-started').dialog('open');
 //	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
-
 	    }
 	    
 	    $('.info-link').click(function(){

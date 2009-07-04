@@ -338,11 +338,6 @@ jQuery.noConflict();
 		$('#assets-tabs').tabs({
 			fx: { opacity: 'toggle' },			cookie: {				name: 'assets-tabs',				expires: 30,				path: '/',		 	} 		});
 
-		$('#getting-started').tabs({
-			fx: { opacity: 'toggle' },			cookie: {				name: 'welcome-screen',				expires: 30,				path: '/',		 	}
-		 			});
-
-		
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#themelets").removeClass("ui-widget-content");			
 		
@@ -411,20 +406,22 @@ jQuery.noConflict();
 			}
 		});
 					
-	
-	
 		$("#toggle-shelf").click(function(){
+			toggleShelf();
+			return false;
+		});
+		function toggleShelf(){
 			if(!$.cookie('shelf')){
 				$('.open').switchClass('open', 'closed', 300);
 				$.cookie('shelf', 'hide', { path: '/', expires: 30 });
-				$(this).text('Show Shelf');
+				$('#toggle-shelf').text('Show Shelf');
 			}else{
 				$('.closed').switchClass('closed', 'open', 300);
 				$.cookie('shelf', null, { path: '/', expires: 30 });
-				$(this).text('Hide Shelf');
+				$('#toggle-shelf').text('Hide Shelf');
 			}
 			return false;
-		});
+		}
 	
 		var options = { path: '/', expires: 30 };
 	
@@ -476,11 +473,7 @@ jQuery.noConflict();
 				return(false);
 			});
 		}); 
-		
-		
-		
-		
-	
+
 		$("#report-bug").dialog({
 			bgiframe: true,
 			autoOpen: false,
@@ -559,52 +552,6 @@ jQuery.noConflict();
 		})
 	    .appendTo($('body')) // Append to the document body
 	    .hide();
-	    
-	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
-	    	$('#getting-started').dialog({
-	    		width: '920px',
-	    		bgiframe: true,
-	   			autoOpen: false,
-	   			minHeight: 20,
-	   			stack: false,
-	   			modal: true, 
-	   			dialogClass: 'welcome',
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Welcome to Configurator</span>',
-	   			overlay: {
-	   				'background-color': '#000', 
-	   				opacity: 0.8 
-	   			}
-	    	});
-	    	$('#getting-started').dialog('open');
-	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
-
-			$(".close-welcome").click(function(){
-				$('#getting-started').dialog("destroy");
-				return false;
-			});
-	    }
-	    
-	    $('.info-link').click(function(){
-	    	$('#getting-started').dialog('open');
-	    	return false;
-	    });
-	    
-	    // prefs
-	    $('#preferences').dialog({
-    		width: '700px',
-    		bgiframe: true,
-   			autoOpen: false,
-   			minHeight: 20,
-   			stack: false,
-   			modal: true, 
-   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
-   			overlay: {
-   				'background-color': '#000', 
-   				opacity: 0.8 
-   			}
-    	});
-    	$('li.preferences a').click(function(){ $('#preferences').dialog('open'); return false; });
-	    $('#getting-started a.close-welcome').corners('bottom-left 10px');
 	    
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 
@@ -1587,35 +1534,8 @@ jQuery.noConflict();
 		--------------------------------- */
 		
 		$('a.logout-configurator').click(function(){
-		
-			$('#content-box').after('<div id="logout-message" style="display:none;">You are about to logout. Please ensure you have saved your changes.<br /></br />'
-									+'<strong>Please remember: You will need to be connected to the internet to login again.</strong></div>');
-			$('#logout-message').dialog({
-	   			autoOpen: true, 
-	   			bgiframe: true, 
-	   			resizable: false,
-	   			draggable: false,
-	   			minHeight: 20,
-	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Logout</span>',
-	   			overlay: {
-	   				backgroundColor: '#000', 
-	   				opacity: 0.5 
-	   			},
-				buttons: {
-					'Log Out': function(){
-						$.cookie('am_logged_in', null, { path: '/', expires: -1 });
-						$.cookie('am_logged_in_user', null, { path: '/', expires: -1 });
-						$.cookie('member_id', null, { path: '/', expires: -1 });
-						$.cookie('member_data', null, { path: '/', expires: -1 });
-						window.location.reload(true);
-					},
-					'Remain Logged In': function(){
-						$(this).dialog('destroy');
-					}
-				}	
-			});
-		return false;
+			logoutCfg();
+			return false;
 		});
 
 		/* Uploader ------------------------
@@ -1950,6 +1870,259 @@ jQuery.noConflict();
 			sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
 		});
 		
+			    // ajax content for dialog
+	    // welcome screen
+	    function welcomeScreen(){
+	    	$('#getting-started').dialog({
+	    		width: '920px',
+	    		bgiframe: true,
+	   			autoOpen: true,
+	   			minHeight: 20,
+	   			stack: false,
+	   			modal: true, 
+	   			dialogClass: 'welcome',
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Welcome to Configurator</span>',
+	   			overlay: {
+	   				'background-color': '#000', 
+	   				opacity: 0.8 
+	   			}
+	    	});
+	    	$('#getting-started a.close-welcome').corners('bottom-left 10px');
+	    	$(".close-welcome").click(function(){
+				$('#getting-started').dialog("destroy");
+				return false;
+			});
+			$('#getting-started').tabs({
+				fx: { opacity: 'toggle' },				cookie: {					name: 'welcome-screen',					expires: 30,					path: '/',			 	}			});
+	    }
+	    
+	    $('.info-link').click(function(){
+			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+		    	return welcomeScreen();
+		    });
+		    return false;
+		});
+	    
+	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
+	    	$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+		    	return welcomeScreen();
+		    });
+	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });			
+	    }
+	    
+	    // prefs
+		function preferencesScreen(){   
+		    $('#preferences-screen').dialog({
+	    		width: '700px',
+	    		bgiframe: true,
+	   			autoOpen: true,
+	   			minHeight: 20,
+	   			stack: false,
+	   			modal: true,
+	   			dialogClass: 'preferences', 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+	   			overlay: {
+	   				'background-color': '#000', 
+	   				opacity: 0.8 
+	   			}
+	    	});
+	    	$('#preferences-screen a.close-preferences').corners('bottom-left 10px');
+	    	$(".close-preferences").click(function(){
+				$('#preferences-screen').dialog("destroy");
+				return false;
+			});
+			$('#preferences-screen').tabs({
+				fx: { opacity: 'toggle' },				cookie: {					name: 'preferences-screen',					expires: 30,					path: '/',			 	}			});
+	    }
+	    
+    	$('li.preferences a').click(function(){ 
+	    	$('#preferences-screen').load('../administrator/components/com_configurator/includes/preferences.php', function(){
+		    	return preferencesScreen();
+		    }); 
+			return false;
+    	});
+    	
+    	function logoutCfg() {
+    		$('#content-box').after('<div id="logout-message" style="display:none;">You are about to logout. Please ensure you have saved your changes.<br /></br />'
+									+'<strong>Please remember: You will need to be connected to the internet to login again.</strong></div>');
+			$('#logout-message').dialog({
+	   			autoOpen: true, 
+	   			bgiframe: true, 
+	   			resizable: false,
+	   			draggable: false,
+	   			minHeight: 20,
+	   			modal: true, 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Logout</span>',
+	   			overlay: {
+	   				backgroundColor: '#000', 
+	   				opacity: 0.5 
+	   			},
+				buttons: {
+					'Log Out': function(){
+						$.cookie('am_logged_in', null, { path: '/', expires: -1 });
+						$.cookie('am_logged_in_user', null, { path: '/', expires: -1 });
+						$.cookie('member_id', null, { path: '/', expires: -1 });
+						$.cookie('member_data', null, { path: '/', expires: -1 });
+						window.location.reload(true);
+					},
+					'Remain Logged In': function(){
+						$(this).dialog('destroy');
+					}
+				}	
+			});
+    	}
+    	
+    	function toolGuides(tid){
+    		var toolPage;
+    		var toolTitle;
+    		
+    		switch(tid){
+    			case 2:
+    			toolPage = '<img src="../administrator/components/com_configurator/images/visual-reference-blocks.png" alt="Visual Reference - Blocks" height="608" width="600" />';
+    			toolTitle = 'Visual Reference: Blocks';
+    			return toolGI(toolPage, toolTitle, 2);
+    			break;
+    			case 3:
+    			toolPage = '<img src="../administrator/components/com_configurator/images/visual-reference-positions.png" alt="Visual Reference - Blocks" height="608" width="600" />';
+    			toolTitle = 'Visual Reference: Positions';
+    			return toolGI(toolPage, toolTitle, 3);
+    			break;
+    			case 4:
+    			toolPage = '../administrator/components/com_configurator/tooltips/troubleshooting.html';
+    			toolTitle = 'Troubleshooting';
+    			break;
+    			case 5:
+    			toolPage = '../administrator/components/com_configurator/tooltips/modfx.html';
+    			toolTitle = 'ModFX';
+    			break;
+    			case 6:
+    			toolPage = '../administrator/components/com_configurator/tooltips/pagefx.html';
+    			toolTitle = 'PageFX';
+    			break;
+    			case 7:
+    			toolPage = '../administrator/components/com_configurator/tooltips/menufx.html';
+    			toolTitle = 'MenuFX';
+    			break;
+    			case 8:
+    			toolPage = '../administrator/components/com_configurator/tooltips/contentfx.html';
+    			toolTitle = 'ContentFX';
+    			break;
+    		}
+    		
+    		if(!$.cookie('tooltip'+tid)){
+				$.cookie('tooltip'+tid, 'open');
+					
+				$('.toolguides').qtip({
+					content: { title: { text: toolTitle, button: 'Close' }, url: toolPage },
+					position: { target: $(document.body), corner: 'center' },
+					show: { ready: true },
+					hide: false,
+					style: {
+						padding: 0,
+						background: '#fff',
+						color: '#111',
+						border: {
+		     				width: 3,
+		     				radius: 8
+		     			},
+	         			width: {
+	         				max: '780'
+	         			},
+						name: 'dark'
+					},
+					api: {
+						beforeShow: function(){	
+							hideScroll();	
+							$('#qtip-blanket').fadeIn(this.options.show.effect.length);
+						},
+						beforeHide: function(){
+							showScroll();
+							$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
+						},
+						onShow: function(){
+						
+							$('.modal-preview').each(function(){
+		   						var title = $(this).attr('title');
+						   		$(this).attr('title', ''); 
+						   		
+						   		var content = '<img src="';
+					     		content += title;
+					      		content += '" alt="Loading thumbnail..." height="144" width="176" />';
+						   		
+						   		$(this).qtip({
+						   		     content: content,
+								     position: {
+								        corner: {
+								           tooltip: 'bottomMiddle',
+								           target: 'topMiddle'
+								        }
+								     },
+								     style: {
+								        tip: true,
+								        name: 'dark',
+								        border: {
+					         				width: 3,
+					         				radius: 8
+					         			},
+					         			padding: '0 0 0 0',
+					         			width: {
+					         				max: '193'
+					         			}
+									}			
+								});	
+						   	});
+						}
+					}
+				});
+			}else{
+				$('.toolguides').qtip('destroy');
+				showScroll();
+				$('#qtip-blanket').fadeOut();
+				$.cookie('tooltip'+tid, null);
+			}
+    	}
+    	
+    	function toolGI(image, imgtitle, tid){
+    		if(!$.cookie('tooltip'+tid)){
+				$.cookie('tooltip'+tid, 'open');
+					
+				$('.toolguides').qtip({
+					content: { title: { text: imgtitle, button: 'Close' }, text: image },
+					position: { target: $(document.body), corner: 'center' },
+					show: { ready: true },
+					hide: false,
+					style: {
+						padding: 0,
+						background: '#fff',
+						color: '#111',
+						border: {
+		     				width: 3,
+		     				radius: 8
+		     			},
+	         			width: {
+	         				max: '780'
+	         			},
+						name: 'dark'
+					},
+					api: {
+						beforeShow: function(){	
+							hideScroll();	
+							$('#qtip-blanket').fadeIn(this.options.show.effect.length);
+						},
+						beforeHide: function(){
+							showScroll();
+							$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
+						}
+					}
+				});
+			}else{
+				$('.toolguides').qtip('destroy');
+				showScroll();
+				$('#qtip-blanket').fadeOut();
+				$.cookie('tooltip'+tid, null);
+			}
+		}
+		
 		// Keyboard Shortcuts
 		$(window).keydown(function(e){
 			if($.cookie('am_logged_in') && !$.cookie('noshortkey')){
@@ -1996,19 +2169,59 @@ jQuery.noConflict();
 				}
 				
 				function info(){
-					$('#getting-started').dialog('open');
+					if(!$.cookie('info')){
+						$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+					    	return welcomeScreen();
+					    });
+					    $.cookie('info', 'open');
+					}else{
+						$('#getting-started').dialog("destroy");
+						$.cookie('info', null);
+					}
 					e.preventDefault();
 					return false;
 				}
 				
 				function bugreport(){
-					$('#report-bug').dialog('open');
+					if(!$.cookie('bug')){
+						$('#report-bug').dialog('open');
+						$.cookie('bug', 'open');
+					}else{
+						$('#report-bug').dialog("close");
+						$.cookie('bug', null);
+					}
 					e.preventDefault();
 					return false;
 				}
 				
 				function prefs(){
-					$('#preferences').dialog('open'); 
+					if(!$.cookie('prefs')){
+						$('#preferences-screen').load('../administrator/components/com_configurator/includes/preferences.php', function(){
+					    	return preferencesScreen();
+					    });
+					    $.cookie('prefs', 'open');
+					}else{
+						$('#preferences-screen').dialog("destroy");
+						$.cookie('prefs', null);
+					}
+					e.preventDefault();
+					return false;
+				}
+				
+				function logout(){
+					logoutCfg();
+					e.preventDefault();
+					return false;
+				}
+				
+				function toggletop(){
+					toggleShelf();
+					e.preventDefault();
+					return false;
+				}
+				
+				function tooltip(tid){
+					toolGuides(tid);
 					e.preventDefault();
 					return false;
 				}
@@ -2017,10 +2230,20 @@ jQuery.noConflict();
 					if(keycode == 224 || keycode == 91 || keycode == 17){ return false; } // disable keycode return on CMD key
 					if(keycode == 83 && e.metaKey && !e.ctrlKey){ return save(); }
 					if(keycode == 70 && e.metaKey && !e.ctrlKey){ return fullscreen(); }
-					if(keycode == 86 && e.metaKey && !e.ctrlKey){ return preview(); }
-					if(keycode == 73 && e.metaKey && !e.ctrlKey){ return info(); }
+					if(keycode == 79 && e.metaKey && !e.ctrlKey){ return preview(); }
 					if(keycode == 69 && e.metaKey && !e.ctrlKey){ return bugreport(); }
 					if(keycode == 80 && e.metaKey && !e.ctrlKey){ return prefs(); }
+					if(keycode == 76 && e.metaKey && !e.ctrlKey){ return logout(); }
+					if(keycode == 48 && e.metaKey && !e.ctrlKey){ return toggletop(); }
+					if(keycode == 49 && e.metaKey && !e.ctrlKey){ return info(); }
+					if(keycode == 50 && e.metaKey && !e.ctrlKey){ return tooltip(2); }
+					if(keycode == 51 && e.metaKey && !e.ctrlKey){ return tooltip(3); }
+					if(keycode == 52 && e.metaKey && !e.ctrlKey){ return tooltip(4); }
+					if(keycode == 53 && e.metaKey && !e.ctrlKey){ return tooltip(5); }
+					if(keycode == 54 && e.metaKey && !e.ctrlKey){ return tooltip(6); }
+					if(keycode == 55 && e.metaKey && !e.ctrlKey){ return tooltip(7); }
+					if(keycode == 56 && e.metaKey && !e.ctrlKey){ return tooltip(8); }
+					
 				}else{
 					if(keycode == 17){ return false; } // disable keycode return on CTRL key
 					if(keycode == 83 && (e.ctrlKey || e.metaKey)){ return save(); }
@@ -2035,10 +2258,12 @@ jQuery.noConflict();
 						}
 						return fullscreen(); 
 					}
-					if(keycode == 86 && (e.ctrlKey || e.metaKey)){ return preview(); }
+					if(keycode == 79 && (e.ctrlKey || e.metaKey)){ return preview(); }
 					if(keycode == 73 && (e.ctrlKey || e.metaKey)){ return info(); }
 					if(keycode == 69 && (e.ctrlKey || e.metaKey)){ return bugreport(); }
 					if(keycode == 80 && (e.ctrlKey || e.metaKey)){ return prefs(); }
+					if(keycode == 76 && (e.ctrlKey || e.metaKey)){ return logout(); }
+					if(keycode == 48 && (e.ctrlKey || e.metaKey)){ return toggletop(); }
 				}
 				
 				
@@ -2046,7 +2271,7 @@ jQuery.noConflict();
 		});
 
 		/**
-		/ Third Party Function
+		**** Third Party Function
 		* getPageSize() by quirksmode.com
 		* @return Array Return an array with page width, height and window width, height
 		*/

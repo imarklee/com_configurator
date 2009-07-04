@@ -204,11 +204,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<div class="clear">&nbsp;</div>
 					<?php include 'includes/footer.php'; ?>
 					
-					<?php if(!isset($_COOKIE['welcome_screen'])){ ?>
-					<div id="welcome">
-						<?php include 'tooltips/gettingstarted.html'; ?>
-					<?php }
-					include 'includes/preferences.php'; ?>
+					
 										
 				</div>
 				<input type="hidden" name="option" value="<?php echo $option; ?>"/>
@@ -216,6 +212,10 @@ function manage( &$params, &$lists, $morph_installed ) {
 				<input type="hidden" name="task" value="" />
 				</form>
 				<?php include 'includes/report-bug.php' ?>
+				
+				<div id="getting-started" class="docs-wrap" style="display:none;"></div>
+				<div id="preferences-screen" class="docs-wrap" style="display:none;"></div>
+				<div class="toolguides"></div>
 <?php
 			}
 	 	}      

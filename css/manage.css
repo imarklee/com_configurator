@@ -573,6 +573,18 @@ ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 #report-bug p.teaser{font:normal 15px/20px arial;}
 a.disabled{opacity:0.5;cursor:default;}
 
+#preferences-screen .close-preferences{
+position:absolute;
+top:0;
+right:0;
+background:#000;
+padding:10px;
+color:#fff;
+}
+.ui-dialog.preferences .ui-dialog-titlebar{
+display:none;
+}
+
 #getting-started.docs-wrap{
 margin:0;
 padding:0;

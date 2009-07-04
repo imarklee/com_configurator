@@ -99,7 +99,7 @@ background:#222 url(../images/active-tab-dark.jpg) repeat-x scroll 0 0;border:1p
 .info-panel h3{font:normal 23px/25px arial;margin:0 0 10px 0;padding:0;}
 .info-panel h4{font:bold 15px arial;margin:0 0 7px 0;padding:0;color:#333;}
 .info-panel ul.morph-resources{margin-top:-10px;}
-.info-panel .teaser{font:normal 15px/20px arial;margin:0 0 15px 0;padding-bottom:15px;color:#666;border-bottom:1px dashed #ccc;}
+.info-panel .teaser{font:normal 15px/20px arial;margin:0 0 10px 0;padding-bottom:25px;color:#666;background:#fff url(../images/helptext-divider.png) repeat-x 50% 100%;}
 #general-settings ol.forms li.buttons{float:none;margin-left:100px;width:auto;}
 .options-inner{/*border:1px solid #546F29;*/
 border:1px solid #999;float:left;width:460px;}

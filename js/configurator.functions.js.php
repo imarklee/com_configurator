@@ -51,6 +51,7 @@ jQuery.noConflict();
 		
 		$("#submenu").append('<li class="preferences"><a href="#">Preferences</a></li>','<li class="feedback"><a href="#" id="report-bug-link">Send Feedback</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 		
+		$("#minwidth-body.full-mode #submenu").append('<li class="save"><a href="#">Save</a></li>');
 
 		$("#help").hover(function () {
 	      $(this).switchClass("on", "off", 15000);

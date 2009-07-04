@@ -46,10 +46,12 @@ jQuery.noConflict();
 //		  $(this).removeClass('hover');
 //		});
 
-
-
-
+		// var items = ['list item 1', 'list item 2', 'list item 3'];
+		// var UL = $('#submenu-box <ul/>').append( '<li>' + items.join('</li><li>') + '</li>' );
 		
+		$("#submenu").append('<li class="preferences"><a href="#">Preferences</a></li>','<li class="feedback"><a href="#" id="report-bug-link">Send Feedback</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
+		
+
 		$("#help").hover(function () {
 	      $(this).switchClass("on", "off", 15000);
 			}, function() {
@@ -77,8 +79,8 @@ jQuery.noConflict();
 		$("#conf-login label.label-username,#conf-login label.label-password").corners("10px");
 		$("#conf-login #alf-cont label span").corners("top-left bottom-left 8px");
 		
-		if ($("#toolbar-box div.header.icon-48-configurator").val() == " Configurator "){
-		$("#toolbar-box div.header.icon-48-configurator").text(" Configurator Manage ");
+		if ($("#toolbar-box div.header").val() == " Configurator "){
+		$("#toolbar-box div.header").text(" Configurator Manage ");
 		}
 		
 		if ($("#backgroundsbg_image option:first").val() == ""){
@@ -188,7 +190,7 @@ jQuery.noConflict();
 		subtabs.tabs("select",7);
 		return false;
 		});	
-				
+	
 		if($.cookie('fullscreen') == 'true'){
 			$('#minwidth-body').addClass('full-mode');
 			$('#screenmode').text('Normal Mode');
@@ -602,7 +604,7 @@ jQuery.noConflict();
    				opacity: 0.8 
    			}
     	});
-    	$('a.preferences').click(function(){ $('#preferences').dialog('open'); return false; });
+    	$('li.preferences a').click(function(){ $('#preferences').dialog('open'); return false; });
 	    $('#getting-started a.close-welcome').corners('bottom-left 10px');
 	    
 	    $('.tt-inline').each(function(){

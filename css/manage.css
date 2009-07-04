@@ -10,7 +10,7 @@ html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #shelf #utilities ul li.logged-in{display:block;float:left;margin:0 0 0 8px;padding:0 0 0 20px;height:30px;line-height:30px;text-align:left;width:300px;font-weight:normal;font-size:12px;background:transparent url(../images/loggedin.png) no-repeat center left;}
 #utilities ul li.logged-in a{display:inline!important;padding:0;margin:0;height:auto;line-height:1;float:none;font-size:12px;color:#000;text-decoration:underline;border:0;}
 #utilities ul li{display:block;float:right;margin-left:10px;}
-#utilities ul li a{padding:0 0 0 30px;height:30px;display:block;border-left:1px solid #ccc;float:left;font:normal 12px/30px Arial;color:#222;}
+#utilities ul li a{padding:0 0 0 30px;height:30px;display:block;border-left:0;text-decoration:underline;float:left;font:normal 12px/30px Arial;color:#222;}
 #utilities .toggle-shelf a{background:transparent url(../images/toggle.png) no-repeat 10px 51%;padding:0 10px 0 30px;}
 #shelf.closed #utilities .toggle-shelf a{background:transparent url(../images/toggle-open.png) no-repeat 10px 51%;}
 #utilities .report-bug a{background:transparent url(../images/bug.png) no-repeat 10px 51%;}
@@ -358,7 +358,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 #minwidth-body.full-mode .padding,
 #minwidth-body.full-mode .m,
 #minwidth-body.full-mode .t{background:#000;border:0!important;margin:0;padding:0;}
-#minwidth-body.full-mode #content-box .padding #element-box{position:absolute;top:0;left:0;width:100%;z-index:999;background:#000;}
+#minwidth-body.full-mode #content-box .padding #element-box{position:absolute;top:34px;left:0;width:100%;z-index:999;background:#000;}
 #minwidth-body.full-mode #content-box .padding #element-box .m{background:#000;padding:0;margin:0;}
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{position:absolute;top:5px;right:5px;z-index:1000;width:45px;height:5px;float:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{background:#000;}
@@ -368,6 +368,37 @@ input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td{color:#666666;height:25px;padding:0;text-align:center;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td#toolbar-save,
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td#toolbar-cancel{display:none;}
+#minwidth-body.full-mode #content-box #submenu-box{
+position:relative;
+top:-155px;
+letft:0;
+display:block;
+height:34px;
+width:100%;
+z-index:9999;
+background:#539312;
+border-bottom:1px solid #A5FB4F;
+}
+#minwidth-body.full-mode #content-box #submenu-box div{
+background:#539312;
+}
+#minwidth-body table.toolbar td {
+color:#666;
+height:48px;
+padding:1px 6px 1px 4px;
+text-align:center;
+}
+#minwidth-body div.header {color:#ccc;font-size:33px;line-height:53px;padding-left:62px;}
+
+
+
+#minwidth-body.full-mode #content-box #submenu-box a{
+color:#fff;
+}
+#minwidth-body.full-mode #content-box #submenu-box a.active{
+line-height:21px;
+}
+
 #logologo_image{width:175px;}
 #top{height:90px;overflow:hidden;}
 #branding{width:200px;float:left;height:90px;}
@@ -579,6 +610,49 @@ padding:2em 2.1em;
 font-size:17px;
 margin-bottom: 3px;
 }
-/*#getting-started .tabContainer #splashtab-start{
-background: #fff url(../images/maskot-right.png) no-repeat 95% 95%;
-}*/
+#submenu-box div.m ul#submenu li{
+padding:0;
+}
+#submenu-box div.m ul#submenu li a{
+background: transparent url(../images/splash-guides.png) no-repeat 8px 2px;
+padding:1px 0 0 30px;
+}
+#submenu-box div.m ul#submenu li.last a{
+background: transparent url(../images/manage-link.png) no-repeat 10px 2px;
+padding-left:35px;
+}
+#submenu-box div.m ul#submenu li.full-mode a{
+background: transparent url(../images/fullscreen-link.png) no-repeat 10px 2px;
+padding-left:35px;
+}
+#submenu-box div.m ul#submenu li.feedback a{
+background: transparent url(../images/feedback-link.png) no-repeat 10px 2px;
+padding-left:35px;
+}
+#submenu-box div.m ul#submenu li.preferences a{
+background: transparent url(../images/prefs-link.png) no-repeat 10px 2px;
+padding-left:35px;
+}
+#submenu-box div.m ul#submenu li a{
+font: normal 15px/19px arial;
+padding-right:10px;
+text-decoration:underline;
+color:#444;
+}
+#submenu-box div.m ul#submenu li a.active{
+line-height:20px;
+text-decoration:none;
+//color:#999;
+opacity:0.4;
+}
+#submenu-box div.m ul#submenu li.last a{
+border-right:0;
+}
+#submenu-box div.m ul#submenu li.full-mode,
+#submenu-box div.m ul#submenu li.feedback,
+#submenu-box div.m ul#submenu li.preferences{
+float:right;
+}
+#submenu-box div.m ul#submenu li.preferences a{
+border-right:0;
+}

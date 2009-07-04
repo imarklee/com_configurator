@@ -62,8 +62,11 @@ dd.latest a{color:#555;}
 #tabs .primary li a,
 #tabs .primary .ui-tabs-panel{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}
 #tabs .primary li.last{margin:0;}
-#tabs .primary li a{padding:15px 20px;background:#eee url(../images/tabs-bg.jpg) repeat-x;color:#444;text-decoration:none;}
+#tabs .primary li a{padding:15px 20px;background:#eee url(../images/tabs-bg2.jpg) repeat-x;color:#fff;text-decoration:none;}
 #tabs .primary li a:hover{color:#666;background:#eee url(../images/tabs-bg-over.jpg) repeat-x bottom;}
+#tabs.ui-tabs .ui-tabs-nav li.ui-state-hover a{
+border-bottom:1px solid #fff!important;
+}
 #tabs .primary li.ui-tabs-selected.ui-state-active a{border-bottom:1px solid #fff;background:#fff url(../images/cog.png) no-repeat 20px 50%;color:#333;padding-left:45px;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a strong{color:#333;}
 #tabs .primary li.themelet-icon.ui-state-active a{background:#fff url(../images/icon-themelet.png) no-repeat 20px 50%;}
@@ -691,7 +694,10 @@ border-right:0;
 float:right;
 }
 #submenu-box div.m ul#submenu li.preferences a{
-xborder-right:0;
+border-right:0;
+}
+#minwidth-body.full-mode #submenu-box div.m ul#submenu li.preferences a{
+border-right:1px solid #fff;
 }
 #minwidth-body.full-mode #submenu-box div.m ul#submenu{
 margin-right:80px;

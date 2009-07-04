@@ -46,6 +46,10 @@ jQuery.noConflict();
 //		  $(this).removeClass('hover');
 //		});
 
+
+
+
+		
 		$("#help").hover(function () {
 	      $(this).switchClass("on", "off", 15000);
 			}, function() {
@@ -72,7 +76,11 @@ jQuery.noConflict();
 		$("#assets-tabs .thumb-view ul.buttons li a span").corners("10px");
 		$("#conf-login label.label-username,#conf-login label.label-password").corners("10px");
 		$("#conf-login #alf-cont label span").corners("top-left bottom-left 8px");
-
+		
+		if ($("#toolbar-box div.header.icon-48-configurator").val() == " Configurator "){
+		$("#toolbar-box div.header.icon-48-configurator").text(" Configurator Manage ");
+		}
+		
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
@@ -567,9 +575,10 @@ jQuery.noConflict();
 	   			}
 	    	});
 	    	$('#getting-started').dialog('open');
-//	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
+	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });
+
 			$(".close-welcome").click(function(){
-				$('#getting-started').dialog("destroy")
+				$('#getting-started').dialog("destroy");
 				return false;
 			});
 	    }

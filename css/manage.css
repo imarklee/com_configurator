@@ -13,6 +13,8 @@ html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #utilities ul li a{padding:0 0 0 30px;height:30px;display:block;border-left:0;text-decoration:underline;float:left;font:normal 12px/30px Arial;color:#222;}
 #utilities .toggle-shelf a{background:transparent url(../images/toggle.png) no-repeat 10px 51%;padding:0 10px 0 30px;}
 #shelf.closed #utilities .toggle-shelf a{background:transparent url(../images/toggle-open.png) no-repeat 10px 51%;}
+#utilities .shortcuts a{background:transparent url(../images/keyboard.png) no-repeat 8px 6px;}
+
 #utilities .report-bug a{background:transparent url(../images/bug.png) no-repeat 10px 51%;}
 #utilities .preferences a{background:transparent url(../images/preferences.png) no-repeat 10px 51%;}
 #utilities .full-mode a{background:transparent url(../images/full-mode.png) no-repeat 10px 51%;}
@@ -716,13 +718,18 @@ padding:0;
 #submenu-box div.m ul#submenu li a{
 background: transparent url(../images/splash-guides.png) no-repeat 8px 2px;
 padding:1px 0 0 30px;
+font: normal 15px/20px arial;
+padding-right:10px;
+text-decoration: none;
+color:#444;
+border-right: 1px solid #ccc;
 }
 #submenu-box div.m ul#submenu li.last a{
 background: transparent url(../images/manage-link.png) no-repeat 10px 2px;
 padding-left:35px;
 }
 #submenu-box div.m ul#submenu li.full-mode a{
-background: transparent url(../images/fullscreen-link.png) no-repeat 10px 2px;
+background: transparent url(../images/fullscreen-link.png) no-repeat 12px 3px;
 padding-left:35px;
 }
 #submenu-box div.m ul#submenu li.feedback a{
@@ -732,13 +739,6 @@ padding-left:35px;
 #submenu-box div.m ul#submenu li.preferences a{
 background: transparent url(../images/prefs-link.png) no-repeat 10px 2px;
 padding-left:35px;
-}
-#submenu-box div.m ul#submenu li a{
-font: normal 15px/19px arial;
-padding-right:10px;
-text-decoration:underline;
-color:#444;
-border-right: 1px solid #81B34F;
 }
 #submenu-box div.m ul#submenu li a.active{
 line-height:20px;

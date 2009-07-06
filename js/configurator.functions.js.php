@@ -341,49 +341,61 @@ jQuery.noConflict();
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#themelets").removeClass("ui-widget-content");			
 		
-//		/* Colour Picker ----------------------
-//	    ------------------------------------ */
-//		function loadColourPicker(elid) {
-//			
+		/* Colour Picker ----------------------
+	    ------------------------------------ */
+		function loadColourPicker(elid) {
+			$('a.picker').each(function(){$(this).click(function(){ return false; });});
 			// keep applied colour
-//			if($(elid).prev().val() != 'default'){
-//    			$(elid).css({
-//    				'background-color': '#'+$(elid).prev().val()
-//    			});
-//    		}
+			if($(elid).prev().val() != 'default'){
+    			$(elid).css({
+    				'background-color': '#'+$(elid).prev().val()
+    			});
+    		}
+  
 			// load the colour picker
-//    		$(elid).ColorPicker({
-//       			flat: true,
-//    			onSubmit: function(hsb, hex, rgb){
-//					var cp = $(elid).children().attr('id');
-//					$(this).prev().val('#'+hex);
-//					$('#'+cp).fadeOut(500);
-//				},
-//				onHide: function () {
-					//
-//				},
-//				onChange: function (hsb, hex, rgb) {
-//					$(elid).prev().val('#'+hex);
-//					$(elid).css('background-color', '#' + hex);
-//				}
-//    		}).bind('keyup', function(){ // set colour picker to use current value
-//				$(elid).ColorPickerSetColor($(this).prev().val());
-//			});
-//    	}
-//    	
-//    	$('a.picker').click(function(){
-//       		loadColourPicker($(this).prev());
-//    		$('.colorpicker').css({
-//    			'display': 'block',
-//    			'z-index': '9999',
-//    			'position': 'relative',
-//    			'bottom': '33px',
-//    			'right': '-23px'
-//    		});
-//    		cp = $(this).prev().children().attr('id');
-//    		$('#'+cp).css('display','block');
-//    		return false;
-//    	});
+    		$(elid).ColorPicker({
+       			flat: true,
+       			onBeforeShow: function(){
+       				$('a.picker').each(function(){ $(this).attr('disabled', true); });
+       			},
+    			onSubmit: function(hsb, hex, rgb){
+					var cp = $(elid).children().attr('id');
+					$(elid).prev().val('#'+hex);
+					$('#'+cp).fadeOut(500);
+					$(elid).css('background-color', '#' + hex);
+					$('a.picker').each(function(){ $(this).removeAttr('disabled'); });
+				},
+				onClose: function(){
+					var cp = $(elid).children().attr('id');
+					$('#'+cp).fadeOut(500);
+				}
+    		}).bind('keyup', function(){ // set colour picker to use current value
+				$(elid).ColorPickerSetColor($(this).prev().val());
+			});
+			
+			var cp = $(elid).children().attr('id');
+    		$(window).keydown(function(e){
+    			keycode = (e.which || e.keyCode);
+    			if(keycode == 27){
+    				$('#'+cp).fadeOut(500);
+    				return true;
+    			}
+       		});
+       		return false;
+    	}
+    	
+    	$('a.picker').click(function(){
+       		loadColourPicker($(this).prev());
+       		cp = $(this).prev().children().attr('id');
+    		$('#'+cp).fadeIn(500).css({
+
+    			'z-index': '9999',
+    			'position': 'relative',
+    			'bottom': '33px',
+    			'right': '-23px'
+    		});  		
+    		return false;
+    	});
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")

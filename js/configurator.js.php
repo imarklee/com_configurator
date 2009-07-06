@@ -13,6 +13,11 @@ include('jquery.fileupload.js');
 include('jquery.autoresize.min.js');
 include('jquery.form.js');
 include('jquery.showpassword.min.js');
+include('idrag.js');
+include('idrop.js');
+include('ifx.js');
+include('islider.js');
+//include('iutil.js');
 include('configurator.functions.js.php');
 ob_end_flush();
 ?>

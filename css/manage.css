@@ -162,12 +162,8 @@ border:1px solid #999;float:left;width:460px;}
 #tabs ol.forms li.heading h3{text-align:ce;background:url(../images/heading-bg2.jpg) repeat-x left bottom;border:1px solid #999;border-bottom:1px solid #fff;margin:-2px -11px 0 -12px;text-align:center;}
 #tabs ol.forms li.heading.first h3{margin:-3px -11px -2px -12px;}
 #tabs #colors li.palette{position:relative;}
-#tabs li.palette .colorpicker_hex{background:none;height:24px;left:212px;position:absolute;top:140px;width:68px;}
-#tabs li.palette .colorpicker_hex input{background:#fff;-moz-border-radius:0;border:1px solid #666666;color:#111111;height:15px;padding:2px 0;width:64px;}
 #tabs li.palette .picker{width:50px;height:20px;line-height:20px;padding-left:21px;display:block;position:absolute;top:5px;right:18px;cursor:pointer;text-decoration:underline;font-size:11px;background:transparent url(../images/colorpicker-bg.png) no-repeat 0;}
 .newColorpicker{z-index:9999;}
-#tabs li.palette .picker span{display:none;}
-#tabs li.palette a:hover.picker span{display:inline;}
 #tabs li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:8px;right:98px;background:#ccc;-moz-border-radius:3px;}
 #assets-tabs ul.assets-list ul li.alt{margin-left:0;}
 #browse-assets .ui-tabs-panel{padding:0;}

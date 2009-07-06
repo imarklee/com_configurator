@@ -168,7 +168,7 @@ border:1px solid #999;float:left;width:460px;}
 .newColorpicker{z-index:9999;}
 #tabs li.palette .picker span{display:none;}
 #tabs li.palette a:hover.picker span{display:inline;}
-#tabs li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:7px;right:98px;background:#ccc;-moz-border-radius:3px;}
+#tabs li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:8px;right:98px;background:#ccc;-moz-border-radius:3px;}
 #assets-tabs ul.assets-list ul li.alt{margin-left:0;}
 #browse-assets .ui-tabs-panel{padding:0;}
 #tabs #assets.ui-widget-content,

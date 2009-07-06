@@ -48,13 +48,14 @@ line-height:19px;
 #visual-refs{margin:0;}
 #shelf h3{
 font-size:15px;
-font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;
+font-family:'Helvetica Neue Light','Helvetica Neue',sans-serif;
 font-weight:500;
 letter-spacing:1;
 line-height:19px;
 margin:20px 0 10px 0;
 }
-#updates-summary dl{overflow:hidden;}
+#current-themelet li{font:normal 12px/19px arial;}
+#updates-summary dl{overflow:hidden;font:normal 12px/19px arial;}
 #updates-summary dt{width:90px;float:left;}
 #updates-summary dd.current{width:45px;float:left;}
 #updates-summary dd.latest{width:45px;float:left;}
@@ -784,3 +785,4 @@ margin-right:80px;
 }
 #minwidth-body.full-mode #submenu-box div.m ul#submenu li a:hover{
 color: #ACEF69;
+}

@@ -344,7 +344,7 @@ jQuery.noConflict();
 		/* Colour Picker ----------------------
 	    ------------------------------------ */
 		function loadColourPicker(elid) {
-			$('a.picker').each(function(){$(this).click(function(){ return false; });});
+			
 			// keep applied colour
 			if($(elid).prev().val() != 'default'){
     			$(elid).css({
@@ -355,45 +355,47 @@ jQuery.noConflict();
 			// load the colour picker
     		$(elid).ColorPicker({
        			flat: true,
-       			onBeforeShow: function(){
-       				$('a.picker').each(function(){ $(this).attr('disabled', true); });
-       			},
     			onSubmit: function(hsb, hex, rgb){
 					var cp = $(elid).children().attr('id');
 					$(elid).prev().val('#'+hex);
 					$('#'+cp).fadeOut(500);
+					$.cookie('colorpicker', null);
 					$(elid).css('background-color', '#' + hex);
 					$('a.picker').each(function(){ $(this).removeAttr('disabled'); });
 				},
-				onClose: function(){
+				onHide: function(){
 					var cp = $(elid).children().attr('id');
 					$('#'+cp).fadeOut(500);
+					$.cookie('colorpicker', null);
 				}
-    		}).bind('keyup', function(){ // set colour picker to use current value
-				$(elid).ColorPickerSetColor($(this).prev().val());
-			});
+    		});
 			
 			var cp = $(elid).children().attr('id');
+			$
     		$(window).keydown(function(e){
     			keycode = (e.which || e.keyCode);
     			if(keycode == 27){
     				$('#'+cp).fadeOut(500);
-    				return true;
+    				$.cookie('colorpicker', null);
+    				return false;
     			}
        		});
        		return false;
     	}
     	
     	$('a.picker').click(function(){
-       		loadColourPicker($(this).prev());
-       		cp = $(this).prev().children().attr('id');
-    		$('#'+cp).fadeIn(500).css({
-
-    			'z-index': '9999',
-    			'position': 'relative',
-    			'bottom': '33px',
-    			'right': '-23px'
-    		});  		
+    		if(!$.cookie('colorpicker')){
+	       		loadColourPicker($(this).prev());
+	       		cp = $(this).prev().children().attr('id');
+	       		$.cookie('colorpicker', cp);
+	    		$('#'+cp).fadeIn(500).css({
+	
+	    			'z-index': '9999',
+	    			'position': 'relative',
+	    			'bottom': '33px',
+	    			'right': '-23px'
+	    		});
+	    	} 		
     		return false;
     	});
      	

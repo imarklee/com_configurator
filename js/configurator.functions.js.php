@@ -1289,58 +1289,46 @@ jQuery.noConflict();
 	   	
 	   	/* Version checker --------------------
 	    ------------------------------------ */
-
-	   	function getUpdateStatus(elm,isOtherThemelet){
+	   	function getUpdates(elm, time){
+	   		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
+	   		if(time == ''){ autoCheck = '' }else{ autoCheck = (24/60/60)+time; }
 	   		if(!$.cookie('noupdates')){
-		   		if($(elm).attr('class') !== undefined){
-			   		var classes = $(elm).attr('class').split(' ');
-			   		var type = classes[0];
-			   		var name = classes[1];
-			   		var updateURL;
-			   		
-			   		if(name !== 'no-themelets'){
-			   		
-				   		if(!isOtherThemelet){
-					   		updateURL = 'https://www.joomlajunkie.com/versions/mhups.php?return=json&type='+type+'&type_name='+name+'&callback=?';
-					   	}else{
-					   		updateURL = 'https://www.joomlajunkie.com/versions/mhups.php?return=json&type=themelet&type_name='+name+'&callback=?';
-					   	}
-				   		
-					   	$.getJSON(updateURL, function(obj){
-				   			if(!isOtherThemelet){ 
-				   				var installedVersion = $(elm).next('dd.current').text();
-					   			var outputVersion = $(elm+'+ dd.current + dd.latest');
-							   	var outputButton = $(elm+'+ dd.current + dd.latest + dd.icon');
-					   	
-				   				if(obj.version > installedVersion){
-				   					outputVersion.html('<a href="'+obj.download+'">'+obj.version+'</a>');
-				   					outputButton.html('<span class="update-no" title="There is an update available">Update Available</span>');
-				   				} else {
-				   					outputVersion.html(obj.version);
-				   					outputButton.html('<span class="update-yes" title="You are up to date">Up to date</span>');
-				   				}
-				   			}else{
-				   				var installedVersion = $(elm +'> li.tl-installed').text();
-							   	var outputVersion = $(elm+'> li.tl-current');
-							   	
-							   	if(obj.version > installedVersion){
-				   					outputVersion.html('<strong>Current version: </strong><a href="'+obj.download+'">'+obj.version+'</a>');
-				   				} else {
-				   					outputVersion.html('<strong>Current version: </strong>'+obj.version);
-				   				}
-				   			}
-				   		});
-			   		}
-		   		}
+	   			
+	   			if(!$.cookie('checkedforupdates')){
+	   				$.cookie('checkedforupdates', true);
+	   				$.getJSON(updateURL, function(obj){
+	   					pass(obj);
+	   				});
+	   				function pass(json){
+		   				for(i=0;i<4;i++){
+					   		if($(elm[i]).attr('class') !== undefined){
+						   		var classes = $(elm[i]).attr('class').split(' ');
+						   		var type = classes[0];
+						   		var name = classes[1];
+						   		if(elm[i] == '.themelet-summary'){ isOtherThemelet = 'true'; }
+						   		if(name !== 'no-themelets'){
+						   			var cookiename = json.updates[name].short_name;
+						   			var version = json.updates[name].version;
+						   			var updated = json.updates[name].updated;
+						   			$.cookie('us_'+cookiename, version+'##'+updated);
+						   		}
+					   		}
+				   		}
+				   	}
+			   	}else{
+			   		return false;
+			   	}
 			}else{
 				return false;
-			}	   		
+			}
+		
+		/*** add update checker set to a future date ( system time + defined interval). on refresh reset 
+	   	the timer to countdown from the current difference from current time to the future date so that 
+	   	set interval is kept. ***/
 	   	};
 	   	
-	   	getUpdateStatus('dt#us-configurator');
-	   	getUpdateStatus('dt#us-morph');
-		getUpdateStatus('dt#us-themelet');
-	   	getUpdateStatus('.themelet-summary','true');
+	   	var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', '.themelet-summary');
+	   	getUpdates(updEl);
 				
 		/* Logo Options -----------------------
 	    ------------------------------------ */

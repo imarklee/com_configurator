@@ -31,6 +31,14 @@ if(is_dir($themelet_dir)) {
 				$themelet_xml = $themelet_dir . DS . $themelet . DS . 'themeletDetails.xml';
 				$themelet_params = xml2array($themelet_xml);
 				$themelet_arr = $themelet_params['install'];
+				if(isset($_COOKIE['us_'.$themelet_arr['foldername']])){ 
+					$cookie_val = split('##', $_COOKIE['us_'.$themelet_arr['foldername']]); 
+					$us_version = $cookie_val[0];
+					$us_updated = $cookie_val[1];
+				}else{
+					$us_version = '';
+					$us_updated = '';
+				}
 				if( $themelet !== $params->get('themelet') ) { $themelet_class = 'tl-inactive'; } else { $themelet_class = 'tl-active'; }
 			?>	
 				
@@ -40,8 +48,8 @@ if(is_dir($themelet_dir)) {
 				<div class="chrome-wrap"><img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail"></div>
 				<ul class="themelet-summary <?php echo $themelet_arr['foldername']; ?>">
 					<li class="tl-installed"><strong>Installed version: </strong><?php echo $themelet_arr['version']; ?></li>
-					<li class="tl-current"><strong>Current version: </strong></li>
-					<li class="tl-date"><strong>Last update: </strong><?php echo $themelet_arr['creationDate']; ?></li>
+					<li class="tl-current"><strong>Current version: </strong><?php echo $us_version; ?></li>
+					<li class="tl-date"><strong>Last update: </strong><?php echo $us_updated; ?></li>
 				</ul>
 				<ul class="buttons">
 					<li class="btn-activate"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Activate <?php echo $themelet_uc; ?>"><span>Activate</span></a></li>

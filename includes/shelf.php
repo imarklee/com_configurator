@@ -15,6 +15,30 @@ $component_details = xml2array($component_xml);
 $template_arr = $template_details['install'];
 $themelet_arr = $themelet_details['install'];
 $component_arr = $component_details['install'];
+
+if(isset($_COOKIE['us_'.$themelet_arr['foldername']])){ 
+	$themelet_cookie_val = split('##', $_COOKIE['us_'.$themelet_arr['foldername']]); 
+	$themelet_us_version = $themelet_cookie_val[0];
+}else{ $themelet_us_version = ''; }
+
+if(isset($_COOKIE['us_'.$template_arr['foldername']])){ 
+	$template_cookie_val = split('##', $_COOKIE['us_'.$template_arr['foldername']]); 
+	$template_us_version = $template_cookie_val[0];
+}else{ $template_us_version = ''; }
+
+if(isset($_COOKIE['us_'.$component_arr['foldername']])){ 
+	$component_cookie_val = split('##', $_COOKIE['us_'.$component_arr['foldername']]); 
+	$component_us_version = $component_cookie_val[0];
+}else{ $component_us_version = ''; }
+
+function showIcon($curr, $serv){
+	if($curr < $serv){
+		return '<span class="update-no" title="There is an update available">Update Available</span>';
+	}else{
+		return '<span class="update-yes" title="You are up to date">Up to date</span>';
+	}
+}
+
 ?>
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 	<div id="utilities">
@@ -34,18 +58,18 @@ $component_arr = $component_details['install'];
 				<dl>
 					<dt class="component com_configurator" id="us-configurator">Configurator</dt>
 					<dd class="current"><?php echo $component_arr['version']; ?></dd>
-					<dd class="latest"></dd>
-					<dd class="icon"></dd>
+					<dd class="latest"><?php echo $component_arr['version']; ?></dd>
+					<dd class="icon"><?php echo showIcon($component_arr['version'], $component_arr['version']); ?></dd>
 	
 					<dt class="template morph alt" id="us-morph">Morph</dt>
 					<dd class="current"><?php echo $template_arr['version']; ?></dd>
-					<dd class="latest"></dd>
-					<dd class="icon"></dd>
+					<dd class="latest"><?php echo $template_us_version; ?></dd>
+					<dd class="icon"><?php echo showIcon($template_arr['version'], $template_arr['version']); ?></dd>
 				
 					<dt class="themelet <?php echo $themelet_arr['foldername']; ?>" id="us-themelet"><?php echo $themelet_arr['name']; ?></dt>
 					<dd class="current"><?php echo $themelet_arr['version']; ?></dd>
-					<dd class="latest"></dd>
-					<dd class="icon"></dd>						
+					<dd class="latest"><?php echo $themelet_us_version; ?></dd>
+					<dd class="icon"><?php echo showIcon($themelet_arr['version'], $themelet_arr['version']); ?></dd>						
 				</dl>
 		</div>  
 		<div id="current-themelet">

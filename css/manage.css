@@ -592,12 +592,18 @@ ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 #report-bug #feedbackform ul.inline li{width:auto;display:inline;clear:none;float:left;overflow:hidden;border:0;padding-right:10px;}
 #report-bug #feedbackform ul.inline li label{width:100px;font-weight:normal;}
 #report-bug #feedbackform ul.inline li span{padding:0 0 0 5px;line-height:20px;}
+#report-bug #feedbackform ul li input,
+#report-bug #feedbackform ul li textarea{background:#EFEFEF;border-left:1px solid #ddd;border-top:1px solid #ddd;border-right:1px solid #ccc;border-bottom:1px solid #ccc;}
+#report-bug #feedbackform ul li input.focus,
+#report-bug #feedbackform ul li textarea.focus{background:#FFFFDD;}
+
 #report-bug #feedbackform ul li.fb-subject input{width:400px;padding:5px 10px;}
 #report-bug #feedbackform ul li.fb-message textarea{width:400px;padding:5px 10px;}
 #report-bug #feedbackform ul li.fb-buttons{padding:5px 0 15px 130px;}
 #report-bug #feedbackform ul li.fb-buttons input#ff-submit{width:250px;height:40px;overflow:hidden;border:0;background:none;padding:40px 0 0 0;margin:0;background:transparent url(../images/btn-send-feedback.png) no-repeat;cursor:pointer;}
 #report-bug #feedbackform ul li.fb-buttons input#ff-submit:hover{background-position:bottom left;}
 #report-bug #feedbackform ul li.fb-buttons a#ff-reset{font:bold 20px/35px arial;color:#648A3F;text-decoration:underline;margin-left:-10px;}
+#report-bug #feedbackform ul li.fb-buttons a#ff-reset:hover{color:#648A3F;text-decoration:none;}
 #report-bug p.teaser{font:normal 15px/20px arial;}
 a.disabled{opacity:0.5;cursor:default;}
 

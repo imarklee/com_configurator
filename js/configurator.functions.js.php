@@ -1889,14 +1889,14 @@ jQuery.noConflict();
 	    // prefs
 		function preferencesScreen(){   
 		    $('#preferences-screen').dialog({
-	    		width: '700px',
+	    		width: '450px',
 	    		bgiframe: true,
 	   			autoOpen: true,
 	   			minHeight: 20,
 	   			stack: false,
 	   			modal: true,
 	   			dialogClass: 'preferences', 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+	   			title: 'Configurator Preferences',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -1908,8 +1908,6 @@ jQuery.noConflict();
 				if($.cookie('prefs')){ $.cookie('prefs', null); }
 				return false;
 			});
-			$('#preferences-screen').tabs({
-				fx: { opacity: 'toggle' },				cookie: {					name: 'preferences-screen',					expires: 30,					path: '/',			 	}			});
 			
 			// set form values
 			if(!$.cookie('hidetips')){ $('input[name="showtips"][value="1"]').attr('checked', true); }

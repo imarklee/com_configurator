@@ -606,7 +606,7 @@ ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 #report-bug #feedbackform ul li.fb-buttons a#ff-reset:hover{color:#648A3F;text-decoration:none;}
 #report-bug p.teaser{font:normal 15px/20px arial;}
 a.disabled{opacity:0.5;cursor:default;}
-
+/*
 #preferences-screen .close-preferences{
 position:absolute;
 top:0;
@@ -617,7 +617,7 @@ color:#fff;
 }
 .ui-dialog.preferences .ui-dialog-titlebar{
 display:none;
-}
+}*/
 
 /*#keyboard-screen .close-keyboard{
 position:absolute;
@@ -846,4 +846,54 @@ float:left;
 display:block;
 font:bold 15px/25px arial;
 color:#111;
+}
+
+
+#preferences-screen ul,
+#preferences-screen li{
+margin:0;
+padding:0;
+list-style:none;
+}
+#preferences-screen ul{
+width:100%;
+clear:both;
+margin-bottom: 20px;
+border:5px solid #eee;
+background:#ccc;
+padding:1px;
+border-bottom:4px solid #eee;
+}
+#preferences-screen li{
+width:100%;
+text-indent:10px;
+clear:both;
+background:#EFEFEF;
+overflow:hidden;
+border-top:1px solid #fff;
+border-bottom:1px solid #ccc;
+font:normal 13px/25px arial;
+color:#111;
+}
+#preferences-screen li.last{
+border-bottom:0;
+}
+#preferences-screen li span{
+width:240px;
+float:left;
+display:block;
+}
+#preferences-screen input.btn-prefs{
+width:254px;
+height:40px;
+overflow:hidden;
+border:0;
+background:none;
+padding:40px 0 0 0;
+margin:0;
+background:transparent url(../images/btn-save-prefs.png) no-repeat;
+cursor:pointer;
+}
+#preferences-screen input.btn-prefs:hover{
+background-position:bottom left;
 }

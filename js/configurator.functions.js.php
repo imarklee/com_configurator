@@ -1967,7 +1967,7 @@ jQuery.noConflict();
 	   			stack: false,
 	   			modal: true,
 	   			dialogClass: 'keyboard', 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+	   			title: 'Keyboard Shortcuts',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -2017,7 +2017,7 @@ jQuery.noConflict();
 				}	
 			});
     	}
-    	
+		
     	function toolGuides(tid){
     		var toolPage;
     		var toolTitle;

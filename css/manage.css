@@ -613,7 +613,7 @@ color:#fff;
 display:none;
 }
 
-#keyboard-screen .close-keyboard{
+/*#keyboard-screen .close-keyboard{
 position:absolute;
 top:0;
 right:0;
@@ -623,7 +623,7 @@ color:#fff;
 }
 .ui-dialog.keyboard .ui-dialog-titlebar{
 display:none;
-}
+}*/
 
 #getting-started.docs-wrap{
 margin:0;
@@ -809,7 +809,6 @@ color: #ACEF69;
 }
 
 #keyboard-screen{
-padding:10px 30px 30px 30px;
 }
 #keyboard-screen p{
 font:normal 20px arial;

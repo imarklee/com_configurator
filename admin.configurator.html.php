@@ -213,9 +213,9 @@ function manage( &$params, &$lists, $morph_installed ) {
 				</form>
 				<?php include 'includes/report-bug.php' ?>
 				
-				<div id="getting-started" class="docs-wrap" style="display:none;"></div>
-				<div id="preferences-screen" class="docs-wrap" style="display:none;"></div>
-				<div id="keyboard-screen" class="docs-wrap" style="display:none;"></div>
+				<div id="getting-started" style="display:none;"></div>
+				<div id="preferences-screen" style="display:none;"></div>
+				<div id="keyboard-screen" style="display:none;"></div>
 				<div class="toolguides"></div>
 <?php
 			}

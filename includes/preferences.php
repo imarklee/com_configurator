@@ -2,7 +2,7 @@
 <div id="info">
 Set your configurator preferences...
 </div>
-<form action="#" method="post" id="preferences-form">
+<form action="#" method="get" id="preferences-form">
 <ul class="prefs">
 	<li>
 	<label>Show Quick Tips: 
@@ -18,14 +18,14 @@ Set your configurator preferences...
 	</li>
 	<li>
 	<label>Sortable Tabs: 
-		<span><input type="radio" name="showtips" value="1" />Yes</span>
-		<span><input type="radio" name="showtips" value="0" />No</span>
+		<span><input type="radio" name="sorttabs" value="1" />Yes</span>
+		<span><input type="radio" name="sorttabs" value="0" />No</span>
 	</label>
 	</li>
 	<li>
 	<label>Automagically check for updates:
-		<span><input type="radio" name="showtips" value="1" />Yes</span>
-		<span><input type="radio" name="showtips" value="0" />No</span>
+		<span><input type="radio" name="showupdates" value="1" />Yes</span>
+		<span><input type="radio" name="showupdates" value="0" />No</span>
 	</label>
 	</li>
 </ul>

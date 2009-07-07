@@ -4,26 +4,26 @@
 <ul class="prefs">
 	<li>
 	<label><span>Show Quick Tips:</span>
-		<input type="radio" name="showtips" value="1" />Yes
-		<input type="radio" name="showtips" value="0" />No
+		<label><input type="radio" name="showtips" value="1" />Yes</label>
+		<label><input type="radio" name="showtips" value="0" />No</label>
 	</label>
 	</li>
 	<li>
 	<label><span>Show Tab Introductions:</span>
-		<input type="radio" name="showintros" value="1" />Yes
-		<input type="radio" name="showintros" value="0" />No
+		<label><input type="radio" name="showintros" value="1" />Yes</label>
+		<label><input type="radio" name="showintros" value="0" />No</label>
 	</label>
 	</li>
 	<li>
 	<label><span>Sortable Tabs:</span>
-		<input type="radio" name="showtips" value="1" />Yes
-		<input type="radio" name="showtips" value="0" />No
+		<label><input type="radio" name="sorttabs" value="1" />Yes</label>
+		<label><input type="radio" name="sorttabs" value="0" />No</label>
 	</label>
 	</li>
 	<li class="last">
 	<label><span>Automatically check for updates:</span>
-		<input type="radio" name="showtips" value="1" />Yes
-		<input type="radio" name="showtips" value="0" />No
+		<label><input type="radio" name="checkupdates" value="1" />Yes</label>
+		<label><input type="radio" name="checkupdates" value="0" />No</label>
 	</label>
 	</li>
 </ul>

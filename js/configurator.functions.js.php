@@ -23,7 +23,51 @@ jQuery.noConflict();
     		});
 		};
 	
-  		$.preloadCssImages();	
+  		$.preloadCssImages();
+  		
+  		/* Version checker --------------------
+	    ------------------------------------ */
+	   	function getUpdates(elm, time){
+	   		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
+	   		if(time == ''){ autoCheck = '' }else{ autoCheck = (24/60/60)+time; }
+	   		if(!$.cookie('noupdates')){
+	   			
+	   			if(!$.cookie('checkedforupdates')){
+	   				$.cookie('checkedforupdates', true);
+	   				$.getJSON(updateURL, function(obj){
+	   					pass(obj);
+	   				});
+	   				function pass(json){
+		   				for(i=0;i<4;i++){
+					   		if($(elm[i]).attr('class') !== undefined){
+						   		var classes = $(elm[i]).attr('class').split(' ');
+						   		var type = classes[0];
+						   		var name = classes[1];
+						   		if(elm[i] == '.themelet-summary'){ isOtherThemelet = 'true'; }
+						   		if(name !== 'no-themelets'){
+						   			var cookiename = json.updates[name].short_name;
+						   			var version = json.updates[name].version;
+						   			var updated = json.updates[name].updated;
+						   			$.cookie('us_'+cookiename, version+'##'+updated);
+						   		}
+					   		}
+				   		}
+				   	}
+			   	}else{
+			   		return false;
+			   	}
+			}else{
+				return false;
+			}
+		
+		/*** add update checker set to a future date ( system time + defined interval). on refresh reset 
+	   	the timer to countdown from the current difference from current time to the future date so that 
+	   	set interval is kept. ***/
+	   	};
+	   	
+	   	var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', '.themelet-summary');
+	   	getUpdates(updEl);
+	   	
 		/* Generic ----------------------------
 	    ------------------------------------ */
 		$("#submenu li:last").addClass("last");
@@ -86,27 +130,13 @@ jQuery.noConflict();
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
 
-//		$("#loginpass").each(function(){
-//			$(this).attr('type', 'text');
-//		});
-//		$("#showpass").click(function(){
-//		if ($("#showpass").attr("checked")){
-//			$("#loginpass").attr("type","text");
-//		}else {
-//		$("#loginpass").attr("type","password");
-//		}
-//		});
+		$("#footer").fadeTo("slow", 0.3); // This sets the opacity of the thumbs to fade down to 30% when the page loads
+		$("#footer").hover(function(){
+		$(this).fadeTo("slow", 1.0); // This should set the opacity to 100% on hover
+		},function(){
+		$(this).fadeTo("slow", 0.3); // This should set the opacity back to 30% on mouseout
+		});
 
-	   $("#footer").fadeTo("slow", 0.3); // This sets the opacity of the thumbs to fade down to 30% when the page loads
-	   $("#footer").hover(function(){
-	   $(this).fadeTo("slow", 1.0); // This should set the opacity to 100% on hover
-	   },function(){
-	   $(this).fadeTo("slow", 0.3); // This should set the opacity back to 30% on mouseout
-	   });
-
-//		if ($("#install-type input").hasClass("focus")){
-//		$("#install-type label").addClass("active-radio");
-//		}
 		$(".upload-themelet").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
@@ -269,9 +299,7 @@ jQuery.noConflict();
 		function showScroll(){
 			$(document).bind('scroll', function(){return false;});
 			$('html').css({'overflow-y': 'scroll', paddingRight: '0'});
-//			$('#qtip-blanket').css({ width: arrPageSizes[0]+15 });
 		}
-	
 		
 		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
 			$(this).children().fadeTo('fast', 0.5);
@@ -298,14 +326,7 @@ jQuery.noConflict();
 					
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
-	    /*$("input.input-installer").filestyle({ 
-     		image: "components/com_configurator/images/select-btn.png",
-     		imageheight : 27,
-     		imagewidth : 81,
-     		width : 217
- 		});*/
- 		
- 		$('.alf-input').focus(function(){
+	    $('.alf-input').focus(function(){
  			if(this.value == 'username' || this.value == 'password'){ 
  				$(this).val(''); 
  			}
@@ -360,7 +381,6 @@ jQuery.noConflict();
 					$(elid).prev().val('#'+hex);
 					$('#'+cp).fadeOut(500);
 					$(elid).css('background-color', '#' + hex);
-//					$('a.picker').each(function(){ $(this).removeAttr('disabled'); });
 				},
 				onHide: function(){
 					var cp = $(elid).children().attr('id');
@@ -545,9 +565,7 @@ jQuery.noConflict();
 		------------------------------- */
 		var arrPageSizes = ___getPageSize();
 		$(window).resize(function() {
-				// Get page sizes
 				var arrPageSizes = ___getPageSize();
-				// Style overlay and show it
 				$('#qtip-blanket, #alfimage').css({
 					width:		arrPageSizes[0],
 					height:		arrPageSizes[1]
@@ -563,7 +581,7 @@ jQuery.noConflict();
 	       	backgroundColor: 'black',
 	        zIndex: 5000
 		})
-	    .appendTo($('body')) // Append to the document body
+	    .appendTo($('body'))
 	    .hide();
 	    
 	    $('.tt-inline').each(function(){
@@ -599,7 +617,6 @@ jQuery.noConflict();
 	    });
 	    
 	    $('.tt-modal').each(function(){
-	    
 	    	var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
 	   		var thetitle = $(this).attr("title").split('::'); 
 	   		var qtTitle = thetitle[0];
@@ -1286,49 +1303,6 @@ jQuery.noConflict();
 	   		
 	   		return false;
 	   	});
-	   	
-	   	/* Version checker --------------------
-	    ------------------------------------ */
-	   	function getUpdates(elm, time){
-	   		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
-	   		if(time == ''){ autoCheck = '' }else{ autoCheck = (24/60/60)+time; }
-	   		if(!$.cookie('noupdates')){
-	   			
-	   			if(!$.cookie('checkedforupdates')){
-	   				$.cookie('checkedforupdates', true);
-	   				$.getJSON(updateURL, function(obj){
-	   					pass(obj);
-	   				});
-	   				function pass(json){
-		   				for(i=0;i<4;i++){
-					   		if($(elm[i]).attr('class') !== undefined){
-						   		var classes = $(elm[i]).attr('class').split(' ');
-						   		var type = classes[0];
-						   		var name = classes[1];
-						   		if(elm[i] == '.themelet-summary'){ isOtherThemelet = 'true'; }
-						   		if(name !== 'no-themelets'){
-						   			var cookiename = json.updates[name].short_name;
-						   			var version = json.updates[name].version;
-						   			var updated = json.updates[name].updated;
-						   			$.cookie('us_'+cookiename, version+'##'+updated);
-						   		}
-					   		}
-				   		}
-				   	}
-			   	}else{
-			   		return false;
-			   	}
-			}else{
-				return false;
-			}
-		
-		/*** add update checker set to a future date ( system time + defined interval). on refresh reset 
-	   	the timer to countdown from the current difference from current time to the future date so that 
-	   	set interval is kept. ***/
-	   	};
-	   	
-	   	var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', '.themelet-summary');
-	   	getUpdates(updEl);
 				
 		/* Logo Options -----------------------
 	    ------------------------------------ */
@@ -1871,7 +1845,7 @@ jQuery.noConflict();
 			sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
 		});
 		
-			    // ajax content for dialog
+		// ajax content for dialog
 	    // welcome screen
 	    function welcomeScreen(){
 	    	$('#getting-started').dialog({
@@ -1936,6 +1910,17 @@ jQuery.noConflict();
 			});
 			$('#preferences-screen').tabs({
 				fx: { opacity: 'toggle' },				cookie: {					name: 'preferences-screen',					expires: 30,					path: '/',			 	}			});
+			
+			// set form values
+			if(!$.cookie('hidetips')){ $('input[name="showtips"][value="1"]').attr('checked', true); }
+			if($.cookie('hideintros')){ $('input[name="showintros"][value="0"]').attr('checked', true); }
+			$('#preferences-form').submit(function(){
+    		var value = $('#preferences-form :input').fieldValue(); 
+    		for (i=0; i < value.length; i++){
+				alert(value[i]); 
+			}
+    		return false;
+    	});
 	    }
 	    
     	$('li.preferences a').click(function(){ 
@@ -1946,27 +1931,23 @@ jQuery.noConflict();
     	});
     	
     	// keyboard screen
-		function keyboardScreen(){   
+		function keyboardScreen(){
+			$('#qtip-blanket').show();
+			hideScroll();
 		    $('#keyboard-screen').dialog({
 	    		width: '700px',
 	    		bgiframe: true,
 	   			autoOpen: true,
 	   			minHeight: 20,
-	   			stack: false,
-	   			modal: true,
+	   			//modal: true,
 	   			dialogClass: 'keyboard', 
 	   			title: 'Keyboard Shortcuts',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
-	   			}
+	   			},
+	   			zIndex: 9999
 	    	});
-	    	$('#keyboard-screen a.close-keyboard').corners('bottom-left 10px');
-	    	$(".close-keyboard").click(function(){
-				$('#keyboard-screen').dialog("destroy");
-				if($.cookie('keys')){ $.cookie('keys', null); }
-				return false;
-			});
 	    }
 	    
     	$('li.shortcuts a').click(function(){ 
@@ -2075,41 +2056,12 @@ jQuery.noConflict();
 						},
 						onShow: function(){
 						
-							$('.modal-preview').each(function(){
-		   						var title = $(this).attr('title');
-						   		$(this).attr('title', ''); 
-						   		
-						   		var content = '<img src="';
-					     		content += title;
-					      		content += '" alt="Loading thumbnail..." height="144" width="176" />';
-						   		
-						   		$(this).qtip({
-						   		     content: content,
-								     position: {
-								        corner: {
-								           tooltip: 'bottomMiddle',
-								           target: 'topMiddle'
-								        }
-								     },
-								     style: {
-								        tip: true,
-								        name: 'dark',
-								        border: {
-					         				width: 3,
-					         				radius: 8
-					         			},
-					         			padding: '0 0 0 0',
-					         			width: {
-					         				max: '193'
-					         			}
-									}			
-								});	
-						   	});
+							
 						}
 					}
 				});
 			}else{
-				$('.toolguides').qtip('destroy');
+				$('.toolguides').dialog('destroy');
 				showScroll();
 				$('#qtip-blanket').fadeOut();
 				$.cookie('tooltip'+tid, null);
@@ -2242,15 +2194,17 @@ jQuery.noConflict();
 					return false;
 				}
 				
-				function keys(){
+				function keyboard(){
 					if(!$.cookie('keys')){
 						$('#keyboard-screen').load('../administrator/components/com_configurator/includes/keyboard.php', function(){
 					    	return keyboardScreen();
 					    });
 					    $.cookie('keys', 'open');
 					}else{
-						$('#keyboard-screen').dialog("destroy");
 						$.cookie('keys', null);
+						$('#keyboard-screen').dialog("destroy");
+						showScroll();
+						$('#qtip-blanket').hide();
 					}
 					e.preventDefault();
 					return false;
@@ -2291,7 +2245,7 @@ jQuery.noConflict();
 					if(keycode == 54 && e.metaKey && !e.ctrlKey){ return tooltip(6); }
 					if(keycode == 55 && e.metaKey && !e.ctrlKey){ return tooltip(7); }
 					if(keycode == 56 && e.metaKey && !e.ctrlKey){ return tooltip(8); }
-					if(keycode == 75 && e.metaKey && !e.ctrlKey){ return keys(); }
+					if(keycode == 75 && e.metaKey && !e.ctrlKey){ return keyboard(); }
 					
 				}else{
 					if(keycode == 17){ return false; } // disable keycode return on CTRL key
@@ -2320,7 +2274,7 @@ jQuery.noConflict();
 					if(keycode == 54 && (e.ctrlKey || e.metaKey)){ return tooltip(6); }
 					if(keycode == 55 && (e.ctrlKey || e.metaKey)){ return tooltip(7); }
 					if(keycode == 56 && (e.ctrlKey || e.metaKey)){ return tooltip(8); }
-					if(keycode == 75 && (e.ctrlKey || e.metaKey)){ return keys(); }
+					if(keycode == 75 && (e.ctrlKey || e.metaKey)){ return keyboard(); }
 				}
 				
 				

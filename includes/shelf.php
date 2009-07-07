@@ -31,6 +31,7 @@ $component_arr = $component_details['install'];
 		<div id="shelf-contents">
 		<div id="updates-summary">
 			<h3>Updates summary</h3>
+			<p class="updates-help">(<a href="#" class="updates-link">Help</a>)</p>
 				<dl>
 					<dt class="component com_configurator" id="us-configurator">Configurator</dt>
 					<dd class="current"><?php echo $component_arr['version']; ?></dd>

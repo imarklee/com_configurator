@@ -189,7 +189,7 @@ jQuery.noConflict();
 		subtabs.tabs("select",7);
 		return false;
 		});	
-	
+		
 		if($.cookie('fullscreen') == 'true'){
 			$('#minwidth-body').addClass('full-mode');
 			$('#screenmode').text('Normal Mode');

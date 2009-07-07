@@ -202,9 +202,6 @@
 			clickClose = function (ev) {
 				var cal = $(this).parent();
 				var col = cal.hide();
-				if($.cookie('colorpicker')){
-					$.cookie('colorpicker', null);
-				}
 			},
 			show = function (ev) {
 				var cal = $('#' + $(this).data('colorpickerId'));

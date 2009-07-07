@@ -359,16 +359,16 @@ jQuery.noConflict();
 					var cp = $(elid).children().attr('id');
 					$(elid).prev().val('#'+hex);
 					$('#'+cp).fadeOut(500);
-					$.cookie('colorpicker', null);
 					$(elid).css('background-color', '#' + hex);
-					$('a.picker').each(function(){ $(this).removeAttr('disabled'); });
+//					$('a.picker').each(function(){ $(this).removeAttr('disabled'); });
 				},
 				onHide: function(){
 					var cp = $(elid).children().attr('id');
 					$('#'+cp).fadeOut(500);
-					$.cookie('colorpicker', null);
 				}
-    		});
+    		}).bind('keyup', function(){ // set colour picker to use current value
+				$(elid).ColorPickerSetColor($(this).prev().val());
+			});
 			
 			var cp = $(elid).children().attr('id');
 			$
@@ -376,7 +376,6 @@ jQuery.noConflict();
     			keycode = (e.which || e.keyCode);
     			if(keycode == 27){
     				$('#'+cp).fadeOut(500);
-    				$.cookie('colorpicker', null);
     				return false;
     			}
        		});
@@ -384,18 +383,14 @@ jQuery.noConflict();
     	}
     	
     	$('a.picker').click(function(){
-    		if(!$.cookie('colorpicker')){
-	       		loadColourPicker($(this).prev());
-	       		cp = $(this).prev().children().attr('id');
-	       		$.cookie('colorpicker', cp);
-	    		$('#'+cp).fadeIn(500).css({
-	
-	    			'z-index': '9999',
-	    			'position': 'relative',
-	    			'bottom': '33px',
-	    			'right': '-23px'
-	    		});
-	    	} 		
+       		cp = $(this).prev().children().attr('id');
+       		loadColourPicker($(this).prev());
+    		$('#'+cp).fadeIn(500).css({
+    			'z-index': '9999',
+    			'position': 'relative',
+    			'bottom': '33px',
+    			'right': '-23px'
+    		});		
     		return false;
     	});
      	
@@ -504,7 +499,10 @@ jQuery.noConflict();
 			$('#report-bug').dialog('open');
 		});
 		
-		$('#ff-reset').click(function(){ $('#report-bug').dialog('close'); });
+		$('#ff-reset').click(function(){ 
+			$('#report-bug').dialog('close'); 
+			if($.cookie('bug')){ $.cookie('bug', null); } 
+		});
 		
 		$('#feedbackform').submit(function(){ 
 			
@@ -531,7 +529,8 @@ jQuery.noConflict();
 					}else{
 						alert(data.message);
 						$('#feedbackform').resetForm();
-						$('#report-bug').dialog('close');	
+						$('#report-bug').dialog('close');
+						if($.cookie('bug')){ $.cookie('bug', null); }
 					}
 				},
 				error: function(data){
@@ -1904,6 +1903,7 @@ jQuery.noConflict();
 	    	$('#getting-started a.close-welcome').corners('bottom-left 10px');
 	    	$(".close-welcome").click(function(){
 				$('#getting-started').dialog("destroy");
+				if($.cookie('info')){ $.cookie('info', null); }
 				return false;
 			});
 			$('#getting-started').tabs({
@@ -1943,6 +1943,7 @@ jQuery.noConflict();
 	    	$('#preferences-screen a.close-preferences').corners('bottom-left 10px');
 	    	$(".close-preferences").click(function(){
 				$('#preferences-screen').dialog("destroy");
+				if($.cookie('prefs')){ $.cookie('prefs', null); }
 				return false;
 			});
 			$('#preferences-screen').tabs({
@@ -1952,6 +1953,37 @@ jQuery.noConflict();
     	$('li.preferences a').click(function(){ 
 	    	$('#preferences-screen').load('../administrator/components/com_configurator/includes/preferences.php', function(){
 		    	return preferencesScreen();
+		    }); 
+			return false;
+    	});
+    	
+    	// keyboard screen
+		function keyboardScreen(){   
+		    $('#keyboard-screen').dialog({
+	    		width: '700px',
+	    		bgiframe: true,
+	   			autoOpen: true,
+	   			minHeight: 20,
+	   			stack: false,
+	   			modal: true,
+	   			dialogClass: 'keyboard', 
+	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+	   			overlay: {
+	   				'background-color': '#000', 
+	   				opacity: 0.8 
+	   			}
+	    	});
+	    	$('#keyboard-screen a.close-keyboard').corners('bottom-left 10px');
+	    	$(".close-keyboard").click(function(){
+				$('#keyboard-screen').dialog("destroy");
+				if($.cookie('keys')){ $.cookie('keys', null); }
+				return false;
+			});
+	    }
+	    
+    	$('li.shortcuts a').click(function(){ 
+	    	$('#keyboard-screen').load('../administrator/components/com_configurator/includes/keyboard.php', function(){
+		    	return keyboardScreen();
 		    }); 
 			return false;
     	});
@@ -2222,6 +2254,20 @@ jQuery.noConflict();
 					return false;
 				}
 				
+				function keys(){
+					if(!$.cookie('keys')){
+						$('#keyboard-screen').load('../administrator/components/com_configurator/includes/keyboard.php', function(){
+					    	return keyboardScreen();
+					    });
+					    $.cookie('keys', 'open');
+					}else{
+						$('#keyboard-screen').dialog("destroy");
+						$.cookie('keys', null);
+					}
+					e.preventDefault();
+					return false;
+				}
+				
 				function logout(){
 					logoutCfg();
 					e.preventDefault();
@@ -2257,6 +2303,7 @@ jQuery.noConflict();
 					if(keycode == 54 && e.metaKey && !e.ctrlKey){ return tooltip(6); }
 					if(keycode == 55 && e.metaKey && !e.ctrlKey){ return tooltip(7); }
 					if(keycode == 56 && e.metaKey && !e.ctrlKey){ return tooltip(8); }
+					if(keycode == 75 && e.metaKey && !e.ctrlKey){ return keys(); }
 					
 				}else{
 					if(keycode == 17){ return false; } // disable keycode return on CTRL key
@@ -2273,11 +2320,19 @@ jQuery.noConflict();
 						return fullscreen(); 
 					}
 					if(keycode == 79 && (e.ctrlKey || e.metaKey)){ return preview(); }
-					if(keycode == 73 && (e.ctrlKey || e.metaKey)){ return info(); }
 					if(keycode == 69 && (e.ctrlKey || e.metaKey)){ return bugreport(); }
 					if(keycode == 80 && (e.ctrlKey || e.metaKey)){ return prefs(); }
 					if(keycode == 76 && (e.ctrlKey || e.metaKey)){ return logout(); }
 					if(keycode == 48 && (e.ctrlKey || e.metaKey)){ return toggletop(); }
+					if(keycode == 49 && (e.ctrlKey || e.metaKey)){ return info(); }
+					if(keycode == 50 && (e.ctrlKey || e.metaKey)){ return tooltip(2); }
+					if(keycode == 51 && (e.ctrlKey || e.metaKey)){ return tooltip(3); }
+					if(keycode == 52 && (e.ctrlKey || e.metaKey)){ return tooltip(4); }
+					if(keycode == 53 && (e.ctrlKey || e.metaKey)){ return tooltip(5); }
+					if(keycode == 54 && (e.ctrlKey || e.metaKey)){ return tooltip(6); }
+					if(keycode == 55 && (e.ctrlKey || e.metaKey)){ return tooltip(7); }
+					if(keycode == 56 && (e.ctrlKey || e.metaKey)){ return tooltip(8); }
+					if(keycode == 75 && (e.ctrlKey || e.metaKey)){ return keys(); }
 				}
 				
 				

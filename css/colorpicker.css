@@ -68,15 +68,38 @@ left: 283px;
 top: 13px;
 background: #f00;
 }
-.colorpicker input {
-background-color: transparent;
-border: 0px solid transparent;
-position: absolute;
-font-size: 12px;
-font-family: Arial,Helvetica,sans-serif;
-top: 2px;
-left: 0;
+#tabs .palette .colorpicker input {
+background:transparent;
+font: normal 12px arial!important;
+border:0 none;
+height:20px !important;
+left:6px;
+line-height:normal !important;
+margin:0;
+padding:0;
+position:absolute;
+text-align:center;
+top:4px;
 width:47px;
+}
+.colorpicker_hex {
+position: absolute;
+width: 63px;
+height: 22px;
+background: #fff;
+left: 212px;
+top: 142px;
+background: transparent url(../images/cpicker-hex-bg.jpg) no-repeat;
+}
+#tabs .palette .colorpicker_hex input {
+background-color: none;
+border: 0;
+position: absolute;
+font: normal 12px arial!important;
+top: 4px;
+left: 12px;
+width:47px;
+text-transform: uppercase;
 text-align: center;
 margin: 0;
 padding: 0;
@@ -85,17 +108,6 @@ height: 20px!important;
 -moz-border-radius-bottomright:0!important;
 -moz-border-radius-topleft:0!important;
 -moz-border-radius-topright:0!important;
-}
-.colorpicker_hex {
-position: absolute;
-width: 70px;
-height: 20px;
-background: url(http://localhost/morph/administrator/componen#tabs li.palette .colorpicker_hexts/com_configurator/images/colorpicker_hex.png) top;
-left: 212px;
-top: 142px;
-}
-.colorpicker_hex input {
-right: 6px;
 }
 .colorpicker_field {
 height: 22px;
@@ -111,61 +123,65 @@ overflow: hidden;
 top: 0;
 right: 0;
 cursor: n-resize;
-background:yellow;
 }
 .colorpicker_rgb_r {
-background:#fff;
+background: transparent url(../images/cpicker-rgb-r-bg.png) no-repeat;
 top: 52px;
 left: 212px;
 }
 .colorpicker_rgb_g {
-background:#fff;
+background: transparent url(../images/cpicker-rgb-g-bg.png) no-repeat;
 top: 82px;
 left: 212px;
 }
 .colorpicker_rgb_b {
-background:#fff;
+background: transparent url(../images/cpicker-rgb-b-bg.png) no-repeat;
 top: 112px;
 left: 212px;
 }
 .colorpicker_hsb_h {
-background:#fff;
+background: transparent url(../images/cpicker-hsb-h-bg.png) no-repeat;
 top: 52px;
 left: 282px;
 }
 .colorpicker_hsb_s {
-background:#fff;
+background: transparent url(../images/cpicker-hsb-s-bg.png) no-repeat;
 top: 82px;
 left: 282px;
 }
 .colorpicker_hsb_b {
-background:#fff;
+background: transparent url(../images/cpicker-hsb-b-bg.png) no-repeat;
 top: 112px;
 left: 282px;
 }
 .colorpicker_submit {
-background:green none repeat scroll 0 0;
 bottom:12px;
 height:22px;
 overflow:hidden;
 position:absolute;
-right:33px;
-width:52px;
+right:42px;
+width:30px;
+cursor: pointer;
+background: transparent url(../images/cpicker-ok-bg.png) no-repeat;
 }
 .colorpicker_close {
-position: absolute;
-width: 22px;
-height: 22px;
-background:purple;
-right: 10px;
-top: 142px;
-overflow: hidden;
+overflow:hidden;
+position:absolute;
+right:12px;
+top:142px;
+width:23px;
+height:22px;
+cursor: pointer;
+background: transparent url(../images/cpicker-close-bg.png) no-repeat;
 }
 .colorpicker_close:hover {
-background-position: bottom left;
+background-position: bottom;
 }
 .colorpicker_submit:hover {
-background-position: bottom left;
+background-position: bottom;
+}
+.colorpicker_hex:hover{
+background-position: center;
 }
 .colorpicker_focus {
 background-position: center;
@@ -174,26 +190,8 @@ background-position: center;
 background-position: bottom;
 }
 .colorpicker_submit.colorpicker_focus {
-background-position: bottom left;
+background-position: bottom;
 }
 .colorpicker_slider {
 background-position: bottom;
-}
-.colorpicker_hex input {
-background-color: red;
-border: 0px solid transparent;
-position: absolute;
-font-size: 12px;
-font-family: Arial,Helvetica,sans-serif;
-top: 2px;
-left: 0;
-width:47px;
-text-align: center;
-margin: 0;
-padding: 0;
-height: 20px!important;
--moz-border-radius-bottomleft:0!important;
--moz-border-radius-bottomright:0!important;
--moz-border-radius-topleft:0!important;
--moz-border-radius-topright:0!important;
 }

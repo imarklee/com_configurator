@@ -1,6 +1,8 @@
 You can upload & install your own custom backgrounds, logos, themelets or favicons using the universal install in the toolbox tab.
+Configurator now has keyboard shortcuts! Press CMD+K, or click the link in the top shelf to see which shortcuts are available :)
 Keep an eye on the updates summary in the top shelf to be notified when new versions of configurator, morph or your current themelet are available.
 The info icons next to options indicate that their is a tooltip description available, where as the help icon indicates a full help popup.
 Want to get the most out of Morph & Configurator? Take a couple of minutes to checkout the quick start guides in the top shelf.
 Use the "fullscreen mode" option in the top shelf to give yourself more room to work & switch back to normal mode just as easily.
 Found a bug or have a suggestion on how we can improve Morph or Configurator? Use the "send feedback" link in the top shelf.
+You can easily access the Quick Start guides by pressing CMD+1 through to 8 or CMD+0 to access the Getting Started help panel. 

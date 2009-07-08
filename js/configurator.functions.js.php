@@ -437,8 +437,9 @@ jQuery.noConflict();
 		
 		$('.updates-link').click(function(){
 			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
-		    	welcomeScreen();
 		    	var gstabs = $('#getting-started').tabs();
+		    	gstabs.tabs('select', 2);
+		    	welcomeScreen();
 		    });
 			return false;
 		});

@@ -674,12 +674,12 @@ jQuery.noConflict();
 				style: { 
 				      width: 300,
 				      padding: 10,
-				      background: '#006699',
-				      color: 'white',
+				      background: '#9AC5DF',
+				      color: '#111',
 				      textAlign: 'left',
 				      border: {
 				         width: 1,
-				         radius: 7,
+				         radius: 5,
 				         color: '#006699'
 				      },
 			   		tip: 'bottomLeft'
@@ -703,10 +703,15 @@ jQuery.noConflict();
 			   	show: 'mouseover',
 			   	hide: 'mouseout',
 			   	style: {
+					width: 300,
+					padding: 10,
 			   		name: 'light',
+				    background: '#CAEFA5',			   		
+				    color: '#111',
 			   		border: {
-			   			width: 5,
-			   			radius: 5
+						width: 1,
+						radius: 5,
+						color: '#536E28'
 			   		},
 			   		tip: true,
 			   		margin: 0,
@@ -747,7 +752,7 @@ jQuery.noConflict();
 				},
 				hide: false,
 				style: {
-				      width: 300,
+				      width: 900,
 				      padding: 10,
 				      background: '#E8DF96',
 				      color: 'red',

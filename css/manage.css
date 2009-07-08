@@ -386,9 +386,9 @@ input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 .docs-wrap dl.options-list{font-size:12px;overflow:hidden;}
 .docs-wrap dl.options-list dt,
 .docs-wrap dl.options-list dd{float:left;margin-bottom:15px;line-height:17px;}
-.docs-wrap dl.options-list dt{font-weight:bold;width:70px!important;}
+.docs-wrap dl.options-list dt{font-weight:bold;width:105px!important;}
 .docs-wrap dl.options-list dt span{display:block;color:#0088DB;text-decoration:underline;font-size:11px;font-weight:normal;padding-left:12px;background:#fff url(../images/bullet3.png) no-repeat 0;}
-.docs-wrap dl.options-list dd{font-weight:normal;width:580px;color:#444;}
+.docs-wrap dl.options-list dd{font-weight:normal;width:697px;color:#444;}
 .docs-wrap .docs-class{background:#FFFFAF;border:1px solid #FFD07F;color:#E3702B;padding:0 2px;}
 .docs-wrap p .btn{height:26px;float:right;display:inline-block;text-transform:uppercase;text-decoration:none;color:#333;padding-right:15px;font:normal 9px/26px arial;background:url(../images/btn-right.jpg) no-repeat top right;}
 .docs-wrap p .btn span{background:url(../images/btn-left.jpg) no-repeat top left;padding-left:15px;height:26px;font:normal 9px/26px arial;display:inline-block;}

@@ -1212,7 +1212,7 @@ jQuery.noConflict();
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			title: 'Delete',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -1227,7 +1227,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
 			   						if($('#themelets-list').hasClass('thumb-view')){
-			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
 			   						}else{
 			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow');
 			   						}
@@ -1241,7 +1241,7 @@ jQuery.noConflict();
 							   			draggable: false,
 							   			minHeight: 20,
 							   			modal: true, 
-							   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+							   			title: 'Delete',
 							   			overlay: {
 							   				'background-color': '#000', 
 							   				opacity: 0.8 
@@ -1279,7 +1279,7 @@ jQuery.noConflict();
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			title: 'Delete',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -1294,7 +1294,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
 			   						if($('#backgrounds-list').hasClass('thumb-view')){
-			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
 			   						}else{
 			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow');
 			   						}			   						
@@ -1346,7 +1346,7 @@ jQuery.noConflict();
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			title: 'Delete',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -1361,7 +1361,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
 			   						if($('#logos-list').hasClass('thumb-view')){
-			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
 			   						}else{
 			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow');
 			   						}

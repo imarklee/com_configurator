@@ -181,7 +181,7 @@ border:1px solid #999;float:left;width:460px;}
 #assets-tabs ul.assets-list ul li.alt{margin-left:0;}
 #themelets-list.thumb-view ul.assets-list li.deleted,
 #logos-list.thumb-view ul.assets-list li.deleted,
-#backgrounds-list.thumb-view ul.assets-list li.deleted {background:transparent url('../images/deleted.png') 0 0 no-repeat; border: 1px solid #000; }
+#backgrounds-list.thumb-view ul.assets-list li.deleted {background:transparent url('../images/deleted.png') 0 0 no-repeat; border: 1px solid #ccc; }
 #themelets-list.thumb-view ul.assets-list li.deleted .assets-inner div, 
 #themelets-list.thumb-view ul.assets-list li.deleted .assets-inner ul, 
 #themelets-list.thumb-view ul.assets-list li.deleted .assets-inner h3,

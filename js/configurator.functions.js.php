@@ -70,8 +70,6 @@ jQuery.noConflict();
 	   	
 		/* Generic ----------------------------
 	    ------------------------------------ */
-$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
-
 		$("#submenu li:last").addClass("last");
 		$("#blocks-tabs .ui-tabs-nav li:last").addClass("last");
 		

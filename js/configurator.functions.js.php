@@ -452,9 +452,9 @@ jQuery.noConflict();
 		$('.updates-link').click(function(){
 			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
 				if($.cookie('info')){ $.cookie('info', null); }
-				return welcomeScreen();
-		    	var gstabs = $('#getting-started').tabs();
+				var gstabs = $('#splash').tabs();
 		    	gstabs.tabs('select', 2);
+				return welcomeScreen();
 		    });
 			return false;
 		});

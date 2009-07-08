@@ -1969,7 +1969,7 @@ jQuery.noConflict();
 	   			stack: false,
 	   			modal: true, 
 	   			dialogClass: 'welcome',
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Welcome to Configurator</span>',
+	   			title: 'Welcome to Configurator',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 

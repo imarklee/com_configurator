@@ -914,7 +914,8 @@ font-family:arial;
 -webkit-border-bottom-left-radius: 7px;
 -moz-border-radius-bottomright: 7px;
 -webkit-border-bottom-right-radius: 7px;
-background: #fff url(../images/dialog-contents.jpg) repeat-x 0 -1px;
+/*background: #fff url(../images/dialog-contents.jpg) repeat-x 0 -1px;*/
+background: #fff;
 }
 .ui-dialog .ui-dialog-content h2{
 font-size: 27px;

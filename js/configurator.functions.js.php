@@ -1940,13 +1940,12 @@ jQuery.noConflict();
 	   				opacity: 0.8 
 	   			}
 	    	});
-	    	$('#getting-started a.close-welcome').corners('bottom-left 10px');
 	    	$(".close-welcome").click(function(){
 				$('#getting-started').dialog("destroy");
 				if($.cookie('info')){ $.cookie('info', null); }
 				return false;
 			});
-			$('#getting-started').tabs({
+			$('#splash').tabs({
 				fx: { opacity: 'toggle' },				cookie: {					name: 'welcome-screen',					expires: 30,					path: '/',			 	}			});
 	    }
 	    

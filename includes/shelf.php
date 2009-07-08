@@ -59,18 +59,18 @@ function showIcon($curr, $serv){
 				<dl>
 					<dt class="component com_configurator" id="us-configurator">Configurator</dt>
 					<dd class="current"><?php echo $component_arr['version']; ?></dd>
-					<dd class="latest"><?php echo $component_arr['version']; ?></dd>
-					<dd class="icon"><?php echo showIcon($component_arr['version'], $component_arr['version']); ?></dd>
+					<dd class="latest"><?php echo $component_us_version; ?></dd>
+					<dd class="icon"><?php if(isset($_COOKIE['us_'.$component_arr['foldername']])){ echo showIcon($component_arr['version'], $component_arr['version']); } ?></dd>
 	
 					<dt class="template morph alt" id="us-morph">Morph</dt>
 					<dd class="current"><?php echo $template_arr['version']; ?></dd>
 					<dd class="latest"><?php echo $template_us_version; ?></dd>
-					<dd class="icon"><?php echo showIcon($template_arr['version'], $template_arr['version']); ?></dd>
+					<dd class="icon"><?php if(isset($_COOKIE['us_'.$component_arr['foldername']])){ echo showIcon($template_arr['version'], $template_arr['version']); } ?></dd>
 				
 					<dt class="themelet <?php echo $themelet_arr['foldername']; ?>" id="us-themelet"><?php echo $themelet_arr['name']; ?></dt>
 					<dd class="current"><?php echo $themelet_arr['version']; ?></dd>
 					<dd class="latest"><?php echo $themelet_us_version; ?></dd>
-					<dd class="icon"><?php echo showIcon($themelet_arr['version'], $themelet_arr['version']); ?></dd>						
+					<dd class="icon"><?php if(isset($_COOKIE['us_'.$component_arr['foldername']])){ echo showIcon($themelet_arr['version'], $themelet_arr['version']); } ?></dd>						
 				</dl>
 		</div>  
 		<div id="current-themelet">

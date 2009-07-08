@@ -16,16 +16,8 @@ return $pageURL;
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
-	
-		jQuery.fn.delay = function(time,func){
-    		return this.each(function(){
-	    	    setTimeout(func,time);
-    		});
-		};
-	
-  		$.preloadCssImages();
-  		
-  		/* Version checker --------------------
+		
+		/* Version checker --------------------
 	    ------------------------------------ */
 	   	function getUpdates(elm, time){
 	   		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
@@ -49,6 +41,13 @@ jQuery.noConflict();
 						   			var version = json.updates[name].version;
 						   			var updated = json.updates[name].updated;
 						   			$.cookie('us_'+cookiename, version+'##'+updated);
+						   			$('dt.'+cookiename).next().next().html(version);
+						   			
+						   			if($('dt.'+cookiename).next().next().html() < version){
+						   				$('dt.'+cookiename).next().next().next().html('<span class="update-no" title="There is an update available">Update Available</span>');
+						   			}else{
+						   				$('dt.'+cookiename).next().next().next().html('<span class="update-yes" title="You are up to date">Up to date</span>');
+						   			}
 						   		}
 					   		}
 				   		}
@@ -67,6 +66,14 @@ jQuery.noConflict();
 	   	
 	   	var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', '.themelet-summary');
 	   	getUpdates(updEl);
+		
+		jQuery.fn.delay = function(time,func){
+    		return this.each(function(){
+	    	    setTimeout(func,time);
+    		});
+		};
+	
+  		$.preloadCssImages();
 	   	
 		/* Generic ----------------------------
 	    ------------------------------------ */
@@ -263,30 +270,35 @@ jQuery.noConflict();
 			$('#site-desc').hide('slow');
 			$('#site-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('site-desc', true,{path:'/',expires:30});
+			$.cookie('hideintros', true);
 			return false; 
 		});
 		$('#themelet-desc a').click(function(){
 			$('#themelet-desc').hide('slow');
 			$('#themelet-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('themelet-desc', true,{path:'/',expires:30});
+			$.cookie('hideintros', true);
 			return false; 
 		});
 		$('#tools-desc a').click(function(){
 			$('#tools-desc').hide('slow');
 			$('#tools-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('tools-desc', true,{path:'/',expires:30});
+			$.cookie('hideintros', true);
 			return false; 
 		});
 		$('#assets-desc a').click(function(){
 			$('#assets-desc').hide('slow');
 			$('#assets-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('assets-desc', true,{path:'/',expires:30});
+			$.cookie('hideintros', true);
 			return false; 
 		});
 		$('#blocks-desc a').click(function(){
 			$('#blocks-desc').hide('slow');
 			$('#blocks-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('blocks-desc', true,{path:'/',expires:30});
+			$.cookie('hideintros', true);
 			return false; 
 		});
 		
@@ -294,11 +306,13 @@ jQuery.noConflict();
 			$(document).bind('scroll', function(){return false;});
 			$('html').css({'overflow-y': 'hidden', paddingRight: '15px'});
 			$('#qtip-blanket, #alf-image').css({ width: arrPageSizes[0]+15 });
+			return true;
 		}
 		
 		function showScroll(){
 			$(document).bind('scroll', function(){return false;});
 			$('html').css({'overflow-y': 'scroll', paddingRight: '0'});
+			return true;
 		}
 		
 		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
@@ -437,9 +451,10 @@ jQuery.noConflict();
 		
 		$('.updates-link').click(function(){
 			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+				if($.cookie('info')){ $.cookie('info', null); }
+				return welcomeScreen();
 		    	var gstabs = $('#getting-started').tabs();
 		    	gstabs.tabs('select', 2);
-		    	welcomeScreen();
 		    });
 			return false;
 		});
@@ -2020,7 +2035,6 @@ jQuery.noConflict();
 		// ajax content for dialog
 	    // welcome screen
 	    function welcomeScreen(){
-	    	hideScroll();
 	    	$('#getting-started').dialog({
 	    		width: '920px',
 	    		bgiframe: true,
@@ -2035,11 +2049,14 @@ jQuery.noConflict();
 	   				opacity: 0.8 
 	   			},
 	   			close: function(){
+	   				if($.cookie('info')){ $.cookie('info', null); }
 	   				showScroll();
+	   				$(this).dialog('destroy');
 	   			}
 	    	});
+	    	hideScroll();
 	    	$(".close-welcome").click(function(){
-				$('#getting-started').dialog("destroy");
+				$('#getting-started').dialog('destroy');
 				showScroll();
 				if($.cookie('info')){ $.cookie('info', null); }
 				return false;
@@ -2156,6 +2173,8 @@ jQuery.noConflict();
 	   			},
 	   			close: function(){
 	   				showScroll();
+	   				$('#qtip-blanket').hide();
+	   				$(this).dialog('destroy');
 	   			},
 	   			zIndex: 9999
 	    	});

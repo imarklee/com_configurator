@@ -165,7 +165,7 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #assets .thumb-view h3{margin:0;padding:0;list-style:none;font:normal 12px arial;}
 #assets .thumb-view li{width:448px;float:left;margin-top:20px;background:#E3E3E3 url(../images/assets-inactive-bg.jpg) repeat-x;border:1px solid #ccc;padding:0;position:relative;}
 #assets .thumb-view li.alt{margin-left:20px;}
-#assets .thumb-view li.tl-active{background:#E3E3E3 url(../images/assets-active-bg.jpg) repeat-x;}
+#assets .thumb-view li.tl-active{background:#E3E3E3 url(../images/assets-active-bg.png) repeat-x;}
 #assets .thumb-view li .assets-inner{padding:15px;border:1px solid #fff;}
 #assets .thumb-view li.tl-active{border:1px solid #8FAB60;}
 #assets .thumb-view li.tl-active .assets-inner{background:transparent url(../images/active-badge.png) no-repeat top right;}

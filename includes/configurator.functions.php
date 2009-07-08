@@ -1,5 +1,22 @@
 <?php
 
+function get_os(){
+	$agent = $_SERVER['HTTP_USER_AGENT'];
+	$os = "unknown";
+	
+	if (eregi("win", $agent)) $os = "windows";
+    elseif (eregi("mac", $agent)) $os = "mac";
+    elseif (eregi("linux", $agent)) $os = "linux";
+    elseif (eregi("OS/2", $agent)) $os = "OS/2";
+    elseif (eregi("BeOS", $agent)) $os = "beos";
+        
+return $os;
+}
+function whichKey($os){
+	if($os == 'mac') $key = '&#x2318;';
+	else $key = 'Ctrl';
+	return $key;
+}
 function showTips(){
 	$f = ('../administrator/components/com_configurator/includes/tips.txt');
 	$fo = fopen($f, 'r');

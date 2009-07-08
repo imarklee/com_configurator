@@ -525,8 +525,33 @@ jQuery.noConflict();
 		});
 		
 		$('#feedbackform').submit(function(){ 
+			function validate(formData, jqForm, options) { 
+			    for (var i=0; i < formData.length; i++) { 
+			    	if (!formData[i].value) { 
+			            $('<div>All fields are required</div>').dialog({
+			            	bgiframe: true,
+							autoOpen: true,
+							stack: true,
+							title: 'Error',
+							buttons: {
+								'Ok': function(){
+									$(this).dialog('destroy');
+								}
+							},
+							modal: true,
+							overlay: {
+								'background-color': '#000',
+								opacity: 0.8
+							}
+						});
+			            return false; 
+			        } 
+			    }
+			    return true; 
+			}
 			
 			$(this).ajaxSubmit({
+				beforeSubmit: validate,
 				type: 'GET',
 				dataType: 'jsonp',
 				contentType: "application/json; charset=utf-8",
@@ -544,17 +569,62 @@ jQuery.noConflict();
 				success: function(data, status, error){
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
-							alert(data.error);
+							$('<div>'+data.error+'</div>').dialog({
+				            	bgiframe: true,
+								autoOpen: true,
+								stack: true,
+								title: 'Error',
+								buttons: {
+									'Ok': function(){
+										$(this).dialog('destroy');
+									}
+								},
+								modal: true,
+								overlay: {
+									'background-color': '#000',
+									opacity: 0.8
+								}
+							});
 						}
 					}else{
-						alert(data.message);
+						$('<div>'+data.message+'</div>').dialog({
+			            	bgiframe: true,
+							autoOpen: true,
+							stack: true,
+							title: 'Success',
+							buttons: {
+								'Ok': function(){
+									$(this).dialog('destroy');
+								}
+							},
+							modal: true,
+							overlay: {
+								'background-color': '#000',
+								opacity: 0.8
+							}
+						});
 						$('#feedbackform').resetForm();
 						$('#report-bug').dialog('close');
 						if($.cookie('bug')){ $.cookie('bug', null); }
 					}
 				},
 				error: function(data){
-					alert(data);
+					$('<div>'+data+'</div>').dialog({
+		            	bgiframe: true,
+						autoOpen: true,
+						stack: true,
+						title: 'Error',
+						buttons: {
+							'Ok': function(){
+								$(this).dialog('destroy');
+							}
+						},
+						modal: true,
+						overlay: {
+							'background-color': '#000',
+							opacity: 0.8
+						}
+					});
 				}
 			});
 			return false;
@@ -567,8 +637,8 @@ jQuery.noConflict();
 		$(window).resize(function() {
 				var arrPageSizes = ___getPageSize();
 				$('#qtip-blanket, #alfimage').css({
-					width:		arrPageSizes[0],
-					height:		arrPageSizes[1]
+					width: arrPageSizes[0],
+					height: arrPageSizes[1]
 				});
 		});
 		$('<div id="qtip-blanket">').css({
@@ -1910,16 +1980,43 @@ jQuery.noConflict();
 			});
 			
 			// set form values
-			if(!$.cookie('hidetips')){ $('input[name="showtips"][value="1"]').attr('checked', true); }else{ $('input[name="showtips"][value="0"]').attr('checked', true); }
+			if(!$.cookie('tips')){ $('input[name="showtips"][value="1"]').attr('checked', 'checked'); }else{ $('input[name="showtips"][value="0"]').attr('checked', 'checked'); }
 			if(!$.cookie('hideintros')){ $('input[name="showintros"][value="1"]').attr('checked', true); } else { $('input[name="showintros"][value="0"]').attr('checked', true); }
 			if($.cookie('sorttabs')){ $('input[name="sorttabs"][value="1"]').attr('checked', true); } else {$('input[name="sorttabs"][value="0"]').attr('checked', true); }
 			if(!$.cookie('noupdates')){ $('input[name="checkupdates"][value="1"]').attr('checked', true); } else {$('input[name="checkupdates"][value="0"]').attr('checked', true); }
 
 			$('#preferences-form').submit(function(){
-    		var value = $('#preferences-form :input').fieldValue(); 
-    		for (i=0; i < value.length; i++){
-				alert(value[i]); 
-			}
+				
+				$('#preferences-screen').dialog('option', 'title', 'Saving...');
+				var values = $('#preferences-form input:checked').fieldValue();
+				
+	    		var tips = values[0];
+	    		var intro = values[1];
+	    		var tabs = values[2];
+	    		var updates = values[3];
+    			
+    			if(tips == 1){ $.cookie('tips', null, {path:'/',expires:30}); } else { $.cookie('tips', 'true', { path:'/',expires:30 }); }
+    			if(intro == 1){ 
+    				$.cookie('hideintros', null, {path:'/',expires:30}); 
+					$.cookie('site-desc', null, {path:'/',expires:30});
+					$.cookie('themelet-desc', null,{path:'/',expires:30});
+					$.cookie('tools-desc', null,{path:'/',expires:30});
+					$.cookie('assets-desc', null,{path:'/',expires:30});
+					$.cookie('blocks-desc', null,{path:'/',expires:30});
+				} else { 
+    				$.cookie('tips', 'true', { path:'/',expires:30 }); 
+    				$.cookie('site-desc', true, {path:'/',expires:30});
+					$.cookie('themelet-desc', true,{path:'/',expires:30});
+					$.cookie('tools-desc', true,{path:'/',expires:30});
+					$.cookie('assets-desc', true,{path:'/',expires:30});
+					$.cookie('blocks-desc', true,{path:'/',expires:30});
+    			}
+    			if(tabs == 1){ $.cookie('sorttabs', true, { path: '/', expires:30 }); } else { $.cookie('sorttabs', null, { path: '/', expires:30 }); }
+    			if(updates == 1){ $.cookie('noupdates', null, { path: '/', expires:30 }); } else { $.cookie('noupdates', true, { path: '/', expires:30 }); }
+    			if($.cookie('prefs')){ $.cookie('prefs', null); }
+    			$('#preferences-screen').dialog('destroy');
+    			window.location.reload(true);
+    			
     		return false;
     	});
 	    }
@@ -2062,7 +2159,7 @@ jQuery.noConflict();
 					}
 				});
 			}else{
-				$('.toolguides').dialog('destroy');
+				$('.toolguides').qtip('destroy');
 				showScroll();
 				$('#qtip-blanket').fadeOut();
 				$.cookie('tooltip'+tid, null);

@@ -932,6 +932,7 @@ background:#fff;
 -moz-border-radius-bottomright: 7px;
 -webkit-border-bottom-right-radius: 7px;
 }
+#alf-warning,
 #tips-dialog{
 margin:0!important;
 padding:20px 0 10px 20px;

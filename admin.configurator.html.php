@@ -69,6 +69,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 						<form id="am-login-form" method="post">
 							<div id="alf-cont">
 								<div id="alf-inp-cont">
+								
 									<label for="am-username" class="label-username"><span>Username:</span>
 									<input type="text" class="alf-input" name="am-username" value="username" title="username" />
 									</label>
@@ -76,7 +77,12 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<input type="password" id="loginpass" class="alf-input" name="am-password" value="password" title="password" />
 									</label>
 									
-									<p class="login-sub"><label for="am-keep-login" class="login-checkbox"><input class="alf-check" type="checkbox" name="am-keep-login" value="true" /> Stay logged in</label>&nbsp;&nbsp;|&nbsp;<label for="show-password" class="login-checkbox"><span class="sp-check"></span></label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://" title="">Forgot password?</a></p>
+									<p class="login-sub">
+										<label for="am-keep-login" class="login-checkbox">
+											<input class="alf-check" type="checkbox" name="am-keep-login" id="am-keep-login" value="true" /> Stay logged in
+										</label>
+											
+											&nbsp;&nbsp;|&nbsp;<label for="show-password" class="login-checkbox"><span class="sp-check"></span></label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://" title="">Forgot password?</a></p>
 								</div>
 								<input class="alf-login" type="submit" name="am-do-login" value="am-login-true" />
 							</div>				

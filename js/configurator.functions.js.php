@@ -1070,17 +1070,8 @@ jQuery.noConflict();
 						$("#system-message dd.message ul").corners("10px");		
 						$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 		   				
-						$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').fadeTo('fast', 1).each(function(){
-							$(this).attr('href', '#active');
-							$(this).css('cursor', 'pointer');
-						});
-						$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"], li.tl-inactive ul li.btn-delete a[name="'+setThemelet+'"]').fadeTo('fast', 0.5).each(function(){
-							$(this).attr('href', '#inactive');
-							$(this).css('cursor', 'default');
-							$(this).click(function(){
-								return false;
-							});
-						});
+						$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').fadeTo('fast', 1).attr('href', '#active').css('cursor', 'pointer').click(function(){ return false; });
+						$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"], li.tl-inactive ul li.btn-delete a[name="'+setThemelet+'"]').fadeTo('fast', 0.5).attr('href', '#inactive').css('cursor', 'default').click(function(){ return false; });
 						
 						$('#current-themelet li.ct-name').html('<span>Name: </span>'+$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"]').attr('title').replace('Activate ', ''));
 						$('#current-themelet li.ct-version').html('<span>Version: </span>'+$('ul.'+setThemelet+' li.tl-installed').text().replace('Installed version: ',''));
@@ -1237,7 +1228,11 @@ jQuery.noConflict();
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=themelet&asset='+setThemelet,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
-			   						$('a[name="'+setThemelet+'"]').parent().parent().parent().hide('slow');			   						
+			   						if($('#themelets-list').hasClass('thumb-view')){
+			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   						}else{
+			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow');
+			   						}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('Themelet deleted successfully');
 			   						hideScroll();
@@ -1300,7 +1295,11 @@ jQuery.noConflict();
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=background&asset='+setBackground,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
-			   						$('a[name="'+setBackground+'"]').parent().parent().parent().hide('slow');			   						
+			   						if($('#backgrounds-list').hasClass('thumb-view')){
+			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   						}else{
+			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow');
+			   						}			   						
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('Background deleted successfully');
 			   						hideScroll();
@@ -1363,7 +1362,11 @@ jQuery.noConflict();
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=logo&asset='+setLogo,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
-			   						$('a[name="'+setLogo+'"]').parent().parent().parent().hide('slow');
+			   						if($('#logos-list').hasClass('thumb-view')){
+			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   						}else{
+			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow');
+			   						}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('Logo deleted successfully');
 			   						hideScroll();

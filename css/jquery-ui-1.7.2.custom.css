@@ -920,22 +920,32 @@ background: #fff url(../images/dialog-contents.jpg) repeat-x 0 -1px;
 font-size: 27px;
 margin: 0 0 10px 0;
 }
-.ui-dialog .ui-dialog-buttonpane {
+#minwidth-body .ui-dialog .ui-dialog-buttonpane {
 border: 0;
-border-top: 1px dashed #ccc;
 text-align: left;
 background-image: none;
-margin: 0.5em 13px 0;
-padding: 0.3em 0 0.5em 0.4em;
+margin:-20px 0 0 0;
+padding:20px 20px 15px 40px;
+background:#fff;
+-moz-border-radius-bottomleft: 7px;
+-webkit-border-bottom-left-radius: 7px;
+-moz-border-radius-bottomright: 7px;
+-webkit-border-bottom-right-radius: 7px;
+}
+#tips-dialog{
+margin:0!important;
+padding:20px 0 10px 20px;
 }
 .ui-dialog .ui-dialog-buttonpane button {
 float: right;
-margin: .5em 0 .5em .4em;
+margin: 0 0 0 10px;
 cursor: pointer;
 padding: .2em .6em .3em .6em;
 line-height: 1.4em;
 width: auto;
 overflow: visible;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
 }
 .ui-dialog .ui-resizable-se {
 width: 14px;

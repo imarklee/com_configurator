@@ -1909,8 +1909,11 @@ jQuery.noConflict();
 			});
 			
 			// set form values
-			if(!$.cookie('hidetips')){ $('input[name="showtips"][value="1"]').attr('checked', true); }
-			if($.cookie('hideintros')){ $('input[name="showintros"][value="0"]').attr('checked', true); }
+			if(!$.cookie('hidetips')){ $('input[name="showtips"][value="1"]').attr('checked', true); }else{ $('input[name="showtips"][value="0"]').attr('checked', true); }
+			if(!$.cookie('hideintros')){ $('input[name="showintros"][value="1"]').attr('checked', true); } else { $('input[name="showintros"][value="0"]').attr('checked', true); }
+			if($.cookie('sorttabs')){ $('input[name="sorttabs"][value="1"]').attr('checked', true); } else {$('input[name="sorttabs"][value="0"]').attr('checked', true); }
+			if(!$.cookie('noupdates')){ $('input[name="checkupdates"][value="1"]').attr('checked', true); } else {$('input[name="checkupdates"][value="0"]').attr('checked', true); }
+
 			$('#preferences-form').submit(function(){
     		var value = $('#preferences-form :input').fieldValue(); 
     		for (i=0; i < value.length; i++){

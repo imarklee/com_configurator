@@ -217,11 +217,16 @@ class ConfiguratorController extends JController {
 		}      
 		if(!isset($_GET['isajax'])){
 			$msg = JText::_('Successfully saved your settings');
+			// delete change cookie if exists
+			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
 			$mainframe->redirect("index2.php?option={$option}&task=manage",$msg);
 		}else{
-			echo 'shoulda worked now';
+			// delete change cookie if exists
+			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
 			return true;
 		}
+		
+		
 		
 	}    
 	

@@ -662,7 +662,7 @@ jQuery.noConflict();
 		})
 	    .appendTo($('body'))
 	    .hide();
-	    
+	    // info tooltip
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 
 	   		var qtTitle = thetitle[1];
@@ -674,11 +674,11 @@ jQuery.noConflict();
 				style: { 
 				      width: 300,
 				      padding: 10,
-				      background: '#BEDCE7',
-				      color: 'black',
+				      background: '#9AC5DF',
+				      color: '#111',
 				      textAlign: 'left',
 				      border: {
-				         width: 7,
+				         width: 1,
 				         radius: 5,
 				         color: '#006699'
 				      },
@@ -694,7 +694,38 @@ jQuery.noConflict();
 			
 			$(this).attr('title', '');
 	    });
-	    
+	    // info tooltip
+	   	$('.ttim').each(function(){
+	    	var thetitle = $(this).attr("title");
+	   		
+	   		$(this).qtip({
+   				content: thetitle ,
+			   	show: 'mouseover',
+			   	hide: 'mouseout',
+			   	style: {
+					width: 300,
+					padding: 10,
+			   		name: 'light',
+				    background: '#CAEFA5',			   		
+				    color: '#111',
+			   		border: {
+						width: 1,
+						radius: 5,
+						color: '#536E28'
+			   		},
+			   		tip: true,
+			   		margin: 0,
+			   	},
+			   	position: {
+			        corner: {
+			           tooltip: 'bottomLeft',
+			           target: 'topRight'
+			        }
+			     },
+			});
+			
+			$(this).attr('title', '');
+	    });	    
 	    $('.tt-modal').each(function(){
 	    	var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
 	   		var thetitle = $(this).attr("title").split('::'); 
@@ -721,17 +752,16 @@ jQuery.noConflict();
 				},
 				hide: false,
 				style: {
-				      width: 300,
+				      width: 900,
 				      padding: 10,
 				      background: '#E8DF96',
-				      color: 'black',
+				      color: 'red',
 				      textAlign: 'left',
 				      border: {
 				         width: 7,
 				         radius: 5,
 				         color: '#536E28'
-				      },
-					name: 'light'
+				      }
 				},
 				api: {
 					beforeShow: function(){	
@@ -871,33 +901,6 @@ jQuery.noConflict();
 			});
 			
 	   	});
-	   	
-	   	$('.ttim').each(function(){
-	    	var thetitle = $(this).attr("title");
-	   		
-	   		$(this).qtip({
-   				content: thetitle ,
-			   	show: 'mouseover',
-			   	hide: 'mouseout',
-			   	style: {
-			   		name: 'dark',
-			   		border: {
-			   			width: 5,
-			   			radius: 5
-			   		},
-			   		tip: true,
-			   		margin: 0,
-			   	},
-			   	position: {
-			        corner: {
-			           tooltip: 'bottomLeft',
-			           target: 'topRight'
-			        }
-			     },
-			});
-			
-			$(this).attr('title', '');
-	    });
 	   	
 	   	$('ul.assets-list ul.buttons li.btn-preview a').each(function(){
 	   		
@@ -1228,7 +1231,7 @@ jQuery.noConflict();
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			title: 'Delete',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -1243,7 +1246,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
 			   						if($('#themelets-list').hasClass('thumb-view')){
-			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
 			   						}else{
 			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow');
 			   						}
@@ -1257,7 +1260,7 @@ jQuery.noConflict();
 							   			draggable: false,
 							   			minHeight: 20,
 							   			modal: true, 
-							   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+							   			title: 'Delete',
 							   			overlay: {
 							   				'background-color': '#000', 
 							   				opacity: 0.8 
@@ -1295,7 +1298,7 @@ jQuery.noConflict();
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			title: 'Delete',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -1310,7 +1313,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
 			   						if($('#backgrounds-list').hasClass('thumb-view')){
-			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
 			   						}else{
 			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow');
 			   						}			   						
@@ -1362,7 +1365,7 @@ jQuery.noConflict();
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+	   			title: 'Delete',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -1377,7 +1380,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
 			   						if($('#logos-list').hasClass('thumb-view')){
-			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
 			   						}else{
 			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow');
 			   						}
@@ -2026,7 +2029,7 @@ jQuery.noConflict();
 	   			stack: false,
 	   			modal: true, 
 	   			dialogClass: 'welcome',
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Welcome to Configurator</span>',
+	   			title: 'Welcome to Configurator',
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -2326,9 +2329,9 @@ jQuery.noConflict();
 				var os = $.os.name;
 				
 				function save(){
-					$('<div id="alf-image"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
+					$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
 					hideScroll();
-					$('#alf-image').css({
+					$('#saving').css({
 						'display': 'block',
 						'z-index': '9998',
 						position: 'absolute',

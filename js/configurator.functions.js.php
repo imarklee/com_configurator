@@ -37,7 +37,6 @@ jQuery.noConflict();
 						   		if(elm[i] == '.themelet-summary'){ isOtherThemelet = 'true'; }
 						   		if(name !== 'no-themelets'){
 						   			var cookiename = json.updates[name].short_name;
-						   			alert(cookiename);
 						   			var version = json.updates[name].version;
 						   			var updated = json.updates[name].updated;
 						   			$.cookie('us_'+cookiename, version+'##'+updated);

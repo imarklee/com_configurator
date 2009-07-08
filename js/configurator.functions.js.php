@@ -661,7 +661,7 @@ jQuery.noConflict();
 		})
 	    .appendTo($('body'))
 	    .hide();
-	    
+	    // info tooltip
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 
 	   		var qtTitle = thetitle[1];
@@ -673,12 +673,12 @@ jQuery.noConflict();
 				style: { 
 				      width: 300,
 				      padding: 10,
-				      background: '#BEDCE7',
-				      color: 'black',
+				      background: '#006699',
+				      color: 'white',
 				      textAlign: 'left',
 				      border: {
-				         width: 7,
-				         radius: 5,
+				         width: 1,
+				         radius: 7,
 				         color: '#006699'
 				      },
 			   		tip: 'bottomLeft'
@@ -693,7 +693,33 @@ jQuery.noConflict();
 			
 			$(this).attr('title', '');
 	    });
-	    
+	    // info tooltip
+	   	$('.ttim').each(function(){
+	    	var thetitle = $(this).attr("title");
+	   		
+	   		$(this).qtip({
+   				content: thetitle ,
+			   	show: 'mouseover',
+			   	hide: 'mouseout',
+			   	style: {
+			   		name: 'light',
+			   		border: {
+			   			width: 5,
+			   			radius: 5
+			   		},
+			   		tip: true,
+			   		margin: 0,
+			   	},
+			   	position: {
+			        corner: {
+			           tooltip: 'bottomLeft',
+			           target: 'topRight'
+			        }
+			     },
+			});
+			
+			$(this).attr('title', '');
+	    });	    
 	    $('.tt-modal').each(function(){
 	    	var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
 	   		var thetitle = $(this).attr("title").split('::'); 
@@ -723,14 +749,13 @@ jQuery.noConflict();
 				      width: 300,
 				      padding: 10,
 				      background: '#E8DF96',
-				      color: 'black',
+				      color: 'red',
 				      textAlign: 'left',
 				      border: {
 				         width: 7,
 				         radius: 5,
 				         color: '#536E28'
-				      },
-					name: 'light'
+				      }
 				},
 				api: {
 					beforeShow: function(){	
@@ -870,33 +895,6 @@ jQuery.noConflict();
 			});
 			
 	   	});
-	   	
-	   	$('.ttim').each(function(){
-	    	var thetitle = $(this).attr("title");
-	   		
-	   		$(this).qtip({
-   				content: thetitle ,
-			   	show: 'mouseover',
-			   	hide: 'mouseout',
-			   	style: {
-			   		name: 'dark',
-			   		border: {
-			   			width: 5,
-			   			radius: 5
-			   		},
-			   		tip: true,
-			   		margin: 0,
-			   	},
-			   	position: {
-			        corner: {
-			           tooltip: 'bottomLeft',
-			           target: 'topRight'
-			        }
-			     },
-			});
-			
-			$(this).attr('title', '');
-	    });
 	   	
 	   	$('ul.assets-list ul.buttons li.btn-preview a').each(function(){
 	   		

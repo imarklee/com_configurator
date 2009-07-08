@@ -25,7 +25,6 @@ jQuery.noConflict();
 	   		if(!$.cookie('noupdates')){
 	   			
 	   			if(!$.cookie('checkedforupdates')){
-	   				$.cookie('checkedforupdates', true);
 	   				$.getJSON(updateURL, function(obj){
 	   					pass(obj);
 	   				});
@@ -38,16 +37,17 @@ jQuery.noConflict();
 						   		if(elm[i] == '.themelet-summary'){ isOtherThemelet = 'true'; }
 						   		if(name !== 'no-themelets'){
 						   			var cookiename = json.updates[name].short_name;
+						   			alert(cookiename);
 						   			var version = json.updates[name].version;
 						   			var updated = json.updates[name].updated;
 						   			$.cookie('us_'+cookiename, version+'##'+updated);
 						   			$('dt.'+cookiename).next().next().html(version);
-						   			
 						   			if($('dt.'+cookiename).next().next().html() < version){
 						   				$('dt.'+cookiename).next().next().next().html('<span class="update-no" title="There is an update available">Update Available</span>');
 						   			}else{
 						   				$('dt.'+cookiename).next().next().next().html('<span class="update-yes" title="You are up to date">Up to date</span>');
 						   			}
+						   			$.cookie('checkedforupdates', true);
 						   		}
 					   		}
 				   		}
@@ -2130,8 +2130,9 @@ jQuery.noConflict();
 					$.cookie('tools-desc', null,{path:'/',expires:30});
 					$.cookie('assets-desc', null,{path:'/',expires:30});
 					$.cookie('blocks-desc', null,{path:'/',expires:30});
-				} else { 
-    				$.cookie('tips', 'true', { path:'/',expires:30 }); 
+				} else {
+					
+    				$.cookie('hideintros', 'true', { path:'/',expires:30 }); 
     				$.cookie('site-desc', true, {path:'/',expires:30});
 					$.cookie('themelet-desc', true,{path:'/',expires:30});
 					$.cookie('tools-desc', true,{path:'/',expires:30});

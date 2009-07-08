@@ -434,7 +434,15 @@ jQuery.noConflict();
 				$(this).removeClass("ui-state-active");
 			}
 		});
-					
+		
+		$('.updates-link').click(function(){
+			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+		    	welcomeScreen();
+		    	var gstabs = $('#getting-started').tabs();
+		    });
+			return false;
+		});
+				
 		$("#toggle-shelf").click(function(){
 			toggleShelf();
 			return false;

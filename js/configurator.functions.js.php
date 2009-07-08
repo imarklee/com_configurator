@@ -2095,7 +2095,8 @@ jQuery.noConflict();
 	   				opacity: 0.8 
 	   			},close: function(){
 	   				showScroll();
-	   				if($.cookie('prefs')){ $.cookie('prefs', null); }
+	   				$.cookie('prefs', null);
+	   				$(this).dialog('destroy');
 	   			}
 	    	});
 	    	$('#preferences-screen a.close-preferences').corners('bottom-left 10px');

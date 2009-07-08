@@ -437,8 +437,9 @@ jQuery.noConflict();
 		
 		$('.updates-link').click(function(){
 			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
-		    	welcomeScreen();
 		    	var gstabs = $('#getting-started').tabs();
+		    	gstabs.tabs('select', 2);
+		    	welcomeScreen();
 		    });
 			return false;
 		});
@@ -1041,6 +1042,7 @@ jQuery.noConflict();
 					mainTabs.tabs('select', 1);
 					subTabs.tabs('select', 0);
 					$(this).remove();
+					showScroll();
 	   			},
 				buttons: { 
 					'Yes, configure themelet': function(){
@@ -1066,22 +1068,14 @@ jQuery.noConflict();
 						$("#system-message dd.message ul").corners("10px");		
 						$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 		   				
-						$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').fadeTo('fast', 1).each(function(){
-							$(this).attr('href', '#active');
-							$(this).css('cursor', 'pointer');
-						});
-						$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"], li.tl-inactive ul li.btn-delete a[name="'+setThemelet+'"]').fadeTo('fast', 0.5).each(function(){
-							$(this).attr('href', '#inactive');
-							$(this).css('cursor', 'default');
-							$(this).click(function(){
-								return false;
-							});
-						});
+						$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').fadeTo('fast', 1).attr('href', '#active').css('cursor', 'pointer').click(function(){ return false; });
+						$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"], li.tl-inactive ul li.btn-delete a[name="'+setThemelet+'"]').fadeTo('fast', 0.5).attr('href', '#inactive').css('cursor', 'default').click(function(){ return false; });
 						
 						$('#current-themelet li.ct-name').html('<span>Name: </span>'+$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"]').attr('title').replace('Activate ', ''));
 						$('#current-themelet li.ct-version').html('<span>Version: </span>'+$('ul.'+setThemelet+' li.tl-installed').text().replace('Installed version: ',''));
 						$('#current-themelet li.ct-thumb').html('<span>&nbsp;</span><img src="../templates/morph/assets/themelets/'+setThemelet+'/themelet_thumb.png" width="108" height="72" align="middle" alt="'+$('#current-themelet li.ct-name').text()+'" />');
 						$('.thdlg').dialog('open');
+						hideScroll();
 						
 					}
 	   			});
@@ -1109,6 +1103,7 @@ jQuery.noConflict();
 					var subTabs = $('#themelet-tabs').tabs();
 					mainTabs.tabs('select', 1);
 					subTabs.tabs('select', 1);
+					showScroll();
 	   			},
 				buttons: { 
 					'Yes, configure logo': function(){
@@ -1133,6 +1128,7 @@ jQuery.noConflict();
 						$("#system-message dd.message ul").corners("10px");		
 						$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 		   				$('.lgdlg').dialog('open');
+		   				hideScroll();
 				   				   			
 	   				}
 	   			});
@@ -1161,6 +1157,7 @@ jQuery.noConflict();
 					mainTabs.tabs('select', 1);
 					subTabs.tabs('select', 2);
 					$(this).remove();
+					showScroll();
 				},
 				buttons: { 
 					'Yes, configure background': function(){
@@ -1187,7 +1184,7 @@ jQuery.noConflict();
 						$("#system-message dd.message ul").corners("10px");		
 						$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 		   				$('.bgdlg').dialog('open');
-		   				
+		   				hideScroll();
 	   				}
 	   			});
 	   			return false;
@@ -1207,7 +1204,7 @@ jQuery.noConflict();
 	   		
 	   		$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 	   		$('#assets-output').html(alertMessage);
-	   		
+	   		hideScroll();
 			$('#assets-output').dialog({
 	   			bgiframe: true,
 	   			autoOpen: true,
@@ -1223,14 +1220,20 @@ jQuery.noConflict();
 				buttons: { 
 					'Yes': function(){
 						$(this).dialog('destroy');
+						showScroll();
 						$.ajax({
 			   				type: 'GET',
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=themelet&asset='+setThemelet,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
-			   						$('a[name="'+setThemelet+'"]').parent().parent().parent().hide('slow');			   						
+			   						if($('#themelets-list').hasClass('thumb-view')){
+			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   						}else{
+			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow');
+			   						}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('Themelet deleted successfully');
+			   						hideScroll();
 						   			$('#assets-output').dialog({
 						   				bgiframe: true,
 							   			autoOpen: true,
@@ -1244,7 +1247,7 @@ jQuery.noConflict();
 							   				opacity: 0.8 
 							   			},
 										buttons: { 
-											'OK': function(){ $(this).dialog('destroy'); }
+											'OK': function(){ $(this).dialog('destroy'); showScroll(); }
 										}
 									});
 			   					}
@@ -1253,6 +1256,7 @@ jQuery.noConflict();
 					},
 					'No': function(){
 						$(this).dialog('destroy');
+						showScroll();
 					}
 				}
 			});
@@ -1267,7 +1271,7 @@ jQuery.noConflict();
 			
 			$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 	   		$('#assets-output').html(alertMessage);
-	   		
+	   		hideScroll();
 			$('#assets-output').dialog({
 	   			bgiframe: true,
 	   			autoOpen: true,
@@ -1283,14 +1287,20 @@ jQuery.noConflict();
 				buttons: { 
 					'Yes': function(){
 						$(this).dialog('destroy');
+						showScroll();
 						$.ajax({
 			   				type: 'GET',
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=background&asset='+setBackground,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
-			   						$('a[name="'+setBackground+'"]').parent().parent().parent().hide('slow');			   						
+			   						if($('#backgrounds-list').hasClass('thumb-view')){
+			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   						}else{
+			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow');
+			   						}			   						
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('Background deleted successfully');
+			   						hideScroll();
 						   			$('#assets-output').dialog({
 						   				bgiframe: true,
 							   			autoOpen: true,
@@ -1304,7 +1314,7 @@ jQuery.noConflict();
 							   				opacity: 0.8 
 							   			},
 										buttons: { 
-											'OK': function(){ $(this).dialog('destroy'); }
+											'OK': function(){ $(this).dialog('destroy'); showScroll(); }
 										}
 									});
 			   					}
@@ -1313,6 +1323,7 @@ jQuery.noConflict();
 					},
 					'No': function(){
 						$(this).dialog('destroy');
+						showScroll();
 					}
 				}
 			});
@@ -1327,7 +1338,7 @@ jQuery.noConflict();
 	   		
 	   		$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 	   		$('#assets-output').html(alertMessage);
-	   		
+	   		hideScroll();
 			$('#assets-output').dialog({
 	   			bgiframe: true,
 	   			autoOpen: true,
@@ -1343,14 +1354,20 @@ jQuery.noConflict();
 				buttons: { 
 					'Yes': function(){
 						$(this).dialog('destroy');
+						showScroll();
 						$.ajax({
 			   				type: 'GET',
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=logo&asset='+setLogo,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
-			   						$('a[name="'+setLogo+'"]').parent().parent().parent().hide('slow');
+			   						if($('#logos-list').hasClass('thumb-view')){
+			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 0.2 });
+			   						}else{
+			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow');
+			   						}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('Logo deleted successfully');
+			   						hideScroll();
 						   			$('#assets-output').dialog({
 						   				bgiframe: true,
 							   			autoOpen: true,
@@ -1364,7 +1381,7 @@ jQuery.noConflict();
 							   				opacity: 0.8 
 							   			},
 										buttons: { 
-											'OK': function(){ $(this).dialog('destroy'); }
+											'OK': function(){ $(this).dialog('destroy'); showScroll(); }
 										}
 									});
 			   					}
@@ -1373,6 +1390,7 @@ jQuery.noConflict();
 					},
 					'No': function(){
 						$(this).dialog('destroy');
+						showScroll();
 					}
 				}
 			});
@@ -1417,7 +1435,7 @@ jQuery.noConflict();
 	    	$('#alf-warning').html('<p><span class="error-text"><strong>Selecting this will keep you logged in for an infinite period.</strong><br /><br />'
 									+'Please note that, a cookie will be set to keep you logged in until you log out manually or delete your '
 									+'cookies.</span></p>');
-			
+			hideScroll();
 			$('#alf-warning').dialog({
 	   			width: 500, 
 	   			autoOpen: true, 
@@ -1434,9 +1452,11 @@ jQuery.noConflict();
 				buttons: {
 					'OK': function(){
 						$(this).dialog('destroy');
+						showScroll();
 					},
 					'Uncheck': function(){
 						$(this).dialog('destroy');
+						showScroll();
 						$('.alf-check').attr('checked', false);
 					}
 				}
@@ -1484,6 +1504,7 @@ jQuery.noConflict();
 										
 										retval = 'Login Failed: '+rdata.message;
 										$('#alf-output').html('<p><span class="error-text">'+retval+'</span></p>');
+										hideScroll();
 										$('#alf-output').dialog({
 								   			autoOpen: true, 
 								   			bgiframe: true, 
@@ -1499,6 +1520,7 @@ jQuery.noConflict();
 											buttons: {
 												'OK': function(){
 													$(this).dialog('destroy');
+													showScroll();
 												}
 											}
 										});
@@ -1558,6 +1580,7 @@ jQuery.noConflict();
 				});
 			}else{
 				$('#alf-warning').html('<p><span class="error-text">Please enter a username and password in the fields below. Thanks.</span></p>');
+				hideScroll();
 				$('#alf-warning').dialog({
 		   			autoOpen: true, 
 		   			bgiframe: true, 
@@ -1573,6 +1596,7 @@ jQuery.noConflict();
 					buttons: {
 						'OK': function(){
 							$(this).dialog('destroy');
+							showScroll();
 						}
 					}
 				});
@@ -1601,6 +1625,7 @@ jQuery.noConflict();
 				success: function (data, status){
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
+							hideScroll();
 							$('#upload-message').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -1615,6 +1640,7 @@ jQuery.noConflict();
 								buttons: {
 									'OK': function(){
 										$(this).dialog('destroy');
+										showScroll();
 									}
 								}
 							});
@@ -1622,6 +1648,7 @@ jQuery.noConflict();
 							$('#upload-message').dialog('show');
 						}
 					}else{
+						hideScroll();
 						$('#upload-message').dialog({
 				   			bgiframe: true, 
 				   			resizable: false,
@@ -1644,9 +1671,11 @@ jQuery.noConflict();
 										var themeletOption = $('#generalthemelet option:last').after('<option selected="selected" value="'+setThemelet+'">'+setThemelet+'</option>');
 	   									submitbutton('applytemplate');
 								   		$(this).dialog('destroy');
+								   		showScroll();
 									},
 									'Do Nothing': function(){
 										$(this).dialog('destroy');
+										showScroll();
 									}
 								}
 							);
@@ -1666,6 +1695,7 @@ jQuery.noConflict();
 										$tabs.tabs('select', 0);
 										logoTabs.tabs('select', 1);
 										$(this).dialog('destroy');
+										showScroll();
 									},
 									'Goto Logo Settings': function(){
 										var $tabs = $('#tabs').tabs();
@@ -1673,6 +1703,7 @@ jQuery.noConflict();
 										$tabs.tabs('select', 0);
 										logoTabs.tabs('select', 1); 
   									  	$(this).dialog('destroy');
+  									  	showScroll();
 									}
 								}
 							);
@@ -1691,6 +1722,7 @@ jQuery.noConflict();
 										$tabs.tabs('select', 1);
 										bgTabs.tabs('select', 1);
 										$(this).dialog('destroy');
+										showScroll();
 									},
 									'Goto Background Settings': function(){
 										var $tabs = $('#tabs').tabs();
@@ -1698,6 +1730,7 @@ jQuery.noConflict();
 										$tabs.tabs('select', 1);
 										bgTabs.tabs('select', 1); 
   									  	$(this).dialog('destroy');
+  									  	showScroll();
 									}
 								}
 							);
@@ -1710,6 +1743,7 @@ jQuery.noConflict();
 									'option', 'buttons', { 
 										'OK': function(){
 											$(this).dialog('destroy');
+											showScroll();
 										}
 									}
 								);
@@ -1721,9 +1755,11 @@ jQuery.noConflict();
 									'option', 'buttons', { 
 										'Yes': function(){
 											$(this).dialog('destroy');
+											showScroll();
 										},
 										'No': function(){
 											$(this).dialog('destroy');
+											showScroll();
 										}
 									}
 								);
@@ -1924,6 +1960,7 @@ jQuery.noConflict();
 		// ajax content for dialog
 	    // welcome screen
 	    function welcomeScreen(){
+	    	hideScroll();
 	    	$('#getting-started').dialog({
 	    		width: '920px',
 	    		bgiframe: true,
@@ -1936,10 +1973,14 @@ jQuery.noConflict();
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
+	   			},
+	   			close: function(){
+	   				showScroll();
 	   			}
 	    	});
 	    	$(".close-welcome").click(function(){
 				$('#getting-started').dialog("destroy");
+				showScroll();
 				if($.cookie('info')){ $.cookie('info', null); }
 				return false;
 			});
@@ -1962,7 +2003,8 @@ jQuery.noConflict();
 	    }
 	    
 	    // prefs
-		function preferencesScreen(){   
+		function preferencesScreen(){
+			hideScroll();   
 		    $('#preferences-screen').dialog({
 	    		width: '450px',
 	    		bgiframe: true,
@@ -1975,11 +2017,14 @@ jQuery.noConflict();
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
+	   			},close: function(){
+	   				showScroll();
 	   			}
 	    	});
 	    	$('#preferences-screen a.close-preferences').corners('bottom-left 10px');
 	    	$(".close-preferences").click(function(){
 				$('#preferences-screen').dialog("destroy");
+				showScroll();
 				if($.cookie('prefs')){ $.cookie('prefs', null); }
 				return false;
 			});
@@ -2049,6 +2094,9 @@ jQuery.noConflict();
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
 	   			},
+	   			close: function(){
+	   				showScroll();
+	   			},
 	   			zIndex: 9999
 	    	});
 	    }
@@ -2063,6 +2111,7 @@ jQuery.noConflict();
     	function logoutCfg() {
     		$('#content-box').after('<div id="logout-message" style="display:none;">You are about to logout. Please ensure you have saved your changes.<br /></br />'
 									+'<strong>Please remember: You will need to be connected to the internet to login again.</strong></div>');
+			hideScroll();
 			$('#logout-message').dialog({
 	   			autoOpen: true, 
 	   			bgiframe: true, 
@@ -2085,6 +2134,7 @@ jQuery.noConflict();
 					},
 					'Remain Logged In': function(){
 						$(this).dialog('destroy');
+						showScroll();
 					}
 				}	
 			});
@@ -2257,6 +2307,13 @@ jQuery.noConflict();
 					return false;
 				}
 				
+				function previewTpl(){
+					var thisurl = $('.preview a').attr('href');
+					window.open(thisurl+'?tp=1');
+					e.preventDefault();
+					return false;
+				}
+				
 				function info(){
 					if(!$.cookie('info')){
 						$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
@@ -2336,6 +2393,7 @@ jQuery.noConflict();
 					if(keycode == 83 && e.metaKey && !e.ctrlKey){ return save(); }
 					if(keycode == 70 && e.metaKey && !e.ctrlKey){ return fullscreen(); }
 					if(keycode == 79 && e.metaKey && !e.ctrlKey){ return preview(); }
+					if(keycode == 191 && e.metaKey && !e.ctrlKey){ return previewTpl(); }
 					if(keycode == 69 && e.metaKey && !e.ctrlKey){ return bugreport(); }
 					if(keycode == 80 && e.metaKey && !e.ctrlKey){ return prefs(); }
 					if(keycode == 76 && e.metaKey && !e.ctrlKey){ return logout(); }
@@ -2365,6 +2423,7 @@ jQuery.noConflict();
 						return fullscreen(); 
 					}
 					if(keycode == 79 && (e.ctrlKey || e.metaKey)){ return preview(); }
+					if(keycode == 191 && (e.ctrlKey || e.metaKey)){ return previewTpl(); }
 					if(keycode == 69 && (e.ctrlKey || e.metaKey)){ return bugreport(); }
 					if(keycode == 80 && (e.ctrlKey || e.metaKey)){ return prefs(); }
 					if(keycode == 76 && (e.ctrlKey || e.metaKey)){ return logout(); }

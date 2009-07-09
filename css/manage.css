@@ -359,7 +359,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 .docs-wrap table td td{border:1px solid #ccc;background:#eee;color:#666;}
 .docs-wrap .docs-il-outer{padding:3px 0;border:1px solid #FF9C60;background:#FFE390;color:#BB5517;}
 #minwidth-body .m{padding:0!important;}
-#minwidth-body .m #templateform{background:#000 url(../images/bokeh3.jpg) repeat-x scroll 50% 0;}
+#minwidth-body .m #templateform{background:#000 url(../images/configurator-bg.jpg) no-repeat 50% 0;}
 #minwidth-body.full-mode{position:relative;background:#000;margin:0;}
 #minwidth-body.full-mode #border-top,
 #minwidth-body.full-mode #header-box,

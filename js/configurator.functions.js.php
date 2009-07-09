@@ -1959,6 +1959,7 @@ jQuery.noConflict();
 					$('#logo-options li #logologo_fontsize').parent().css('display', 'block');
 					$('#logo-options li #logologo_fontfamily').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+					$('#logo-options li #logologo_text').parent().css('display', 'block');
 					break;
 					case '2':
 					$('#logo-options li').css('display', 'none');

@@ -42,7 +42,7 @@ if(is_dir($themelet_dir)) {
 				if( $themelet !== $params->get('themelet') ) { $themelet_class = 'tl-inactive'; } else { $themelet_class = 'tl-active'; }
 			?>	
 				
-			<li class="<?php echo $themelet_class; ?>">
+			<li class="themelet-item <?php echo $themelet_class; ?>">
 				<div class="assets-inner">
 				<h3><?php echo $themelet_uc; ?></h3>
 				<div class="chrome-wrap"><img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail"></div>

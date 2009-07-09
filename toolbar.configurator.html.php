@@ -8,10 +8,10 @@ class TOOLBAR_morph
 	
 		//function getoption(){ return $_GET['task']; } 
 		JToolBarHelper::title(  JText::_( 'Configurator' ), 'configurator' );
-		if($_GET['task'] == 'manage'){
+		if($_REQUEST['task'] == 'manage'){
 			JToolBarHelper::back( 'Dashboard', 'index.php?option=com_configurator&task=dashboard' );
 			JToolBarHelper::apply('applytemplate', 'Save');
-		}elseif($_GET['task'] == 'dashboard'){
+		}elseif($_REQUEST['task'] == 'dashboard'){
 			JToolBarHelper::back( 'Manage', 'index.php?option=com_configurator&task=manage' );
 		}
 	}

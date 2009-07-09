@@ -20,10 +20,16 @@
 		<label><input type="radio" name="sorttabs" value="0" />No</label>
 	</label>
 	</li>
-	<li class="last">
+	<li>
 	<label><span>Automatically check for updates:</span>
 		<label><input type="radio" name="checkupdates" value="1" />Yes</label>
 		<label><input type="radio" name="checkupdates" value="0" />No</label>
+	</label>
+	</li>
+	<li class="last">
+	<label><span>Enable Keyboard Shortcuts:</span>
+		<label><input type="radio" name="shortkeys" value="1" />Yes</label>
+		<label><input type="radio" name="shortkeys" value="0" />No</label>
 	</label>
 	</li>
 </ul>

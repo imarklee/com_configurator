@@ -14,16 +14,16 @@
 			<li class="fb-type">
 				<label for="feedback_type">Type of feedback:</label>
 				<ul class="inline">
-					<li class="fb-suggestion"><label for="feedback_type"><input type="radio" name="type" value="enhancement" /><span>Suggestion</span></label></li>
-					<li class="fb-bug"><label for="feedback_type"><input type="radio" name="type" value="bug" /> <span>Bug</span></label></li>
+					<li class="fb-suggestion"><label for="type_suggestion"><input type="radio" name="type" id="type_suggestion" value="enhancement" /><span>Suggestion</span></label></li>
+					<li class="fb-bug"><label for="type_bug"><input type="radio" name="type" value="bug"  id="type_bug"/> <span>Bug</span></label></li>
 				</ul>
 			</li>
 		
 			<li class="fb-product">
 				<label for="category">In relation to:</label>
 				<ul class="inline">
-					<li class="fb-cfg"><label for="category"><input type="radio" name="category" value="7637" /> <span>Configurator</span></label></li>
-					<li class="fb-morph"><label for="category"><input type="radio" name="category" value="7635" /> <span>Morph</span></label></li>
+					<li class="fb-cfg"><label for="product_configurator"><input type="radio" name="category" value="7637" id="product_configurator" /> <span>Configurator</span></label></li>
+					<li class="fb-morph"><label for="product_morph"><input type="radio" name="category" value="7635" id="product_morph" /> <span>Morph</span></label></li>
 				</ul>
 			</li>
 

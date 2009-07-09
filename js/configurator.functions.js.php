@@ -1043,7 +1043,7 @@ jQuery.noConflict();
 	   	/* Activate functions -----------------
 	    ------------------------------------ */
 	   	$('li.tl-inactive ul li.btn-activate a').click(function(){
-	   		if(checkChanges()){
+	   		function activateThemelet(){
 		   		
 		   		$('<div class="thdlg" style="display:none;">Your new themelet is activated. <br />Would you like to configure this themelet?</div>').dialog({
 		   			bgiframe: true,
@@ -1104,15 +1104,14 @@ jQuery.noConflict();
 		   		});
 		    	$('#templateform').trigger("submit");
 		
-		    }else{
-		    	window.location.reload(true);
 		    }
+		    checkChanges(activateThemelet);
 	   		return false;
 	   		
 	   	});
 	   	
 	   	$('li.logo-item ul li.btn-activate a').click(function(){
-	   		if(checkChanges()){
+	   		function activateLogo(){
 		   		$('<div class="lgdlg" style="display:none;">Your new logo is activated. <br />Would you like to configure the logo options?</div>').dialog({
 		   			bgiframe: true,
 		   			autoOpen: false,
@@ -1161,14 +1160,13 @@ jQuery.noConflict();
 		   			return false;
 			   	});
 		   		$('#templateform').trigger("submit");
-		   	}else{
-		   		window.location.reload(true);
 		   	}
+		   	checkChanges(activateLogo);
 	   		return false;
 	   	});
 	   	
 	   	$('li.background-item ul li.btn-activate a').click(function(){
-	   		if(checkChanges()){
+	   		function activateBg(){
 	   		
 		   		$('<div class="bgdlg" style="display:none;">Your new background is activated. <br />Would you like to configure the background options?</div>').dialog({
 		   			bgiframe: true,
@@ -1220,9 +1218,8 @@ jQuery.noConflict();
 		   			return false;
 			   	});
 		   		$('#templateform').trigger("submit");
-		   	}else{
-		   		window.location.reload(true);
 		   	}
+		   	checkChanges(activateBg);
 	   		return false;
 	   	});
 	   		   	
@@ -1700,15 +1697,14 @@ jQuery.noConflict();
 							$('#upload-message').dialog(
 								'option', 'buttons', { 
 									'Activate Themelet': function(){
-										if(checkChanges()){
+										function actThemelet(){
 											var setThemelet = data.themelet;
 											var themeletOption = $('#generalthemelet option:last').after('<option selected="selected" value="'+setThemelet+'">'+setThemelet+'</option>');
 		   									submitbutton('applytemplate');
 									   		$(this).dialog('destroy');
 									   		showScroll();
-									   	}else{
-									   		window.location.reload(true);
 									   	}
+									   	checkChanges(actThemelet);
 									},
 									'Do Nothing': function(){
 										$(this).dialog('destroy');
@@ -1724,7 +1720,7 @@ jQuery.noConflict();
 							$('#upload-message').dialog(
 								'option', 'buttons', { 
 									'Activate Logo': function(){
-										if(checkChanges()){
+										function actLogo(){
 											var setLogo = data.logo;
 											var logoOption = $('#logologo_image option:last').after('<option selected="selected" value="'+setLogo+'">'+setLogo+'</option>');
 		   									submitbutton('applytemplate');
@@ -1734,9 +1730,8 @@ jQuery.noConflict();
 											logoTabs.tabs('select', 1);
 											$(this).dialog('destroy');
 											showScroll();
-										}else{
-									   		window.location.reload(true);
-									   	}
+										}
+										checkChanges(actLogo);
 									},
 									'Goto Logo Settings': function(){
 										var $tabs = $('#tabs').tabs();
@@ -1755,7 +1750,7 @@ jQuery.noConflict();
 							$('#upload-message').dialog(
 								'option', 'buttons', { 
 									'Activate Background': function(){
-										if(checkChanges()){
+										function actBg(){
 											var setBg = data.background;
 											var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
 		   									submitbutton('applytemplate');
@@ -1765,9 +1760,8 @@ jQuery.noConflict();
 											bgTabs.tabs('select', 1);
 											$(this).dialog('destroy');
 											showScroll();
-										}else{
-									   		window.location.reload(true);
-									   	}
+										}
+										checkChanges(actBg);
 									},
 									'Goto Background Settings': function(){
 										var $tabs = $('#tabs').tabs();
@@ -1844,29 +1838,31 @@ jQuery.noConflict();
 		$('#templateform').change(function(){
 			if(!$.cookie('formChanges')){ $.cookie('formChanges', true); }
 		});
-		function checkChanges(form){
-//			if($.cookie('formChanges')){
-//				(function(){
-//					$('<div id="changesDialog">You have made changes to Configurator that will be saved upon activation. Are you sure you want to activate and save these changes?<br /><strong>If you cancel, this page will reload and your changes will be lost.</strong></div>').dialog({
-//						autoOpen: true,
-//						bgiframe: true,
-//						modal: true,
-//						title: 'Warning!',
-//						buttons: {
-//							'Yes, activate': function(){
-//								$(this).dialog('destroy');
-//								return true;
-//							},
-//							'No, cancel': function(){
-//								$.cookie('formChanges', null);
-//								$(this).dialog('destroy');
-//								return false;
-//							}
-//						}
-//					});
-//				});
-//			}
-		return true;
+		
+		function checkChanges(action){
+			if($.cookie('formChanges')){			
+				$('<div id="changesDialog">You have made changes to Configurator that will be saved upon activation. Are you sure you want to activate and save these changes?<br /><strong>If you cancel, this page will reload and your changes will be lost.</strong></div>').dialog({
+					autoOpen: true,
+					bgiframe: true,
+					modal: true,
+					title: 'Warning!',
+					close: action,
+					buttons: {
+						'Yes, activate': function(){
+							$.cookie('formChanges', null);
+							$(this).dialog('close');
+							return true;
+						},
+						'No, cancel': function(){
+							$.cookie('formChanges', null);
+							window.location.reload(true);
+							return false;
+						}
+					}
+				});
+			}else{
+				action();
+			}
 		}
 		
 		/* Conditionals --------------------

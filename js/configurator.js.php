@@ -12,7 +12,7 @@ include('jquery.qtip-1.0.0-rc3.min.js');
 include('jquery.fileupload.js');
 include('jquery.autoresize.min.js');
 include('jquery.form.js');
-include('jquery.showpassword.min.js');
+include('jquery.showpassword.min.js');include('jquery.getparams.min.js');
 include('configurator.functions.js.php');
 ob_end_flush();
 ?>

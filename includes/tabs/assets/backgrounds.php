@@ -8,6 +8,10 @@ if(is_dir($background_dir)) {
 } else {
 	$lists['backgrounds'] = null;
 }
+$db=& JFactory::getDBO();
+$query = "SELECT param_value FROM `#__configurator` WHERE `param_name` = 'bg_image' ";
+$db->setQuery( $query );
+$activebg = $db->loadResult();
 ?>
 <div id="assets-backgrounds" class="ui-tabs-hide">
 	<div id="backgrounds-switch" class="switch">
@@ -34,8 +38,10 @@ if(is_dir($background_dir)) {
 				$background_width =  $background_size[0];
 				$background_height =  $background_size[1];
 				$background_size = formatBytes(filesize($background_dir.DS.$background));
+				
+				if( $background !== $activebg ) { $bg_class = 'tl-inactive'; } else { $bg_class = 'tl-active'; }
 			?>	
-			<li class="background-item">
+			<li class="background-item <?php echo $bg_class; ?>">
 				<div class="assets-inner">
 				<h3><?php echo $background; ?></h3>
 				<div class="image-container">

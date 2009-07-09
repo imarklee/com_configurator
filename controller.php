@@ -214,8 +214,8 @@ class ConfiguratorController extends JController {
 				unset($setting);
 				$setting = null;        	
 			}
-		}      
-		if(!isset($_GET['isajax'])){
+		}
+		if(!JRequest::getVar('isajax', null, 'post')){
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }

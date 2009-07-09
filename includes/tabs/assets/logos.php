@@ -8,8 +8,11 @@ if(is_dir($logo_dir)) {
 } else {
 	$lists['logos'] = null;
 }
+$db=& JFactory::getDBO();
+$query = "SELECT param_value FROM `#__configurator` WHERE `param_name` = 'logo_image' ";
+$db->setQuery( $query );
+$activelogo = $db->loadResult();
 ?>
-
 <div id="assets-logos" class="ui-tabs-hide">
 	<div id="logos-switch" class="switch">
 		<h2>Manage your assets: <strong>Logos</strong></h2>
@@ -34,8 +37,10 @@ if(is_dir($logo_dir)) {
 				$logo_width =  $logo_size[0];
 				$logo_height =  $logo_size[1];
 				$logo_size = formatBytes(filesize($logo_dir.DS.$logo));
+				
+				if( $logo !== $activelogo ) { $logo_class = 'tl-inactive'; } else { $logo_class = 'tl-active'; }
 			?>	
-			<li class="logo-item">
+			<li class="logo-item <?php echo $logo_class; ?>">
 				<div class="assets-inner">
 				<h3><?php echo $logo; ?></h3>
 				<div class="image-container">

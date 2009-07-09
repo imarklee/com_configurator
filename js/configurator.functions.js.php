@@ -99,7 +99,16 @@ jQuery.noConflict();
 		// var items = ['list item 1', 'list item 2', 'list item 3'];
 		// var UL = $('#submenu-box <ul/>').append( '<li>' + items.join('</li><li>') + '</li>' );
 		
-		$("#submenu").append('<li class="preferences"><a href="#">Preferences</a></li>','<li class="feedback"><a href="#" id="report-bug-link">Send Feedback</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
+		if($.jqURL.get('task') == 'dashboard'){
+			$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
+		}else if($.jqURL.get('task') == 'manage'){
+			if($.cookie('am_logged_in')){
+				$("#submenu").append('<li class="preferences"><a href="#">Preferences</a></li>','<li class="feedback"><a href="#" id="report-bug-link">Send Feedback</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
+			}else{
+				$("#submenu").append('<li class="feedback"><a href="#" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
+			}
+		}
+		
 
 		$("#help").hover(function () {
 	      $(this).switchClass("on", "off", 15000);
@@ -314,15 +323,11 @@ jQuery.noConflict();
 			return true;
 		}
 		
-		$('.tl-active ul.buttons li.btn-activate, .tl-active ul.buttons li.btn-delete').each(function(){
-			$(this).children().fadeTo('fast', 0.5);
-			$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').each(function(){
-				$(this).attr('href', '#inactive');
-				$(this).click(function(){ 
-					return false; 
-				});
-			});
-		});
+		// disable active asset links
+		$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a')
+		.fadeTo('fast', 0.5)
+		.attr('href', '#inactive')
+		.click(function(){ return false; });
 		
 		$("input, textarea", $("form")).focus(function(){
 		$(this).addClass("focus");
@@ -1042,7 +1047,7 @@ jQuery.noConflict();
 
 	   	/* Activate functions -----------------
 	    ------------------------------------ */
-	   	$('li.tl-inactive ul li.btn-activate a').click(function(){
+	   	$('li.themelet-item.tl-inactive ul li.btn-activate a').click(function(){
 	   		function activateThemelet(){
 		   		
 		   		$('<div class="thdlg" style="display:none;">Your new themelet is activated. <br />Would you like to configure this themelet?</div>').dialog({
@@ -1067,9 +1072,11 @@ jQuery.noConflict();
 					buttons: { 
 						'Yes, configure themelet': function(){
 							$(this).dialog('close');
+							showScroll();
 			   			},
 			   			'No thanks': function(){
 			   				$(this).remove();
+			   				showScroll();
 			   			}
 			   		}
 			   	});
@@ -1081,7 +1088,12 @@ jQuery.noConflict();
 		   		$('#templateform').submit(function(){
 		   			$(this).ajaxSubmit({
 		   				type: 'POST',
-		   				url: '../administrator/index.php?option=com_configurator&task=applytemplate&format=raw&isajax=true',
+		   				url: '../administrator/index.php?format=raw',
+		   				data: {
+		   					option: 'com_configurator',
+		   					task: 'applytemplate',
+		   					isajax: 'true',
+		   				},
 			   			success: function(data, textStatus){
 			   			
 			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
@@ -1096,7 +1108,13 @@ jQuery.noConflict();
 							$('#current-themelet li.ct-version').html('<span>Version: </span>'+$('ul.'+setThemelet+' li.tl-installed').text().replace('Installed version: ',''));
 							$('#current-themelet li.ct-thumb').html('<span>&nbsp;</span><img src="../templates/morph/assets/themelets/'+setThemelet+'/themelet_thumb.png" width="108" height="72" align="middle" alt="'+$('#current-themelet li.ct-name').text()+'" />');
 							$('.thdlg').dialog('open');
-							hideScroll();
+							$('#themelets-list ul li.tl-active ul li.btn-activate a, #themelets-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
+			   				$('#themelets-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
+			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
+			   				a.fadeTo('slow', 0.5).click(function(){ return false; });
+			   				a.parent().next().children().fadeTo('slow', 0.5).click(function(){ return false; });
+			   				hideScroll();
+			   				return false;
 							
 						}
 		   			});
@@ -1110,7 +1128,7 @@ jQuery.noConflict();
 	   		
 	   	});
 	   	
-	   	$('li.logo-item ul li.btn-activate a').click(function(){
+	   	$('li.logo-item.tl-inactive ul li.btn-activate a').click(function(){
 	   		function activateLogo(){
 		   		$('<div class="lgdlg" style="display:none;">Your new logo is activated. <br />Would you like to configure the logo options?</div>').dialog({
 		   			bgiframe: true,
@@ -1133,9 +1151,11 @@ jQuery.noConflict();
 					buttons: { 
 						'Yes, configure logo': function(){
 							$(this).dialog('close');
+							showScroll();
 						},
 			   			'No thanks': function(){
 			   				$(this).remove();
+			   				showScroll();
 			   			}
 			   		}
 			   	});
@@ -1145,15 +1165,26 @@ jQuery.noConflict();
 		   		$('#templateform').submit(function(){
 		   			$(this).ajaxSubmit({
 		   				type: 'POST',
-		   				url: '../administrator/index.php?option=com_configurator&task=applytemplate&format=raw&isajax=true',
-			   			success: function(data, textStatus){
+		   				url: '../administrator/index.php?format=raw',
+		   				data: {
+		   					option: 'com_configurator',
+		   					task: 'applytemplate',
+		   					isajax: 'true',
+		   				},
+		   				success: function(data, textStatus){
 			   			
 			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
 	  						$("#system-message dd.message").corners("10px");		
 							$("#system-message dd.message ul").corners("10px");		
 							$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 			   				$('.lgdlg').dialog('open');
+			   				$('#logos-list ul li.tl-active ul li.btn-activate a, #logos-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
+			   				$('#logos-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
+			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
+			   				a.fadeTo('slow', 0.5).click(function(){ return false; });
+			   				a.parent().next().children().fadeTo('slow', 0.5).click(function(){ return false; });
 			   				hideScroll();
+			   				return false;
 					   				   			
 		   				}
 		   			});
@@ -1165,9 +1196,10 @@ jQuery.noConflict();
 	   		return false;
 	   	});
 	   	
-	   	$('li.background-item ul li.btn-activate a').click(function(){
+	   	$('#backgrounds-list .tl-inactive ul li.btn-activate a').click(function(){
+	   		var a = $(this);
 	   		function activateBg(){
-	   		
+	   			
 		   		$('<div class="bgdlg" style="display:none;">Your new background is activated. <br />Would you like to configure the background options?</div>').dialog({
 		   			bgiframe: true,
 		   			autoOpen: false,
@@ -1190,29 +1222,40 @@ jQuery.noConflict();
 					buttons: { 
 						'Yes, configure background': function(){
 							$(this).dialog('close');
+							showScroll();
 			   			},
 			   			'No thanks': function(){
 			   				$(this).remove();
+			   				showScroll();
 			   			}
 			   		}
 			   	});
 		   		
-		   		var setBackground = $(this).attr('name');
-		   		var backgroundOption = $('#backgroundsbg_image > option[value='+setBackground+']');
-		   		backgroundOption.attr('selected', true);
+		   		var setBackground = a.attr('name');
+		   		$('select#backgroundsbg_image > option[value='+setBackground+']').attr('selected', true);
 		   		
 		   		$('#templateform').submit(function(){
 		   			$(this).ajaxSubmit({
 		   				type: 'POST',
-		   				url: '../administrator/index.php?option=com_configurator&task=applytemplate&format=raw&isajax=true',
+		   				url: '../administrator/index.php?format=raw',
+		   				data: {
+		   					option: 'com_configurator',
+		   					task: 'applytemplate',
+		   					isajax: 'true',
+		   				},
 			   			success: function(data, textStatus){
-			   			
 			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
 	  						$("#system-message dd.message").corners("10px");		
 							$("#system-message dd.message ul").corners("10px");		
 							$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 			   				$('.bgdlg').dialog('open');
+			   				$('#backgrounds-list ul li.tl-active ul li.btn-activate a, #backgrounds-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
+			   				$('#backgrounds-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
+			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
+			   				a.fadeTo('slow', 0.5).click(function(){ return false; });
+			   				a.parent().next().children().fadeTo('slow', 0.5).click(function(){ return false; });
 			   				hideScroll();
+			   				return false;
 		   				}
 		   			});
 		   			return false;
@@ -2108,6 +2151,7 @@ jQuery.noConflict();
 			if(!$.cookie('hideintros')){ $('input[name="showintros"][value="1"]').attr('checked', true); } else { $('input[name="showintros"][value="0"]').attr('checked', true); }
 			if($.cookie('sorttabs')){ $('input[name="sorttabs"][value="1"]').attr('checked', true); } else {$('input[name="sorttabs"][value="0"]').attr('checked', true); }
 			if(!$.cookie('noupdates')){ $('input[name="checkupdates"][value="1"]').attr('checked', true); } else {$('input[name="checkupdates"][value="0"]').attr('checked', true); }
+			if(!$.cookie('noshortkey')){ $('input[name="shortkeys"][value="1"]').attr('checked', true); } else {$('input[name="shortkeys"][value="0"]').attr('checked', true); }
 
 			$('#preferences-form').submit(function(){
 				
@@ -2118,6 +2162,7 @@ jQuery.noConflict();
 	    		var intro = values[1];
 	    		var tabs = values[2];
 	    		var updates = values[3];
+	    		var shortkeys = values[4];
     			
     			if(tips == 1){ $.cookie('tips', null, {path:'/',expires:30}); } else { $.cookie('tips', 'true', { path:'/',expires:30 }); }
     			if(intro == 1){ 
@@ -2127,8 +2172,7 @@ jQuery.noConflict();
 					$.cookie('tools-desc', null,{path:'/',expires:30});
 					$.cookie('assets-desc', null,{path:'/',expires:30});
 					$.cookie('blocks-desc', null,{path:'/',expires:30});
-				} else {
-					
+				} else {	
     				$.cookie('hideintros', 'true', { path:'/',expires:30 }); 
     				$.cookie('site-desc', true, {path:'/',expires:30});
 					$.cookie('themelet-desc', true,{path:'/',expires:30});
@@ -2138,6 +2182,9 @@ jQuery.noConflict();
     			}
     			if(tabs == 1){ $.cookie('sorttabs', true, { path: '/', expires:30 }); } else { $.cookie('sorttabs', null, { path: '/', expires:30 }); }
     			if(updates == 1){ $.cookie('noupdates', null, { path: '/', expires:30 }); } else { $.cookie('noupdates', true, { path: '/', expires:30 }); }
+				if(shortkeys == 1){ $.cookie('noshortkey', null, { path: '/', expires: 30 }); }else { $.cookie('noshortkey', true, { path: '/', expires: 30 }); }
+
+    			// save prefs
     			if($.cookie('prefs')){ $.cookie('prefs', null); }
     			$('#preferences-screen').dialog('destroy');
     			window.location.reload(true);

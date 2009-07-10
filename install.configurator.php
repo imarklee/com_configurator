@@ -1,8 +1,9 @@
-<script src="components/com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="components/com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>
-<!--<script src="../com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="../com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>-->
-<link href="components/com_configurator/css/install.css" media="screen" rel="stylesheet" type="text/css" />
+<!-- <script src="components/com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="components/com_configurator/js/jquery.corners.min.js" type="text/javascript"></script> -->
+<script src="../com_configurator/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="../com_configurator/js/jquery.corners.min.js" type="text/javascript"></script>
+<!--<link href="components/com_configurator/css/install.css" media="screen" rel="stylesheet" type="text/css" />-->
+<link href="../com_configurator/css/install.css" media="screen" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 jQuery.noConflict();
@@ -42,20 +43,20 @@ jQuery.noConflict();
 </script>
 <div id="install-wrap">
 <div id="sample-data">
-	<div id="sd-header">
-		<img src="components/com_configurator/images/morph-logo.png" alt="morph logo" width="173" height="60" border="0" />
-		<p class="steps"><strong>Step Two: </strong>Choose your Setup</p>
-	</div>
-	<div id="sd-body">
-		<div id="sd-text">
-			<h3>Would you like to install sample data? (optional)</h3>
-			<p>If this is a <strong><u>new Joomla! install</u></strong> &amp; you have not yet added any content or changed any settings this will be your quick option to getting setup. Installing sample data takes care of most of the required setup steps, as well as adding sample content, menu items, etc.</p>
-			<p class="alert">Please note clicking the "Install Sample Data button will overwrite your entire Joomla! database!</p>
-		</div>
-		<p class="action"><a href="#" class="btn-install">Install sample data</a><a href="index.php?option=com_configurator&task=manage" class="btn-skip">Skip this step</a></p>
-	</div>
-	<div id="sd-image">
-		<img src="components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" />
-	</div>
+	<?php
+	if(!isset($_GET['action'])){
+		include 'includes/installer/step2.php';
+	}else{
+		if($_GET['action'] == 'step3'){
+			include 'includes/installer/step3.php';
+		}
+		elseif($_GET['action'] == 'step4'){
+			include 'includes/installer/step4.php';
+		}
+		elseif($_GET['action'] == 'completed'){
+			include 'includes/installer/complete.php';
+		}
+	}
+	?>
 </div>
 </div>

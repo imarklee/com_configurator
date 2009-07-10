@@ -959,9 +959,8 @@ jQuery.noConflict();
          				radius: 8
          			},
          			padding: '0px',
-         			margin: '0px',
-         			//width: '200px',
-         			//height: '133px'
+         			background: '#fff',
+         			margin: '0px'
 				}
 
 			});
@@ -1487,9 +1486,9 @@ jQuery.noConflict();
 	    	$('.logo-preview').each(function(){
 				$(this).attr('title', '');
 	    		$(this).qtip({
-	       		    content: '<img src="../templates/morph/assets/logos/'+updatedTitle+'" />',
-				    position: { corner: { tooltip: 'bottomMiddle', target: 'topLeft' } },
-					    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0 0 0 0', margin: '0 0 0 0' },
+	       		    content: '<img class="logo-preview-image" src="../templates/morph/assets/logos/'+updatedTitle+'" />',
+				    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
+					    style: { tip: { corner:'bottomMiddle' }, name: 'dark', background: '#fff', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' },
 				});
 			});
 	    	$(elid).change(function(){
@@ -1500,7 +1499,7 @@ jQuery.noConflict();
 	    			$('.logo-preview').qtip({
 					   	content: '<img src="../templates/morph/assets/logos/'+this.value+'" />',
 					    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
-					    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0 0 0 0', margin: '0 0 0 0' },
+					    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' },
 					});
 					return updatedTitle = this.value;
 	    		});

@@ -83,7 +83,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 											<input class="alf-check" type="checkbox" name="am-keep-login" id="am-keep-login" value="true" /> Stay logged in
 										</label>
 											
-											&nbsp;&nbsp;|&nbsp;<label for="show-password" class="login-checkbox"><span class="sp-check"></span></label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://" title="">Forgot password?</a></p>
+											&nbsp;&nbsp;|&nbsp;<label for="show-password" class="login-checkbox"><span class="sp-check"></span></label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" id="lost-pass" title="">Forgot password?</a></p>
 								</div>
 								<input class="alf-login" type="submit" name="am-do-login" value="am-login-true" />
 							</div>				
@@ -95,13 +95,9 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<div id="alf-image">
 						<div>
 						<img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /> <span>Logging in..</span>
-						<!--<form action="https://www.joomlajunkie.com/secure/sendpass.php" method="post" name="sendpass" style="display:none;">
-							<label for="lost-password">Enter your email address or username:</label>
-							<input type="text" id="lost-password" class="text-input" style="padding: 5px;" size="47" name="login"/><br/>
-							<input type="submit" value="Get Password"/>
-						</form>-->
 						</div>
 					</div>
+					<?php include 'includes/lost-password.php' ?>
 				</div>
 	        <?php }else{ ?>
 	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">

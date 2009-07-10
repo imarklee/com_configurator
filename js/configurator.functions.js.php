@@ -582,6 +582,17 @@ jQuery.noConflict();
 			            return false; 
 			        } 
 			    }
+			    $('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+				hideScroll();
+				$('#saving').css({
+					'display': 'block',
+					'z-index': '9998',
+					position: 'absolute',
+			        top: 0,
+			        left: 0,
+			        width: arrPageSizes[0],
+					height: arrPageSizes[1],
+				});
 			    return true; 
 			}
 			
@@ -602,6 +613,7 @@ jQuery.noConflict();
 					'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
 				},
 				success: function(data, status, error){
+					$('#saving').css('display', 'none');
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
@@ -2573,7 +2585,122 @@ jQuery.noConflict();
 				
 			}		
 		});
-
+		
+		/* Lost Password ------------------
+		-------------------------------- */
+		$('#lost-pass').click(function(){
+			hideScroll();
+			$('#lost-password-form').dialog({
+				autoOpen: true,
+				modal: true,
+				bgiframe: true,
+				width: 700,
+				close: function(){
+					showScroll();
+					$(this).dialog('destroy');
+				}
+			});
+			$('#sendpass').submit(function(){
+				function validate(formData, jqForm, options) { 
+				    for (var i=0; i < formData.length; i++) { 
+				    	if (!formData[i].value) { 
+				            $('<div><strong>Username or email address is required.</strong></div>').dialog({
+				            	bgiframe: true,
+								autoOpen: true,
+								stack: true,
+								title: 'Error',
+								buttons: {
+									'Ok': function(){
+										$(this).dialog('destroy');
+									}
+								},
+								close: function(){
+									$(this).dialog('destroy');
+									showScroll();
+								},
+								modal: true,
+								overlay: {
+									'background-color': '#000',
+									opacity: 0.8
+								}
+							});
+				            return false; 
+				        } 
+				    }
+				    $('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+					hideScroll();
+					$('#saving').css({
+						'display': 'block',
+						'z-index': '9998',
+						position: 'absolute',
+				        top: 0,
+				        left: 0,
+				        width: arrPageSizes[0],
+						height: arrPageSizes[1],
+					});
+				    return true; 
+				}
+				
+				$(this).ajaxSubmit({
+					beforeSubmit: validate,
+					type: 'GET',
+					dataType: 'jsonp',
+					data: {
+						format: 'json'
+					},
+					success: function(data, status, error){
+						$('#saving').css('display', 'none');
+						if(typeof(data.error) != 'undefined'){						
+							if(data.error != ''){
+								$('<div>'+data.error+'</div>').dialog({
+					            	bgiframe: true,
+									autoOpen: true,
+									stack: true,
+									title: 'Error',
+									buttons: {
+										'Ok': function(){
+											$(this).dialog('destroy');
+										}
+									},
+									modal: true,
+									overlay: {
+										'background-color': '#000',
+										opacity: 0.8
+									}
+								});
+							}
+						}else{
+							$('<div>'+data.success+'</div>').dialog({
+				            	bgiframe: true,
+								autoOpen: true,
+								stack: true,
+								title: 'Success',
+								buttons: {
+									'Ok': function(){
+										showScroll();
+										$(this).dialog('destroy');
+										$('#lost-password-form').dialog('close');
+									}
+								},
+								close: function(){
+									$(this).dialog('destroy');
+									$('#lost-password-form').dialog('close');
+									showScroll();
+								},
+								modal: true,
+								overlay: {
+									'background-color': '#000',
+									opacity: 0.8
+								}
+							});
+						}
+					}
+				});
+				return false;
+			});
+			return false;
+		});
+		
 		/**
 		**** Third Party Function
 		* getPageSize() by quirksmode.com

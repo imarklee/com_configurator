@@ -2594,7 +2594,7 @@ jQuery.noConflict();
 				autoOpen: true,
 				modal: true,
 				bgiframe: true,
-				width: 700,
+				width: 400,
 				close: function(){
 					showScroll();
 					$(this).dialog('destroy');
@@ -2671,7 +2671,7 @@ jQuery.noConflict();
 							}
 						}else{
 							$('<div>'+data.success+'</div>').dialog({
-				            	bgiframe: true,
+				            	bgiframe: truex,
 								autoOpen: true,
 								stack: true,
 								title: 'Success',

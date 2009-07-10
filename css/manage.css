@@ -1,5 +1,8 @@
 html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #wrap .ui-widget .ui-widget{padding:0;margin:0;background:none;border:0;}
+#sendpass label{font:normal 15px/20px arial;}
+#lost-password{-moz-border-radius:7px;-webkit-border-radius:7px;margin:5px 0 10px 0;}
+.btn-getpass{-moz-border-radius:7px;-webkit-border-radius:7px;padding:5px 10px;}
 #element-box .t,
 #element-box .b{display:none;}
 #element-box .m{background:#0C0C0C;padding:15px 0;border:0;}

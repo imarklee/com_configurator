@@ -12,7 +12,12 @@ class TOOLBAR_morph
 			JToolBarHelper::back( 'Dashboard', 'index.php?option=com_configurator&task=dashboard' );
 			JToolBarHelper::apply('applytemplate', 'Save');
 		}elseif($_REQUEST['task'] == 'dashboard'){
-			JToolBarHelper::back( 'Manage', 'index.php?option=com_configurator&task=manage' );
+			//JToolBarHelper::custom('index.php?option=com_configurator&task=manage', 'config' ,'Manage');
+			$bar=& JToolBar::getInstance( 'toolbar' );
+			$title = JText::_('Manage');
+    		$html = '<a href="index.php?option=com_configurator&task=manage" class="toolbar"><span class="icon-32-config" title="'.$title.'" type="Custom"></span>'.$title.'</a>';
+    		$bar->appendButton( 'Custom', $html, 'manage' );
+
 		}
 	}
 

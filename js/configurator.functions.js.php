@@ -431,6 +431,13 @@ jQuery.noConflict();
     		});		
     		return false;
     	});
+    	
+    	$('.color-preview', '#color-options').each(function(){
+    		var colval = $(this).prev().val();
+    		if(colval != 'default'){
+    			$(this).css('background-color', colval);
+    		}
+    	});
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")
@@ -454,7 +461,7 @@ jQuery.noConflict();
 		});
 		
 		$('.updates-link').click(function(){
-			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 				if($.cookie('info')){ $.cookie('info', null); }
 				var gstabs = $('#splash').tabs();
 		    	gstabs.tabs('select', 2);
@@ -2105,14 +2112,14 @@ jQuery.noConflict();
 	    }
 	    
 	    $('.info-link').click(function(){
-			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 		    	return welcomeScreen();
 		    });
 		    return false;
 		});
 	    
 	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
-	    	$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+	    	$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 		    	return welcomeScreen();
 		    });
 	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });			
@@ -2441,7 +2448,7 @@ jQuery.noConflict();
 				
 				function info(){
 					if(!$.cookie('info')){
-						$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.html', function(){
+						$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 					    	return welcomeScreen();
 					    });
 					    $.cookie('info', 'open');

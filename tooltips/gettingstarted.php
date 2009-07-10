@@ -1,3 +1,4 @@
+<?php include '../includes/configurator.functions.php'; ?>
 <div id="splash">
 	<ul id="welcome-tabs">
 		<li class="splash-start"><a href="#splashtab-start">Getting started</a></li>
@@ -75,21 +76,16 @@
 			<h3>Using the built in keyboard shortcuts</h3>
 			<p class="intro">We all love keyboard shortcuts, as they often boost your productivity. With this in mind, we have added a number of different keyboard shortcuts to increase your productivity when using Configurator.</p>
 			<p><img src="../administrator/components/com_configurator/images/splash-shortcuts-bg.png" alt="maskot" border="0" align="right" style="margin: 0px 0px 0 15px" /></p>
-			<p><strong>Mac users:</strong><br />
-			<strong>CMD + S</strong> = Save your current settings<br />
-			<strong>CMD + F</strong> = Toggle fullscreen mode<br />
-			<strong>CMD + H</strong> = Open this help dialog<br />
-			<strong>CMD + P</strong> = Open your preferences pane<br />
-			<strong>CMD + V</strong> = Preview your site in a new window			
+			
+			<p>
+			<strong><?php echo whichKey(get_os()); ?> + S</strong> = Save your current settings<br />
+			<strong><?php echo whichKey(get_os()); ?> + F</strong> = Toggle fullscreen mode<br />
+			<strong><?php echo whichKey(get_os()); ?> + H</strong> = Open this help dialog<br />
+			<strong><?php echo whichKey(get_os()); ?> + P</strong> = Open your preferences pane<br />
+			<strong><?php echo whichKey(get_os()); ?> + V</strong> = Preview your site in a new window			
 			</p>
 	
-			<p><strong>All other users:</strong><br />
-			<strong>CTRL + S</strong> = Save your current settings<br />
-			<strong>CTRL + F</strong> = Toggle fullscreen mode<br />
-			<strong>CTRL + H</strong> = Open this help dialog<br />
-			<strong>CTRL + P</strong> = Open your preferences pane<br />
-			<strong>CTRL + V</strong> = Preview your site in a new window			
-			</p>
+			
 		</div>
 		<div id="splashtab-prefs" class="splashtabs">
 			<h3>Setting your preferences</h3>

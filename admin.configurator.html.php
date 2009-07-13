@@ -25,7 +25,6 @@ $document->addScript(JURI::root() . 'administrator/components/com_configurator/j
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.showpassword.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.getparams.min.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.functions.js.php');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/crir.js');
 
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/jquery-ui-1.7.2.custom.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/colorpicker.css');
@@ -33,7 +32,6 @@ $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurat
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/text.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/960.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/manage.css');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/crir.css');
 }
 ?>
 <?php

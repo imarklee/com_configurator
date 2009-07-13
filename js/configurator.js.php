@@ -14,6 +14,5 @@ include('jquery.autoresize.min.js');
 include('jquery.form.js');
 include('jquery.showpassword.min.js');include('jquery.getparams.min.js');
 include('configurator.functions.js.php');
-include('crir.js');
 ob_end_flush();
 ?>

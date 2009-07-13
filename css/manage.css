@@ -91,7 +91,15 @@ background:#fff url(../images/subtabs-bg.jpg) repeat-x bottom;border:1px solid #
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li{border-right:1px solid #ccc;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a{padding:5px 10px;color:#444;font-size:13px;text-decoration:none;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a:hover{text-decoration:underline;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active{background:#222 url(../images/active-tab-dark.jpg) repeat-x scroll 0 0;border:1px solid #222;height:26px;margin:-1px 0;position:relative;}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active{
+background:#222222 url(../images/active-tab-dark.jpg) repeat-x scroll 0 0;
+border-color:#222222 #222222 #000000;
+border-style:solid;
+border-width:1px;
+height:27px;
+margin:-1px 0 -1px -1px;
+position:relative;
+}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a{color:#fff;}
 #tabs .subtabs .ui-tabs-panel{background:#fff;padding:0;width:100%;float:left;}
 .options-panel{border:5px solid #E3E3E3;float:left;width:462px;z-index:10;}

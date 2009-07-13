@@ -98,6 +98,16 @@ jQuery.noConflict();
 
 		// var items = ['list item 1', 'list item 2', 'list item 3'];
 		// var UL = $('#submenu-box <ul/>').append( '<li>' + items.join('</li><li>') + '</li>' );
+
+//		$('span.tooltip').click(
+//			function(){
+//				$('#qtip-blanket').css("display", "block");
+//			},
+//			function(){
+//				$('#qtip-blanket').css("display", "none");
+//			}
+//		);
+
 		
 		if($.jqURL.get('task') == 'dashboard'){
 			$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');

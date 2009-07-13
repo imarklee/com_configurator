@@ -7,5 +7,6 @@ include('jquery-ui-1.7.2.custom.css');
 include('manage.css');
 include('colorpicker.css');
 include('text.css');
+include('crir.css');
 ob_end_flush();
 ?>

@@ -70,17 +70,8 @@ dd.latest a{color:#555;}
 #tabs .primary li a,
 #tabs .primary .ui-tabs-panel{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}
 #tabs .primary li.last{margin:0;}
-#tabs .primary li a{
-padding:15px 19px 15px 18px;
-background:#8F8F8F url(../images/tabs-off.jpg) repeat-x bottom;
-border:0 solid #AAAAAA;
-color:#fff;
-font:bold 18px arial;
-margin:0;
-text-decoration: none;
-text-shadow:0 1px 0 #333;
-}
-#tabs .primary li a:hover{color:#ddd;}
+#tabs .primary li a{padding:15px 23px;background:#8F8F8F url(../images/tabs-off.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #ccc;}
+#tabs .primary li a:hover{color:#000;}
 #tabs.ui-tabs .subtabs .ui-tabs-nav li.ui-state-hover a{border-bottom:0 solid #fff!important;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a{font-weight: normal;text-shadow:0 0 0 #fff;border-bottom:1px solid #fff;background:#fff url(../images/cog.png) no-repeat 20px 50%;color:#333;padding-left:47px;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a:hover{text-decoration:none;}

@@ -44,7 +44,7 @@
 		<input class="action" type="submit" value="submit" />
 		<!--<a href="#" class="btn-install">Install Template</a> old button -->
 		</form>
-		<a href="index.php?option=com_configurator&task=manage" class="btn-skip">Skip this step</a>
+		<a href="#" class="btn-skip skip-completed">Skip this step</a>
 	</div>
 	<div id="sd-image">
 		<!-- <img src="components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /> -->

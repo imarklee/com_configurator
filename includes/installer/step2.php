@@ -10,17 +10,21 @@
 			<p>We are now going to install the Morph Framework. If you have a previously installed version,
 			you can either choose to skip this step or proceed with the install. If you proceed, a backup
 			of the previous version will automatically be created.</p>
-			<form id="install-template" method="post" action="#">
+			<form id="install-template" method="post" action="../../../administrator/index.php?option=com_configurator&task=installTemplate&format=raw&backup=false" enctype="multipart/form-data">
 				<label>
 					<h4>Select the template framework install file:</h4>
 					<input type="file" name="template-file" id="template-file" />
 				</label>
+				<label>
+				<input type="checkbox" name="backup_template" id="backup_template" checked="checked" value="true" />
+				Backup your existing template?
+				</label>
 			
 		</div>
-		<input class="action" type="submit" value="submit" />
+		<input class="action install-template" type="submit" value="submit" />
 		<!--<a href="#" class="btn-install">Install Template</a> old button -->
 		</form>
-		<a href="index.php?option=com_configurator&task=manage" class="btn-skip">Skip this step</a>
+		<a href="#" class="btn-skip skip-step2">Skip this step</a>
 	</div>
 	<div id="sd-image">
 		<!-- <img src="components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /> -->

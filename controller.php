@@ -299,26 +299,25 @@ class ConfiguratorController extends JController {
 		parent::display();
 	}
 	
-	function install_sample(){
+	function parse_mysql_dump($url) {
+	    $handle = fopen($url, "r");
+	    $query = "";
+	    while(!feof($handle)) {
+	        $sql_line = fgets($handle);
+	        if (trim($sql_line) != "" && strpos($sql_line, "--") === false) {
+	            $query .= $sql_line;
+	            if (preg_match("/;[\040]*\$/", $sql_line)) {
+	                $result = mysql_query($query) or die(mysql_error());
+	                $query = "";
+	            }
+	        }
+	    }
+	}
 	
-		function parse_mysql_dump($url) {
-	   
-		    $handle = fopen($url, "r");
-		    $query = "";
-		    while(!feof($handle)) {
-		        $sql_line = fgets($handle);
-		        if (trim($sql_line) != "" && strpos($sql_line, "--") === false) {
-		            $query .= $sql_line;
-		            if (preg_match("/;[\040]*\$/", $sql_line)) {
-		                $result = mysql_query($query) or die(mysql_error());
-		                $query = "";
-		            }
-		        }
-		    }
-		}
+	function install_sample(){
 		
 		if(isset($_GET['do']) && $_GET['do'] == 'install'){
-			if(parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'sample.sql')){
+			if($this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'sample.sql')){
 				return true;
 			}else{
 				die('failed');
@@ -381,11 +380,15 @@ class ConfiguratorController extends JController {
 		echo $ret;
 	}
 	
-	function themelet_upload() {
+	function themelet_upload($file = '') {
 		$msg = '';
 		$error = '';
 		$template = 'morph';
-		$themelet_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		if($file == ''){
+			$themelet_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		}else{
+			$themelet_details = $file;
+		}
 		
 		if($themelet_details['type'] != 'application/zip'){
 			$error = 'error: "This is not a valid themelet package.<br />Please try again with a valid themelet package (zip file)"';
@@ -393,7 +396,7 @@ class ConfiguratorController extends JController {
 		}else{
 			// if there is no file error then continue
 			if($themelet_details['error'] != 4) {
-				$themelet_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS. 'assets' .DS. 'themelets';
+				$themelet_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'themelets';
 				
 				// errors
 				if( $themelet_details['error'] ){
@@ -475,7 +478,7 @@ class ConfiguratorController extends JController {
 		if (JFolder::exists( dirname($p_filename).DS.$_themeletdir ) ) {
 			$retval['dir'] = $extractdir;
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
-			$success = 'success: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'"';
+			$success = 'success: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'", error: "", msg: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'"';
 			return $success;
 		}
 		
@@ -751,6 +754,241 @@ class ConfiguratorController extends JController {
 			break;
 		
 		}		
+	}
+	function install_themelet(){
+		ini_set('memory_limit', '32M');
+		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$activation = $_REQUEST['act_themelet'];
+		$return = $this->themelet_upload($newthemeletfile);
+		$themelet = split(',', $return);
+		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
+		if(isset($activation) && $activation == 'true'){
+			$db = &JFactory::getDBO();
+			$query = "UPDATE jos_configurator SET param_value = '".$themelet."' WHERE param_name = 'themelet' LIMIT 1;";
+			$query = $db->setQuery( $query );
+			$db->query($query);
+		}
+		$ret = '{'.$return.'}';
+		echo $ret;
+	}
+	
+	function install_template(){
+		ini_set('memory_limit', '32M');
+		$newtemplatefile = JRequest::getVar( 'template-file', null, 'files', 'array' );
+		$templatesdir = JPATH_SITE . DS . 'templates';
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
+		$logosdir = JPATH_SITE . DS . 'morph_assets' . DS . 'logos';
+		$backgroundsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backgrounds';
+		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
+		$currenttime = date('gis_dmY', time());
+		$ret = '';
+		
+		// create assets folder
+		if(!is_dir(JPATH_SITE . DS . 'morph_assets')){
+			if(!mkdir(JPATH_SITE . DS . 'morph_assets')){
+				$error = 'error: "There was an error creating the assets folder. Please check your permissions."'; 
+				$ret = '{'.$error.'}';
+				echo $ret;
+				die();
+			}
+		}	
+		if(!is_dir($backupdir)){
+			if(!mkdir($backupdir)){
+				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+				$ret = '{'.$error.'}';
+				echo $ret;
+				die();
+			}
+		}else{
+			JPath::setPermissions($backupdir);
+		}
+		if(!is_dir($logosdir)){
+			if(!mkdir($logosdir)){
+				$error = 'error: "There was an error creating the logos folder. Please check your permission on the assets folder"'; 
+				$ret = '{'.$error.'}';
+				echo $ret;
+				die();
+			}
+		}else{
+			JPath::setPermissions($logosdir);
+		}
+		if(!is_dir($backgroundsdir)){
+			if(!mkdir($backgroundsdir)){
+				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+				$ret = '{'.$error.'}';
+				echo $ret;
+				die();
+			}
+		}else{
+			JPath::setPermissions($backgroundsdir);
+		}
+		if(!is_dir($themeletsdir)){
+			if(!mkdir($themeletsdir)){
+				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+				$ret = '{'.$error.'}';
+				echo $ret;
+				die();
+			}
+		}else{
+			JPath::setPermissions($themeletsdir);
+		}
+		
+		if($newtemplatefile['type'] != 'application/zip'){
+			$error = 'error: "This is not a valid template package.<br />Please try again with a valid template package (zip file)"';
+			$ret = '{'.$error.'}';
+			echo $ret;
+		}else{
+			if(is_dir($templatesdir . DS . 'morph')){
+				// template folder
+				if($_REQUEST['backup'] == 'true'){
+					// backup existing
+					if(!Jarchive::create($backupdir . DS . 'morph_' . $currenttime, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
+						// error creating archive
+						$error = 'There was an error creating the archive. Install failed'; 
+						$ret = '{'.$error.'}';
+						echo $ret;
+					}else{
+						// remove existing
+						if(!$this->deleteDirectory($templatesdir . DS . 'morph')){
+							// fail: error removing existing folder
+							$error = 'There was an error removing the old install. Install failed';	
+							$ret = '{'.$error.'}';
+							echo $ret;
+						}else{
+							if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
+								$error = 'error: "Could not move file to required location!"';
+								$ret = '{'.$error.'}';
+								echo $ret;
+							}
+							// directory doesn't exist - install as per usual
+							JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+							$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+							$ret = '{'.$msg.'}';
+							echo $ret;
+						}
+					}
+				}else{
+					// remove existing
+					if(!$this->deleteDirectory($templatesdir . DS . 'morph')){
+						// fail: error removing existing folder
+						$error = 'There was an error removing the old install. Install failed';	
+						$ret = '{'.$error.'}';
+						echo $ret;
+					}else{
+						if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
+							$error = 'error: "Could not move file to required location!"';
+							$ret = '{'.$error.'}';
+							echo $ret;
+						}
+						// directory doesn't exist - install as per usual
+						JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+						$ret = '{'.$msg.'}';
+						echo $ret;
+					}
+				}
+			}else{
+				if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
+					$error = 'error: "Could not move file to required location!"';
+					$ret = '{'.$error.'}';
+					echo $ret;
+				}
+				// directory doesn't exist - install as per usual
+				JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+				$ret = '{'.$msg.'}';
+				echo $ret;
+			}
+		}
+	}
+	
+	function deleteDirectory($dir) {
+        if (!file_exists($dir)) return true;
+        if (!is_dir($dir)) return unlink($dir);
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') continue;
+            if (!$this->deleteDirectory($dir.DIRECTORY_SEPARATOR.$item)) return false;
+        }
+        return rmdir($dir);
+    }
+	
+	function parsexml_template_file($templateDir){
+		// Check if the xml file exists
+		if(!is_file($templateDir.DS.'templateDetails.xml')) {
+			return false;
+		}
+		
+		$xml = JApplicationHelper::parseXMLInstallFile($templateDir.DS.'templateDetails.xml');
+		
+		if ($xml['type'] != 'template') {
+			return false;
+		}
+		
+		$data = new StdClass();
+		$data->directory = $templateDir;
+		
+		foreach($xml as $key => $value) {
+			$data->$key = $value;
+		}
+		
+		$data->checked_out = 0;
+		$data->mosname = JString::strtolower(str_replace(' ', '_', $data->name));
+		
+		return $data;
+	}
+	
+	function unpackTemplate($p_filename){
+		$archivename = $p_filename;
+		$dirname = uniqid('tempins_');
+		$extractdir = JPath::clean(dirname($p_filename).DS.$dirname);
+		$archivename = JPath::clean($archivename);
+		
+		$result = JArchive::extract( $archivename, $extractdir);
+		if ( !$result ) {
+			$error = 'error: "There was an error extracting the file! '.$extractdir.'"';
+			return $error;
+		}
+	
+		$retval['extractdir'] = $extractdir;
+		$retval['packagefile'] = $archivename;
+		
+		if (JFile::exists($extractdir.DS.'templateDetails.xml')){
+			$template_params = $this->parsexml_template_file($extractdir);
+		}else{
+			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
+			$error = 'error: "This is not a valid Template Package:<br />The file <strong>templateDetails.xml</strong> doesn\'t exist or is incorrectly structured!"';
+			return $error;
+		}
+		
+		//get install dir
+		if ($template_params) {
+			$_templatedir = trim( strtolower(str_replace(array(' ','_'),'-',$template_params->name)) );
+		}
+		
+		if (!$_templatedir){		
+			if (count($dirList) == 1){
+				if (JFolder::exists($extractdir.DS.$dirList[0])){
+					$extractdir = JPath::clean($extractdir.DS.$dirList[0]);
+				}
+			}
+		} else {
+			JFolder::move($extractdir, dirname($p_filename).DS.$_templatedir);	
+		}
+		
+		if (JFolder::exists( dirname($p_filename).DS.$_templatedir ) ) {
+			$retval['dir'] = $extractdir;
+			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
+			
+			if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'includes'.DS.'sql'.DS.'set-template-as-default.sql')){
+				$this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'includes'.DS.'sql'.DS.'set-template-as-default.sql');
+			}else{
+				$error = 'error: "SQL file doesn\'t exist"';
+				return $error;
+			}
+			$success = 'msg: "Template Successfully Installed", error: ""';
+			return $success;
+		}
+		
 	}
 	
 	

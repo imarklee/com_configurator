@@ -553,3 +553,4 @@ a.disabled{opacity:0.5;cursor:default;}
 #toolbar-apply a{color: #608000;}
 #toolbar-apply span.icon-32-apply{background:transparent url(../images/icon-save.png) no-repeat 50% 100%;}
 #toolbar-Link span.icon-32-back{background:transparent url(../images/icon-dashboard.png) no-repeat 50% 100%;}
+p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF3100;width:325px;}

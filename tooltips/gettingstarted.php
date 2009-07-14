@@ -37,10 +37,6 @@
 			<p>Column 1 (green) is your installed version, column 2 (red) is the latest available version and the tick or cross icon in column 3 (blue) indicates whether your installed version is up-to-date.</p>
 			<p>If your installed version and the online version differ, the second version will be hyperlinked to the JoomlaJunkie downloads, allowing you to go and get the latest version.</p>
 			<p>We are currently investing an option to allow you to automatically upgrade from within Configurator, but more on that later ;)</p>
-			<!--<h4>Morph &amp; Configurator updates on Twitter</h4>
-			<p>We have also setup a dedicated Twitter account for Morph related updates &amp; news. We highly recommend that you follow <a href="http://twitter.com/jMorph" target="_blank">@jMorph</a> to get the latest themelet releases, updates and more!</p>
-			<h4>Subscribe to our bi-monthly newsletter</h4>
-			<p>Last but not least, if you aren't already subscribed to our newsletter, you can do so by <a href="" target="_blank">following this link</a>.</p>-->
 		</div>
 		<div id="splashtab-assets" class="splashtabs">
 			<h3>Working with your sites assets</h3>
@@ -51,7 +47,7 @@
 		<div id="splashtab-methods" class="splashtabs">
 			<h3>Understanding Morphs methods of control</h3>
 			<p class="intro">If you use the analogy of Morph as a sports car, the engine would be the core framework, the themelet would be the design/body of the car &amp; the dashboard would be Morph's Configurator.</p>
-			<p><img src="../administrator/components/com_configurator/images/splash-methods-bg.png" alt="maskot" border="0" align="right" style="margin: -20px 0px 0 15px" />In order to have total control, even at high speeds, the driver has a wide variety of methods he can use to control this powerful machine, to do exactly what is desired. A comprehensive dashboard as well as the various controls such as the steering, pedals, gears etc make up the various methods of control that are needed.</p>
+			<p>In order to have total control, even at high speeds, the driver has a wide variety of methods he can use to control this powerful machine, to do exactly what is desired. A comprehensive dashboard as well as the various controls such as the steering, pedals, gears etc make up the various methods of control that are needed.</p>
 			<p>Morph's other primary Method of Control is its FX Range, namely: PageFX, MenuFx, ModuleFX &amp; ContentFX. These are stemmed from Joomla's "suffix" feature. Which in its simplest form is a way of appending a custom class to a page, module or menu.</p>
 			<p>Using a combination of different page or module suffixes, not only are you able to transform your sites layout on a page-by-page basis, but also mix &amp; match your own custom module styles.</p>
 			<p>We highly recommend that you checkout the relevant quick start guides in order to get the most out of the FX Range of features.</p>
@@ -107,7 +103,7 @@
 			<p><img src="../administrator/components/com_configurator/images/splash-feedback-bg.png" alt="maskot" border="0" align="right" style="margin: -5px 0px 0 15px" /> With that in mind we have built a really easy way for you to submit a bug or suggestion.</p>
 			<p>You can either click on the <strong>Submit Feedback</strong> link in the top shelf, or use the built in keyboard shortcut.</p>
 			<p>Mac users can use <strong>cmd + e</strong>, whereas users on all other systems can use <strong>ctrl + e</strong>.</p>
-			<p>Due to the vast number of users, we are not able to reply to emails that are received through Configurator. If you requires a response, please use the forum instead.</p>
+			<p class="important">Due to the vast number of users, we are not able to reply to emails that are received through Configurator. If you requires a response, please use the forum instead.</p>
 		</div>
 		<div id="splashtab-docs" class="splashtabs">
 			<h3>Extensive online documentation</h3>

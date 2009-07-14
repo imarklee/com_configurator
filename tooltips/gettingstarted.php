@@ -47,8 +47,8 @@
 		<div id="splashtab-methods" class="splashtabs">
 			<h3>Understanding Morphs methods of control</h3>
 			<p class="intro">If you use the analogy of Morph as a sports car, the engine would be the core framework, the themelet would be the design/body of the car &amp; the dashboard would be Morph's Configurator.</p>
-			<p>In order to have total control, even at high speeds, the driver has a wide variety of methods he can use to control this powerful machine, to do exactly what is desired. A comprehensive dashboard as well as the various controls such as the steering, pedals, gears etc make up the various methods of control that are needed.</p>
-			<p>Morph's other primary Method of Control is its FX Range, namely: PageFX, MenuFx, ModuleFX &amp; ContentFX. These are stemmed from Joomla's "suffix" feature. Which in its simplest form is a way of appending a custom class to a page, module or menu.</p>
+			<p>In order to have total control, even at high speeds, the driver has a wide variety of methods for controlling this powerful machine, to do exactly what is desired. A comprehensive dashboard as well as the various controls such as the steering, pedals, gears etc make up the various methods of control that are needed.</p>
+			<p>Morph's other primary Method of Control is the FX Range, namely: PageFX, MenuFx, ModuleFX &amp; ContentFX. These are stemmed from Joomla's "suffix" feature. Which in its simplest form is a way of appending a custom class to a page, module or menu.</p>
 			<p>Using a combination of different page or module suffixes, not only are you able to transform your sites layout on a page-by-page basis, but also mix &amp; match your own custom module styles.</p>
 			<p>We highly recommend that you checkout the relevant quick start guides in order to get the most out of the FX Range of features.</p>
 		</div>

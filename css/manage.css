@@ -549,3 +549,7 @@ a.disabled{opacity:0.5;cursor:default;}
 #preferences-screen li span{width:240px;float:left;display:block;}
 #preferences-screen input.btn-prefs{width:254px;height:40px;overflow:hidden;border:0;background:#666;padding:40px 0 0 0;margin:0;background:#eee url(../images/btn-save-prefs.png) no-repeat;cursor:pointer;}
 #preferences-screen input.btn-prefs:hover{background-position:bottom left;}
+
+#toolbar-apply a{color: #608000;}
+#toolbar-apply span.icon-32-apply{background:transparent url(../images/icon-save.png) no-repeat 50% 100%;}
+#toolbar-Link span.icon-32-back{background:transparent url(../images/icon-dashboard.png) no-repeat 50% 100%;}

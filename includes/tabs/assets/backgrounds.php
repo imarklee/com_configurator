@@ -1,6 +1,6 @@
 <?php
-$background_dir = JPATH_ROOT . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 'backgrounds';
-$background_url = JURI::root() . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 'backgrounds';
+$background_dir = JPATH_ROOT . DS . 'morph_assets' . DS . 'backgrounds';
+$background_url = JURI::root() . DS . 'morph_assets' . DS . 'backgrounds';
 if(is_dir($background_dir)) {
 	$lists['backgrounds'] = JFolder::files( $background_dir );
 	unset($lists['backgrounds'][0]);

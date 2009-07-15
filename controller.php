@@ -118,7 +118,7 @@ class ConfiguratorController extends JController {
 			}
 
 			// Load list of themelets (if they exist).
-			$themelet_dir = JPATH_ROOT . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 'themelets';          
+			$themelet_dir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';          
 
 			if(is_dir($themelet_dir)) $lists['themelets'] = JFolder::folders( $themelet_dir );
 			else $lists['themelets'] = null;
@@ -131,13 +131,13 @@ class ConfiguratorController extends JController {
 			$lists['themelets_dir'] = $themelet_dir;
 			
 			// Load list of logos (if they exist).
-			$logo_dir = JPATH_ROOT . DS . 'templates' . DS . $params->name . DS . 'assets'.DS.'logos';
+			$logo_dir = JPATH_SITE.DS.'morph_assets'.DS.'logos';
 			if(is_dir($logo_dir)) $lists['logos'] = JFolder::files( $logo_dir, '.jpg|.png|.gif' );
 			else $lists['logos'] = null;
 			$lists['logo_dir'] = $logo_dir;
 			
 			// Load list of backgrounds (if they exist).
-			$bg_dir = JPATH_ROOT . DS . 'templates' . DS . $params->name . DS . 'assets'.DS.'backgrounds';
+			$bg_dir = JPATH_SITE.DS.'morph_assets'.DS.'backgrounds';
 			if(is_dir($bg_dir)) $lists['backgrounds'] = JFolder::files( $bg_dir, '.jpg|.png|.gif' );
 			else $lists['backgrounds'] = null;
 			$lists['bg_dir'] = $bg_dir;
@@ -534,7 +534,7 @@ class ConfiguratorController extends JController {
 		}else{
 			// if there is no file error then continue
 			if($logo_details['error'] != 4) {
-				$logo_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS. 'assets' .DS. 'logos';
+				$logo_dir = JPATH_SITE.DS.'morph_assets'.DS.'logos';
 				
 				// errors
 				if( $logo_details['error'] ){
@@ -598,7 +598,7 @@ class ConfiguratorController extends JController {
 		}else{
 			// if there is no file error then continue
 			if($background_details['error'] != 4) {
-				$background_dir = JPATH_ROOT . DS .'templates'. DS . $template .DS. 'assets' .DS. 'backgrounds';
+				$background_dir = JPATH_SITE.DS.'morph_assets'.DS.'backgrounds';
 				
 				// errors
 				if( $background_details['error'] ){
@@ -709,7 +709,7 @@ class ConfiguratorController extends JController {
 	function deleteAsset(){
 		$type = $_GET['deltype'];
 		$asset = $_GET['asset'];
-		$assetsdir = JPATH_SITE . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS;
+		$assetsdir = JPATH_SITE . DS . 'morph_assets' . DS;
 		
 		switch($type){
 		

@@ -1,6 +1,6 @@
 <?php
-$themelet_dir = JPATH_ROOT . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 'themelets';
-$themeler_url = JURI::root() . DS . 'templates' . DS . 'morph' . DS . 'assets' . DS . 'themelets';
+$themelet_dir = JPATH_ROOT . DS . 'morph_assets' . DS . 'themelets';
+$themeler_url = JURI::root() . DS . 'morph_assets' . DS . 'themelets';
 if(is_dir($themelet_dir)) {
 	$lists['themelets'] = JFolder::folders( $themelet_dir );
 } else {

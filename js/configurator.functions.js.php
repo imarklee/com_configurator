@@ -401,10 +401,11 @@ jQuery.noConflict();
     				'background-color': '#'+$(elid).prev().val()
     			});
     		}
-  
 			// load the colour picker
-    		$(elid).ColorPicker({
+    		var cp = $(elid).children().attr('id');
+			$(elid).ColorPicker({
        			flat: true,
+       			livePreview: true,
     			onSubmit: function(hsb, hex, rgb){
 					var cp = $(elid).children().attr('id');
 					$(elid).prev().val('#'+hex);
@@ -415,19 +416,18 @@ jQuery.noConflict();
 					var cp = $(elid).children().attr('id');
 					$('#'+cp).fadeOut(500);
 				}
-    		}).bind('keyup', function(){ // set colour picker to use current value
-				$(elid).ColorPickerSetColor($(this).prev().val());
+    		})
+    		.bind('keydown', function(){
+				$(this).ColorPickerSetColor(this.value);
 			});
-			
-			var cp = $(elid).children().attr('id');
-			$
-    		$(window).keydown(function(e){
+
+    		$(document).bind("keydown.colorpicker", function(e){
     			keycode = (e.which || e.keyCode);
     			if(keycode == 27){
-    				$('#'+cp).fadeOut(500);
+    				$(elid).children().fadeOut(500);
     				return false;
     			}
-       		});
+       		}); 
        		return false;
     	}
     	
@@ -1739,7 +1739,8 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		$('td#toolbar-Link a, ul#submenu li.dashboard a').click(function(){
+		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a').click(function(){
+			var $this = $(this);
 			if($.cookie('formChanges')){			
 				$('<div id="changesDialog">You have made changes to Configurator that will be lost if you navigate from this page. Are you sure you want to leave the page?</div>').dialog({
 					autoOpen: true,
@@ -1750,7 +1751,7 @@ jQuery.noConflict();
 						'Yes, continue': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
-							window.location = $('td#toolbar-Link a').attr('href');
+							window.location = $this.attr('href');
 							return true;
 						},
 						'No, stay here': function(){
@@ -1761,7 +1762,7 @@ jQuery.noConflict();
 					}
 				});
 			}else{
-				window.location = $('td#toolbar-Link a').attr('href');
+				window.location = $this.attr('href');
 			}
 			return false;
 		});

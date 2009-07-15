@@ -1,7 +1,7 @@
 <?php
 $template_dir = JPATH_SITE . DS . 'templates' . DS . 'morph/';
 $template_url = JURI::root() . 'templates/morph/';
-$themelet_url = JURI::root() . 'templates/morph/assets/themelets/';
+$themelet_url = JURI::root() . 'morph_assets/themelets/';
 $component_url = JURI::root() . 'administrator/components/com_configurator/'; 
 							
 $template_xml = $template_url . 'templateDetails.xml';

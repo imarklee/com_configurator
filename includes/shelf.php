@@ -86,8 +86,8 @@ function showIcon($curr, $serv){
 			<h3>Quick reference guides</h3>
 				<ul class="buttons">
 					<li><a class="info-link btn-link" href="gettingstarted.html" title="Configurator quick start guide">Quick Start</a></li>
-					<li><a class="refimage-block btn-link" onclick="return false;" href="../administrator/components/com_configurator/images/visual-reference-blocks.png" title="Visual Reference: By Block">Block Map</a></li>
-					<li><a class="refimage-position btn-link" onclick="return false;" href="../administrator/components/com_configurator/images/visual-reference-positions.png" title="Visual Reference: By Block">Position Map</a></li>
+					<li><a class="modal-link btn-link" href="visual-blocks.html" title="Visual Reference: By Block">Block Map</a></li>
+					<li><a class="modal-link btn-link" href="visual-positions.html" title="Visual Reference: By Block">Position Map</a></li>
 					<li class="last"><a class="modal-link btn-link" href="troubleshooting.html" title="Morph troubleshooting guide">Troubleshooting</a></li>
 					<li><a class="modal-link btn-link" href="modfx.html" title="Getting started with ModuleFX">ModuleFX</a></li>
 					<li><a class="modal-link btn-link" href="pagefx.html" title="Getting started with PageFX">PageFX</a></li>

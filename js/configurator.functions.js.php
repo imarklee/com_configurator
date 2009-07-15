@@ -77,6 +77,7 @@ jQuery.noConflict();
 		/* Generic ----------------------------
 	    ------------------------------------ */
 		$("#submenu li:last").addClass("last");
+		$("#submenu li:first").addClass("dashboard");
 		$("#blocks-tabs .ui-tabs-nav li:last").addClass("last");
 		
 		$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
@@ -862,93 +863,26 @@ jQuery.noConflict();
 			
 	   	});
 	   	
-	   	$('a.modal-link').each(function(){
-	   	
-	   		$(this).click(function(){ return false; });
-	    
-	    	var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
-	   		var qtLink = docroot+$(this).attr("href");
-	   		var qtTitle = $(this).attr('title');
-	   		
-			$(this).qtip({
-				content: {
-					title: {
-						text: qtTitle,
-						button: 'Close'
-					},
-					url: qtLink
-				},
-				position: {
-					target: $(document.body), // Position it via the document body...
-					corner: 'center' // ...at the center of the viewport
-				},
-				show: {
-					when: 'click'
-				},
-				hide: false,
-				style: {
-					padding: 0,
-					background: '#fff',
-					color: '#111',
-					border: {
-	     				width: 3,
-	     				radius: 8
-	     			},
-         			width: {
-         				max: '780'
-         			},
-					name: 'dark'
-				},
-				api: {
-					beforeShow: function(){	
-						hideScroll();	
-						$('#qtip-blanket').fadeIn(this.options.show.effect.length);
-					},
-					beforeHide: function(){
-						showScroll();
-						$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-					},
-					onShow: function(){
-					
-						$('.modal-preview').each(function(){
-	   		
-				   		var title = $(this).attr('title');
-				   		$(this).attr('title', ''); 
-				   		
-				   		var content = '<img src="';
-			     		content += title;
-			      		content += '" alt="Loading thumbnail..." height="144" width="176" />';
-				   		
-				   		$(this).qtip({
-				   		     content: content,
-						     position: {
-						        corner: {
-						           tooltip: 'bottomMiddle',
-						           target: 'topMiddle'
-						        }
-						     },
-						     style: {
-						        tip: true,
-						        name: 'dark',
-						        border: {
-			         				width: 3,
-			         				radius: 8
-			         			},
-			         			padding: '0 0 0 0',
-			         			width: {
-			         				max: '193'
-			         			}
-							}
-			
-						});
-						
-				   	});
-					
-					}
+	   	$('a.modal-link').click(function(){
+	   		var $this = $(this);
+	   		hideScroll();
+	   		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));
+	   		$('.toolguides').dialog({
+				autoOpen: true,
+				bgiframe: true,
+				modal: true,
+				width: 610,
+				height: 700,
+				title: $this.attr('title'),
+				zIndex: 5001,
+				close: function(){
+					$(this).dialog('destroy');
+					$('.toolguides').empty();
+					showScroll();		
 				}
 			});
-			
-	   	});
+			return false;
+		});
 	   	
 	   	$('ul.assets-list ul.buttons li.btn-preview a').each(function(){
 	   		
@@ -989,90 +923,6 @@ jQuery.noConflict();
 			
 	   	});
 	   	
-	   	$('.refimage-block').qtip({
-   			content: {
-   				title: {
-   					text: 'Visual Reference - Blocks',
-   					button: 'Close'
-   				},
-   				text: '<img src="../administrator/components/com_configurator/images/visual-reference-blocks.png" alt="Visual Reference - Blocks" height="608" width="600" />'
-   			},
-   			position: {
-				target: $(document.body), // Position it via the document body...
-				corner: 'center' // ...at the center of the viewport
-			},
-   			show: {
-   				when: 'click'
-   			},
-			hide: false,
-			style: {
-				name: 'dark',
-				border: {
-     				width: 3,
-     				radius: 8
-     			},
-     			width: {
-     				max: '600'
-     			},
-     			height: {
-     				max: '608'
-     			},
-     			padding: '0'
-			},
-			api: {
-				beforeShow: function(){	
-					hideScroll();	
-					$('#qtip-blanket').fadeIn(this.options.show.effect.length);
-				},
-				beforeHide: function(){
-					showScroll();
-					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-				},
-			}
-   		});
-	   	
-	   	$('.refimage-position').qtip({
-   			content: {
-   				title: {
-   					text: 'Visual Reference - Positions',
-   					button: 'Close'
-   				},
-   				text: '<img src="../administrator/components/com_configurator/images/visual-reference-positions.png" alt="Visual Reference - Positions" height="608" width="600" />'
-   			},
-   			position: {
-				target: $(document.body), // Position it via the document body...
-				corner: 'center' // ...at the center of the viewport
-			},
-   			show: {
-   				when: 'click'
-   			},
-			hide: false,
-			style: {
-				name: 'dark',
-				border: {
-     				width: 3,
-     				radius: 8
-     			},
-     			width: {
-     				max: '600'
-     			},
-     			height: {
-     				max: '608'
-     			},
-     			padding: '0'
-			},
-			api: {
-				beforeShow: function(){	
-					hideScroll();	
-					$('#qtip-blanket').fadeIn(this.options.show.effect.length);
-				},
-				beforeHide: function(){
-					showScroll();
-					$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-				},
-			}
-   		});
-
 	   	/* Activate functions -----------------
 	    ------------------------------------ */
 	   	$('li.themelet-item.tl-inactive ul li.btn-activate a').click(function(){
@@ -1936,6 +1786,49 @@ jQuery.noConflict();
 			}
 		}
 		
+		$('td#toolbar-apply a').attr('onclick', '').click(function(){
+			$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
+			hideScroll();
+			$('#saving').css({
+				'display': 'block',
+				'z-index': '9998',
+				position: 'absolute',
+		        top: 0,
+		        left: 0,
+		        width: arrPageSizes[0],
+				height: arrPageSizes[1],
+			});
+			setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+			return false;
+		});
+		
+		$('td#toolbar-Link a, ul#submenu li.dashboard a').click(function(){
+			if($.cookie('formChanges')){			
+				$('<div id="changesDialog">You have made changes to Configurator that will be lost if you navigate from this page. Are you sure you want to leave the page?</div>').dialog({
+					autoOpen: true,
+					bgiframe: true,
+					modal: true,
+					title: 'Warning!',
+					buttons: {
+						'Yes, continue': function(){
+							$.cookie('formChanges', null);
+							$(this).dialog('destroy');
+							window.location = $('td#toolbar-Link a').attr('href');
+							return true;
+						},
+						'No, stay here': function(){
+							$.cookie('formChanges', null);
+							$(this).dialog('destroy');
+							return false;
+						}
+					}
+				});
+			}else{
+				window.location = $('td#toolbar-Link a').attr('href');
+			}
+			return false;
+		});
+		
 		/* Conditionals --------------------
 		--------------------------------- */	
 		
@@ -2299,14 +2192,12 @@ jQuery.noConflict();
     		
     		switch(tid){
     			case 2:
-    			toolPage = '<img src="../administrator/components/com_configurator/images/visual-reference-blocks.png" alt="Visual Reference - Blocks" height="608" width="600" />';
+    			toolPage = '../administrator/components/com_configurator/tooltips/visual-blocks.html';
     			toolTitle = 'Visual Reference: Blocks';
-    			return toolGI(toolPage, toolTitle, 2);
     			break;
     			case 3:
-    			toolPage = '<img src="../administrator/components/com_configurator/images/visual-reference-positions.png" alt="Visual Reference - Blocks" height="608" width="600" />';
+    			toolPage = '../administrator/components/com_configurator/tooltips/visual-positions.html';
     			toolTitle = 'Visual Reference: Positions';
-    			return toolGI(toolPage, toolTitle, 3);
     			break;
     			case 4:
     			toolPage = '../administrator/components/com_configurator/tooltips/troubleshooting.html';
@@ -2330,90 +2221,37 @@ jQuery.noConflict();
     			break;
     		}
     		
+    		$('.toolguides').dialog({
+				autoOpen: false,
+				bgiframe: true,
+				width: 610,
+				height: 700,
+				title: toolTitle,
+				zIndex: 5001,
+				close: function(){
+					$.cookie('tooltip'+tid, null);
+					$(this).dialog('destroy');
+					$('.toolguides').empty();
+					$('#qtip-blanket').hide();
+					showScroll();		
+				}
+			});
+    		
     		if(!$.cookie('tooltip'+tid)){
+    			$('#qtip-blanket').show();
 				$.cookie('tooltip'+tid, 'open');
-					
-				$('.toolguides').qtip({
-					content: { title: { text: toolTitle, button: 'Close' }, url: toolPage },
-					position: { target: $(document.body), corner: 'center' },
-					show: { ready: true },
-					hide: false,
-					style: {
-						padding: 0,
-						background: '#fff',
-						color: '#111',
-						border: {
-		     				width: 3,
-		     				radius: 8
-		     			},
-	         			width: {
-	         				max: '780'
-	         			},
-						name: 'dark'
-					},
-					api: {
-						beforeShow: function(){	
-							hideScroll();	
-							$('#qtip-blanket').fadeIn(this.options.show.effect.length);
-						},
-						beforeHide: function(){
-							showScroll();
-							$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-						},
-						onShow: function(){
-						
-							
-						}
-					}
-				});
+				$('.toolguides').load(toolPage);
+				$('.toolguides').dialog('open');
+				hideScroll();
 			}else{
-				$('.toolguides').qtip('destroy');
-				showScroll();
-				$('#qtip-blanket').fadeOut();
 				$.cookie('tooltip'+tid, null);
+				$('.toolguides').dialog('close');
+				$('.toolguides').empty();
+				$('#qtip-blanket').hide();
+				showScroll();
 			}
+			
     	}
-    	
-    	function toolGI(image, imgtitle, tid){
-    		if(!$.cookie('tooltip'+tid)){
-				$.cookie('tooltip'+tid, 'open');
-					
-				$('.toolguides').qtip({
-					content: { title: { text: imgtitle, button: 'Close' }, text: image },
-					position: { target: $(document.body), corner: 'center' },
-					show: { ready: true },
-					hide: false,
-					style: {
-						padding: 0,
-						background: '#fff',
-						color: '#111',
-						border: {
-		     				width: 3,
-		     				radius: 8
-		     			},
-	         			width: {
-	         				max: '780'
-	         			},
-						name: 'dark'
-					},
-					api: {
-						beforeShow: function(){	
-							hideScroll();	
-							$('#qtip-blanket').fadeIn(this.options.show.effect.length);
-						},
-						beforeHide: function(){
-							showScroll();
-							$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-						}
-					}
-				});
-			}else{
-				$('.toolguides').qtip('destroy');
-				showScroll();
-				$('#qtip-blanket').fadeOut();
-				$.cookie('tooltip'+tid, null);
-			}
-		}
 		
 		// Keyboard Shortcuts
 		$(window).keydown(function(e){

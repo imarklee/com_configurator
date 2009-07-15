@@ -775,92 +775,29 @@ jQuery.noConflict();
 			
 			$(this).attr('title', '');
 	    });	    
-	    $('.tt-modal').each(function(){
+	    $('.tt-modal').click(function(){
 	    	var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
 	   		var thetitle = $(this).attr("title").split('::'); 
 	   		var qtTitle = thetitle[0];
 	   		var qtLink = docroot+thetitle[1];
 	   		
-	   		$(this).attr("title", '');
-	   			   		
-	   		$(this).qtip({
-				content: {
-					title: {
-						text: qtTitle,
-						button: 'Close'
-					},
-					url: qtLink
-				},
-				position: {
-					target: $(document.body), // Position it via the document body...
-					corner: 'center' // ...at the center of the viewport
-				},
-				show: {
-					when: 'click', // Show it on click
-					solo: true // And hide all other tooltips
-				},
-				hide: false,
-				style: {
-				      width: 900,
-				      padding: 10,
-				      background: '#E8DF96',
-				      color: 'red',
-				      textAlign: 'left',
-				      border: {
-				         width: 7,
-				         radius: 5,
-				         color: '#536E28'
-				      }
-				},
-				api: {
-					beforeShow: function(){	
-						hideScroll();	
-						$('#qtip-blanket').fadeIn(this.options.show.effect.length);
-					},
-					beforeHide: function(){
-						showScroll();
-						$('#qtip-blanket').fadeOut(this.options.hide.effect.length);
-					},
-					onShow: function(){
-					
-						$('.modal-preview').each(function(){
-	   		
-				   		var title = $(this).attr('title');
-				   		$(this).attr('title', ''); 
-				   		
-				   		var content = '<img src="';
-			     		content += title;
-			      		content += '" alt="Loading thumbnail..." height="144" width="176" />';
-				   		
-				   		$(this).qtip({
-				   		     content: content,
-						     position: {
-						        corner: {
-						           tooltip: 'bottomMiddle',
-						           target: 'topMiddle'
-						        }
-						     },
-						     style: {
-						        tip: true,
-						        name: 'dark',
-						        border: {
-			         				width: 3,
-			         				radius: 8
-			         			},
-			         			padding: '0 0 0 0',
-			         			width: {
-			         				max: '193'
-			         			}
-							}
-			
-						});
-						
-				   	});
-					
-					}
+	   		hideScroll();
+	   		$('.toolguides').load(qtLink);
+	   		$('.toolguides').dialog({
+				autoOpen: true,
+				bgiframe: true,
+				modal: true,
+				width: 610,
+				height: 700,
+				title: qtTitle,
+				zIndex: 5001,
+				close: function(){
+					$(this).dialog('destroy');
+					$('.toolguides').empty();
+					showScroll();		
 				}
 			});
-			
+	   		return false;
 	   	});
 	   	
 	   	$('a.modal-link').click(function(){
@@ -1990,6 +1927,28 @@ jQuery.noConflict();
 			sliderOptionsOff('#shelvesbottomshelf_slider0','#shelvesbottomshelf_slider_text');
 			sliderOptionsOn('#shelvestopshelf_slider1','#shelvestopshelf_slider_text');
 			sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
+		});
+		
+		function menuOptionsOn(elid, hideid){
+			if($(elid).attr('checked')){
+				$(hideid).parent().css('display', 'block');
+			}
+			$(elid).click(function(){
+				$(hideid).parent().css('display', 'block');
+			});
+		}
+		function menuOptionsOff(elid, hideid){
+			if($(elid).attr('checked') || $(elid).attr('checked') == false){
+				$(hideid).parent().css('display', 'none');
+			}
+			$(elid).click(function(){
+				$(hideid).parent().css('display', 'none');
+			});
+		}
+		
+		$(function(){
+			menuOptionsOn('#menutopnav_supersubs1','#menutopnav_minwidth, #menutopnav_maxwidth');
+			menuOptionsOff('#menutopnav_supersubs0','#menutopnav_minwidth,  #menutopnav_maxwidth');
 		});
 		
 		// ajax content for dialog

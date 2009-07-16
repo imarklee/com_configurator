@@ -1,4 +1,3 @@
-UPDATE jos_templates_menu SET template = 'morph' WHERE client_id = '0';
 UPDATE jos_modules SET position = 'inset1' WHERE id = '25';
 UPDATE jos_modules SET position = 'user2' WHERE id = '19';
 UPDATE jos_modules SET position = 'footernav' WHERE id = '40';

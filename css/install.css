@@ -4,7 +4,7 @@
 #sd-header img{margin:15px 0 0 0;width:173px;float:left;}
 #sd-header .steps strong{font:bold 35px/1 arial;color:#333;display:block;}
 #sd-header .steps{font:bold 25px arial;color:#666;width:250px;float:right;margin:15px 0 0 0;}
-#sd-body{background: #fff;padding:1em 2em;font:normal 18px/27px arial;height:310px;}
+#sd-body{background: #fff;padding:1em 2em;font:normal 18px/27px arial;}
 #sd-image{position:absolute;top:48%;left:48%;display:none;}
 #sd-footer{height:25px}
 #sd-body h3{font:bold 30px arial;color:#444;margin:.5em 0;}

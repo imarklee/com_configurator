@@ -299,33 +299,12 @@ class ConfiguratorController extends JController {
 		parent::display();
 	}
 	
-	function parse_mysql_dump($url) {
-	    $handle = fopen($url, "r");
-	    $query = "";
-	    while(!feof($handle)) {
-	        $sql_line = fgets($handle);
-	        if (trim($sql_line) != "" && strpos($sql_line, "--") === false) {
-	            $query .= $sql_line;
-	            if (preg_match("/;[\040]*\$/", $sql_line)) {
-	                $result = mysql_query($query) or die(mysql_error());
-	                $query = "";
-	            }
-	        }
-	    }
-	}
-	
-	function install_sample(){
-		
-		if(isset($_GET['do']) && $_GET['do'] == 'install'){
-			if($this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'sample.sql')){
-				return true;
-			}else{
-				die('failed');
-			}
-		}else{
-			die('Accessed outside of installer');
-		}
-	}
+	function findLine($filename, $str){
+		$file = file($filename);
+		$file = array_map('trim', $file);
+		$find = array_search($str, $file);
+		return $find === false ? false:$find + 1;
+	}  
 	
 	function makehash(){
 		if(isset($_POST['tempuserpass'])){
@@ -764,9 +743,16 @@ class ConfiguratorController extends JController {
 		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
 		if(isset($activation) && $activation == 'true'){
 			$db = &JFactory::getDBO();
-			$query = "UPDATE jos_configurator SET param_value = '".$themelet."' WHERE param_name = 'themelet' LIMIT 1;";
-			$query = $db->setQuery( $query );
-			$db->query($query);
+			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
+			$query = $db->query($query);
+			$themelet_num = $db->getNumRows($query);
+			if($themelet_num == '0'){
+				$new_query = "INSERT INTO jos_configurator VALUES ('' , 'morph', 'themelet', '".mysql_real_escape_string($themelet)."', '1');";
+			}else{
+				$new_query = "UPDATE jos_configurator SET param_value = '".mysql_real_escape_string($themelet)."' where param_name = 'themelet';";
+			}
+			$query = $db->setQuery( $new_query );
+			$db->query($query) or die($db->getErrorMsg());
 		}
 		$ret = '{'.$return.'}';
 		echo $ret;
@@ -780,7 +766,7 @@ class ConfiguratorController extends JController {
 		$logosdir = JPATH_SITE . DS . 'morph_assets' . DS . 'logos';
 		$backgroundsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backgrounds';
 		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
-		$currenttime = date('gis_dmY', time());
+		$currenttime = date('His_dmY', time());
 		$ret = '';
 		
 		// create assets folder
@@ -842,7 +828,7 @@ class ConfiguratorController extends JController {
 				// template folder
 				if($_REQUEST['backup'] == 'true'){
 					// backup existing
-					if(!Jarchive::create($backupdir . DS . 'morph_' . $currenttime, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
+					if(!Jarchive::create($backupdir . DS . 'morph_files_' . $currenttime, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
 						// error creating archive
 						$error = 'There was an error creating the archive. Install failed'; 
 						$ret = '{'.$error.'}';
@@ -991,6 +977,140 @@ class ConfiguratorController extends JController {
 		
 	}
 	
+	function get_structure($server, $user, $pass, $db) 
+	{ 
+        $sql = null;
+        $sql_structure = null;
+        $sql_drop = null;
+        $sql_data = null;
+        $iii = 0;
+        mysql_connect($server, $user, $pass); 
+        mysql_select_db($db); 
+        $tables = mysql_list_tables($db); 
+        while ($td = mysql_fetch_array($tables)) 
+        { 
+            $table = $td[0]; 
+            $r = mysql_query("SHOW CREATE TABLE `$table`"); 
+            if ($r) 
+            { 
+            if($iii++>0) $sql_structure .= ";\n\n";
+                    $d = mysql_fetch_array($r);
+                    $sql_structure .= 'DROP TABLE IF EXISTS `'. $d[0] . "`;\n" . $d[1];
+            } 
+
+                    $insert_sql = null;
+                    $table_query = mysql_query("SELECT * FROM `$table`"); 
+
+                    while ($fetch_row = mysql_fetch_row($table_query)) 
+                    { 
+                            $insert_sql .= "INSERT INTO `$table` VALUES("; 
+                            $iiii = 0;
+                            foreach ($fetch_row as $qry) 
+                            { 
+                            if ($iiii++>0) $insert_sql .=", ";
+                            $insert_sql .=  "'" . mysql_real_escape_string($qry) . "'";
+                            } 
+                            $insert_sql .= ");\n";
+                    } 
+
+                    $sql_data .= 'DROP TABLE IF EXISTS `'. $d[0] . "`;\n" . $d[1] . ";\n\n" . $insert_sql  . "\n"; 
+        }
+	 mysql_close ();
+	 return $sql_data . "\n\n"; 
+	}
 	
+	function create_sql_file($filename, $str){
+		ini_set('memory_limit', '32M');
+		$h = fopen($filename, 'w'); 
+    	$gzdata = gzencode($str, 9); 
+   		fwrite($h, $gzdata);
+		fclose($h);
+	}
+	
+	function parse_mysql_dump($url, $json = 'false') {
+	    $handle = fopen($url, "r");
+	    $query = "";
+	    $db = &JFactory::getDBO();
+	    while(!feof($handle)) {
+	        $sql_line = fgets($handle);
+	        if (trim($sql_line) != "" && strpos($sql_line, "--") === false) {
+	            $query .= $sql_line;
+	            if (preg_match("/;[\040]*\$/", $sql_line)) {
+		            if(!$json){
+		            	
+						$query = $db->setQuery( $query );
+						$result = $db->query($query) or die($db->getErrorMsg());
+		               	$query = "";
+		            }else{
+		            	$query = $db->setQuery( $query );
+						$result = $db->query($query) or die(json_encode(array('error' => 'MySQL error!<br />Line: <small>'.$sql_line.'</small><br />File: '.$url.'<br />Error: '.$db->getErrorMsg())));
+		            	$query = "";
+		            }
+	            }
+	        }
+	    }
+	}
+	
+	function install_sample(){
+		(isset($_POST['sample_data']) ? $sample = $_POST['sample_data'] : $sample = '');
+		$dbdata = $_REQUEST['db'];
+		$message = array();
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		$sqldir = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'includes'.DS.'sql'.DS;
+		
+		$sqlfiles = array(
+			'sample' => 'sample.sql',
+			'module' => 'modules.sql',
+			'basic' => 'base-setup.sql'
+		);
+		
+		if(!is_dir($backupdir)){mkdir($backupdir);}
+		JPath::setPermissions($backupdir);
+		
+		// validation
+		if(empty($sample) && $dbdata == 'destroy'){
+			$message['error'] = 'No options selected: Please select an option or skip this step.';
+		}else{
+			if($dbdata == 'backup'){
+				
+				$conf =&JFactory::getConfig();
+				$host = $conf->getValue('config.host');
+				$user = $conf->getValue('config.user');
+				$password = $conf->getValue('config.password');
+				$database = $conf->getValue('config.db');
+				
+				$backupfile = 'morphdb_'.$database.'_'.date("His_dmY").'.sql.gz';
+				$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure($host, $user, $password, $database));
+				$message['db'] = 'backedup';
+				$message['dbstore'] = "$backupdir/$backupfile"; 
+				
+			}else{
+				$message['db'] = 'destroyed';
+			}
+			
+			$error = false;
+			if(!empty($sample)){
+			
+				foreach($sample as $data){
+					if(file_exists($sqldir . $sqlfiles[$data])){
+						$message['error'] = $this->parse_mysql_dump($sqldir	. $sqlfiles[$data], true);
+					}else{
+						$error = true;
+					}
+				}
+				
+				if(!$error){
+					$message['success'] = 'Sample data successfully installed';
+					if($message['error'] == null){ $message['error'] = ''; }
+				}else{
+					$message['error'] = 'There was a problem installing the sample data.';
+				}
+			}
+		}
+		
+		$return = json_encode($message);
+		echo $return;
+		die();
+	}
 }
 ?>

@@ -3,15 +3,30 @@ jQuery.noConflict();
 	$(document).ready(function(){
 		var arrPageSizes = ___getPageSize();
 		$('#sd-body').corners('10px');
-		// template
+		
 		$('.install-template').click(function(){
+			templateInstall();
+			return false;
+		});
+		
+		$('.install-themelet').click(function(){
+			themeletInstall();
+			return false;
+		});
+		
+		$('.install-sample').click(function(){
+			sampleInstall();
+			return false;
+		});
+		
+		function templateInstall(){
 			if($('#backup_template').attr('checked')){
 				var backupval = 'true';
 			}else{
 				var backupval = 'false';
 			}
 			if($('#template-file').val() != ''){
-				$('<div id="saving"><div><img src="../../../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing template...</span></div></div>').appendTo('body');
+				$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing template...</span></div></div>').appendTo('body');
 				hideScroll();
 				$('#saving').css({
 					'display': 'block',
@@ -24,7 +39,7 @@ jQuery.noConflict();
 				});
 				
 				$.ajaxFileUpload({
-					url: '../../../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup='+backupval,
+					url: '../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup='+backupval,
 					fileElementId:'template-file',
 					dataType: 'json',
 					success: function (data, status)
@@ -41,7 +56,7 @@ jQuery.noConflict();
 						   			draggable: false,
 						   			minHeight: 20,
 						   			modal: true,
-						   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+						   			title: 'Error',
 				   					overlay: {
 				   						backgroundColor: '#000000', 
 				   						opacity: 0.8 
@@ -67,16 +82,14 @@ jQuery.noConflict();
 						   			draggable: false,
 						   			minHeight: 20,
 						   			modal: true,
-						   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+						   			title: 'Success',
 				   					overlay: {
 				   						backgroundColor: '#000000', 
 				   						opacity: 0.8 
 				   					},
 				   					close: function(){
 				   						$(this).dialog('destroy');
-				   						$('#sample-data').load('../../../administrator/components/com_configurator/includes/installer/step3.php');
-				   						$.cookie('install', 'step3');
-				   						$('#sd-body').corners('10px');
+				   						loadstep3(themelet);
 				   						showScroll();
 				   					},
 									buttons: {
@@ -114,17 +127,16 @@ jQuery.noConflict();
 					}
 				});
 			}
-			return false;
-		});
+		}
 		
-		$('.install-themelet').click(function(){
+		function themeletInstall(){
 			if($('#activate_themelet').attr('checked')){
 				var actval = 'true';
 			}else{
 				var actval = 'false';
-			}	
+			}
 			if($('#insfile').val() != ''){
-				$('<div id="saving"><div><img src="../../../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing themelet...</span></div></div>').appendTo('body');
+				$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing themelet...</span></div></div>').appendTo('body');
 				hideScroll();
 				$('#saving').css({
 					'display': 'block',
@@ -137,7 +149,7 @@ jQuery.noConflict();
 				});
 				
 				$.ajaxFileUpload({
-					url: '../../../administrator/index.php?option=com_configurator&task=install_themelet&format=raw&act_themelet='+actval,
+					url: '../administrator/index.php?option=com_configurator&task=install_themelet&format=raw&act_themelet='+actval,
 					fileElementId:'insfile',
 					dataType: 'json',
 					success: function (data, status)
@@ -154,7 +166,7 @@ jQuery.noConflict();
 						   			draggable: false,
 						   			minHeight: 20,
 						   			modal: true,
-						   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+						   			title: 'Error',
 				   					overlay: {
 				   						backgroundColor: '#000000', 
 				   						opacity: 0.8 
@@ -180,16 +192,14 @@ jQuery.noConflict();
 						   			draggable: false,
 						   			minHeight: 20,
 						   			modal: true,
-						   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+						   			title: 'Success',
 				   					overlay: {
 				   						backgroundColor: '#000000', 
 				   						opacity: 0.8 
 				   					},
 				   					close: function(){
 				   						$(this).dialog('destroy');
-				   						$('#sample-data').load('../../../administrator/components/com_configurator/includes/installer/step4.php');
-				   						$.cookie('install', 'step4');
-				   						$('#sd-body').corners('10px');
+				   						loadstep4(sample);
 				   						showScroll();
 				   					},
 									buttons: {
@@ -231,27 +241,162 @@ jQuery.noConflict();
 					}
 				});
 			}
-			return false;
-		});
+		}
 		
-		var skipper = $('.btn-skip').click(function(){
-			if($(this).hasClass('skip-step2')){
-				$('#sample-data').load('../../../administrator/components/com_configurator/includes/installer/step3.php', skipper);
-				$.cookie('install', 'step3');
-				skipper;
-			}
-			if($(this).hasClass('skip-step3')){
-				$('#sample-data').load('../../../administrator/components/com_configurator/includes/installer/step4.php', skipper);
-				$.cookie('install', 'step4');
-				skipper;
-			}
-			if($(this).hasClass('skip-completed')){
-				$('#sample-data').load('../../../administrator/components/com_configurator/includes/installer/completed.php', skipper);
-				$.cookie('install', 'completed');
-				skipper;
-			}
-			return false;
-		});
+		function sampleInstall(){
+			var checkVal = [];
+			var dbVal = '';
+			$('#install-sample ul li ul li input').each(function(){
+				if($(this).is(':checked')){
+					checkVal.push($(this).val());
+				}
+			});
+			if($('#install-sample #database-options').is(':checked')){ dbVal = 'backup'; }else{ dbVal = 'destroy'; }
+			
+			$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing sample data...</span></div></div>').appendTo('body');
+			$('#saving').css({
+				'display': 'block',
+				'z-index': '9998',
+				position: 'absolute',
+		        top: 0,
+		        left: 0,
+		        width: arrPageSizes[0],
+				height: arrPageSizes[1],
+			});
+			
+			$.post(
+				'../administrator/index.php?option=com_configurator&task=install_sample&format=raw',
+				{
+					'sample_data[]': checkVal,
+					db: dbVal
+				},
+				function(data, status){
+					if(typeof data.error != 'undefined'){
+						if(data.error != ''){
+							hideScroll();
+							$('#saving').css('display', 'none');
+							$('#upload-message').dialog({
+					   			bgiframe: true, 
+					   			resizable: false,
+					   			draggable: false,
+					   			minHeight: 20,
+					   			width: 500,
+					   			modal: true,
+					   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+			   					overlay: {
+			   						backgroundColor: '#000000', 
+			   						opacity: 0.8 
+			   					},
+								close: function(){
+			   						$(this).dialog('destroy');
+			   						showScroll();
+			   					},
+								buttons: {
+									'OK': function(){
+										$(this).dialog('close');
+									}
+								}
+							});
+							$('#upload-message').html(data.error);
+							$('#upload-message').dialog('show');
+						}else{
+							if(data.db == 'backedup'){ var dbstore = '<p><strong>Your database was backed up to: </strong><small>'+data.dbstore+'</small></p>'; }else{ var dbstore = '' }
+						
+							hideScroll();
+                            $('#saving').css('display', 'none');
+							$('#upload-message').dialog({
+					   			bgiframe: true, 
+					   			resizable: false,
+					   			draggable: false,
+					   			minHeight: 20,
+					   			modal: true,
+					   			width: 500,
+					   			title: 'Success',
+			   					overlay: {
+			   						backgroundColor: '#000000', 
+			   						opacity: 0.8 
+			   					},
+			   					close: function(){
+			   						$(this).dialog('destroy');
+			   						loadcompleted(completed);
+			   						showScroll();
+			   					},
+								buttons: {
+									'OK': function(){
+										$(this).dialog('close');
+									}
+								}
+							});
+							$('#upload-message').html(data.success+dbstore);
+							$('#upload-message').dialog('show');
+						}
+					}
+				}, 'json');
+		}
+		
+		function loadstep2(callback){ $('#sample-data').load('../administrator/components/com_configurator/includes/installer/step2.php', callback); }
+		function loadstep3(callback){ $('#sample-data').load('../administrator/components/com_configurator/includes/installer/step3.php', callback); }
+		function loadstep4(callback){ $('#sample-data').load('../administrator/components/com_configurator/includes/installer/step4.php', callback); }
+		function loadcompleted(callback){ $('#sample-data').load('../administrator/components/com_configurator/includes/installer/complete.php', callback); }
+		function gotomanage() { window.location = '../administration/index.php?option=com_configurator&task=manage'; }
+		
+		function template(){
+			$('.skip-step2').click(function(){ loadstep3(themelet); return false; });
+			$('.install-template').click(function(){
+				templateInstall();
+				return false;
+			});
+			$('#sd-body').corners('10px');
+			$.cookie('install', null);
+		}
+		
+		function themelet(){
+			$('.skip-step3').click(function(){ loadstep4(sample); return false; });
+			$('.back-step2').click(function(){ loadstep2(template); return false; });
+			$('.install-themelet').click(function(){
+				themeletInstall();
+				return false;
+			});
+			$('#sd-body').corners('10px');
+			$.cookie('install', 'step3');
+		}
+		
+		function sample(){
+			$('.skip-step4').click(function(){ loadcompleted(completed); return false; });
+			$('.back-step3').click(function(){ loadstep3(themelet); return false; });
+			$('.install-sample').click(function(){
+				sampleInstall();
+				return false;
+			});
+			$('#sd-body').corners('10px');
+			$.cookie('install', 'step4');
+			checkAll();
+		}
+		
+		function completed(){
+			$('.skip-completed').click(function(){ gotomanage(); return false; });
+			$('#sd-body').corners('10px');
+			$.cookie('install', 'completed');
+		}
+		
+		$('.skip-step2').click(function(){ loadstep3(themelet); return false; });
+		$('.skip-step3').click(function(){ loadstep4(sample); return false; });
+		$('.skip-step4').click(function(){ loadcompleted(completed); return false; });
+		$('.skip-completed').click(function(){ gotomanage(); return false; });
+		
+		$('.back-step2').click(function(){ loadstep2(template); return false; });
+		$('.back-step3').click(function(){ loadstep3(themelet); return false; });
+		
+		function checkAll(){
+			$('#all-options').click(function(){
+				if($(this).attr('checked')){
+					$('#install-sample ul li ul li input').each(function(){$(this).attr('checked', true);});
+				}else{
+					$('#install-sample ul li ul li input').each(function(){$(this).attr('checked', false);});
+				}
+			});
+		}
+		checkAll();
 		
 		function hideScroll(){
 			$(document).bind('scroll', function(){return false;});

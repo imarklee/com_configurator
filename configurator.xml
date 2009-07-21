@@ -44,6 +44,7 @@
             <folder>includes</folder>
             <filename>index.html</filename>
             <filename>install.sql</filename>
+			<folder>installer</folder>
             <folder>js</folder>
             <folder>language</folder>
             <folder>tables</folder>

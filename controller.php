@@ -10,7 +10,7 @@ class ConfiguratorController extends JController {
 
 	function manage() {
 		global $mainframe;
-		$database = &JFactory::getDBO();
+		$database = JFactory::getDBO();
 		$option = JRequest::getVar('option');
 		$template = 'morph';
 		$cid = JRequest::getVar('cid',null,'request','array');
@@ -100,7 +100,7 @@ class ConfiguratorController extends JController {
 			
 			$params->use_favicons = $xml_param_loader->use_favicons;
 			
-			$presets = &$xml_param_loader->preset_list;
+			$presets = $xml_param_loader->preset_list;
 			
 			if(isset($presets)) {
 				$preset_options = array();
@@ -165,7 +165,7 @@ class ConfiguratorController extends JController {
 	
 	function applytemplate() {
 		global $mainframe;
-		$database = &JFactory::getDBO();
+		$database = JFactory::getDBO();
 		$template_name = JRequest::getVar('t');
 		$option = JRequest::getVar('option');
 		
@@ -197,7 +197,7 @@ class ConfiguratorController extends JController {
 	
 			foreach($currentblock as $param_key => $param_value) {
 			
-				$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template_name;
 				$setting->param_name = $param_key;
 				
@@ -232,7 +232,7 @@ class ConfiguratorController extends JController {
 	
 	function savetemplate() {
 		global $mainframe;
-		$database = &JFactory::getDBO();
+		$database = JFactory::getDBO();
 		$template_name = JRequest::getVar('t');
 		$option = JRequest::getVar('option');
 	
@@ -266,7 +266,7 @@ class ConfiguratorController extends JController {
 		foreach ($params as $currentblock){      		
 			foreach($currentblock as $param_key=>$param_value) {
 			
-				$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template_name;
 				$setting->param_name = $param_key;
 				
@@ -369,7 +369,7 @@ class ConfiguratorController extends JController {
 			$themelet_details = $file;
 		}
 		
-		if($themelet_details['type'] != 'application/zip'){
+		if($themelet_details['type'] != ('application/zip' || 'application/x-zip-compressed')){
 			$error = 'error: "This is not a valid themelet package.<br />Please try again with a valid themelet package (zip file)"';
 			return $error;
 		}else{
@@ -548,7 +548,7 @@ class ConfiguratorController extends JController {
 			
 				JPath::setPermissions($logo_dir . DS . strtolower( basename( $logo_details['name'] ) ) );
 				JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
-				$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template;
 				$setting->param_name = 'templatelogo';
 				$setting->loadByKey();
@@ -612,7 +612,7 @@ class ConfiguratorController extends JController {
 			
 				JPath::setPermissions($background_dir . DS . strtolower( basename( $background_details['name'] ) ) );
 				JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
-				$setting = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template;
 				$setting->param_name = 'templatebackground';
 				$setting->loadByKey();
@@ -739,10 +739,10 @@ class ConfiguratorController extends JController {
 		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$activation = $_REQUEST['act_themelet'];
 		$return = $this->themelet_upload($newthemeletfile);
-		$themelet = split(',', $return);
+		$themelet = explode(',', $return);
 		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
 		if(isset($activation) && $activation == 'true'){
-			$db = &JFactory::getDBO();
+			$db = JFactory::getDBO();
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
 			$query = $db->query($query);
 			$themelet_num = $db->getNumRows($query);
@@ -760,13 +760,12 @@ class ConfiguratorController extends JController {
 	
 	function install_template(){
 		ini_set('memory_limit', '32M');
-		$newtemplatefile = JRequest::getVar( 'template-file', null, 'files', 'array' );
+		$newtemplatefile = @JRequest::getVar( 'template-file', null, 'files', 'array' );
 		$templatesdir = JPATH_SITE . DS . 'templates';
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
 		$logosdir = JPATH_SITE . DS . 'morph_assets' . DS . 'logos';
 		$backgroundsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backgrounds';
 		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
-		$currenttime = date('His_dmY', time());
 		$ret = '';
 		
 		// create assets folder
@@ -786,7 +785,7 @@ class ConfiguratorController extends JController {
 				die();
 			}
 		}else{
-			JPath::setPermissions($backupdir);
+			@JPath::setPermissions($backupdir);
 		}
 		if(!is_dir($logosdir)){
 			if(!mkdir($logosdir)){
@@ -796,7 +795,7 @@ class ConfiguratorController extends JController {
 				die();
 			}
 		}else{
-			JPath::setPermissions($logosdir);
+			@JPath::setPermissions($logosdir);
 		}
 		if(!is_dir($backgroundsdir)){
 			if(!mkdir($backgroundsdir)){
@@ -806,7 +805,7 @@ class ConfiguratorController extends JController {
 				die();
 			}
 		}else{
-			JPath::setPermissions($backgroundsdir);
+			@JPath::setPermissions($backgroundsdir);
 		}
 		if(!is_dir($themeletsdir)){
 			if(!mkdir($themeletsdir)){
@@ -816,25 +815,26 @@ class ConfiguratorController extends JController {
 				die();
 			}
 		}else{
-			JPath::setPermissions($themeletsdir);
+			@JPath::setPermissions($themeletsdir);
 		}
 		
-		if($newtemplatefile['type'] != 'application/zip'){
-			$error = 'error: "This is not a valid template package.<br />Please try again with a valid template package (zip file)"';
-			$ret = '{'.$error.'}';
-			echo $ret;
-		}else{
+		//echo '{ error: "' . $newtemplatefile['type'] . '"}';
+		//die();
+
+		if($newtemplatefile['type'] == 'application/octet-stream' or $newtemplatefile['type'] == 'application/zip' or $newtemplatefile['type'] == 'application/x-zip-compressed'){
 			if(is_dir($templatesdir . DS . 'morph')){
 				// template folder
 				if($_REQUEST['backup'] == 'true'){
 					// backup existing
-					if(!Jarchive::create($backupdir . DS . 'morph_files_' . $currenttime, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
+					$backupfile = $backupdir . DS . 'morph_files_' . date("His_dmY");
+					if(!@Jarchive::create($backupfile, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
 						// error creating archive
 						$error = 'There was an error creating the archive. Install failed'; 
 						$ret = '{'.$error.'}';
 						echo $ret;
 					}else{
 						// remove existing
+						@JPath::setPermissions($templatesdir . DS . 'morph');
 						if(!$this->deleteDirectory($templatesdir . DS . 'morph')){
 							// fail: error removing existing folder
 							$error = 'There was an error removing the old install. Install failed';	
@@ -847,8 +847,9 @@ class ConfiguratorController extends JController {
 								echo $ret;
 							}
 							// directory doesn't exist - install as per usual
-							JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+							@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 							$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+							$msg .= ', backuploc: "'.$backupfile.'.gz"';
 							$ret = '{'.$msg.'}';
 							echo $ret;
 						}
@@ -867,7 +868,7 @@ class ConfiguratorController extends JController {
 							echo $ret;
 						}
 						// directory doesn't exist - install as per usual
-						JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+						@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 						$ret = '{'.$msg.'}';
 						echo $ret;
@@ -880,11 +881,15 @@ class ConfiguratorController extends JController {
 					echo $ret;
 				}
 				// directory doesn't exist - install as per usual
-				JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+				@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 				$ret = '{'.$msg.'}';
 				echo $ret;
 			}
+		}else{
+			$error = 'error: "This is not a valid template package.<br />Please try again with a valid template package (zip file)"';
+			$ret = '{'.$error.'}';
+			echo $ret;
 		}
 	}
 	
@@ -965,8 +970,8 @@ class ConfiguratorController extends JController {
 			$retval['dir'] = $extractdir;
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
 			
-			if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'includes'.DS.'sql'.DS.'set-template-as-default.sql')){
-				$this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'includes'.DS.'sql'.DS.'set-template-as-default.sql');
+			if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS.'set-template-as-default.sql')){
+				$this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS.'set-template-as-default.sql');
 			}else{
 				$error = 'error: "SQL file doesn\'t exist"';
 				return $error;
@@ -977,46 +982,43 @@ class ConfiguratorController extends JController {
 		
 	}
 	
-	function get_structure($server, $user, $pass, $db) 
-	{ 
+	function get_structure() { 
         $sql = null;
-        $sql_structure = null;
-        $sql_drop = null;
-        $sql_data = null;
-        $iii = 0;
-        mysql_connect($server, $user, $pass); 
-        mysql_select_db($db); 
-        $tables = mysql_list_tables($db); 
-        while ($td = mysql_fetch_array($tables)) 
-        { 
-            $table = $td[0]; 
-            $r = mysql_query("SHOW CREATE TABLE `$table`"); 
-            if ($r) 
-            { 
-            if($iii++>0) $sql_structure .= ";\n\n";
-                    $d = mysql_fetch_array($r);
-                    $sql_structure .= 'DROP TABLE IF EXISTS `'. $d[0] . "`;\n" . $d[1];
-            } 
-
-                    $insert_sql = null;
-                    $table_query = mysql_query("SELECT * FROM `$table`"); 
-
-                    while ($fetch_row = mysql_fetch_row($table_query)) 
-                    { 
-                            $insert_sql .= "INSERT INTO `$table` VALUES("; 
-                            $iiii = 0;
-                            foreach ($fetch_row as $qry) 
-                            { 
-                            if ($iiii++>0) $insert_sql .=", ";
-                            $insert_sql .=  "'" . mysql_real_escape_string($qry) . "'";
-                            } 
-                            $insert_sql .= ");\n";
-                    } 
-
-                    $sql_data .= 'DROP TABLE IF EXISTS `'. $d[0] . "`;\n" . $d[1] . ";\n\n" . $insert_sql  . "\n"; 
-        }
-	 mysql_close ();
-	 return $sql_data . "\n\n"; 
+		$sql_structure = null;
+		$sql_data = null;
+		$i = 0;
+		
+		$db = JFactory::getDBO();
+		$td = $db->getTableList();
+		$r = $db->getTableCreate($td);
+			
+		$sql_structure = null;
+		if($r){
+			foreach($r as $k => $v){
+				$sql_structure .= 'DROP TABLE IF EXISTS `'. $k . "`;\n" . $v . ";\n\n";
+				$table[] = $k;
+			}
+		}
+		
+		$insert_sql = null;
+		foreach($table as $t){
+			$db->setQuery("SELECT * FROM `$t`"); 
+			$data = $db->loadAssocList();
+			if(!empty($data)){
+				foreach ($data as $v){
+					$sql_data .= "INSERT INTO `$t` VALUES(";
+					foreach ($v as $row) { 
+						if ($i++>0) $sql_data .=", ";
+						$sql_data .=  "'" . mysql_real_escape_string($row) . "'";
+					} 
+					$sql_data .= ");\n";	
+				}
+				if ($i++>0) $sql_data .="\n";
+			}
+		}
+		
+		$sql = '--- Create Database Structure' . "\n\n" . $sql_structure  . "\n\n" . '--- Create Inserts' . "\n\n" . $sql_data;
+		return $sql; 
 	}
 	
 	function create_sql_file($filename, $str){
@@ -1030,7 +1032,7 @@ class ConfiguratorController extends JController {
 	function parse_mysql_dump($url, $json = 'false') {
 	    $handle = fopen($url, "r");
 	    $query = "";
-	    $db = &JFactory::getDBO();
+	    $db = JFactory::getDBO();
 	    while(!feof($handle)) {
 	        $sql_line = fgets($handle);
 	        if (trim($sql_line) != "" && strpos($sql_line, "--") === false) {
@@ -1052,11 +1054,15 @@ class ConfiguratorController extends JController {
 	}
 	
 	function install_sample(){
-		(isset($_POST['sample_data']) ? $sample = $_POST['sample_data'] : $sample = '');
-		$dbdata = $_REQUEST['db'];
+		if(isset($_POST['sample_data'])){
+			$sample = $_POST['sample_data'];
+		}else{
+			$sample = '';
+		}
+		if(isset($_POST['db'])){ $dbdata = $_POST['db']; }else{ $dbdata = 'backup'; }
 		$message = array();
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
-		$sqldir = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'includes'.DS.'sql'.DS;
+		$sqldir = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS;
 		
 		$sqlfiles = array(
 			'sample' => 'sample.sql',
@@ -1065,7 +1071,7 @@ class ConfiguratorController extends JController {
 		);
 		
 		if(!is_dir($backupdir)){mkdir($backupdir);}
-		JPath::setPermissions($backupdir);
+		@JPath::setPermissions($backupdir);
 		
 		// validation
 		if(empty($sample) && $dbdata == 'destroy'){
@@ -1073,14 +1079,11 @@ class ConfiguratorController extends JController {
 		}else{
 			if($dbdata == 'backup'){
 				
-				$conf =&JFactory::getConfig();
-				$host = $conf->getValue('config.host');
-				$user = $conf->getValue('config.user');
-				$password = $conf->getValue('config.password');
+				$conf = JFactory::getConfig();
 				$database = $conf->getValue('config.db');
 				
 				$backupfile = 'morphdb_'.$database.'_'.date("His_dmY").'.sql.gz';
-				$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure($host, $user, $password, $database));
+				$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure());
 				$message['db'] = 'backedup';
 				$message['dbstore'] = "$backupdir/$backupfile"; 
 				
@@ -1088,9 +1091,8 @@ class ConfiguratorController extends JController {
 				$message['db'] = 'destroyed';
 			}
 			
-			$error = false;
 			if(!empty($sample)){
-			
+				$error = false;
 				foreach($sample as $data){
 					if(file_exists($sqldir . $sqlfiles[$data])){
 						$message['error'] = $this->parse_mysql_dump($sqldir	. $sqlfiles[$data], true);
@@ -1105,6 +1107,9 @@ class ConfiguratorController extends JController {
 				}else{
 					$message['error'] = 'There was a problem installing the sample data.';
 				}
+			}else{
+				$message['success'] = 'No Sample Data Installed.';
+				$message['error'] = '';
 			}
 		}
 		

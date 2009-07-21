@@ -1,0 +1,63 @@
+#install-wrap{background:#111 url(../images/install-bg.jpg) no-repeat 50% 50%;padding:0 0 30px 0;width:100%;float:left; position: relative; }
+#installer{width:800px;margin:2em auto;font:normal 76%/160% arial;position:relative;}
+#install-head{height:75px;}
+#install-head img{margin:14px 0 0 9px;float:left;z-index:998;position:relative;}
+#install-head img.tagline{margin:30px 0 0 15px;}
+#install-head .steps strong{font:bold 28px/37px arial;color:#333;display:block;text-transform:none;text-shadow:0 1px 0 #000;}
+#install-head .steps{font:bold 12px arial;text-transform:uppercase;color:#999;width:350px;float:right;margin:9px 10px 0 0;text-align:right;}
+#install-main{-moz-border-radius:10px;-webkit-border-radius:10px;background:#fff url(../images/installer-box-bg.jpg) repeat-x;}
+#install-title{height:50px;overflow:hidden;}
+#install-title h2{color:#444;margin:0;padding:0 0 0 20px;font:normal 15px/51px arial;text-shadow:0 1px 0 #fff;float:left;}
+#install-title h2 strong{color:#333;font-style:normal;}
+#install-title a{float:right;font:normal 13px arial;color:#666;margin:17px 15px 0 0;padding-right:25px;background:transparent url(../images/lifebuoy.png) no-repeat 99% 50%;}
+#install-body{background:transparent url(../images/bg-step1.jpg) no-repeat 100% 60%;border-top:1px solid #fff;border-bottom:3px solid #9AA3AE;padding:10px 200px 20px 20px;font:normal 18px/27px arial;position:relative;}
+.step2 #install-body{background:transparent url(../images/bg-step2.jpg) no-repeat 100% 0%;padding-bottom:40px;}
+.step3 #install-body{background:transparent url(../images/bg-step3.jpg) no-repeat 100% 60%;padding-bottom:40px;}
+#install-body.complete{background:transparent url(../images/bg-complete.jpg) no-repeat 100% 0%;padding-bottom:40px;}
+#install-body h3{font:bold 20px arial;color:#333;margin:.7em 0;text-shadow:0 1px 0 #fff;}
+#install-body.complete h3{color:#326C02;}
+#install-body h3 strong{color:#58842F;}
+#install-body h4{font:normal 15px arial;margin:1.5em 0 .8em 0;padding-top:1.5em;color:#444;border-top:3px solid #eee;}
+#install-body .alert{margin-bottom:1.5em;width:700px;}
+#install-body .alert strong{color:#990000;}
+#install-body p{font:normal 15px/22px arial;color:#777;}
+#install-body a{color:#006699;text-decoration:underline;cursor:pointer;}
+#install-body label{font:normal 12px arial;color:#666;display:block;}
+#install-body label.upload{width:100%;float:left;margin:0 0 0 0;padding:2em 0 0 0;}
+#install-body label.backup{margin-top:1em;}
+#install-body #upload-info{width:220px;height:80px;position:absolute;top:160px;left:310px;text-decoration:none;color:#fff;padding:10px 15px 0 30px;border-left:1px dashed #ccc;background:#fff url(../images/upload-info.png) no-repeat top left;}
+#install-body #upload-info.info1{background-position:0 95%;}
+#install-body #upload-info:link,#install-body #upload-info:hover,#install-body #upload-info:focus{outline:none;cursor:pointer;}
+#install-body ul,#install-body li{margin:0;padding:0;list-style:none;}
+#install-body ul ul{padding-left:1.5em;margin-bottom:.7em;}
+#install-body li label{display:block;cursor:pointer;color:#777;padding:3px 0;font-size:14px;}
+#install-body li.selected label{font-weight:bold;color:#58842F;}
+#install-body li.selected li label {font-weight:normal;color:#777;}
+#install-body li.selected li.selected label{font-weight:bold;color:#58842F;}
+#install-foot{height:75px;overflow:hidden;background:#ddd;clear:both;border-top:1px solid #fff;-moz-border-radius-bottomleft:10px;-webkit-border-bottom-left-radius:10px;-moz-border-radius-bottomright:10px;-webkit-border-bottom-right-radius:10px;}
+#action{padding:0;margin:28px 0 0 30px;}
+#action li{list-style:none;margin:0;color:#aaa;font:normal 15px arial;text-transform:uppercase;}
+#action li a{color:#666;text-decoration:none;display:block;}
+#action li span{color:#999;text-indent:-7998px;display:block;width:20px;height:20px;float:left;background-image:url(../images/btn-nav.png);}
+#action li.previous{float:left;padding-left:27px;padding:0 20px 0 0;}
+#action li.previous span{background-position:0 -41px;margin:-1px 5px 0 0;}
+#action li.previous a span{background-position:0 -21px;margin:-1px 5px 0 0;}
+#action li.previous a:hover{color:#333;}
+#action li.previous a:hover span{background-position:0 -1px;}
+#action li.skip{float:left;padding-right:27px;padding:0 0 0 20px;border-left:1px solid #ccc;text-shadow:0 1px 0 #fff;}
+#action li.skip span{float:right;background-position:20px -41px;margin:-1px 0 0 5px;}
+#action li.skip a span{float:right;background-position:20px -21px;margin:-1px 0 0 5px;}
+#action li.skip a:hover{color:#333;}
+#action li.skip a:hover span{background-position:20px -1px;}
+#action li.next{float:right;margin:-2px 0 0 0;background:none;}
+#action li.next .btn-install{background:#DDDAD2 url(../images/btn-upload.png) no-repeat;display:block;width:255px;height:50px;text-indent:-7998px;float:left;border:0;margin:-15px 15px 0 0;}
+#action li.next .install-sample{background:#DDDAD2 url(../images/btn-upload.png) no-repeat;}
+#action li.next .launch-cfg{background:#DDDAD2 url(../images/btn-complete.png) no-repeat;}
+#action li.next .btn-install:hover{background-position:center left;cursor:pointer;}
+#action li.next .btn-install:focus{background-position:bottom left;}
+#install-body .success{text-align:center;color:green;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
+#install-body .error{text-align:center;color:red;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
+#saving{position:absolute;top:0;left:0;display:none;z-index:50;background:#111;width:100%;height:500px;opacity:0.9;}
+#saving div{margin:35% 45%;width:215px;font:bold 15px arial;color:#fff;position:relative;}
+#saving div span{position:absolute;left:20px;top:-1px;}
+#minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}

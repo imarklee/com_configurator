@@ -787,7 +787,7 @@ jQuery.noConflict();
 				autoOpen: true,
 				bgiframe: true,
 				modal: true,
-				width: 610,
+				width: 700,
 				height: 700,
 				title: qtTitle,
 				zIndex: 5001,

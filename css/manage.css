@@ -556,3 +556,7 @@ a.disabled{opacity:0.5;cursor:default;}
 p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF3100;width:325px;}
 
 .quicktips-box { margin: 0 auto; width: 615px; padding: 5px; }
+
+.toolguides.ui-dialog-content{
+padding:5px;
+}

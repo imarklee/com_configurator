@@ -79,7 +79,7 @@ jQuery.noConflict();
 								$('#dialog').html(data.error);
 								$('#dialog').dialog('show');
 	                        }else{
-	                        	if(data.backuploc != ''){ var backuploc = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; }else{ var backuploc = '' }
+	                        	if(data.backuploc != ''){ var backuploc = '<p><strong>Your morph files have been backed up to: </strong></p><p><small>'+data.backuploc+'</small></p>'; }else{ var backuploc = '' }
 	                            hideScroll();
 	                            $('#saving').css('display', 'none');
 								$('#dialog').dialog({
@@ -113,7 +113,7 @@ jQuery.noConflict();
 				});
 			}else{
 				hideScroll();
-				$('<div>All fields are required</div>').dialog({
+				$('<div class="dialog-msg">All fields are required.</div>').dialog({
 	            	bgiframe: true,
 					autoOpen: true,
 					stack: true,
@@ -229,7 +229,7 @@ jQuery.noConflict();
 				});
 			}else{
 				hideScroll();
-				$('<div>All fields are required</div>').dialog({
+				$('<div class="dialog-msg">All fields are required.</div>').dialog({
 	            	bgiframe: true,
 					autoOpen: true,
 					stack: true,
@@ -291,7 +291,7 @@ jQuery.noConflict();
 					   			minHeight: 20,
 					   			width: 500,
 					   			modal: true,
-					   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+					   			title: 'Error',
 			   					overlay: {
 			   						backgroundColor: '#000000', 
 			   						opacity: 0.8 
@@ -309,7 +309,7 @@ jQuery.noConflict();
 							$('#dialog').html(data.error);
 							$('#dialog').dialog('show');
 						}else{
-							if(data.db == 'backedup'){ var dbstore = '<p><strong>Your database was backed up to: </strong><small>'+data.dbstore+'</small></p>'; }else{ var dbstore = '' }
+							if(data.db == 'backedup'){ var dbstore = '<p><strong>Your database was backed up to: </strong></p><p><small>'+data.dbstore+'</small></p>'; }else{ var dbstore = '' }
 						
 							hideScroll();
                             $('#saving').css('display', 'none');

@@ -1338,7 +1338,7 @@ jQuery.noConflict();
 	    	if($(elid).val() != null){
 		    	var imageTitle  = $(elid).val(); 
 		    	var updatedTitle = imageTitle;
-		    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span><span class="upload-logo-container">(<a href="#" class="upload-logo">upload new</a>)</span>');
+		    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span><span class="upload-logo-container">(<a href="#" class="upload-logo">Upload Logo</a>)</span>');
 		    	$('.logo-preview').each(function(){
 					$(this).attr('title', '');
 		    		$(this).qtip({
@@ -1400,7 +1400,7 @@ jQuery.noConflict();
 	   			draggable: false,
 	   			minHeight: 20,
 	   			modal: true, 
-	   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;">Warning</span>',
+	   			title: 'Warning',
 	   			overlay: {
 	   				backgroundColor: '#000', 
 	   				opacity: 0.5 
@@ -1715,7 +1715,7 @@ jQuery.noConflict();
 								$('#upload-message').dialog('moveToTop').dialog('show');
 							}else{
 								$('#upload-message').html(data.overwrite);
-								$('#upload-message').dialog('option', 'title', '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Overwrite Warning</span>');
+								$('#upload-message').dialog('option', 'title', 'Overwrite Warning');
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
 										'Yes': function(){

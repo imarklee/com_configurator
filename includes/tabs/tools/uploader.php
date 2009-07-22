@@ -21,8 +21,9 @@
 			</fieldset>	
 		</div>
 		<div class="upload-info">
-		<h3>About this tool</h3>
-		Select the type of file you would like to install below. Once you have installed your chosen file type, open the "customization settings" tab on the left. All of these files (including backups) are located in your template's "assets" folder. Click here to read more about how to best utilize this feature.
+		<h4>About this tool</h4>
+		<p>Select the type of file you would like to install below. Once you have installed your chosen file type, open the "customization settings" tab on the left.</p>
+		<p>All of these files (including backups) are located in your template's "assets" folder. Click here to read more about how to best utilize this feature.</p>
 		</div>
 	</div>
 	<div id="upload-message"></div>

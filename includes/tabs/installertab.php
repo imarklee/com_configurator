@@ -1,8 +1,8 @@
 <?php
-	$themelet_url = JURI::root() . '/templates/morph/assets/themelets/';
-	$favicon_url = JURI::root() . '/templates/morph/assets/favicons/';
-	$logo_url = JURI::root() . '/templates/morph/assets/logos/';
-	$background_url = JURI::root() . '/templates/morph/assets/backgrounds/';
+	$themelet_url = JURI::root() . '/morph_assets/themelets/';
+	$favicon_url = JURI::root() . '/morph_assets/favicons/';
+	$logo_url = JURI::root() . '/morph_assets/logos/';
+	$background_url = JURI::root() . '/morph_assets/backgrounds/';
 	$template_dir = JPATH_SITE . DS . 'templates' . DS . 'morph';
 ?>
 <h4>What would you like to install?</h4>
@@ -84,37 +84,4 @@
     	}
     	?>
 	</div>
-</div>	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+</div>

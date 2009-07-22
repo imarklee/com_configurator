@@ -143,7 +143,7 @@ border:1px solid #999;float:left;width:460px;}
 #tabs li.palette .picker span{display:none;}
 #tabs li.palette .picker:hover span{display:block;}
 .newColorpicker{z-index:9999;}
-#tabs li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:8px;right:98px;background:#ccc;-moz-border-radius:3px;}
+#tabs li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:7px;right:98px;background:#ccc;-moz-border-radius:3px;}
 .full-mode #tabs li.palette .color-preview{top:7px;}
 #assets-tabs ul.assets-list ul li.alt{margin-left:0;}
 #themelets-list.thumb-view ul.assets-list li.deleted,
@@ -212,7 +212,7 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #assets .list-view ul ul,
 #assets .list-view ul ul li,
 #assets .list-view h3{margin:0;padding:0;list-style:none;font:normal 12px arial;}
-#wrap #assets .list-view ul.assets-headers{width:918px;overflow:hidden;margin-top:20px;display:block;height:30px;background:#ccc url(../images/gradient1.jpg) repeat-x;border:1px solid #ccc;}
+#wrap #assets .list-view ul.assets-headers{width:918px;overflow:hidden;margin-top:20px;display:block;height:30px;background:#ddd;border:1px solid #ccc;}
 #wrap #assets .list-view ul.assets-headers li{float:left;width:auto;background:none;font:bold 13px/30px arial;text-align:center;}
 #wrap #assets .list-view ul.assets-headers li.th-name{width:140px;text-align:left;padding-left:7px;}
 #wrap #assets .list-view ul.assets-headers li.th-installed{width:140px;}
@@ -271,7 +271,7 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #help p.help-links{margin-top:-10px;}
 #footer{overflow:hidden;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;}
 #footer:hover{overflow:hidden;}
-#footer a.ptlogo{width:170px;height:45px;display:block;float:left;margin-top:15px;text-indent:-7998px;background:transparent url(../images/ptlogo1.png) no-repeat;}
+#footer a.ptlogo{width:170px;height:45px;display:block;float:left;margin-top:15px;text-indent:-7998px;background:transparent url(../images/ptlogo.png) no-repeat;}
 #footer a.ptlogo:hover{background-position:bottom left;}
 .footer-links,
 .footer-links li{margin:0;padding:0;list-style:none;}
@@ -282,14 +282,14 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 .footer-links li a{color:#ccc;font-size:11px;}
 .footer-links li h4{color:#fff;font-size:13px;margin:0;padding:0;}
 #uploader{overflow:hidden;}
-#uploader .upload-tool,
-#uploader .upload-info{width:48%;float:left}
+#uploader .upload-tool,#uploader .upload-info{width:48%;float:left;}
 #uploader .upload-info{float:right;}
 #uploader h3{font:bold 25px arial;}
-#uploader legend{font:bold 20px arial;color:#999;}
+#uploader h4{font:bold 20px arial;}
+#uploader legend{font:bold 17px arial;color:#999;}
 #uploader label{cursor:pointer;}
 #uploader legend strong{color:#555;}
-#uploader fieldset{background:#eee;padding:1em;border-right:1px solid #ccc;border-bottom:1px solid #ccc;}
+#uploader fieldset{padding:1em 0;border:0;border-bottom:1px dashed #ccc;}
 #conf-login{position:relative;background:#000000 url(../images/bokeh-bg.jpg) no-repeat 50% 50%;color:#313131;width:100%;padding:50px 0;display:block;text-align:left;}
 #conf-login h2{font:bold 32px Arial;margin:0 0 10px 0;padding:0;}
 #conf-login p{margin:0 0 15px 0;padding:0;font:normal 13px/17px Arial;width:360px;}
@@ -482,8 +482,8 @@ ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 #report-bug #feedbackform ul li textarea{background:#EFEFEF;border-left:1px solid #ddd;border-top:1px solid #ddd;border-right:1px solid #ccc;border-bottom:1px solid #ccc;}
 #report-bug #feedbackform ul li input.focus,
 #report-bug #feedbackform ul li textarea.focus{background:#FFFFDD;}
-#report-bug #feedbackform ul li.fb-subject input{width:400px;padding:5px 10px;}
-#report-bug #feedbackform ul li.fb-message textarea{width:400px;padding:5px 10px;}
+#report-bug #feedbackform ul li.fb-subject input{width:400px;padding:5px;}
+#report-bug #feedbackform ul li.fb-message textarea{width:400px;padding:5px;}
 #report-bug #feedbackform ul li.fb-buttons{padding:5px 0 15px 130px;}
 #report-bug #feedbackform ul li.fb-buttons input#ff-submit{width:250px;height:40px;overflow:hidden;border:0;background:none;padding:40px 0 0 0;margin:0;background:transparent url(../images/btn-send-feedback.png) no-repeat;cursor:pointer;}
 #report-bug #feedbackform ul li.fb-buttons input#ff-submit:hover{background-position:bottom left;}
@@ -524,8 +524,8 @@ a.disabled{opacity:0.5;cursor:default;}
 #submenu-box div.m ul#submenu li.full-mode a{background:transparent url(../images/fullscreen-link.png) no-repeat 12px 3px;padding-left:35px;}
 #submenu-box div.m ul#submenu li.feedback a{background:transparent url(../images/feedback-link.png) no-repeat 10px 2px;padding-left:35px;}
 #submenu-box div.m ul#submenu li.preferences a{background:transparent url(../images/prefs-link.png) no-repeat 10px 2px;padding-left:35px;}
-#submenu-box div.m ul#submenu li a.active{line-height:20px;text-decoration:none;//color:#999;opacity:0.4;}
-#submenu-box div.m ul#submenu li.last a{border-right:0;}
+#submenu-box div.m ul#submenu li a.active{line-height:20px;text-decoration:none;}//color:#999;opacity:0.4;}
+#submenu-box div.m ul,#submenu li.last a{border-right:0;}
 #submenu-box div.m ul#submenu li.full-mode,
 #submenu-box div.m ul#submenu li.feedback,
 #submenu-box div.m ul#submenu li.preferences{float:right;}
@@ -533,6 +533,7 @@ a.disabled{opacity:0.5;cursor:default;}
 #minwidth-body.full-mode #submenu-box div.m ul#submenu li.preferences a{border-right:1px solid #81B34F;}
 #minwidth-body.full-mode #submenu-box div.m ul#submenu{margin-right:80px;}
 #minwidth-body.full-mode #submenu-box div.m ul#submenu li a:hover{color:#ACEF69;}
+#keyboard-screen{padding:2em 1em 2em 2em;}
 #keyboard-screen p{font:normal 20px arial;margin:0 0 1em 0;padding:0;color:#555;}
 #keyboard-screen ul,
 #keyboard-screen li{list-style:none;margin:0;padding:0;}
@@ -559,4 +560,34 @@ p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF310
 
 .toolguides.ui-dialog-content{
 padding:5px;
+}
+.themelet-options{
+font:normal 11px arial;
+color: #ccc;
+padding:8px 36px 0 0;
+float:right;
+}
+#install-type label{
+position:relative;
+padding:4px 7px;
+border:1px solid #ccc;
+background:#eee;
+color:#999;
+}
+#install-type label:hover{
+color: #333;
+border:1px solid #666;
+}
+#install-type input{
+position:absolute;
+left:-7998px;
+}
+#install-type .label-selected{
+border:1px solid #999;
+background:#ccc;
+color:#444;
+}
+.dialog-msg{
+padding:15px;
+font:normal 15px arial;
 }

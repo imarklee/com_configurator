@@ -10,8 +10,5 @@
 		
 		<h4>Where to from here?</h4>
 		<p>New themelets can be installed from the <strong>Toolbox</strong> tab, viewed in the <strong>Assets</strong> tab and customized in the <strong>Customize</strong> tab.</p>
-
-		<p><a href="#" class="upload-themelet btn-link">Install a new themelet</a>&nbsp;&nbsp;<a href="#" class="themelet-tab btn-link">Customize your themelet</a></p>
-
 	</div>
 </div>

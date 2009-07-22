@@ -20,6 +20,7 @@ $activebg = $db->loadResult();
 	</div>
 	
 	<div id="backgrounds-list" class="assets-layout <?php if(isset($_COOKIE['backgrounds-view']) && $_COOKIE['backgrounds-view'] == 'list') { echo 'list-view'; } else { echo 'thumb-view'; } ?>">
+		<?php if(!empty($lists['backgrounds'])){ ?>
 		<ul id="backgrounds-headers" class="assets-headers">
 			<li class="th-name">File name</li>
 			<li class="th-installed">Size</li>
@@ -59,7 +60,15 @@ $activebg = $db->loadResult();
 				</ul>
 				</div>
 			</li>
-			<?php } ?>
+			<?php 
+					}
+				}else{ ?>
+				
+				<div class="no-assets">
+					There are currently no backgrounds in your assets folder. <a href="#" class="upload-bg">Upload a background?</a>
+				</div>
+					
+				<?php }	?>
 		</ul>
 	<!--<p class="assets-location">Your backgrounds are located in: <strong>"<?php echo $background_dir; ?>"</strong>.</p>-->
 	</div>

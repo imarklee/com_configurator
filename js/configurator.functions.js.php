@@ -120,7 +120,7 @@ jQuery.noConflict();
 			if($.cookie('am_logged_in')){
 				$("#submenu").append('<li class="preferences"><a href="#">Preferences</a></li>','<li class="feedback"><a href="#" id="report-bug-link">Send Feedback</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 			}else{
-				$("#submenu").append('<li class="feedback"><a href="#" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
+				$("#submenu").append('<li class="feedback"><a target="_blank" href="http://www.joomlajunkie.com/member/pre-sales/" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 			}
 		}
 		

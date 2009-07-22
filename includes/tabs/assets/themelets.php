@@ -4,7 +4,7 @@ $themeler_url = JURI::root() . DS . 'morph_assets' . DS . 'themelets';
 if(is_dir($themelet_dir)) {
 	$lists['themelets'] = JFolder::folders( $themelet_dir );
 } else {
-	$lists['themelets'] = null;
+	$lists['themelets'] = 'test';
 }
 ?>
 <div id="assets-themelets">
@@ -14,6 +14,7 @@ if(is_dir($themelet_dir)) {
 	</div>
 	
 	<div id="themelets-list" class="assets-layout <?php if(isset($_COOKIE['themelets-view']) && $_COOKIE['themelets-view'] == 'list') { echo 'list-view'; } else { setcookie('themelets_view', 'thumb',60*60*24*30, '/'); echo 'thumb-view'; } ?>">
+		<?php if(!empty($lists['themelets'])){ ?>
 		<ul id="themelets-headers" class="assets-headers">
 			<li class="th-name">Themelet Name</li>
 			<li class="th-installed">Installed Version</li>
@@ -58,8 +59,15 @@ if(is_dir($themelet_dir)) {
 				</ul>
 				</div>
 			</li>	
-				 
-			<?php } ?>
+			<?php 
+					}
+				}else{ ?>
+				
+				<div class="no-assets">
+					There are currently no themelets in your assets folder. <a href="#" class="upload-themelet">Upload a themelet?</a>
+				</div>
+					
+				<?php }	?>
 		</ul>
 		<!--<p class="assets-location">Your themelets are located in: <strong>"<?php echo $themelet_dir; ?>"</strong>.</p>-->
 	</div>

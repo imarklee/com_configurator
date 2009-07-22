@@ -228,7 +228,7 @@ if(isset($_GET['unpack'])){
 	setcookie('unpack', 'true', 0);
 	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
 }elseif(isset($_GET['pack'])){
-	setcookie('upack', 'true', time()-3600);
+	setcookie('unpack', 'true', time()-3600);
 	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
 }
 

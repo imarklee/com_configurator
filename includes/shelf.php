@@ -93,6 +93,7 @@ function showIcon($curr, $serv){
 					<li><a class="modal-link btn-link" href="pagefx.html" title="Getting started with PageFX">PageFX</a></li>
 					<li><a class="modal-link btn-link" href="menufx.html" title="Getting started with MenuFX">MenuFX</a></li>
 					<li><a class="modal-link btn-link" href="contentfx.html" title="Getting started with ContentFX">ContentFX</a></li>
+					<li><a class="modal-link btn-link" href="chromefx.html" title="Getting started with ContentFX">ChromeFX</a></li>
 				</ul>
 		</div>
 	</div>

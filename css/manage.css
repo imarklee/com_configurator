@@ -343,9 +343,9 @@ input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 #tabs .desc-inner{margin:0;padding:1em;color:#AF3E00;font:normal 15px/20px arial;background:#FFDC9F;border:1px solid #AF3E00;position:relative;}
 #tabs .tab-desc p a{color:#fff;font:normal 12px/20px arial;background:#EF9700;text-decoration:underline;position:absolute;bottom:-1px;right:-1px;padding:2px 0 0 7px;border-top:1px solid #AF3E00;border-left:1px solid #AF3E00;}
 #tabs .ui-widget-content{float:left;position:relative;width:920px;}
-.docs-wrap{background:#fff;color:#111;padding:10px 2em 1.5em 2em;margin:-1em;max-height:500px;overflow:auto;}
+.docs-wrap{background:#fff;color:#111;padding:2em;margin:0;}
 .docs-wrap h2{font-size:25px;margin:20px 0 15px 0;}
-.docs-wrap h3{font-size:20px;margin:15px 0 15px 0;}
+.docs-wrap h3{font-size:20px;margin:0 0 15px 0;}
 .docs-wrap p{font:normal 12px/18px arial;}
 .docs-wrap dd a{text-decoration:underline!important;}
 .docs-wrap p.intro{font:normal 15px/20px Arial;color:#666;}
@@ -356,9 +356,9 @@ input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 .docs-wrap dl.options-list{font-size:12px;overflow:hidden;}
 .docs-wrap dl.options-list dt,
 .docs-wrap dl.options-list dd{float:left;margin-bottom:15px;line-height:17px;}
-.docs-wrap dl.options-list dt{font-weight:bold;width:105px!important;}
+.docs-wrap dl.options-list dt{font-weight:bold;width:75px;}
 .docs-wrap dl.options-list dt span{display:block;color:#0088DB;text-decoration:underline;font-size:11px;font-weight:normal;padding-left:12px;background:#fff url(../images/bullet3.png) no-repeat 0;}
-.docs-wrap dl.options-list dd{font-weight:normal;width:697px;color:#444;}
+.docs-wrap dl.options-list dd{font-weight:normal;width:550px;color:#444;}
 .docs-wrap .docs-class{background:#FFFFAF;border:1px solid #FFD07F;color:#E3702B;padding:0 2px;}
 .docs-wrap p .btn{height:26px;float:right;display:inline-block;text-transform:uppercase;text-decoration:none;color:#333;padding-right:15px;font:normal 9px/26px arial;background:url(../images/btn-right.jpg) no-repeat top right;}
 .docs-wrap p .btn span{background:url(../images/btn-left.jpg) no-repeat top left;padding-left:15px;height:26px;font:normal 9px/26px arial;display:inline-block;}

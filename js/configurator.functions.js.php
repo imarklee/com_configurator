@@ -774,7 +774,8 @@ jQuery.noConflict();
 			});
 			
 			$(this).attr('title', '');
-	    });	    
+	    });
+	    	    
 	    $('.tt-modal').click(function(){
 	    	var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
 	   		var thetitle = $(this).attr("title").split('::'); 
@@ -792,29 +793,51 @@ jQuery.noConflict();
 				title: qtTitle,
 				zIndex: 5001,
 				close: function(){
-					$(this).dialog('destroy');
 					$('.toolguides').empty();
+					$(this).dialog('destroy');
 					showScroll();		
 				}
 			});
 	   		return false;
 	   	});
 	   	
+	   	
+	   	
 	   	$('a.modal-link').click(function(){
 	   		var $this = $(this);
 	   		hideScroll();
-	   		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));
+	   		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));	   		
 	   		$('.toolguides').dialog({
 				autoOpen: true,
 				bgiframe: true,
 				modal: true,
-				width: 610,
+				width: 700,
 				height: 700,
-				title: $this.attr('title'),
+				title: $(this).attr('title'),
 				zIndex: 5001,
 				close: function(){
-					$(this).dialog('destroy');
 					$('.toolguides').empty();
+					$(this).dialog('destroy');
+					showScroll();		
+				}
+			});
+			return false;
+		});
+		
+		$('a.modal-link-img').click(function(){
+			hideScroll();
+			$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));
+			$('.toolguides').dialog({
+				autoOpen: true,
+				bgiframe: true,
+				modal: true,
+				width: 610,
+				height: 660,
+				title: $(this).attr('title'),
+				zIndex: 5001,
+				close: function(){
+					$('.toolguides').empty();
+					$(this).dialog('destroy');
 					showScroll();		
 				}
 			});
@@ -2184,7 +2207,7 @@ jQuery.noConflict();
     		$('.toolguides').dialog({
 				autoOpen: false,
 				bgiframe: true,
-				width: 610,
+				width: 700,
 				height: 700,
 				title: toolTitle,
 				zIndex: 5001,

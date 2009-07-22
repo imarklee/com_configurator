@@ -1352,7 +1352,8 @@ jQuery.noConflict();
 					var subtabs = $("#tools-tabs").tabs();
 					maintabs.tabs("select",3);
 					subtabs.tabs("select",0);
-					$("#upload_logo").attr("checked",true);
+					$('#install-type label.label-selected').removeClass('label-selected');
+					$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
 					return false;
 				});
 		    	$(elid).change(function(){
@@ -1375,7 +1376,8 @@ jQuery.noConflict();
 					var subtabs = $("#tools-tabs").tabs();
 					maintabs.tabs("select",3);
 					subtabs.tabs("select",0);
-					$("#upload_logo").attr("checked",true);
+					$('#install-type label.label-selected').removeClass('label-selected');
+					$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
 					return false;
 				});
 			}
@@ -2076,7 +2078,8 @@ jQuery.noConflict();
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
-	   			},close: function(){
+	   			},
+	   			close: function(){
 	   				showScroll();
 	   				$.cookie('prefs', null);
 	   				$(this).dialog('destroy');
@@ -2084,7 +2087,7 @@ jQuery.noConflict();
 	    	});
 	    	$('#preferences-screen a.close-preferences').corners('bottom-left 10px');
 	    	$(".close-preferences").click(function(){
-				$('#preferences-screen').dialog("destroy");
+				$('#preferences-screen').dialog("close");
 				showScroll();
 				if($.cookie('prefs')){ $.cookie('prefs', null); }
 				return false;
@@ -2130,7 +2133,7 @@ jQuery.noConflict();
 
     			// save prefs
     			if($.cookie('prefs')){ $.cookie('prefs', null); }
-    			$('#preferences-screen').dialog('destroy');
+    			$('#preferences-screen').dialog('close');
     			window.location.reload(true);
     			
     		return false;
@@ -2192,17 +2195,22 @@ jQuery.noConflict();
 	   				backgroundColor: '#000', 
 	   				opacity: 0.5 
 	   			},
+	   			close: function(){
+	   				$.cookie('logout-toggle', null);
+	   				$(this).remove();
+					showScroll();
+	   			},
 				buttons: {
 					'Log Out': function(){
 						$.cookie('am_logged_in', null, { path: '/', expires: -1 });
 						$.cookie('am_logged_in_user', null, { path: '/', expires: -1 });
 						$.cookie('member_id', null, { path: '/', expires: -1 });
 						$.cookie('member_data', null, { path: '/', expires: -1 });
+						$.cookie('logout-toggle', null);
 						window.location.reload(true);
 					},
 					'Remain Logged In': function(){
-						$(this).dialog('destroy');
-						showScroll();
+						$(this).dialog('close');
 					}
 				}	
 			});
@@ -2360,7 +2368,7 @@ jQuery.noConflict();
 					    });
 					    $.cookie('prefs', 'open');
 					}else{
-						$('#preferences-screen').dialog("destroy");
+						$('#preferences-screen').dialog("close");
 						$.cookie('prefs', null);
 					}
 					e.preventDefault();
@@ -2384,7 +2392,14 @@ jQuery.noConflict();
 				}
 				
 				function logout(){
-					logoutCfg();
+					if(!$.cookie('logout-toggle')){
+						logoutCfg();
+					    $.cookie('logout-toggle', 'show');
+					}else{
+						$.cookie('logout-toggle', null);
+						$('#logout-message').dialog('close');
+						showScroll();
+					}
 					e.preventDefault();
 					return false;
 				}

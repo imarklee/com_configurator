@@ -124,7 +124,8 @@ border:1px solid #999;float:left;width:460px;}
 #tabs ol.forms option,
 #tabs ol.forms input,
 #tabs ol.forms textarea{font:normal 13px arial!important;color:#111;-moz-border-radius:4px;}
-#tabs ol.forms textarea{padding:3px;}
+#tabs ol.forms textarea{padding:3px; min-height: 60px; display: block; margin-bottom: 5px;}
+#tabs ol.forms textarea.focus {padding-bottom: 20px; height: 10px;}
 #tabs ol.forms input{padding-left:3px;height:16px;}
 #tabs ol.forms li .tooltip{position:absolute;top:7px;left:160px;border:0;text-decoration:none;text-indent:-7998px;width:30px;height:15px;display:block;}
 #tabs ol.forms li .tt-inline{background:transparent url(../images/tooltip-info.png) no-repeat;}

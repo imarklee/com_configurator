@@ -373,7 +373,7 @@ jQuery.noConflict();
 	});
 		
 
-		$('textarea').autoResize({ extraSpace:40, animate:false });
+		$('.text_area').simpleautogrow();
 					
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
@@ -1967,6 +1967,51 @@ jQuery.noConflict();
 			blockSettingsOptions('#insetsinset4_chrome','#insetsinset4');
 			blockSettingsOptions('#footerfooter_chrome','#footerfooter');
 		});
+		
+		function footerOptions(elid, hideid){
+			
+			
+			
+			$(elid).change(function(){
+				var option = $(this).val();
+				switcher(option);
+			});
+			
+			switcher($(elid+' > option:selected').val());
+			
+			function switcher(v){
+				switch(v){
+					case '0':
+						$(hideid).parent().css('display', 'none');
+						$('#footerfooter_gridsplit').parent().css('display', 'none');
+						$('#footerfooter_copyright').parent().css('display', 'block');
+						$('#footerfooter_credits').parent().css('display', 'block');
+						$('#footerfooter_textcolor').parent().css('display', 'block');
+						$('#footerfooter_linkscolor').parent().css('display', 'block');
+						$('#footerfooter_swish1').parent().css('display', 'block');
+						$('#footerfooter_morphlink1').parent().css('display', 'block');
+						$('#footerfooter_xhtml1').parent().css('display', 'block');
+						$('#footerfooter_css1').parent().css('display', 'block');
+						$('#footerfooter_rss1').parent().css('display', 'block');
+					break;
+					case '1':
+						$(hideid).parent().css('display', 'block');
+						blockSettingsOptions('#footerfooter_chrome','#footerfooter');
+						$('#footerfooter_copyright').parent().css('display', 'none');
+						$('#footerfooter_credits').parent().css('display', 'none');
+						$('#footerfooter_textcolor').parent().css('display', 'none');
+						$('#footerfooter_linkscolor').parent().css('display', 'none');
+						$('#footerfooter_swish1').parent().css('display', 'none');
+						$('#footerfooter_morphlink1').parent().css('display', 'none');
+						$('#footerfooter_xhtml1').parent().css('display', 'none');
+						$('#footerfooter_css1').parent().css('display', 'none');
+						$('#footerfooter_rss1').parent().css('display', 'none');
+					break;
+				}
+			}
+		}
+		
+		footerOptions('#footerfooter_type', '#footerfooter_chrome');
 		
 		function sliderOptionsOn(elid, hideid){
 			if($(elid).attr('checked')){

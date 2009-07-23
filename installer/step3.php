@@ -35,6 +35,11 @@ define('JURL', $base);
 					</ul></li>
 				<li><label><input type="checkbox" name="database-options" id="database-options" checked="checked" value="db" />
 					Backup your entire database (recommended)</label></li>
+				<?php if(extension_loaded('zlib')){ ?>
+				<li><label><input type="checkbox" name="gzip-options" id="gzip-options" checked="checked" value="gzip" />
+					Enable GZIP Compression (recommended)</label></li>
+				<li><?php echo JPATH; ?></li>
+				<?php } ?>
 			</ul>
 		</div>
 			

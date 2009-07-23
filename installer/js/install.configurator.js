@@ -79,7 +79,7 @@ jQuery.noConflict();
 								$('#dialog').html(data.error);
 								$('#dialog').dialog('show');
 	                        }else{
-	                        	if(data.backuploc != ''){ var backuploc = '<p><strong>Your morph files have been backed up to: </strong></p><p><small>'+data.backuploc+'</small></p>'; }else{ var backuploc = '' }
+	                        	if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
 	                            hideScroll();
 	                            $('#saving').css('display', 'none');
 								$('#dialog').dialog({
@@ -513,7 +513,7 @@ jQuery.noConflict();
 				}
 			});
 					
-			$('#database-options').each(function(){
+			$('#database-options, #gzip-options').each(function(){
 				if($(this).attr('checked')){
 					$(this).parent().parent().addClass('selected');
 				}

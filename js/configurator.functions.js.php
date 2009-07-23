@@ -1587,6 +1587,7 @@ jQuery.noConflict();
 					   			resizable: false,
 					   			draggable: false,
 					   			minHeight: 20,
+					   			width: 350,
 					   			modal: true,
 					   			title: 'Error',
 			   					overlay: {
@@ -1600,7 +1601,7 @@ jQuery.noConflict();
 									}
 								}
 							});
-							$('#upload-message').html('<div class="dialog-msg">'+data.error+'</div>');
+							$('#upload-message').html('<p>'+data.error+'</p>');
 							$('#upload-message').dialog('show');
 						}
 					}else{
@@ -1610,6 +1611,7 @@ jQuery.noConflict();
 				   			resizable: false,
 				   			draggable: false,
 				   			minHeight: 20,
+					   		width: 350,
 				   			modal: true,
 				   			title: 'Success',
 		   					overlay: {
@@ -1645,7 +1647,7 @@ jQuery.noConflict();
 							$('#upload-message').html(data.success);
 							$('#upload-message').dialog(
 								'option', 'buttons', { 
-									'Activate Logo': function(){
+									'Activate': function(){
 										function actLogo(){
 											var setLogo = data.logo;
 											var logoOption = $('#logologo_image option:last').after('<option selected="selected" value="'+setLogo+'">'+setLogo+'</option>');
@@ -1659,7 +1661,7 @@ jQuery.noConflict();
 										}
 										checkChanges(actLogo);
 									},
-									'Go to Logo Settings': function(){
+									'Configure': function(){
 										var $tabs = $('#tabs').tabs();
 										var logoTabs = $('#themelet-tabs').tabs();
 										$tabs.tabs('select', 1);
@@ -1675,7 +1677,7 @@ jQuery.noConflict();
 							$('#upload-message').html(data.success);
 							$('#upload-message').dialog(
 								'option', 'buttons', { 
-									'Activate Background': function(){
+									'Activate': function(){
 										function actBg(){
 											var setBg = data.background;
 											var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
@@ -1683,17 +1685,17 @@ jQuery.noConflict();
 		   									var $tabs = $('#tabs').tabs();
 											var bgTabs = $('#site-tabs').tabs();
 											$tabs.tabs('select', 1);
-											bgTabs.tabs('select', 1);
+											bgTabs.tabs('select', 2);
 											$(this).dialog('destroy');
 											showScroll();
 										}
 										checkChanges(actBg);
 									},
-									'Goto Background Settings': function(){
+									'Configure': function(){
 										var $tabs = $('#tabs').tabs();
 										var bgTabs = $('#site-tabs').tabs();
 										$tabs.tabs('select', 1);
-										bgTabs.tabs('select', 1); 
+										bgTabs.tabs('select', 2); 
   									  	$(this).dialog('destroy');
   									  	showScroll();
 									}
@@ -1763,19 +1765,20 @@ jQuery.noConflict();
 		
 		function checkChanges(action){
 			if($.cookie('formChanges')){			
-				$('<div id="changesDialog">You have made changes to Configurator that will be saved upon activation. Are you sure you want to activate and save these changes?<br /><strong>If you cancel, this page will reload and your changes will be lost.</strong></div>').dialog({
+				$('<div id="changesDialog"><p>You have made changes to Configurator that will be saved upon activation. Are you sure you want to activate and save these changes?</p><p><strong>If you cancel, this page will reload and your changes will be lost.</strong></p></div>').dialog({
 					autoOpen: true,
 					bgiframe: true,
 					modal: true,
+					width: 350,
 					title: 'Warning!',
 					close: action,
 					buttons: {
-						'Yes, activate': function(){
+						'Save & activate': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('close');
 							return true;
 						},
-						'No, cancel': function(){
+						'Activate only': function(){
 							$.cookie('formChanges', null);
 							window.location.reload(true);
 							return false;
@@ -2234,6 +2237,7 @@ jQuery.noConflict();
 	   			resizable: false,
 	   			draggable: false,
 	   			minHeight: 20,
+	   			width: 350,
 	   			modal: true, 
 	   			title: 'Logout',
 	   			overlay: {
@@ -2246,7 +2250,7 @@ jQuery.noConflict();
 					showScroll();
 	   			},
 				buttons: {
-					'Log Out': function(){
+					'Logout': function(){
 						$.cookie('am_logged_in', null, { path: '/', expires: -1 });
 						$.cookie('am_logged_in_user', null, { path: '/', expires: -1 });
 						$.cookie('member_id', null, { path: '/', expires: -1 });
@@ -2254,7 +2258,7 @@ jQuery.noConflict();
 						$.cookie('logout-toggle', null);
 						window.location.reload(true);
 					},
-					'Remain Logged In': function(){
+					'Stay logged in': function(){
 						$(this).dialog('close');
 					}
 				}	

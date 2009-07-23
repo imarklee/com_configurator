@@ -38,7 +38,6 @@
 			<p>Simply keep an eye on the top shelf to be notified when new versions of Morph, Configurator or your current themelet are available.</p>
 			<p><strong>Column 1</strong> (green) is your installed version<br /><strong>Column 2</strong> (red) is the latest available version.<br /><strong>Column 3</strong> (blue) indicates whether your installed version is up-to-date (tick icon) or not (cross icon).</p>
 			<p>If your installed version and the online version differ, the version in column 2 will be hyperlinked to the JoomlaJunkie downloads, allowing you to go and get the latest version for as long as you are a member.</p>
-			<p>We are currently investing an option to allow you to automatically upgrade from within Configurator, but more on that later ;)</p>
 		</div>
 		<div id="splashtab-assets" class="splashtabs">
 			<h3>Working with your sites assets</h3>
@@ -50,9 +49,9 @@
 		<div id="splashtab-methods" class="splashtabs">
 			<h3>Understanding Morphs methods of control</h3>
 			<p class="intro">If you use the analogy of Morph as a sports car, the core framework would be the engine, the themelet would be the design/body of the car and Morph’s Configurator would be the dashboard.</p>
-			<p>In order to have total control, even at high speeds, you (the driver) have a wide variety of methods at your fingertips to control the powerful machine, to make it do exactly what is desired.</p>
+			<p>To have total control, even at high speeds, you (the driver) have a wide variety of methods at your fingertips to control the powerful machine, to make it do exactly what is desired.</p>
 			<h4>Two methods of control</h4>
-			<p>Configurator is one of two methods of control in Morph. The other method of control is the <strong>FX Range</strong>, divided into <em>PageFX, MenuFX, ModuleFX &amp; ContentFX</em>. These are stemmed from Joomla's "suffix" feature, which in its simplest form is a way of appending a custom class to a page, module or menu.</p>
+			<p>Configurator is one of two methods of control in Morph. The other method is the <strong>FX Range</strong>, which is divided into <em>PageFX, MenuFX, ModuleFX &amp; ContentFX</em>. These use Joomla's core "suffix" feature, which in its simplest form appends a custom class to a page, module or menu.</p>
 			<p>Use a combination of different page or module suffixes to transform your sites layout on a page-by-page basis. You can also mix &amp; match your own custom module styles.</p>
 			<p>We highly recommend that you checkout the relevant quick start guides in order to get the most out of the FX Range of features.</p>
 		</div>
@@ -70,7 +69,7 @@
 			<p><img src="../administrator/components/com_configurator/images/splash-contextual-bg.png" alt="maskot" border="0" align="right" style="margin: -2px 0px 0 15px" />Every single option in Configurator has either an <strong>info or help icon</strong> next to it.</p>
 			<p>The <strong>info icon</strong> indicates there is a standard tooltip available. These are generally for options which are more common and easier to understand.</p>
 			<p>The <strong>help icon</strong> indicates there is a pop-up help page available. These are used when a simple info tooltip just isn't enough.</p>
-			<p>Let us know, by using <a id="report-bug-link" href="#">the feedback form</a>, if anything doesn't make sense.</p>
+			<p>If there is anything that does not make sense or could be improved on, please let us know using the "Send Feedback" link on the top right of your screen.</p>
 		</div>
 		<div id="splashtab-shortcuts" class="splashtabs">
 			<h3>Using the built in keyboard shortcuts</h3>

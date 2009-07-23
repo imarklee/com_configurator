@@ -340,19 +340,19 @@ class ConfiguratorController extends JController {
 						break;
 					}
 				}else{
-					$return = 'error: "No file specified.<br />Please select a file in Step 2!"';
+					$return = 'error: "No file has been selected. Please select a file in <strong>Step 2</strong> and try again."';
 					$ret = ' {'.$return.'}';
 					echo $ret;
 					return false;
 				}
 			}else{
-				$return = 'error: "Type of file to be installed was undefined.<br />Please choose an install type in Step 1!"';
+				$return = 'error: "No install type has been selected. Please make a selection in <strong>Step 1</strong> and try again."';
 				$ret = ' {'.$return.'}';
 				echo $ret;
 				return false;
 			}
 		}else{
-			$return = 'error: "Upload failed: No Post Data!"';
+			$return = 'error: "Upload failed: No post data!"';
 		}
 		
 		$ret = '{'.$return.'}';
@@ -554,7 +554,7 @@ class ConfiguratorController extends JController {
 				$setting->loadByKey();
 				$setting->param_value = strtolower( basename( $logo_details['name'] ) );
 				$setting->store();
-				$msg = 'success: "Logo Uploaded Successfully", logo: "'.$logo_details['name'].'"';
+				$msg = 'success: "Logo uploaded successfully!", logo: "'.$logo_details['name'].'"';
 				return $msg;
 			}
 			

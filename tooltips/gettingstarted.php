@@ -69,7 +69,7 @@
 			<p><img src="../administrator/components/com_configurator/images/splash-contextual-bg.png" alt="maskot" border="0" align="right" style="margin: -2px 0px 0 15px" />Every single option in Configurator has either an <strong>info or help icon</strong> next to it.</p>
 			<p>The <strong>info icon</strong> indicates there is a standard tooltip available. These are generally for options which are more common and easier to understand.</p>
 			<p>The <strong>help icon</strong> indicates there is a pop-up help page available. These are used when a simple info tooltip just isn't enough.</p>
-			<p>Let us know, by using <a id="report-bug-link" href="#">the feedback form</a>, if anything doesn't make sense.</p>
+			<p>If there is anything that does not make sense or could be improved on, please let us know using the "Send Feedback" link on the top right of your screen.</p>
 		</div>
 		<div id="splashtab-shortcuts" class="splashtabs">
 			<h3>Using the built in keyboard shortcuts</h3>

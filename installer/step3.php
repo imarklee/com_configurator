@@ -5,6 +5,7 @@ $base = './components/com_configurator';
 $base = '.';
 }
 define('JURL', $base);
+define('JROOT', str_replace('administrator/components/com_configurator/installer', '', dirname(__FILE__)));
 ?>
 <form id="install-sample" class="step3" method="post" action="#">
 	<div id="install-head">
@@ -35,10 +36,12 @@ define('JURL', $base);
 					</ul></li>
 				<li><label><input type="checkbox" name="database-options" id="database-options" checked="checked" value="db" />
 					Backup your entire database (recommended)</label></li>
-				<?php if(extension_loaded('zlib')){ ?>
-				<li><label><input type="checkbox" name="gzip-options" id="gzip-options" checked="checked" value="gzip" />
+				<?php
+				$config = JFactory::getConfig();
+				$gzipval = $config->getValue( 'config.gzip' );
+				if(extension_loaded('zlib') && $gzipval == 0){ ?>
+				<li><label><input type="checkbox" name="gzip-options" id="gzip-options" checked="checked" value="1" />
 					Enable GZIP Compression (recommended)</label></li>
-				<li><?php echo JPATH; ?></li>
 				<?php } ?>
 			</ul>
 		</div>

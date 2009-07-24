@@ -1064,6 +1064,19 @@ class ConfiguratorController extends JController {
 			$sample = '';
 		}
 		if(isset($_POST['db'])){ $dbdata = $_POST['db']; }else{ $dbdata = 'backup'; }
+		if(isset($_POST['gzip']) && $_POST['gzip'] !== '') { $gzip = true; }else{ $gzip = false; }
+		
+		if($gzip){
+			$path = JPATH_CONFIGURATION.DS.'configuration.php';
+			JPath::setPermissions($path, '0777');
+			if(file_exists($path) && is_writable($path)){			
+				$str = file_get_contents($path);
+				$line = str_replace('var $gzip = \'0\';', 'var $gzip = \'1\';', $str);
+				file_put_contents($path, $line);
+			}		
+			JPath::setPermissions($path, '0644');
+		}
+				
 		$message = array();
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
 		$sqldir = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS;

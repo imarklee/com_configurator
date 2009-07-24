@@ -255,12 +255,15 @@ jQuery.noConflict();
 		function sampleInstall(){
 			var checkVal = [];
 			var dbVal = '';
+			var gzipVal;
+			
 			$('#install-sample ul li ul li input').each(function(){
 				if($(this).is(':checked')){
 					checkVal.push($(this).val());
 				}
 			});
 			if($('#install-sample #database-options').is(':checked')){ dbVal = 'backup'; }else{ dbVal = 'destroy'; }
+			if($('#install-sample #gzip-options').is(':checked')){ gzipVal = 'set'; }else{ gzipVal = ''; }
 			
 			$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing sample data...</span></div></div>').appendTo('body');
 			$('#saving').css({
@@ -277,7 +280,8 @@ jQuery.noConflict();
 				'../administrator/index.php?option=com_configurator&task=install_sample&format=raw',
 				{
 					'sample_data[]': checkVal,
-					db: dbVal
+					db: dbVal,
+					gzip: gzipVal
 				},
 				function(data, status){
 					if(typeof data.error != 'undefined'){
@@ -378,7 +382,7 @@ jQuery.noConflict();
 				return false;
 			});
 		}
-		helpstep1();
+		//helpstep1();
 		
 		function helpstep2(){ 
 			$('#dialog').load(base+'/installer/help/step2.php');

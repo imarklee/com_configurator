@@ -330,8 +330,8 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #alf-image{position:absolute;top:0;left:0;display:none;z-index:50;background:#000;width:100%;height:500px;opacity:0.9;}
 #alf-image div{margin:240px 47%;width:115px;font:bold 15px arial;color:#fff;position:relative;}
 #alf-image div span{position:absolute;left:20px;top:-1px;}
-#saving{position:absolute;top:0;left:0;display:none;z-index:50;background:#000;width:100%;height:500px;opacity:0.9;}
-#saving div{margin:20% 47%;width:215px;font:bold 15px arial;color:#fff;position:relative;}
+#saving{position:absolute;top:0;left:0;display:none;z-index:9998;background:#000;width:100%;height:500px;opacity:0.9;}
+#saving div{margin:40% 45%;width:215px;font:bold 15px arial;color:#fff;position:relative;}
 #saving div span{position:absolute;left:20px;top:-1px;}
 #login-details{padding:.6em;zoom:1;background:#8cc048;width:48%;float:right;margin:0 0 1em 0;color:#fff;font-weight:bold;font-size:14px;}
 #login-details p{padding:0;margin:0;}

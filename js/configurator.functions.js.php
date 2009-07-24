@@ -116,7 +116,7 @@ jQuery.noConflict();
 		
 		if($.jqURL.get('task') == 'dashboard'){
 			$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
-		}else if($.jqURL.get('task') == 'manage'){
+		}else if($.jqURL.get('task') == 'manage' || $.jqURL.get('task') == 'manage#'){
 			if($.cookie('am_logged_in')){
 				$("#submenu").append('<li class="preferences"><a href="#">Preferences</a></li>','<li class="feedback"><a href="#" id="report-bug-link">Send Feedback</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 			}else{
@@ -345,7 +345,7 @@ jQuery.noConflict();
 		$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a')
 		.fadeTo('fast', 0.5)
 		.attr('href', '#inactive')
-		.click(function(){ return false; });
+		.click(function(e){ e.preventDefault; return false; });
 		
 		$("input, textarea", $("form")).focus(function(){
 		$(this).addClass("focus");
@@ -909,16 +909,20 @@ jQuery.noConflict();
 	   	
 	   	/* Activate functions -----------------
 	    ------------------------------------ */
-	   	$('li.themelet-item.tl-inactive ul li.btn-activate a').click(function(){
+	   	$('li.themelet-item.tl-inactive ul li.btn-activate a').click(function(e){
+	   		
+	   		var setThemelet = $(this).attr('name');
+	   		var a = $(this);
+	   		
 	   		function activateThemelet(){
 		   		
-		   		$('<div class="thdlg" style="display:none;">Your new themelet is activated. <br />Would you like to configure this themelet?</div>').dialog({
+		   		$('<div class="dialog-msg">Would you like to configure this themelet once activated?</div>').dialog({
 		   			bgiframe: true,
 		   			autoOpen: false,
 		   			minHeight: 20,
 		   			stack: false,
 		   			modal: true, 
-		   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+		   			title: 'Activate',
 		   			overlay: {
 		   				'background-color': '#000', 
 		   				opacity: 0.8 
@@ -928,23 +932,35 @@ jQuery.noConflict();
 						var subTabs = $('#site-tabs').tabs();
 						mainTabs.tabs('select', 1);
 						subTabs.tabs('select', 0);
-						$(this).remove();
-						showScroll();
+						window.location.reload(true);
+						$(this).dialog('destroy');
+						$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+						hideScroll();
+						$('#saving').css({
+							'display': 'block',
+							width: arrPageSizes[0],
+							height: arrPageSizes[1]
+						});
 		   			},
 					buttons: { 
-						'Yes, configure themelet': function(){
+						'Yes': function(){
 							$(this).dialog('close');
 							showScroll();
 			   			},
 			   			'No thanks': function(){
-			   				$(this).remove();
-			   				showScroll();
+			   				window.location.reload(true);
+			   				$(this).dialog('destroy');
+							$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+							hideScroll();
+							$('#saving').css({
+								'display': 'block',
+								width: arrPageSizes[0],
+								height: arrPageSizes[1]
+							});
 			   			}
 			   		}
 			   	});
-	
-	   		
-		   		var setThemelet = $(this).attr('name');
+			   	
 		   		$('#generalthemelet option[value="'+setThemelet+'"]').attr('selected', true);
 		   		$('#templateform input[name="task"]').remove();
 		   		$('#templateform').submit(function(){
@@ -957,27 +973,25 @@ jQuery.noConflict();
 		   					isajax: 'true',
 		   				},
 			   			success: function(data, textStatus){
-			   			
+			   		
 			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
 	  						$("#system-message dd.message").corners("10px");		
 							$("#system-message dd.message ul").corners("10px");		
 							$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
-			   				
+							
 							$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').fadeTo('fast', 1).attr('href', '#active').css('cursor', 'pointer').click(function(){ return false; });
 							$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"], li.tl-inactive ul li.btn-delete a[name="'+setThemelet+'"]').fadeTo('fast', 0.5).attr('href', '#inactive').css('cursor', 'default').click(function(){ return false; });
 							
 							$('#current-themelet li.ct-name').html('<span>Name: </span>'+$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"]').attr('title').replace('Activate ', ''));
 							$('#current-themelet li.ct-version').html('<span>Version: </span>'+$('ul.'+setThemelet+' li.tl-installed').text().replace('Installed version: ',''));
-							$('#current-themelet li.ct-thumb').html('<span>&nbsp;</span><img src="../templates/morph/assets/themelets/'+setThemelet+'/themelet_thumb.png" width="108" height="72" align="middle" alt="'+$('#current-themelet li.ct-name').text()+'" />');
-							$('.thdlg').dialog('open');
+							$('#current-themelet li.ct-thumb').html('<span>&nbsp;</span><img src="../morph_assets/themelets/'+setThemelet+'/themelet_thumb.png" width="108" height="72" align="middle" alt="'+$('#current-themelet li.ct-name').text()+'" />');
+							$('.dialog-msg').dialog('open');
 							$('#themelets-list ul li.tl-active ul li.btn-activate a, #themelets-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
 			   				$('#themelets-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
 			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
-			   				a.fadeTo('slow', 0.5).click(function(){ return false; });
-			   				a.parent().next().children().fadeTo('slow', 0.5).click(function(){ return false; });
-			   				hideScroll();
-			   				return false;
-							
+			   				a.fadeTo('slow', 0.5).click(function(e){ e.preventDefault(); return false; });
+			   				a.parent().next().children().click(function(e){ e.preventDefault(); return false; });
+
 						}
 		   			});
 		   			return false;
@@ -986,19 +1000,21 @@ jQuery.noConflict();
 		
 		    }
 		    checkChanges(activateThemelet);
+		    e.preventDefault();
 	   		return false;
 	   		
 	   	});
 	   	
 	   	$('li.logo-item.tl-inactive ul li.btn-activate a').click(function(){
+	   		var a = $(this);
 	   		function activateLogo(){
-		   		$('<div class="lgdlg" style="display:none;">Your new logo is activated. <br />Would you like to configure the logo options?</div>').dialog({
+		   		$('<div class="dialog-msg">Your new logo is activated. <br />Would you like to configure the logo options?</div>').dialog({
 		   			bgiframe: true,
 		   			autoOpen: false,
 		   			minHeight: 20,
 		   			stack: false,
 		   			modal: true, 
-		   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+		   			title: 'Activate',
 		   			overlay: {
 		   				'background-color': '#000', 
 		   				opacity: 0.8 
@@ -1062,13 +1078,13 @@ jQuery.noConflict();
 	   		var a = $(this);
 	   		function activateBg(){
 	   			
-		   		$('<div class="bgdlg" style="display:none;">Your new background is activated. <br />Would you like to configure the background options?</div>').dialog({
+		   		$('<div class="dialog-msg">Your new background is activated. <br />Would you like to configure the background options?</div>').dialog({
 		   			bgiframe: true,
 		   			autoOpen: false,
 		   			minHeight: 20,
 		   			stack: false,
 		   			modal: true, 
-		   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Activate</span>',
+		   			title: 'Activate',
 		   			overlay: {
 		   				'background-color': '#000', 
 		   				opacity: 0.8 
@@ -1131,14 +1147,14 @@ jQuery.noConflict();
 	   	/* Delete functions -------------------
 	    ------------------------------------ */
 	    // themelets
-	   	$('li.tl-inactive ul li.btn-delete a').click(function(){
+	   	$('li.themelet-item.tl-inactive ul li.btn-delete a').click(function(){
 			
 	   		var setThemelet = $(this).attr('name');
 	   		var setThemeletName = $(this).attr('title').replace('Delete ', '').replace(' Themelet', '');	   		
 	   		var alertMessage = 'Are you sure you want to delete the "'+setThemeletName+'" themelet?<br />This is irreversible!';
 	   		
 	   		$('#footer').after('<div id="assets-output" style="display:none;"></div>');
-	   		$('#assets-output').html(alertMessage);
+	   		$('#assets-output').html('<div class="dialog-msg">'+alertMessage+'</div>');
 	   		hideScroll();
 			$('#assets-output').dialog({
 	   			bgiframe: true,
@@ -1166,8 +1182,8 @@ jQuery.noConflict();
 			   						}else{
 			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow');
 			   						}
-			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
-			   						$('#assets-output').html('Themelet deleted successfully');
+			   						$('#footer').after('<div id="assets-output"></div>');
+			   						$('#assets-output').html('<div class="dialog-msg">Themelet deleted successfully</div>');
 			   						hideScroll();
 						   			$('#assets-output').dialog({
 						   				bgiframe: true,
@@ -1204,8 +1220,8 @@ jQuery.noConflict();
 	   		var setBackgroundName = $(this).attr('title').replace('Delete ', '').replace(' background image', '');
 	   		var alertMessage = 'Are you sure you want to delete the "'+setBackgroundName+'" background?<br />This is irreversible!';
 			
-			$('#footer').after('<div id="assets-output" style="display:none;"></div>');
-	   		$('#assets-output').html(alertMessage);
+			$('#footer').after('<div id="assets-output"></div>');
+	   		$('#assets-output').html('<div class="dialog-msg">'+alertMessage+'</div>');
 	   		hideScroll();
 			$('#assets-output').dialog({
 	   			bgiframe: true,
@@ -1233,8 +1249,8 @@ jQuery.noConflict();
 			   						}else{
 			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow');
 			   						}			   						
-			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
-			   						$('#assets-output').html('Background deleted successfully');
+			   						$('#footer').after('<div id="assets-output"></div>');
+			   						$('#assets-output').html('<div class="dialog-msg">Background deleted successfully</div>');
 			   						hideScroll();
 						   			$('#assets-output').dialog({
 						   				bgiframe: true,
@@ -1243,7 +1259,7 @@ jQuery.noConflict();
 							   			draggable: false,
 							   			minHeight: 20,
 							   			modal: true, 
-							   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+							   			title: 'Delete',
 							   			overlay: {
 							   				'background-color': '#000', 
 							   				opacity: 0.8 
@@ -1272,7 +1288,7 @@ jQuery.noConflict();
 	   		var alertMessage = 'Are you sure you want to delete the "'+setLogoName+'" logo?<br />This is irreversible!';
 	   		
 	   		$('#footer').after('<div id="assets-output" style="display:none;"></div>');
-	   		$('#assets-output').html(alertMessage);
+	   		$('#assets-output').html('<div class="dialog-msg">'+alertMessage+'</div>');
 	   		hideScroll();
 			$('#assets-output').dialog({
 	   			bgiframe: true,
@@ -1301,7 +1317,7 @@ jQuery.noConflict();
 			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow');
 			   						}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
-			   						$('#assets-output').html('Logo deleted successfully');
+			   						$('#assets-output').html('<div class="dialog-msg">Logo deleted successfully</div>');
 			   						hideScroll();
 						   			$('#assets-output').dialog({
 						   				bgiframe: true,
@@ -1310,7 +1326,7 @@ jQuery.noConflict();
 							   			draggable: false,
 							   			minHeight: 20,
 							   			modal: true, 
-							   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Delete</span>',
+							   			title: 'Delete',
 							   			overlay: {
 							   				'background-color': '#000', 
 							   				opacity: 0.8 
@@ -1396,7 +1412,15 @@ jQuery.noConflict();
 						});
 					}else{
 						$(elid).after('<span class="upload-bg-container">(<a href="#" class="upload-bg">Upload BG</a>)</span>');
-
+						$(".upload-bg").click(function(){
+							var maintabs = $("#tabs").tabs();
+							var subtabs = $("#tools-tabs").tabs();
+							maintabs.tabs("select",3);
+							subtabs.tabs("select",0);
+							$('#install-type label.label-selected').removeClass('label-selected');
+							$("#upload_background").attr("checked",true).parent().addClass('label-selected');
+							return false;
+						});
 					}
 				}
 			}
@@ -1489,7 +1513,7 @@ jQuery.noConflict();
 								   			draggable: false,
 								   			minHeight: 20,
 								   			modal: true, 
-								   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Login Error</span>',
+								   			title: 'Login Error',
 								   			overlay: {
 								   				backgroundColor: '#000', 
 								   				opacity: 0.5 
@@ -1565,7 +1589,7 @@ jQuery.noConflict();
 		   			draggable: false,
 		   			minHeight: 20,
 		   			modal: true, 
-		   			title: '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><span style="float:left;padding-top: 2px">Error</span>',
+		   			title: 'Error',
 		   			overlay: {
 		   				backgroundColor: '#000', 
 		   				opacity: 0.5 
@@ -1617,143 +1641,145 @@ jQuery.noConflict();
 			   					},
 								buttons: {
 									'OK': function(){
-										$(this).dialog('destroy');
+										$(this).dialog('close');
 										showScroll();
 									}
 								}
 							});
 							$('#upload-message').html('<p>'+data.error+'</p>');
-							$('#upload-message').dialog('show');
-						}
-					}else{
-						hideScroll();
-						$('#upload-message').dialog({
-				   			bgiframe: true, 
-				   			resizable: false,
-				   			draggable: false,
-				   			minHeight: 20,
-					   		width: 350,
-				   			modal: true,
-				   			title: 'Success',
-		   					overlay: {
-		   						backgroundColor: '#000', 
-		   						opacity: 0.8 
-		   					}
-		   				});
-		   				
-						if(uploadType == 'themelet'){
-							$('#upload-message').html(data.success);
-							$('#upload-message').dialog(
-								'option', 'buttons', { 
-									'Activate Themelet': function(){
-										function actThemelet(){
-											var setThemelet = data.themelet;
-											var themeletOption = $('#generalthemelet option:last').after('<option selected="selected" value="'+setThemelet+'">'+setThemelet+'</option>');
-		   									submitbutton('applytemplate');
-									   		$(this).dialog('destroy');
-									   		showScroll();
-									   	}
-									   	checkChanges(actThemelet);
-									},
-									'Do Nothing': function(){
-										$(this).dialog('destroy');
-										showScroll();
-									}
-								}
-							);
-							$('#upload-message').dialog('show');
-						}
-						
-						if(uploadType == 'logo'){
-							$('#upload-message').html(data.success);
-							$('#upload-message').dialog(
-								'option', 'buttons', { 
-									'Activate': function(){
-										$(this).dialog('destroy');
-										function actLogo(){
-											var setLogo = data.logo;
-											var logoOption = $('#logologo_image option:last').after('<option selected="selected" value="'+setLogo+'">'+setLogo+'</option>');
-		   									submitbutton('applytemplate');
-		   									var $tabs = $('#tabs').tabs();
-											var logoTabs = $('#themelet-tabs').tabs();
-											$tabs.tabs('select', 1);
-											logoTabs.tabs('select', 1);
-											$(this).dialog('destroy');
-											showScroll();
-										}
-										checkChanges(actLogo);
-									},
-									'Configure': function(){
-										var $tabs = $('#tabs').tabs();
-										var logoTabs = $('#themelet-tabs').tabs();
-										$tabs.tabs('select', 1);
-										logoTabs.tabs('select', 1); 
-  									  	$(this).dialog('destroy');
-  									  	showScroll();
-									}
-								}
-							);
-							$('#upload-message').dialog('moveToTop').dialog('show');
-						}
-						if(uploadType == 'background'){
-							$('#upload-message').html(data.success);
-							$('#upload-message').dialog(
-								'option', 'buttons', { 
-									'Activate': function(){
-										$(this).dialog('destroy');
-										function actBg(){
-											var setBg = data.background;
-											var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
-		   									submitbutton('applytemplate');
-		   									var $tabs = $('#tabs').tabs();
-											var bgTabs = $('#themelet-tabs').tabs();
-											$tabs.tabs('select', 1);
-											bgTabs.tabs('select', 2);
-											$(this).dialog('destroy');
-											showScroll();
-										}
-										checkChanges(actBg);
-									},
-									'Configure': function(){
-										var $tabs = $('#tabs').tabs();
-										var bgTabs = $('#themelet-tabs').tabs();
-										$tabs.tabs('select', 1);
-										bgTabs.tabs('select', 2); 
-  									  	$(this).dialog('destroy');
-  									  	showScroll();
-									}
-								}
-							);
-							$('#upload-message').dialog('moveToTop').dialog('show');
-						}
-						if(uploadType == 'favicon'){
-							if(typeof(data.overwrite) == 'undefined'){
+							$('#upload-message').dialog('open');
+						}else{
+
+							hideScroll();
+							$('#upload-message').dialog({
+					   			bgiframe: true, 
+					   			resizable: false,
+					   			draggable: false,
+					   			minHeight: 20,
+						   		width: 350,
+					   			modal: true,
+					   			title: 'Success',
+			   					overlay: {
+			   						backgroundColor: '#000', 
+			   						opacity: 0.8 
+			   					}
+			   				});
+			   				
+							if(uploadType == 'themelet'){
 								$('#upload-message').html(data.success);
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
-										'OK': function(){
+										'Activate Themelet': function(){
+											$(this).dialog('destroy');
+											function actThemelet(){
+												var setThemelet = data.themelet;
+												var themeletOption = $('#generalthemelet option:last').after('<option selected="selected" value="'+setThemelet+'">'+setThemelet+'</option>');
+			   									submitbutton('applytemplate');
+										   		$(this).dialog('destroy');
+										   		showScroll();
+										   	}
+										   	checkChanges(actThemelet);
+										},
+										'Do Nothing': function(){
 											$(this).dialog('destroy');
 											showScroll();
 										}
 									}
 								);
-								$('#upload-message').dialog('moveToTop').dialog('show');
-							}else{
-								$('#upload-message').html(data.overwrite);
-								$('#upload-message').dialog('option', 'title', 'Overwrite Warning');
+								$('#upload-message').dialog('open');
+							}
+							
+							if(uploadType == 'logo'){
+								$('#upload-message').html(data.success);
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
-										'Yes': function(){
+										'Activate': function(){
 											$(this).dialog('destroy');
-											showScroll();
+											function actLogo(){
+												var setLogo = data.logo;
+												var logoOption = $('#logologo_image option:last').after('<option selected="selected" value="'+setLogo+'">'+setLogo+'</option>');
+			   									submitbutton('applytemplate');
+			   									var $tabs = $('#tabs').tabs();
+												var logoTabs = $('#themelet-tabs').tabs();
+												$tabs.tabs('select', 1);
+												logoTabs.tabs('select', 1);
+												$(this).dialog('destroy');
+												showScroll();
+											}
+											checkChanges(actLogo);
 										},
-										'No': function(){
-											$(this).dialog('destroy');
-											showScroll();
+										'Configure': function(){
+											var $tabs = $('#tabs').tabs();
+											var logoTabs = $('#themelet-tabs').tabs();
+											$tabs.tabs('select', 1);
+											logoTabs.tabs('select', 1); 
+	  									  	$(this).dialog('destroy');
+	  									  	showScroll();
 										}
 									}
 								);
-								$('#upload-message').dialog('moveToTop').dialog('show');
+								$('#upload-message').dialog('moveToTop').dialog('open');
+							}
+							if(uploadType == 'background'){
+								$('#upload-message').html(data.success);
+								$('#upload-message').dialog(
+									'option', 'buttons', { 
+										'Activate': function(){
+											$(this).dialog('destroy');
+											function actBg(){
+												var setBg = data.background;
+												var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
+			   									submitbutton('applytemplate');
+			   									var $tabs = $('#tabs').tabs();
+												var bgTabs = $('#themelet-tabs').tabs();
+												$tabs.tabs('select', 1);
+												bgTabs.tabs('select', 2);
+												$(this).dialog('destroy');
+												showScroll();
+											}
+											checkChanges(actBg);
+										},
+										'Configure': function(){
+											var $tabs = $('#tabs').tabs();
+											var bgTabs = $('#themelet-tabs').tabs();
+											$tabs.tabs('select', 1);
+											bgTabs.tabs('select', 2); 
+	  									  	$(this).dialog('destroy');
+	  									  	showScroll();
+										}
+									}
+								);
+								$('#upload-message').dialog('moveToTop').dialog('open');
+							}
+							if(uploadType == 'favicon'){
+								if(typeof(data.overwrite) == 'undefined'){
+									$('#upload-message').html(data.success);
+									$('#upload-message').dialog(
+										'option', 'buttons', { 
+											'OK': function(){
+												$(this).dialog('destroy');
+												showScroll();
+											}
+										}
+									);
+									$('#upload-message').dialog('moveToTop').dialog('open');
+								}else{
+									$('#upload-message').html(data.overwrite);
+									$('#upload-message').dialog('option', 'title', 'Overwrite Warning');
+									$('#upload-message').dialog(
+										'option', 'buttons', { 
+											'Yes': function(){
+												$(this).dialog('destroy');
+												showScroll();
+											},
+											'No': function(){
+												$(this).dialog('destroy');
+												showScroll();
+											}
+										}
+									);
+									$('#upload-message').dialog('moveToTop').dialog('open');
+								}
 							}
 						}
 					}
@@ -1832,21 +1858,54 @@ jQuery.noConflict();
 		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a').click(function(){
 			var $this = $(this);
 			if($.cookie('formChanges')){			
-				$('<div id="changesDialog">You have made changes to Configurator that will be lost if you navigate from this page. Are you sure you want to leave the page?</div>').dialog({
+				$('<div id="changesDialog">You have made changes to Configurator that will be lost if you navigate from this page. Are you sure you want to continue without saving?</div>').dialog({
 					autoOpen: true,
 					bgiframe: true,
 					modal: true,
 					title: 'Warning!',
 					buttons: {
-						'Yes, continue': function(){
+						'Save & continue': function(){
+							$.cookie('formChanges', null);
+							$(this).dialog('destroy');
+							$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
+							hideScroll();
+							$('#saving').css({
+								'display': 'block',
+								'z-index': '9998',
+								position: 'absolute',
+						        top: 0,
+						        left: 0,
+						        width: arrPageSizes[0],
+								height: arrPageSizes[1],
+							});
+							$('#templateform').submit(function(){
+					   			$(this).ajaxSubmit({
+					   				type: 'POST',
+					   				url: '../administrator/index.php?format=raw',
+					   				data: {
+					   					option: 'com_configurator',
+					   					task: 'applytemplate',
+					   					isajax: 'true',
+					   				},
+					   				success: function(data, textStatus){
+						   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
+				  						$("#system-message dd.message").corners("10px");		
+										$("#system-message dd.message ul").corners("10px");		
+										$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
+						   				hideScroll();
+						   				window.location = $this.attr('href');
+						   				return false;		   			
+					   				}
+					   			});
+					   			return false;
+						   	});
+					   		$('#templateform').trigger("submit");
+							return false;
+						},
+						'Continue': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
 							window.location = $this.attr('href');
-							return true;
-						},
-						'No, stay here': function(){
-							$.cookie('formChanges', null);
-							$(this).dialog('destroy');
 							return false;
 						}
 					}
@@ -1906,7 +1965,6 @@ jQuery.noConflict();
 					$('#logologo_type').parent().css('display', 'block');
 					$('#logo-options li #logologo_image').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
-					$('#logo-options li #logologo_alttext').parent().css('display', 'block');
 					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
 					break;
@@ -1914,12 +1972,23 @@ jQuery.noConflict();
 					$('#logo-options li').css('display', 'none');
 					$('#logo-options li.heading').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
+					$('#logo-options li #logologo_textcolor').parent().css('display', 'block');
+					$('#logo-options li #logologo_fontsize').parent().css('display', 'block');
+					$('#logo-options li #logologo_fontfamily').parent().css('display', 'block');
+					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+					$('#logo-options li #logologo_text').parent().css('display', 'block');
+					break;
+					case '3':
+					$('#logo-options li').css('display', 'none');
+					$('#logo-options li.heading').css('display', 'block');
+					$('#logologo_type').parent().css('display', 'block');
 					$('#logo-options li #logologo_image').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
+					$('#logo-options li #logologo_alttext').parent().css('display', 'block');
 					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
 					break;
-					case '3':
+					case '4':
 					$('#logo-options li').css('display', 'none');
 					$('#logo-options li.heading:first').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');

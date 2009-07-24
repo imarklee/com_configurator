@@ -368,8 +368,9 @@ class ConfiguratorController extends JController {
 		}else{
 			$themelet_details = $file;
 		}
-		
-		if($themelet_details['type'] != ('application/zip' || 'application/x-zip-compressed')){
+		$themelet_type = $themelet_details['type'];
+		$allowed_types = array('application/zip', 'application/x-zip-compressed', 'application/octet-stream');
+		if(!in_array($themelet_type, $allowed_types)){
 			$error = 'error: "This is not a valid themelet package.<br />Please try again with a valid themelet package (zip file)"';
 			return $error;
 		}else{
@@ -554,7 +555,7 @@ class ConfiguratorController extends JController {
 				$setting->loadByKey();
 				$setting->param_value = strtolower( basename( $logo_details['name'] ) );
 				$setting->store();
-				$msg = 'success: "Logo uploaded successfully!", logo: "'.$logo_details['name'].'"';
+				$msg = 'success: "Logo uploaded successfully!", error: "", logo: "'.$logo_details['name'].'"';
 				return $msg;
 			}
 			
@@ -618,7 +619,7 @@ class ConfiguratorController extends JController {
 				$setting->loadByKey();
 				$setting->param_value = strtolower( basename( $background_details['name'] ) );
 				$setting->store();
-				$msg = 'success: "Background Uploaded Successfully", background: "'.$background_details['name'].'"';
+				$msg = 'success: "Background Uploaded Successfully", error: "", background: "'.$background_details['name'].'"';
 				return $msg;
 			}
 			
@@ -676,7 +677,7 @@ class ConfiguratorController extends JController {
 				}
 			
 				JPath::setPermissions($favicon_dir . DS . strtolower( basename( $favicon_details['name'] ) ) );
-				$msg = 'success: "Favicon Uploaded Successfully"';
+				$msg = 'success: "Favicon Uploaded Successfully", error: ""';
 				return $msg;
 			}
 			
@@ -821,7 +822,7 @@ class ConfiguratorController extends JController {
 		//echo '{ error: "' . $newtemplatefile['type'] . '"}';
 		//die();
 
-		if($newtemplatefile['type'] == 'application/octet-stream' or $newtemplatefile['type'] == 'application/zip' or $newtemplatefile['type'] == 'application/x-zip-compressed'){
+		if(in_array($newtemplatefile['type'], array('application/octet-stream', 'application/zip', 'application/x-zip-compressed'))){
 			if(is_dir($templatesdir . DS . 'morph')){
 				// template folder
 				if($_REQUEST['backup'] == 'true'){

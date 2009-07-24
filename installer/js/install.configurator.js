@@ -350,7 +350,7 @@ jQuery.noConflict();
 
 		function loadstep1(callback){ $('#installer').load(base+'/installer/step1.php', callback); }
 		function loadstep2(callback){ $('#installer').load(base+'/installer/step2.php', callback); }
-		function loadstep3(callback){ $('#installer').load(''+base+'/installer/step3.php', callback); }
+		function loadstep3(callback){ $('#installer').load(''+base+'/install.configurator.php?install=step3', callback); }
 		function loadcompleted(callback){ $('#installer').load(''+base+'/installer/complete.php', callback); }
 		function gotomanage() { window.location = '../administration/index.php?option=com_configurator&task=manage'; }
 		

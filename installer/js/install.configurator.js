@@ -77,7 +77,7 @@ jQuery.noConflict();
 									}
 								});
 								$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
-								$('#dialog').dialog('show');
+								$('#dialog').dialog('open');
 	                        }else{
 	                        	if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
 	                            hideScroll();
@@ -106,7 +106,7 @@ jQuery.noConflict();
 									}
 								});
 								$('#dialog').html('<div class="dialog-msg">'+data.msg+backuploc+'</div>');
-								$('#dialog').dialog('show');
+								$('#dialog').dialog('open');
 	                        }
 	                    }
 	                }
@@ -189,7 +189,7 @@ jQuery.noConflict();
 									}
 								});
 								$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
-								$('#dialog').dialog('show');
+								$('#dialog').dialog('open');
 	                        }else{
 	                            hideScroll();
 	                            $('#saving').css('display', 'none');
@@ -218,7 +218,7 @@ jQuery.noConflict();
 									}
 								});
 								$('#dialog').html('<div class="dialog-msg">'+data.msg+'</div>');
-								$('#dialog').dialog('show');
+								$('#dialog').dialog('open');
 	                        }
 	                    }
 	                },
@@ -311,7 +311,7 @@ jQuery.noConflict();
 								}
 							});
 							$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
-							$('#dialog').dialog('show');
+							$('#dialog').dialog('open');
 						}else{
 							if(data.db == 'backedup'){ var dbstore = '<p><strong>Your database was backed up to: </strong></p><p><small>'+data.dbstore+'</small></p>'; }else{ var dbstore = '' }
 						
@@ -342,7 +342,7 @@ jQuery.noConflict();
 								}
 							});
 							$('#dialog').html('<div class="dialog-msg">'+data.success+dbstore+'</div>');
-							$('#dialog').dialog('show');
+							$('#dialog').dialog('open');
 						}
 					}
 				}, 'json');

@@ -1394,6 +1394,9 @@ jQuery.noConflict();
 							$("#upload_background").attr("checked",true).parent().addClass('label-selected');
 							return false;
 						});
+					}else{
+						$(elid).after('<span class="upload-bg-container">(<a href="#" class="upload-bg">Upload BG</a>)</span>');
+
 					}
 				}
 			}

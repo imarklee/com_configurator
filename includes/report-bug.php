@@ -1,16 +1,45 @@
+<?php
+$template_url = JURI::root() . 'templates/morph/';
+$themelet_url = JURI::root() . 'morph_assets/themelets/';
+$component_url = JURI::root() . 'administrator/components/com_configurator/'; 
+							
+$template_xml = $template_url . 'templateDetails.xml';
+$themelet_xml = $themelet_url . $params->get('themelet') .'/themeletDetails.xml';
+$component_xml = $component_url . 'configurator.xml';
+
+$template_details = xml2array($template_xml);
+$themelet_details = xml2array($themelet_xml);
+$component_details = xml2array($component_xml);
+
+$template_arr = $template_details['install'];
+$themelet_arr = $themelet_details['install'];
+$component_arr = $component_details['install'];
+?>
 <div id="report-bug" title="Send us your feedback">
 	<p class="teaser">Your feedback and suggestions are important to us. If there is anything that could be done better, or improved on - even the terminology we use, we want to know! Fill in the form below, with as much detail as possible.</p>
 
 	<form id="feedbackform" method="post" action="">
 	<fieldset>
-		<span style="display: none;">
-		<label for="name">Your name</label>
-		<input type="text"name="name" id="ff-name" class="text ui-widget-content ui-corner-all" value="<?php echo $_COOKIE['member_name']; ?> <?php echo $_COOKIE['member_surname']; ?>" />
-		
-		<label for="email">Your email address</label>
-		<input type="text" name="email" id="ff-email" value="<?php echo $_COOKIE['member_email']; ?>" class="text ui-widget-content ui-corner-all" />
-		</span>
+		<?php if(isset($_COOKIE['am_logged_in'])){ ?>
+			<span style="display: none;">
+			<label for="name">Your name</label>
+			<input type="text"name="name" id="ff-name" class="text ui-widget-content ui-corner-all" value="<?php echo $_COOKIE['member_name']; ?> <?php echo $_COOKIE['member_surname']; ?>" />
+			
+			<label for="email">Your email address</label>
+			<input type="text" name="email" id="ff-email" value="<?php echo $_COOKIE['member_email']; ?>" class="text ui-widget-content ui-corner-all" />
+			</span>
+		<?php } ?>
 		<ul>
+			<?php if(!isset($_COOKIE['am_logged_in'])){ ?>
+				<li class="fb-name">
+					<label for="fb-name">Your name:</label>
+					<input type="text" name="name" id="fb-name" value="" class="text ui-widget-content ui-corner-all" />
+				</li>
+				<li class="fb-email">
+					<label for="fb-email">Your email address</label>
+					<input type="text" name="email" id="fb-email" value="" class="text ui-widget-content ui-corner-all" />
+				</li>
+			<?php } ?>
 			<li class="fb-type">
 				<label for="feedback_type">Type of feedback:</label>
 				<ul class="inline">
@@ -29,7 +58,7 @@
 
 			<li class="fb-subject">
 				<label for="title">Subject:</label>
-				<input type="text" name="title" id="ff-title" value="" class="text ui-widget-content ui-corner-all" />
+				<input type="text" name="title" id="ff-title" value="<?php if(!isset($_COOKIE['am_logged_in'])){ ?>Unable to login<?php } ?>" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-message">
 				<label for="description">Message:</label>

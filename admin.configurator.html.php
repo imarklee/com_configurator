@@ -214,14 +214,15 @@ function manage( &$params, &$lists, $morph_installed ) {
 			    <input type="hidden" name="t" value="morph"/>
 				<input type="hidden" name="task" value="" />
 				</form>
-				<?php include 'includes/report-bug.php' ?>
+				
 				
 				<div id="getting-started" style="display:none;"></div>
 				<div id="preferences-screen" style="display:none;"></div>
 				<div id="keyboard-screen" style="display:none;"></div>
 				<div class="toolguides"></div>
 <?php
-			}
+			} ?>
+			<?php include 'includes/report-bug.php';
 	 	}      
     }
     function dashboard() {

@@ -120,7 +120,7 @@ jQuery.noConflict();
 			if($.cookie('am_logged_in')){
 				$("#submenu").append('<li class="preferences"><a href="#">Preferences</a></li>','<li class="feedback"><a href="#" id="report-bug-link">Send Feedback</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 			}else{
-				$("#submenu").append('<li class="feedback"><a target="_blank" href="http://www.joomlajunkie.com/member/pre-sales/" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
+				$("#submenu").append('<li class="feedback"><a href="#" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 			}
 		}
 		
@@ -583,14 +583,15 @@ jQuery.noConflict();
 				opacity: 0.8
 			}
 		});
-		$('#report-bug-link').click(function() {
+		$('#report-bug-link, #report-bug-email-link').click(function() {
 			$('#report-bug').dialog('open');
 			return false;
 		});
 		
 		$('#ff-reset').click(function(){ 
 			$('#report-bug').dialog('close'); 
-			if($.cookie('bug')){ $.cookie('bug', null); } 
+			if($.cookie('bug')){ $.cookie('bug', null); }
+			return false;
 		});
 		
 		$('#feedbackform').submit(function(){ 
@@ -1334,8 +1335,8 @@ jQuery.noConflict();
 				
 		/* Logo Options -----------------------
 	    ------------------------------------ */
-	    function logoPreview(elid){
-	    	if($(elid).val() != null){
+	    function logoPreview(elid, type){
+	    	if($(elid).val() != null && type != 'bg'){
 		    	var imageTitle  = $(elid).val(); 
 		    	var updatedTitle = imageTitle;
 		    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span><span class="upload-logo-container">(<a href="#" class="upload-logo">Upload Logo</a>)</span>');
@@ -1370,20 +1371,37 @@ jQuery.noConflict();
 		    		});
 				});
 			}else{
-				$(elid).css('display', 'none').after('<span class="no-logo">No Logos. <a href="#" class="upload-logo">Upload?</a></span>');
-				$(".upload-logo").click(function(){
-					var maintabs = $("#tabs").tabs();
-					var subtabs = $("#tools-tabs").tabs();
-					maintabs.tabs("select",3);
-					subtabs.tabs("select",0);
-					$('#install-type label.label-selected').removeClass('label-selected');
-					$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
-					return false;
-				});
+				if(type != 'bg'){
+					$(elid).css('display', 'none').after('<span class="no-logo">No Logos. <a href="#" class="upload-logo">Upload?</a></span>');
+					$(".upload-logo").click(function(){
+						var maintabs = $("#tabs").tabs();
+						var subtabs = $("#tools-tabs").tabs();
+						maintabs.tabs("select",3);
+						subtabs.tabs("select",0);
+						$('#install-type label.label-selected').removeClass('label-selected');
+						$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
+						return false;
+					});
+				}else{
+					if($(elid).val() == '' && $(elid).children().size() == 1){
+						$(elid).css('display', 'none').after('<span class="no-logo">No Backgrounds. <a href="#" class="upload-bg">Upload?</a></span>');
+						$(".upload-bg").click(function(){
+							var maintabs = $("#tabs").tabs();
+							var subtabs = $("#tools-tabs").tabs();
+							maintabs.tabs("select",3);
+							subtabs.tabs("select",0);
+							$('#install-type label.label-selected').removeClass('label-selected');
+							$("#upload_background").attr("checked",true).parent().addClass('label-selected');
+							return false;
+						});
+					}
+				}
 			}
+			
 	    }
 	    
 	    logoPreview('#logologo_image');
+	    logoPreview('#backgroundsbg_image', 'bg');
 	    
 	    /* Login ------------------------------
 	    ------------------------------------ */
@@ -1648,13 +1666,14 @@ jQuery.noConflict();
 							$('#upload-message').dialog(
 								'option', 'buttons', { 
 									'Activate': function(){
+										$(this).dialog('destroy');
 										function actLogo(){
 											var setLogo = data.logo;
 											var logoOption = $('#logologo_image option:last').after('<option selected="selected" value="'+setLogo+'">'+setLogo+'</option>');
 		   									submitbutton('applytemplate');
 		   									var $tabs = $('#tabs').tabs();
-											var logoTabs = $('#site-tabs').tabs();
-											$tabs.tabs('select', 0);
+											var logoTabs = $('#themelet-tabs').tabs();
+											$tabs.tabs('select', 1);
 											logoTabs.tabs('select', 1);
 											$(this).dialog('destroy');
 											showScroll();
@@ -1678,12 +1697,13 @@ jQuery.noConflict();
 							$('#upload-message').dialog(
 								'option', 'buttons', { 
 									'Activate': function(){
+										$(this).dialog('destroy');
 										function actBg(){
 											var setBg = data.background;
 											var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
 		   									submitbutton('applytemplate');
 		   									var $tabs = $('#tabs').tabs();
-											var bgTabs = $('#site-tabs').tabs();
+											var bgTabs = $('#themelet-tabs').tabs();
 											$tabs.tabs('select', 1);
 											bgTabs.tabs('select', 2);
 											$(this).dialog('destroy');
@@ -1693,7 +1713,7 @@ jQuery.noConflict();
 									},
 									'Configure': function(){
 										var $tabs = $('#tabs').tabs();
-										var bgTabs = $('#site-tabs').tabs();
+										var bgTabs = $('#themelet-tabs').tabs();
 										$tabs.tabs('select', 1);
 										bgTabs.tabs('select', 2); 
   									  	$(this).dialog('destroy');
@@ -1871,21 +1891,21 @@ jQuery.noConflict();
 					$('#logo-options li').css('display', 'none');
 					$('#logo-options li.heading').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
-					$('#logo-options li #logologo_image').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
-					$('#logo-options li #logologo_alttext').parent().css('display', 'block');
-					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
-					break;
-					case '1':
-					$('#logo-options li').css('display', 'none');
-					$('#logo-options li.heading').css('display', 'block');
-					$('#logologo_type').parent().css('display', 'block');
 					$('#logo-options li #logologo_textcolor').parent().css('display', 'block');
 					$('#logo-options li #logologo_fontsize').parent().css('display', 'block');
 					$('#logo-options li #logologo_fontfamily').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
 					$('#logo-options li #logologo_text').parent().css('display', 'block');
+					break;
+					case '1':
+					$('#logo-options li').css('display', 'none');
+					$('#logo-options li.heading').css('display', 'block');
+					$('#logologo_type').parent().css('display', 'block');
+					$('#logo-options li #logologo_image').parent().css('display', 'block');
+					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
+					$('#logo-options li #logologo_alttext').parent().css('display', 'block');
+					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
+					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
 					break;
 					case '2':
 					$('#logo-options li').css('display', 'none');

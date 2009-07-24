@@ -20,7 +20,7 @@
 			<p>In case you don’t already know, Configurator is our Template Management System (T.M.S.) and is used to control most aspects of Morph.</p>
 			<p><img src="../administrator/components/com_configurator/images/maskot-right.png" alt="maskot" border="0" align="right" style="margin:-20px -7px 0 15px" /> We have poured our hearts into both Morph &amp; Configurator and hope you enjoy using it as much as we did making it!</p>
 			<p>Take a couple of minutes and go through the different help sections in the menu you see on the left. Once you feel ready to jump in, simply close this window and get started.</p>
-			<p><strong>You can easily access this help pane at any time.</strong> Just click on the “Quick Start” button in the top shelf or use one of the built in keyboard shortcuts (cmd + h).</p>
+			<p><strong>You can access this help pane at any time.</strong> Just click on the “Quick Start” button in the top shelf or use one of the built in keyboard shortcuts (cmd + h).</p>
 		</div>
 		<div id="splashtab-fullscreen" class="splashtabs">
 			<h3>Working in Fullscreen mode</h3>

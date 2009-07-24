@@ -1,5 +1,6 @@
 #install-wrap{background:#111 url(../images/install-bg.jpg) no-repeat 50% 50%;padding:0 0 30px 0;width:100%;float:left; position: relative; }
 #installer{width:800px;margin:2em auto;font:normal 76%/160% arial;position:relative;}
+#installer a:link,#installer a:focus{outline:0;}
 #install-head{height:75px;}
 #install-head img{margin:14px 0 0 9px;float:left;z-index:998;position:relative;}
 #install-head img.tagline{margin:30px 0 0 15px;}
@@ -51,7 +52,7 @@
 #action li.skip a:hover span{background-position:20px -1px;}
 #action li.next{float:right;margin:-2px 0 0 0;background:none;}
 #action li.next .btn-install{background:#DDDAD2 url(../images/btn-upload.png) no-repeat;display:block;width:255px;height:50px;text-indent:-7998px;float:left;border:0;margin:-15px 15px 0 0;}
-#action li.next .install-sample{background:#DDDAD2 url(../images/btn-upload.png) no-repeat;}
+#action li.next .install-sample{background:#DDDAD2 url(../images/btn-quicksetup.png) no-repeat;width:300px;}
 #action li.next .launch-cfg{background:#DDDAD2 url(../images/btn-complete.png) no-repeat;}
 #action li.next .btn-install:hover{background-position:center left;cursor:pointer;}
 #action li.next .btn-install:focus{background-position:bottom left;}

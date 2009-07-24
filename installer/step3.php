@@ -6,7 +6,6 @@ $base = '.';
 }
 define('JURL', $base);
 define('JROOT', str_replace('administrator/components/com_configurator/installer', '', dirname(__FILE__)));
-$config = JFactory::getConfig();
 $gzipval = $config->getValue( 'config.gzip' ); ?>
 ?>
 <form id="install-sample" class="step3" method="post" action="#">

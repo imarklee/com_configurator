@@ -290,12 +290,15 @@ class ConfiguratorController extends JController {
 	} 
 	
 	function dashboard() {
-		HTML_configurator_admin::dashboard();
+		global $mainframe;
+		$mainframe->redirect('index.php?option=com_configurator&task=manage');
+		parent::display();
+		//HTML_configurator_admin::dashboard();
 	}
 	
 	function display(){
 		global $mainframe;
-		$mainframe->redirect('index.php?option=com_configurator&task=dashboard');
+		$mainframe->redirect('index.php?option=com_configurator&task=manage');
 		parent::display();
 	}
 	

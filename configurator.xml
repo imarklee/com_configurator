@@ -26,7 +26,7 @@
     <administration>
         <menu link="option=com_configurator&amp;task=dashboard" img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
         <submenu>
-            <menu link="option=com_configurator&amp;task=dashboard" img="js/ThemeOffice/cpanel.png">Dashboard</menu>
+            <!--<menu link="option=com_configurator&amp;task=dashboard" img="js/ThemeOffice/cpanel.png">Dashboard</menu>-->
             <menu link="option=com_configurator&amp;task=manage" img="js/ThemeOffice/config.png">Manage</menu>
         </submenu>        
         <files folder="admin">

@@ -355,8 +355,8 @@ jQuery.noConflict();
 		function gotomanage() { window.location = '../administration/index.php?option=com_configurator&task=manage'; }
 		
 		function helpstep1(){ 
-			$('#dialog').load(base+'/installer/help/step1.php');
 			$('.help-step1').click(function(){
+				$('#dialog').load(base+'/installer/help/step1.php');
 				$('#dialog').dialog({
 					autoOpen: true,
 					bgiframe: true, 
@@ -382,11 +382,11 @@ jQuery.noConflict();
 				return false;
 			});
 		}
-		//helpstep1();
+		helpstep1();
 		
 		function helpstep2(){ 
-			$('#dialog').load(base+'/installer/help/step2.php');
 			$('.help-step2').click(function(){
+				$('#dialog').load(base+'/installer/help/step2.php');
 				$('#dialog').dialog({
 					autoOpen: true,
 					bgiframe: true, 
@@ -413,8 +413,8 @@ jQuery.noConflict();
 			});
 		}
 		function helpstep3(){
-			$('#dialog').load(base+'/installer/help/step3.php');
 			$('.help-step3').click(function(){
+				$('#dialog').load(base+'/installer/help/step3.php');
 				$('#dialog').dialog({
 					autoOpen: true,
 					bgiframe: true, 

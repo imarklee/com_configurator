@@ -7,7 +7,6 @@ jQuery.noConflict();
 		if(thisPage != 'install.configurator.php'){ base = './components/com_configurator'; }else{ base = '.'; }
 		
 		var arrPageSizes = ___getPageSize();
-		$('#sd-body').corners('10px');
 		
 		$('.install-template').click(function(){
 			templateInstall();
@@ -105,7 +104,7 @@ jQuery.noConflict();
 										}
 									}
 								});
-								$('#dialog').html('<div class="dialog-msg">'+data.msg+backuploc+'</div>');
+								$('#dialog').html('<div class="dialog-msg">'+data.msg+backupmsg+'</div>');
 								$('#dialog').dialog('open');
 	                        }
 	                    }
@@ -350,14 +349,14 @@ jQuery.noConflict();
 
 		function loadstep1(callback){ $('#installer').load(base+'/installer/step1.php', callback); }
 		function loadstep2(callback){ $('#installer').load(base+'/installer/step2.php', callback); }
-		function loadstep3(callback){ $('#installer').load(''+base+'/install.configurator.php?install=step3', callback); }
+		function loadstep3(callback){ $('#installer').load(''+base+'/installer/step3.php', callback); }
 		function loadcompleted(callback){ $('#installer').load(''+base+'/installer/complete.php', callback); }
 		function gotomanage() { window.location = '../administration/index.php?option=com_configurator&task=manage'; }
 		
-		function helpstep1(){ 
-			$('.help-step1').click(function(){
-				$('#dialog').load(base+'/installer/help/step1.php');
-				$('#dialog').dialog({
+		function helpstep1(){
+			$('#help-dialog').load(base+'/installer/help/step1.php');
+			$('.help-step1').click(function(){	
+				$('#help-dialog').dialog({
 					autoOpen: true,
 					bgiframe: true, 
 		   			resizable: false,
@@ -385,9 +384,9 @@ jQuery.noConflict();
 		helpstep1();
 		
 		function helpstep2(){ 
+			$('#help-dialog').load(base+'/installer/help/step2.php');
 			$('.help-step2').click(function(){
-				$('#dialog').load(base+'/installer/help/step2.php');
-				$('#dialog').dialog({
+				$('#help-dialog').dialog({
 					autoOpen: true,
 					bgiframe: true, 
 		   			resizable: false,
@@ -413,9 +412,9 @@ jQuery.noConflict();
 			});
 		}
 		function helpstep3(){
+			$('#help-dialog').load(base+'/installer/help/step3.php');
 			$('.help-step3').click(function(){
-				$('#dialog').load(base+'/installer/help/step3.php');
-				$('#dialog').dialog({
+				$('#help-dialog').dialog({
 					autoOpen: true,
 					bgiframe: true, 
 		   			resizable: false,

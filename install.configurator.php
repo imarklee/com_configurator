@@ -30,4 +30,5 @@ function com_install(){
 		</div>
 	</div>
 	<div id="dialog" style="display:none;"></div>
+	<div id="help-dialog" style="display:none;"></div>
 <?php } ?>

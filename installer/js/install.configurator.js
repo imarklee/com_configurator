@@ -76,7 +76,7 @@ jQuery.noConflict();
 										}
 									}
 								});
-								$('#dialog').html(data.error);
+								$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
 								$('#dialog').dialog('show');
 	                        }else{
 	                        	if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
@@ -105,7 +105,7 @@ jQuery.noConflict();
 										}
 									}
 								});
-								$('#dialog').html(data.msg+backuploc);
+								$('#dialog').html('<div class="dialog-msg">'+data.msg+backuploc+'</div>');
 								$('#dialog').dialog('show');
 	                        }
 	                    }
@@ -188,7 +188,7 @@ jQuery.noConflict();
 										}
 									}
 								});
-								$('#dialog').html(data.error);
+								$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
 								$('#dialog').dialog('show');
 	                        }else{
 	                            hideScroll();
@@ -217,7 +217,7 @@ jQuery.noConflict();
 										}
 									}
 								});
-								$('#dialog').html(data.msg);
+								$('#dialog').html('<div class="dialog-msg">'+data.msg+'</div>');
 								$('#dialog').dialog('show');
 	                        }
 	                    }
@@ -310,7 +310,7 @@ jQuery.noConflict();
 									}
 								}
 							});
-							$('#dialog').html(data.error);
+							$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
 							$('#dialog').dialog('show');
 						}else{
 							if(data.db == 'backedup'){ var dbstore = '<p><strong>Your database was backed up to: </strong></p><p><small>'+data.dbstore+'</small></p>'; }else{ var dbstore = '' }
@@ -341,7 +341,7 @@ jQuery.noConflict();
 									}
 								}
 							});
-							$('#dialog').html(data.success+dbstore);
+							$('#dialog').html('<div class="dialog-msg">'+data.success+dbstore+'</div>');
 							$('#dialog').dialog('show');
 						}
 					}

@@ -598,7 +598,7 @@ jQuery.noConflict();
 			function validate(formData, jqForm, options) { 
 			    for (var i=0; i < formData.length; i++) { 
 			    	if (!formData[i].value) { 
-			            $('<div>All fields are required</div>').dialog({
+			            $('<p>All fields are required</p>').dialog({
 			            	bgiframe: true,
 							autoOpen: true,
 							stack: true,
@@ -669,7 +669,7 @@ jQuery.noConflict();
 							});
 						}
 					}else{
-						$('<div>'+data.message+'</div>').dialog({
+						$('<div class="dialog-msg">'+data.message+'</div>').dialog({
 			            	bgiframe: true,
 							autoOpen: true,
 							stack: true,

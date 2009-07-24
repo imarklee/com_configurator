@@ -37,8 +37,6 @@ define('JROOT', str_replace('administrator/components/com_configurator/installer
 				<li><label><input type="checkbox" name="database-options" id="database-options" checked="checked" value="db" />
 					Backup your entire database (recommended)</label></li>
 				<?php
-				$config = JFactory::getConfig();
-				$gzipval = $config->getValue( 'config.gzip' );
 				if(extension_loaded('zlib') && $gzipval == 0){ ?>
 				<li><label><input type="checkbox" name="gzip-options" id="gzip-options" checked="checked" value="1" />
 					Enable GZIP Compression (recommended)</label></li>

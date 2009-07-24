@@ -6,6 +6,9 @@ $base = '.';
 }
 ini_set('memory_limit', '32M');
 define('JINDEXURL', $base);
+$config = JFactory::getConfig();
+$gzipval = $config->getValue( 'config.gzip' );
+
 ?>
 <script src="<?php echo JINDEXURL; ?>/installer/js/install.js.php" type="text/javascript"></script>
 <link href="<?php echo JINDEXURL; ?>/installer/css/install.css.php" media="screen" rel="stylesheet" type="text/css" />

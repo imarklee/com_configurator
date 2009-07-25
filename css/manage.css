@@ -253,7 +253,7 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #uploader legend strong{color:#555;}
 #uploader fieldset{margin:0 0 1em;padding:1em 0 1.8em;border:0;border-bottom:1px dashed #ccc;}
 #uploader fieldset#upload-install{border:0;}
-#conf-login{position:relative;background:#000000 url(../images/bokeh-bg.jpg) no-repeat 50% 50%;color:#313131;width:100%;padding:50px 0;display:block;text-align:left;}
+#conf-login{position:relative;background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;color:#313131;width:100%;padding:50px 0;display:block;text-align:left;}
 #conf-login h2{font:bold 32px Arial;margin:0 0 10px 0;padding:0;}
 #conf-login p{margin:0 0 15px 0;padding:0;font:normal 13px/17px Arial;width:360px;}
 #cl-top{padding:0;margin:0 auto;width:590px;}

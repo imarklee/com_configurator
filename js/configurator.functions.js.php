@@ -95,6 +95,9 @@ jQuery.noConflict();
 		
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
 
+
+
+
 //		$('#help').hover(function() {
 //		  $(this).addClass('hover');
 //		}, function() {
@@ -112,7 +115,8 @@ jQuery.noConflict();
 //				$('#qtip-blanket').css("display", "none");
 //			}
 //		);
-
+		
+		
 		
 		if($.jqURL.get('task') == 'dashboard'){
 			$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
@@ -617,9 +621,9 @@ jQuery.noConflict();
 			            return false; 
 			        } 
 			    }
-			    $('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+			    $('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
 				hideScroll();
-				$('#saving').css({
+				$('#processing').css({
 					'display': 'block',
 					'z-index': '9998',
 					position: 'absolute',
@@ -648,7 +652,7 @@ jQuery.noConflict();
 					'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
 				},
 				success: function(data, status, error){
-					$('#saving').css('display', 'none');
+					$('#processing').css('display', 'none');
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
@@ -934,9 +938,9 @@ jQuery.noConflict();
 						subTabs.tabs('select', 0);
 						window.location.reload(true);
 						$(this).dialog('destroy');
-						$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+						$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
 						hideScroll();
-						$('#saving').css({
+						$('#processing').css({
 							'display': 'block',
 							width: arrPageSizes[0],
 							height: arrPageSizes[1]
@@ -950,9 +954,9 @@ jQuery.noConflict();
 			   			'No thanks': function(){
 			   				window.location.reload(true);
 			   				$(this).dialog('destroy');
-							$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+							$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
 							hideScroll();
-							$('#saving').css({
+							$('#processing').css({
 								'display': 'block',
 								width: arrPageSizes[0],
 								height: arrPageSizes[1]
@@ -1840,9 +1844,9 @@ jQuery.noConflict();
 		}
 		
 		$('td#toolbar-apply a').attr('onclick', '').click(function(){
-			$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
+			$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
 			hideScroll();
-			$('#saving').css({
+			$('#processing').css({
 				'display': 'block',
 				'z-index': '9998',
 				position: 'absolute',
@@ -1867,9 +1871,9 @@ jQuery.noConflict();
 						'Save & continue': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
-							$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
+							$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
 							hideScroll();
-							$('#saving').css({
+							$('#processing').css({
 								'display': 'block',
 								'z-index': '9998',
 								position: 'absolute',
@@ -2431,9 +2435,9 @@ jQuery.noConflict();
 				var os = $.os.name;
 				
 				function save(){
-					$('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
+					$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
 					hideScroll();
-					$('#saving').css({
+					$('#processing').css({
 						'display': 'block',
 						'z-index': '9998',
 						position: 'absolute',
@@ -2653,9 +2657,9 @@ jQuery.noConflict();
 				            return false; 
 				        } 
 				    }
-				    $('<div id="saving"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+				    $('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
 					hideScroll();
-					$('#saving').css({
+					$('#processing').css({
 						'display': 'block',
 						'z-index': '9998',
 						position: 'absolute',
@@ -2675,7 +2679,7 @@ jQuery.noConflict();
 						format: 'json'
 					},
 					success: function(data, status, error){
-						$('#saving').css('display', 'none');
+						$('#processing').css('display', 'none');
 						if(typeof(data.error) != 'undefined'){						
 							if(data.error != ''){
 								$('<div>'+data.error+'</div>').dialog({
@@ -2773,7 +2777,6 @@ jQuery.noConflict();
 			}
 			arrayPageSize = new Array(pageWidth,pageHeight,windowWidth,windowHeight);
 			return arrayPageSize;
-		};
-		
+		};		
 	});
 })(jQuery);

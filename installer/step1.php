@@ -5,6 +5,7 @@ $base = './components/com_configurator';
 $base = '.';
 }
 define('JURL', $base);
+define('JROOT', str_replace('administrator/components/com_configurator/installer', '', dirname(__FILE__))); 
 ?>
 <form id="install-template" class="step1" method="post" action="index.php?option=com_configurator&task=installTemplate&format=raw&backup=false" enctype="multipart/form-data">
 	<div id="install-head">
@@ -27,8 +28,13 @@ define('JURL', $base);
 				<label class="upload"><h4>Select the template framework install file:</h4>
 				<input type="file" name="template-file" id="template-file" /></label>
 				
+				<label class="backup"><input type="checkbox" name="publish_template" id="publish_template" value="true" />
+				Publish Morph as the default template?</label>
+				
+				<?php if(is_dir(JROOT . 'templates/morph')){ ?>
 				<label class="backup"><input type="checkbox" name="backup_template" id="backup_template" checked="checked" value="true" />
 				Backup your existing copy of Morph?</label>
+				<?php } ?>
 				<span class="mascot">&nbsp;</span>
 				
 				<!--<a id="upload-info" href="#" title="click here for more info">&nbsp;</a>-->

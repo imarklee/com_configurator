@@ -7,17 +7,17 @@ SET @section_id = LAST_INSERT_ID();
 --
 -- Create the categories
 --
-INSERT INTO `jos_categories` VALUES('', 0, 'ContentFX', '', 'contentfx', '', @section_id, 'left', '<p>A number of content enhancements can be applied by adding classes to your xhtml to add effects from rounded corners to emphasis on first letters and paragraphs of text.</p>', 1, 0, '0000-00-00 00:00:00', NULL, 5, 2, 0, '');
+INSERT INTO `jos_categories` VALUES('', 0, 'ContentFX', '', 'contentfx', '', @section_id, 'left', '<p>A number of content enhancements can be applied by adding classes to your xhtml to add effects from rounded corners to emphasis on first letters and paragraphs of text.</p>', 1, 0, '0000-00-00 00:00:00', NULL, 5, 0, 0, '');
 SET @cfx_id = LAST_INSERT_ID();
-INSERT INTO `jos_categories` VALUES('', 0, 'MenuFX', '', 'menufx', '', @section_id, 'left', '<p>Activate menus such as top superfish, superdrop, subtext, sidebar menu flyout and other menu enhancements simply by opening the module in Joomla & adding a preset suffix.</p>', 1, 0, '0000-00-00 00:00:00', NULL, 3, 2, 0, '');
+INSERT INTO `jos_categories` VALUES('', 0, 'MenuFX', '', 'menufx', '', @section_id, 'left', '<p>Activate menus such as top superfish, superdrop, subtext, sidebar menu flyout and other menu enhancements simply by opening the module in Joomla & adding a preset suffix.</p>', 1, 0, '0000-00-00 00:00:00', NULL, 3, 0, 0, '');
 SET @mfx_id = LAST_INSERT_ID();
-INSERT INTO `jos_categories` VALUES('', 0, 'Quick Tips', '', 'quick-tips', '', @section_id, 'left', '', 1, 0, '0000-00-00 00:00:00', NULL, 7, 2, 0, '');
+INSERT INTO `jos_categories` VALUES('', 0, 'Quick Tips', '', 'quick-tips', '', @section_id, 'left', '', 1, 0, '0000-00-00 00:00:00', NULL, 7, 0, 0, '');
 SET @qt_id = LAST_INSERT_ID();
-INSERT INTO `jos_categories` VALUES('', 0, 'ModuleFX', '', 'modulefx', '', @section_id, 'left', '<p>Add and combine a number of module header and background styles by mixing and matching your module suffixes to create various combinations of looks for your modules.</p>', 1, 0, '0000-00-00 00:00:00', NULL, 4, 2, 0, '');
+INSERT INTO `jos_categories` VALUES('', 0, 'ModuleFX', '', 'modulefx', '', @section_id, 'left', '<p>Add and combine a number of module header and background styles by mixing and matching your module suffixes to create various combinations of looks for your modules.</p>', 1, 0, '0000-00-00 00:00:00', NULL, 4, 0, 0, '');
 SET @modfx_id = LAST_INSERT_ID();
-INSERT INTO `jos_categories` VALUES('', 0, 'PageFX', '', 'pagefx', '', @section_id, 'left', '<p>Set the width, position and relation of the left and right sidebar to each other, not just globally but rather on any page. This means every page can be completely different.</p>', 1, 0, '0000-00-00 00:00:00', NULL, 2, 2, 0, '');
+INSERT INTO `jos_categories` VALUES('', 0, 'PageFX', '', 'pagefx', '', @section_id, 'left', '<p>Set the width, position and relation of the left and right sidebar to each other, not just globally but rather on any page. This means every page can be completely different.</p>', 1, 0, '0000-00-00 00:00:00', NULL, 2, 0, 0, '');
 SET @pfx_id = LAST_INSERT_ID();
-INSERT INTO `jos_categories` VALUES('', 0, 'Configurator', '', 'configurator', '', @section_id, 'left', '<p>Configurator is one of Morphs method of controls which allows you to customize and configure most aspects of Morph. With an intuitive interface and extensive inline help, its a incredibly useful tool that helps you <strong>go live faster</strong>.', 1, 0, '0000-00-00 00:00:00', NULL, 6, 2, 0, '');
+INSERT INTO `jos_categories` VALUES('', 0, 'Configurator', '', 'configurator', '', @section_id, 'left', '<p>Configurator is one of Morphs method of controls which allows you to customize and configure most aspects of Morph. With an intuitive interface and extensive inline help, its a incredibly useful tool that helps you <strong>go live faster</strong>.', 1, 0, '0000-00-00 00:00:00', NULL, 6, 0, 0, '');
 SET @cfg_id = LAST_INSERT_ID();
 INSERT INTO `jos_categories` VALUES('', 0, 'Themelets', '', 'themelets', '', @section_id, 'left', '', 1, 0, '0000-00-00 00:00:00', NULL, 8, 0, 0, '');
 SET @thm_id = LAST_INSERT_ID();

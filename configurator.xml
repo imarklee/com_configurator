@@ -25,10 +25,10 @@
     </uninstall>    
     <administration>
         <menu link="option=com_configurator&amp;task=manage" img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
-        <!--<submenu>
-            <menu link="option=com_configurator&amp;task=dashboard" img="js/ThemeOffice/cpanel.png">Dashboard</menu>
+        <submenu>
+			<!-- <menu link="option=com_configurator&amp;task=dashboard" img="js/ThemeOffice/cpanel.png">Dashboard</menu> -->
             <menu link="option=com_configurator&amp;task=manage" img="js/ThemeOffice/config.png">Manage</menu>
-        </submenu>-->        
+        </submenu>
         <files folder="admin">
             <filename>admin.configurator.html.php</filename>
             <filename>admin.configurator.php</filename>

@@ -24,11 +24,23 @@ jQuery.noConflict();
 		});
 		
 		function templateInstall(){
-			if($('#backup_template').attr('checked')){
-				var backupval = 'true';
+			if(typeof $('#backup_template').val() != 'undefined'){
+				if($('#backup_template').attr('checked')){
+					var backupval = 'true';
+				}else{
+					var backupval = 'false';
+				}
 			}else{
-				var backupval = 'false';
+				backupval = 'nomorph';
 			}
+			
+			if($('#publish_template').attr('checked')){
+					var publish = 'true';
+				}else{
+					var publish = 'false';
+				}
+			
+			
 			if($('#template-file').val() != ''){
 				$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing template...</span></div></div>').appendTo('body');
 				hideScroll();
@@ -43,7 +55,7 @@ jQuery.noConflict();
 				});
 				
 				$.ajaxFileUpload({
-					url: '../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup='+backupval,
+					url: '../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup='+backupval+'&publish='+publish,
 					fileElementId:'template-file',
 					dataType: 'json',
 					success: function (data, status)

@@ -826,7 +826,7 @@ class ConfiguratorController extends JController {
 		//die();
 
 		if(in_array($newtemplatefile['type'], array('application/octet-stream', 'application/zip', 'application/x-zip-compressed'))){
-			if(is_dir($templatesdir . DS . 'morph')){
+			if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){
 				// template folder
 				if($_REQUEST['backup'] == 'true'){
 					// backup existing
@@ -852,7 +852,7 @@ class ConfiguratorController extends JController {
 							}
 							// directory doesn't exist - install as per usual
 							@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-							$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+							$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_POST['publish']);
 							$msg .= ', backuploc: "'.$backupfile.'.gz"';
 							$ret = '{'.$msg.'}';
 							echo $ret;
@@ -873,7 +873,7 @@ class ConfiguratorController extends JController {
 						}
 						// directory doesn't exist - install as per usual
 						@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_POST['publish']);
 						$ret = '{'.$msg.'}';
 						echo $ret;
 					}
@@ -886,7 +886,7 @@ class ConfiguratorController extends JController {
 				}
 				// directory doesn't exist - install as per usual
 				@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_POST['publish']);
 				$ret = '{'.$msg.'}';
 				echo $ret;
 			}
@@ -932,7 +932,7 @@ class ConfiguratorController extends JController {
 		return $data;
 	}
 	
-	function unpackTemplate($p_filename){
+	function unpackTemplate($p_filename, $publish = ''){
 		$archivename = $p_filename;
 		$dirname = uniqid('tempins_');
 		$extractdir = JPath::clean(dirname($p_filename).DS.$dirname);
@@ -974,12 +974,15 @@ class ConfiguratorController extends JController {
 			$retval['dir'] = $extractdir;
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
 			
-			if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS.'set-template-as-default.sql')){
-				$this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS.'set-template-as-default.sql');
-			}else{
-				$error = 'error: "SQL file doesn\'t exist"';
-				return $error;
+			if($publish !== 'false'){
+				if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS.'set-template-as-default.sql')){
+					$this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS.'set-template-as-default.sql');
+				}else{
+					$error = 'error: "SQL file doesn\'t exist"';
+					return $error;
+				}
 			}
+			
 			$success = 'msg: "Template Successfully Installed", error: ""';
 			return $success;
 		}

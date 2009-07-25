@@ -287,6 +287,9 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #saving{position:absolute;top:0;left:0;display:none;z-index:9998;background:#000;width:100%;height:500px;opacity:0.9;}
 #saving div{margin:40% 45%;width:215px;font:bold 15px arial;color:#fff;position:relative;}
 #saving div span{position:absolute;left:20px;top:-1px;}
+#processing{position:absolute;top:0;left:0;display:none;z-index:9998;background:#000;width:100%;height:500px;opacity:0.9;}
+#processing div{margin:300px auto 0 auto;width:150px;font:bold 15px arial;color:#fff;position:relative;}
+#processing div span{position:absolute;left:20px;top:-1px;}
 #login-details{padding:.6em;zoom:1;background:#8cc048;width:48%;float:right;margin:0 0 1em 0;color:#fff;font-weight:bold;font-size:14px;}
 #login-details p{padding:0;margin:0;}
 #login-details p.ld-float-user{float:left;width:385px;color:#323c24;}
@@ -335,6 +338,7 @@ p.intro{font:normal 17px/20px Arial;color:#666;}
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar span{display:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar a{color:#fff;text-decoration:underline;background:transparent url(../images/fullscreen-save.png) no-repeat 2px 2px;border:0;padding:0 0 0 25px;font:normal 15px/19px arial;}
+#toolbar-Link{display:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar a:hover{color:#ACEF69;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td{color:#666;height:25px;padding:0;text-align:center;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td#toolbar-Link,

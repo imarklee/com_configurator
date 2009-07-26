@@ -822,9 +822,6 @@ class ConfiguratorController extends JController {
 			@JPath::setPermissions($themeletsdir);
 		}
 		
-		//echo '{ error: "' . $newtemplatefile['type'] . '"}';
-		//die();
-
 		if(in_array($newtemplatefile['type'], array('application/octet-stream', 'application/zip', 'application/x-zip-compressed'))){
 			if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){
 				// template folder
@@ -852,7 +849,7 @@ class ConfiguratorController extends JController {
 							}
 							// directory doesn't exist - install as per usual
 							@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-							$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_POST['publish']);
+							$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
 							$msg .= ', backuploc: "'.$backupfile.'.gz"';
 							$ret = '{'.$msg.'}';
 							echo $ret;
@@ -873,7 +870,7 @@ class ConfiguratorController extends JController {
 						}
 						// directory doesn't exist - install as per usual
 						@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_POST['publish']);
+						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
 						$ret = '{'.$msg.'}';
 						echo $ret;
 					}
@@ -886,7 +883,7 @@ class ConfiguratorController extends JController {
 				}
 				// directory doesn't exist - install as per usual
 				@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_POST['publish']);
+				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
 				$ret = '{'.$msg.'}';
 				echo $ret;
 			}

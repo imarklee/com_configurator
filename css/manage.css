@@ -338,7 +338,6 @@ p.intro{font:normal 17px/20px Arial;color:#666;}
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar span{display:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar a{color:#fff;text-decoration:underline;background:transparent url(../images/fullscreen-save.png) no-repeat 2px 2px;border:0;padding:0 0 0 25px;font:normal 15px/19px arial;}
-#toolbar-Link{display:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar a:hover{color:#ACEF69;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td{color:#666;height:25px;padding:0;text-align:center;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td#toolbar-Link,

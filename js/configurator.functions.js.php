@@ -1471,7 +1471,32 @@ jQuery.noConflict();
 	    function loginUser(){
 	    	var username = $('input[name="am-username"]').val();
 	    	var password = $('input[name="am-password"]').val();
-	    	var setcookie = $('input[name="am-keep-login"]').attr('checked')
+	    	var setcookie = $('input[name="am-keep-login"]').attr('checked');
+	    	
+	    	if(username == '' || password == ''){
+	    		$('#alf-warning').html('<div class="dialog-msg">Please enter a username and password in the fields below. Thanks.</div>');
+				hideScroll();
+				$('#alf-warning').dialog({
+		   			autoOpen: true, 
+		   			bgiframe: true, 
+		   			resizable: false,
+		   			draggable: false,
+		   			minHeight: 20,
+		   			modal: true, 
+		   			title: 'Error',
+		   			overlay: {
+		   				backgroundColor: '#000', 
+		   				opacity: 0.5 
+		   			},
+					buttons: {
+						'OK': function(){
+							$(this).dialog('destroy');
+							showScroll();
+						}
+					}
+				});
+				return false;
+	    	}
 	    	
 	    	if(username != 'username' || password != 'password'){
 	    	

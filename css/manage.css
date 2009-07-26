@@ -58,7 +58,7 @@ html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #tabs,#tabs .primary,#tabs .primary li,#tabs .primary li a,#tabs .primary .ui-tabs-panel{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}
 #tabs .primary li.last{margin:0;}
 #tabs .primary li a{padding:15px 23px;background:#8F8F8F url(../images/tabs-off.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #ccc;}
-#tabs .primary li a:hover{color:#000;}
+#tabs .primary li a:hover{color:#000;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bottom;}
 #tabs.ui-tabs .subtabs .ui-tabs-nav li.ui-state-hover a{border-bottom:0 solid #fff!important;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a{font-weight: normal;text-shadow:0 0 0 #fff;border-bottom:1px solid #fff;background:#fff url(../images/cog.png) no-repeat 20px 50%;color:#333;padding-left:47px;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a:hover{text-decoration:none;}
@@ -329,7 +329,7 @@ p.intro{font:normal 17px/20px Arial;color:#666;}
 .docs-wrap table td td{border:1px solid #ccc;background:#eee;color:#666;}
 .docs-wrap .docs-il-outer{padding:3px 0;border:1px solid #FF9C60;background:#FFE390;color:#BB5517;}
 #minwidth-body .m{padding:0!important;}
-#minwidth-body .m #templateform{background:#000 url(../images/configurator-bg.jpg) no-repeat 50% 0;}
+#minwidth-body .m #templateform{background:#111111 url(../images/install-bg.jpg) no-repeat 50% 0;}
 #minwidth-body.full-mode{position:relative;background:#000;margin:0;}
 #minwidth-body.full-mode #border-top,#minwidth-body.full-mode #header-box,#minwidth-body.full-mode #content-box,#minwidth-body.full-mode .padding,#minwidth-body.full-mode .m,#minwidth-body.full-mode .t{background:#000;border:0!important;margin:0;padding:0;}
 #minwidth-body.full-mode #content-box .padding #element-box{position:absolute;top:34px;left:0;width:100%;z-index:999;background:#000;}
@@ -338,7 +338,6 @@ p.intro{font:normal 17px/20px Arial;color:#666;}
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar span{display:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar a{color:#fff;text-decoration:underline;background:transparent url(../images/fullscreen-save.png) no-repeat 2px 2px;border:0;padding:0 0 0 25px;font:normal 15px/19px arial;}
-#toolbar-Link{display:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar a:hover{color:#ACEF69;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td{color:#666;height:25px;padding:0;text-align:center;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar td#toolbar-Link,

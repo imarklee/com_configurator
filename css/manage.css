@@ -329,7 +329,7 @@ p.intro{font:normal 17px/20px Arial;color:#666;}
 .docs-wrap table td td{border:1px solid #ccc;background:#eee;color:#666;}
 .docs-wrap .docs-il-outer{padding:3px 0;border:1px solid #FF9C60;background:#FFE390;color:#BB5517;}
 #minwidth-body .m{padding:0!important;}
-#minwidth-body .m #templateform{background:#000 url(../images/configurator-bg.jpg) no-repeat 50% 0;}
+#minwidth-body .m #templateform{background:#111111 url(../images/install-bg.jpg) no-repeat 50% 0;}
 #minwidth-body.full-mode{position:relative;background:#000;margin:0;}
 #minwidth-body.full-mode #border-top,#minwidth-body.full-mode #header-box,#minwidth-body.full-mode #content-box,#minwidth-body.full-mode .padding,#minwidth-body.full-mode .m,#minwidth-body.full-mode .t{background:#000;border:0!important;margin:0;padding:0;}
 #minwidth-body.full-mode #content-box .padding #element-box{position:absolute;top:34px;left:0;width:100%;z-index:999;background:#000;}

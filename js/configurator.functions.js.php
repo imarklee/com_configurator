@@ -627,7 +627,7 @@ jQuery.noConflict();
 			        top: 0,
 			        left: 0,
 			        width: arrPageSizes[0],
-					height: arrPageSizes[1],
+					height: arrPageSizes[1]
 				});
 			    return true; 
 			}
@@ -1875,7 +1875,7 @@ jQuery.noConflict();
 		        top: 0,
 		        left: 0,
 		        width: arrPageSizes[0],
-				height: arrPageSizes[1],
+				height: arrPageSizes[1]
 			});
 			setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
 			return false;
@@ -1902,7 +1902,7 @@ jQuery.noConflict();
 						        top: 0,
 						        left: 0,
 						        width: arrPageSizes[0],
-								height: arrPageSizes[1],
+								height: arrPageSizes[1]
 							});
 							$('#templateform').submit(function(){
 					   			$(this).ajaxSubmit({
@@ -2466,7 +2466,7 @@ jQuery.noConflict();
 				        top: 0,
 				        left: 0,
 				        width: arrPageSizes[0],
-						height: arrPageSizes[1],
+						height: arrPageSizes[1]
 					});
 					setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
 					e.preventDefault();
@@ -2688,7 +2688,7 @@ jQuery.noConflict();
 				        top: 0,
 				        left: 0,
 				        width: arrPageSizes[0],
-						height: arrPageSizes[1],
+						height: arrPageSizes[1]
 					});
 				    return true; 
 				}

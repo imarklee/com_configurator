@@ -238,7 +238,7 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 .footer-links,
 .footer-links li{margin:0;padding:0;list-style:none;}
 .footer-links{float:right;width:750px;margin:10px 0 0 10px;}
-.footer-links li{display:block;float:left;margin:0 65px 0 0;}
+.footer-links li{display:block;float:left;margin:0 55px 0 0;}
 .footer-links li.fd{margin:0 0 0 0;}
 .footer-links li li{display:block;float:none;margin:0;}
 .footer-links li a{color:#ccc;font-size:11px;}

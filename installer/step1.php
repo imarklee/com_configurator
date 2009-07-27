@@ -5,7 +5,7 @@ $base = './components/com_configurator';
 $base = '.';
 }
 define('JURL', $base);
-define('JROOT', str_replace('administrator/components/com_configurator/installer', '', dirname(__FILE__))); 
+define('JROOT', str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__)));
 ?>
 <form id="install-template" class="step1" method="post" action="index.php?option=com_configurator&task=installTemplate&format=raw&backup=false" enctype="multipart/form-data">
 	<div id="install-head">

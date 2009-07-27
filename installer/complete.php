@@ -5,6 +5,7 @@ $base = './components/com_configurator';
 $base = '.';
 }
 define('JURL', $base);
+define('JROOT', str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__)));
 function summaryclass($cookie){
 	if(isset($_COOKIE[$cookie])){
 		$class = ' class="tick-on"';
@@ -30,7 +31,9 @@ function summaryclass($cookie){
 		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
 			<li<?php echo summaryclass('installed_cfg'); ?>>Installed Morph's Configurator component</li>
+			<?php if(is_dir(JROOT . 'templates/morph')){ ?>
 			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of existing version of the Morph template</li>
+			<?php } ?>
 			<li<?php echo summaryclass('installed_morph'); ?>>Installed new version of the Morph template</li>
 			<li<?php echo summaryclass('installed_pubmorph'); ?>>Published new version of the Morph template</li>
 			<li<?php echo summaryclass('installed_themelet'); ?>>Installed<?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>

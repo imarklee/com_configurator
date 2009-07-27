@@ -51,7 +51,7 @@ jQuery.noConflict();
 			        top: 0,
 			        left: 0,
 			        width: arrPageSizes[0],
-					height: arrPageSizes[1],
+					height: arrPageSizes[1]
 				});
 				
 				$.ajaxFileUpload({
@@ -163,7 +163,7 @@ jQuery.noConflict();
 			        top: 0,
 			        left: 0,
 			        width: arrPageSizes[0],
-					height: arrPageSizes[1],
+					height: arrPageSizes[1]
 				});
 				
 				$.ajaxFileUpload({
@@ -232,10 +232,6 @@ jQuery.noConflict();
 								$('#dialog').dialog('open');
 	                        }
 	                    }
-	                },
-	                error: function(c,d,e){
-	                	$('#saving').css('display', 'none');
-	                	console.log(e);
 	                }
 				});
 			}else{
@@ -313,7 +309,7 @@ jQuery.noConflict();
 		        top: 0,
 		        left: 0,
 		        width: arrPageSizes[0],
-				height: arrPageSizes[1],
+				height: arrPageSizes[1]
 			});
 			
 			$.post(

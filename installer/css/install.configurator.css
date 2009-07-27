@@ -14,7 +14,7 @@
 #install-body{background:transparent url(../images/bg-step1.jpg) no-repeat 100% 0%;border-top:1px solid #fff;border-bottom:3px solid #9AA3AE;padding:10px 200px 20px 20px;font:normal 18px/27px arial;position:relative;}
 .step2 #install-body{background:transparent url(../images/bg-step2.jpg) no-repeat 100% 0%;padding-bottom:40px;}
 .step3 #install-body{background:transparent url(../images/bg-step3.jpg) no-repeat 100% 60%;padding-bottom:40px;}
-#install-body.complete{background:transparent url(../images/bg-complete.jpg) no-repeat 100% 0%;padding-bottom:40px;}
+#install-body.complete{background:transparent url(../images/bg-complete.jpg) no-repeat 100% 55%;padding-bottom:40px;}
 #install-body h3{font:bold 20px arial;color:#333;margin:.7em 0;text-shadow:0 1px 0 #fff;}
 #install-body.complete h3{color:#326C02;}
 #install-body h3 strong{color:#58842F;}

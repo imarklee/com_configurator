@@ -14,12 +14,15 @@ html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #updates-summary dl{font-size:12px;font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:1;line-height:19px;}
 #utilities ul{overflow:hidden;margin-left:10px;}
 #shelf #utilities ul li.logged-in{display:block;float:left;margin:0 0 0 8px;padding:0 0 0 20px;height:30px;line-height:30px;text-align:left;width:300px;font-weight:normal;font-size:12px;background:transparent url(../images/loggedin.png) no-repeat center left;}
-#utilities ul li.logged-in a{display:inline!important;padding:0;margin:0;height:auto;line-height:1;float:none;font-size:12px;color:#fff;text-decoration:underline;border:0;}
-#utilities ul li{display:block;float:right;margin-left:10px;}
-#utilities ul li a{padding:0 0 0 30px;height:30px;display:block;border-left:0;text-decoration:underline;float:left;font:normal 12px/30px Arial;color:#fff;}
-#utilities .toggle-shelf a{background:transparent url(../images/toggle.png) no-repeat 10px 51%;padding:0 10px 0 30px;}
-#shelf.closed #utilities .toggle-shelf a{background:transparent url(../images/toggle-open.png) no-repeat 10px 51%;}
-#utilities .shortcuts a{background:transparent url(../images/keyboard.png) no-repeat 8px 6px;}
+#utilities ul li.logged-in a{display:inline!important;padding:0;margin:0;height:auto;line-height:1;float:none;font-size:12px;color:#111;text-decoration:underline;border:0;}
+#utilities ul li.logged-in a:hover{color:#eee;text-decoration:none;}
+#utilities ul li{display:block;float:right;margin:0;}
+#utilities ul li a{padding:0 15px 0 0;height:30px;display:block;border-left:0;text-decoration:underline;float:left;font:normal 12px/30px Arial;color:#111;}
+#utilities ul li #toggle-shelf{padding:3px 5px;margin:7px 8px 0 0;height:auto;line-height:1;color:#ccc;text-transform:lowercase;font-size:11px;display:block;background:#333;-moz-border-radius:4px;-webkit-border-radius:4px;text-decoration:none;}
+#utilities ul li #toggle-shelf:hover{color:#eee;background:#222;}
+#visual-refs h3 span{color:#999;padding-left:90px;}
+#visual-refs h3 span a{font-size:12px;margin:0 2px;text-decoration:underline;}
+#visual-refs h3 span a:hover{text-decoration:none;}
 #shelf{margin:0 0 20px 0;}
 #shelf #shelf-contents{border-top:0;background:#fff;overflow:hidden;border:0;}
 #shelf.closed #shelf-contents{display:none;}
@@ -49,6 +52,7 @@ html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #current-themelet a,dd.latest a{color:#555;}
 #updates-summary p.updates-help{margin:0;padding:0;color:#999;position:absolute;top:22px;right:60px;}
 #updates-summary p.updates-help a{text-decoration:underline;}
+#updates-summary p.updates-help a:hover{text-decoration:none;}
 #shelf ul,#shelf li{list-style:none;margin:0;padding:0;}
 #visual-refs{width:375px;float:left;}
 .buttons li{display:block;float:left;margin:0 7px 5px 0!important;}
@@ -57,8 +61,8 @@ html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #tabs.ui-tabs li strong{display:block;font:bold 18px Arial;color:#eee;}
 #tabs,#tabs .primary,#tabs .primary li,#tabs .primary li a,#tabs .primary .ui-tabs-panel{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}
 #tabs .primary li.last{margin:0;}
-#tabs .primary li a{padding:15px 23px;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #ccc;}
-#tabs .primary li a:hover{color:#000;background:#8F8F8F url(../images/tabs-off.jpg) repeat-x bottom;}
+#tabs .primary li a{padding:15px 23px;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #777;}
+#tabs .primary li a:hover{color:#000;background:#8F8F8F url(../images/tabs-off.jpg) repeat-x bottom;text-shadow:0 1px 0 #ccc;}
 #tabs.ui-tabs .subtabs .ui-tabs-nav li.ui-state-hover a{border-bottom:0 solid #fff!important;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a{font-weight: normal;text-shadow:0 0 0 #fff;border-bottom:1px solid #fff;background:#fff url(../images/cog.png) no-repeat 20px 50%;color:#333;padding-left:47px;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a:hover{text-decoration:none;}

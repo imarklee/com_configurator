@@ -95,9 +95,6 @@ jQuery.noConflict();
 		
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
 
-
-
-
 //		$('#help').hover(function() {
 //		  $(this).addClass('hover');
 //		}, function() {
@@ -2341,7 +2338,7 @@ jQuery.noConflict();
 	    	});
 	    }
 	    
-    	$('li.shortcuts a').click(function(){ 
+    	$('#keyboard-toggle').click(function(){ 
 	    	$('#keyboard-screen').load('../administrator/components/com_configurator/includes/keyboard.php', function(){
 		    	return keyboardScreen();
 		    }); 

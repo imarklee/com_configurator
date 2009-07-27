@@ -44,12 +44,8 @@ function showIcon($curr, $serv){
 	<div id="utilities">
 			<ul>
 				<li class="logged-in">Logged in as: <strong><?php echo $_COOKIE['am_logged_in_user']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a></li>
-				<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf"><?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Open Shelf'; } ?></a></li>
-				<li class="shortcuts"><a href="#" title="" id="keyboard-toggle">Keyboard Shortcuts</a></li>
-
-				<!--<li class="report-bug"><a href="#" title="" id="report-bug-link">Submit Feedback</a></li>
-				<li class="preferences"><a href="#" title="">Preferences</a></li>
-				<li class="full-mode" id="fullscreen"><a href="#" title="" id="screenmode">Fullscreen Mode</a></li>-->
+				<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf">
+				<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Open Shelf'; } ?></a></li>
 			</ul>
 		</div>
 		<div id="shelf-contents">
@@ -83,7 +79,7 @@ function showIcon($curr, $serv){
 			</ul>
 		</div>
 		<div id="visual-refs">
-			<h3>Quick reference guides</h3>
+			<h3>Quick reference guides <span>(<a href="#" title="" id="keyboard-toggle">Keyboard Shortcuts</a>)</span></h3>
 				<ul class="buttons">
 					<li><a class="info-link btn-link" href="gettingstarted.html" title="Configurator quick start guide">Quick Start</a></li>
 					<li><a class="modal-link-img btn-link" href="visual-blocks.html" title="Visual Reference: By Block">Block Map</a></li>

@@ -7,7 +7,7 @@
 				<h4>Stay updated</h4>
 				<ul>
 					<li><a href="http://www.prothemer.com/blog" target="_blank">Prothemer blog</a></li>
-					<li><a href="http://www.joomlajunkie.com/demo" target="_blank">Subscribe to newsletter</a></li>
+					<li><a href="http://list-manage.com/subscribe?u=716086a59f94568360e58ed2d&id=2519c95511" target="_blank">Subscribe to newsletter</a></li>
 					<li><a href="http://www.joomlajunkie.com/secure" target="_blank">Login to the club</a></li>
 				</ul>
 			</li>

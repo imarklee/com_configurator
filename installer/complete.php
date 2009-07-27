@@ -6,11 +6,12 @@ $base = '.';
 }
 define('JURL', $base);
 function summaryclass($cookie){
-	if(isset($_COOKIE['$cookie'])){
-		return ' class="tick-on"';
+	if(isset($_COOKIE[$cookie])){
+		$class = ' class="tick-on"';
 	}else{
-		return ' class="tick-off"';
+		$class = ' class="tick-off"';
 	}
+	return $class;
 }
 ?>
 <div id="install-head">

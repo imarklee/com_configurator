@@ -34,7 +34,7 @@ define('JROOT', str_replace('administrator/components/com_configurator/installer
 						<li><label><input type="checkbox" name="sample-options[]" id="basic-options" value="basic" />
 							Basic module configuration</label></li>
 					</ul></li>
-				<li><label><input type="checkbox" name="database-options" id="database-options" checked="checked" value="db" />
+				<li class="db"><label><input type="checkbox" name="database-options" id="database-options" checked="checked" value="db" />
 					Backup your entire database (recommended)</label></li>
 				<?php
 				if(extension_loaded('zlib')){ ?>

@@ -28,7 +28,7 @@ define('JROOT', str_replace('administrator/components/com_configurator/installer
 				<label class="upload"><h4>Select the template framework install file:</h4>
 				<input type="file" name="template-file" id="template-file" /></label>
 				
-				<label class="backup"><input type="checkbox" name="publish_template" id="publish_template" value="true" />
+				<label class="backup"><input type="checkbox" name="publish_template" id="publish_template" checked="checked" value="true" />
 				Publish Morph as the default template?</label>
 				
 				<?php if(is_dir(JROOT . 'templates/morph')){ ?>

@@ -174,3 +174,5 @@ INSERT INTO `jos_modules` VALUES('', 'ModFX Combo 20', '<p>This module uses a co
 INSERT INTO `jos_modules_menu` VALUES(LAST_INSERT_ID(), '0') ON DUPLICATE KEY UPDATE menuid=menuid;
 ALTER IGNORE TABLE jos_modules DROP INDEX title;
 ALTER IGNORE TABLE jos_modules CHANGE title title TEXT;
+
+UPDATE `jos_plugins` SET `id` = 16,`name` = 'Content - Load Module',`element` = 'loadmodule',`folder` = 'content',`access` = 0,`ordering` = 6,`published` = 1,`iscore` = 0,`client_id` = 0,`checked_out` = 62,`checked_out_time` = '2009-07-25 11:17:04',`params` = 'enabled=1\nstyle=xhtml\n\n' WHERE  `jos_plugins`.`id` = 16;

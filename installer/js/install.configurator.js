@@ -266,7 +266,7 @@ jQuery.noConflict();
 		function sampleInstall(){
 			var checkVal = [];
 			var dbVal = '';
-			var gzipVal;
+			var gzipVal = '';
 			
 			$('#install-sample ul li ul li input').each(function(){
 				if($(this).is(':checked')){
@@ -274,7 +274,36 @@ jQuery.noConflict();
 				}
 			});
 			if($('#install-sample #database-options').is(':checked')){ dbVal = 'backup'; }else{ dbVal = 'destroy'; }
-			if($('#install-sample #gzip-options').is(':checked')){ gzipVal = 'set'; }else{ gzipVal = ''; }
+			if($('#install-sample #gzip-options').is(':checked')){ gzipVal = 'gzip'; }else{ gzipVal = 'nogzip'; }
+			
+			if(checkVal.length == 0 && dbVal == 'destroy' && gzipVal == 'nogzip'){
+				hideScroll();
+				$('#dialog').dialog({
+		   			bgiframe: true, 
+		   			resizable: false,
+		   			draggable: false,
+		   			minHeight: 20,
+		   			width: 500,
+		   			modal: true,
+		   			title: 'Error',
+   					overlay: {
+   						backgroundColor: '#000000', 
+   						opacity: 0.8 
+   					},
+					close: function(){
+   						$(this).dialog('destroy');
+   						showScroll();
+   					},
+					buttons: {
+						'OK': function(){
+							$(this).dialog('close');
+						}
+					}
+				});
+				$('#dialog').html('<div class="dialog-msg">No options selected: Please select an option or skip this step.</div>');
+				$('#dialog').dialog('open');
+				return false;
+			}
 			
 			$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing sample data...</span></div></div>').appendTo('body');
 			$('#saving').css({
@@ -497,6 +526,27 @@ jQuery.noConflict();
 		$('.back-step3').click(function(){ loadstep3(sample); return false; });
 		
 		function checkAll(){
+		
+			var DBoption = '<label><input type="checkbox" name="database-options" id="database-options" checked="checked" value="db" />'+
+					'&nbsp;Backup your entire database (recommended)</label>';
+			
+			$('.db').empty();
+			
+			function selected() {
+				$('#database-options').each(function(){
+					if($(this).attr('checked')){
+						$(this).parent().parent().addClass('selected');
+					}
+					$(this).click(function(){
+						if($(this).attr('checked')){
+							$(this).parent().parent().addClass('selected');
+						}else{
+							$(this).parent().parent().removeClass('selected');
+						}
+					});
+				});
+			}
+			
 			$('#install-sample ul li ul li input').click(function(){
 				
 				if($(this).attr('checked')){
@@ -505,10 +555,19 @@ jQuery.noConflict();
 					$(this).parent().parent().removeClass('selected');
 					$('#all-options').parent().parent().removeClass('selected');
 					$('#all-options').attr('checked', false);
+					if($('#install-sample ul li ul input:checked').size() < 1){
+						$('.db').empty();
+					}
 				}
 				if($('#install-sample ul li ul input:checked').size() == '3'){
 					$('#all-options').parent().parent().addClass('selected');
 					$('#all-options').attr('checked', true);
+				}
+				if($('#install-sample ul li ul input:checked').size() >= '1'){
+					if($('#install-sample ul li ul input:checked').size() < 2 && $('#database-options').length == 0 ){
+						$('.db').html(DBoption);
+					}
+					selected();
 				}
 			});
 					
@@ -519,12 +578,15 @@ jQuery.noConflict();
 						$(this).attr('checked', true);
 						$(this).parent().parent().addClass('selected');
 					});
+					$('.db').html(DBoption);
+					selected();
 				}else{
 					$(this).parent().parent().removeClass('selected');
 					$('#install-sample ul li ul li input').each(function(){
 						$(this).attr('checked', false);
 						$(this).parent().parent().removeClass('selected');
 					});
+					$('.db').empty();
 				}
 			});
 					

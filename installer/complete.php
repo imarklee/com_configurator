@@ -5,6 +5,13 @@ $base = './components/com_configurator';
 $base = '.';
 }
 define('JURL', $base);
+function summaryclass($cookie){
+	if(isset($_COOKIE['$cookie'])){
+		return ' class="tick-on"';
+	}else{
+		return ' class="tick-off"';
+	}
+}
 ?>
 <div id="install-head">
 	<img src="<?php echo JURL; ?>/installer/images/install-logo.png" alt="morph logo" width="160" height="60" border="0" class="logo" />
@@ -18,7 +25,23 @@ define('JURL', $base);
 	</div>
 	<div id="install-body" class="complete">
 		<h3>Congratulations! Your installation was successful!</h3>
-		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	</div>
+		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	
+	
+		<p><strong>Summary of what has been done:</strong></p>
+		
+		<ul id="install-summary">
+			<li<?php echo summaryclass('installed_cfg'); ?>>Installed Morph's Configurator component</li>
+			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of existing version of the Morph template</li>
+			<li<?php echo summaryclass('installed_morph'); ?>>Installed new version of the Morph template</li>
+			<li<?php echo summaryclass('installed_pubmorph'); ?>>Published new version of the Morph template</li>
+			<li<?php echo summaryclass('installed_themelet'); ?>>Installed<?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
+			<li<?php echo summaryclass('installed_actthemelet'); ?>>Activated<?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
+			<li<?php echo summaryclass('installed_bkpdb'); ?>>Created full backup of your site's database</li>
+			<li<?php echo summaryclass('installed_gzip'); ?>>Enabled GZIP compression</li>
+			<li<?php echo summaryclass('installed_samplecont'); ?>>Loaded sample content</li>
+			<li<?php echo summaryclass('installed_samplemods'); ?>>Loaded sample modules</li>
+		</ul>
+	</div>
 
 	<div id="install-foot">
 		<ul id="action">

@@ -743,9 +743,11 @@ class ConfiguratorController extends JController {
 		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$activation = $_REQUEST['act_themelet'];
 		$return = $this->themelet_upload($newthemeletfile);
+		setcookie('installed_themelet', 'true');
 		$themelet = explode(',', $return);
 		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
 		if(isset($activation) && $activation == 'true'){
+			setcookie('installed_actthemelet', 'true');
 			$db = JFactory::getDBO();
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
 			$query = $db->query($query);
@@ -826,6 +828,7 @@ class ConfiguratorController extends JController {
 			if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){
 				// template folder
 				if($_REQUEST['backup'] == 'true'){
+					setcookie('installed_bkpmorph', 'true');
 					// backup existing
 					$backupfile = $backupdir . DS . 'morph_files_' . date("His_dmY");
 					if(!@Jarchive::create($backupfile, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
@@ -851,6 +854,7 @@ class ConfiguratorController extends JController {
 							@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 							$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
 							$msg .= ', backuploc: "'.$backupfile.'.gz"';
+							setcookie('installed_morph', 'true');
 							$ret = '{'.$msg.'}';
 							echo $ret;
 						}
@@ -871,6 +875,7 @@ class ConfiguratorController extends JController {
 						// directory doesn't exist - install as per usual
 						@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+						setcookie('installed_morph', 'true');
 						$ret = '{'.$msg.'}';
 						echo $ret;
 					}
@@ -884,6 +889,7 @@ class ConfiguratorController extends JController {
 				// directory doesn't exist - install as per usual
 				@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+				setcookie('installed_morph', 'true');
 				$ret = '{'.$msg.'}';
 				echo $ret;
 			}
@@ -972,6 +978,7 @@ class ConfiguratorController extends JController {
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
 			
 			if($publish !== 'false'){
+				setcookie('installed_pubmorph', 'true');
 				if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS.'set-template-as-default.sql')){
 					$this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'sql'.DS.'set-template-as-default.sql');
 				}else{
@@ -1058,13 +1065,9 @@ class ConfiguratorController extends JController {
 	}
 	
 	function install_sample(){
-		if(isset($_POST['sample_data'])){
-			$sample = $_POST['sample_data'];
-		}else{
-			$sample = '';
-		}
-		if(isset($_POST['db'])){ $dbdata = $_POST['db']; }else{ $dbdata = 'backup'; }
-		if(isset($_POST['gzip']) && $_POST['gzip'] !== '') { $gzip = true; }else{ $gzip = false; }
+		(isset($_POST['sample_data'])) ? $sample = $_POST['sample_data'] : $sample = false;
+		(isset($_POST['db'])) ? $dbdata = $_POST['db'] : $dbdata = false;
+		(isset($_POST['gzip'])) ? $gzip = true : $gzip = false;
 		
 		if($gzip){
 			$path = JPATH_CONFIGURATION.DS.'configuration.php';
@@ -1075,6 +1078,7 @@ class ConfiguratorController extends JController {
 				file_put_contents($path, $line);
 			}		
 			JPath::setPermissions($path, '0644');
+			setcookie('installed_gzip', 'true');
 		}
 				
 		$message = array();
@@ -1091,7 +1095,7 @@ class ConfiguratorController extends JController {
 		@JPath::setPermissions($backupdir);
 		
 		// validation
-		if(empty($sample) && $dbdata == 'destroy'){
+		if(!$sample && !$dbdata && !$gzip){
 			$message['error'] = 'No options selected: Please select an option or skip this step.';
 		}else{
 			if($dbdata == 'backup'){
@@ -1103,6 +1107,7 @@ class ConfiguratorController extends JController {
 				$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure());
 				$message['db'] = 'backedup';
 				$message['dbstore'] = "$backupdir/$backupfile"; 
+				setcookie('installed_bkpdb', 'true');
 				
 			}else{
 				$message['db'] = 'destroyed';
@@ -1116,6 +1121,21 @@ class ConfiguratorController extends JController {
 					}else{
 						$error = true;
 					}
+				}
+				if(in_array('module', $sample)){
+					$path = JPATH_SITE.DS.'templates/system/html';
+					$override = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'overrides'.DS.'modules.php';
+					JPath::setPermissions($path, '0777');
+					if(is_writable($path)){			
+						unlink($path.'/modules.php');
+						copy($override, $path.'/modules.php');
+					}		
+					JPath::setPermissions($path, '0644');
+					setcookie('installed_samplemods', 'true');
+				}
+				
+				if(in_array('sample', $sample)){
+					setcookie('installed_samplecont', 'true');
 				}
 				
 				if(!$error){

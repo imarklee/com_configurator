@@ -95,9 +95,6 @@ jQuery.noConflict();
 		
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
 
-
-
-
 //		$('#help').hover(function() {
 //		  $(this).addClass('hover');
 //		}, function() {

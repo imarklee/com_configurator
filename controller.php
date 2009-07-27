@@ -746,6 +746,8 @@ class ConfiguratorController extends JController {
 		setcookie('installed_themelet', 'true');
 		$themelet = explode(',', $return);
 		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
+		$themelet_name = str_replace('-',  '', $themelet);
+		setcookie('ins_themelet_name', $themelet_name);
 		if(isset($activation) && $activation == 'true'){
 			setcookie('installed_actthemelet', 'true');
 			$db = JFactory::getDBO();

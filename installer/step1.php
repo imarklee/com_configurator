@@ -34,7 +34,7 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 				<?php if(is_dir(JROOT . 'templates/morph')){ ?>
 				<label class="backup"><input type="checkbox" name="backup_template" id="backup_template" checked="checked" value="true" />
 				Backup your existing copy of Morph?</label>
-				<?php } ?>
+				<?php }else{ setcookie('installed_nomorph', 'true'); } ?>
 				<span class="mascot">&nbsp;</span>
 				
 				<!--<a id="upload-info" href="#" title="click here for more info">&nbsp;</a>-->

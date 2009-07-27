@@ -31,7 +31,7 @@ function summaryclass($cookie){
 		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
 			<li<?php echo summaryclass('installed_cfg'); ?>>Installed Morph's Configurator component</li>
-			<?php if(is_dir(JROOT . 'templates/morph')){ ?>
+			<?php if(!isset($_COOKIE['installed_nomorph'])){ ?>
 			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of existing version of the Morph template</li>
 			<?php } ?>
 			<li<?php echo summaryclass('installed_morph'); ?>>Installed new version of the Morph template</li>

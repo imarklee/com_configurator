@@ -6,5 +6,5 @@ $offset = 60 * 60;
 $expire = "expires: " . gmdate ("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($expire);
 include 'install.configurator.css';
-include '../../css/jquery-ui-1.7.2.custom.css';
+include '../../css/jquery.ui.css';
 ob_end_flush(); ?>

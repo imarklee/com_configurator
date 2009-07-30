@@ -3,8 +3,6 @@ $logo_dir = JPATH_ROOT . DS . 'morph_assets' . DS . 'logos';
 $logo_url = JURI::root() . DS . 'morph_assets' . DS . 'logos';
 if(is_dir($logo_dir)) {
 	$lists['logos'] = JFolder::files( $logo_dir );
-	unset($lists['logos'][0]);
-	$lists['logos'] = array_values($lists['logos']);
 } else {
 	$lists['logos'] = null;
 }
@@ -45,7 +43,7 @@ $activelogo = $db->loadResult();
 					<div class="assets-inner">
 					<h3><?php echo $logo; ?></h3>
 					<div class="image-container">
-						<div style="background-image: url(<?php echo $logo_src; ?>);">&nbsp;</div>
+						<div style="background-image: url('<?php echo $logo_src; ?>');">&nbsp;</div>
 					</div>
 					<ul class="logo-summary">
 						<li class="tl-installed"><strong>File size: </strong><?php echo $logo_size; ?></li>

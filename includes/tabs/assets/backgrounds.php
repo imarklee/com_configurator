@@ -1,10 +1,8 @@
 <?php
 $background_dir = JPATH_ROOT . DS . 'morph_assets' . DS . 'backgrounds';
-$background_url = JURI::root() . DS . 'morph_assets' . DS . 'backgrounds';
+$background_url = JURI::root() . 'morph_assets' . DS . 'backgrounds';
 if(is_dir($background_dir)) {
 	$lists['backgrounds'] = JFolder::files( $background_dir );
-	unset($lists['backgrounds'][0]);
-	$lists['backgrounds'] = array_values($lists['backgrounds']);
 } else {
 	$lists['backgrounds'] = null;
 }
@@ -20,7 +18,7 @@ $activebg = $db->loadResult();
 	</div>
 	
 	<div id="backgrounds-list" class="assets-layout <?php if(isset($_COOKIE['backgrounds-view']) && $_COOKIE['backgrounds-view'] == 'list') { echo 'list-view'; } else { echo 'thumb-view'; } ?>">
-		<?php if(!empty($lists['backgrounds'])){ ?>
+	<?php if(!empty($lists['backgrounds'])){ ?>
 		<ul id="backgrounds-headers" class="assets-headers">
 			<li class="th-name">File name</li>
 			<li class="th-installed">Size</li>
@@ -46,7 +44,7 @@ $activebg = $db->loadResult();
 				<div class="assets-inner">
 				<h3><?php echo $background; ?></h3>
 				<div class="image-container">
-					<div style="background-image: url(<?php echo $background_src; ?>);">&nbsp;</div>
+					<div style="background-image: url('<?php echo $background_src; ?>');">&nbsp;</div>
 				</div>
 				<ul class="background-summary <?php echo $background; ?>">
 					<li class="tl-installed"><strong>File size: </strong><?php echo $background_size; ?></li>
@@ -61,14 +59,12 @@ $activebg = $db->loadResult();
 				</div>
 			</li>
 			<?php 
-					}
-				}else{ ?>
-				
-				<div class="no-assets">
-					There are currently no backgrounds in your assets folder. <a href="#" class="upload-bg">Upload a background?</a>
-				</div>
-					
-				<?php }	?>
+			}
+		}else{ ?>	
+			<div class="no-assets">
+				There are currently no backgrounds in your assets folder. <a href="#" class="upload-bg">Upload a background?</a>
+			</div>
+		<?php }	?>
 		</ul>
 	<!--<p class="assets-location">Your backgrounds are located in: <strong>"<?php echo $background_dir; ?>"</strong>.</p>-->
 	</div>

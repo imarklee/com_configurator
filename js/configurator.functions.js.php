@@ -466,7 +466,7 @@ jQuery.noConflict();
     		return false;
     	});
     	
-    	$('.color-preview', '#color-options').each(function(){
+    	$('.color-preview').each(function(){
     		var colval = $(this).prev().val();
     		if(colval != 'default'){
     			$(this).css('background-color', colval);
@@ -1021,20 +1021,20 @@ jQuery.noConflict();
 		   				opacity: 0.8 
 		   			},
 		   			close: function(){
+						showScroll();
 			   			var mainTabs = $('#tabs').tabs();
 						var subTabs = $('#themelet-tabs').tabs();
 						mainTabs.tabs('select', 1);
 						subTabs.tabs('select', 1);
-						showScroll();
 		   			},
 					buttons: { 
 						'Yes, configure logo': function(){
-							$(this).dialog('close');
 							showScroll();
+							$(this).dialog('close');
 						},
 			   			'No thanks': function(){
-			   				$(this).remove();
 			   				showScroll();
+			   				$(this).dialog('destroy');
 			   			}
 			   		}
 			   	});
@@ -1100,12 +1100,13 @@ jQuery.noConflict();
 					},
 					buttons: { 
 						'Yes, configure background': function(){
-							$(this).dialog('close');
 							showScroll();
+							$(this).dialog('close');
+							
 			   			},
 			   			'No thanks': function(){
-			   				$(this).remove();
 			   				showScroll();
+			   				$(this).dialog('destroy');
 			   			}
 			   		}
 			   	});
@@ -1516,6 +1517,7 @@ jQuery.noConflict();
 							$.ajax({
 								dataType: 'jsonp',
 								url: rurl,
+								timeout: 1000,
 								data: {
 									'do': 'check',
 									'user': username,
@@ -1523,7 +1525,7 @@ jQuery.noConflict();
 								},
 								contentType: "application/json; charset=utf-8",
 								success: function(rdata, textstatus){
-									
+								
 									if(rdata.retcode == 'fail'){
 										
 										$('#alf-image').css('display','none');
@@ -1685,6 +1687,9 @@ jQuery.noConflict();
 						   		width: 350,
 					   			modal: true,
 					   			title: 'Success',
+					   			close: function(){
+					   				showScroll();
+					   			},
 			   					overlay: {
 			   						backgroundColor: '#000', 
 			   						opacity: 0.8 
@@ -1972,6 +1977,14 @@ jQuery.noConflict();
 			$('#logo-options li #logodisplay_ie_logo0').click(function(){
 				$('#logo-options li #logologo_image_ie').parent().css('display', 'none');
 			});
+			$('#logo-options li #logologo_autodimensions0').click(function(){
+				$('#logo-options li #logologo_width').parent().css('display', 'block');
+				$('#logo-options li #logologo_height').parent().css('display', 'block');
+			});
+			$('#logo-options li #logologo_autodimensions1').click(function(){
+				$('#logo-options li #logologo_width').parent().css('display', 'none');
+				$('#logo-options li #logologo_height').parent().css('display', 'none');
+			});
 			
 			function switcher(v){
 				switch(v){
@@ -1993,6 +2006,8 @@ jQuery.noConflict();
 					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
 					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+					$('#logo-options li #logologo_text').parent().css('display', 'block');
+					$('#logo-options li #logologo_autodimensions1').parent().css('display', 'block');
 					break;
 					case '2':
 					$('#logo-options li').css('display', 'none');
@@ -2013,6 +2028,7 @@ jQuery.noConflict();
 					$('#logo-options li #logologo_alttext').parent().css('display', 'block');
 					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+					$('#logo-options li #logologo_autodimensions1').parent().css('display', 'block');
 					break;
 					case '4':
 					$('#logo-options li').css('display', 'none');
@@ -2039,6 +2055,14 @@ jQuery.noConflict();
 				}
 				if($('#logo-options li #logodisplay_ie_logo0').attr('checked')){
 					$('#logo-options li #logologo_image_ie').parent().css('display', 'none');
+				}
+				if($('#logo-options li #logologo_autodimensions0').attr('checked')){
+					$('#logo-options li #logologo_width').parent().css('display', 'block');
+					$('#logo-options li #logologo_height').parent().css('display', 'block');
+				}
+				if($('#logo-options li #logologo_autodimensions1').attr('checked')){
+					$('#logo-options li #logologo_width').parent().css('display', 'none');
+					$('#logo-options li #logologo_height').parent().css('display', 'none');
 				}
 					
 			}	
@@ -2158,6 +2182,8 @@ jQuery.noConflict();
 			sliderOptionsOff('#shelvesbottomshelf_slider0','#shelvesbottomshelf_slider_text');
 			sliderOptionsOn('#shelvestopshelf_slider1','#shelvestopshelf_slider_text');
 			sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
+			sliderOptionsOn('#progressiverounded_corners1', '#progressiverounded_amount');
+			sliderOptionsOff('#progressiverounded_corners0', '#progressiverounded_amount');
 		});
 		
 		function menuOptionsOn(elid, hideid){

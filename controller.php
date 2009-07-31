@@ -784,7 +784,8 @@ class ConfiguratorController extends JController {
 				echo $ret;
 				die();
 			}
-		}	
+		}
+		
 		if(!is_dir($backupdir)){
 			if(!mkdir($backupdir)){
 				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
@@ -792,8 +793,6 @@ class ConfiguratorController extends JController {
 				echo $ret;
 				die();
 			}
-		}else{
-			@JPath::setPermissions($backupdir);
 		}
 		if(!is_dir($logosdir)){
 			if(!mkdir($logosdir)){
@@ -802,8 +801,6 @@ class ConfiguratorController extends JController {
 				echo $ret;
 				die();
 			}
-		}else{
-			@JPath::setPermissions($logosdir);
 		}
 		if(!is_dir($backgroundsdir)){
 			if(!mkdir($backgroundsdir)){
@@ -812,8 +809,6 @@ class ConfiguratorController extends JController {
 				echo $ret;
 				die();
 			}
-		}else{
-			@JPath::setPermissions($backgroundsdir);
 		}
 		if(!is_dir($themeletsdir)){
 			if(!mkdir($themeletsdir)){
@@ -822,9 +817,14 @@ class ConfiguratorController extends JController {
 				echo $ret;
 				die();
 			}
-		}else{
-			@JPath::setPermissions($themeletsdir);
 		}
+		
+		@JPath::setPermissions(JPATH_SITE);
+		@JPath::setPermissions(JPATH_SITE . DS . 'morph_assets');
+		@JPath::setPermissions($backupdir);
+		@JPath::setPermissions($backgroundsdir);
+		@JPath::setPermissions($logosdir);
+		@JPath::setPermissions($themeletsdir);
 		
 		if(in_array($newtemplatefile['type'], array('application/octet-stream', 'application/zip', 'application/x-zip-compressed'))){
 			if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){

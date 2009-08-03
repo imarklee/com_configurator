@@ -50,7 +50,7 @@ html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #current-themelet .thumb span{position:absolute;width:117px;height:100px;z-index:999;top:-7px;background:transparent url(../images/screen.png) no-repeat;}
 #current-themelet img{vertical-align:middle;}
 #current-themelet a,dd.latest a{color:#555;}
-#updates-summary p.updates-help{margin:0;padding:0;color:#999;position:absolute;top:22px;right:60px;}
+#updates-summary p.updates-help{margin:0;padding:0;color:#999;position:absolute;top:22px;right:15px;}
 #updates-summary p.updates-help a{text-decoration:underline;}
 #updates-summary p.updates-help a:hover{text-decoration:none;}
 #shelf ul,#shelf li{list-style:none;margin:0;padding:0;}
@@ -514,3 +514,5 @@ p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF310
 .no-assets{display:block;color:#777;background:#ededed;border:1px solid #ddd; text-align:center; font-size: 16px;margin:15px auto;padding:25px 0;}
 .resources-list{margin:-10px 0 0 0;padding:0;color:#999;}
 #toolbar-Link{display:none;}
+#updates-summary dd span{color:#444;border-bottom:1px dashed #ccc;}
+#updates-summary dd.icon span{border-bottom:0;}

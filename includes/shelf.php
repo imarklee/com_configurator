@@ -51,7 +51,7 @@ function showIcon($curr, $serv){
 		<div id="shelf-contents">
 		<div id="updates-summary">
 			<h3>Updates summary</h3>
-			<p class="updates-help">(<a href="#" class="updates-link">Help</a>)</p>
+			<p class="updates-help">(<a href="#" class="updates-link">Check now</a>)</p>
 				<dl>
 					<dt class="component com_configurator" id="us-configurator">Configurator</dt>
 					<dd class="current"><span title="Your installed version is <?php echo $component_arr['version']; ?>. Click on the help link above for more information."><?php echo $component_arr['version']; ?></span></dd>

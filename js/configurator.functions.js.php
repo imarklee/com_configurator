@@ -23,16 +23,21 @@ jQuery.noConflict();
 				
 		/* Version checker --------------------
 	    ------------------------------------ */
-	   	function getUpdates(elm, time){
+	   	function getUpdates(elm, time, checknow, callback){
+	   	
+	   		var cookiedate = new Date();
+			var minutes = cookiedate.getMinutes();
+			if(typeof time == 'undefined' || time == null){ minutes += 60; }else{ minutes += time; }
+			cookiedate.setMinutes(minutes);	
 	   		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
-	   		if(time == ''){ autoCheck = '' }else{ autoCheck = (24/60/60)+time; }
+	   		
 	   		if(!$.cookie('noupdates')){
 	   			
-	   			if(!$.cookie('checkedforupdates')){
+	   			if(!$.cookie('checkedforupdates') || checknow){
 	   				$.getJSON(updateURL, function(obj){
-	   					pass(obj);
+	   					check(obj);
 	   				});
-	   				function pass(json){
+	   				function check(json){
 		   				for(i=0;i<4;i++){
 					   		if($(elm[i]).attr('class') !== undefined){
 						   		var classes = $(elm[i]).attr('class').split(' ');
@@ -43,14 +48,21 @@ jQuery.noConflict();
 						   			var cookiename = json.updates[name].short_name;
 						   			var version = json.updates[name].version;
 						   			var updated = json.updates[name].updated;
-						   			$.cookie('us_'+cookiename, version+'##'+updated);
-						   			$('dt.'+cookiename).next().next().html(version);
-						   			if($('dt.'+cookiename).next().next().html() < version){
+						   			$.cookie('us_'+cookiename, version+'##'+updated, { expires: cookiedate });
+						   			var current = $('dt.'+cookiename).next().children();
+						   			var latest = $('dt.'+cookiename).next().next();
+						   			latest.html('<span title="The latest available version is '+version+'. Click on the help link above for more information."">'+version+'</span>');
+						   			
+						   			if(current.html() < version){
 						   				$('dt.'+cookiename).next().next().next().html('<span class="update-no" title="There is an update available">Update Available</span>');
 						   			}else{
 						   				$('dt.'+cookiename).next().next().next().html('<span class="update-yes" title="You are up to date">Up to date</span>');
 						   			}
-						   			$.cookie('checkedforupdates', true);
+						   			$.cookie('checkedforupdates', true, { expires: cookiedate });
+						   			
+						   			if(typeof callback == 'function'){
+						   				return callback();
+						   			}
 						   		}
 					   		}
 				   		}
@@ -494,13 +506,25 @@ jQuery.noConflict();
 			}
 		});
 		
-		$('.updates-link').click(function(){
+		$('.updates-help-link').click(function(){
 			$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 				if($.cookie('info')){ $.cookie('info', null); }
 				var gstabs = $('#splash').tabs();
 		    	gstabs.tabs('select', 2);
 				return welcomeScreen();
 		    });
+			return false;
+		});
+		
+		$('.updates-refresh-link').click(function(){
+			$('#updates-summary dl').fadeTo('fast', 0.1, function(){
+				$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
+			});
+			getUpdates(updEl, null, true, function(){
+				$('#updates-summary .updates-msg').remove();
+				$('#updates-summary dl').fadeTo('fast', 1);
+				
+			});	
 			return false;
 		});
 				

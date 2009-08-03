@@ -34,9 +34,16 @@ jQuery.noConflict();
 	   		if(!$.cookie('noupdates')){
 	   			
 	   			if(!$.cookie('checkedforupdates') || checknow){
-	   				$.getJSON(updateURL, function(obj){
-	   					check(obj);
-	   				});
+	   				$.ajax({
+	   					method: 'get',
+	   					url: updateURL,
+	   					cache: false,
+	   					dataType: 'json',
+	   					timeout: (2*1000),
+	   					success: function(obj, status){
+	   						check(obj, status);
+		   				}
+		   			});
 	   				function check(json){
 		   				for(i=0;i<4;i++){
 					   		if($(elm[i]).attr('class') !== undefined){

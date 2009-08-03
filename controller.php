@@ -765,7 +765,54 @@ class ConfiguratorController extends JController {
 		$ret = '{'.$return.'}';
 		echo $ret;
 	}
+	function assets_create(){
 	
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
+		$logosdir = JPATH_SITE . DS . 'morph_assets' . DS . 'logos';
+		$backgroundsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backgrounds';
+		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
+		
+		JPath::setPermissions(JPATH_SITE);
+		
+		// create assets folder
+		if(!mkdir(JPATH_SITE . DS . 'morph_assets')){
+			$error = 'error: "There was an error creating the assets folder. Please check your permissions."';
+		}else{
+			JPath::setPermissions(JPATH_SITE . DS . 'morph_assets');
+		}
+	
+		if(!mkdir($backupdir)){
+			$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+		}else{
+			JPath::setPermissions($backupdir);
+		}
+	
+		if(!mkdir($logosdir)){
+			$error = 'error: "There was an error creating the logos folder. Please check your permission on the assets folder"'; 
+		}else{
+			JPath::setPermissions($logosdir);
+		}
+		
+		if(!mkdir($backgroundsdir)){
+				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+		}else{
+			JPath::setPermissions($backgroundsdir);
+		}
+		if(!mkdir($themeletsdir)){
+			$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+		}else{
+			JPath::setPermissions($themeletsdir);
+		}
+		
+		if(isset($error)){
+			$ret = '{'.$error.'}';
+			echo $ret;
+			die();
+		}else{
+			echo '{ error: "", success: "Assets folder structure successfully created. You may continue with the installation." }';
+			die();
+		}
+	}
 	function install_template(){
 		ini_set('memory_limit', '32M');
 		$newtemplatefile = @JRequest::getVar( 'template-file', null, 'files', 'array' );
@@ -775,57 +822,7 @@ class ConfiguratorController extends JController {
 		$backgroundsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backgrounds';
 		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
 		$ret = '';
-		
-		// create assets folder
-		if(!is_dir(JPATH_SITE . DS . 'morph_assets')){
-			if(!mkdir(JPATH_SITE . DS . 'morph_assets')){
-				$error = 'error: "There was an error creating the assets folder. Please check your permissions."'; 
-				$ret = '{'.$error.'}';
-				echo $ret;
-				die();
-			}
-		}
-		
-		if(!is_dir($backupdir)){
-			if(!mkdir($backupdir)){
-				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
-				$ret = '{'.$error.'}';
-				echo $ret;
-				die();
-			}
-		}
-		if(!is_dir($logosdir)){
-			if(!mkdir($logosdir)){
-				$error = 'error: "There was an error creating the logos folder. Please check your permission on the assets folder"'; 
-				$ret = '{'.$error.'}';
-				echo $ret;
-				die();
-			}
-		}
-		if(!is_dir($backgroundsdir)){
-			if(!mkdir($backgroundsdir)){
-				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
-				$ret = '{'.$error.'}';
-				echo $ret;
-				die();
-			}
-		}
-		if(!is_dir($themeletsdir)){
-			if(!mkdir($themeletsdir)){
-				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
-				$ret = '{'.$error.'}';
-				echo $ret;
-				die();
-			}
-		}
-		
-		@JPath::setPermissions(JPATH_SITE);
-		@JPath::setPermissions(JPATH_SITE . DS . 'morph_assets');
-		@JPath::setPermissions($backupdir);
-		@JPath::setPermissions($backgroundsdir);
-		@JPath::setPermissions($logosdir);
-		@JPath::setPermissions($themeletsdir);
-		
+				
 		if(in_array($newtemplatefile['type'], array('application/octet-stream', 'application/zip', 'application/x-zip-compressed'))){
 			if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){
 				// template folder

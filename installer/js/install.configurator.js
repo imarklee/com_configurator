@@ -13,15 +13,99 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		$('.install-themelet').click(function(){
-			themeletInstall();
+		$('.refresh-step1').click(function(){ loadstep1(template); return false; });
+		
+		$('.create-assets').click(function(){
+			assetsCreate(loadstep1, template);
 			return false;
 		});
 		
-		$('.install-sample').click(function(){
-			sampleInstall();
-			return false;
-		});
+//		$('.install-themelet').click(function(){
+//			themeletInstall();
+//			return false;
+//		});
+//		
+//		$('.install-sample').click(function(){
+//			sampleInstall();
+//			return false;
+//		});
+		
+		function assetsCreate(callback,step){
+			
+			$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Creating Assets folder...</span></div></div>').appendTo('body');
+			$('#saving').css({
+				'display': 'block',
+				'z-index': '9998',
+				position: 'absolute',
+		        top: 0,
+		        left: 0,
+		        width: arrPageSizes[0],
+				height: arrPageSizes[1]
+			});
+			
+			$.get(
+				'../administrator/index.php?option=com_configurator&task=assets_create&format=raw', '',
+				function(data, status){
+					if(typeof data.error != 'undefined'){
+						if(data.error != ''){
+							hideScroll();
+							$('#saving').css('display', 'none');
+							$('#dialog').dialog({
+					   			bgiframe: true, 
+					   			resizable: false,
+					   			draggable: false,
+					   			minHeight: 20,
+					   			width: 500,
+					   			modal: true,
+					   			title: 'Error',
+			   					overlay: {
+			   						backgroundColor: '#000000', 
+			   						opacity: 0.8 
+			   					},
+								close: function(){
+			   						$(this).dialog('destroy');
+			   						showScroll();
+			   					},
+								buttons: {
+									'OK': function(){
+										$(this).dialog('close');
+									}
+								}
+							});
+							$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
+							$('#dialog').dialog('open');
+						}else{
+							hideScroll();
+                            $('#saving').css('display', 'none');
+							$('#dialog').dialog({
+					   			bgiframe: true, 
+					   			resizable: false,
+					   			draggable: false,
+					   			minHeight: 20,
+					   			modal: true,
+					   			width: 500,
+					   			title: 'Success',
+			   					overlay: {
+			   						backgroundColor: '#000000', 
+			   						opacity: 0.8 
+			   					},
+			   					close: function(){
+			   						$(this).dialog('destroy');
+			   						callback(step);
+			   						showScroll();
+			   					},
+								buttons: {
+									'OK': function(){
+										$(this).dialog('close');
+									}
+								}
+							});
+							$('#dialog').html('<div class="dialog-msg">'+data.success+'</div>');
+							$('#dialog').dialog('open');
+						}
+					}
+				}, 'json');
+		}
 		
 		function templateInstall(){
 			if(typeof $('#backup_template').val() != 'undefined'){
@@ -479,8 +563,13 @@ jQuery.noConflict();
 		
 		function template(){
 			$('.skip-step1').click(function(){ loadstep2(themelet); return false; });
+			$('.refresh-step1').click(function(){ loadstep1(template); return false; });
 			$('.install-template').click(function(){
 				templateInstall();
+				return false;
+			});
+			$('.create-assets').click(function(){
+				assetsCreate(loadstep1, template);
 				return false;
 			});
 			helpstep1();
@@ -489,8 +578,13 @@ jQuery.noConflict();
 		function themelet(){
 			$('.skip-step2').click(function(){ loadstep3(sample); return false; });
 			$('.back-step1').click(function(){ loadstep1(template); return false; });
+			$('.refresh-step2').click(function(){ loadstep2(themelet); return false; });
 			$('.install-themelet').click(function(){
 				themeletInstall();
+				return false;
+			});
+			$('.create-assets').click(function(){
+				assetsCreate(loadstep2, themelet);
 				return false;
 			});
 			helpstep2();

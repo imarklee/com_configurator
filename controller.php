@@ -802,7 +802,7 @@ class ConfiguratorController extends JController {
 			$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
 		}else{
 			JPath::setPermissions($themeletsdir);
-//		}
+		}
 		$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
 		if(isset($error)){
 			$ret = '{'.$error.'}';

@@ -99,7 +99,7 @@ border:1px solid #999;float:left;width:460px;}
 #tabs ol.forms li.alt{background:#FEFDEE url(../images/form-bg3.jpg) repeat-y;}
 #tabs ol.forms li.first{border-top:0;}
 #tabs ol.forms li.last{border-bottom:0;}
-#tabs ol.forms label,#tabs ol.forms li.radio-item label.to-label{//color:#455C21;color:#444;cursor:pointer;display:block;float:left;margin:0 21px 0 0;padding:0 35px 0 0;text-align:right;width:140px;}
+#tabs ol.forms label,#tabs ol.forms li.radio-item label.to-label{color:#455C21;color:#444;cursor:pointer;display:block;float:left;margin:0 21px 0 0;padding:0 35px 0 0;text-align:right;width:140px;}
 #tabs ol.forms li.radio-item label{display:inline;float:none;font-weight:normal;margin:0 10px 0 0;width:auto;background:none;padding:0;color:#222;}
 #tabs ol.forms li.radio-item input{width:auto;margin:0;padding:0;}
 #tabs ol.forms select,#tabs ol.forms option,#tabs ol.forms input,
@@ -394,26 +394,27 @@ img.logo-preview-image{margin:-10px;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer{border-right:0;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a{border-right:0;padding-right:14px;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer.ui-tabs-selected.ui-state-active{margin-right:-1px;padding-right:4px;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-general a{background:transparent url(../images/acc-gen-settings.png) no-repeat 8px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-progressive a{background:transparent url(../images/acc-prog-settings.png) no-repeat 8px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-performance a{background:transparent url(../images/acc-per-settings.png) no-repeat 8px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-debugging a{background:transparent url(../images/acc-bug-settings.png) no-repeat 8px 49%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-colors a{background:transparent url(../images/acc-color-settings.png) no-repeat 8px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-logos a{background:transparent url(../images/acc-logo-settings.png) no-repeat 8px 70%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-backgrounds a{background:transparent url(../images/acc-cust-settings.png) no-repeat 8px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-menus a{background:transparent url(../images/acc-menu-settings.png) no-repeat 10px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-toolbar a{background:transparent url(../images/acc-tool-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-mainhead a{background:transparent url(../images/acc-mhead-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-subhead a{background:transparent url(../images/acc-shead-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-topnav a{background:transparent url(../images/acc-topnav-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-oshelves a{background:transparent url(../images/acc-oshelves-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-ishelves a{background:transparent url(../images/acc-ishelves-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-main a{background:transparent url(../images/acc-main-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-sidebars a{background:transparent url(../images/acc-side-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-insets a{background:transparent url(../images/acc-insets-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a{background:transparent url(../images/acc-footer-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-themelets a{background:transparent url(../images/acc-themelet-settings.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-installer a{background:transparent url(../images/acc-installer-settings.png) no-repeat 7px 50%;}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a {background: url(../images/sprite-icons.png) no-repeat 7px 50%;}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-debugging a { background-position: 8px 4px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-colors a { background-position: 8px -41px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-backgrounds a { background-position: 8px -88px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a { background-position: 8px -133px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-general a { background-position: 7px -178px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-insets a { background-position: 8px -224px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-installer a { background-position: 8px -270px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-ishelves a { background-position: 8px -315px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-logos a { background-position: 8px -360px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-main a { background-position: 8px -405px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-menus a { background-position: 8px -450px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-mainhead a { background-position: 8px -497px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-oshelves a { background-position: 8px -542px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-performance a { background-position: 8px -587px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-progressive a { background-position: 8px -632px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-subhead a { background-position: 8px -679px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-sidebars a { background-position: 8px -724px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-themelets a { background-position: 8px -769px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-toolbar a { background-position: 8px -815px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-topnav a { background-position: 8px -860px; } 
 ul.morph-resources,ul.morph-resources li{margin:0;padding:0;}
 ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 #dashboard{width:640px;padding-left:310px;margin:3em auto 2em auto;padding-bottom:2em;background:#fff url(../images/maskot.png) 0 5px no-repeat;}

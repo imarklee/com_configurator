@@ -1,0 +1,42 @@
+#tabs .primary li.ui-state-active a,
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a {background: url(../images/sprite-icons.png) no-repeat 7px 50%;}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-debugging a { background-position: 8px 4px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-colors a { background-position: 8px -41px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-backgrounds a { background-position: 8px -88px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a { background-position: 8px -133px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-general a { background-position: 7px -178px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-insets a { background-position: 8px -224px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-installer a { background-position: 8px -270px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-ishelves a { background-position: 8px -315px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-logos a { background-position: 8px -360px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-main a { background-position: 8px -405px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-menus a { background-position: 8px -450px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-mainhead a { background-position: 8px -497px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-oshelves a { background-position: 8px -542px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-performance a { background-position: 8px -587px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-progressive a { background-position: 8px -632px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-subhead a { background-position: 8px -679px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-sidebars a { background-position: 8px -724px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-themelets a { background-position: 8px -769px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-toolbar a { background-position: 8px -815px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-topnav a { background-position: 8px -860px; } 
+.sprite-arrow-circle-315 { background-position: 0 -910px; } 
+.sprite-btn-icon-activate { background-position: 0 -956px; } 
+.sprite-btn-icon-delete { background-position: 0 -999px; } 
+#tabs .primary li.ui-tabs-selected.ui-state-active a { background-position: 0 -1042px; } 
+.sprite-colorpicker-bg { background-position: 0 -1088px; } 
+.sprite-dialog-close { background-position: 0 -1134px; } 
+.sprite-eye { background-position: 0 -1198px; } 
+.sprite-feedback-link { background-position: 0 -1244px; } 
+.sprite-fullscreen-link { background-position: 0 -1290px; } 
+.sprite-loggedin { background-position: 0 -1334px; } 
+.sprite-manage-link { background-position: 0 -1380px; } 
+.sprite-yes { background-position: 0 -1426px; }
+
+
+
+#tabs .primary li.themelet-icon.ui-state-active a{background:#fff url(../images/icon-themelet.png) no-repeat 20px 50%;}
+#tabs .primary li.blocks-icon.ui-state-active a{background:#fff url(../images/blocks1.png) no-repeat 20px 50%;}
+#tabs .primary li.assets-icon.ui-state-active a{background:#fff url(../images/assets.png) no-repeat 20px 50%;}
+#tabs .primary li.tools-icon.ui-state-active a{background:#fff url(../images/tools.png) no-repeat 20px 50%;}
+#tabs .primary li.help-icon.ui-state-active a{background:#fff url(../images/lifebuoy.png) no-repeat 20px 50%;}

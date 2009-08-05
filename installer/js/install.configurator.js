@@ -13,23 +13,6 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		$('.refresh-step1').click(function(){ loadstep1(template); return false; });
-		
-		$('.create-assets').click(function(){
-			assetsCreate(loadstep1, template);
-			return false;
-		});
-		
-//		$('.install-themelet').click(function(){
-//			themeletInstall();
-//			return false;
-//		});
-//		
-//		$('.install-sample').click(function(){
-//			sampleInstall();
-//			return false;
-//		});
-		
 		function assetsCreate(callback,step){
 			
 			$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Creating Assets folder...</span></div></div>').appendTo('body');
@@ -49,7 +32,7 @@ jQuery.noConflict();
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){
 							hideScroll();
-							$('#saving').css('display', 'none');
+							$('#saving').remove();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -64,6 +47,8 @@ jQuery.noConflict();
 			   					},
 								close: function(){
 			   						$(this).dialog('destroy');
+			   						$.cookie('assets_check_again', 'true');
+			   						callback(step);
 			   						showScroll();
 			   					},
 								buttons: {
@@ -76,7 +61,7 @@ jQuery.noConflict();
 							$('#dialog').dialog('open');
 						}else{
 							hideScroll();
-                            $('#saving').css('display', 'none');
+                            $('#saving').remove();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -91,6 +76,9 @@ jQuery.noConflict();
 			   					},
 			   					close: function(){
 			   						$(this).dialog('destroy');
+			   						$('#error-assets').remove();
+			   						$.cookie('assets_check_again', null);
+			   						$.cookie('asset_exists', 'true')
 			   						callback(step);
 			   						showScroll();
 			   					},
@@ -149,7 +137,7 @@ jQuery.noConflict();
 	                        if(data.error != '')
 	                        {
 	                            hideScroll();
-	                            $('#saving').css('display', 'none');
+	                            $('#saving').remove();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
 						   			resizable: false,
@@ -176,7 +164,7 @@ jQuery.noConflict();
 	                        }else{
 	                        	if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
 	                            hideScroll();
-	                            $('#saving').css('display', 'none');
+	                            $('#saving').remove();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
 						   			resizable: false,
@@ -261,7 +249,7 @@ jQuery.noConflict();
 	                        if(data.error != '')
 	                        {
 	                            hideScroll();
-	                            $('#saving').css('display', 'none');
+	                            $('#saving').remove();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
 						   			resizable: false,
@@ -287,7 +275,7 @@ jQuery.noConflict();
 								$('#dialog').dialog('open');
 	                        }else{
 	                            hideScroll();
-	                            $('#saving').css('display', 'none');
+	                            $('#saving').remove();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
 						   			resizable: false,
@@ -407,7 +395,7 @@ jQuery.noConflict();
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){
 							hideScroll();
-							$('#saving').css('display', 'none');
+							$('#saving').remove();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -436,7 +424,7 @@ jQuery.noConflict();
 							if(data.db == 'backedup'){ var dbstore = '<p><strong>Your database was backed up to: </strong></p><p><small>'+data.dbstore+'</small></p>'; }else{ var dbstore = '' }
 						
 							hideScroll();
-                            $('#saving').css('display', 'none');
+                            $('#saving').remove();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -568,11 +556,15 @@ jQuery.noConflict();
 				templateInstall();
 				return false;
 			});
-			$('.create-assets').click(function(){
-				assetsCreate(loadstep1, template);
-				return false;
-			});
 			helpstep1();
+			if($('#assets_folder_exists').length > 0){
+				$.cookie('assets_check_again', null);
+				$.cookie('asset_exists', 'true');
+			}
+			if($.cookie('assets_check_again')){
+				hideScroll();
+				$('#error-assets').dialog('open');
+			}
 		}
 		
 		function themelet(){
@@ -581,10 +573,6 @@ jQuery.noConflict();
 			$('.refresh-step2').click(function(){ loadstep2(themelet); return false; });
 			$('.install-themelet').click(function(){
 				themeletInstall();
-				return false;
-			});
-			$('.create-assets').click(function(){
-				assetsCreate(loadstep2, themelet);
 				return false;
 			});
 			helpstep2();
@@ -749,6 +737,41 @@ jQuery.noConflict();
 			arrayPageSize = new Array(pageWidth,pageHeight,windowWidth,windowHeight);
 			return arrayPageSize;
 		};
+		
+		$('#error-assets').dialog({
+			bgiframe: true,
+			autoOpen: false,
+			resizable: false,
+			draggable: false,
+			minHeight: 20,
+			modal: true,
+			width: 500,
+			title: 'Alert!',
+			open: function(){
+				hideScroll();
+			},
+			overlay: {
+				backgroundColor: '#000000', 
+				opacity: 0.8 
+			},
+			closeOnEscape: false,
+			buttons: {
+				'Create Assets Folders': function(){
+					$('#error-assets').dialog('close');
+					showScroll();
+					assetsCreate(loadstep1, template);
+				},
+				'Refresh': function(){
+					if(!$.cookie('assets_check')) { $.cookie('assets_check_again', 'true'); }
+					$('#error-assets').dialog('close');
+					showScroll();
+					loadstep1(template);
+				}
+			}
+		});
+		if(!$.cookie('assets_check_again') && !$.cookie('asset_exists')){
+			$('#error-assets').dialog('open');
+		}
 	
-	})
+	});
 })(jQuery);

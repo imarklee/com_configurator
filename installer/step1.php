@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false){
 $base = './components/com_configurator';
 }else{
@@ -6,6 +6,7 @@ $base = '.';
 }
 define('JURL', $base);
 define('JROOT', str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__)));
+if(is_dir(JROOT . '/morph_assets')){ echo '<div id="assets_folder_exists" style="display:none;"></div>'; }
 ?>
 <form id="install-template" class="step1" method="post" action="index.php?option=com_configurator&task=installTemplate&format=raw&backup=false" enctype="multipart/form-data">
 	<div id="install-head">
@@ -25,8 +26,6 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 				<h3>In this step, you will install and publish the Morph template.</h3>
 				<p>If you already have a copy of Morph installed, you can choose to have a backup automatically created for you or skip this step completely.</p>
 				
-				<?php 
-				if(is_dir(JROOT . 'morph_assets')){ ?>
 				<label class="upload"><h4>Select the template framework install file:</h4>
 				<input type="file" name="template-file" id="template-file" /></label>
 				
@@ -39,32 +38,6 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 				<?php }else{ setcookie('installed_nomorph', 'true'); } ?>
 				<span class="mascot">&nbsp;</span>
 				
-				<?php } else{ ?>
-				<div class="assets-warning">
-				<strong>Warning! - Assets folder not found.</strong>
-				<p>The installer cannot find the assets folder. This is needed to continue with the installation.</p>
-				<p><a href="#" class="create-assets">Click here</a> to create the assets folder and its subfolders.</p>
-				<p>If you wish, you can manually create these folders using the folder structure below, in the root of your Joomla! install
-				and <a href="#" class="refresh-step1">click here</a> to refresh this page and continue.</p>
-				
-				<strong class="sub-heading">Folder Structure</strong>
-				<p>All folders below should be writable - 755 via FTP/chmod.</p>
-				<ul>
-					<li>morph_assets
-						<ul>
-							<li>backgrounds</li>
-							<li>backups
-								<ul>
-									<li>db</li>
-								</ul>
-							</li>
-							<li>logos</li>
-							<li>themelets</li>
-						</ul>
-					</li>
-				</ul>
-				</div>
-				<?php }?>	
 			</div>
 				
 			<div id="install-foot">

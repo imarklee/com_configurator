@@ -2,6 +2,7 @@
 (strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false) ? $base = './components/com_configurator' : $base = '.';
 ini_set('memory_limit', '32M');
 define('JINDEXURL', $base);
+
 setcookie('installed_cfg', 'true');
 ?>
 	

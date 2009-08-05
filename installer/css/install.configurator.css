@@ -70,8 +70,11 @@
 #install-body #install-summary li{padding-left:25px;background:#fff url(../images/summary-icons.jpg) no-repeat 0 2px;}
 #install-body #install-summary .tick-off{background:#fff url(../images/summary-icons.jpg) no-repeat 0 -23px;color:#999;text-decoration:line-through;}
 #install-body.complete h4{font-size:15px;color:#333;}
-#install-body div.assets-warning p{color: #555; background: transparent; padding:0;margin:0 0 8px 0;font-size:12px;line-height: 12px;}
-#install-body div.assets-warning p a { color: #069;}
-#install-body div.assets-warning strong { display: block; color: #2d2d2d; padding: 6px 0px;}
-#install-body div.assets-warning ul { font-size: 12px; color: #555; line-height: 14px; font-weight: bold;}
-#install-body div.assets-warning ul li:before { content: "\0020 \0020 \0020 \21E2 \0020"; }
+
+#error-assets { padding: 15px; }
+#error-assets p{color: #555; background: transparent; padding:0;margin:0 0 8px 0;font-size:12px;line-height: 12px;}
+#error-assets p a { color: #069;}
+#error-assets strong { color: #2d2d2d; padding: 6px 0px;}
+#error-assets ul { padding: 0; font-size: 12px; color: #555; line-height: 14px; font-weight: bold; list-style: none;}
+#error-assets ul li { padding: 0 0 0 15px }
+#error-assets ul li:before { content: "\0020 \0020 \0020 \21E2 \0020"; }/*

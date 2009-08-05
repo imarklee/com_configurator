@@ -28,8 +28,6 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 			
 			<label class="backup"><input type="checkbox" name="activate_themelet" id="activate_themelet" checked="checked" value="true" />
 			Activate themelet (recommended for first time installs)</label>
-			<?php } else { ?>
-
 		</div>	
 		<div id="install-foot">
 			<ul id="action">

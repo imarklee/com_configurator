@@ -31,7 +31,7 @@ jQuery.noConflict();
 			cookiedate.setMinutes(minutes);	
 	   		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
 	   		
-	   		if(!$.cookie('noupdates')){
+	   		if(!$.cookie('noupdates') || checknow){
 	   			
 	   			if(!$.cookie('checkedforupdates') || checknow){
 	   				$.ajax({

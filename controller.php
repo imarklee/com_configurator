@@ -775,42 +775,40 @@ class ConfiguratorController extends JController {
 		JPath::setPermissions(JPATH_SITE);
 		
 		// create assets folder
-		if(!mkdir(JPATH_SITE . DS . 'morph_assets')){
+		if(!@mkdir(JPATH_SITE . DS . 'morph_assets')){
 			$error = 'error: "There was an error creating the assets folder. Please check your permissions."';
 		}else{
 			JPath::setPermissions(JPATH_SITE . DS . 'morph_assets');
 		}
 	
-		if(!mkdir($backupdir)){
+		if(!@mkdir($backupdir)){
 			$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
 		}else{
 			JPath::setPermissions($backupdir);
 		}
 	
-		if(!mkdir($logosdir)){
+		if(!@mkdir($logosdir)){
 			$error = 'error: "There was an error creating the logos folder. Please check your permission on the assets folder"'; 
 		}else{
 			JPath::setPermissions($logosdir);
 		}
 		
-		if(!mkdir($backgroundsdir)){
+		if(!@mkdir($backgroundsdir)){
 				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
 		}else{
 			JPath::setPermissions($backgroundsdir);
 		}
-		if(!mkdir($themeletsdir)){
+		if(!@mkdir($themeletsdir)){
 			$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
 		}else{
 			JPath::setPermissions($themeletsdir);
-		}
-		
+//		}
+		$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
 		if(isset($error)){
 			$ret = '{'.$error.'}';
 			echo $ret;
-			die();
 		}else{
 			echo '{ error: "", success: "Assets folder structure successfully created. You may continue with the installation." }';
-			die();
 		}
 	}
 	function install_template(){

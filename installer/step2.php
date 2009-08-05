@@ -23,7 +23,6 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 			<h3>In this step, you will install and publish your themelet.</h3>
 			<p>Themelets are child themes for Morph and are essentially the seperation of the visual and functional aspects of your template. <a href="#" class="help-step2" title="click here for help with this step" class="step2-help">Click here to learn more</a></p>
 			
-			<?php if(is_dir(JROOT . 'morph_assets')){ ?>
 			<label class="upload"><h4>Select your themelet install file:</h4>
 			<input type="file" name="insfile" id="insfile" /></label>
 			
@@ -31,31 +30,6 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 			Activate themelet (recommended for first time installs)</label>
 			<?php } else { ?>
 
-			<div class="assets-warning">
-				<strong>Warning! - Assets folder not found.</strong>
-				<p>The installer cannot find the assets folder. This is needed to continue with the installation.</p>
-				<p><a href="#" class="create-assets">Click here</a> to create the assets folder and its subfolders.</p>
-				<p>If you wish, you can manually create these folders using the folder structure below, in the root of your Joomla! install
-				and <a href="#" class="refresh-step2">click here</a> to refresh this page and continue.</p>
-				
-				<strong class="sub-heading">Folder Structure</strong>
-				<p>All folders below should be writable - 755 via FTP/chmod.</p>
-				<ul>
-					<li>morph_assets
-						<ul>
-							<li>backgrounds</li>
-							<li>backups
-								<ul>
-									<li>db</li>
-								</ul>
-							</li>
-							<li>logos</li>
-							<li>themelets</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-			<?php } ?>
 		</div>	
 		<div id="install-foot">
 			<ul id="action">

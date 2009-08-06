@@ -1,11 +1,11 @@
-<div id="sidebars-tab" class="ui-tabs-hide">
-	<div id="sidebars-options" class="options-panel">
+<div id="inner-sidebar-tab" class="ui-tabs-hide">
+	<div id="inner-sidebar-options" class="options-panel">
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('sidebars', 'sidebarsdata')); ?>
+			<?php echo renderParams($params->renderToArray('inner-sidebar', 'inner-sidebardata')); ?>
 		</ol>
 	</div>
-	<div id="sidebars-info" class="info-panel">
-		<h3>Sidebars info</h3>
+	<div id="inner-sidebar-info" class="info-panel">
+		<h3>Inner sidebar (right)</h3>
 		<p class="teaser">The concept of the inner &amp; outer layouts require a bit of understanding to grasp, but once you do you will have unparalelled flexibility at your finger tips.</p>
 		<p>Based on commonly accepted <em>best practices</em>, we refer to your sites main content as your <strong>primary content</strong> &amp; likewise your two optional sidebars are referred to as your <strong>secondary &amp; tertiary content</strong>. This naming convention relates to the importance of the content &amp; is ordered accordingly in your sites source code.</p>
 		

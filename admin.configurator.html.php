@@ -155,10 +155,11 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
 									<li class="icon-subhead"><a href="#subhead-tab">Sub Header</a></li>
 									<li class="icon-topnav"><a href="#topnav-tab">Top Menu</a></li>
-									<li class="icon-oshelves"><a href="#outer-shelves-tab">Outer Shelf</a></li>
-									<li class="icon-ishelves"><a href="#inner-shelves-tab">Inner Shelf</a></li>
-									<li class="icon-main"><a href="#main-tab">Main</a></li>
-									<li class="icon-sidebars"><a href="#sidebars-tab">Sidebars</a></li>
+									<li class="icon-oshelves"><a href="#outer-shelves-tab">Outer Shelves</a></li>
+									<li class="icon-ishelves"><a href="#inner-shelves-tab">Inner Shelves</a></li>
+									<li class="icon-main"><a href="#main-tab">Main Content</a></li>
+									<li class="icon-sidebars"><a href="#outer-sidebar-tab">Outer Sidebar</a></li>
+									<li class="icon-sidebars"><a href="#inner-sidebar-tab">Inner Sidebar</a></li>
 									<li class="icon-insets"><a href="#insets-tab">Insets</a></li>
 									<li class="icon-footer"><a href="#footer-tab">Footer</a></li>
 								</ul>
@@ -170,7 +171,8 @@ function manage( &$params, &$lists, $morph_installed ) {
 								<?php include 'includes/tabs/blocks/inner-shelves.php' ?>
 								<?php include 'includes/tabs/blocks/inset.php' ?>
 								<?php include 'includes/tabs/blocks/main.php' ?>
-								<?php include 'includes/tabs/blocks/sidebars.php' ?>
+								<?php include 'includes/tabs/blocks/outer-sidebar.php' ?>
+								<?php include 'includes/tabs/blocks/inner-sidebar.php' ?>
 								<?php include 'includes/tabs/blocks/footer.php' ?>
 							</div>
 						</div>

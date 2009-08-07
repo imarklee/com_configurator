@@ -139,11 +139,13 @@ function manage( &$params, &$lists, $morph_installed ) {
 									<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
 									<li class="icon-backgrounds"><a href="#backgrounds-tab">Background Settings</a></li>
 									<li class="icon-menus"><a href="#menus-tab">Menu Settings</a></li>
+									<li class="icon-iphone"><a href="#iphone-tab">iPhone Compatibility</a></li>
 								</ul>
 								<?php include 'includes/tabs/themelet/colors.php' ?>
 								<?php include 'includes/tabs/general/logos.php' ?>
 								<?php include 'includes/tabs/themelet/backgrounds.php' ?>
 								<?php include 'includes/tabs/themelet/menus.php' ?>
+								<?php include 'includes/tabs/themelet/iphone.php' ?>
 							</div>
 						</div>
 

@@ -176,9 +176,9 @@ class ConfiguratorController extends JController {
 		$params[4] = JRequest::getVar( 'color', null, 'post', 'array' );
 		$params[5] = JRequest::getVar( 'progressive', null, 'post', 'array' );
 		$params[6] = JRequest::getVar( 'menu', null, 'post', 'array' );
-		$params[7] = JRequest::getVar( 'performance', null, 'post', 'array' );
-		$params[8] = JRequest::getVar( 'debugging', null, 'post', 'array' );
-		//$params[9] = JRequest::getVar( 'miscellaneous', null, 'post', 'array' );
+		$params[7] = JRequest::getVar( 'iphone', null, 'post', 'array' );
+		$params[8] = JRequest::getVar( 'performance', null, 'post', 'array' );
+		$params[9] = JRequest::getVar( 'debugging', null, 'post', 'array' );
 		$params[10] = JRequest::getVar( 'toolbar', null, 'post', 'array' );
 		$params[11] = JRequest::getVar( 'masterhead', null, 'post', 'array' );
 		$params[12] = JRequest::getVar( 'subhead', null, 'post', 'array' );
@@ -236,22 +236,21 @@ class ConfiguratorController extends JController {
 		$database = JFactory::getDBO();
 		$template_name = JRequest::getVar('t');
 		$option = JRequest::getVar('option');
-	
-		
+
 		$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
-		$params[1]	= JRequest::getVar( 'general', null, 'post', 'array' );
-		$params[2]    = JRequest::getVar( 'logo', null, 'post', 'array' );
-		$params[3]    = JRequest::getVar( 'background', null, 'post', 'array' );
-		$params[4]    = JRequest::getVar( 'color', null, 'post', 'array' );
-		$params[5]    = JRequest::getVar( 'progressive', null, 'post', 'array' );
-		$params[6]    = JRequest::getVar( 'menu', null, 'post', 'array' );
-		$params[7]    = JRequest::getVar( 'performance', null, 'post', 'array' );
-		$params[8]    = JRequest::getVar( 'debugging', null, 'post', 'array' );
-		$params[9]    = JRequest::getVar( 'miscellaneous', null, 'post', 'array' );
-		$params[10]    = JRequest::getVar( 'toolbar', null, 'post', 'array' );
-		$params[11]    = JRequest::getVar( 'masterhead', null, 'post', 'array' );
-		$params[12]    = JRequest::getVar( 'subhead', null, 'post', 'array' );
-		$params[13]    = JRequest::getVar( 'topnav', null, 'post', 'array' );
+		$params[1] = JRequest::getVar( 'general', null, 'post', 'array' );
+		$params[2] = JRequest::getVar( 'logo', null, 'post', 'array' );
+		$params[3] = JRequest::getVar( 'backgrounds', null, 'post', 'array' );
+		$params[4] = JRequest::getVar( 'color', null, 'post', 'array' );
+		$params[5] = JRequest::getVar( 'progressive', null, 'post', 'array' );
+		$params[6] = JRequest::getVar( 'menu', null, 'post', 'array' );
+		$params[7] = JRequest::getVar( 'iphone', null, 'post', 'array' );
+		$params[8] = JRequest::getVar( 'performance', null, 'post', 'array' );
+		$params[9] = JRequest::getVar( 'debugging', null, 'post', 'array' );
+		$params[10] = JRequest::getVar( 'toolbar', null, 'post', 'array' );
+		$params[11] = JRequest::getVar( 'masterhead', null, 'post', 'array' );
+		$params[12] = JRequest::getVar( 'subhead', null, 'post', 'array' );
+		$params[13] = JRequest::getVar( 'topnav', null, 'post', 'array' );
 		$params[14] = JRequest::getVar( 'shelves', null, 'post', 'array' );
 		$params[15] = JRequest::getVar( 'inlineshelves', null, 'post', 'array' );
 		$params[16] = JRequest::getVar( 'insets', null, 'post', 'array' );
@@ -263,8 +262,7 @@ class ConfiguratorController extends JController {
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
 		//$row = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
-		
-		
+				
 		foreach ($params as $currentblock){      		
 			foreach($currentblock as $param_key=>$param_value) {
 			

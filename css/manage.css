@@ -375,6 +375,7 @@ p.intro{font:normal 17px/20px Arial;color:#666;}
 .logo-preview:hover span{display:block;}
 img.logo-preview-image{margin:-10px;}
 .docs-wrap .btn-link,#wrap a.switch-view,#wrap .thumb-view ul.buttons li a,#wrap a.btn-link{background:#fff url(../images/btn-link-bg.jpg) repeat-x;font:bold 11px/25px arial;border:1px solid #ccc;text-decoration:none;color:#444;padding:4px 8px;}
+#wrap #shelf a.btn-link{padding:3px 7px;}
 .docs-wrap a:hover.btn-link,#wrap .thumb-view ul.buttons li a:hover,#wrap a.btn-link:hover{background:#fff url(../images/btn-link-bg-over.jpg) repeat-x;color:#666;}
 #wrap #assets-tabs .thumb-view ul.buttons li a{padding:0!important;display:block;line-height:1;}
 #wrap #assets-tabs .thumb-view ul.buttons li a span{padding:4px 29px 4px 8px;border:1px solid #fff;display:block;}

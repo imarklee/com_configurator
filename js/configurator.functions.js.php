@@ -1999,12 +1999,16 @@ jQuery.noConflict();
 				$('#logo-options li #logoslogan_textcolor').parent().css('display', 'block');
 				$('#logo-options li #logoslogan_fontsize').parent().css('display', 'block');
 				$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'block');
+				$('#logo-options li #logoslogan_top').parent().css('display', 'block');
+				$('#logo-options li #logoslogan_left').parent().css('display', 'block');
 			});
 			$('#logo-options li #logodisplay_slogan0').click(function(){
 				$('#logo-options li #logoslogan_text').parent().css('display', 'none');
 				$('#logo-options li #logoslogan_textcolor').parent().css('display', 'none');
 				$('#logo-options li #logoslogan_fontsize').parent().css('display', 'none');
 				$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'none');
+				$('#logo-options li #logoslogan_top').parent().css('display', 'none');
+				$('#logo-options li #logoslogan_left').parent().css('display', 'none');
 			});
 			$('#logo-options li #logodisplay_ie_logo1').click(function(){
 				$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
@@ -2032,6 +2036,8 @@ jQuery.noConflict();
 					$('#logo-options li #logologo_fontfamily').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
 					$('#logo-options li #logologo_text').parent().css('display', 'block');
+					$('#logo-options li #logologo_top').parent().css('display', 'block');
+					$('#logo-options li #logologo_left').parent().css('display', 'block');
 					break;
 					case '1':
 					$('#logo-options li').css('display', 'none');
@@ -2043,16 +2049,8 @@ jQuery.noConflict();
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
 					$('#logo-options li #logologo_text').parent().css('display', 'block');
 					$('#logo-options li #logologo_autodimensions1').parent().css('display', 'block');
-					break;
-					case '2':
-					$('#logo-options li').css('display', 'none');
-					$('#logo-options li.heading').css('display', 'block');
-					$('#logologo_type').parent().css('display', 'block');
-					$('#logo-options li #logologo_textcolor').parent().css('display', 'block');
-					$('#logo-options li #logologo_fontsize').parent().css('display', 'block');
-					$('#logo-options li #logologo_fontfamily').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
-					$('#logo-options li #logologo_text').parent().css('display', 'block');
+					$('#logo-options li #logologo_top').parent().css('display', 'block');
+					$('#logo-options li #logologo_left').parent().css('display', 'block');
 					break;
 					case '3':
 					$('#logo-options li').css('display', 'none');
@@ -2064,11 +2062,15 @@ jQuery.noConflict();
 					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
 					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
 					$('#logo-options li #logologo_autodimensions1').parent().css('display', 'block');
+					$('#logo-options li #logologo_top').parent().css('display', 'block');
+					$('#logo-options li #logologo_left').parent().css('display', 'block');
 					break;
 					case '4':
 					$('#logo-options li').css('display', 'none');
 					$('#logo-options li.heading:first').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
+					$('#logo-options li #logologo_top').parent().css('display', 'block');
+					$('#logo-options li #logologo_left').parent().css('display', 'block');
 					break;
 				}
 				
@@ -2077,12 +2079,16 @@ jQuery.noConflict();
 					$('#logo-options li #logoslogan_textcolor').parent().css('display', 'none');
 					$('#logo-options li #logoslogan_fontsize').parent().css('display', 'none');
 					$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'none');
+					$('#logo-options li #logoslogan_top').parent().css('display', 'none');
+					$('#logo-options li #logoslogan_left').parent().css('display', 'none');
 				}
 				if($('#logo-options li #logodisplay_slogan1').attr('checked')){
 					$('#logo-options li #logoslogan_text').parent().css('display', 'block');
 					$('#logo-options li #logoslogan_textcolor').parent().css('display', 'block');
 					$('#logo-options li #logoslogan_fontsize').parent().css('display', 'block');
 					$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'block');
+					$('#logo-options li #logoslogan_top').parent().css('display', 'block');
+					$('#logo-options li #logoslogan_left').parent().css('display', 'block');
 				}
 				
 				if($('#logo-options li #logodisplay_ie_logo1').attr('checked')){

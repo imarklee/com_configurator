@@ -2104,10 +2104,12 @@ jQuery.noConflict();
 		}
 		$(function(){ LogoOptions(); });
 		
+		
 		function blockSettingsOptions(elid, hideid){
 		
-			$(hideid+'_gridsplit').parent().css('display', 'none');
-			$(hideid+'_equalize1').parent().css('display', 'none');
+//			$(hideid+'_gridsplit').parent().css('display', 'none');
+//			$(hideid+'_equalize1').parent().css('display', 'none');
+//			$(hideid+'_module_inner').parent().css('display', 'none');
 			
 			$(elid).change(function(){
 				var option = $(this).val();
@@ -2118,17 +2120,35 @@ jQuery.noConflict();
 			
 			function switcher(v){
 				switch(v){
-					case 'custom2':
+					case 'grid':
 						$(hideid+'_gridsplit').parent().css('display', 'block');
 						$(hideid+'_equalize1').parent().css('display', 'block');
+						$(hideid+'_module_inner').parent().css('display', 'block');
+						$(hideid+'_modfx').parent().css('display', 'block');
 					break;
-					case 'custom3':
-						$(hideid+'_gridsplit').parent().css('display', 'block');
-						$(hideid+'_equalize1').parent().css('display', 'block');
+					case 'basic':
+						$(hideid+'_gridsplit').parent().css('display', 'none');
+						$(hideid+'_equalize1').parent().css('display', 'none');
+						$(hideid+'_module_inner').parent().css('display', 'block');
+						$(hideid+'_modfx').parent().css('display', 'block');
+					break;
+					case 'tabs':
+						$(hideid+'_gridsplit').parent().css('display', 'none');
+						$(hideid+'_equalize1').parent().css('display', 'none');
+						$(hideid+'_module_inner').parent().css('display', 'none');
+						$(hideid+'_modfx').parent().css('display', 'block');
+					break;
+					case 'accordion':
+						$(hideid+'_gridsplit').parent().css('display', 'none');
+						$(hideid+'_equalize1').parent().css('display', 'none');
+						$(hideid+'_module_inner').parent().css('display', 'none');
+						$(hideid+'_modfx').parent().css('display', 'block');
 					break;
 					default:
 						$(hideid+'_gridsplit').parent().css('display', 'none');
 						$(hideid+'_equalize1').parent().css('display', 'none');
+						$(hideid+'_module_inner').parent().css('display', 'none');
+						$(hideid+'_modfx').parent().css('display', 'none');
 				}
 			}
 		}

@@ -10,6 +10,7 @@ $backupdir = ROOT . DS . 'morph_assets' . DS . 'backups';
 $logosdir = ROOT . DS . 'morph_assets' . DS . 'logos';
 $backgroundsdir = ROOT . DS . 'morph_assets' . DS . 'backgrounds';
 $themeletsdir = ROOT . DS . 'morph_assets' . DS . 'themelets';
+$iphonedir = ROOT . DS . 'morph_assets' . DS . 'iphone';
 
 // create assets folder
 if(!is_dir(ROOT . DS . 'morph_assets')){
@@ -29,6 +30,10 @@ if(!is_dir(ROOT . DS . 'morph_assets')){
 	
 	if(!is_dir($themeletsdir)){
 		(!@mkdir($themeletsdir)) ? $error = true : JPath::setPermissions($themeletsdir);
+	}
+	
+	if(!is_dir($iphonedir)){
+		(!@mkdir($iphonedir)) ? $error = true : JPath::setPermissions($iphonedir);
 	}
 }
 

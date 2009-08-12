@@ -771,6 +771,7 @@ class ConfiguratorController extends JController {
 		$logosdir = JPATH_SITE . DS . 'morph_assets' . DS . 'logos';
 		$backgroundsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backgrounds';
 		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
+		$iphonedir = JPATH_SITE . DS . 'morph_assets' . DS . 'iphone';
 		
 		JPath::setPermissions(JPATH_SITE);
 		
@@ -794,16 +795,22 @@ class ConfiguratorController extends JController {
 		}
 		
 		if(!@mkdir($backgroundsdir)){
-				$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+				$error = 'error: "There was an error creating the backgrounds folder. Please check your permission on the assets folder"'; 
 		}else{
 			JPath::setPermissions($backgroundsdir);
 		}
 		if(!@mkdir($themeletsdir)){
-			$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+			$error = 'error: "There was an error creating the themelets folder. Please check your permission on the assets folder"'; 
 		}else{
 			JPath::setPermissions($themeletsdir);
 		}
-		$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
+		
+		if(!@mkdir($iphonedir)){
+			$error = 'error: "There was an error creating the iphone folder. Please check your permission on the assets folder"'; 
+		}else{
+			JPath::setPermissions($iphonedir);
+		}
+		
 		if(isset($error)){
 			$ret = '{'.$error.'}';
 			echo $ret;

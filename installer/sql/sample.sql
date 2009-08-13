@@ -93,7 +93,7 @@ ALTER IGNORE TABLE jos_menu DROP INDEX `alias`;
 --
 ALTER IGNORE TABLE jos_modules CHANGE title title VARCHAR(255);
 ALTER IGNORE TABLE jos_modules ADD UNIQUE KEY (title);
-INSERT INTO `jos_modules` VALUES('', 'Getting Started', '', 0, 'left', 0, '0000-00-00 00:00:00', 1, 'mod_mainmenu', 0, 0, 1, 'menutype=gettingstarted\nmenu_style=list\nstartLevel=0\nendLevel=0\nshowAllChildren=1\nwindow_open=\nshow_whitespace=0\ncache=1\ntag_id=\nclass_sfx=\nmoduleclass_sfx=subtext sidefish iconstyle-02\nmaxdepth=10\nmenu_images=0\nmenu_images_align=0\nmenu_images_link=0\nexpand_menu=0\nactivate_parent=0\nfull_active_id=0\nindent_image=0\nindent_image1=\nindent_image2=\nindent_image3=\nindent_image4=\nindent_image5=\nindent_image6=\nspacer=\nend_spacer=\n\n', 0, 0, '') ON DUPLICATE KEY UPDATE id=id;
+INSERT INTO `jos_modules` VALUES('', 'Getting Started', '', 0, 'left', 0, '0000-00-00 00:00:00', 1, 'mod_mainmenu', 0, 0, 1, 'menutype=gettingstarted\nmenu_style=list\nstartLevel=0\nendLevel=0\nshowAllChildren=1\nwindow_open=\nshow_whitespace=0\ncache=1\ntag_id=\nclass_sfx=\nmoduleclass_sfx=\nmaxdepth=10\nmenu_images=0\nmenu_images_align=0\nmenu_images_link=0\nexpand_menu=0\nactivate_parent=0\nfull_active_id=0\nindent_image=0\nindent_image1=\nindent_image2=\nindent_image3=\nindent_image4=\nindent_image5=\nindent_image6=\nspacer=\nend_spacer=\n\n', 0, 0, '') ON DUPLICATE KEY UPDATE id=id;
 INSERT INTO `jos_modules_menu` VALUES(LAST_INSERT_ID(), '0') ON DUPLICATE KEY UPDATE menuid=menuid;
 ALTER IGNORE TABLE jos_modules DROP INDEX title;
 ALTER IGNORE TABLE jos_modules CHANGE title title TEXT;

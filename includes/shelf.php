@@ -40,7 +40,7 @@ function showIcon($curr, $serv){
 }
 
 ?>
-<div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
+<div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } if($shelf_position == 1){ ?> shelfbtm<?php } if($show_footer == 0 && $shelf_position == 1){ ?> nofooter<?php } if($shelf_position == 0){ ?> shelftop<?php } ?>">
 	<div id="utilities">
 		<ul>
 			<li class="logged-in">Logged in as: <strong><?php echo $_COOKIE['am_logged_in_user']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a></li>

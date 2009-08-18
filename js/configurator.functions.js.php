@@ -131,14 +131,13 @@ jQuery.noConflict();
 //				$('#qtip-blanket').css("display", "none");
 //			}
 //		);
-		
-		
+			
 		
 		if($.jqURL.get('task') == 'dashboard'){
 			$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 		}else if($.jqURL.get('task') == 'manage' || $.jqURL.get('task') == 'manage#'){
 			if($.cookie('am_logged_in')){
-				$("#submenu").append('<li class="preferences"><a href="#">Preferences</a></li>','<li class="feedback"><a href="#" id="report-bug-link">Send Feedback</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
+				$("#toolbar .toolbar tr").append('<td id="fullscreen"><a href="#">Fullscreen</a></td>','<td id="preferences"><a href="#">Preferences</a></td>','<td id="report-bug-email-link"><a href="#">Feedback</a></td>	');
 			}else{
 				$("#submenu").append('<li class="feedback"><a href="#" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 			}
@@ -615,7 +614,7 @@ jQuery.noConflict();
 				opacity: 0.8
 			}
 		});
-		$('#report-bug-link, #report-bug-email-link').click(function() {
+		$('#report-bug-link, #report-bug-email-link a').click(function() {
 			$('#report-bug').dialog('open');
 			return false;
 		});
@@ -2401,7 +2400,7 @@ jQuery.noConflict();
     	});
 	    }
 	    
-    	$('li.preferences a').click(function(){ 
+    	$('td#preferences a').click(function(){ 
 	    	$('#preferences-screen').load('../administrator/components/com_configurator/includes/preferences.php', function(){
 		    	return preferencesScreen();
 		    }); 

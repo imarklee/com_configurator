@@ -12,7 +12,7 @@ include ($mosConfig_absolute_path . "/components/$option/configuration.php");
 require_once ($mainframe->getPath('front_html'));
 require_once ($mainframe->getPath('class'));
 
-$mainframe->setPageTitle("Morph by Ninjoomla");
+$mainframe->setPageTitle("Morph by Prothemer");
 
 $page=mosGetParam($_REQUEST, 'page');
 $task=mosGetParam($_REQUEST, 'task');

@@ -33,6 +33,7 @@ $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurat
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/960.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/manage.css');
 }
+
 ?>
 <?php
 class HTML_configurator_admin {
@@ -43,7 +44,6 @@ function manage( &$params, &$lists, $morph_installed ) {
         $option = JRequest::getVar('option');
    
         JToolBarHelper::title( 'Configurator', 'configurator' );
-        
         
         if (!$morph_installed){
 	        echo '<center>';
@@ -100,13 +100,20 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<?php include 'includes/lost-password.php' ?>
 				</div>
 	        <?php }else{ ?>
+	        <?php 
+	        $shelf_position 	= '3'; 
+		    $show_top 			= '0'; 
+		    $show_footer		= '0'; 
+	        ?>
+
 	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">
 	        	<div id="wrap" class="container_16">
-					<?php include 'includes/top.php' ?>
-					<?php include 'includes/shelf.php' ?>				
+					<?php if($show_top == 1){include_once('includes/top.php'); } ?>
+					<?php if($shelf_position == 0){include_once('includes/shelf.php'); } ?>
+				
 					<div class="clear spacer">&nbsp;</div>
 		
-					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all<?php if($show_top == 0 && $shelf_position != 0){ ?> notop<?php } ?><?php if($show_footer == 0 && $shelf_position == 3){ ?> tabsonly<?php } if($show_footer == 0 && $shelf_position == 0 or $shelf_position == 3){ ?> nobtm<?php } ?>">
 						<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 							<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
 							<li class="themelet-icon"><a href="#themelets">Customization</a></li>
@@ -209,9 +216,8 @@ function manage( &$params, &$lists, $morph_installed ) {
 					</div>
 
 					<div class="clear">&nbsp;</div>
-					<?php include 'includes/footer.php'; ?>
-					
-					
+					<?php if($shelf_position == 1){include_once('includes/shelf.php'); } ?>
+					<?php if($show_footer == 1){include_once('includes/footer.php'); } ?>					
 										
 				</div>
 				<input type="hidden" name="option" value="<?php echo $option; ?>"/>

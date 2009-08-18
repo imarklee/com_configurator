@@ -372,7 +372,7 @@ class ConfiguratorController extends JController {
 			$themelet_details = $file;
 		}
 		$themelet_type = $themelet_details['type'];
-		$allowed_types = array('application/zip', 'application/x-zip-compressed', 'application/octet-stream');
+		$allowed_types = array('application/zip', 'application/x-zip-compressed', 'application/x-gzip', 'application/octet-stream');
 		if(!in_array($themelet_type, $allowed_types)){
 			$error = 'error: "This is not a valid themelet package.<br />Please try again with a valid themelet package (zip file)"';
 			return $error;
@@ -738,6 +738,7 @@ class ConfiguratorController extends JController {
 		
 		}		
 	}
+	
 	function install_themelet(){
 		ini_set('memory_limit', '32M');
 		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
@@ -818,6 +819,7 @@ class ConfiguratorController extends JController {
 			echo '{ error: "", success: "Assets folder structure successfully created. You may continue with the installation." }';
 		}
 	}
+	
 	function install_template(){
 		ini_set('memory_limit', '32M');
 		$newtemplatefile = @JRequest::getVar( 'template-file', null, 'files', 'array' );
@@ -828,7 +830,7 @@ class ConfiguratorController extends JController {
 		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
 		$ret = '';
 				
-		if(in_array($newtemplatefile['type'], array('application/octet-stream', 'application/zip', 'application/x-zip-compressed'))){
+		if(in_array($newtemplatefile['type'], array('application/octet-stream', 'application/x-gzip', 'application/zip', 'application/x-zip-compressed'))){
 			if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){
 				// template folder
 				if($_REQUEST['backup'] == 'true'){

@@ -101,7 +101,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 				</div>
 	        <?php }else{ ?>
 	        <?php 
-	        $shelf_position 	= '3'; 
+	        $shelf_position 	= '1'; 
 		    $show_top 			= '0'; 
 		    $show_footer		= '0'; 
 	        ?>

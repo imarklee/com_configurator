@@ -504,9 +504,27 @@ a.disabled{opacity:0.5;cursor:default;}
 #preferences-screen li span{width:240px;float:left;display:block;}
 #preferences-screen input.btn-prefs{width:254px;height:40px;overflow:hidden;border:0;background:#666;padding:40px 0 0 0;margin:0;background:#eee url(../images/btn-save-prefs.png) no-repeat;cursor:pointer;}
 #preferences-screen input.btn-prefs:hover{background-position:bottom left;}
-#toolbar-apply a{color: #608000;}
-#toolbar-apply span.icon-32-apply{background:transparent url(../images/icon-save.png) no-repeat 50% 100%;}
-#toolbar-Link span.icon-32-back{background:transparent url(../images/icon-dashboard.png) no-repeat 50% 100%;}
+#toolbar-box #toolbar .toolbar td a{
+background:transparent url(http://localhost/morph/administrator/components/com_configurator/images/cfg-icons.jpg) no-repeat 50% 2%;
+width:60px;
+display:block;
+padding-top:34px;
+text-align:center;
+float:right;
+}
+#toolbar .toolbar td a span{
+display:none;
+}
+#toolbar .toolbar td#fullscreen a{
+background-position:50% 35%;
+}
+#toolbar .toolbar td#preferences a{
+background-position:50% 72%;
+}
+#toolbar .toolbar td#report-bug-email-link a{
+background-position:50% 107%;
+}
+
 p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF3100;width:325px;}
 .quicktips-box { margin: 0 auto; width: 615px; padding: 5px; }
 .toolguides.ui-dialog-content{padding:5px;}

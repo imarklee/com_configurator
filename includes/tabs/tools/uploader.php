@@ -8,6 +8,8 @@
 				<label for="upload_logo"><input type="radio" name="upload_type" value="logo" id="upload_logo">Logo</label>
 				<label for="upload_background"><input type="radio" name="upload_type" value="background" id="upload_background">Background</label>
 				<label for="upload_favicon"><input type="radio" name="upload_type" value="favicon" id="upload_favicon">Favicon</label>
+				<label for="upload_iphone"><input type="radio" name="upload_type" value="iphone" id="upload_iphone">iPhone</label>
+				<label for="upload_sample"><input type="radio" name="upload_type" value="sample" id="upload_sample">Demo</label>
 			</fieldset>
 			
 			<fieldset id="select-file">

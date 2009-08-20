@@ -341,6 +341,12 @@ class ConfiguratorController extends JController {
 						case 'favicon':
 						$return = $this->favicon_upload();
 						break;
+						case 'iphone':
+						$return = $this->iphone_upload();
+						break;
+						case 'demo':
+						$return = $this->demo_upload();
+						break;
 					}
 				}else{
 					$return = 'error: "No file has been selected. Please select a file in <strong>Step 2</strong> and try again."';
@@ -360,6 +366,14 @@ class ConfiguratorController extends JController {
 		
 		$ret = '{'.$return.'}';
 		echo $ret;
+	}
+	
+	function demo_upload(){
+	
+	}
+	
+	function iphone_upload(){
+	
 	}
 	
 	function themelet_upload($file = '') {

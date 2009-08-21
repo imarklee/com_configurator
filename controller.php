@@ -53,7 +53,18 @@ class ConfiguratorController extends JController {
 				$database->setQuery( $query );
 				$template_params = $database->loadAssocList('param_name');
 				$template_settings = array();
-
+				
+				// themelet
+				$themelet = $template_params['themelet']['param_value'];
+				$themelet_xml_params = array();
+				$xml_param_loader = new morphXMLLoader(JPATH_ROOT.DS.'morph_assets'.DS.'themelets'.DS.$themelet.DS.'themeletDetails.xml');
+				if(!empty($xml_param_loader)) {
+					$themelet_xml_params = $xml_param_loader->getParamDefaults();	
+					foreach($themelet_xml_params as $param_name => $param_value){
+						if(!array_key_exists($param_name,$template_params)) $template_params[$param_name] = array('param_name' => $param_name, 'param_value' => $param_value);
+					}
+				} 
+			
 				foreach ( (array) $template_params as $template_param ) {
 					$template_settings[] = $template_param['param_name'] . '=' . $template_param['param_value'] . "\n";
 				}
@@ -64,7 +75,7 @@ class ConfiguratorController extends JController {
 				$row->id            =0;
 				$pics               =null;
 			}
-
+			
 			if( count( $template_settings ) && empty($preset_choice) ) {
 				// Got settings from the DB.
 				$current_params = implode( "\n", $template_settings );
@@ -75,29 +86,18 @@ class ConfiguratorController extends JController {
 				// Default empty.
 				$current_params = implode( "\n", $paramList );
 			}
-
-			// Load customization file for dynamic option parameters.
-			$custom_params = '';
-			if(file_exists($templateBaseDir.DS.'core'.DS.'morphCustom.php')) {
-				include($templateBaseDir.DS.'core'.DS.'morphCustom.php');
-				if(function_exists('getCustomMorphParams')) {
-					$custom_params = getCustomMorphParams($template);
-				}
-			}
-
+			
 			// Create the morph params
 			$params = new JParameter($current_params, $templateBaseDir.DS.'core'.DS.'morphDetails.xml');        
-			if(!empty($custom_params)) {
-				// Merge loaded custom dynamic params into existing.
-				// $params->insertEntities( $custom_params, 'params' );
-			}
 			$params->name = $template;
+			$params->merge($themelet_params);
 			
 			$lists = array();
+			
 			// Load presets from XML file.
 			$xml_param_loader = new morphXMLLoader($templateBaseDir.DS.'core'.DS.'morphDetails.xml');
 			$main_xml_params = $xml_param_loader->getParamDefaults();
-			
+						
 			$params->use_favicons = $xml_param_loader->use_favicons;
 			
 			$presets = $xml_param_loader->preset_list;
@@ -116,7 +116,7 @@ class ConfiguratorController extends JController {
 			} else {
 				$lists['preset_list'] = ' No presets defined.';
 			}
-
+			
 			// Load list of themelets (if they exist).
 			$themelet_dir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';          
 
@@ -170,51 +170,54 @@ class ConfiguratorController extends JController {
 		$option = JRequest::getVar('option');
 		
 		//$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
-		$params[1] = JRequest::getVar( 'general', null, 'post', 'array' );
-		$params[2] = JRequest::getVar( 'logo', null, 'post', 'array' );
-		$params[3] = JRequest::getVar( 'backgrounds', null, 'post', 'array' );
-		$params[4] = JRequest::getVar( 'color', null, 'post', 'array' );
-		$params[5] = JRequest::getVar( 'progressive', null, 'post', 'array' );
-		$params[6] = JRequest::getVar( 'menu', null, 'post', 'array' );
-		$params[7] = JRequest::getVar( 'iphone', null, 'post', 'array' );
-		$params[8] = JRequest::getVar( 'performance', null, 'post', 'array' );
-		$params[9] = JRequest::getVar( 'debugging', null, 'post', 'array' );
-		$params[10] = JRequest::getVar( 'toolbar', null, 'post', 'array' );
-		$params[11] = JRequest::getVar( 'masterhead', null, 'post', 'array' );
-		$params[12] = JRequest::getVar( 'subhead', null, 'post', 'array' );
-		$params[13] = JRequest::getVar( 'topnav', null, 'post', 'array' );
-		$params[14] = JRequest::getVar( 'shelves', null, 'post', 'array' );
-		$params[15] = JRequest::getVar( 'inlineshelves', null, 'post', 'array' );
-		$params[16] = JRequest::getVar( 'insets', null, 'post', 'array' );
-		$params[17] = JRequest::getVar( 'main', null, 'post', 'array' );
-		$params[18] = JRequest::getVar( 'inner-sidebar', null, 'post', 'array' );
-		$params[19] = JRequest::getVar( 'outer-sidebar', null, 'post', 'array' );
-		$params[20] = JRequest::getVar( 'footer', null, 'post', 'array' );
+		$params[1]['site'] = JRequest::getVar( 'general', null, 'post', 'array' );
+		$params[2]['site'] = JRequest::getVar( 'logo', null, 'post', 'array' );
+		$params[3]['site'] = JRequest::getVar( 'backgrounds', null, 'post', 'array' );
+		$params[4]['site'] = JRequest::getVar( 'color', null, 'post', 'array' );
+		$params[5]['site'] = JRequest::getVar( 'progressive', null, 'post', 'array' );
+		$params[6]['site'] = JRequest::getVar( 'menu', null, 'post', 'array' );
+		$params[7]['site'] = JRequest::getVar( 'iphone', null, 'post', 'array' );
+		$params[8]['user'] = JRequest::getVar( 'performance', null, 'post', 'array' );
+		$params[9]['user'] = JRequest::getVar( 'debugging', null, 'post', 'array' );
+		$params[10]['themelet'] = JRequest::getVar( 'toolbar', null, 'post', 'array' );
+		$params[11]['themelet'] = JRequest::getVar( 'masterhead', null, 'post', 'array' );
+		$params[12]['themelet'] = JRequest::getVar( 'subhead', null, 'post', 'array' );
+		$params[13]['themelet'] = JRequest::getVar( 'topnav', null, 'post', 'array' );
+		$params[14]['themelet'] = JRequest::getVar( 'shelves', null, 'post', 'array' );
+		$params[15]['themelet'] = JRequest::getVar( 'inlineshelves', null, 'post', 'array' );
+		$params[16]['themelet'] = JRequest::getVar( 'insets', null, 'post', 'array' );
+		$params[17]['themelet'] = JRequest::getVar( 'main', null, 'post', 'array' );
+		$params[18]['themelet'] = JRequest::getVar( 'inner-sidebar', null, 'post', 'array' );
+		$params[19]['themelet'] = JRequest::getVar( 'outer-sidebar', null, 'post', 'array' );
+		$params[20]['site'] = JRequest::getVar( 'footer', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
 				
-		foreach ($params as $currentblock){      
-	
-			foreach($currentblock as $param_key => $param_value) {
+
+		foreach ($params as $currentblock){	
+			foreach($currentblock as $source => $data) {
+				foreach($data as $param_key => $param_value){
 			
-				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				$setting->template_name = $template_name;
-				$setting->param_name = $param_key;
-				
-				$setting->loadByKey();
-				
-				$setting->param_value = $param_value;
-				$setting->published = 1;
-	
-				if (!$setting->store()) {
-					echo "<script> alert('" . $setting->getError() . "'); window.history.go(-1); </script>\n";
-					exit();
-				}
-	
-				unset($setting);
-				$setting = null;        	
-			}
+					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+					$setting->template_name = $template_name;
+					$setting->param_name = $param_key;
+					
+					$setting->loadByKey();
+					
+					$setting->param_value = $param_value;
+					$setting->source = $source;
+					$setting->published = 1;
+		
+					if (!$setting->store()) {
+						echo "<script> alert('" . $setting->getError() . "'); window.history.go(-1); </script>\n";
+						exit();
+					}
+		
+					unset($setting);
+					$setting = null;
+				}	
+			}	
 		}
 		if(!JRequest::getVar('isajax', null, 'post')){
 			$msg = JText::_('Successfully saved your settings');

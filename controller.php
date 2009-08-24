@@ -166,10 +166,6 @@ class ConfiguratorController extends JController {
 			foreach( $defpref_params as $key => $value ) {
 				$cfg_pref->$key = $value;
 			}
-
-			print_r( $cfg_pref );
-			die();
-
 		}
 	HTML_configurator_admin::manage( $params, $lists, $morph_installed );
 	}

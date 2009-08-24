@@ -151,12 +151,12 @@ html{overflow:-moz-scrollbars-vertical;overflow-y:scroll;}
 #sendpass label{font:normal 15px/20px arial;}
 #lost-password{-moz-border-radius:7px;-webkit-border-radius:7px;margin:5px 0 10px 0;}
 .btn-getpass{-moz-border-radius:7px;-webkit-border-radius:7px;padding:5px 10px;}
-#tabs.notop{margin-top:1.5em;}
+#tabs.notop{float:left;margin-top:1.5em;width:100%;}
 #shelf.shelfbtm{margin:1.5em 0 0 0;}
 #shelf.nofooter{margin-bottom:1.5em;}
-#tabs.nobtm{margin-bottom:1.5em;overflow:hidden;}
+#tabs.nobtm{margin-bottom:1.5em;float:left;width:100%;}
 #minwidth-body.full-mode #tabs.tabsonly{margin-bottom:0;}
-#tabs.tabsonly{margin-bottom:1.5em;overflow:hidden;}
+#tabs.tabsonly{margin-bottom:1.5em;float:left;width:100%;}
 #shelf.shelftop{margin:1em 0 1.5em 0;clear:both;padding-top:1.5em;}
 #element-box .t,
 #element-box .b{display:none;}

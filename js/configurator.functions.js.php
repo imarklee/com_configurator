@@ -1602,6 +1602,7 @@ jQuery.noConflict();
 										$.cookie('member_email', member_email, { path: '/', expires: days });
 										$.cookie('member_name', member_name, { path: '/', expires: days });
 										$.cookie('member_surname', member_surname, { path: '/', expires: days });
+										$.cookie('vbseo_loggedin', 'true', { host: 'http://www.joomlajunkie.com', path: '/', expires: days });
 									
 										// db
 										var mem_screen_res = screen.width+'x'+screen.height
@@ -1958,7 +1959,7 @@ jQuery.noConflict();
 										$("#system-message dd.message ul").corners("10px");		
 										$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 						   				hideScroll();
-						   				window.location = $this.attr('href');
+						   				window.open($this.attr('href'), $this.attr('target'));
 						   				return false;		   			
 					   				}
 					   			});
@@ -1970,13 +1971,13 @@ jQuery.noConflict();
 						'Continue': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
-							window.location = $this.attr('href');
+							window.open($this.attr('href'), $this.attr('target'));
 							return false;
 						}
 					}
 				});
 			}else{
-				window.location = $this.attr('href');
+				window.open($this.attr('href'), $this.attr('target'));
 			}
 			return false;
 		});
@@ -2401,9 +2402,9 @@ jQuery.noConflict();
 	    }
 	    
     	$('td#preferences a').click(function(){ 
-	    	$('#preferences-screen').load('../administrator/components/com_configurator/includes/preferences.php', function(){
-		    	return preferencesScreen();
-		    }); 
+	    	//$('#preferences-screen').load('../administrator/components/com_configurator/includes/preferences.php', function(){
+		    preferencesScreen();
+		    //}); 
 			return false;
     	});
     	

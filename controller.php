@@ -90,7 +90,7 @@ class ConfiguratorController extends JController {
 			// Create the morph params
 			$params = new JParameter($current_params, $templateBaseDir.DS.'core'.DS.'morphDetails.xml');        
 			$params->name = $template;
-			$params->merge($themelet_params);
+			//$params->merge($themelet_params);
 			
 			$lists = array();
 			
@@ -143,6 +143,32 @@ class ConfiguratorController extends JController {
 			$lists['bg_dir'] = $bg_dir;
 			
 			unset($xmlDoc);
+			
+			// preferences
+			$cfg_pref='';
+			$query="SELECT * FROM #__configurator_preferences;";
+			$database->setQuery( $query );
+			$pref_params = $database->loadObjectList();
+						
+			$pref_list = getTemplateParamList( dirname(__FILE__) . '/includes/preferences.xml', TRUE );
+			foreach ($pref_list as $pref) {
+				$pref = explode( '=', $pref );
+				$defpref_params[$pref[0]] = $pref[1];
+			}
+			
+			// Replace default settings with any settings found in the DB.
+			if($pref_params !== null) {
+				foreach( (array) $pref_params as $param ) {
+					$defpref_params[$param->pref_name] = $param->pref_value;
+				}
+			}
+			// Create class members dynamically to be used by template.
+			foreach( $defpref_params as $key => $value ) {
+				$cfg_pref->$key = $value;
+			}
+
+			print_r( $cfg_pref );
+			die();
 
 		}
 	HTML_configurator_admin::manage( $params, $lists, $morph_installed );
@@ -162,6 +188,9 @@ class ConfiguratorController extends JController {
 		$mainframe->redirect("index2.php?option={$option}&task=manage", "Favicon ({$icon_file}) removed." );
 	}  
 	
+	function saveprefs(){
+	
+	}
 	
 	function applytemplate() {
 		global $mainframe;
@@ -223,7 +252,7 @@ class ConfiguratorController extends JController {
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
-			$mainframe->redirect("index2.php?option={$option}&task=manage",$msg);
+			$mainframe->redirect("index.php?option={$option}&task=manage",$msg);
 		}else{
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
@@ -232,7 +261,7 @@ class ConfiguratorController extends JController {
 		
 		
 		
-	}    
+	}   
 	
 	function savetemplate() {
 		global $mainframe;

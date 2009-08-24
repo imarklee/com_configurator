@@ -7,4 +7,11 @@ CREATE TABLE IF NOT EXISTS `jos_configurator` (
   `published` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id`),
   KEY `template_name` (`template_name`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `jos_configurator_preferences` (
+  `id` int(4) NOT NULL auto_increment,
+  `pref_name` varchar(64) NOT NULL,
+  `pref_value` varchar(264) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

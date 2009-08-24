@@ -451,53 +451,47 @@ class ConfiguratorController extends JController {
 			$themelet_details = $file;
 		}
 		$themelet_type = $themelet_details['type'];
-		$allowed_types = array('application/zip', 'application/x-zip-compressed', 'application/x-gzip', 'application/octet-stream');
-		if(!in_array($themelet_type, $allowed_types)){
-			$error = 'error: "This is not a valid themelet package.<br />Please try again with a valid themelet package (zip file)"';
-			return $error;
-		}else{
-			// if there is no file error then continue
-			if($themelet_details['error'] != 4) {
-				$themelet_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'themelets';
-				
-				// errors
-				if( $themelet_details['error'] ){
-					$error = 'error: "Upload error ('.$themelet_details['error'].')"';
-					return $error;
-				}
-				if( !is_uploaded_file($themelet_details['tmp_name']) ){ 
-					$error = 'error: "Not an uploaded file! Hack attempt?"';
-					return $error;
-				}
-				if( file_exists($themelet_dir . DS . strtolower(basename($themelet_details['name']))) ) {
-					$error = 'error: "A file with that name already exists!"';
-					return $error;
-				}
-				if( !is_dir($themelet_dir) ) {
-					// Directory doesnt exist, try to create it.
-					if( !mkdir($themelet_dir) ){
-						$error = 'error: "Could not save file, directory does not exist!"';
-						return $error;
-					}else{
-						JPath::setPermissions($themelet_dir);
-					}
-				}
-				if( !is_writable($themelet_dir) ){
-					$error = 'error: "Could not save file, permission error!"';
-					return $error;
-				}
-				if( !move_uploaded_file($themelet_details['tmp_name'], $themelet_dir . DS . strtolower(basename($themelet_details['name']))) ){
-					$error = 'error: "Could not move file to required location!"';
-					return $error;
-				}
+		// if there is no file error then continue
+		if($themelet_details['error'] != 4) {
+			$themelet_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'themelets';
 			
-				JPath::setPermissions($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
-				$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
-				return $msg;
+			// errors
+			if( $themelet_details['error'] ){
+				$error = 'error: "Upload error ('.$themelet_details['error'].')"';
+				return $error;
 			}
-			$error = 'error: "There was an error uploading the file. Please try again."';
-			return $error;
+			if( !is_uploaded_file($themelet_details['tmp_name']) ){ 
+				$error = 'error: "Not an uploaded file! Hack attempt?"';
+				return $error;
+			}
+			if( file_exists($themelet_dir . DS . strtolower(basename($themelet_details['name']))) ) {
+				$error = 'error: "A file with that name already exists!"';
+				return $error;
+			}
+			if( !is_dir($themelet_dir) ) {
+				// Directory doesnt exist, try to create it.
+				if( !mkdir($themelet_dir) ){
+					$error = 'error: "Could not save file, directory does not exist!"';
+					return $error;
+				}else{
+					JPath::setPermissions($themelet_dir);
+				}
+			}
+			if( !is_writable($themelet_dir) ){
+				$error = 'error: "Could not save file, permission error!"';
+				return $error;
+			}
+			if( !move_uploaded_file($themelet_details['tmp_name'], $themelet_dir . DS . strtolower(basename($themelet_details['name']))) ){
+				$error = 'error: "Could not move file to required location!"';
+				return $error;
+			}
+		
+			JPath::setPermissions($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
+			$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
+			return $msg;
 		}
+		$error = 'error: "There was an error uploading the file. Please try again."';
+		return $error;
 	}
 	
 	function unpackThemelet($p_filename){
@@ -909,43 +903,21 @@ class ConfiguratorController extends JController {
 		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
 		$ret = '';
 				
-		if(in_array($newtemplatefile['type'], array('application/octet-stream', 'application/x-gzip', 'application/zip', 'application/x-zip-compressed'))){
-			if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){
-				// template folder
-				if($_REQUEST['backup'] == 'true'){
-					setcookie('installed_bkpmorph', 'true');
-					// backup existing
-					$backupfile = $backupdir . DS . 'morph_files_' . date("His_dmY");
-					if(!@Jarchive::create($backupfile, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
-						// error creating archive
-						$error = 'There was an error creating the archive. Install failed'; 
-						$ret = '{'.$error.'}';
-						echo $ret;
-					}else{
-						// remove existing
-						@JPath::setPermissions($templatesdir . DS . 'morph');
-						if(!$this->deleteDirectory($templatesdir . DS . 'morph')){
-							// fail: error removing existing folder
-							$error = 'There was an error removing the old install. Install failed';	
-							$ret = '{'.$error.'}';
-							echo $ret;
-						}else{
-							if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
-								$error = 'error: "Could not move file to required location!"';
-								$ret = '{'.$error.'}';
-								echo $ret;
-							}
-							// directory doesn't exist - install as per usual
-							@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-							$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
-							$msg .= ', backuploc: "'.$backupfile.'.gz"';
-							setcookie('installed_morph', 'true');
-							$ret = '{'.$msg.'}';
-							echo $ret;
-						}
-					}
+		
+		if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){
+			// template folder
+			if($_REQUEST['backup'] == 'true'){
+				setcookie('installed_bkpmorph', 'true');
+				// backup existing
+				$backupfile = $backupdir . DS . 'morph_files_' . date("His_dmY");
+				if(!@Jarchive::create($backupfile, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
+					// error creating archive
+					$error = 'There was an error creating the archive. Install failed'; 
+					$ret = '{'.$error.'}';
+					echo $ret;
 				}else{
 					// remove existing
+					@JPath::setPermissions($templatesdir . DS . 'morph');
 					if(!$this->deleteDirectory($templatesdir . DS . 'morph')){
 						// fail: error removing existing folder
 						$error = 'There was an error removing the old install. Install failed';	
@@ -960,27 +932,44 @@ class ConfiguratorController extends JController {
 						// directory doesn't exist - install as per usual
 						@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+						$msg .= ', backuploc: "'.$backupfile.'.gz"';
 						setcookie('installed_morph', 'true');
 						$ret = '{'.$msg.'}';
 						echo $ret;
 					}
 				}
 			}else{
-				if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
-					$error = 'error: "Could not move file to required location!"';
+				// remove existing
+				if(!$this->deleteDirectory($templatesdir . DS . 'morph')){
+					// fail: error removing existing folder
+					$error = 'There was an error removing the old install. Install failed';	
 					$ret = '{'.$error.'}';
 					echo $ret;
+				}else{
+					if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
+						$error = 'error: "Could not move file to required location!"';
+						$ret = '{'.$error.'}';
+						echo $ret;
+					}
+					// directory doesn't exist - install as per usual
+					@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+					$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+					setcookie('installed_morph', 'true');
+					$ret = '{'.$msg.'}';
+					echo $ret;
 				}
-				// directory doesn't exist - install as per usual
-				@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
-				setcookie('installed_morph', 'true');
-				$ret = '{'.$msg.'}';
-				echo $ret;
 			}
 		}else{
-			$error = 'error: "This is not a valid template package.<br />Please try again with a valid template package (zip file)"';
-			$ret = '{'.$error.'}';
+			if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
+				$error = 'error: "Could not move file to required location!"';
+				$ret = '{'.$error.'}';
+				echo $ret;
+			}
+			// directory doesn't exist - install as per usual
+			@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+			$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+			setcookie('installed_morph', 'true');
+			$ret = '{'.$msg.'}';
 			echo $ret;
 		}
 	}

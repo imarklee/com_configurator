@@ -101,12 +101,15 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<?php include 'includes/lost-password.php' ?>
 				</div>
 	        <?php }else{ ?>
-	        
-	        	<div id="preferences-screen" style="display:none;">
-					<?php include 'includes/preferences.php'; ?>
-				</div>
-	       
-	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data"> 	
+
+	        <?php 
+	        $shelf_position 	= '1'; 
+		    $show_top 			= '0'; 
+		    $show_footer		= '0'; 
+	        ?>
+
+	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">
+
 	        	<div id="wrap" class="container_16">
 					<?php if($show_top == 1){include_once('includes/top.php'); } ?>
 					<?php if($shelf_position == 0){include_once('includes/shelf.php'); } ?>

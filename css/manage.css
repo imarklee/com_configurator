@@ -505,7 +505,7 @@ a.disabled{opacity:0.5;cursor:default;}
 #preferences-screen input.btn-prefs{width:254px;height:40px;overflow:hidden;border:0;background:#666;padding:40px 0 0 0;margin:0;background:#eee url(../images/btn-save-prefs.png) no-repeat;cursor:pointer;}
 #preferences-screen input.btn-prefs:hover{background-position:bottom left;}
 #toolbar-box #toolbar .toolbar td a{
-background:transparent url(http://localhost/morph/administrator/components/com_configurator/images/cfg-icons.jpg) no-repeat 50% 2%;
+background:transparent url(../images/cfg-icons.jpg) no-repeat 50% 2%;
 width:60px;
 display:block;
 padding-top:34px;

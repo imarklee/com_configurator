@@ -829,7 +829,7 @@ class ConfiguratorController extends JController {
 			$query = $db->query($query);
 			$themelet_num = $db->getNumRows($query);
 			if($themelet_num == '0'){
-				$new_query = "INSERT INTO jos_configurator VALUES ('' , 'morph', 'themelet', '".mysql_real_escape_string($themelet)."', '1');";
+				$new_query = "INSERT INTO jos_configurator VALUES ('' , 'morph', 'themelet', '".mysql_real_escape_string($themelet)."', '1', 'themelet');";
 			}else{
 				$new_query = "UPDATE jos_configurator SET param_value = '".mysql_real_escape_string($themelet)."' where param_name = 'themelet';";
 			}

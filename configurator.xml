@@ -40,6 +40,7 @@
         	<filename>configurator.php</filename>
             <filename>controller.php</filename>
             <folder>css</folder>
+            <folder>elements</folder>
             <folder>images</folder>
             <folder>includes</folder>
             <filename>index.html</filename>
@@ -52,6 +53,6 @@
             <filename>toolbar.configurator.php</filename>             
             <folder>tooltips</folder>
             <filename>uninstall.sql</filename>
-        </files>        
+        </files>  
     </administration>
 </install>

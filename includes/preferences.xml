@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params addpath="/administrator/components/com_configurator/elements">
+		<param type="list" name="List Param" default="" />
+		<param type="radio" name="Radio Param" default="" />
+		<param type="text" name="Text Param" default="" />
+	</params>
+	<params group="cfg_prefs">
+		<param name="quick_tips" default="1" type="radio" label="Show Quick Tips">
+			<option value="1">On</option>
+			<option value="0">Off</option>
+		</param>
+		<param name="show_intros" default="1" type="radio" label="Show Tab Introductions">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="sort_tabs" default="1" type="radio" label="Sortable Tabs">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="check_updates" default="1" type="radio" label="Automatically check for updates">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="short_keys" default="1" type="radio" label="Enable Keyboard Shortcuts">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="show_branding" default="1" type="radio" label="Show Top Branding">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="show_footer" default="1" type="radio" label="Show Footer and Links">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="shelf_position" default="1" type="list" label="Shelf Position" position="last">
+			<option value="0">Off</option>
+			<option value="1">Top</option>
+			<option value="2">Bottom</option>
+		</param>
+	</params>
+</config>

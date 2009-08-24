@@ -42,7 +42,8 @@ function manage( &$params, &$lists, $morph_installed ) {
         global $mainframe;
         include_once (JPATH_COMPONENT_ADMINISTRATOR . DS . "configuration.php");
         $option = JRequest::getVar('option');
-   
+        $pref_xml = new Jparameter('', dirname(__FILE__).'/includes/preferences.xml');
+        
         JToolBarHelper::title( 'Configurator', 'configurator' );
         
         if (!$morph_installed){
@@ -100,13 +101,12 @@ function manage( &$params, &$lists, $morph_installed ) {
 					<?php include 'includes/lost-password.php' ?>
 				</div>
 	        <?php }else{ ?>
-	        <?php 
-	        $shelf_position 	= '1'; 
-		    $show_top 			= '0'; 
-		    $show_footer		= '0'; 
-	        ?>
-
-	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">
+	        
+	        	<div id="preferences-screen" style="display:none;">
+					<?php include 'includes/preferences.php'; ?>
+				</div>
+	       
+	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data"> 	
 	        	<div id="wrap" class="container_16">
 					<?php if($show_top == 1){include_once('includes/top.php'); } ?>
 					<?php if($shelf_position == 0){include_once('includes/shelf.php'); } ?>
@@ -227,7 +227,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 				
 				
 				<div id="getting-started" style="display:none;"></div>
-				<div id="preferences-screen" style="display:none;"></div>
+				
 				<div id="keyboard-screen" style="display:none;"></div>
 				<div class="toolguides"></div>
 <?php

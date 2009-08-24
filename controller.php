@@ -143,9 +143,10 @@ class ConfiguratorController extends JController {
 			$lists['bg_dir'] = $bg_dir;
 			
 			unset($xmlDoc);
-			
-			// preferences
+		}
+		// preferences variables
 			$cfg_pref='';
+			$pref_xml='';
 			$query="SELECT * FROM #__configurator_preferences;";
 			$database->setQuery( $query );
 			$pref_params = $database->loadObjectList();
@@ -166,8 +167,24 @@ class ConfiguratorController extends JController {
 			foreach( $defpref_params as $key => $value ) {
 				$cfg_pref->$key = $value;
 			}
-		}
-	HTML_configurator_admin::manage( $params, $lists, $morph_installed );
+			
+			// preferences form
+			$query="SELECT * FROM #__configurator_preferences";
+			$database->setQuery( $query );
+			$prefs_params = $database->loadAssocList('pref_name');
+			$prefs_settings = array();
+			$current_prefs = '';
+			
+			foreach ( (array) $prefs_params as $prefs_param ) {
+				$prefs_settings[] = $prefs_param['pref_name'] . '=' . $prefs_param['pref_value'] . "\n";
+			}
+			if( count( $prefs_settings ) ) {
+				 //Got settings from the DB.
+				$current_prefs = implode( "\n", $prefs_settings );
+			}
+			
+			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).'/includes/preferences.xml');
+	HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
 	}
 
 
@@ -185,7 +202,27 @@ class ConfiguratorController extends JController {
 	}  
 	
 	function saveprefs(){
-	
+		global $mainframe;
+		$db = JFactory::getDBO();
+		
+		$prefs = JRequest::getVar('cfg', null, 'post', 'array');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
+		
+		foreach($prefs as $pref_key => $pref_value){
+			$setting = JTable::getInstance('ConfiguratorPreferences','Table');
+			$setting->pref_name = $pref_key;			
+			$setting->loadByKey();
+			$setting->pref_value = $pref_value;
+			
+			if (!$setting->store()) {
+				return $setting->getError();
+				die();
+			}
+
+			unset($setting);
+			$setting = null;
+		}
+		return true;
 	}
 	
 	function applytemplate() {

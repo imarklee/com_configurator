@@ -38,13 +38,26 @@ $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurat
 <?php
 class HTML_configurator_admin {
 
-function manage( &$params, &$lists, $morph_installed ) {
+function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         global $mainframe;
         include_once (JPATH_COMPONENT_ADMINISTRATOR . DS . "configuration.php");
         $option = JRequest::getVar('option');
-        $pref_xml = new Jparameter('', dirname(__FILE__).'/includes/preferences.xml');
         
         JToolBarHelper::title( 'Configurator', 'configurator' );
+        
+        // preference cookies
+        // auto updates
+        if($cfg_pref->check_updates == 0 && !isset($_COOKIE['noupdates'])){
+        	setcookie('noupdates', 'true');
+        }else{
+        	setcookie('noupdates', '', time()-3600);
+        }
+        // keyboard shortcuts
+        if($cfg_pref->short_keys == 0 && !isset($_COOKIE['noshortkeys'])){
+        	setcookie('noshortkey', 'true');
+        }else{
+        	setcookie('noshortkey', '', time()-3600);
+        }
         
         if (!$morph_installed){
 	        echo '<center>';
@@ -102,18 +115,16 @@ function manage( &$params, &$lists, $morph_installed ) {
 				</div>
 	        <?php }else{ ?>
 	        
-	        	<div id="preferences-screen" style="display:none;">
-					<?php include 'includes/preferences.php'; ?>
-				</div>
-	       
-	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data"> 	
+	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">
+	        	
 	        	<div id="wrap" class="container_16">
-					<?php if($show_top == 1){include_once('includes/top.php'); } ?>
-					<?php if($shelf_position == 0){include_once('includes/shelf.php'); } ?>
+	        		
+	        		<?php if($cfg_pref->show_branding == 1){include_once('includes/top.php'); } ?>
+					<?php if($cfg_pref->shelf_position == 1){include_once('includes/shelf.php'); } ?>
 				
 					<div class="clear spacer">&nbsp;</div>
 		
-					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all<?php if($show_top == 0 && $shelf_position != 0){ ?> notop<?php } ?><?php if($show_footer == 0 && $shelf_position == 3){ ?> tabsonly<?php } if($show_footer == 0 && $shelf_position == 0 or $shelf_position == 3){ ?> nobtm<?php } ?>">
+					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all<?php if($cfg_pref->show_branding == 0 && $cfg_pref->shelf_position !== 0){ ?> notop<?php } ?><?php if($cfg_pref->show_footer == 0 && $cfg_pref->shelf_position == 0){ ?> tabsonly<?php } if($cfg_pref->show_footer == 0 && $cfg_pref->shelf_position == 0 or $cfg_pref->shelf_position == 0){ ?> nobtm<?php } ?>">
 						<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 							<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
 							<li class="themelet-icon"><a href="#themelets">Customization</a></li>
@@ -124,7 +135,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 						</ul>
 						<div id="site">					
 							<div id="site-tabs" class="subtabs">
-								<?php if (!isset ($_COOKIE['site-desc'])) { include 'includes/tabs/desc/desc-site.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-site.php'; } ?>
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
 									<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
@@ -140,7 +151,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 
 						<div id="themelets" class="ui-tabs-hide">
 							<div id="themelet-tabs" class="subtabs">
-								<?php if (!isset ($_COOKIE['themelet-desc'])) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
 									<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
@@ -158,7 +169,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 
 						<div id="blocks" class="ui-tabs-hide">
 							<div id="blocks-tabs" class="subtabs">
-								<?php if (!isset ($_COOKIE['blocks-desc'])) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab">Toolbar</a></li>
 									<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
@@ -188,7 +199,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 
 						<div id="tools" class="ui-tabs-hide">
 							<div id="tools-tabs" class="subtabs">
-								<?php if (!isset ($_COOKIE['tools-desc'])) { include 'includes/tabs/desc/desc-tools.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-tools.php'; } ?>
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="icon-installer ui-tabs-selected"><a href="#tools-installer">Universal Installer</a></li>
 								</ul>
@@ -198,7 +209,7 @@ function manage( &$params, &$lists, $morph_installed ) {
 
 						<div id="assets" class="ui-tabs-hide">	
 							<div id="assets-tabs" class="subtabs">
-								<?php if (!isset ($_COOKIE['assets-desc'])) { include 'includes/tabs/desc/desc-assets.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-assets.php'; } ?>
 								<ul class="ui-helper-clearfix">
 									<li class="icon-themelets"><a href="#assets-themelets">Themelets</a></li>
 									<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
@@ -216,8 +227,8 @@ function manage( &$params, &$lists, $morph_installed ) {
 					</div>
 
 					<div class="clear">&nbsp;</div>
-					<?php if($shelf_position == 1){include_once('includes/shelf.php'); } ?>
-					<?php if($show_footer == 1){include_once('includes/footer.php'); } ?>					
+					<?php if($cfg_pref->shelf_position == 2){include_once('includes/shelf.php'); } ?>
+					<?php if($cfg_pref->show_footer == 1){include_once('includes/footer.php'); } ?>					
 										
 				</div>
 				<input type="hidden" name="option" value="<?php echo $option; ?>"/>
@@ -227,7 +238,9 @@ function manage( &$params, &$lists, $morph_installed ) {
 				
 				
 				<div id="getting-started" style="display:none;"></div>
-				
+				<div id="preferences-screen" style="display:none;">
+					<?php include 'includes/preferences.php'; ?>
+				</div>
 				<div id="keyboard-screen" style="display:none;"></div>
 				<div class="toolguides"></div>
 <?php

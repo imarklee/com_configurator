@@ -3,7 +3,7 @@
 		<img src="../administrator/components/com_configurator/images/morph-logo.png" alt="morph logo" width="173" height="60" border="0" />
 	</div>
 	<div id="quicktips">
-	<?php if (!isset ($_COOKIE['tips'])) { ?>
+	<?php if ($cfg_pref->quick_tips == 1) { ?>
 		<div id="tips">
 			<div class="inner">
 				<h4>Quick tips on using Morph &amp; Configurator:</h4>

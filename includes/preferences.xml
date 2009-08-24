@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<config>
-	<params addpath="/administrator/components/com_configurator/elements">
-		<param type="list" name="List Param" default="" />
-		<param type="radio" name="Radio Param" default="" />
-		<param type="text" name="Text Param" default="" />
-	</params>
+<preferences>
 	<params group="cfg_prefs">
 		<param name="quick_tips" default="1" type="radio" label="Show Quick Tips">
 			<option value="1">On</option>
@@ -14,10 +9,10 @@
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<param name="sort_tabs" default="1" type="radio" label="Sortable Tabs">
+		<!--<param name="sort_tabs" default="1" type="radio" label="Sortable Tabs">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
-		</param>
+		</param>-->
 		<param name="check_updates" default="1" type="radio" label="Automatically check for updates">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
@@ -40,4 +35,4 @@
 			<option value="2">Bottom</option>
 		</param>
 	</params>
-</config>
+</preferences>

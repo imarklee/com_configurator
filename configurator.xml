@@ -40,7 +40,6 @@
         	<filename>configurator.php</filename>
             <filename>controller.php</filename>
             <folder>css</folder>
-            <folder>elements</folder>
             <folder>images</folder>
             <folder>includes</folder>
             <filename>index.html</filename>

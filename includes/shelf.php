@@ -66,7 +66,7 @@ function showIcon($curr, $serv){
 					<dd class="latest"><span title="The latest available version is <?php echo $template_us_version; ?>. Click on the help link above for more information."><?php echo $template_us_version; ?></dd>
 					<dd class="icon"><?php if(isset($_COOKIE['us_'.$component_arr['foldername']])){ echo showIcon($template_arr['version'], $template_us_version); } ?></dd>
 				
-					<dt class="themelet <?php echo $themelet_arr['foldername']; ?>" id="us-themelet"><a href="http://www.joomlajunkie.com/member/downloads/attachment.php?attachmentid=202&d=1250266468"><?php echo $themelet_arr['name']; ?></a></dt>
+					<dt class="themelet <?php echo $themelet_arr['foldername']; ?>" id="us-themelet"><?php echo $themelet_arr['name']; ?></dt>
 					<dd class="current"><span title="Your installed version is <?php echo $themelet_arr['version']; ?>. Click on the help link above for more information."><?php echo $themelet_arr['version']; ?></dd>
 					<dd class="latest"><span title="The latest available version is <?php echo $themelet_us_version; ?>. Click on the help link above for more information."><?php echo $themelet_us_version; ?></dd>
 					<dd class="icon"><?php if(isset($_COOKIE['us_'.$component_arr['foldername']])){ echo showIcon($themelet_arr['version'], $themelet_us_version); } ?></dd>						

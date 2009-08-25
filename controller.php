@@ -438,7 +438,52 @@ class ConfiguratorController extends JController {
 	}
 	
 	function iphone_upload(){
-	
+		$msg = '';
+		$error = '';
+		$file = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$file_type = $file['type'];
+
+		// if there is no file error then continue
+		if($file['error'] != 4) {
+			$iphone_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'iphone';
+			
+			// errors
+			if( $file['error'] ){
+				$error = 'error: "Upload error ('.$file['error'].')"';
+				return $error;
+			}
+			if( !is_uploaded_file($file['tmp_name']) ){ 
+				$error = 'error: "Not an uploaded file! Hack attempt?"';
+				return $error;
+			}
+			if( file_exists($iphone_dir . DS . strtolower(basename($file['name']))) ) {
+				$error = 'error: "A file with that name already exists!"';
+				return $error;
+			}
+			if( !is_dir($iphone_dir) ) {
+				// Directory doesnt exist, try to create it.
+				if( !mkdir($iphone_dir) ){
+					$error = 'error: "Could not save file, directory does not exist!"';
+					return $error;
+				}else{
+					JPath::setPermissions($iphone_dir);
+				}
+			}else{ JPath::setPermissions($iphone_dir); }
+			if( !is_writable($iphone_dir) ){
+				$error = 'error: "Could not save file, permission error!"';
+				return $error;
+			}
+			if( !move_uploaded_file($file['tmp_name'], $iphone_dir . DS . strtolower(basename($file['name']))) ){
+				$error = 'error: "Could not move file to required location!"';
+				return $error;
+			}
+		
+			JPath::setPermissions($iphone_dir . DS . strtolower(basename($file['name'])));
+			$msg = 'error: "", success:"File successfully uploaded."';
+			return $msg;
+		}
+		$error = 'error: "There was an error uploading the file. Please try again."';
+		return $error;
 	}
 	
 	function themelet_upload($file = '') {

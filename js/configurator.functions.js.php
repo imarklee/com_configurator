@@ -111,8 +111,11 @@ jQuery.noConflict();
 		$("#assets-tabs #themelets-list li:even").addClass("alt");			
 		$("#assets-tabs #logos-list li:even").addClass("alt");			
 		$("#assets-tabs #backgrounds-list li:even").addClass("alt");
+		$("#preferences-form .prefs li:last").addClass("last");
 		
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
+
+
 
 //		$('#help').hover(function() {
 //		  $(this).addClass('hover');

@@ -409,7 +409,7 @@ class ConfiguratorController extends JController {
 						case 'iphone':
 						$return = $this->iphone_upload();
 						break;
-						case 'demo':
+						case 'sample':
 						$return = $this->demo_upload();
 						break;
 					}
@@ -431,10 +431,42 @@ class ConfiguratorController extends JController {
 		
 		$ret = '{'.$return.'}';
 		echo $ret;
+		die();
 	}
 	
 	function demo_upload(){
 	
+		$backupdir 	= JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		$tempdir 	= JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'temp';
+		$message 	= array();
+		$file 		= JRequest::getVar( 'insfile', '', 'files', 'array' );
+
+		if(!is_dir($tempdir)){JFolder::create($tempdir);}
+		JPath::setPermissions($tempdir);
+		
+		$conf = JFactory::getConfig();
+		$database = $conf->getValue('config.db');
+		
+		$backupfile = 'morphdb_'.$database.'_'.date("His_dmY").'.sql.gz';
+		
+		if( !$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure()) ){
+			$error = 'error: "Unable to create DB backup. Please check your permissions on the morph_assets folder"';
+			return $error;
+		}
+		
+		if( !move_uploaded_file($file['tmp_name'], $tempdir . DS . strtolower(basename($file['name']))) ){
+			$error = 'error: "Could not move file to required location!"';
+			return $error;
+		}
+		
+		$result = JArchive::extract( $tempdir . DS . strtolower(basename($file['name'])), $tempdir);
+		$this->parse_mysql_dump($tempdir . DS . str_replace('.zip', '', strtolower(basename($file['name']))) );
+		
+		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempdir);
+		
+		$message = 'error: "", success: "Sample content successfully installed."';
+		return $message;
+
 	}
 	
 	function iphone_upload(){
@@ -587,7 +619,7 @@ class ConfiguratorController extends JController {
 		
 	}
 	
-	function cleanupThemeletInstall($package, $resultdir){
+	function cleanupThemeletInstall($package='', $resultdir=''){
 		$config =& JFactory::getConfig();
 		if (is_dir($resultdir)) { JFolder::delete($resultdir); }
 		if (is_file($package)) {
@@ -1159,6 +1191,8 @@ class ConfiguratorController extends JController {
     	$gzdata = gzencode($str, 9); 
    		fwrite($h, $gzdata);
 		fclose($h);
+		
+		return true;
 	}
 	
 	function parse_mysql_dump($url, $json = 'false') {

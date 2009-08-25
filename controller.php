@@ -444,9 +444,9 @@ class ConfiguratorController extends JController {
 		$file_type = $file['type'];
 
 		// if there is no file error then continue
-		if($file['error'] != 4) {
-			$iphone_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'iphone';
+		if($file['error'] !== 4) {
 			
+			$iphone_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'iphone';
 			// errors
 			if( $file['error'] ){
 				$error = 'error: "Upload error ('.$file['error'].')"';
@@ -468,7 +468,9 @@ class ConfiguratorController extends JController {
 				}else{
 					JPath::setPermissions($iphone_dir);
 				}
-			}else{ JPath::setPermissions($iphone_dir); }
+			}else{ 
+				JPath::setPermissions($iphone_dir); 
+			}
 			if( !is_writable($iphone_dir) ){
 				$error = 'error: "Could not save file, permission error!"';
 				return $error;

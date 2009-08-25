@@ -277,14 +277,14 @@ jQuery.noConflict();
 		
 		if($.cookie('fullscreen') == 'true'){
 			$('#minwidth-body').addClass('full-mode');
-			$('#fullscreen a').text('Normal');
+			$('#fullscreen a').text('Normal Mode');
 		}
 		
 		$('#fullscreen a').click(function(){
 			$('#minwidth-body').toggleClass("full-mode");
 			$('#fullscreen').toggleClass("normal-mode");
 			if($('#fullscreen a').text() == 'Fullscreen'){ 
-				$('#fullscreen a').text('Normal'); 
+				$('#fullscreen a').text('Normal Mode'); 
 				$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
 			}else{ 
 				$('#fullscreen a').text('Fullscreen'); 

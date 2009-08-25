@@ -504,7 +504,7 @@ p.intro{font:normal 17px/20px Arial;color:#666;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar span,
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar #toolbar-Link{display:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar #preferences a{padding:2px 10px;}
-
+#minwidth-body.full-mode #toolbar-box #toolbar .toolbar #fullscreen a{padding:2px 13px;}
 #logologo_image{width:175px;}
 #top{height:90px;overflow:hidden;}
 #branding{width:200px;float:left;height:90px;}

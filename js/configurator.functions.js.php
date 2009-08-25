@@ -2539,11 +2539,11 @@ jQuery.noConflict();
 				function fullscreen(){
 					$('#minwidth-body').toggleClass("full-mode");
 					$('#fullscreen').toggleClass("normal-mode");
-					if($('#screenmode').text() == 'Fullscreen Mode'){ 
-						$('#screenmode').text('Normal Mode'); 
+					if($('#fullscreen a').text() == 'Fullscreen'){ 
+						$('#fullscreen a').text('Normal'); 
 						$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
 					}else{ 
-						$('#screenmode').text('Fullscreen Mode'); 
+						$('#fullscreen a').text('Fullscreen'); 
 						$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
 					}
 					e.preventDefault();

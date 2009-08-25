@@ -711,7 +711,7 @@ class ConfiguratorController extends JController {
 		$template = 'morph';
 		$favicon_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$image_type = $favicon_details['type'];
-		$allowed_types = array('image/png', 'image/gif', 'image/ico', 'image/x-icon');
+		$allowed_types = array('image/png', 'image/gif', 'image/ico', 'image/x-icon', 'application/octet-stream');
 	
 		if(!in_array($image_type, $allowed_types)){
 			$error = 'error: "This is not a valid favicon file.<br />Please try again with a valid favicon (ico/gif/png)"';

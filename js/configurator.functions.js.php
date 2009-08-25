@@ -274,17 +274,17 @@ jQuery.noConflict();
 		
 		if($.cookie('fullscreen') == 'true'){
 			$('#minwidth-body').addClass('full-mode');
-			$('#screenmode').text('Normal Mode');
+			$('#fullscreen a').text('Normal');
 		}
 		
-		$('#fullscreen').click(function(){
+		$('#fullscreen a').click(function(){
 			$('#minwidth-body').toggleClass("full-mode");
 			$('#fullscreen').toggleClass("normal-mode");
-			if($('#screenmode').text() == 'Fullscreen Mode'){ 
-				$('#screenmode').text('Normal Mode'); 
+			if($('#fullscreen a').text() == 'Fullscreen'){ 
+				$('#fullscreen a').text('Normal'); 
 				$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
 			}else{ 
-				$('#screenmode').text('Fullscreen Mode'); 
+				$('#fullscreen a').text('Fullscreen'); 
 				$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
 			}
 			return false; 
@@ -1993,43 +1993,35 @@ jQuery.noConflict();
 				switcher(logoType);
 			});
 			
-
-			$('#logo-options li #logodisplay_slogan1').click(function(){
-				$('#logo-options li #logoslogan_text').parent().css('display', 'block');
-				$('#logo-options li #logoslogan_textcolor').parent().css('display', 'block');
-				$('#logo-options li #logoslogan_fontsize').parent().css('display', 'block');
-				$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'block');
-				$('#logo-options li #logoslogan_top').parent().css('display', 'block');
-				$('#logo-options li #logoslogan_left').parent().css('display', 'block');
-				$('#logo-options li #logoslogan_stack').parent().css('display', 'block');
-			});
-			$('#logo-options li #logodisplay_slogan0').click(function(){
-				$('#logo-options li #logoslogan_text').parent().css('display', 'none');
-				$('#logo-options li #logoslogan_textcolor').parent().css('display', 'none');
-				$('#logo-options li #logoslogan_fontsize').parent().css('display', 'none');
-				$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'none');
-				$('#logo-options li #logoslogan_top').parent().css('display', 'none');
-				$('#logo-options li #logoslogan_left').parent().css('display', 'none');
-				$('#logo-options li #logoslogan_stack').parent().css('display', 'none');
-			});
-			$('#logo-options li #logodisplay_ie_logo1').click(function(){
-				$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
-			});
-			$('#logo-options li #logodisplay_ie_logo0').click(function(){
-				$('#logo-options li #logologo_image_ie').parent().css('display', 'none');
-			});
-			$('#logo-options li #logologo_autodimensions0').click(function(){
-				$('#logo-options li #logologo_width').parent().css('display', 'block');
-				$('#logo-options li #logologo_height').parent().css('display', 'block');
-			});
-			$('#logo-options li #logologo_autodimensions1').click(function(){
-				$('#logo-options li #logologo_width').parent().css('display', 'none');
-				$('#logo-options li #logologo_height').parent().css('display', 'none');
-			});
+			function slogan(val) {
+				var display;
+				if(val == 'on'){ display='block'; }else{ display='none'; }
+				
+				$('#logo-options li #logoslogan_text').parent().css('display', display);
+				$('#logo-options li #logoslogan_textcolor').parent().css('display', display);
+				$('#logo-options li #logoslogan_fontsize').parent().css('display', display);
+				$('#logo-options li #logoslogan_fontfamily').parent().css('display', display);
+				$('#logo-options li #logoslogan_top').parent().css('display', display);
+				$('#logo-options li #logoslogan_left').parent().css('display', display);
+				$('#logo-options li #logoslogan_stack').parent().css('display', display);
+			}
 			
+			function ieLogo(val){
+				var display;
+				if(val == 'on'){ display='block'; }else{ display='none'; }
+				$('#logo-options li #logologo_image_ie').parent().css('display', display);
+			}
+			
+			function autoDimensions(val) {
+				var display;
+				if(val == 'on'){ display='block'; }else{ display='none'; }
+				$('#logo-options li #logologo_width').parent().css('display', display);
+				$('#logo-options li #logologo_height').parent().css('display', display);
+			}
+						
 			function switcher(v){
 				switch(v){
-					case '0':
+					case '0': // Linked H1 Text
 					$('#logo-options li').css('display', 'none');
 					$('#logo-options li.heading').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
@@ -2041,7 +2033,7 @@ jQuery.noConflict();
 					$('#logo-options li #logologo_top').parent().css('display', 'block');
 					$('#logo-options li #logologo_left').parent().css('display', 'block');
 					break;
-					case '1':
+					case '1': // Linked H1 Image Replacement
 					$('#logo-options li').css('display', 'none');
 					$('#logo-options li.heading').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
@@ -2054,7 +2046,7 @@ jQuery.noConflict();
 					$('#logo-options li #logologo_top').parent().css('display', 'block');
 					$('#logo-options li #logologo_left').parent().css('display', 'block');
 					break;
-					case '2':
+					case '2': // Linked Inline Image
 					$('#logo-options li').css('display', 'none');
 					$('#logo-options li.heading').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
@@ -2068,7 +2060,7 @@ jQuery.noConflict();
 					$('#logo-options li #logologo_left').parent().css('display', 'block');
 					$('#logo-options li #logologo_stack').parent().css('display', 'block');
 					break;
-					case '3':
+					case '3': // Module Position
 					$('#logo-options li').css('display', 'none');
 					$('#logo-options li.heading:first').css('display', 'block');
 					$('#logologo_type').parent().css('display', 'block');
@@ -2077,39 +2069,25 @@ jQuery.noConflict();
 					break;
 				}
 				
-				if($('#logo-options li #logodisplay_slogan0').attr('checked') == 'checked'){
-					$('#logo-options li #logoslogan_text').parent().css('display', 'none');
-					$('#logo-options li #logoslogan_textcolor').parent().css('display', 'none');
-					$('#logo-options li #logoslogan_fontsize').parent().css('display', 'none');
-					$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'none');
-					$('#logo-options li #logoslogan_top').parent().css('display', 'none');
-					$('#logo-options li #logoslogan_left').parent().css('display', 'none');
-					$('#logo-options li #logoslogan_stack').parent().css('display', 'none');
-				}
-				if($('#logo-options li #logodisplay_slogan1').attr('checked')){
-					$('#logo-options li #logoslogan_text').parent().css('display', 'block');
-					$('#logo-options li #logoslogan_textcolor').parent().css('display', 'block');
-					$('#logo-options li #logoslogan_fontsize').parent().css('display', 'block');
-					$('#logo-options li #logoslogan_fontfamily').parent().css('display', 'block');
-					$('#logo-options li #logoslogan_top').parent().css('display', 'block');
-					$('#logo-options li #logoslogan_left').parent().css('display', 'block');
-					$('#logo-options li #logoslogan_stack').parent().css('display', 'block');
-				}
+				//
 				
-				if($('#logo-options li #logodisplay_ie_logo1').attr('checked')){
-					$('#logo-options li #logologo_image_ie').parent().css('display', 'block');
-				}
-				if($('#logo-options li #logodisplay_ie_logo0').attr('checked')){
-					$('#logo-options li #logologo_image_ie').parent().css('display', 'none');
-				}
-				if($('#logo-options li #logologo_autodimensions0').attr('checked')){
-					$('#logo-options li #logologo_width').parent().css('display', 'block');
-					$('#logo-options li #logologo_height').parent().css('display', 'block');
-				}
-				if($('#logo-options li #logologo_autodimensions1').attr('checked')){
-					$('#logo-options li #logologo_width').parent().css('display', 'none');
-					$('#logo-options li #logologo_height').parent().css('display', 'none');
-				}
+				if($('#logodisplay_slogan0').attr('checked') == 'checked'){ slogan('off'); }
+				$('#logodisplay_slogan0').click( function(){ slogan('off'); } );
+				
+				if($('#logodisplay_slogan1').attr('checked')){ slogan('on'); }
+				$('#logodisplay_slogan1').click( function(){ slogan('on'); } );
+
+				if($('#logodisplay_ie_logo1').attr('checked')){ ieLogo('on'); }
+				$('#logodisplay_ie_logo1').click( function(){ ieLogo('on'); } );
+				
+				if($('#logodisplay_ie_logo0').attr('checked')){ ieLogo('off'); }
+				$('#logodisplay_ie_logo0').click( function(){ ieLogo('off'); } )
+				
+				if($('#logologo_autodimensions1').attr('checked')){ autoDimensions('off'); }
+				$('#logologo_autodimensions1').click( function(){ autoDimensions('off'); } );
+				
+				if($('#logologo_autodimensions0').attr('checked')){ autoDimensions('on'); }
+				$('#logologo_autodimensions0').click( function(){ autoDimensions('on'); } );
 					
 			}	
 		}
@@ -2559,7 +2537,6 @@ jQuery.noConflict();
 				}
 				
 				function fullscreen(){
-					e.preventDefault();
 					$('#minwidth-body').toggleClass("full-mode");
 					$('#fullscreen').toggleClass("normal-mode");
 					if($('#screenmode').text() == 'Fullscreen Mode'){ 

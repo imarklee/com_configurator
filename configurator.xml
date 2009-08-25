@@ -9,8 +9,8 @@
     <authorEmail>norepy@joomlajunkie.com</authorEmail>
     <authorUrl>http://www.joomlajunkie.com</authorUrl>
     <copyright>Copyright 2009 Web Monkeys</copyright>
-    <license>GPL V2</license>
-    <version>0.10</version>
+    <license>Commercial</license>
+    <version>0.11</version>
 	<installfile>install.configurator.php</installfile>
 	<uninstallfile>uninstall.configurator.php</uninstallfile>
     <install>

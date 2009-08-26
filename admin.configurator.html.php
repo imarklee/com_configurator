@@ -115,16 +115,15 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 				</div>
 	        <?php }else{ ?>
 	        
-	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">
-	        	
-	        	<div id="wrap" class="container_16">
+	        	<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">        	
+	        	<div id="wrap" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?>">
 	        		
 	        		<?php if($cfg_pref->show_branding == 1){include_once('includes/top.php'); } ?>
 					<?php if($cfg_pref->shelf_position == 1){include_once('includes/shelf.php'); } ?>
 				
 					<div class="clear spacer">&nbsp;</div>
 		
-					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all<?php if($cfg_pref->show_branding == 0 && $cfg_pref->shelf_position !== 0){ ?> notop<?php } ?><?php if($cfg_pref->show_footer == 0 && $cfg_pref->shelf_position == 0){ ?> tabsonly<?php } if($cfg_pref->show_footer == 0 && $cfg_pref->shelf_position == 0 or $cfg_pref->shelf_position == 0){ ?> nobtm<?php } ?>">
+					<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 						<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 							<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
 							<li class="themelet-icon"><a href="#themelets">Customization</a></li>

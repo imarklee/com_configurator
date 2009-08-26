@@ -943,6 +943,13 @@ jQuery.noConflict();
 	   	
 	   	/* Activate functions -----------------
 	    ------------------------------------ */
+	    
+	    $('#generalthemelet').change(function(){
+	    	$.cookie('change_themelet', 'true');
+	    	$.cookie('ct_themelet_name', $(this).val());
+	    	return false;
+	    });
+	    
 	   	$('li.themelet-item.tl-inactive ul li.btn-activate a').click(function(e){
 	   		
 	   		var setThemelet = $(this).attr('name');
@@ -1025,9 +1032,18 @@ jQuery.noConflict();
 			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
 			   				a.fadeTo('slow', 0.5).click(function(e){ e.preventDefault(); return false; });
 			   				a.parent().next().children().click(function(e){ e.preventDefault(); return false; });
+			   				
+			   				$.ajax({
+								url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
+								method: 'post',
+								success: function(ts, data){
+									return true;
+								}
+							});
 
 						}
 		   			});
+					
 		   			return false;
 		   		});
 		    	$('#templateform').trigger("submit");
@@ -1741,9 +1757,16 @@ jQuery.noConflict();
 											function actThemelet(){
 												var setThemelet = data.themelet;
 												var themeletOption = $('#generalthemelet option:last').after('<option selected="selected" value="'+setThemelet+'">'+setThemelet+'</option>');
-			   									submitbutton('applytemplate');
-										   		$(this).dialog('destroy');
-										   		showScroll();
+												$.ajax({
+													url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
+													method: 'post',
+													success: function(ts, data){
+														submitbutton('applytemplate');
+												   		$(this).dialog('destroy');
+												   		showScroll();
+														return true;
+													}
+												});
 										   	}
 										   	checkChanges(actThemelet);
 										},

@@ -232,55 +232,58 @@ class ConfiguratorController extends JController {
 		$option = JRequest::getVar('option');
 		
 		//$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
-		$params[1]['site'] = JRequest::getVar( 'general', null, 'post', 'array' );
-		$params[2]['site'] = JRequest::getVar( 'logo', null, 'post', 'array' );
-		$params[3]['site'] = JRequest::getVar( 'backgrounds', null, 'post', 'array' );
-		$params[4]['site'] = JRequest::getVar( 'color', null, 'post', 'array' );
-		$params[5]['site'] = JRequest::getVar( 'progressive', null, 'post', 'array' );
-		$params[6]['site'] = JRequest::getVar( 'menu', null, 'post', 'array' );
-		$params[7]['site'] = JRequest::getVar( 'iphone', null, 'post', 'array' );
-		$params[8]['user'] = JRequest::getVar( 'performance', null, 'post', 'array' );
-		$params[9]['user'] = JRequest::getVar( 'debugging', null, 'post', 'array' );
-		$params[10]['themelet'] = JRequest::getVar( 'toolbar', null, 'post', 'array' );
-		$params[11]['themelet'] = JRequest::getVar( 'masterhead', null, 'post', 'array' );
-		$params[12]['themelet'] = JRequest::getVar( 'subhead', null, 'post', 'array' );
-		$params[13]['themelet'] = JRequest::getVar( 'topnav', null, 'post', 'array' );
-		$params[14]['themelet'] = JRequest::getVar( 'shelves', null, 'post', 'array' );
-		$params[15]['themelet'] = JRequest::getVar( 'inlineshelves', null, 'post', 'array' );
-		$params[16]['themelet'] = JRequest::getVar( 'insets', null, 'post', 'array' );
-		$params[17]['themelet'] = JRequest::getVar( 'main', null, 'post', 'array' );
-		$params[18]['themelet'] = JRequest::getVar( 'inner-sidebar', null, 'post', 'array' );
-		$params[19]['themelet'] = JRequest::getVar( 'outer-sidebar', null, 'post', 'array' );
-		$params[20]['site'] = JRequest::getVar( 'footer', null, 'post', 'array' );
+		$params[1] = JRequest::getVar( 'general', null, 'post', 'array' );
+		$params[2] = JRequest::getVar( 'logo', null, 'post', 'array' );
+		$params[3] = JRequest::getVar( 'backgrounds', null, 'post', 'array' );
+		$params[4] = JRequest::getVar( 'color', null, 'post', 'array' );
+		$params[5] = JRequest::getVar( 'progressive', null, 'post', 'array' );
+		$params[6] = JRequest::getVar( 'menu', null, 'post', 'array' );
+		$params[7] = JRequest::getVar( 'iphone', null, 'post', 'array' );
+		$params[8] = JRequest::getVar( 'performance', null, 'post', 'array' );
+		$params[9] = JRequest::getVar( 'debugging', null, 'post', 'array' );
+		$params[10] = JRequest::getVar( 'toolbar', null, 'post', 'array' );
+		$params[11] = JRequest::getVar( 'masterhead', null, 'post', 'array' );
+		$params[12] = JRequest::getVar( 'subhead', null, 'post', 'array' );
+		$params[13] = JRequest::getVar( 'topnav', null, 'post', 'array' );
+		$params[14] = JRequest::getVar( 'shelves', null, 'post', 'array' );
+		$params[15] = JRequest::getVar( 'inlineshelves', null, 'post', 'array' );
+		$params[16] = JRequest::getVar( 'insets', null, 'post', 'array' );
+		$params[17] = JRequest::getVar( 'main', null, 'post', 'array' );
+		$params[18] = JRequest::getVar( 'inner-sidebar', null, 'post', 'array' );
+		$params[19] = JRequest::getVar( 'outer-sidebar', null, 'post', 'array' );
+		$params[20] = JRequest::getVar( 'footer', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
 				
-
 		foreach ($params as $currentblock){	
-			foreach($currentblock as $source => $data) {
-				foreach($data as $param_key => $param_value){
-			
-					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-					$setting->template_name = $template_name;
-					$setting->param_name = $param_key;
-					
-					$setting->loadByKey();
-					
-					$setting->param_value = $param_value;
-					$setting->source = $source;
-					$setting->published = 1;
+			foreach($currentblock as $param_key => $param_value){
 		
-					if (!$setting->store()) {
-						echo "<script> alert('" . $setting->getError() . "'); window.history.go(-1); </script>\n";
-						exit();
-					}
-		
-					unset($setting);
-					$setting = null;
-				}	
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting->template_name = $template_name;
+				$setting->param_name = $param_key;
+				
+				$setting->loadByKey();
+				
+				$setting->param_value = $param_value;
+				$setting->published = 1;
+	
+				if (!$setting->store()) {
+					echo "<script> alert('" . $setting->getError() . "'); window.history.go(-1); </script>\n";
+					exit();
+				}
+	
+				unset($setting);
+				$setting = null;
 			}	
 		}
+		
+		if(isset($_COOKIE['change_themelet'])){
+			$this->themelet_activate($_COOKIE['ct_themelet_name']);
+			setcookie('change_themelet', '', time()-3600);
+			setcookie('ct_themelet_name', '', time()-3600);
+		}
+		
 		if(!JRequest::getVar('isajax', null, 'post')){
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
@@ -291,8 +294,6 @@ class ConfiguratorController extends JController {
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
 			return true;
 		}
-		
-		
 		
 	}   
 	
@@ -520,7 +521,7 @@ class ConfiguratorController extends JController {
 		return $error;
 	}
 	
-	function themelet_upload($file = '') {
+	function themelet_upload($file = '', $activate = '') {
 		$msg = '';
 		$error = '';
 		$template = 'morph';
@@ -568,83 +569,97 @@ class ConfiguratorController extends JController {
 			JPath::setPermissions($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
 			$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
 			
-			$details = explode(',', str_replace(array('"', "\n"), '', $msg));
-			foreach($details as $d){
-				$themelet_det = explode(': ', $d);
-			}
-			
-			JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');			
-			
-			// get existing themelet values
-			$db = JFactory::getDBO();
-			$query = "select * from #__configurator where source = 'themelet';";
-			$query = $db->setQuery( $query );
-			$result = $db->loadAssocList();
-			
-			$db_themelet = array();
-			
-			if(!empty($result)){
-				foreach($result as $t){
-					$db_themelet[$t['param_name']] = $t['param_value'];
-				}
-			}
-			
-			if(!empty($db_themelet)){
-				
-				$template_dir = JPATH_ROOT . DS .'templates'. DS . 'morph';
-				$template_xml = $template_dir . DS . 'core' . DS . 'morphDetails.xml';
-				
-				$xml_param_loader = new morphXMLLoader($template_xml);
-				$template_xml_params = $xml_param_loader->getParamDefaults();
-				
-				$removeParams = array(
-					'Color Picker Param',
-					'Filelist Param',
-					'Folderlist Param',
-					'Heading Param',
-					'Imagelist Param',
-					'List Param',
-					'Radio Param',
-					'Spacer Param',
-					'Text Param',
-					'Textarea Param',
-					'Themelet Param',
-				);
-								
-				$defaults = array();
-				foreach($db_themelet as $key => $value){
-					if(array_key_exists($key, $template_xml_params)){
-						$defaults[$key] = $template_xml_params[$key];
-					}
-				}
-				
-				// delete themelet settings from database
-				$query = "delete from #__configurator where source = 'themelet';";
-				$db->setQuery( $query );
-				$db->query();
-				
-				// update original themelet values with
-				foreach($defaults as $param_name => $param_value){
-					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-					$setting->template_name = 'morph';
-					$setting->published = '1';
-					$setting->source = 'template';
-					$setting->param_name = $param_name;
-					$setting->loadByKey();
-					$setting->param_value = $param_value;
-					
-					if (!$setting->store(TRUE)) {
-						echo $setting->getError();
-						die();
-					}
+			return $msg;
+		}
+		$error = 'error: "There was an error uploading the file. Please try again."';
+		return $error;
+	}
+	
+	function themelet_activate($themelet = ''){
 		
-					unset($setting);
-					$setting = null;
-				}
+		if($themelet == ''){
+			if(isset($_REQUEST['themelet_name'])){
+				$themelet = $_REQUEST['themelet_name'];
+			}else{
+				return false;
+			}
+		}
+		
+		$template_dir = JPATH_ROOT . DS .'templates'. DS . 'morph';
+		$themelet_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'themelets';
+		
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');			
 			
+		// get existing themelet values
+		$db = JFactory::getDBO();
+		$query = "select * from #__configurator where source = 'themelet';";
+		$query = $db->setQuery( $query );
+		$result = $db->loadAssocList();
+		
+		$db_themelet = array();
+		
+		if(!empty($result)){
+			foreach($result as $t){
+				$db_themelet[$t['param_name']] = $t['param_value'];
+			}
+		}
+		
+		if(!empty($db_themelet)){
+			
+			$template_xml = $template_dir . DS . 'core' . DS . 'morphDetails.xml';
+			
+			$xml_param_loader = new morphXMLLoader($template_xml);
+			$template_xml_params = $xml_param_loader->getParamDefaults();
+			
+			$removeParams = array(
+				'Color Picker Param',
+				'Filelist Param',
+				'Folderlist Param',
+				'Heading Param',
+				'Imagelist Param',
+				'List Param',
+				'Radio Param',
+				'Spacer Param',
+				'Text Param',
+				'Textarea Param',
+				'Themelet Param',
+			);
+							
+			$defaults = array();
+			foreach($db_themelet as $key => $value){
+				if(array_key_exists($key, $template_xml_params)){
+					$defaults[$key] = $template_xml_params[$key];
+				}
 			}
 			
-			$themelet = $themelet_dir . DS . $themelet_det[1];
+			// delete themelet settings from database
+			$query = "delete from #__configurator where source = 'themelet';";
+			$db->setQuery( $query );
+			$db->query();
+			
+			// update original themelet values with
+			foreach($defaults as $param_name => $param_value){
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting->template_name = 'morph';
+				$setting->published = '1';
+				$setting->source = 'template';
+				$setting->param_name = $param_name;
+				$setting->loadByKey();
+				$setting->param_value = $param_value;
+				
+				if (!$setting->store(TRUE)) {
+					echo $setting->getError();
+					die();
+				}
+	
+				unset($setting);
+				$setting = null;
+			}
+		
+		}
+		
+		$themelet = $themelet_dir . DS . $themelet;
+		if(is_file($themelet.DS.'themeletDetails.xml')){
 			$xml_param_loader = new morphXMLLoader($themelet.DS.'themeletDetails.xml');
 			$themelet_xml_params = $xml_param_loader->getParamDefaults();
 			
@@ -665,11 +680,7 @@ class ConfiguratorController extends JController {
 				unset($setting);
 				$setting = null;
 			}
-			
-			return $msg;
 		}
-		$error = 'error: "There was an error uploading the file. Please try again."';
-		return $error;
 	}
 	
 	function unpackThemelet($p_filename){
@@ -1003,6 +1014,8 @@ class ConfiguratorController extends JController {
 		setcookie('ins_themelet_name', $themelet_name);
 		
 		if(isset($activation) && $activation == 'true'){
+		
+			$this->themelet_activate($themelet);
 			setcookie('installed_actthemelet', 'true');
 			$db = JFactory::getDBO();
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");

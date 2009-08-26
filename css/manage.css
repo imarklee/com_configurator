@@ -453,12 +453,6 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #processing{position:absolute;top:0;left:0;display:none;z-index:9998;background:#000;width:100%;height:500px;opacity:0.9;}
 #processing div{margin:300px auto 0 auto;width:150px;font:bold 15px arial;color:#fff;position:relative;}
 #processing div span{position:absolute;left:20px;top:-1px;}
-#login-details{padding:.6em;zoom:1;background:#8cc048;width:48%;float:right;margin:0 0 1em 0;color:#fff;font-weight:bold;font-size:14px;}
-#login-details p{padding:0;margin:0;}
-#login-details p.ld-float-user{float:left;width:385px;color:#323c24;}
-#login-details .ld-username{color:#fff;padding-left:18px;background:url(../images/user.png) no-repeat 0 0;}
-#login-details .ld-logout{color:#323c24;padding-left:20px;background:url(../images/logout.png) no-repeat 0 0;text-align:right;width:68px;}
-#login-details a.logout-configurator:hover{text-decoration:none;}
 button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 .icon-48-configurator{background:transparent url(../images/icon-48-configurator.png) repeat scroll 5px 8px;}
 #tabs .desc-overlay{position:absolute;width:100%;height:100%;background:#fff;z-index:99;filter:alpha(opacity=70);opacity:0.7;-moz-opacity:0.7;}

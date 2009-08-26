@@ -567,6 +567,105 @@ class ConfiguratorController extends JController {
 		
 			JPath::setPermissions($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
 			$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
+			
+			$details = explode(',', str_replace(array('"', "\n"), '', $msg));
+			foreach($details as $d){
+				$themelet_det = explode(': ', $d);
+			}
+			
+			JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');			
+			
+			// get existing themelet values
+			$db = JFactory::getDBO();
+			$query = "select * from #__configurator where source = 'themelet';";
+			$query = $db->setQuery( $query );
+			$result = $db->loadAssocList();
+			
+			$db_themelet = array();
+			
+			if(!empty($result)){
+				foreach($result as $t){
+					$db_themelet[$t['param_name']] = $t['param_value'];
+				}
+			}
+			
+			if(!empty($db_themelet)){
+				
+				$template_dir = JPATH_ROOT . DS .'templates'. DS . 'morph';
+				$template_xml = $template_dir . DS . 'core' . DS . 'morphDetails.xml';
+				
+				$xml_param_loader = new morphXMLLoader($template_xml);
+				$template_xml_params = $xml_param_loader->getParamDefaults();
+				
+				$removeParams = array(
+					'Color Picker Param',
+					'Filelist Param',
+					'Folderlist Param',
+					'Heading Param',
+					'Imagelist Param',
+					'List Param',
+					'Radio Param',
+					'Spacer Param',
+					'Text Param',
+					'Textarea Param',
+					'Themelet Param',
+				);
+								
+				$defaults = array();
+				foreach($db_themelet as $key => $value){
+					if(array_key_exists($key, $template_xml_params)){
+						$defaults[$key] = $template_xml_params[$key];
+					}
+				}
+				
+				// delete themelet settings from database
+				$query = "delete from #__configurator where source = 'themelet';";
+				$db->setQuery( $query );
+				$db->query();
+				
+				// update original themelet values with
+				foreach($defaults as $param_name => $param_value){
+					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+					$setting->template_name = 'morph';
+					$setting->published = '1';
+					$setting->source = 'template';
+					$setting->param_name = $param_name;
+					$setting->loadByKey();
+					$setting->param_value = $param_value;
+					
+					if (!$setting->store(TRUE)) {
+						echo $setting->getError();
+						die();
+					}
+		
+					unset($setting);
+					$setting = null;
+				}
+			
+			}
+			
+			$themelet = $themelet_dir . DS . $themelet_det[1];
+			$xml_param_loader = new morphXMLLoader($themelet.DS.'themeletDetails.xml');
+			$themelet_xml_params = $xml_param_loader->getParamDefaults();
+			
+			foreach($themelet_xml_params as $param_name => $param_value){
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting->template_name = 'morph';
+				$setting->published = '1';
+				$setting->param_name = $param_name;
+				$setting->loadByKey();
+				$setting->param_value = $param_value;
+				$setting->source = 'themelet';
+				
+				if (!$setting->store(TRUE)) {
+					echo $setting->getError();
+					die();
+				}
+	
+				unset($setting);
+				$setting = null;
+			}
+			
 			return $msg;
 		}
 		$error = 'error: "There was an error uploading the file. Please try again."';
@@ -892,6 +991,7 @@ class ConfiguratorController extends JController {
 	}
 	
 	function install_themelet(){
+		
 		ini_set('memory_limit', '32M');
 		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$activation = $_REQUEST['act_themelet'];
@@ -901,6 +1001,7 @@ class ConfiguratorController extends JController {
 		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
 		$themelet_name = str_replace('-',  ' ', $themelet);
 		setcookie('ins_themelet_name', $themelet_name);
+		
 		if(isset($activation) && $activation == 'true'){
 			setcookie('installed_actthemelet', 'true');
 			$db = JFactory::getDBO();
@@ -915,6 +1016,7 @@ class ConfiguratorController extends JController {
 			$query = $db->setQuery( $new_query );
 			$db->query($query) or die($db->getErrorMsg());
 		}
+		
 		$ret = '{'.$return.'}';
 		echo $ret;
 	}
@@ -973,6 +1075,50 @@ class ConfiguratorController extends JController {
 	}
 	
 	function install_template(){
+	
+		function db_update(){
+			$templatesdir = JPATH_SITE . DS . 'templates';
+			$xml_param_loader = new morphXMLLoader($templatesdir.DS.'morph/core'.DS.'morphDetails.xml');
+			$main_xml_params = $xml_param_loader->getParamDefaults();
+			
+			$removeParams = array(
+				'Color Picker Param',
+				'Filelist Param',
+				'Folderlist Param',
+				'Heading Param',
+				'Imagelist Param',
+				'List Param',
+				'Radio Param',
+				'Spacer Param',
+				'Text Param',
+				'Textarea Param',
+				'Themelet Param',
+			);
+			foreach($removeParams as $r){
+				unset($main_xml_params[$r]);
+			}
+			
+			JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
+			
+			foreach($main_xml_params as $param_name => $param_value){
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting->source = 'template';
+				$setting->template_name = 'morph';
+				$setting->published = '1';
+				$setting->param_name = $param_name;
+				$setting->loadByKey();
+				$setting->param_value = $param_value;
+				
+				if (!$setting->store(TRUE)) {
+					echo $setting->getError();
+					die();
+				}
+	
+				unset($setting);
+				$setting = null;
+			}
+		}
+		
 		ini_set('memory_limit', '32M');
 		$newtemplatefile = @JRequest::getVar( 'template-file', null, 'files', 'array' );
 		$templatesdir = JPATH_SITE . DS . 'templates';
@@ -1012,6 +1158,9 @@ class ConfiguratorController extends JController {
 						@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 						$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
 						$msg .= ', backuploc: "'.$backupfile.'.gz"';
+						
+						db_update();
+						
 						setcookie('installed_morph', 'true');
 						$ret = '{'.$msg.'}';
 						echo $ret;
@@ -1033,6 +1182,7 @@ class ConfiguratorController extends JController {
 					// directory doesn't exist - install as per usual
 					@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 					$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+					db_update();
 					setcookie('installed_morph', 'true');
 					$ret = '{'.$msg.'}';
 					echo $ret;
@@ -1047,6 +1197,7 @@ class ConfiguratorController extends JController {
 			// directory doesn't exist - install as per usual
 			@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 			$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+			db_update();
 			setcookie('installed_morph', 'true');
 			$ret = '{'.$msg.'}';
 			echo $ret;

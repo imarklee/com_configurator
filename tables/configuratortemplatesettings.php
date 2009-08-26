@@ -6,6 +6,7 @@ class TableConfiguratorTemplateSettings extends JTable {
     var $template_name = null;
     var $param_name = null;
     var $param_value = null;
+    var $source = null;
     var $published = null;
     
     function TableConfiguratorTemplateSettings(&$db) { parent::__construct('#__configurator', 'id', $db); }

@@ -134,7 +134,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 						</ul>
 						<div id="site">					
 							<div id="site-tabs" class="subtabs">
-								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-site.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['site-desc'])) { include 'includes/tabs/desc/desc-site.php'; } ?>
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
 									<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
@@ -150,7 +150,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 
 						<div id="themelets" class="ui-tabs-hide">
 							<div id="themelet-tabs" class="subtabs">
-								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['themelet-desc'])) { include 'includes/tabs/desc/desc-themelet.php'; } ?>
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
 									<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
@@ -168,7 +168,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 
 						<div id="blocks" class="ui-tabs-hide">
 							<div id="blocks-tabs" class="subtabs">
-								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['blocks-desc'])) { include 'includes/tabs/desc/desc-blocks.php'; } ?>
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab">Toolbar</a></li>
 									<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
@@ -198,7 +198,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 
 						<div id="tools" class="ui-tabs-hide">
 							<div id="tools-tabs" class="subtabs">
-								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-tools.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['tools-desc'])) { include 'includes/tabs/desc/desc-tools.php'; } ?>
 								<ul class="ui-helper-clearfix ui-tabs-nav">
 									<li class="icon-installer ui-tabs-selected"><a href="#tools-installer">Universal Installer</a></li>
 								</ul>
@@ -208,7 +208,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 
 						<div id="assets" class="ui-tabs-hide">	
 							<div id="assets-tabs" class="subtabs">
-								<?php if ($cfg_pref->show_intros == 1) { include 'includes/tabs/desc/desc-assets.php'; } ?>
+								<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['assets-desc'])) { include 'includes/tabs/desc/desc-assets.php'; } ?>
 								<ul class="ui-helper-clearfix">
 									<li class="icon-themelets"><a href="#assets-themelets">Themelets</a></li>
 									<li class="icon-logos"><a href="#assets-logos">Logos</a></li>

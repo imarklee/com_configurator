@@ -11,22 +11,27 @@ if(!isset($_COOKIE['unpack'])){
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.js.php');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/configurator.css.php');
 }else{
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery-1.3.2.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery-ui-1.7.2.custom.min.js');
+// global
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/ui.js');
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/cookie.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/preloadCssImages.jQuery_v5.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/preload.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/browser.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/corners.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/functions.js.php');
+if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+// login
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/showpassword.js');
+} else {
+// manage
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/js/colorpicker.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jqbrowser.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.corners.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.filestyle.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.qtip-1.0.0-rc3.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.fileupload.js');$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.autoresize.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.form.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.showpassword.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.getparams.min.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.functions.js.php');
-
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/jquery.ui.css');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/form.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/fileupload.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/autoresize.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/qtip.js');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/getparams.js');
+}
+$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/ui.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/colorpicker.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/reset.css');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/text.css');
@@ -34,10 +39,7 @@ $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurat
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/manage.css');
 }
 
-?>
-<?php
 class HTML_configurator_admin {
-
 function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         global $mainframe;
         include_once (JPATH_COMPONENT_ADMINISTRATOR . DS . "configuration.php");
@@ -60,10 +62,10 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         }
         
         if (!$morph_installed){
-	        echo '<center>';
+	        echo '<div id="nomorph">';
 	        echo '<h1>Morph needs to be installed in order to work.</h1>';	
-	        echo '<h3>Please, <a href="index.php?option=com_installer">Morph</a> before continue...</h3>';	
-	        echo '</center>';	
+	        echo '<p>Please <a href="index.php?option=com_installer">install Morph</a> then reload this page.</p>';	
+	        echo '</div>';	
 	        //if found morph	
         } else {	
 	        $template_dir = JPATH_SITE . DS . 'templates' . DS . 'morph';
@@ -78,8 +80,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 	        } else {
 				include 'includes/layout/manage.php';
 			}
-			?>
-			<?php include 'includes/layout/report-bug.php';
+			include 'includes/layout/report-bug.php';
 	 	}      
     }
     function dashboard() {

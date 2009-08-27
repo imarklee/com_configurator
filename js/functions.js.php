@@ -113,8 +113,9 @@ jQuery.noConflict();
 		$("#assets-tabs #backgrounds-list li:even").addClass("alt");
 		$("#preferences-form .prefs li:last").addClass("last");
 		
+		<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
-
+		<?php } ?>
 
 
 //		$('#help').hover(function() {

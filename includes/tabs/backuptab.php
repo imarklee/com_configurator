@@ -1,2 +1,0 @@
-<h4>Manage your themelet backups</h4>
-<p>This feature has not been implemented yet. Please keep an eye on the <a href="http://twitter.com/jMorth">@jMorph</a> twitter account to be updated when this is ready.

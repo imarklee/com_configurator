@@ -6,37 +6,70 @@ include_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'includes' . DS . 'configurato
 $document 	=& JFactory::getDocument();
 $option 	= JRequest::getVar('option','com_configurator');
 $task 		= JRequest::getCmd('task');
+$csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
+$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
 
 if(!isset($_COOKIE['unpack'])){
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/configurator.js.php');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/configurator.css.php');
-}else{
-// global
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/jquery.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/ui.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/cookie.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/preload.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/browser.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/corners.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/functions.js.php');
-if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
-// login
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/showpassword.js');
+	$document->addScript($jspath . 'configurator.js.php');
+	$document->addStyleSheet($csspath . 'configurator.css.php');
 } else {
-// manage
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/colorpicker.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/form.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/fileupload.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/autoresize.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/qtip.js');
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/js/getparams.js');
-}
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/ui.css');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/colorpicker.css');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/reset.css');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/text.css');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/960.css');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/css/manage.css');
+	/* unpacked js
+	*****************************************/
+	// global
+	$document->addScript($jspath . 'jquery.js');
+	$document->addScript($jspath . 'ui.js');
+	$document->addScript($jspath . 'cookie.js');
+	$document->addScript($jspath . 'preload.js');
+	$document->addScript($jspath . 'browser.js');
+	$document->addScript($jspath . 'corners.js');
+	$document->addScript($jspath . 'functions.js.php');
+	if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+	// login
+	$document->addScript($jspath . 'showpassword.js');
+	} else {
+	// manage
+	$document->addScript($jspath . 'colorpicker.js');
+	$document->addScript($jspath . 'form.js');
+	$document->addScript($jspath . 'fileupload.js');
+	$document->addScript($jspath . 'autoresize.js');
+	$document->addScript($jspath . 'qtip.js');
+	$document->addScript($jspath . 'getparams.js');
+	}
+	/* unpacked css
+	*****************************************/
+	// global
+	$document->addStyleSheet($csspath . 'global/reset.css');
+	$document->addStyleSheet($csspath . 'global/960.css');
+	$document->addStyleSheet($csspath . 'global/ui.css');
+	$document->addStyleSheet($csspath . 'global/text.css');
+	$document->addStyleSheet($csspath . 'global/overlay.css');
+	$document->addStyleSheet($csspath . 'global/sprite.css');
+	// dashboard
+	// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
+	if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+	// login
+	$document->addStyleSheet($csspath . 'login/login.css');
+	} else {
+	// manage
+	$document->addStyleSheet($csspath . 'manage/assets.css');
+	$document->addStyleSheet($csspath . 'manage/colorpicker.css');
+	$document->addStyleSheet($csspath . 'manage/docs.css');
+	$document->addStyleSheet($csspath . 'manage/feedback.css');
+	$document->addStyleSheet($csspath . 'manage/footer.css');
+	$document->addStyleSheet($csspath . 'manage/forms.css');
+	$document->addStyleSheet($csspath . 'manage/fullscreen.css');
+	$document->addStyleSheet($csspath . 'manage/help.css');
+	$document->addStyleSheet($csspath . 'manage/keyboard.css');
+	$document->addStyleSheet($csspath . 'manage/manage.css');
+	$document->addStyleSheet($csspath . 'manage/preferences.css');
+	$document->addStyleSheet($csspath . 'manage/shelf.css');
+	$document->addStyleSheet($csspath . 'manage/tabs.css');
+	$document->addStyleSheet($csspath . 'manage/tips.css');
+	$document->addStyleSheet($csspath . 'manage/tooltips.css');
+	$document->addStyleSheet($csspath . 'manage/toplinks.css');
+	$document->addStyleSheet($csspath . 'manage/uploader.css');
+	$document->addStyleSheet($csspath . 'manage/welcome.css');
+	}
 }
 
 class HTML_configurator_admin {

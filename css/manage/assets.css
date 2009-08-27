@@ -98,8 +98,6 @@ a.switch-view:hover{filter:alpha(opacity=75);opacity:.75;-ms-filter:"progid:DXIm
 #assets .list-view ul.buttons li.btn-preview a{margin-left:30px;}
 #assets #logos-list.thumb-view ul li strong,#assets #backgrounds-list.thumb-view ul li strong{width:70px;}
 #wrap #assets p.assets-location{margin:30px 0 0;padding:0;clear:both;font:normal 12px arial;color:#999;}
-
-
 #wrap #assets-tabs .thumb-view ul.buttons li a{padding:0!important;display:block;line-height:1;}
 #wrap #assets-tabs .thumb-view ul.buttons li a span{padding:4px 29px 4px 8px;border:1px solid #fff;display:block;}
 #wrap #assets-tabs .thumb-view ul.buttons li.btn-activate a span{background:transparent url(../images/btn-icon-activate.png) no-repeat scroll 88% 50%;}

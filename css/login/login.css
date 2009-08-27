@@ -1,0 +1,28 @@
+#conf-login{position:relative;background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;color:#313131;width:100%;padding:50px 0;display:block;text-align:left;}
+#conf-login h2{font:bold 32px Arial;margin:0 0 10px 0;padding:0;}
+#conf-login p{margin:0 0 15px 0;padding:0;font:normal 13px/17px Arial;width:360px;}
+#cl-top{padding:0;margin:0 auto;width:590px;}
+#cl-top img{margin:0 0 10px 0;}
+#cl-inner{background:#fff;border:1px solid #111;color:#313131;display:block;height:290px;padding:20px;margin:0 auto;position:relative;width:550px;}
+#conf-login label.label-username,#conf-login label.label-password{width:350px;height:33px;margin:0 0 10px 0;padding:0;background:#ddd url(../images/input-bg.jpg) repeat-x;position:relative;border:1px solid #ccc;text-indent:10px;font:normal 15px/35px arial;display:block;float:left;}
+#conf-login label.label-username{margin:0 0 20px 0;}
+#conf-login #alf-cont label.label-username span,
+#conf-login #alf-cont label.label-password span{background:#ddd;border-right:1px solid #ccc;width:95px;height:33px;display:block;position:absolute;top:0;left:0;}
+#conf-login label.label-focus{background:#ddd url(../images/input-bg.jpg) repeat-x;border:1px solid #688F3A;}
+#conf-login #alf-cont label.label-focus span{background:#688F3A;color:#fff;}
+#conf-login #alf-cont label.label-username input.alf-input,
+#conf-login #alf-cont label.label-password input.alf-input{width:230px;height:26px;margin:0;position:absolute;top:1px;right:17px;color:#555;border:0;background:none;border:none;padding:6px 0 0 0;font:normal 15px/35px arial;}
+#conf-login #alf-cont label.label-username input.alf-input.focus,
+#conf-login #alf-cont label.label-password input.alf-input.focus{background:#ddd url(../images/input-bg.jpg) repeat-x;color:#222;}
+#am-login-form #alf-cont{overflow:hidden;width:355px;}
+#conf-login span.mascot{background:transparent url(../images/login-mascot.png) no-repeat scroll 0 0;display:block;height:450px;position:absolute;right:10px;top:-101px;width:195px;}
+#conf-login #am-login-form .alf-login{width:250px;height:40px;overflow:hidden;border:0;background:none;padding:40px 0 0 0;margin:0;background:transparent url(../images/btn-configurator-login.png) no-repeat;cursor:pointer;}
+#conf-login #am-login-form .alf-login:hover,#conf-login #am-login-form .alf-login:focus{background-position:left center;}
+#conf-login #am-login-form .alf-login:focus{opacity:0.5;}
+#conf-login label.login-checkbox{font:normal 11px arial;color:#777;margin-bottom:10px;}
+#conf-login p.login-sub{color:#999;font-size:11px;}
+#conf-login p a{text-decoration:underline;}
+#am-login-form #alf-cont #alf-inp-cont{margin:5px 0 20px 0;}
+#alf-warning,#alf-output{text-align:left;padding-top:10px;}
+#alf-warning p{margin:5px 0 0 0;font:normal 12px/17px arial;}
+#alf-warning p strong{margin:0;font:bold 15px arial;}

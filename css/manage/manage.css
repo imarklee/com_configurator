@@ -1,0 +1,57 @@
+#wrap .ui-widget .ui-widget{padding:0;margin:0;background:none;border:0;}
+#lost-password-form{padding:2em;}
+#sendpass label{font:normal 15px/20px arial;}
+#lost-password{-moz-border-radius:7px;-webkit-border-radius:7px;margin:5px 0 10px 0;}
+.btn-getpass{-moz-border-radius:7px;-webkit-border-radius:7px;padding:5px 10px;}
+
+#wrap.noshelf.nobranding #tabs{margin-top:1.5em;}
+#wrap.shelftop #shelf{padding-top:0;}
+#wrap.shelftop.nobranding #shelf{padding-top:1.5em;}
+#wrap.shelfbtm #shelf{margin-top:1.5em;}
+#wrap.nofooter{margin-bottom:1.5em;}
+#wrap.footer{}
+#wrap.nobranding{}
+#wrap.branding{}
+
+#element-box .t,#element-box .b{display:none;}
+#element-box .m{background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;padding:15px 0;border:0;}
+
+.options-panel{border:5px solid #E3E3E3;float:left;width:525px;z-index:10;}
+.info-panel{padding-right:10px;width:350px;float:right;font:normal 12px/20px arial;}
+.info-panel h3{font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:0.4px;color:#303030;font-size:22px;margin-bottom:15px;padding:0;}
+.info-panel h4{font:bold 15px arial;margin:0 0 7px 0;padding:0;color:#333;}
+.info-panel ul.morph-resources{margin-top:-10px;}
+.info-panel .teaser{font:normal 15px/20px arial;margin:0 0 10px 0;padding-bottom:25px;color:#666;background:#fff url(../images/helptext-divider.png) repeat-x 50% 100%;}
+button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
+.icon-48-configurator{background:transparent url(../images/icon-48-configurator.png) repeat scroll 5px 8px;}
+#logologo_image{width:175px;}
+#top{height:90px;overflow:hidden;}
+#branding{width:200px;float:left;height:90px;}
+#branding img{margin-top:15px;}
+#minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}
+.logo-preview{display:block;width:16px;height:16px;background:transparent url(../images/eye.png) no-repeat 0 0;position:absolute;top:9px;right:100px;}
+.logo-preview span{display:none;}
+.logo-preview:hover span{display:block;}
+img.logo-preview-image{margin:-10px;}
+.docs-wrap .btn-link,#wrap a.switch-view,#wrap .thumb-view ul.buttons li a,#wrap a.btn-link{background:#fff url(../images/btn-link-bg.jpg) repeat-x;font:bold 11px/25px arial;border:1px solid #ccc;text-decoration:none;color:#444;padding:4px 8px;}
+#wrap #shelf a.btn-link{padding:3px 7px;}
+.docs-wrap a:hover.btn-link,#wrap .thumb-view ul.buttons li a:hover,#wrap a.btn-link:hover{background:#fff url(../images/btn-link-bg-over.jpg) repeat-x;color:#666;}
+ul.morph-resources,ul.morph-resources li{margin:0;padding:0;}
+ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
+a.disabled{opacity:0.5;cursor:default;}
+p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF3100;width:325px;}
+.quicktips-box { margin: 0 auto; width: 615px; padding: 5px; }
+.toolguides.ui-dialog-content{padding:5px;}
+.themelet-options{font:normal 11px arial;color:#ccc;padding:8px 36px 0 0;float:right;}
+.dialog-msg{padding:15px;font:normal 15px arial;}
+.upload-logo-container{font-size:11px;padding-left:30px;color:#666;}
+.upload-bg-container{font-size:11px;padding-left:10px;color:#666; width: 60px;}
+#upload-message,#changesDialog{padding:15px;font:normal 15px arial;}
+#logologo_image{width:130px;}
+.no-assets{display:block;color:#777;background:#ededed;border:1px solid #ddd; text-align:center; font-size: 16px;margin:15px auto;padding:25px 0;}
+.resources-list{margin:-10px 0 0 0;padding:0;color:#999;}
+#toolbar-Link{display:none;}
+#updates-summary dd span{color:#444;border-bottom:1px dashed #ccc;}
+#updates-summary dd.icon span{border-bottom:0;}
+body{font:13px/1.5 Helvetica,Arial,'Liberation Sans',FreeSans,sans-serif}a:focus{outline:1px dotted invert}hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}h1{font-size:25px}h2{font-size:23px}h3{font-size:21px}h4{font-size:19px}h5{font-size:17px}h6{font-size:15px}ol{list-style:decimal}ul{list-style:square}li{margin-left:30px}p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
+.to-label{width:230px;display:block;float:left;}

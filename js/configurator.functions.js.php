@@ -956,6 +956,8 @@ jQuery.noConflict();
 	   		var a = $(this);
 	   		
 	   		function activateThemelet(){
+		   		$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
+				hideScroll();
 		   		
 		   		$('<div class="dialog-msg">Would you like to configure this themelet once activated?</div>').dialog({
 		   			bgiframe: true,
@@ -1026,7 +1028,7 @@ jQuery.noConflict();
 							$('#current-themelet li.ct-name').html('<span>Name: </span>'+$('li.tl-inactive ul li.btn-activate a[name="'+setThemelet+'"]').attr('title').replace('Activate ', ''));
 							$('#current-themelet li.ct-version').html('<span>Version: </span>'+$('ul.'+setThemelet+' li.tl-installed').text().replace('Installed version: ',''));
 							$('#current-themelet li.ct-thumb').html('<span>&nbsp;</span><img src="../morph_assets/themelets/'+setThemelet+'/themelet_thumb.png" width="108" height="72" align="middle" alt="'+$('#current-themelet li.ct-name').text()+'" />');
-							$('.dialog-msg').dialog('open');
+							
 							$('#themelets-list ul li.tl-active ul li.btn-activate a, #themelets-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
 			   				$('#themelets-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
 			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
@@ -1040,6 +1042,52 @@ jQuery.noConflict();
 									return true;
 								}
 							});
+							
+							$.ajax({
+								url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
+								method: 'post',
+								dataType: 'json',
+								success: function(data, ts){
+									if(data.exists == 'true'){
+										$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
+								   			bgiframe: true,
+								   			autoOpen: true,
+								   			minHeight: 20,
+								   			width: 500,
+								   			stack: false,
+								   			modal: true, 
+								   			title: 'Activate',
+								   			overlay: {
+								   				'background-color': '#000', 
+								   				opacity: 0.8 
+								   			},
+								   			close: function(){
+												$(this).dialog('destroy');
+												$('.dialog-msg').dialog('open');
+								   			},
+											buttons: { 
+												'Themelet Default': function(){
+													$(this).dialog('close');
+									   			},
+									   			'Previous Settings': function(){
+									   				$.ajax({
+														url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
+														method: 'post',
+														success: function(data){
+															return true;
+														}
+													});
+									   				$(this).dialog('close');
+									   			}
+									   		}
+									   	});
+									}else{
+										$('.dialog-msg').dialog('open');
+									}
+								}
+							});
+							return false;
+							
 
 						}
 		   			});

@@ -16,6 +16,8 @@ $template_arr = $template_details['install'];
 $themelet_arr = $themelet_details['install'];
 $component_arr = $component_details['install'];
 
+setcookie('current_themelet', $themelet_arr['foldername']);
+
 if(isset($_COOKIE['us_'.$themelet_arr['foldername']])){ 
 	$themelet_cookie_val = explode('##', $_COOKIE['us_'.$themelet_arr['foldername']]); 
 	$themelet_us_version = $themelet_cookie_val[0];

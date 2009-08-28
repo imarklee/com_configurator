@@ -575,7 +575,52 @@ class ConfiguratorController extends JController {
 		return $error;
 	}
 	
+	function themelet_check_existing($themelet = ''){
+		if($themelet == ''){
+			if(isset($_REQUEST['themelet_name'])){
+				$themelet = $_REQUEST['themelet_name'];
+			}else{
+				return false;
+			}
+		}
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';
+		if(file_exists($backupdir.DS.$themelet.'.sql.gz')){
+			echo '{ exists: "true" }';
+		}else{
+			echo '{ exists: "false" }';
+		}
+		return true;
+	}
+	
+	function themelet_activate_existing($themelet=''){
+		$db = JFactory::getDBO();
+		$query = $db->setQuery("DELETE FROM `jos_configurator` where source='themelet';");
+		$db->query($query);
+		
+		if($themelet == ''){
+			if(isset($_REQUEST['themelet_name'])){
+				$themelet = $_REQUEST['themelet_name'];
+			}else{
+				return false;
+			}
+		}
+
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';		
+		if(JFile::exists($backupdir.DS.$themelet.'.sql.gz')){
+			JArchive::extract($backupdir.DS.$themelet.'.sql.gz', $backupdir);
+			if(!$this->parse_mysql_dump($backupdir.DS.$themelet.'.sql')){
+				JFile::delete($backupdir.DS.$themelet.'.sql');
+				return true;
+			}
+		}
+	}
+	
 	function themelet_activate($themelet = ''){
+		global $mainframe;
+		$db = JFactory::getDBO();
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';
+		if(!is_dir($backupdir)){mkdir($backupdir);}
+		@JPath::setPermissions($backupdir);
 		
 		if($themelet == ''){
 			if(isset($_REQUEST['themelet_name'])){
@@ -587,6 +632,14 @@ class ConfiguratorController extends JController {
 		
 		$template_dir = JPATH_ROOT . DS .'templates'. DS . 'morph';
 		$themelet_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'themelets';
+		
+		$query="SELECT * FROM #__configurator AS t WHERE t.template_name='morph'";
+		$db->setQuery( $query );
+		$template_params = $db->loadAssocList('param_name');
+				
+		// themelet
+		$curr_themelet = $template_params['themelet']['param_value'];
+		if(isset($_COOKIE['current_themelet'])) $curr_themelet = $_COOKIE['current_themelet'];
 		
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');			
 			
@@ -631,6 +684,13 @@ class ConfiguratorController extends JController {
 					$defaults[$key] = $template_xml_params[$key];
 				}
 			}
+			
+			// backup themelet settings
+			$backupfile = $curr_themelet.'.sql.gz';
+			if(file_exists($backupfile)){
+				JFile::delete($backupfile);
+			}
+			$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure('jos_configurator', "source='themelet'"));
 			
 			// delete themelet settings from database
 			$query = "delete from #__configurator where source = 'themelet';";
@@ -1310,17 +1370,17 @@ class ConfiguratorController extends JController {
 		
 	}
 	
-	function get_structure() { 
+	function get_structure($table='', $where='') { 
         $sql = null;
 		$sql_structure = null;
 		$sql_data = null;
 		$i = 0;
+		$table = array();
 		
 		$db = JFactory::getDBO();
 		$td = $db->getTableList();
 		$r = $db->getTableCreate($td);
-			
-		$sql_structure = null;
+
 		if($r){
 			foreach($r as $k => $v){
 				$sql_structure .= 'DROP TABLE IF EXISTS `'. $k . "`;\n" . $v . ";\n\n";
@@ -1328,24 +1388,27 @@ class ConfiguratorController extends JController {
 			}
 		}
 		
-		$insert_sql = null;
+		if($table !== '') $table[] = $table; $sql_structure = null;
+		
 		foreach($table as $t){
-			$db->setQuery("SELECT * FROM `$t`"); 
+			if($where !== '') { 
+				$db->setQuery("SELECT * FROM `$t` where " . $where . ";"); }else{ $db->setQuery("SELECT * FROM `$t`"); 
+			}
+			
 			$data = $db->loadAssocList();
 			if(!empty($data)){
 				foreach ($data as $v){
+					if($where !== '') $v['id'] = '';
 					$sql_data .= "INSERT INTO `$t` VALUES(";
-					foreach ($v as $row) { 
-						if ($i++>0) $sql_data .=", ";
-						$sql_data .=  "'" . mysql_real_escape_string($row) . "'";
-					} 
+				    mysql_real_escape_string($sql_data .= "'".implode("','",$v)."'");
 					$sql_data .= ");\n";	
 				}
 				if ($i++>0) $sql_data .="\n";
 			}
 		}
 		
-		$sql = '--- Create Database Structure' . "\n\n" . $sql_structure  . "\n\n" . '--- Create Inserts' . "\n\n" . $sql_data;
+		if($sql_structure !== null) { $sql = '--- Create Database Structure' . "\n\n" . $sql_structure  . "\n\n"; };
+		$sql .= '--- Create Inserts' . "\n\n" . $sql_data;
 		return $sql; 
 	}
 	

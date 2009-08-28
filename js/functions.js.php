@@ -2116,6 +2116,8 @@ jQuery.noConflict();
 						}
 					}
 				});
+			}else{
+				setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
 			}
 			return false;
 		});
@@ -2857,6 +2859,8 @@ jQuery.noConflict();
 								}
 							}
 						});
+					}else{
+						setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
 					}
 					e.preventDefault();
 					return false;

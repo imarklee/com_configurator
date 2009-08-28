@@ -1,0 +1,12 @@
+#footer{overflow:hidden;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;}
+#footer:hover{overflow:hidden;}
+#footer a.ptlogo{width:170px;height:45px;display:block;float:left;margin-top:15px;text-indent:-7998px;background:transparent url(../images/ptlogo.png) no-repeat;}
+#footer a.ptlogo:hover{background-position:bottom left;}
+.footer-links,
+.footer-links li{margin:0;padding:0;list-style:none;}
+.footer-links{float:right;width:750px;margin:10px 0 0 10px;}
+.footer-links li{display:block;float:left;margin:0 55px 0 0;}
+.footer-links li.fd{margin:0 0 0 0;}
+.footer-links li li{display:block;float:none;margin:0;}
+.footer-links li a{color:#ccc;font-size:11px;}
+.footer-links li h4{color:#fff;font-size:13px;margin:0;padding:0;}

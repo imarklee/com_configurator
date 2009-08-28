@@ -1,0 +1,9 @@
+#alf-image{position:absolute;top:0;left:0;display:none;z-index:50;background:#000;width:100%;height:500px;opacity:0.9;}
+#alf-image div{margin:240px 47%;width:115px;font:bold 15px arial;color:#fff;position:relative;}
+#alf-image div span{position:absolute;left:20px;top:-1px;}
+#saving{position:absolute;top:0;left:0;display:none;z-index:9998;background:#000;width:100%;height:500px;opacity:0.9;}
+#saving div{margin:40% 45%;width:215px;font:bold 15px arial;color:#fff;position:relative;}
+#saving div span{position:absolute;left:20px;top:-1px;}
+#processing{position:absolute;top:0;left:0;display:none;z-index:9998;background:#000;width:100%;height:500px;opacity:0.9;}
+#processing div{margin:300px auto 0 auto;width:150px;font:bold 15px arial;color:#fff;position:relative;}
+#processing div span{position:absolute;left:20px;top:-1px;}

@@ -151,7 +151,7 @@ class ConfiguratorController extends JController {
 			$database->setQuery( $query );
 			$pref_params = $database->loadObjectList();
 						
-			$pref_list = getTemplateParamList( dirname(__FILE__) . '/includes/preferences.xml', TRUE );
+			$pref_list = getTemplateParamList( dirname(__FILE__) . '/includes/layout/preferences.xml', TRUE );
 			foreach ($pref_list as $pref) {
 				$pref = explode( '=', $pref );
 				$defpref_params[$pref[0]] = $pref[1];
@@ -183,7 +183,7 @@ class ConfiguratorController extends JController {
 				$current_prefs = implode( "\n", $prefs_settings );
 			}
 			
-			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).'/includes/preferences.xml');
+			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).'/includes/layout/preferences.xml');
 	HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
 	}
 

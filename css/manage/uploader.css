@@ -1,0 +1,14 @@
+#uploader{overflow:hidden;}
+#uploader .upload-tool,#uploader .upload-info{width:48%;float:left;}
+#uploader .upload-info{float:right;background:#eee;padding:0;border:1px solid #ccc;}
+#uploader .upload-info h4{background:#ddd;padding:5px 10px;font:bold 17px arial;border-bottom: 1px solid #ccc;}
+#uploader .upload-info p{margin:0 15px 15px 15px;}
+#uploader h3{font:bold 25px arial;}
+#uploader legend{font:bold 17px arial;color:#999;margin:0;padding:0;}
+#install-type label{cursor:pointer;position:relative;padding:4px 7px;border:1px solid #ccc;background:#eee;color:#999;}
+#install-type label:hover{color:#333;border:1px solid #666;}
+#install-type input{position:absolute;left:-7998px;}
+#install-type .label-selected{border:1px solid #507B21;background:#99CC66;color:#507B21;}
+#uploader legend strong{color:#555;}
+#uploader fieldset{margin:0 0 1em;padding:1em 0 1.8em;border:0;border-bottom:1px dashed #ccc;}
+#uploader fieldset#upload-install{border:0;}

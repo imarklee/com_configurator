@@ -2045,7 +2045,77 @@ jQuery.noConflict();
 		        width: arrPageSizes[0],
 				height: arrPageSizes[1]
 			});
-			setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+			if($.cookie('change_themelet')){
+				$.ajax({
+					url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+					method: 'post',
+					success: function(ts, data){
+						return true;
+					}
+				});
+				$.ajax({
+					url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+					method: 'post',
+					dataType: 'json',
+					success: function(data, ts){
+						if(data.exists == 'true'){
+							$('#processing').css('display', 'none');
+							$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
+					   			bgiframe: true,
+					   			autoOpen: true,
+					   			minHeight: 20,
+					   			width: 500,
+					   			stack: false,
+					   			modal: true, 
+					   			title: 'Activate',
+					   			overlay: {
+					   				'background-color': '#000', 
+					   				opacity: 0.8 
+					   			},
+					   			close: function(){
+									$(this).dialog('destroy');
+									$('#processing').css({
+										'display': 'block',
+										'z-index': '9998',
+										position: 'absolute',
+								        top: 0,
+								        left: 0,
+								        width: arrPageSizes[0],
+										height: arrPageSizes[1]
+									});
+									setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+					   			},
+								buttons: { 
+									'Themelet Defaults': function(){
+										$(this).dialog('close');
+						   			},
+						   			'Previous Settings': function(){
+						   				$.ajax({
+											url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+											method: 'post',
+											success: function(data){
+												return true;
+											}
+										});
+						   				$(this).dialog('close');
+						   			}
+						   		}
+						   	});
+						}else{
+							$('#processing').css({
+								'display': 'block',
+								'z-index': '9998',
+								position: 'absolute',
+						        top: 0,
+						        left: 0,
+						        width: arrPageSizes[0],
+								height: arrPageSizes[1]
+							});
+							setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+						}
+					}
+				});
+			}
 			return false;
 		});
 		
@@ -2716,7 +2786,77 @@ jQuery.noConflict();
 				        width: arrPageSizes[0],
 						height: arrPageSizes[1]
 					});
-					setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+					if($.cookie('change_themelet')){
+						$.ajax({
+							url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+							method: 'post',
+							success: function(ts, data){
+								return true;
+							}
+						});
+						$.ajax({
+							url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+							method: 'post',
+							dataType: 'json',
+							success: function(data, ts){
+								if(data.exists == 'true'){
+									$('#processing').css('display', 'none');
+									$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
+							   			bgiframe: true,
+							   			autoOpen: true,
+							   			minHeight: 20,
+							   			width: 500,
+							   			stack: false,
+							   			modal: true, 
+							   			title: 'Activate',
+							   			overlay: {
+							   				'background-color': '#000', 
+							   				opacity: 0.8 
+							   			},
+							   			close: function(){
+											$(this).dialog('destroy');
+											$('#processing').css({
+												'display': 'block',
+												'z-index': '9998',
+												position: 'absolute',
+										        top: 0,
+										        left: 0,
+										        width: arrPageSizes[0],
+												height: arrPageSizes[1]
+											});
+											setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+							   			},
+										buttons: { 
+											'Themelet Defaults': function(){
+												$(this).dialog('close');
+								   			},
+								   			'Previous Settings': function(){
+								   				$.ajax({
+													url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+													method: 'post',
+													success: function(data){
+														return true;
+													}
+												});
+								   				$(this).dialog('close');
+								   			}
+								   		}
+								   	});
+								}else{
+									$('#processing').css({
+										'display': 'block',
+										'z-index': '9998',
+										position: 'absolute',
+								        top: 0,
+								        left: 0,
+								        width: arrPageSizes[0],
+										height: arrPageSizes[1]
+									});
+									setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+								}
+							}
+						});
+					}
 					e.preventDefault();
 					return false;
 				}

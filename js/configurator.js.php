@@ -8,7 +8,6 @@ include('cookie.js');
 include('preload.js');
 include('browser.js');
 include('corners.js');
-include('functions.js.php');
 if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 // login
 include('showpassword.js');
@@ -21,5 +20,6 @@ include('autoresize.js');
 include('qtip.js');
 include('getparams.js');
 }
+include('functions.js.php');
 ob_end_flush();
 ?>

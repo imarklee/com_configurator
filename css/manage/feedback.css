@@ -1,23 +1,27 @@
 #report-bug{padding:1.2em;overflow:hidden;font:normal 12px arial;}
 #report-bug fieldset{margin:0;padding:10px 0 0 0;border:0;border-top:1px solid #ccc;width:100%;}
 #report-bug input{float:left;}
-#report-bug #feedbackform ul,#report-bug #feedbackform ul ul,#report-bug #feedbackform ul li,#report-bug #feedbackform ul li li{margin:0;padding:0;list-style:none;}
-#report-bug #feedbackform ul li{width:100%;overflow:hidden;padding-bottom:15px;display:block;clear:both;position:relative;padding:5px 0;}
-#report-bug #feedbackform ul li label{float:left;font-weight:bold;display:block;width:130px;}
-#report-bug #feedbackform ul li ul.inline{float:left;margin:0;padding:0;}
-#report-bug #feedbackform ul.inline li{width:auto;display:inline;clear:none;float:left;overflow:hidden;border:0;padding-right:10px;}
-#report-bug #feedbackform ul.inline li label{width:100px;font-weight:normal;}
-#report-bug #feedbackform ul.inline li span{padding:0 0 0 5px;line-height:20px;}
-#report-bug #feedbackform ul li input,
-#report-bug #feedbackform ul li textarea{background:#EFEFEF;border-left:1px solid #ddd;border-top:1px solid #ddd;border-right:1px solid #ccc;border-bottom:1px solid #ccc;}
-#report-bug #feedbackform ul li input.focus,
-#report-bug #feedbackform ul li textarea.focus{background:#FFFFDD;}
-#report-bug #feedbackform ul li.fb-subject input{width:400px;padding:5px;}
-#report-bug #feedbackform ul li.fb-message textarea{width:400px;padding:5px;}
-#report-bug #feedbackform ul li.fb-buttons{padding:5px 0 15px 130px;}
-#report-bug #feedbackform ul li.fb-buttons input#ff-submit{width:250px;height:40px;overflow:hidden;border:0;background:none;padding:40px 0 0 0;margin:0;background:transparent url(../images/btn-send-feedback.png) no-repeat;cursor:pointer;}
-#report-bug #feedbackform ul li.fb-buttons input#ff-submit:hover{background-position:bottom left;}
-#report-bug #feedbackform ul li.fb-buttons a#ff-reset{font:bold 20px/35px arial;color:#648A3F;text-decoration:underline;margin-left:-10px;}
-#report-bug #feedbackform ul li.fb-buttons a#ff-reset:hover{color:#648A3F;text-decoration:none;}
-#fb-name,#fb-email{padding:4px;width:250px;}
+#report-bug ul,
+#report-bug ul ul,
+#report-bug ul li,
+#report-bug ul li li{margin:0;padding:0;list-style:none;}
+#report-bug ul li{width:100%;overflow:hidden;padding-bottom:15px;display:block;clear:both;position:relative;padding:5px 0;}
+#report-bug ul li label{float:left;font-weight:bold;display:block;width:130px;}
+#report-bug ul li ul.inline{float:left;margin:0;padding:0;}
+#report-bug ul.inline li{width:auto;display:inline;clear:none;float:left;overflow:hidden;border:0;padding-right:10px;}
+#report-bug ul.inline li label{width:100px;font-weight:normal;}
+#report-bug ul.inline li span{padding:0 0 0 5px;line-height:20px;}
+#report-bug ul li input,
+#report-bug ul li textarea{background:#EFEFEF;border-left:1px solid #ddd;border-top:1px solid #ddd;border-right:1px solid #ccc;border-bottom:1px solid #ccc;}
+#report-bug ul li input.focus,
+#report-bug ul li textarea.focus{background:#FFFFDD;}
+#report-bug ul li.fb-subject input{width:400px;padding:5px;}
+#report-bug ul li.fb-message textarea{width:400px;padding:5px;}
+#report-bug ul li.fb-buttons{padding:5px 0 15px 130px;}
+#report-bug ul #ff-submit{width:250px;height:40px;overflow:hidden;border:0;background:none;padding:40px 0 0 0;margin:0;background:transparent url(../../images/btn-send-feedback.png) no-repeat;cursor:pointer;}
+#report-bug ul #ff-submit:hover{background-position:bottom left;}
+#report-bug ul #ff-reset{font:bold 20px/35px arial;color:#648A3F;text-decoration:underline;margin-left:-10px;}
+#report-bug ul #ff-reset:hover{color:#648A3F;text-decoration:none;}
+#report-bug #fb-name,
+#report-bug #fb-email{padding:4px;width:250px;}
 #report-bug p.teaser{font:normal 15px/20px arial;}

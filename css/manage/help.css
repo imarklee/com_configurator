@@ -1,6 +1,6 @@
 #help.ui-tabs-panel{overflow:hidden;padding:30px 20px 20px;}
-#tabs #help.off{background:#fff url(../images/maskot-sitting.png) no-repeat 5% 70%;}
-#tabs #help.on{background:#fff url(../images/maskot-sitting.png) no-repeat 5% 70%;}
+#tabs #help.off{background:#fff url(../../images/maskot-sitting.png) no-repeat 5% 70%;}
+#tabs #help.on{background:#fff url(../../images/maskot-sitting.png) no-repeat 5% 70%;}
 #help div{width:30%;float:right;}
 #tabs a:link,#tabs a:visited{color:#546F29;text-decoration:underline;}
 #help .help-block1{margin-left:40px;width:30%;}

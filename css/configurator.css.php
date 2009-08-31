@@ -6,7 +6,7 @@ header('content-type: text/css; charset: UTF-8');
 	include('global/reset.css');
 	include('global/960.css');
 	include('global/ui.css');
-	include('global/text.css');
+	//include('global/text.css');
 	include('global/overlay.css');
 	include('global/sprite.css');
 

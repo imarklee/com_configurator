@@ -20,7 +20,9 @@ jQuery.noConflict();
 		    // Select field contents
 		    this.select();
 		});
-				
+		
+	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){ ?>
+
 		/* Version checker --------------------
 	    ------------------------------------ */
 	   	function getUpdates(elm, time, checknow, callback){
@@ -80,15 +82,20 @@ jQuery.noConflict();
 			}else{
 				return false;
 			}
+			
 		
 		/*** add update checker set to a future date ( system time + defined interval). on refresh reset 
 	   	the timer to countdown from the current difference from current time to the future date so that 
 	   	set interval is kept. ***/
 	   	};
 	   	
+
+	   	
 	   	var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', '.themelet-summary');
 	   	getUpdates(updEl);
-		
+	   	
+	   	<?php } ?>
+	   	
 		jQuery.fn.delay = function(time,func){
     		return this.each(function(){
 	    	    setTimeout(func,time);
@@ -137,6 +144,8 @@ jQuery.noConflict();
 //		);
 			
 		
+		<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){ ?>
+		
 		if($.jqURL.get('task') == 'dashboard'){
 			$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 		}else if($.jqURL.get('task') == 'manage' || $.jqURL.get('task') == 'manage#'){
@@ -146,6 +155,8 @@ jQuery.noConflict();
 				$("#submenu").append('<li class="feedback"><a href="#" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 			}
 		}
+		
+		<?php } ?>
 		
 
 		$("#help").hover(function () {
@@ -396,7 +407,11 @@ jQuery.noConflict();
 	});
 		
 
+	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){ ?>
+
 		$('.text_area').simpleautogrow();
+
+	<?php } ?>
 					
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
@@ -526,6 +541,9 @@ jQuery.noConflict();
 			return false;
 		});
 		
+		<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){ ?>
+
+		
 		$('.updates-refresh-link').click(function(){
 			$('#updates-summary dl').fadeTo('fast', 0.1, function(){
 				$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
@@ -537,6 +555,8 @@ jQuery.noConflict();
 			});	
 			return false;
 		});
+		
+		<?php } ?>
 				
 		$("#toggle-shelf").click(function(){
 			toggleShelf();

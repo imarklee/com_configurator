@@ -1,17 +1,17 @@
-#wrap .ui-widget .ui-widget{padding:0;margin:0;background:none;border:0;}
+#cfg .ui-widget .ui-widget{padding:0;margin:0;background:none;border:0;}
 #lost-password-form{padding:2em;}
 #sendpass label{font:normal 15px/20px arial;}
 #lost-password{-moz-border-radius:7px;-webkit-border-radius:7px;margin:5px 0 10px 0;}
 .btn-getpass{-moz-border-radius:7px;-webkit-border-radius:7px;padding:5px 10px;}
 
-#wrap.noshelf.nobranding #tabs{margin-top:1.5em;}
-#wrap.shelftop #shelf{padding-top:0;}
-#wrap.shelftop.nobranding #shelf{padding-top:1.5em;}
-#wrap.shelfbtm #shelf{margin-top:1.5em;}
-#wrap.nofooter{margin-bottom:1.5em;}
-#wrap.footer{}
-#wrap.nobranding{}
-#wrap.branding{}
+#cfg.noshelf.nobranding #tabs{margin-top:1.5em;}
+#cfg.shelftop #shelf{padding-top:0;}
+#cfg.shelftop.nobranding #shelf{padding-top:1.5em;}
+#cfg.shelfbtm #shelf{margin-top:1.5em;}
+#cfg.nofooter{margin-bottom:1.5em;}
+#cfg.footer{}
+#cfg.nobranding{}
+#cfg.branding{}
 
 #element-box .t,#element-box .b{display:none;}
 #element-box .m{background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;padding:15px 0;border:0;}
@@ -21,21 +21,22 @@
 .info-panel h3{font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:0.4px;color:#303030;font-size:22px;margin-bottom:15px;padding:0;}
 .info-panel h4{font:bold 15px arial;margin:0 0 7px 0;padding:0;color:#333;}
 .info-panel ul.morph-resources{margin-top:-10px;}
-.info-panel .teaser{font:normal 15px/20px arial;margin:0 0 10px 0;padding-bottom:25px;color:#666;background:#fff url(../images/helptext-divider.png) repeat-x 50% 100%;}
+.info-panel .teaser{font:normal 15px/20px arial;margin:0 0 10px 0;padding-bottom:25px;color:#666;background:#fff url(../../images/helptext-divider.png) repeat-x 50% 100%;}
 button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
-.icon-48-configurator{background:transparent url(../images/icon-48-configurator.png) repeat scroll 5px 8px;}
+.icon-48-configurator{background:transparent url(../../images/icon-48-configurator.png) repeat scroll 5px 8px;}
 #logologo_image{width:175px;}
 #top{height:90px;overflow:hidden;}
 #branding{width:200px;float:left;height:90px;}
 #branding img{margin-top:15px;}
 #minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}
-.logo-preview{display:block;width:16px;height:16px;background:transparent url(../images/eye.png) no-repeat 0 0;position:absolute;top:9px;right:100px;}
+.logo-preview{display:block;width:16px;height:16px;background:transparent url(../../images/eye.png) no-repeat 0 0;position:absolute;top:9px;right:100px;}
 .logo-preview span{display:none;}
 .logo-preview:hover span{display:block;}
 img.logo-preview-image{margin:-10px;}
-.docs-wrap .btn-link,#wrap a.switch-view,#wrap .thumb-view ul.buttons li a,#wrap a.btn-link{background:#fff url(../images/btn-link-bg.jpg) repeat-x;font:bold 11px/25px arial;border:1px solid #ccc;text-decoration:none;color:#444;padding:4px 8px;}
-#wrap #shelf a.btn-link{padding:3px 7px;}
-.docs-wrap a:hover.btn-link,#wrap .thumb-view ul.buttons li a:hover,#wrap a.btn-link:hover{background:#fff url(../images/btn-link-bg-over.jpg) repeat-x;color:#666;}
+.docs-wrap .btn-link,#cfg a.switch-view,
+#cfg a.btn-link{background:#fff url(../../images/btn-link-bg.jpg) repeat-x;font:bold 11px/25px arial;border:1px solid #ccc;text-decoration:none;color:#444;padding:4px 8px;}
+#cfg #shelf a.btn-link{padding:3px 7px;}
+.docs-wrap a:hover.btn-link,#cfg .thumb-view ul.buttons li a:hover,#cfg a.btn-link:hover{background:#fff url(../../images/btn-link-bg-over.jpg) repeat-x;color:#666;}
 ul.morph-resources,ul.morph-resources li{margin:0;padding:0;}
 ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 a.disabled{opacity:0.5;cursor:default;}

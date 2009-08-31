@@ -46,7 +46,7 @@ if(is_dir($themelet_dir)) {
 			<li class="themelet-item <?php echo $themelet_class; ?>">
 				<div class="assets-inner">
 				<h3><?php echo $themelet_uc; ?></h3>
-				<div class="chrome-wrap"><img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail"></div>
+				<img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail">
 				<ul class="themelet-summary <?php echo $themelet_arr['foldername']; ?>">
 					<li class="tl-installed"><strong>Installed version: </strong><?php echo $themelet_arr['version']; ?></li>
 					<li class="tl-current"><strong>Current version: </strong><?php echo $us_version; ?></li>
@@ -59,9 +59,8 @@ if(is_dir($themelet_dir)) {
 				</ul>
 				</div>
 			</li>	
-			<?php 
-					}
-				}else{ ?>
+			<?php }	
+			} else { ?>
 				
 				<div class="no-assets">
 					There are currently no themelets in your assets folder. <a href="#" class="upload-themelet">Upload a themelet?</a>
@@ -69,6 +68,5 @@ if(is_dir($themelet_dir)) {
 					
 				<?php }	?>
 		</ul>
-		<!--<p class="assets-location">Your themelets are located in: <strong>"<?php echo $themelet_dir; ?>"</strong>.</p>-->
 	</div>
 </div>

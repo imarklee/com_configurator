@@ -5,7 +5,7 @@
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer{border-right:0;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a{border-right:0;padding-right:14px;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer.ui-tabs-selected.ui-state-active{margin-right:-1px;padding-right:4px;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a {background: url(../images/sprite-icons.png) no-repeat 7px 50%;}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a {background: url(../../images/sprite-icons.png) no-repeat 7px 50%;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-debugging a { background-position: 8px 4px; } 
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-colors a { background-position: 8px -41px; } 
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-backgrounds a { background-position: 8px -88px; } 
@@ -17,34 +17,33 @@
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-progressive a { background-position: 8px -632px; } 
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-themelets a { background-position: 8px -769px; } 
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-topnav a { background-position: 8px -860px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-iphone a{background:transparent url(../images/iphone-icon.png) no-repeat 8px 52%;}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-iphone a{background:transparent url(../../images/iphone-icon.png) no-repeat 8px 52%;}
 #tabs .desc-overlay{position:absolute;width:100%;height:100%;background:#fff;z-index:99;filter:alpha(opacity=70);opacity:0.7;-moz-opacity:0.7;}
 #tabs .tab-desc{margin-bottom:1.5em;border:5px solid #EF9700;position:absolute;width:700px;height:auto;z-index:99;top:60px;left:100px;}
 #tabs .desc-inner{margin:0;padding:1em;color:#AF3E00;font:normal 15px/20px arial;background:#FFDC9F;border:1px solid #AF3E00;position:relative;}
 #tabs .tab-desc p a{color:#fff;font:normal 12px/20px arial;background:#EF9700;text-decoration:underline;position:absolute;bottom:-1px;right:-1px;padding:2px 0 0 7px;border-top:1px solid #AF3E00;border-left:1px solid #AF3E00;}
 #tabs .ui-widget-content{float:left;position:relative;width:920px;}
 #tabs.ui-tabs .ui-tabs-nav li{font:normal 17px Arial;color:#fff;margin:0 1px 0 0;}
-#tabs.ui-tabs li strong{display:block;font:bold 18px Arial;color:#eee;}
 #tabs,#tabs .primary,#tabs .primary li,#tabs .primary li a,#tabs .primary .ui-tabs-panel{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}
 #tabs .primary li.last{margin:0;}
-#tabs .primary li a{padding:15px 23px;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #777;}
-#tabs .primary li a:hover{color:#000;background:#8F8F8F url(../images/tabs-off.jpg) repeat-x bottom;text-shadow:0 1px 0 #ccc;}
+#tabs .primary li a{padding:15px 23px;background:#8F8F8F url(../../images/tabs-on.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #777;}
+#tabs .primary li a:hover{color:#000;background:#8F8F8F url(../../images/tabs-off.jpg) repeat-x bottom;text-shadow:0 1px 0 #ccc;}
 #tabs.ui-tabs .subtabs .ui-tabs-nav li.ui-state-hover a{border-bottom:0 solid #fff!important;}
-#tabs .primary li.ui-tabs-selected.ui-state-active a{font-weight: normal;text-shadow:0 0 0 #fff;border-bottom:1px solid #fff;background:#fff url(../images/cog.png) no-repeat 20px 50%;color:#333;padding-left:47px;}
+#tabs .primary li.ui-tabs-selected.ui-state-active a{font-weight: normal;text-shadow:0 0 0 #fff;border-bottom:1px solid #fff;background:#fff url(../../images/cog.png) no-repeat 20px 50%;color:#333;padding-left:47px;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a:hover{text-decoration:none;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a strong{color:#333;}
-#tabs .primary li.themelet-icon.ui-state-active a{background:#fff url(../images/icon-themelet.png) no-repeat 20px 50%;}
-#tabs .primary li.blocks-icon.ui-state-active a{background:#fff url(../images/blocks1.png) no-repeat 20px 50%;}
-#tabs .primary li.assets-icon.ui-state-active a{background:#fff url(../images/assets.png) no-repeat 20px 50%;}
-#tabs .primary li.tools-icon.ui-state-active a{background:#fff url(../images/tools.png) no-repeat 20px 50%;}
-#tabs .primary li.help-icon.ui-state-active a{background:#fff url(../images/lifebuoy.png) no-repeat 20px 50%;}
+#tabs .primary li.themelet-icon.ui-state-active a{background:#fff url(../../images/icon-themelet.png) no-repeat 20px 50%;}
+#tabs .primary li.blocks-icon.ui-state-active a{background:#fff url(../../images/blocks1.png) no-repeat 20px 50%;}
+#tabs .primary li.assets-icon.ui-state-active a{background:#fff url(../../images/assets.png) no-repeat 20px 50%;}
+#tabs .primary li.tools-icon.ui-state-active a{background:#fff url(../../images/tools.png) no-repeat 20px 50%;}
+#tabs .primary li.help-icon.ui-state-active a{background:#fff url(../../images/lifebuoy.png) no-repeat 20px 50%;}
 #tabs .ui-tabs-panel{background:#fff none repeat scroll 0 0;float:left;padding:20px;width:920px;}
 /* sub tabs styling */
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav,#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li,#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav{background:#fff url(../images/subtabs-bg.jpg) repeat-x bottom;border:1px solid #ccc;color:#222;margin:0 0 2em 0;}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav{background:#fff url(../../images/subtabs-bg.jpg) repeat-x bottom;border:1px solid #ccc;color:#222;margin:0 0 2em 0;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li{border-right:1px solid #ccc;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a{padding:5px 10px;color:#444;font-size:13px;text-decoration:none;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a:hover{text-decoration:underline;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active{background:#222 url(../images/active-tab-dark.jpg) repeat-x scroll 0 0;border-color:#222 #222 #000;border-style:solid;border-width:1px;height:27px;margin:-1px 0 -1px -1px;position:relative;}
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active{background:#222 url(../../images/active-tab-dark.jpg) repeat-x scroll 0 0;border-color:#222 #222 #000;border-style:solid;border-width:1px;height:27px;margin:-1px 0 -1px -1px;position:relative;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a{color:#fff;}
 #tabs .subtabs .ui-tabs-panel{background:#fff;padding:0;width:100%;float:left;}

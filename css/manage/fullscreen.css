@@ -1,5 +1,5 @@
 #minwidth-body .m{padding:0!important;}
-#minwidth-body .m #templateform{background:#111111 url(../images/install-bg.jpg) no-repeat 50% 0;}
+#minwidth-body .m #templateform{background:#111111 url(../../images/install-bg.jpg) no-repeat 50% 0;}
 #minwidth-body.full-mode{position:relative;background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;margin:0;}
 #minwidth-body.full-mode #toolbar {background:#000;height:35px;left:0;position:absolute;top:0;width:100%;z-index:999;}
 #minwidth-body.full-mode .m #templateform{background:none;}
@@ -17,9 +17,9 @@
 #minwidth-body.full-mode #system-message{position:relative;z-index:999900;top:-200px;margin:0!important;padding:0!important;display:block;border:0!important;background:#539312;}
 #minwidth-body.full-mode #system-message dd.message{margin:0!important;padding:0!important;display:block!important;border:0!important;background:none;}
 #minwidth-body.full-mode #system-message dd.message ul{color:#fff;margin:14px 0 0 0;padding:0;font:bold 20px arial;border:0!important;background:none;text-align:center;}
-#minwidth-body.full-mode #system-message dd.message li{padding-left:39px;padding:1px 0 1px 27px;display:inline;background:transparent url(../images/fullscreen-saved.png) no-repeat scroll 0% 90%;}
-#minwidth-body #system-message dd.message{background:#648A3F url(../images/message-bg.jpg) repeat-x;margin:0;padding:0;border:1px solid #6C9435;}
-#minwidth-body #system-message dd.message ul{background:transparent url(../images/success.png) no-repeat 10px;color:#fff;margin:0;padding:7px 0 7px 0;font:bold 20px arial;border:1px solid #C0DA4E;}
+#minwidth-body.full-mode #system-message dd.message li{padding-left:39px;padding:1px 0 1px 27px;display:inline;background:transparent url(../../images/fullscreen-saved.png) no-repeat scroll 0% 90%;}
+#minwidth-body #system-message dd.message{background:#648A3F url(../../images/message-bg.jpg) repeat-x;margin:0;padding:0;border:1px solid #6C9435;}
+#minwidth-body #system-message dd.message ul{background:transparent url(../../images/success.png) no-repeat 10px;color:#fff;margin:0;padding:7px 0 7px 0;font:bold 20px arial;border:1px solid #C0DA4E;}
 #minwidth-body #system-message dd.message li{margin-left:15px;}
 #minwidth-body.full-mode #submenu-box div.m ul#submenu li.preferences a{border-right:1px solid #81B34F;}
 #minwidth-body.full-mode #submenu-box div.m ul#submenu{margin-right:80px;}

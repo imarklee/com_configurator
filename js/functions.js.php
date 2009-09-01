@@ -16,85 +16,22 @@ return $pageURL;
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
+	
+		<?php
+		include 'functions/common.js';
+		?>
+	
 		$("input[type=text], textarea").focus(function(){
 		    // Select field contents
 		    this.select();
 		});
 		
-	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){ ?>
-
-		/* Version checker --------------------
-	    ------------------------------------ */
-	   	function getUpdates(elm, time, checknow, callback){
-	   	
-	   		var cookiedate = new Date();
-			var minutes = cookiedate.getMinutes();
-			if(typeof time == 'undefined' || time == null){ minutes += 60; }else{ minutes += time; }
-			cookiedate.setMinutes(minutes);	
-	   		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
-	   		
-	   		if(!$.cookie('noupdates') || checknow){
-	   			
-	   			if(!$.cookie('checkedforupdates') || checknow){
-	   				$.ajax({
-	   					method: 'get',
-	   					url: updateURL,
-	   					cache: false,
-	   					dataType: 'json',
-	   					timeout: (2*1000),
-	   					success: function(obj, status){
-	   						check(obj, status);
-		   				}
-		   			});
-	   				function check(json){
-		   				for(i=0;i<4;i++){
-					   		if($(elm[i]).attr('class') !== undefined){
-						   		var classes = $(elm[i]).attr('class').split(' ');
-						   		var type = classes[0];
-						   		var name = classes[1];
-						   		if(elm[i] == '.themelet-summary'){ isOtherThemelet = 'true'; }
-						   		if(name !== 'no-themelets'){
-						   			var cookiename = json.updates[name].short_name;
-						   			var version = json.updates[name].version;
-						   			var updated = json.updates[name].updated;
-						   			$.cookie('us_'+cookiename, version+'##'+updated, { expires: cookiedate });
-						   			var current = $('dt.'+cookiename).next().children();
-						   			var latest = $('dt.'+cookiename).next().next();
-						   			latest.html('<span title="The latest available version is '+version+'. Click on the help link above for more information."">'+version+'</span>');
-						   			
-						   			if(current.html() < version){
-						   				$('dt.'+cookiename).next().next().next().html('<span class="update-no" title="There is an update available">Update Available</span>');
-						   			}else{
-						   				$('dt.'+cookiename).next().next().next().html('<span class="update-yes" title="You are up to date">Up to date</span>');
-						   			}
-						   			$.cookie('checkedforupdates', true, { expires: cookiedate });
-						   			
-						   			if(typeof callback == 'function'){
-						   				return callback();
-						   			}
-						   		}
-					   		}
-				   		}
-				   	}
-			   	}else{
-			   		return false;
-			   	}
-			}else{
-				return false;
+		// 
+		<?php 
+			if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){
+			include 'functions/user.js';
 			}
-			
-		
-		/*** add update checker set to a future date ( system time + defined interval). on refresh reset 
-	   	the timer to countdown from the current difference from current time to the future date so that 
-	   	set interval is kept. ***/
-	   	};
-	   	
-
-	   	
-	   	var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', '.themelet-summary');
-	   	getUpdates(updEl);
-	   	
-	   	<?php } ?>
+		?>
 	   	
 		jQuery.fn.delay = function(time,func){
     		return this.each(function(){
@@ -123,42 +60,7 @@ jQuery.noConflict();
 		<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
 		<?php } ?>
-
-
-//		$('#help').hover(function() {
-//		  $(this).addClass('hover');
-//		}, function() {
-//		  $(this).removeClass('hover');	
-//		});
-
-		// var items = ['list item 1', 'list item 2', 'list item 3'];
-		// var UL = $('#submenu-box <ul/>').append( '<li>' + items.join('</li><li>') + '</li>' );
-
-//		$('span.tooltip').click(
-//			function(){
-//				$('#qtip-blanket').css("display", "block");
-//			},
-//			function(){
-//				$('#qtip-blanket').css("display", "none");
-//			}
-//		);
-			
 		
-		<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){ ?>
-		
-		if($.jqURL.get('task') == 'dashboard'){
-			$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
-		}else if($.jqURL.get('task') == 'manage' || $.jqURL.get('task') == 'manage#'){
-			if($.cookie('am_logged_in')){
-				$("#toolbar .toolbar tr").append('<td id="fullscreen"><a href="#">Fullscreen</a></td>','<td id="preferences"><a href="#">Preferences</a></td>','<td id="report-bug-email-link"><a href="#">Feedback</a></td>	');
-			}else{
-				$("#submenu").append('<li class="feedback"><a href="#" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
-			}
-		}
-		
-		<?php } ?>
-		
-
 		$("#help").hover(function () {
 	      $(this).switchClass("on", "off", 15000);
 			}, function() {
@@ -512,14 +414,6 @@ jQuery.noConflict();
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")
-//		.hover(
-//			function(){ 
-//				$(this).addClass("ui-state-hover"); 
-//			},
-//			function(){ 
-//				$(this).removeClass("ui-state-hover"); 
-//			}
-//		)
 		.mousedown(function(){
 				$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
 				if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }
@@ -541,22 +435,6 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){ ?>
-
-		
-		$('.updates-refresh-link').click(function(){
-			$('#updates-summary dl').fadeTo('fast', 0.1, function(){
-				$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
-			});
-			getUpdates(updEl, null, true, function(){
-				$('#updates-summary .updates-msg').remove();
-				$('#updates-summary dl').fadeTo('fast', 1);
-				
-			});	
-			return false;
-		});
-		
-		<?php } ?>
 				
 		$("#toggle-shelf").click(function(){
 			toggleShelf();
@@ -672,17 +550,7 @@ jQuery.noConflict();
 			            return false; 
 			        } 
 			    }
-			    $('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
-				hideScroll();
-				$('#processing').css({
-					'display': 'block',
-					'z-index': '9998',
-					position: 'absolute',
-			        top: 0,
-			        left: 0,
-			        width: arrPageSizes[0],
-					height: arrPageSizes[1]
-				});
+			    overlayWithMessage('Processing');
 			    return true; 
 			}
 			
@@ -703,7 +571,7 @@ jQuery.noConflict();
 					'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
 				},
 				success: function(data, status, error){
-					$('#processing').css('display', 'none');
+					closeOverlayWithMessage()
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
@@ -770,27 +638,7 @@ jQuery.noConflict();
 		
 		/* Tooltips ----------------------
 		------------------------------- */
-		var arrPageSizes = ___getPageSize();
-		$(window).resize(function() {
-				var arrPageSizes = ___getPageSize();
-				$('#qtip-blanket, #alfimage').css({
-					width: arrPageSizes[0],
-					height: arrPageSizes[1]
-				});
-		});
-		$('<div id="qtip-blanket">').css({
-			position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        width: arrPageSizes[0],
-			height: arrPageSizes[1],
-	        opacity: 0.7,
-	       	backgroundColor: 'black',
-	        zIndex: 5000
-		})
-	    .appendTo($('body'))
-	    .hide();
-	    // info tooltip
+		// info tooltip
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 
 	   		var qtTitle = thetitle[1];
@@ -977,8 +825,7 @@ jQuery.noConflict();
 	   		var a = $(this);
 	   		
 	   		function activateThemelet(){
-		   		$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
-				hideScroll();
+		   		overlayWithMessage('Processing...');
 		   		
 		   		$('<div class="dialog-msg">Would you like to configure this themelet once activated?</div>').dialog({
 		   			bgiframe: true,
@@ -998,13 +845,7 @@ jQuery.noConflict();
 						subTabs.tabs('select', 0);
 						window.location.reload(true);
 						$(this).dialog('destroy');
-						$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
-						hideScroll();
-						$('#processing').css({
-							'display': 'block',
-							width: arrPageSizes[0],
-							height: arrPageSizes[1]
-						});
+						overlayWithMessage('Processing...');
 		   			},
 					buttons: { 
 						'Yes': function(){
@@ -1014,13 +855,7 @@ jQuery.noConflict();
 			   			'No thanks': function(){
 			   				window.location.reload(true);
 			   				$(this).dialog('destroy');
-							$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
-							hideScroll();
-							$('#processing').css({
-								'display': 'block',
-								width: arrPageSizes[0],
-								height: arrPageSizes[1]
-							});
+							overlayWithMessage('Processing...');
 			   			}
 			   		}
 			   	});
@@ -2055,17 +1890,7 @@ jQuery.noConflict();
 		}
 		
 		$('td#toolbar-apply a').attr('onclick', '').click(function(){
-			$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
-			hideScroll();
-			$('#processing').css({
-				'display': 'block',
-				'z-index': '9998',
-				position: 'absolute',
-		        top: 0,
-		        left: 0,
-		        width: arrPageSizes[0],
-				height: arrPageSizes[1]
-			});
+			overlayWithMessage('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({
 					url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
@@ -2080,7 +1905,7 @@ jQuery.noConflict();
 					dataType: 'json',
 					success: function(data, ts){
 						if(data.exists == 'true'){
-							$('#processing').css('display', 'none');
+							<strong>closeOverlayWithMessage()</strong>
 							$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
 					   			bgiframe: true,
 					   			autoOpen: true,
@@ -2095,15 +1920,6 @@ jQuery.noConflict();
 					   			},
 					   			close: function(){
 									$(this).dialog('destroy');
-									$('#processing').css({
-										'display': 'block',
-										'z-index': '9998',
-										position: 'absolute',
-								        top: 0,
-								        left: 0,
-								        width: arrPageSizes[0],
-										height: arrPageSizes[1]
-									});
 									setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
 					   			},
 								buttons: { 
@@ -2123,15 +1939,6 @@ jQuery.noConflict();
 						   		}
 						   	});
 						}else{
-							$('#processing').css({
-								'display': 'block',
-								'z-index': '9998',
-								position: 'absolute',
-						        top: 0,
-						        left: 0,
-						        width: arrPageSizes[0],
-								height: arrPageSizes[1]
-							});
 							setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
 						}
 					}
@@ -2154,17 +1961,7 @@ jQuery.noConflict();
 						'Save & continue': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
-							$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
-							hideScroll();
-							$('#processing').css({
-								'display': 'block',
-								'z-index': '9998',
-								position: 'absolute',
-						        top: 0,
-						        left: 0,
-						        width: arrPageSizes[0],
-								height: arrPageSizes[1]
-							});
+							overlayWithMessage('Saving Settings...');
 							$('#templateform').submit(function(){
 					   			$(this).ajaxSubmit({
 					   				type: 'POST',
@@ -2618,17 +2415,7 @@ jQuery.noConflict();
 			$('.btn-prefs').click(function(){
 				
 				$('#preferences-screen').dialog('option', 'title', 'Saving...');
-				$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
-				hideScroll();
-				$('#processing').css({
-					'display': 'block',
-					'z-index': '9998',
-					position: 'absolute',
-				    top: 0,
-				    left: 0,
-				    width: arrPageSizes[0],
-					height: arrPageSizes[1]
-				});
+				overlayWithMessage('Processing...');
 
 				$('#preferences-form').submit(function(){
 		   			$(this).ajaxSubmit({
@@ -2798,17 +2585,7 @@ jQuery.noConflict();
 				var os = $.os.name;
 				
 				function save(){
-					$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Saving Settings...</span></div></div>').appendTo('body');
-					hideScroll();
-					$('#processing').css({
-						'display': 'block',
-						'z-index': '9998',
-						position: 'absolute',
-				        top: 0,
-				        left: 0,
-				        width: arrPageSizes[0],
-						height: arrPageSizes[1]
-					});
+					overlayWithMessage('Saving Settings...');
 					if($.cookie('change_themelet')){
 						$.ajax({
 							url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
@@ -2823,7 +2600,7 @@ jQuery.noConflict();
 							dataType: 'json',
 							success: function(data, ts){
 								if(data.exists == 'true'){
-									$('#processing').css('display', 'none');
+									closeOverlayWithMessage()
 									$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
 							   			bgiframe: true,
 							   			autoOpen: true,
@@ -3089,17 +2866,7 @@ jQuery.noConflict();
 				            return false; 
 				        } 
 				    }
-				    $('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Processing...</span></div></div>').appendTo('body');
-					hideScroll();
-					$('#processing').css({
-						'display': 'block',
-						'z-index': '9998',
-						position: 'absolute',
-				        top: 0,
-				        left: 0,
-				        width: arrPageSizes[0],
-						height: arrPageSizes[1]
-					});
+				    overlayWithMessage('Processing...');				    
 				    return true; 
 				}
 				
@@ -3111,7 +2878,7 @@ jQuery.noConflict();
 						format: 'json'
 					},
 					success: function(data, status, error){
-						$('#processing').css('display', 'none');
+						closeOverlayWithMessage()
 						if(typeof(data.error) != 'undefined'){						
 							if(data.error != ''){
 								$('<div>'+data.error+'</div>').dialog({
@@ -3161,54 +2928,6 @@ jQuery.noConflict();
 				return false;
 			});
 			return false;
-		});
-		
-		/**
-		**** Third Party Function
-		* getPageSize() by quirksmode.com
-		* @return Array Return an array with page width, height and window width, height
-		*/
-		function ___getPageSize() {
-			var xScroll, yScroll;
-			if (window.innerHeight && window.scrollMaxY) {	
-				xScroll = window.innerWidth + window.scrollMaxX;
-				yScroll = window.innerHeight + window.scrollMaxY;
-			} else if (document.body.scrollHeight > document.body.offsetHeight){ // all but Explorer Mac
-				xScroll = document.body.scrollWidth;
-				yScroll = document.body.scrollHeight;
-			} else { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari
-				xScroll = document.body.offsetWidth;
-				yScroll = document.body.offsetHeight;
-			}
-			var windowWidth, windowHeight;
-			if (self.innerHeight) {	// all except Explorer
-				if(document.documentElement.clientWidth){
-					windowWidth = document.documentElement.clientWidth; 
-				} else {
-					windowWidth = self.innerWidth;
-				}
-				windowHeight = self.innerHeight;
-			} else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
-				windowWidth = document.documentElement.clientWidth;
-				windowHeight = document.documentElement.clientHeight;
-			} else if (document.body) { // other Explorers
-				windowWidth = document.body.clientWidth;
-				windowHeight = document.body.clientHeight;
-			}	
-			// for small pages with total height less then height of the viewport
-			if(yScroll < windowHeight){
-				pageHeight = windowHeight;
-			} else { 
-				pageHeight = yScroll;
-			}
-			// for small pages with total width less then width of the viewport
-			if(xScroll < windowWidth){	
-				pageWidth = xScroll;		
-			} else {
-				pageWidth = windowWidth;
-			}
-			arrayPageSize = new Array(pageWidth,pageHeight,windowWidth,windowHeight);
-			return arrayPageSize;
-		};		
+		});		
 	});
 })(jQuery);

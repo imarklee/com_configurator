@@ -1,9 +1,9 @@
 <?php 
-header('content-type: text/html; charset: UTF-8');
+header('content-type: text/javascript; charset: UTF-8');
 function pageURL() {
 	error_reporting(E_ALL ^ E_NOTICE);
 	$pageURL = 'http';
-	if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+	if ($_SERVER["HTTPS"] == "on") $pageURL .= "s";
 	$pageURL .= "://";
 	if ($_SERVER["SERVER_PORT"] != "80") {
 		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"];
@@ -16,30 +16,16 @@ return $pageURL;
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
-	
-		<?php
-		include 'functions/common.js';
-		?>
+		
+		$.preloadCssImages();
+		
+		<?php include 'functions/common.js'; ?>
 	
 		$("input[type=text], textarea").focus(function(){
-		    // Select field contents
 		    this.select();
 		});
 		
-		// 
-		<?php 
-			if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){
-			include 'functions/user.js';
-			}
-		?>
-	   	
-		jQuery.fn.delay = function(time,func){
-    		return this.each(function(){
-	    	    setTimeout(func,time);
-    		});
-		};
-	
-  		$.preloadCssImages();
+		<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) include 'functions/user.js'; ?>
 	   	
 		/* Generic ----------------------------
 	    ------------------------------------ */
@@ -96,12 +82,10 @@ jQuery.noConflict();
 		$("#backgroundsbg_image option:first").text("Use themelets default");
 		}
 
-		$("#footer").fadeTo("slow", 0.3); // This sets the opacity of the thumbs to fade down to 30% when the page loads
-		$("#footer").hover(function(){
-		$(this).fadeTo("slow", 1.0); // This should set the opacity to 100% on hover
-		},function(){
-		$(this).fadeTo("slow", 0.3); // This should set the opacity back to 30% on mouseout
-		});
+		$("#footer").fadeTo("slow", 0.3).hover(
+			function(){ $(this).fadeTo("slow", 1); },	// mousein
+			function(){ $(this).fadeTo("slow", 0.3); }  // mouseout
+		);
 
 		$(".upload-themelet").click(function(){
 		var maintabs = $("#tabs").tabs();
@@ -264,19 +248,6 @@ jQuery.noConflict();
 			return false; 
 		});
 		
-		function hideScroll(){
-			$(document).bind('scroll', function(){return false;});
-			$('html').css({'overflow-y': 'hidden', paddingRight: '15px'});
-			$('#qtip-blanket, #alf-image').css({ width: arrPageSizes[0]+15 });
-			return true;
-		}
-		
-		function showScroll(){
-			$(document).bind('scroll', function(){return false;});
-			$('html').css({'overflow-y': 'scroll', paddingRight: '0'});
-			return true;
-		}
-		
 		// disable active asset links
 		$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a')
 		.fadeTo('fast', 0.5)
@@ -294,14 +265,6 @@ jQuery.noConflict();
 		    $(this).parents("label.label-username,label.label-password").removeClass("label-focus");
 		});
 		
-//		$('#install-type input[type=radio]').click(function(){
-//			if ($(this).attr('checked')){
-//				$(this).parents("label").addClass("label-selected");
-//			} else {
-//				$(this).parents("label").removeClass("label-selected");
-//			}
-//		});
-
 	$('#install-type input[type="radio"]').focus( function(){
 		$('#install-type label.label-selected').removeClass('label-selected');
 		$(this).parent().addClass('label-selected');
@@ -309,11 +272,7 @@ jQuery.noConflict();
 	});
 		
 
-	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])){ ?>
-
-		$('.text_area').simpleautogrow();
-
-	<?php } ?>
+	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) { ?> $('.text_area').simpleautogrow(); <?php } ?>
 					
 	    /* Inputs and checkboxes --------------
 	    ------------------------------------ */
@@ -326,14 +285,7 @@ jQuery.noConflict();
  		});
 
  		
- 		/* Backup Message ---------------------
- 		------------------------------------ */
- 		$('input[name="themeletbackup"]').click(function(){
- 			alert('This will be available in the second beta phase. Please backup your folder manually');
- 			$(this).attr('checked', false);
- 		})
-	   
-	   	/* Tabs -------------------------------
+ 	   	/* Tabs -------------------------------
 	    ------------------------------------ */
     	$('#tabs').tabs({ 			cookie: {				name: 'main-tabs',				expires: 30,				path: '/',		 	}
 		});
@@ -353,64 +305,7 @@ jQuery.noConflict();
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#themelets").removeClass("ui-widget-content");			
 		
-		/* Colour Picker ----------------------
-	    ------------------------------------ */
-		function loadColourPicker(elid) {
-			
-			// keep applied colour
-			if($(elid).prev().val() != 'default'){
-    			$(elid).css({
-    				'background-color': '#'+$(elid).prev().val()
-    			});
-    		}
-			// load the colour picker
-    		var cp = $(elid).children().attr('id');
-			$(elid).ColorPicker({
-       			flat: true,
-       			livePreview: true,
-    			onSubmit: function(hsb, hex, rgb){
-					var cp = $(elid).children().attr('id');
-					$(elid).prev().val('#'+hex);
-					$('#'+cp).fadeOut(500);
-					$(elid).css('background-color', '#' + hex);
-				},
-				onHide: function(){
-					var cp = $(elid).children().attr('id');
-					$('#'+cp).fadeOut(500);
-				}
-    		})
-    		.bind('keydown', function(){
-				$(this).ColorPickerSetColor(this.value);
-			});
-
-    		$(document).bind("keydown.colorpicker", function(e){
-    			keycode = (e.which || e.keyCode);
-    			if(keycode == 27){
-    				$(elid).children().fadeOut(500);
-    				return false;
-    			}
-       		}); 
-       		return false;
-    	}
-    	
-    	$('a.picker').click(function(){
-       		cp = $(this).prev().children().attr('id');
-       		loadColourPicker($(this).prev());
-    		$('#'+cp).fadeIn(500).css({
-    			'z-index': '9999',
-    			'position': 'relative',
-    			'bottom': '33px',
-    			'right': '-23px'
-    		});		
-    		return false;
-    	});
-    	
-    	$('.color-preview').each(function(){
-    		var colval = $(this).prev().val();
-    		if(colval != 'default'){
-    			$(this).css('background-color', colval);
-    		}
-    	});
+		<?php include 'functions/colorpicker.js'; ?>
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")
@@ -550,7 +445,7 @@ jQuery.noConflict();
 			            return false; 
 			        } 
 			    }
-			    overlayWithMessage('Processing');
+			    overlay('Processing');
 			    return true; 
 			}
 			
@@ -571,7 +466,7 @@ jQuery.noConflict();
 					'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
 				},
 				success: function(data, status, error){
-					closeOverlayWithMessage()
+					closeOverlay()
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
@@ -825,7 +720,7 @@ jQuery.noConflict();
 	   		var a = $(this);
 	   		
 	   		function activateThemelet(){
-		   		overlayWithMessage('Processing...');
+		   		overlay('Processing...');
 		   		
 		   		$('<div class="dialog-msg">Would you like to configure this themelet once activated?</div>').dialog({
 		   			bgiframe: true,
@@ -845,7 +740,7 @@ jQuery.noConflict();
 						subTabs.tabs('select', 0);
 						window.location.reload(true);
 						$(this).dialog('destroy');
-						overlayWithMessage('Processing...');
+						overlay('Processing...');
 		   			},
 					buttons: { 
 						'Yes': function(){
@@ -855,7 +750,7 @@ jQuery.noConflict();
 			   			'No thanks': function(){
 			   				window.location.reload(true);
 			   				$(this).dialog('destroy');
-							overlayWithMessage('Processing...');
+							overlay('Processing...');
 			   			}
 			   		}
 			   	});
@@ -1890,7 +1785,7 @@ jQuery.noConflict();
 		}
 		
 		$('td#toolbar-apply a').attr('onclick', '').click(function(){
-			overlayWithMessage('Saving Settings...');
+			overlay('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({
 					url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
@@ -1905,7 +1800,7 @@ jQuery.noConflict();
 					dataType: 'json',
 					success: function(data, ts){
 						if(data.exists == 'true'){
-							<strong>closeOverlayWithMessage()</strong>
+							<strong>closeOverlay()</strong>
 							$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
 					   			bgiframe: true,
 					   			autoOpen: true,
@@ -1961,7 +1856,7 @@ jQuery.noConflict();
 						'Save & continue': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
-							overlayWithMessage('Saving Settings...');
+							overlay('Saving Settings...');
 							$('#templateform').submit(function(){
 					   			$(this).ajaxSubmit({
 					   				type: 'POST',
@@ -2000,340 +1895,8 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		/* Conditionals --------------------
-		--------------------------------- */	
-		
-		function LogoOptions(){
-			switcher($('#logologo_type > option:selected').val());
-			
-			$('#logologo_type').change(function(){
-				var logoType = $(this).val();
-				switcher(logoType);
-			});
-			
-			function slogan(val) {
-				var display;
-				if(val == 'on'){ display='block'; }else{ display='none'; }
-				
-				$('#logo-options li #logoslogan_text').parent().css('display', display);
-				$('#logo-options li #logoslogan_textcolor').parent().css('display', display);
-				$('#logo-options li #logoslogan_fontsize').parent().css('display', display);
-				$('#logo-options li #logoslogan_fontfamily').parent().css('display', display);
-				$('#logo-options li #logoslogan_top').parent().css('display', display);
-				$('#logo-options li #logoslogan_left').parent().css('display', display);
-				$('#logo-options li #logoslogan_stack').parent().css('display', display);
-			}
-			
-			function ieLogo(val){
-				var display;
-				if(val == 'on'){ display='block'; }else{ display='none'; }
-				$('#logo-options li #logologo_image_ie').parent().css('display', display);
-			}
-			
-			function autoDimensions(val) {
-				var display;
-				if(val == 'on'){ display='block'; }else{ display='none'; }
-				$('#logo-options li #logologo_width').parent().css('display', display);
-				$('#logo-options li #logologo_height').parent().css('display', display);
-			}
-						
-			function switcher(v){
-				switch(v){
-					case '0': // Linked H1 Text
-					$('#logo-options li').css('display', 'none');
-					$('#logo-options li.heading').css('display', 'block');
-					$('#logologo_type').parent().css('display', 'block');
-					$('#logo-options li #logologo_textcolor').parent().css('display', 'block');
-					$('#logo-options li #logologo_fontsize').parent().css('display', 'block');
-					$('#logo-options li #logologo_fontfamily').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
-					$('#logo-options li #logologo_text').parent().css('display', 'block');
-					$('#logo-options li #logologo_top').parent().css('display', 'block');
-					$('#logo-options li #logologo_left').parent().css('display', 'block');
-					$('#logo-options li #logologo_stack').parent().css('display', 'block');
-					break;
-					case '1': // Linked H1 Image Replacement
-					$('#logo-options li').css('display', 'none');
-					$('#logo-options li.heading').css('display', 'block');
-					$('#logologo_type').parent().css('display', 'block');
-					$('#logo-options li #logologo_image').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
-					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
-					$('#logo-options li #logologo_text').parent().css('display', 'block');
-					$('#logo-options li #logologo_autodimensions1').parent().css('display', 'block');
-					$('#logo-options li #logologo_top').parent().css('display', 'block');
-					$('#logo-options li #logologo_left').parent().css('display', 'block');
-					$('#logo-options li #logologo_stack').parent().css('display', 'block');
-					break;
-					case '2': // Linked Inline Image
-					$('#logo-options li').css('display', 'none');
-					$('#logo-options li.heading').css('display', 'block');
-					$('#logologo_type').parent().css('display', 'block');
-					$('#logo-options li #logologo_image').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
-					$('#logo-options li #logologo_alttext').parent().css('display', 'block');
-					$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
-					$('#logo-options li #logologo_autodimensions1').parent().css('display', 'block');
-					$('#logo-options li #logologo_top').parent().css('display', 'block');
-					$('#logo-options li #logologo_left').parent().css('display', 'block');
-					$('#logo-options li #logologo_stack').parent().css('display', 'block');
-					break;
-					case '3': // Module Position
-					$('#logo-options li').css('display', 'none');
-					$('#logo-options li.heading:first').css('display', 'block');
-					$('#logologo_type').parent().css('display', 'block');
-					$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
-					$('#logo-options li #logologo_top').parent().css('display', 'block');
-					$('#logo-options li #logologo_left').parent().css('display', 'block');
-					break;
-				}
-				
-				//
-				
-				if($('#logodisplay_slogan0').attr('checked') == 'checked'){ slogan('off'); }
-				$('#logodisplay_slogan0').click( function(){ slogan('off'); } );
-				
-				if($('#logodisplay_slogan1').attr('checked')){ slogan('on'); }
-				$('#logodisplay_slogan1').click( function(){ slogan('on'); } );
-
-				if($('#logodisplay_ie_logo1').attr('checked')){ ieLogo('on'); }
-				$('#logodisplay_ie_logo1').click( function(){ ieLogo('on'); } );
-				
-				if($('#logodisplay_ie_logo0').attr('checked')){ ieLogo('off'); }
-				$('#logodisplay_ie_logo0').click( function(){ ieLogo('off'); } )
-				
-				if($('#logologo_autodimensions1').attr('checked')){ autoDimensions('off'); }
-				$('#logologo_autodimensions1').click( function(){ autoDimensions('off'); } );
-				
-				if($('#logologo_autodimensions0').attr('checked')){ autoDimensions('on'); }
-				$('#logologo_autodimensions0').click( function(){ autoDimensions('on'); } );
-					
-			}	
-		}
-		$(function(){ LogoOptions(); });
-		
-		
-		function blockSettingsOptions(elid, hideid){
-		
-//			$(hideid+'_gridsplit').parent().css('display', 'none');
-//			$(hideid+'_equalize1').parent().css('display', 'none');
-//			$(hideid+'_module_inner').parent().css('display', 'none');
-			
-			$(elid).change(function(){
-				var option = $(this).val();
-				switcher(option);
-			});
-			
-			switcher($(elid+' > option:selected').val());
-			
-			function switcher(v){
-				switch(v){
-					case 'grid':
-						$(hideid+'_gridsplit').parent().css('display', 'block');
-						$(hideid+'_equalize1').parent().css('display', 'block');
-						$(hideid+'_module_inner').parent().css('display', 'block');
-						$(hideid+'_modfx').parent().css('display', 'block');
-					break;
-					case 'basic':
-						$(hideid+'_gridsplit').parent().css('display', 'none');
-						$(hideid+'_equalize1').parent().css('display', 'none');
-						$(hideid+'_module_inner').parent().css('display', 'block');
-						$(hideid+'_modfx').parent().css('display', 'block');
-					break;
-					case 'tabs':
-						$(hideid+'_gridsplit').parent().css('display', 'none');
-						$(hideid+'_equalize1').parent().css('display', 'none');
-						$(hideid+'_module_inner').parent().css('display', 'none');
-						$(hideid+'_modfx').parent().css('display', 'block');
-					break;
-					case 'accordion':
-						$(hideid+'_gridsplit').parent().css('display', 'none');
-						$(hideid+'_equalize1').parent().css('display', 'none');
-						$(hideid+'_module_inner').parent().css('display', 'none');
-						$(hideid+'_modfx').parent().css('display', 'block');
-					break;
-					default:
-						$(hideid+'_gridsplit').parent().css('display', 'none');
-						$(hideid+'_equalize1').parent().css('display', 'none');
-						$(hideid+'_module_inner').parent().css('display', 'none');
-						$(hideid+'_modfx').parent().css('display', 'none');
-				}
-			}
-		}
-		$(function(){ 
-			blockSettingsOptions('#toolbartoolbar_chrome','#toolbartoolbar');
-			blockSettingsOptions('#masterheadmasthead_chrome','#masterheadmasthead');
-			blockSettingsOptions('#subheadsubhead_chrome','#subheadsubhead');
-			blockSettingsOptions('#topnavtopnav_chrome','#topnavtopnav');
-			blockSettingsOptions('#shelvestopshelf_chrome','#shelvestopshelf');
-			blockSettingsOptions('#shelvesbottomshelf_chrome','#shelvesbottomshelf');
-			blockSettingsOptions('#inlineshelvesuser1_chrome','#inlineshelvesuser1');
-			blockSettingsOptions('#inlineshelvesuser2_chrome','#inlineshelvesuser2');
-			blockSettingsOptions('#outer-sidebarsplitleft_chrome','#outer-sidebarsplitleft');
-			blockSettingsOptions('#outer-sidebartopleft_chrome','#outer-sidebartopleft');
-			blockSettingsOptions('#outer-sidebarleft_chrome','#outer-sidebarleft');
-			blockSettingsOptions('#outer-sidebarbottomleft_chrome','#outer-sidebarbottomleft');
-			blockSettingsOptions('#inner-sidebarsplitright_chrome','#inner-sidebarsplitright');
-			blockSettingsOptions('#inner-sidebartopright_chrome','#inner-sidebartopright');
-			blockSettingsOptions('#inner-sidebarright_chrome','#inner-sidebarright');
-			blockSettingsOptions('#inner-sidebarbottomright_chrome','#inner-sidebarbottomright');
-			blockSettingsOptions('#insetsinset1_chrome','#insetsinset1');
-			blockSettingsOptions('#insetsinset2_chrome','#insetsinset2');
-			blockSettingsOptions('#insetsinset3_chrome','#insetsinset3');
-			blockSettingsOptions('#insetsinset4_chrome','#insetsinset4');
-			blockSettingsOptions('#footerfooter_chrome','#footerfooter');
-		});
-		
-//		function blockDisable(elid, cont){
-//
-//			function show(){
-//				$(cont+' li').css('display', 'block');
-//				$(elid+'_show1').parent().css('display', 'block');
-//				blockSettingsOptions(elid+'_chrome',elid);
-//				
-//				footerOptions('#footerfooter_type', '#footerfooter_chrome');
-//				
-//				sliderOptionsOn('#toolbartoolbar_slider1','#toolbartoolbar_slider_text');
-//				sliderOptionsOff('#toolbartoolbar_slider0','#toolbartoolbar_slider_text');
-//				sliderOptionsOn('#shelvesbottomshelf_slider1','#shelvesbottomshelf_slider_text');
-//				sliderOptionsOff('#shelvesbottomshelf_slider0','#shelvesbottomshelf_slider_text');
-//				sliderOptionsOn('#shelvestopshelf_slider1','#shelvestopshelf_slider_text');
-//				sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
-//				sliderOptionsOn('#progressiverounded_corners1', '#progressiverounded_amount');
-//				sliderOptionsOff('#progressiverounded_corners0', '#progressiverounded_amount');
-//				
-//				menuOptionsOn('#menutopnav_supersubs1','#menutopnav_minwidth, #menutopnav_maxwidth');
-//				menuOptionsOff('#menutopnav_supersubs0','#menutopnav_minwidth,  #menutopnav_maxwidth');
-//			}
-//			function hide(){
-//				$(cont+' li').css('display', 'none');
-//				$(elid+'_show0').parent().css('display', 'block');
-//			}
-//			
-//			if($(elid+'_show0').attr('checked') == 'checked'){ hide(); }
-//			$(elid+'_show0').click(function(){ hide(); });
-//			
-//			if($(elid+'_show1').attr('checked') == 'checked'){ show(); }
-//			$(elid+'_show1').click(function(){ show(); });
-//
-//		}
-//		
-//		blockDisable('#toolbartoolbar', '#toolbar-options');
-//		blockDisable('#masterheadmasthead_chrome','#mainhead-options');
-//		blockDisable('#subheadsubhead_chrome','#subhead-options');
-//		blockDisable('#topnavtopnav_chrome','#topnav-options');
-//		blockDisable('#shelvestopshelf_chrome','#shelvestopshelf');
-//		blockDisable('#shelvesbottomshelf_chrome','#shelvesbottomshelf');
-//		blockDisable('#inlineshelvesuser1_chrome','#inlineshelvesuser1');
-//		blockDisable('#inlineshelvesuser2_chrome','#inlineshelvesuser2');
-//		blockDisable('#outer-sidebarsplitleft_chrome','#outer-sidebarsplitleft');
-//		blockDisable('#outer-sidebartopleft_chrome','#outer-sidebartopleft');
-//		blockDisable('#outer-sidebarleft_chrome','#outer-sidebarleft');
-//		blockDisable('#outer-sidebarbottomleft_chrome','#outer-sidebarbottomleft');
-//		blockDisable('#inner-sidebarsplitright_chrome','#inner-sidebarsplitright');
-//		blockDisable('#inner-sidebartopright_chrome','#inner-sidebartopright');
-//		blockDisable('#inner-sidebarright_chrome','#inner-sidebarright');
-//		blockDisable('#inner-sidebarbottomright_chrome','#inner-sidebarbottomright');
-//		blockDisable('#insetsinset1_chrome','#insetsinset1');
-//		blockDisable('#insetsinset2_chrome','#insetsinset2');
-//		blockDisable('#insetsinset3_chrome','#insetsinset3');
-//		blockDisable('#insetsinset4_chrome','#insetsinset4');
-//		blockDisable('#footerfooter_chrome','#footerfooter');
-		
-		function footerOptions(elid, hideid){
-			
-			$(elid).change(function(){
-				var option = $(this).val();
-				switcher(option);
-			});
-			
-			switcher($(elid+' > option:selected').val());
-			
-			function switcher(v){
-				switch(v){
-					case '0':
-						$(hideid).parent().css('display', 'none');
-						$('#footerfooter_gridsplit').parent().css('display', 'none');
-						$('#footerfooter_copyright').parent().css('display', 'block');
-						$('#footerfooter_credits').parent().css('display', 'block');
-						$('#footerfooter_textcolor').parent().css('display', 'block');
-						$('#footerfooter_linkscolor').parent().css('display', 'block');
-						$('#footerfooter_swish1').parent().css('display', 'block');
-						$('#footerfooter_morphlink1').parent().css('display', 'block');
-						$('#footerfooter_xhtml1').parent().css('display', 'block');
-						$('#footerfooter_css1').parent().css('display', 'block');
-						$('#footerfooter_rss1').parent().css('display', 'block');
-					break;
-					case '1':
-						$(hideid).parent().css('display', 'block');
-						blockSettingsOptions('#footerfooter_chrome','#footerfooter');
-						$('#footerfooter_copyright').parent().css('display', 'none');
-						$('#footerfooter_credits').parent().css('display', 'none');
-						$('#footerfooter_textcolor').parent().css('display', 'none');
-						$('#footerfooter_linkscolor').parent().css('display', 'none');
-						$('#footerfooter_swish1').parent().css('display', 'none');
-						$('#footerfooter_morphlink1').parent().css('display', 'none');
-						$('#footerfooter_xhtml1').parent().css('display', 'none');
-						$('#footerfooter_css1').parent().css('display', 'none');
-						$('#footerfooter_rss1').parent().css('display', 'none');
-					break;
-				}
-			}
-		}
-		
-		footerOptions('#footerfooter_type', '#footerfooter_chrome');
-		
-		function sliderOptionsOn(elid, hideid){
-			if($(elid).attr('checked')){
-				$(hideid).parent().css('display', 'block');
-			}
-			$(elid).click(function(){
-				$(hideid).parent().css('display', 'block');
-			});
-		}
-		function sliderOptionsOff(elid, hideid){
-			if($(elid).attr('checked')){
-				$(hideid).parent().css('display', 'none');
-			}
-			$(elid).click(function(){
-				$(hideid).parent().css('display', 'none');
-			});
-		}
-		
-		$(function(){
-			sliderOptionsOn('#toolbartoolbar_slider1','#toolbartoolbar_slider_text');
-			sliderOptionsOff('#toolbartoolbar_slider0','#toolbartoolbar_slider_text');
-			sliderOptionsOn('#shelvesbottomshelf_slider1','#shelvesbottomshelf_slider_text');
-			sliderOptionsOff('#shelvesbottomshelf_slider0','#shelvesbottomshelf_slider_text');
-			sliderOptionsOn('#shelvestopshelf_slider1','#shelvestopshelf_slider_text');
-			sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
-			sliderOptionsOn('#progressiverounded_corners1', '#progressiverounded_amount');
-			sliderOptionsOff('#progressiverounded_corners0', '#progressiverounded_amount');
-		});
-		
-		function menuOptionsOn(elid, hideid){
-			if($(elid).attr('checked')){
-				$(hideid).parent().css('display', 'block');
-			}
-			$(elid).click(function(){
-				$(hideid).parent().css('display', 'block');
-			});
-		}
-		function menuOptionsOff(elid, hideid){
-			if($(elid).attr('checked') || $(elid).attr('checked') == false){
-				$(hideid).parent().css('display', 'none');
-			}
-			$(elid).click(function(){
-				$(hideid).parent().css('display', 'none');
-			});
-		}
-		
-		$(function(){
-			menuOptionsOn('#menutopnav_supersubs1','#menutopnav_minwidth, #menutopnav_maxwidth');
-			menuOptionsOff('#menutopnav_supersubs0','#menutopnav_minwidth,  #menutopnav_maxwidth');
-		});
+		//TODO: insert block options
+		//TODO: insert keyboard functions
 		
 		// ajax content for dialog
 	    // welcome screen
@@ -2415,7 +1978,7 @@ jQuery.noConflict();
 			$('.btn-prefs').click(function(){
 				
 				$('#preferences-screen').dialog('option', 'title', 'Saving...');
-				overlayWithMessage('Processing...');
+				overlay('Processing...');
 
 				$('#preferences-form').submit(function(){
 		   			$(this).ajaxSubmit({
@@ -2443,7 +2006,7 @@ jQuery.noConflict();
     	
     	// keyboard screen
 		function keyboardScreen(){
-			$('#qtip-blanket').show();
+			overlay();
 			hideScroll();
 		    $('#keyboard-screen').dialog({
 	    		width: '700px',
@@ -2459,7 +2022,7 @@ jQuery.noConflict();
 	   			},
 	   			close: function(){
 	   				showScroll();
-	   				$('#qtip-blanket').hide();
+	   				closeOverlay();
 	   				$(this).dialog('destroy');
 	   			},
 	   			zIndex: 9999
@@ -2557,273 +2120,24 @@ jQuery.noConflict();
 					$.cookie('tooltip'+tid, null);
 					$(this).dialog('destroy');
 					$('.toolguides').empty();
-					$('#qtip-blanket').hide();
+					closeOverlay();
 					showScroll();		
 				}
 			});
     		
     		if(!$.cookie('tooltip'+tid)){
-    			$('#qtip-blanket').show();
+    			overlay();
 				$.cookie('tooltip'+tid, 'open');
 				$('.toolguides').load(toolPage);
 				$('.toolguides').dialog('open');
-				hideScroll();
 			}else{
 				$.cookie('tooltip'+tid, null);
 				$('.toolguides').dialog('close');
 				$('.toolguides').empty();
-				$('#qtip-blanket').hide();
-				showScroll();
+				closeOverlay();
 			}
 			
     	}
-		
-		// Keyboard Shortcuts
-		$(window).keydown(function(e){
-			if($.cookie('am_logged_in') && !$.cookie('noshortkey')){
-				var keycode = (e.keyCode || e.which);
-				var os = $.os.name;
-				
-				function save(){
-					overlayWithMessage('Saving Settings...');
-					if($.cookie('change_themelet')){
-						$.ajax({
-							url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-							method: 'post',
-							success: function(ts, data){
-								return true;
-							}
-						});
-						$.ajax({
-							url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-							method: 'post',
-							dataType: 'json',
-							success: function(data, ts){
-								if(data.exists == 'true'){
-									closeOverlayWithMessage()
-									$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
-							   			bgiframe: true,
-							   			autoOpen: true,
-							   			minHeight: 20,
-							   			width: 500,
-							   			stack: false,
-							   			modal: true, 
-							   			title: 'Activate',
-							   			overlay: {
-							   				'background-color': '#000', 
-							   				opacity: 0.8 
-							   			},
-							   			close: function(){
-											$(this).dialog('destroy');
-											$('#processing').css({
-												'display': 'block',
-												'z-index': '9998',
-												position: 'absolute',
-										        top: 0,
-										        left: 0,
-										        width: arrPageSizes[0],
-												height: arrPageSizes[1]
-											});
-											setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-							   			},
-										buttons: { 
-											'Themelet Defaults': function(){
-												$(this).dialog('close');
-								   			},
-								   			'Previous Settings': function(){
-								   				$.ajax({
-													url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-													method: 'post',
-													success: function(data){
-														return true;
-													}
-												});
-								   				$(this).dialog('close');
-								   			}
-								   		}
-								   	});
-								}else{
-									$('#processing').css({
-										'display': 'block',
-										'z-index': '9998',
-										position: 'absolute',
-								        top: 0,
-								        left: 0,
-								        width: arrPageSizes[0],
-										height: arrPageSizes[1]
-									});
-									setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-								}
-							}
-						});
-					}else{
-						setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-					}
-					e.preventDefault();
-					return false;
-				}
-				
-				function fullscreen(){
-					$('#minwidth-body').toggleClass("full-mode");
-					$('#fullscreen').toggleClass("normal-mode");
-					if($('#fullscreen a').text() == 'Fullscreen'){ 
-						$('#fullscreen a').text('Normal'); 
-						$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
-					}else{ 
-						$('#fullscreen a').text('Fullscreen'); 
-						$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
-					}
-					e.preventDefault();
-					return false;
-				}
-				
-				function preview(){
-					var thisurl = $('.preview a').attr('href');
-					window.open(thisurl);
-					e.preventDefault();
-					return false;
-				}
-				
-				function previewTpl(){
-					var thisurl = $('.preview a').attr('href');
-					window.open(thisurl+'?tp=1');
-					e.preventDefault();
-					return false;
-				}
-				
-				function info(){
-					if(!$.cookie('info')){
-						$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
-					    	return welcomeScreen();
-					    });
-					    $.cookie('info', 'open');
-					}else{
-						$('#getting-started').dialog("destroy");
-						$.cookie('info', null);
-					}
-					e.preventDefault();
-					return false;
-				}
-				
-				function bugreport(){
-					if(!$.cookie('bug')){
-						$('#report-bug').dialog('open');
-						$.cookie('bug', 'open');
-					}else{
-						$('#report-bug').dialog("close");
-						$.cookie('bug', null);
-					}
-					e.preventDefault();
-					return false;
-				}
-				
-				function prefs(){
-					if(!$.cookie('prefs')){
-					   	preferencesScreen();
-					    $.cookie('prefs', 'open');
-					}else{
-						$('#preferences-screen').dialog("close");
-						$.cookie('prefs', null);
-					}
-					e.preventDefault();
-					return false;
-				}
-				
-				function keyboard(){
-					if(!$.cookie('keys')){
-						$('#keyboard-screen').load('../administrator/components/com_configurator/includes/keyboard.php', function(){
-					    	return keyboardScreen();
-					    });
-					    $.cookie('keys', 'open');
-					}else{
-						$.cookie('keys', null);
-						$('#keyboard-screen').dialog("destroy");
-						showScroll();
-						$('#qtip-blanket').hide();
-					}
-					e.preventDefault();
-					return false;
-				}
-				
-				function logout(){
-					if(!$.cookie('logout-toggle')){
-						logoutCfg();
-					    $.cookie('logout-toggle', 'show');
-					}else{
-						$.cookie('logout-toggle', null);
-						$('#logout-message').dialog('close');
-						showScroll();
-					}
-					e.preventDefault();
-					return false;
-				}
-				
-				function toggletop(){
-					toggleShelf();
-					e.preventDefault();
-					return false;
-				}
-				
-				function tooltip(tid){
-					toolGuides(tid);
-					e.preventDefault();
-					return false;
-				}
-				
-				if(os == 'mac'){
-					if(keycode == 224 || keycode == 91 || keycode == 17){ return false; } // disable keycode return on CMD key
-					if(keycode == 83 && e.metaKey && !e.ctrlKey){ return save(); }
-					if(keycode == 70 && e.metaKey && !e.ctrlKey){ return fullscreen(); }
-					if(keycode == 79 && e.metaKey && !e.ctrlKey){ return preview(); }
-					if(keycode == 191 && e.metaKey && !e.ctrlKey){ return previewTpl(); }
-					if(keycode == 69 && e.metaKey && !e.ctrlKey){ return bugreport(); }
-					if(keycode == 80 && e.metaKey && !e.ctrlKey){ return prefs(); }
-					if(keycode == 76 && e.metaKey && !e.ctrlKey){ return logout(); }
-					if(keycode == 48 && e.metaKey && !e.ctrlKey){ return toggletop(); }
-					if(keycode == 49 && e.metaKey && !e.ctrlKey){ return info(); }
-					if(keycode == 50 && e.metaKey && !e.ctrlKey){ return tooltip(2); }
-					if(keycode == 51 && e.metaKey && !e.ctrlKey){ return tooltip(3); }
-					if(keycode == 52 && e.metaKey && !e.ctrlKey){ return tooltip(4); }
-					if(keycode == 53 && e.metaKey && !e.ctrlKey){ return tooltip(5); }
-					if(keycode == 54 && e.metaKey && !e.ctrlKey){ return tooltip(6); }
-					if(keycode == 55 && e.metaKey && !e.ctrlKey){ return tooltip(7); }
-					if(keycode == 56 && e.metaKey && !e.ctrlKey){ return tooltip(8); }
-					if(keycode == 75 && e.metaKey && !e.ctrlKey){ return keyboard(); }
-					
-				}else{
-					if(keycode == 17){ return false; } // disable keycode return on CTRL key
-					if(keycode == 83 && (e.ctrlKey || e.metaKey)){ return save(); }
-					if(keycode == 70 && (e.ctrlKey || e.metaKey)){ 
-						if($.browser.name == 'safari'){
-							e.preventDefault();
-							return fullscreen();
-						}
-						if($.browser.name == 'opera'){
-							e.preventDefault();
-							return false;
-						}
-						return fullscreen(); 
-					}
-					if(keycode == 79 && (e.ctrlKey || e.metaKey)){ return preview(); }
-					if(keycode == 191 && (e.ctrlKey || e.metaKey)){ return previewTpl(); }
-					if(keycode == 69 && (e.ctrlKey || e.metaKey)){ return bugreport(); }
-					if(keycode == 80 && (e.ctrlKey || e.metaKey)){ return prefs(); }
-					if(keycode == 76 && (e.ctrlKey || e.metaKey)){ return logout(); }
-					if(keycode == 48 && (e.ctrlKey || e.metaKey)){ return toggletop(); }
-					if(keycode == 49 && (e.ctrlKey || e.metaKey)){ return info(); }
-					if(keycode == 50 && (e.ctrlKey || e.metaKey)){ return tooltip(2); }
-					if(keycode == 51 && (e.ctrlKey || e.metaKey)){ return tooltip(3); }
-					if(keycode == 52 && (e.ctrlKey || e.metaKey)){ return tooltip(4); }
-					if(keycode == 53 && (e.ctrlKey || e.metaKey)){ return tooltip(5); }
-					if(keycode == 54 && (e.ctrlKey || e.metaKey)){ return tooltip(6); }
-					if(keycode == 55 && (e.ctrlKey || e.metaKey)){ return tooltip(7); }
-					if(keycode == 56 && (e.ctrlKey || e.metaKey)){ return tooltip(8); }
-					if(keycode == 75 && (e.ctrlKey || e.metaKey)){ return keyboard(); }
-				}
-				
-				
-			}		
-		});
 		
 		/* Lost Password ------------------
 		-------------------------------- */
@@ -2866,7 +2180,7 @@ jQuery.noConflict();
 				            return false; 
 				        } 
 				    }
-				    overlayWithMessage('Processing...');				    
+				    overlay('Processing...');				    
 				    return true; 
 				}
 				
@@ -2878,7 +2192,7 @@ jQuery.noConflict();
 						format: 'json'
 					},
 					success: function(data, status, error){
-						closeOverlayWithMessage()
+						closeOverlay()
 						if(typeof(data.error) != 'undefined'){						
 							if(data.error != ''){
 								$('<div>'+data.error+'</div>').dialog({

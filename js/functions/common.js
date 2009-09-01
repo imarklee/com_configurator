@@ -29,10 +29,10 @@ var thisHeight = function(){
 }
 
 /**
-**** Third Party Function
 * getPageSize() by quirksmode.com
 * @return Array Return an array with page width, height and window width, height
 */
+
 function ___getPageSize() {
 	var xScroll, yScroll;
 	if (window.innerHeight && window.scrollMaxY) {	
@@ -76,10 +76,15 @@ function ___getPageSize() {
 	return arrayPageSize;
 };
 
-function overlayWithMessage(msg){
-	
-	$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>'+msg+'</span></div></div>')
-	.appendTo('body');
+function overlay(msg){
+
+	if(typeof msg !== 'undefined'){
+		$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>'+msg+'</span></div></div>')
+		.appendTo('body');
+	}else{
+		$('<div id="processing"></div>')
+		.appendTo('body');
+	}
 	
 	var getHeight = new thisHeight;
 	var getWidth = new thisWidth;
@@ -132,7 +137,13 @@ function overlayWithMessage(msg){
 	return false;
 }
 
-function closeOverlayWithMessage(){
+function closeOverlay(){
 	$('#processing').css('display', 'none');
 	showScroll();
 }
+
+jQuery.fn.delay = function(time,func){
+	return this.each(function(){
+	    setTimeout(func,time);
+	});
+};

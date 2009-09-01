@@ -827,6 +827,7 @@ jQuery.noConflict();
 								dataType: 'json',
 								success: function(data, ts){
 									if(data.exists == 'true'){
+										closeOverlay();
 										$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
 								   			bgiframe: true,
 								   			autoOpen: true,

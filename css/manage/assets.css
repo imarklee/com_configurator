@@ -81,9 +81,8 @@ ul.assets-list ul li.alt { margin-left:0; }
 
 
 #cfg .thumb-view li.tl-active { background:#E3E3E3 url(../../images/assets-active-bg.png) repeat-x bottom; border:1px solid #8FAB60; }
-#cfg .thumb-view li.tl-active .assets-inner { background:transparent url(../../images/active-badge.png) no-repeat top right; }
-
-#cfg .thumb-view li.deleted { background:transparent url(../../images/deleted.png) 0 0 no-repeat; border:1px solid #ccc; }
+#cfg .thumb-view li.tl-active .assets-inner{background:transparent url(../../images/active-badge.png) no-repeat top right;}
+#cfg .thumb-view li.deleted {background:transparent url(../../images/deleted.png) 0 0 no-repeat;border:1px solid #ccc;overflow:hidden;}
 
 #cfg .thumb-view ul.buttons{left:230px;position:absolute;top:98px;width:212px;}
 #cfg .thumb-view ul.buttons li{background:none;border:0;float:left;width:auto;margin:0 10px 0 0;}

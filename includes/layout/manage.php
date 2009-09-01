@@ -96,10 +96,12 @@
 					<li class="icon-themelets"><a href="#assets-themelets">Themelets</a></li>
 					<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
 					<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
+					<li class="icon-iphone"><a href="#assets-iphone">iPhone</a></li>
 				</ul>				
 				<?php include dirname(__FILE__) . '/../assets/themelets.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/logos.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/backgrounds.php'; ?>
+				<?php include dirname(__FILE__) . '/../assets/iphone.php'; ?>
 			</div>
 		</div>
 			

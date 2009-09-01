@@ -93,8 +93,9 @@ width:200px;
 #cfg .thumb-view ul.buttons {display:none;}
 
 #cfg .thumb-view li:hover h3,
+#cfg .thumb-view li:hover img,
 #cfg .thumb-view li:hover .image-container,
-#cfg .thumb-view li:hover .background-summary,
+#cfg .thumb-view li:hover .assets-summary,
 #cfg .thumb-view li:hover .btn-preview{
 display:none;
 }
@@ -129,8 +130,9 @@ width:100%;
 #cfg .thumb-view .assets-list li.tl-active:hover h4,
 #cfg .thumb-view .assets-list li.tl-active:hover .buttons{display:none;}
 #cfg .thumb-view .assets-list li.tl-active:hover h3,
+#cfg .thumb-view .assets-list li.tl-active:hover img,
 #cfg .thumb-view .assets-list li.tl-active:hover .image-container,
-#cfg .thumb-view .assets-list li.tl-active:hover .background-summary{display:block;}
+#cfg .thumb-view .assets-list li.tl-active:hover .assets-summary{display:block;}
 
 #cfg .thumb-view ul.buttons li{background:none;border:0;float:left;width:auto;margin:0 10px 0 0;}
 #cfg .thumb-view ul.buttons li a{text-decoration:none;color:#555;display:block;line-height:1;background:#fff url(../../images/btn-link-bg.jpg) repeat-x bottom;border:1px solid #ccc;text-decoration:none;color:#444;padding:2px 8px;font-size:13px;font-weight:bold;}

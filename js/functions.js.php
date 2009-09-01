@@ -41,6 +41,7 @@ jQuery.noConflict();
 		$("#assets-tabs #themelets-list li:even").addClass("alt");			
 		$("#assets-tabs #logos-list li:even").addClass("alt");			
 		$("#assets-tabs #backgrounds-list li:even").addClass("alt");
+		$("#assets-tabs #iphone-list li:even").addClass("alt");		
 		$("#preferences-form .prefs li:last").addClass("last");
 		
 		<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>
@@ -114,6 +115,16 @@ jQuery.noConflict();
 		subtabs.tabs("select",0);
 		$('#install-type label.label-selected').removeClass('label-selected');
 		$("#upload_background").attr("checked",true).parent().addClass('label-selected');
+		return false;
+		});
+		
+		$(".upload-iphone").click(function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#tools-tabs").tabs();
+		maintabs.tabs("select",3);
+		subtabs.tabs("select",0);
+		$('#install-type label.label-selected').removeClass('label-selected');
+		$("#upload_iphone").attr("checked",true).parent().addClass('label-selected');
 		return false;
 		});
 
@@ -379,6 +390,22 @@ jQuery.noConflict();
 			$("#backgrounds-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
 				$.cookie('backgrounds-view', 'thumb', options);
+				return false;
+			});
+		});
+		
+		$("#iphone-switch a.switch-view").toggle(function(){
+			$(this).addClass("swap");
+			$("#iphone-list").fadeOut("fast", function() {
+				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
+				$.cookie('iphone-view', 'list', options);
+				return false;
+			});
+		}, function () {
+			$(this).removeClass("swap");
+			$("#iphone-list").fadeOut("fast", function() {
+				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
+				$.cookie('iphone-view', 'thumb', options);
 				return false;
 			});
 		}); 

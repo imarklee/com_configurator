@@ -14,7 +14,7 @@ if(is_dir($iphone_dir)) {
 	</div>
 	
 	<div id="iphone-list" class="assets-layout <?php if(isset($_COOKIE['iphone-view']) && $_COOKIE['iphone-view'] == 'list') { echo 'list-view'; } else { echo 'thumb-view'; } ?>">
-	<?php if(!empty($lists['iphone'])){ ?>
+	    <?php if(!empty($lists['iphone'])){ ?>
 		<ul id="iphone-headers" class="assets-headers">
 			<li class="th-name">File name</li>
 			<li class="th-installed">Size</li>
@@ -42,11 +42,12 @@ if(is_dir($iphone_dir)) {
 				<div class="image-container">
 					<div style="background-image: url('<?php echo $iphone_src; ?>');">&nbsp;</div>
 				</div>
-				<ul class="iphone-summary <?php echo $iphone; ?>">
+				<ul class="iphone-summary assets-summary">
 					<li class="tl-installed"><strong>File size: </strong><?php echo $iphone_size; ?></li>
 					<li class="tl-current"><strong>Width: </strong><?php echo $iphone_width; ?>px</li>
 					<li class="tl-date"><strong>Height: </strong><?php echo $iphone_height; ?>px</li>
 				</ul>
+				<h4>Options for this file:</h4>
 				<ul class="buttons">
 					<li class="btn-activate"><a name="<?php echo $iphone; ?>" href="#" title="Activate <?php echo $iphone; ?>"><span>Activate</span></a></li>
 					<li class="btn-delete"><a name="<?php echo $iphone; ?>" href="#" title="Delete <?php echo $iphone; ?>"><span>Delete</span></a></li>

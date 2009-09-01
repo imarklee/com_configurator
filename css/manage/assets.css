@@ -70,6 +70,8 @@
 #cfg .list-view li h4{display:none;}
 #cfg .list-view .image-container{display:none;}
 
+#cfg .list-view li.tl-active{background:#E3E3E3 url(../../images/assets-active-bg.png) repeat-x top;}
+
 #cfg .thumb-view .assets-headers{display:none;}
 #cfg .thumb-view .assets-list{margin-top:-20px;}
 #cfg .thumb-view .assets-list li .assets-inner{height:85px;overflow:hidden;background:#fff url(../../images/assets-inactive-bg.jpg) repeat-x bottom;position:relative;padding:0;border:1px solid #fff;padding:8px;}

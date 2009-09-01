@@ -1,53 +1,63 @@
-#assets-logos .image-container div { background-color:#fff; background-repeat:no-repeat; }
-#browse-assets .ui-tabs-panel { padding:0; }
-#tabs #assets.ui-widget-content,#tabs #assets-tabs.ui-widget-content { width:920px; }
 
-#cfg .thumb-view .assets-list ul,
-#cfg .thumb-view .assets-list li,
-#cfg .thumb-view .assets-list ul ul,
-#cfg .thumb-view .assets-list ul ul li,
-#cfg .thumb-view .assets-list h3{font:normal 12px arial;list-style:none;margin:0;padding:0;}
+#cfg #browse-assets .ui-tabs-panel{padding:0;}
+#cfg #assets.ui-widget-content,
+#cfg #assets-tabs.ui-widget-content{width:920px;}
 
-.image-container { border:1px solid #ccc; height:100px; width:200px; }
-.image-container div { background-position:50% 50%; background-repeat:repeat; border:5px solid #eee; height:90px; width:188px; }
+#cfg .assets-list ul,
+#cfg .assets-list li,
+#cfg .assets-list ul ul,
+#cfg .assets-list ul ul li,
+#cfg .assets-list h3{font:normal 12px arial;list-style:none;margin:0;padding:0;}
 
-.switch { overflow:hidden; margin:0; }
-.switch h2 { color:#666; float:left; font:bold 22px/30px arial; height:30px; width:40%; margin:0; padding:0; }
-.switch h2 strong { color:#999; }
-.switch p { display:block; float:right; height:30px; line-height:30px; text-align:right; width:60%; margin:0; padding:0; }
-a.switch-view { background:#fff url(../../images/switch-view.png) no-repeat; padding:4px 55px 4px 8px; }
-a.switch-view.swap { background-position:bottom left; }
-a.switch-view:hover { -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=75); filter:alpha(opacity=75); opacity:.75; }
-li.tl-active ul.buttons li.btn-activate a,li.tl-active ul.buttons li.btn-activate a:hover,li.tl-active ul.buttons li.btn-delete a,li.tl-active ul.buttons li.btn-delete a:hover { cursor:default; }
-p.assets-location { clear:both; color:#999; font:normal 12px arial; margin:30px 0 0; padding:0; }
-ul.assets-list ul li.alt { margin-left:0; }
-    
-#cfg .list-view h3{border-width:0 1px 1px 0;border-color:#ccc;font-size:12px;position:absolute;top:0;left:0;width:140px;height:30px;padding:7px 0 0 7px;}
-#cfg .list-view li{background:#fff;border-width:0 1px 1px 0;border-color:#ccc;float:none;overflow:hidden;position:relative;width:100%;height:30px;margin:0;padding:0;}
+#cfg .image-container {
+border:1px solid #CCCCCC;
+height:80px;
+left:9px;
+position:absolute;
+top:10px;
+width:200px;
+}
+#cfg .image-container div{background-position:50% 50%;background-repeat:repeat;border:5px solid #fff;height:70px;width:190px;}
+#cfg #assets-logos .image-container div{background-color:#fff;background-repeat:no-repeat;}
+
+#cfg .switch{overflow:hidden;margin:0;}
+#cfg .switch h2{color:#666;float:left;font:bold 22px/30px arial;height:30px;width:40%;margin:0;padding:0;}
+#cfg .switch h2 strong{color:#999;}
+#cfg .switch p{display:block;float:right;text-align:right;width:60%;height:30px;line-height:30px;margin:0;padding:0;}
+#cfg .assets-list a.switch-view{background:#fff url(../../images/switch-view.png) no-repeat;padding:4px 55px 4px 8px;}
+#cfg a.switch-view.swap{background-position:bottom left;}
+#cfg a.switch-view:hover{-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=75);filter:alpha(opacity=75); opacity:.75;}
+#cfg li.tl-active ul.buttons li.btn-activate a,
+#cfg li.tl-active ul.buttons li.btn-activate a:hover,
+#cfg li.tl-active ul.buttons li.btn-delete a,
+#cfg li.tl-active ul.buttons li.btn-delete a:hover{cursor:default;color:#777;text-decoration:none;}
+#cfg #assets-tabs .assets-inner .alt{margin-left:0;}
+
+#cfg .list-view h3{border-width:0 1px 1px 0;border-color:#ccc;font-size:12px;position:absolute;top:0;left:0;width:268px;height:30px;padding:7px 0 0 7px;}
+#cfg .list-view li{background:#fff;float:none;overflow:hidden;position:relative;width:100%;height:30px;margin:0;padding:0;}
 #cfg .list-view li.alt{background:#E7ECEF;margin-left:0;}
-#cfg .list-view ul{border:1px solid #ccc;overflow:hidden;width:918px;margin:0;}
+#cfg .list-view li.th-name{border-left:0;}
+
+#cfg .list-view ul{border:1px solid #ccc;border-top:0;overflow:hidden;width:918px;margin:0;}
 #cfg .list-view ul li strong{display:none;}
 #cfg .list-view ul ul{border:0;}
-#cfg .list-view ul.assets-headers{background:#ddd;border:1px solid #ccc;display:block;height:30px;margin-top:20px;overflow:hidden;width:918px;}
-#cfg .list-view ul.assets-headers li{background:none;float:left;font-size:13px;font-weight:bold;text-align:center;width:auto;}
-
-#cfg .list-view ul.assets-headers li.th-activate,
-#cfg .list-view ul.assets-headers li.th-delete,
+#cfg .list-view ul.assets-headers{background:#eee;border:1px solid #ccc;display:block;height:30px;margin-top:20px;overflow:hidden;width:918px;}
+#cfg .list-view ul.assets-headers li{background:none;float:left;font-size:12px;font-weight:bold;text-align:center;line-height:30px;width:auto;border-right:1px solid #ccc;}
+#cfg .list-view ul.assets-headers li.th-activate { width:106px; }
+#cfg .list-view ul.assets-headers li.th-delete { width:110px; }
 #cfg .list-view ul.buttons li.btn-activate { width:110px; }
 #cfg .list-view ul.assets-headers li.th-date,
 #cfg .list-view ul.themelet-summary li.tl-date,
 #cfg .list-view ul.logo-summary li.tl-date,
-#cfg .list-view ul.iphone-summary li.tl-date,
-#cfg .list-view ul.background-summary li.tl-date { width:150px; }
+#cfg .list-view ul.background-summary li.tl-date { width:100px; }
 #cfg .list-view ul.assets-headers li.th-installed,
 #cfg .list-view ul.assets-headers li.th-current,
 #cfg .list-view ul.themelet-summary li.tl-current,
 #cfg .list-view ul.logo-summary li.tl-current,
-#cfg .list-view ul.iphone-summary li.tl-current,
-#cfg .list-view ul.background-summary li.tl-current { width:140px; }
-#cfg .list-view ul.assets-headers li.th-name { padding-left:7px; text-align:left; width:140px; }
+#cfg .list-view ul.background-summary li.tl-current { width:100px; }
+#cfg .list-view ul.assets-headers li.th-name { padding-left:7px; text-align:left; width:268px; }
 #cfg .list-view ul.assets-headers li.th-preview { border-right:0; width:110px; }
-#cfg .list-view ul.buttons { left:581px; overflow:hidden; position:absolute; top:0; width:350px; margin:0; padding:0; }
+#cfg .list-view ul.buttons { left:575px; overflow:hidden; position:absolute; top:0; width:350px; margin:0; padding:0; }
 #cfg .list-view ul.buttons li { background:none; border-right:1px solid #ccc; float:left; text-align:center; padding:5px 0 0; }
 #cfg .list-view ul.buttons li a { display:block; margin:3px auto 0; }
 #cfg .list-view ul.buttons li.btn-activate a { margin-left:3px; }
@@ -57,50 +67,85 @@ ul.assets-list ul li.alt { margin-left:0; }
 #cfg .list-view ul.buttons li.btn-preview a { margin-left:30px; }
 #cfg .list-view ul.themelet-summary li,
 #cfg .list-view ul.logo-summary li,
-#cfg .list-view ul.iphone-summary li,
-#cfg .list-view ul.background-summary li { background:none; border:0; border-right:1px solid #ccc; float:left; height:30px; line-height:17px; text-align:center; width:auto; margin:0; padding:6px 0 0; }
+#cfg .list-view ul.background-summary li {background:none;border:0;border-right:1px solid #ccc;float:left;height:30px;line-height:32px;text-align:center;width:auto;margin:0;padding:0;}
 #cfg .list-view ul.themelet-summary li.tl-installed,
 #cfg .list-view ul.logo-summary li.tl-installed,
-#cfg .list-view ul.iphone-summary li.tl-installed,
-#cfg .list-view ul.background-summary li.tl-installed { width:128px; }
+#cfg .list-view ul.background-summary li.tl-installed{width:100px;}
 #cfg .list-view ul.themelet-summary,
 #cfg .list-view ul.logo-summary,
-#cfg .list-view ul.iphone-summary,
-#cfg .list-view ul.background-summary { left:160px; position:absolute; top:0; }
-#cfg .list-view li img { display:none; }
-
+#cfg .list-view ul.background-summary{left:275px;position:absolute;top:0;border-left:1px solid #ccc;}
+#cfg .list-view li img{display:none;}
+#cfg .list-view .image-container{display:none;}
 
 #cfg .thumb-view .assets-headers{display:none;}
-#cfg .thumb-view h3{font-size:17px;font-weight:bold;position:absolute;top:13px;left:235px;width:200px;}
+#cfg .thumb-view .assets-list{margin-top:-20px;}
+#cfg .thumb-view h3{font-size:17px;font-weight:bold;position:absolute;top:10px;left:223px;width:200px;}
 #cfg .thumb-view .assets-list li{border:1px solid #ccc;width:448px;float:left;margin-top:20px;}
 #cfg .thumb-view .assets-list li.alt{margin-left:20px;}
-#cfg .thumb-view .assets-inner{background:#fff url(../../images/assets-inactive-bg.jpg) repeat-x bottom;position:relative;padding:0;border:1px solid #fff;padding:1em;}
-
-#cfg .thumb-view li img{background:#ddd url(../../images/browsers/safari-sml.png) no-repeat;margin:0;padding:18px 1px 1px 1px;}
+#cfg .thumb-view .assets-inner{background:#fff url(../../images/assets-inactive-bg.jpg) repeat-x bottom;position:relative;padding:0;border:1px solid #fff;padding:8px;}
+#cfg .thumb-view li img{background:#999 url(../../images/browsers/safari-sml.png) no-repeat;margin:0;padding:18px 1px 1px 1px;}
 #cfg .thumb-view ul li strong{color:#444;}
 #cfg .thumb-view ul.themelet-summary li.alt{margin-left:0;}
-
-
-#cfg .thumb-view li.tl-active { background:#E3E3E3 url(../../images/assets-active-bg.png) repeat-x bottom; border:1px solid #8FAB60; }
+#cfg .thumb-view li.tl-active{background:#E3E3E3 url(../../images/assets-active-bg.png) repeat-x bottom;border:1px solid #8FAB60;}
 #cfg .thumb-view li.tl-active .assets-inner{background:transparent url(../../images/active-badge.png) no-repeat top right;}
-#cfg .thumb-view li.deleted {background:transparent url(../../images/deleted.png) 0 0 no-repeat;border:1px solid #ccc;overflow:hidden;}
+#cfg .thumb-view li.deleted{background:transparent url(../../images/deleted.png) 0 0 no-repeat;border:1px solid #ccc;overflow:hidden;}
 
-#cfg .thumb-view ul.buttons{left:230px;position:absolute;top:98px;width:212px;}
+#cfg .thumb-view ul.buttons {display:none;}
+
+#cfg .thumb-view li:hover h3,
+#cfg .thumb-view li:hover .image-container,
+#cfg .thumb-view li:hover .background-summary,
+#cfg .thumb-view li:hover .btn-preview{
+display:none;
+}
+
+#cfg .thumb-view .assets-list li .assets-inner{
+height:85px;
+overflow:hidden;
+}
+#cfg .thumb-view .assets-list li h4{
+display: none;
+}
+#cfg .thumb-view .assets-list li:hover h4{
+display: block;
+position:absolute;
+top:25%;
+width:100%;
+text-align:center;
+font-size:15px;
+}
+#cfg .thumb-view .assets-list li:hover .assets-inner{
+background:#fff url(../../images/assets-inactive-bg.jpg) repeat-x bottom;
+}
+#cfg .thumb-view li:hover ul.buttons {
+display:block;
+left:30%;
+position:absolute;
+top:50%;
+width:100%;
+}
+#cfg .thumb-view .assets-list li.tl-active:hover{background:#E3E3E3 url(../../images/assets-active-bg.png) repeat-x bottom;border:1px solid #8FAB60;}
+#cfg .thumb-view .assets-list li.tl-active:hover .assets-inner{background:transparent url(../../images/active-badge.png) no-repeat top right;}
+#cfg .thumb-view .assets-list li.tl-active:hover h4,
+#cfg .thumb-view .assets-list li.tl-active:hover .buttons{display:none;}
+#cfg .thumb-view .assets-list li.tl-active:hover h3,
+#cfg .thumb-view .assets-list li.tl-active:hover .image-container,
+#cfg .thumb-view .assets-list li.tl-active:hover .background-summary{display:block;}
+
 #cfg .thumb-view ul.buttons li{background:none;border:0;float:left;width:auto;margin:0 10px 0 0;}
-#cfg .thumb-view ul.buttons li a{text-decoration:none;color:#555;display:block;line-height:1;background:#fff url(../../images/btn-link-bg.jpg) repeat-x;border:1px solid #ccc;text-decoration:none;color:#444;padding:2px 8px;font-size:11px;font-weight:bold;}
-#cfg .thumb-view ul.buttons li a span{display:block;padding:2px 29px 2px 8px;}
-#cfg .thumb-view ul.buttons li.btn-activate a span { background:transparent url(../../images/btn-icon-activate.png) no-repeat scroll 88% 50%; }
-#cfg .thumb-view ul.buttons li.btn-delete a span { background:transparent url(../../images/btn-icon-delete.png) no-repeat scroll 84% 50%; padding:2px 26px 2px 8px; }
-#cfg .thumb-view ul.buttons li.btn-preview {display:none;}
+#cfg .thumb-view ul.buttons li a{text-decoration:none;color:#555;display:block;line-height:1;background:#fff url(../../images/btn-link-bg.jpg) repeat-x bottom;border:1px solid #ccc;text-decoration:none;color:#444;padding:2px 8px;font-size:13px;font-weight:bold;}
+#cfg .thumb-view ul.buttons li a:hover{color:#444;background-position:bottom left!important;}
 
+#cfg .thumb-view ul.buttons li a span{display:block;padding:5px 29px 5px 8px;}
+#cfg .thumb-view ul.buttons li.btn-activate a span{background:transparent url(../../images/btn-icon-activate.png) no-repeat 88% 50%; }
+#cfg .thumb-view ul.buttons li.btn-delete a span{background:transparent url(../../images/btn-icon-delete.png) no-repeat 84% 50%;}
+#cfg .thumb-view ul.buttons li.btn-preview{display:none;}
 #cfg .thumb-view ul.themelet-summary li,
 #cfg .thumb-view ul.logo-summary li,
-#cfg .thumb-view ul.iphone-summary li,
-#cfg .thumb-view ul.background-summary li { background:none; border:0; line-height:17px; margin-top:0; width:200px; padding:0; }
+#cfg .thumb-view ul.background-summary li{background:none;border:0;line-height:17px;width:200px;padding:0;margin-top:0;}
 #cfg .thumb-view ul.themelet-summary,
 #cfg .thumb-view ul.logo-summary,
-#cfg .thumb-view ul.iphone-summary,
-#cfg .thumb-view ul.background-summary { left:235px; position:absolute; top:38px; }
+#cfg .thumb-view ul.background-summary{left:223px;position:absolute;top:38px;}
 #cfg .thumb-view .deleted div,
 #cfg .thumb-view .deleted ul,
-#cfg .thumb-view .deleted h3 { visibility:hidden; }
+#cfg .thumb-view .deleted h3{visibility:hidden;}

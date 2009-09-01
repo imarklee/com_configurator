@@ -26,11 +26,11 @@
 #cfg #assets-tabs .assets-inner .alt{margin-left:0;}
 
 #cfg .list-view h3{border-width:0 1px 1px 0;border-color:#ccc;font-size:12px;position:absolute;top:0;left:0;width:268px;height:30px;padding:7px 0 0 7px;}
-#cfg .list-view li{background:#fff;float:none;overflow:hidden;position:relative;width:100%;height:30px;margin:0;padding:0;}
+#cfg .list-view li{background:#fff;border-bottom:1px solid #ccc;float:none;overflow:hidden;position:relative;width:100%;height:30px;margin:0;padding:0;}
 #cfg .list-view li.alt{background:#E7ECEF;margin-left:0;}
 #cfg .list-view li.th-name{border-left:0;}
 
-#cfg .list-view ul{border:1px solid #ccc;border-top:0;overflow:hidden;width:918px;margin:0;}
+#cfg .list-view ul{border:1px solid #ccc;border-top:0;border-bottom:0;overflow:hidden;width:918px;margin:0;}
 #cfg .list-view ul li strong{display:none;}
 #cfg .list-view ul ul{border:0;}
 #cfg .list-view ul.assets-headers{background:#eee;border:1px solid #ccc;display:block;height:30px;margin-top:20px;overflow:hidden;width:918px;}
@@ -66,7 +66,8 @@
 #cfg .list-view ul.themelet-summary,
 #cfg .list-view ul.logo-summary,
 #cfg .list-view ul.background-summary{left:275px;position:absolute;top:0;border-left:1px solid #ccc;}
-#cfg .list-view li img{display:none;}
+#cfg .list-view li img,
+#cfg .list-view li h4{display:none;}
 #cfg .list-view .image-container{display:none;}
 
 #cfg .thumb-view .assets-headers{display:none;}

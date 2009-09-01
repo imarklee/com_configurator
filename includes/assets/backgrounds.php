@@ -46,11 +46,12 @@ $activebg = $db->loadResult();
 				<div class="image-container">
 					<div style="background-image: url('<?php echo $background_src; ?>');">&nbsp;</div>
 				</div>
-				<ul class="background-summary <?php echo $background; ?>">
+				<ul class="background-summary assets-summary">
 					<li class="tl-installed"><strong>File size: </strong><?php echo $background_size; ?></li>
 					<li class="tl-current"><strong>Width: </strong><?php echo $background_width; ?>px</li>
 					<li class="tl-date"><strong>Height: </strong><?php echo $background_height; ?>px</li>
 				</ul>
+				<h4>Options for this file:</h4>
 				<ul class="buttons">
 					<li class="btn-activate"><a name="<?php echo $background; ?>" href="#" title="Activate <?php echo $background; ?>"><span>Activate</span></a></li>
 					<li class="btn-delete"><a name="<?php echo $background; ?>" href="#" title="Delete <?php echo $background; ?>"><span>Delete</span></a></li>

@@ -45,11 +45,12 @@ $activelogo = $db->loadResult();
 					<div class="image-container">
 						<div style="background-image: url('<?php echo $logo_src; ?>');">&nbsp;</div>
 					</div>
-					<ul class="logo-summary">
+					<ul class="logo-summary assets-summary">
 						<li class="tl-installed"><strong>File size: </strong><?php echo $logo_size; ?></li>
 						<li class="tl-current"><strong>Width: </strong><?php echo $logo_width; ?>px</li>
 						<li class="tl-date"><strong>Height: </strong><?php echo $logo_height; ?>px</li>
 					</ul>
+				    <h4>Options for this file:</h4>
 					<ul class="buttons">
 						<li class="btn-activate"><a name="<?php echo $logo; ?>" href="#" title="Activate <?php echo $logo; ?>"><span>Activate</span></a></li>
 						<li class="btn-delete"><a name="<?php echo $logo; ?>" href="#" title="Delete <?php echo $logo; ?>"><span>Delete</span></a></li>

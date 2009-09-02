@@ -1,6 +1,6 @@
 #footer{overflow:hidden;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;}
 #footer:hover{overflow:hidden;}
-#footer a.ptlogo{width:170px;height:45px;display:block;float:left;margin-top:15px;text-indent:-7998px;background:transparent url(../../images/ptlogo.png) no-repeat;}
+#footer a.ptlogo{width:170px;height:45px;display:block;float:left;margin-top:15px;text-indent:-7998px;background:transparent url(../images/ptlogo.png) no-repeat;}
 #footer a.ptlogo:hover{background-position:bottom left;}
 .footer-links,
 .footer-links li{margin:0;padding:0;list-style:none;}

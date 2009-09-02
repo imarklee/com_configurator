@@ -1,0 +1,34 @@
+#getting-started.ui-dialog-content{margin:0px!important;overflow:hidden;padding:0;background:#000;font:normal 12px arial;}
+#getting-started #splash{position:relative;height:435px!important;width:920px!important;}
+#getting-started h3{margin-top:0;font:bold 30px arial;}
+#welcome-tabs,
+#welcome-tabs li{margin:0;padding:0;background:none;list-style:none;border:0;-moz-border-radius:0;width:200px;}
+#getting-started #welcome-tabs{position:absolute;top:0;left:0;height:450px;background:#222;width:220px;margin-bottom:0;overflow:hidden;}
+#getting-started #welcome-tabs li{width:220px;border-bottom:1px solid #484848;background:#222 url(../images/splash-tab-bg.jpg) repeat-x;}
+#welcome-tabs li a{background: url(../images/splash-icons.png) no-repeat top left;olor:#999;display:block;font:normal 13px/40px arial;height:40px;padding:0 10px 0 35px;text-decoration:none;width:200px;}
+#welcome-tabs li a:hover{color:#ccc;}
+#welcome-tabs li.splash-assets a{ background-position: 9px 12px; } 
+#welcome-tabs li.splash-contextual a{ background-position: 9px -24px; } 
+#welcome-tabs li.splash-docs a{ background-position: 9px -60px; } 
+#welcome-tabs li.splash-feedback a{ background-position: 9px -96px; } 
+#welcome-tabs li.splash-fullscreen a{ background-position: 9px -132px; } 
+#welcome-tabs li.splash-guides a{ background-position: 9px -168px; } 
+#welcome-tabs li.splash-methods a{ background-position: 9px -204px; } 
+#welcome-tabs li.splash-prefs a{ background-position: 9px -240px; } 
+#welcome-tabs li.splash-shortcuts a{ background-position: 9px -279px; } 
+#welcome-tabs li.splash-start a{ background-position: 9px -311px; } 
+#welcome-tabs li.splash-updates a{ background-position: 9px -348px; } 
+#getting-started #welcome-tabs li.ui-tabs-selected{background-color:#fff;background-image:none;;}
+#welcome-tabs li.ui-tabs-selected a{color:#000;cursor:default;width:202px;border-right:0;}
+#getting-started #welcome-tabs li.ui-state-hover a:hover{background-color:none!important;}
+.tabContainer{width:702px;height:450px;margin:0;padding:0;background:#fff;position:absolute;top:0;right:0;overflow:hidden;}
+#getting-started .tabContainer .splashtabs{padding:2em 2.1em;}
+#getting-started h4{font-size:17px;margin-bottom:3px;}
+
+
+/*border-radius:15px;
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+box-shadow:0 0 5px #ccc;
+-webkit-box-shadow:0 0 5px #ccc;
+-moz-box-shadow: 0 0 5px #ccc;*/

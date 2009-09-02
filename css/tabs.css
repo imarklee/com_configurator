@@ -2,22 +2,22 @@
 #tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li a{padding-left:7px!important;background:none!important;}
 #tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li a{border-left:0 solid #fff;padding:5px 7px 5px 10px;}
 #tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active{border-left:1px solid #222;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer{border-right:0;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer a{border-right:0;padding-right:14px;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-footer.ui-tabs-selected.ui-state-active{margin-right:-1px;padding-right:4px;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a {background: url(../images/sprite-icons.png) no-repeat 7px 50%;}
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-debugging a { background-position: 8px 4px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-colors a { background-position: 8px -41px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-backgrounds a { background-position: 8px -88px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-general a { background-position: 7px -178px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-installer a { background-position: 8px -270px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-logos a { background-position: 8px -360px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-menus a { background-position: 8px -450px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-performance a { background-position: 8px -587px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-progressive a { background-position: 8px -632px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-themelets a { background-position: 8px -769px; } 
-#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-topnav a { background-position: 8px -860px; } 
-/*#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.icon-iphone a{background:transparent url(../images/iphone-icon.png) no-repeat 8px 52%;}*/
+#tabs .icon-footer{border-right:0;}
+#tabs .icon-footer a{border-right:0;padding-right:14px;}
+#tabs .icon-footer.ui-tabs-selected.ui-state-active{margin-right:-1px;padding-right:4px;}
+#tabs .icon-debugging a { background-position: 8px 4px; } 
+#tabs .icon-colors a { background-position: 8px -41px; } 
+#tabs .icon-backgrounds a { background-position: 8px -88px; } 
+#tabs .icon-general a { background-position: 7px -178px; } 
+#tabs .icon-installer a { background-position: 8px -270px; } 
+#tabs .icon-logos a { background-position: 8px -360px; } 
+#tabs .icon-menus a { background-position: 8px -450px; } 
+#tabs .icon-performance a { background-position: 8px -587px; } 
+#tabs .icon-progressive a { background-position: 8px -632px; } 
+#tabs .icon-themelets a { background-position: 8px -769px; } 
+#tabs .icon-topnav a { background-position: 8px -860px; } 
+/*#tabs .icon-iphone a{background:transparent url(../images/iphone-icon.png) no-repeat 8px 52%;}*/
 #tabs .desc-overlay{position:absolute;width:100%;height:100%;background:#fff;z-index:99;filter:alpha(opacity=70);opacity:0.7;-moz-opacity:0.7;}
 #tabs .tab-desc{margin-bottom:1.5em;border:5px solid #EF9700;position:absolute;width:700px;height:auto;z-index:99;top:60px;left:100px;}
 #tabs .desc-inner{margin:0;padding:1em;color:#AF3E00;font:normal 15px/20px arial;background:#FFDC9F;border:1px solid #AF3E00;position:relative;}
@@ -26,17 +26,18 @@
 #tabs.ui-tabs .ui-tabs-nav li{font:normal 17px Arial;color:#fff;margin:0 1px 0 0;}
 #tabs,#tabs .primary,#tabs .primary li,#tabs .primary li a,#tabs .primary .ui-tabs-panel{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}
 #tabs .primary li.last{margin:0;}
-#tabs .primary li a{padding:15px 23px;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #777;}
+#tabs .primary li a{padding:15px 23px 14px;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #777;}
 #tabs .primary li a:hover{color:#000;background:#8F8F8F url(../images/tabs-off.jpg) repeat-x bottom;text-shadow:0 1px 0 #ccc;}
 #tabs.ui-tabs .subtabs .ui-tabs-nav li.ui-state-hover a{border-bottom:0 solid #fff!important;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a{font-weight: normal;text-shadow:0 0 0 #fff;border-bottom:1px solid #fff;background:#fff url(../images/cog.png) no-repeat 20px 50%;color:#333;padding-left:47px;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a:hover{text-decoration:none;}
-#tabs .primary li.ui-tabs-selected.ui-state-active a strong{color:#333;}
+
 #tabs .primary li.themelet-icon.ui-state-active a{background:#fff url(../images/icon-themelet.png) no-repeat 20px 50%;}
 #tabs .primary li.blocks-icon.ui-state-active a{background:#fff url(../images/blocks1.png) no-repeat 20px 50%;}
 #tabs .primary li.assets-icon.ui-state-active a{background:#fff url(../images/assets.png) no-repeat 20px 50%;}
 #tabs .primary li.tools-icon.ui-state-active a{background:#fff url(../images/tools.png) no-repeat 20px 50%;}
 #tabs .primary li.help-icon.ui-state-active a{background:#fff url(../images/lifebuoy.png) no-repeat 20px 50%;}
+
 #tabs .ui-tabs-panel{background:#fff none repeat scroll 0 0;float:left;padding:20px;width:920px;}
 /* sub tabs styling */
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav,#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li,#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}

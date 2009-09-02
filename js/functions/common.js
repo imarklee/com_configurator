@@ -3,7 +3,7 @@ var arrPageSizes = ___getPageSize();
 function hideScroll(){
 	$(document).bind('scroll', function(){return false;});
 	$('html, body').css({
-		'overflow': 'hidden', 
+		'overflow-y': 'hidden',
 		paddingRight: '15px'
 	});
 	$('#processing, #alf-image').css({ width: arrPageSizes[0]+15 });
@@ -12,7 +12,7 @@ function hideScroll(){
 
 function showScroll(){
 	$(document).bind('scroll', function(){return false;});
-	$('html').css({'overflow-y': 'scroll', 'overflow-x': 'auto', paddingRight: '0'});
+	$('html').css({'overflow': 'auto', 'overflow-x': 'auto', paddingRight: '0'});
 	return true;
 }
 

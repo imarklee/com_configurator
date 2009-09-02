@@ -1704,21 +1704,6 @@ jQuery.noConflict();
 								$('#upload-message').html(data.success);
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
-//										'Activate': function(){
-//											$(this).dialog('destroy');
-//											function actBg(){
-//												var setBg = data.background;
-//												var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
-//			   									submitbutton('applytemplate');
-//			   									var $tabs = $('#tabs').tabs();
-//												var bgTabs = $('#themelet-tabs').tabs();
-//												$tabs.tabs('select', 1);
-//												bgTabs.tabs('select', 2);
-//												$(this).dialog('destroy');
-//												showScroll();
-//											}
-//											checkChanges(actBg);
-//										},
 										'Ok': function(){
 											$(this).dialog('destroy');
 	  									  	showScroll();
@@ -1731,21 +1716,6 @@ jQuery.noConflict();
 								$('#upload-message').html(data.success);
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
-//										'Activate': function(){
-//											$(this).dialog('destroy');
-//											function actBg(){
-//												var setBg = data.background;
-//												var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
-//			   									submitbutton('applytemplate');
-//			   									var $tabs = $('#tabs').tabs();
-//												var bgTabs = $('#themelet-tabs').tabs();
-//												$tabs.tabs('select', 1);
-//												bgTabs.tabs('select', 2);
-//												$(this).dialog('destroy');
-//												showScroll();
-//											}
-//											checkChanges(actBg);
-//										},
 										'Ok': function(){
 											$(this).dialog('destroy');
 	  									  	showScroll();

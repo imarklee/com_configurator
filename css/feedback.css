@@ -18,7 +18,7 @@
 #report-bug ul li.fb-subject input{width:400px;padding:5px;}
 #report-bug ul li.fb-message textarea{width:400px;padding:5px;}
 #report-bug ul li.fb-buttons{padding:5px 0 15px 130px;}
-#report-bug ul #ff-submit{width:250px;height:40px;overflow:hidden;border:0;background:none;padding:40px 0 0 0;margin:0;background:transparent url(../../images/btn-send-feedback.png) no-repeat;cursor:pointer;}
+#report-bug ul #ff-submit{width:250px;height:40px;overflow:hidden;border:0;background:none;padding:40px 0 0 0;margin:0;background:transparent url(../images/btn-send-feedback.png) no-repeat;cursor:pointer;}
 #report-bug ul #ff-submit:hover{background-position:bottom left;}
 #report-bug ul #ff-reset{font:bold 20px/35px arial;color:#648A3F;text-decoration:underline;margin-left:-10px;}
 #report-bug ul #ff-reset:hover{color:#648A3F;text-decoration:none;}

@@ -21,22 +21,22 @@
 .info-panel h3{font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:0.4px;color:#303030;font-size:22px;margin-bottom:15px;padding:0;}
 .info-panel h4{font:bold 15px arial;margin:0 0 7px 0;padding:0;color:#333;}
 .info-panel ul.morph-resources{margin-top:-10px;}
-.info-panel .teaser{font:normal 15px/20px arial;margin:0 0 10px 0;padding-bottom:25px;color:#666;background:#fff url(../../images/helptext-divider.png) repeat-x 50% 100%;}
+.info-panel .teaser{font:normal 15px/20px arial;margin:0 0 10px 0;padding-bottom:25px;color:#666;background:#fff url(../images/helptext-divider.png) repeat-x 50% 100%;}
 button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
-.icon-48-configurator{background:transparent url(../../images/icon-48-configurator.png) repeat scroll 5px 8px;}
+.icon-48-configurator{background:transparent url(../images/icon-48-configurator.png) repeat scroll 5px 8px;}
 #logologo_image{width:175px;}
 #top{height:90px;overflow:hidden;}
 #branding{width:200px;float:left;height:90px;}
 #branding img{margin-top:15px;}
 #minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}
-.logo-preview{display:block;width:16px;height:16px;background:transparent url(../../images/eye.png) no-repeat 0 0;position:absolute;top:9px;right:100px;}
+.logo-preview{display:block;width:16px;height:16px;background:transparent url(../images/eye.png) no-repeat 0 0;position:absolute;top:9px;right:100px;}
 .logo-preview span{display:none;}
 .logo-preview:hover span{display:block;}
 img.logo-preview-image{margin:-10px;}
 .docs-wrap .btn-link,#cfg a.switch-view,
-#cfg a.btn-link{background:#fff url(../../images/btn-link-bg.jpg) repeat-x;font:bold 11px/25px arial;border:1px solid #ccc;text-decoration:none;color:#444;padding:4px 8px;}
+#cfg a.btn-link{background:#fff url(../images/btn-link-bg.jpg) repeat-x;font:bold 11px/25px arial;border:1px solid #ccc;text-decoration:none;color:#444;padding:4px 8px;}
 #cfg #shelf a.btn-link{padding:3px 7px;}
-.docs-wrap a:hover.btn-link,#cfg .thumb-view ul.buttons li a:hover,#cfg a.btn-link:hover{background:#fff url(../../images/btn-link-bg-over.jpg) repeat-x;color:#666;}
+.docs-wrap a:hover.btn-link,#cfg .thumb-view ul.buttons li a:hover,#cfg a.btn-link:hover{background:#fff url(../images/btn-link-bg-over.jpg) repeat-x;color:#666;}
 ul.morph-resources,ul.morph-resources li{margin:0;padding:0;}
 ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 a.disabled{opacity:0.5;cursor:default;}

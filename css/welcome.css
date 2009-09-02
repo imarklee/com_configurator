@@ -4,19 +4,19 @@
 #welcome-tabs,
 #welcome-tabs li{margin:0;padding:0;background:none;list-style:none;border:0;-moz-border-radius:0;width:200px;}
 #getting-started #welcome-tabs{position:absolute;top:0;left:0;height:450px;background:#222;width:220px;margin-bottom:0;overflow:hidden;}
-#getting-started #welcome-tabs li{width:220px;border-bottom:1px solid #484848;background:#222 url(../../images/splash-tab-bg.jpg) repeat-x;}
+#getting-started #welcome-tabs li{width:220px;border-bottom:1px solid #484848;background:#222 url(../images/splash-tab-bg.jpg) repeat-x;}
 #welcome-tabs li a{color:#999;display:block;font:normal 13px/40px arial;height:40px;padding:0 10px 0 35px;text-decoration:none;width:200px;}
-#welcome-tabs li.splash-start a{background:transparent url(../../images/splash-start.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-fullscreen a{background:transparent url(../../images/splash-fullscreen.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-updates a{background:transparent url(../../images/splash-updates.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-assets a{background:transparent url(../../images/splash-assets.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-methods a{background:transparent url(../../images/splash-methods.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-guides a{background:transparent url(../../images/splash-guides.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-contextual a{background:transparent url(../../images/splash-contextual.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-shortcuts a{background:transparent url(../../images/splash-shortcuts.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-prefs a{background:transparent url(../../images/splash-prefs.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-feedback a{background:transparent url(../../images/splash-feedback.png) no-repeat 4% 50%;}
-#welcome-tabs li.splash-docs a{background:transparent url(../../images/splash-docs.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-start a{background:transparent url(../images/splash-start.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-fullscreen a{background:transparent url(../images/splash-fullscreen.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-updates a{background:transparent url(../images/splash-updates.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-assets a{background:transparent url(../images/splash-assets.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-methods a{background:transparent url(../images/splash-methods.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-guides a{background:transparent url(../images/splash-guides.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-contextual a{background:transparent url(../images/splash-contextual.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-shortcuts a{background:transparent url(../images/splash-shortcuts.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-prefs a{background:transparent url(../images/splash-prefs.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-feedback a{background:transparent url(../images/splash-feedback.png) no-repeat 4% 50%;}
+#welcome-tabs li.splash-docs a{background:transparent url(../images/splash-docs.png) no-repeat 4% 50%;}
 #welcome-tabs li a:hover{color:#ccc;}
 #getting-started #welcome-tabs li.ui-tabs-selected{background-color:#fff;background-image:none;;}
 #getting-started #welcome-tabs li.ui-state-hover a:hover{background-color:none!important;}

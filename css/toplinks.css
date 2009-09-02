@@ -1,17 +1,17 @@
 #submenu-box div.m ul#submenu li{padding:0;}
-#submenu-box div.m ul#submenu li a{background:transparent url(../../images/splash-guides.png) no-repeat 8px 2px;padding:1px 0 0 30px;font:normal 15px/20px arial;padding-right:10px;text-decoration:none;color:#444;border-right:1px solid #ccc;}
+#submenu-box div.m ul#submenu li a{background:transparent url(../images/splash-guides.png) no-repeat 8px 2px;padding:1px 0 0 30px;font:normal 15px/20px arial;padding-right:10px;text-decoration:none;color:#444;border-right:1px solid #ccc;}
 #submenu-box div.m ul#submenu li a:hover{text-decoration:underline;}
-#submenu-box div.m ul#submenu li.last a{background:transparent url(../../images/manage-link.png) no-repeat 10px 2px;padding-left:35px;}
-#submenu-box div.m ul#submenu li.full-mode a{background:transparent url(../../images/fullscreen-link.png) no-repeat 12px 3px;padding-left:35px;}
-#submenu-box div.m ul#submenu li.feedback a{background:transparent url(../../images/feedback-link.png) no-repeat 10px 2px;padding-left:35px;}
-#submenu-box div.m ul#submenu li.preferences a{border-left:1px solid #ccc!important;background:transparent url(../../images/prefs-link.png) no-repeat 10px 2px;padding-left:35px;}
+#submenu-box div.m ul#submenu li.last a{background:transparent url(../images/manage-link.png) no-repeat 10px 2px;padding-left:35px;}
+#submenu-box div.m ul#submenu li.full-mode a{background:transparent url(../images/fullscreen-link.png) no-repeat 12px 3px;padding-left:35px;}
+#submenu-box div.m ul#submenu li.feedback a{background:transparent url(../images/feedback-link.png) no-repeat 10px 2px;padding-left:35px;}
+#submenu-box div.m ul#submenu li.preferences a{border-left:1px solid #ccc!important;background:transparent url(../images/prefs-link.png) no-repeat 10px 2px;padding-left:35px;}
 #submenu-box div.m ul#submenu li a.active{line-height:20px;text-decoration:none;color:#999;opacity:0.4;}
 #submenu-box div.m ul,#submenu li.last a{border-right:0;}
 #submenu-box div.m ul#submenu li.full-mode,
 #submenu-box div.m ul#submenu li.feedback,
 #submenu-box div.m ul#submenu li.preferences{float:right;}
 #submenu-box div.m ul#submenu li.preferences a{border-right:0;}
-#toolbar-box #toolbar .toolbar td a{background:transparent url(../../images/cfg-icons.jpg) no-repeat 50% 2%;width:60px;display:block;padding-top:34px;text-align:center;float:right;}
+#toolbar-box #toolbar .toolbar td a{background:transparent url(../images/cfg-icons.jpg) no-repeat 50% 2%;width:60px;display:block;padding-top:34px;text-align:center;float:right;}
 #toolbar .toolbar td a span{display:none;}
 #toolbar .toolbar td#fullscreen a{background-position:50% 35%;}
 #toolbar .toolbar td#preferences a{background-position:50% 72%;}

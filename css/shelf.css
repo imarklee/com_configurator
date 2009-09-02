@@ -1,10 +1,10 @@
-#utilities{text-align:right;overflow:hidden;height:31px;background:#ccc url(../../images/gradient1.jpg) repeat-x;}
+#utilities{text-align:right;overflow:hidden;height:31px;background:#ccc url(../images/gradient1.jpg) repeat-x;}
 #shelf.open #utilities{-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
 #shelf.closed #utilities{-moz-border-radius-bottomleft:7px;-moz-border-radius-bottomright:7px;-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
 #current-themelet ul,
 #updates-summary dl{font-size:12px;font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:1;line-height:19px;}
 #utilities ul{overflow:hidden;margin-left:10px;}
-#shelf #utilities ul li.logged-in{display:block;float:left;margin:0 0 0 8px;padding:0 0 0 20px;height:30px;line-height:30px;text-align:left;width:300px;font-weight:normal;font-size:12px;background:transparent url(../../images/loggedin.png) no-repeat center left;}
+#shelf #utilities ul li.logged-in{display:block;float:left;margin:0 0 0 8px;padding:0 0 0 20px;height:30px;line-height:30px;text-align:left;width:300px;font-weight:normal;font-size:12px;background:transparent url(../images/loggedin.png) no-repeat center left;}
 #utilities ul li.logged-in a{display:inline!important;padding:0;margin:0;height:auto;line-height:1;float:none;font-size:12px;color:#111;text-decoration:underline;border:0;}
 #utilities ul li.logged-in a:hover{color:#eee;text-decoration:none;}
 #utilities ul li{display:block;float:right;margin:0;}
@@ -23,8 +23,8 @@
 #updates-summary,#current-themelet,#visual-refs{height:125px;}
 #updates-summary{position:relative;margin-left:20px;width:220px;float:left;}
 .update-yes,.update-no{width:16px;height:16px;display:block;text-indent:-7998px;}
-.update-yes{background:transparent url(../../images/yes.png) no-repeat;}
-.update-no{background:transparent url(../../images/no.png) no-repeat;}
+.update-yes{background:transparent url(../images/yes.png) no-repeat;}
+.update-no{background:transparent url(../images/no.png) no-repeat;}
 #current-themelet{width:270px;float:left;padding-right:20px;}
 #visual-refs{margin:0;}
 #shelf h3{font-size:15px;font-family:'Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:500;letter-spacing:1;line-height:19px;margin:20px 0 10px 0;}
@@ -38,14 +38,14 @@
 #current-themelet span{width:65px;display:inline-block;}
 #current-themelet .thumb{height:100px;position:relative;right:-150px;top:-85px;width:117px;}
 #current-themelet .thumb img{position:absolute;top:-2px;left:5px;}
-#current-themelet .thumb span{position:absolute;width:117px;height:100px;z-index:999;top:-7px;background:transparent url(../../images/screen.png) no-repeat;}
+#current-themelet .thumb span{position:absolute;width:117px;height:100px;z-index:999;top:-7px;background:transparent url(../images/screen.png) no-repeat;}
 #current-themelet img{vertical-align:middle;}
 #current-themelet a,dd.latest a{color:#555;}
 #updates-summary p.updates-help{margin:0;padding:0;color:#999;position:absolute;top:22px;right:15px;}
 #updates-summary div.updates-msg {margin:0;padding:0;color:#000;position:absolute;top:68px; left:55px; font-size: 12px; font-weight:bold;}
 #updates-summary p.updates-help a{text-decoration:underline; display: block; height: 16px; width: 16px; text-indent: -9999px; float: left; margin: 0 8px 0 0;}
-#updates-summary p.updates-help a.updates-help-link { background: transparent url(../../images/question.png) no-repeat;  }
-#updates-summary p.updates-help a.updates-refresh-link { background: transparent url(../../images/arrow-circle-315.png) no-repeat; }
+#updates-summary p.updates-help a.updates-help-link { background: transparent url(../images/question.png) no-repeat;  }
+#updates-summary p.updates-help a.updates-refresh-link { background: transparent url(../images/arrow-circle-315.png) no-repeat; }
 #updates-summary p.updates-help a:hover{text-decoration:none;}
 #shelf ul,#shelf li{list-style:none;margin:0;padding:0;}
 #visual-refs{width:375px;float:left;}

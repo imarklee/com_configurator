@@ -862,6 +862,7 @@ jQuery.noConflict();
 									   		}
 									   	});
 									}else{
+										closeOverlay();
 										$('.dialog-msg').dialog('open');
 									}
 								}

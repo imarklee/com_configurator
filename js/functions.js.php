@@ -828,6 +828,7 @@ jQuery.noConflict();
 								success: function(data, ts){
 									if(data.exists == 'true'){
 										closeOverlay();
+										hideScroll();
 										$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
 								   			bgiframe: true,
 								   			autoOpen: true,
@@ -1893,8 +1894,8 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		//TODO: insert block options
-		//TODO: insert keyboard functions
+		<?php include('functions/blocks.js'); ?>
+		<?php include('functions/keyboard.js'); ?>
 		
 		// ajax content for dialog
 	    // welcome screen

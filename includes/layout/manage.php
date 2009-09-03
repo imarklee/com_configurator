@@ -23,13 +23,13 @@
 					<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
 					<li class="icon-performance"><a href="#performance-tab">Performance Tuning</a></li>
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
-					<li class="icon-components"><a href="#components-tab">Components</a></li>
+<!--					<li class="icon-components"><a href="#components-tab">Components</a></li>-->
 				</ul>
 				<?php include dirname(__FILE__) . '/../general/general.php' ?>
 				<?php include dirname(__FILE__) . '/../general/progressive.php' ?>
 				<?php include dirname(__FILE__) . '/../general/performance.php' ?>
 				<?php include dirname(__FILE__) . '/../general/debugging.php' ?>
-				<?php include dirname(__FILE__) . '/../general/components.php' ?>
+				<?php /*include dirname(__FILE__) . '/../general/components.php'*/ ?>
 			</div>
 		</div>
 

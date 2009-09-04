@@ -109,7 +109,7 @@ function overlay(msg){
 	$('#processing div').css({
 		position: 'absolute',
 		top: winHeightHalf - innerHeightHalf + scrollTop,
-		left: winWidthHalf - innerWidthHalf + scrollLeft
+		left: winWidthHalf - innerWidthHalf + scrollLeft + 15
 	});
 	
 	$(window).resize(function() {
@@ -130,7 +130,7 @@ function overlay(msg){
 		$('#processing div').css({
 			position: 'absolute',
 			top: winHeightHalf - innerHeightHalf + scrollTop,
-			left: winWidthHalf - innerWidthHalf + scrollLeft
+			left: winWidthHalf - innerWidthHalf + scrollLeft + 15
 		});
 	});
 	

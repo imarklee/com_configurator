@@ -862,6 +862,7 @@ jQuery.noConflict();
 									   		}
 									   	});
 									}else{
+										closeOverlay();
 										$('.dialog-msg').dialog('open');
 									}
 								}
@@ -1757,6 +1758,7 @@ jQuery.noConflict();
 		});
 		
 		function checkChanges(action){
+			var target;
 			if($.cookie('formChanges')){			
 				$('<div id="changesDialog"><p>You have made changes to Configurator that will be saved upon activation. Are you sure you want to activate and save these changes?</p><p><strong>If you cancel, this page will reload and your changes will be lost.</strong></p></div>').dialog({
 					autoOpen: true,
@@ -1773,7 +1775,12 @@ jQuery.noConflict();
 						},
 						'Activate only': function(){
 							$.cookie('formChanges', null);
-							window.location.reload(true);
+							if($this.attr('target') == ''){ 
+								window.location.href($this.attr('href'));
+			   				}else{ 
+			   					target = $this.attr('target');
+			   					window.open($this.attr('href'), target);
+			   				}
 							return false;
 						}
 					}
@@ -1845,6 +1852,7 @@ jQuery.noConflict();
 		
 		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a').click(function(){
 			var $this = $(this);
+			var target;
 			if($.cookie('formChanges')){			
 				$('<div id="changesDialog">You have made changes to Configurator that will be lost if you navigate from this page. Are you sure you want to continue without saving?</div>').dialog({
 					autoOpen: true,
@@ -1871,7 +1879,12 @@ jQuery.noConflict();
 										$("#system-message dd.message ul").corners("10px");		
 										$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 						   				hideScroll();
-						   				window.open($this.attr('href'), $this.attr('target'));
+						   				if($this.attr('target') == ''){ 
+   											window.location.href($this.attr('href'));
+						   				}else{ 
+						   					target = $this.attr('target');
+						   					window.open($this.attr('href'), target);
+						   				}
 						   				return false;		   			
 					   				}
 					   			});
@@ -1883,13 +1896,23 @@ jQuery.noConflict();
 						'Continue': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
-							window.open($this.attr('href'), $this.attr('target'));
+							if($this.attr('target') == ''){ 
+			   					window.location.href($this.attr('href'));
+			   				}else{ 
+			   					target = $this.attr('target');
+			   					window.open($this.attr('href'), target);
+			   				}
 							return false;
 						}
 					}
 				});
 			}else{
-				window.open($this.attr('href'), $this.attr('target'));
+   				if($this.attr('target') == ''){ 
+   					window.location.href($this.attr('href'));
+   				}else{ 
+   					target = $this.attr('target');
+   					window.open($this.attr('href'), target);
+   				}
 			}
 			return false;
 		});

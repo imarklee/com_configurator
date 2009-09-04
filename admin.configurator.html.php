@@ -38,37 +38,37 @@ if(!isset($_COOKIE['unpack'])){
 	/* unpacked css
 	*****************************************/
 	// global
-	$document->addStyleSheet($csspath . 'global/reset.css');
-	$document->addStyleSheet($csspath . 'global/960.css');
-	$document->addStyleSheet($csspath . 'global/ui.css');
-	$document->addStyleSheet($csspath . 'global/text.css');
-	$document->addStyleSheet($csspath . 'global/overlay.css');
-	$document->addStyleSheet($csspath . 'global/sprite.css');
+	$document->addStyleSheet($csspath . 'reset.css');
+	$document->addStyleSheet($csspath . '960.css');
+	$document->addStyleSheet($csspath . 'ui.css');
+	$document->addStyleSheet($csspath . 'text.css');
+	$document->addStyleSheet($csspath . 'overlay.css');
+	$document->addStyleSheet($csspath . 'sprite.css');
 	// dashboard
 	// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
 	if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 	// login
-	$document->addStyleSheet($csspath . 'login/login.css');
+	$document->addStyleSheet($csspath . 'login.css');
 	} else {
 	// manage
-	$document->addStyleSheet($csspath . 'manage/assets.css');
-	$document->addStyleSheet($csspath . 'manage/colorpicker.css');
-	$document->addStyleSheet($csspath . 'manage/docs.css');
-	$document->addStyleSheet($csspath . 'manage/feedback.css');
-	$document->addStyleSheet($csspath . 'manage/footer.css');
-	$document->addStyleSheet($csspath . 'manage/forms.css');
-	$document->addStyleSheet($csspath . 'manage/fullscreen.css');
-	$document->addStyleSheet($csspath . 'manage/help.css');
-	$document->addStyleSheet($csspath . 'manage/keyboard.css');
-	$document->addStyleSheet($csspath . 'manage/manage.css');
-	$document->addStyleSheet($csspath . 'manage/preferences.css');
-	$document->addStyleSheet($csspath . 'manage/shelf.css');
-	$document->addStyleSheet($csspath . 'manage/tabs.css');
-	$document->addStyleSheet($csspath . 'manage/tips.css');
-	$document->addStyleSheet($csspath . 'manage/tooltips.css');
-	$document->addStyleSheet($csspath . 'manage/toplinks.css');
-	$document->addStyleSheet($csspath . 'manage/uploader.css');
-	$document->addStyleSheet($csspath . 'manage/welcome.css');
+	$document->addStyleSheet($csspath . 'assets.css');
+	$document->addStyleSheet($csspath . 'colorpicker.css');
+	$document->addStyleSheet($csspath . 'docs.css');
+	$document->addStyleSheet($csspath . 'feedback.css');
+	$document->addStyleSheet($csspath . 'footer.css');
+	$document->addStyleSheet($csspath . 'forms.css');
+	$document->addStyleSheet($csspath . 'fullscreen.css');
+	$document->addStyleSheet($csspath . 'help.css');
+	$document->addStyleSheet($csspath . 'keyboard.css');
+	$document->addStyleSheet($csspath . 'manage.css');
+	$document->addStyleSheet($csspath . 'preferences.css');
+	$document->addStyleSheet($csspath . 'shelf.css');
+	$document->addStyleSheet($csspath . 'tabs.css');
+	$document->addStyleSheet($csspath . 'tips.css');
+	$document->addStyleSheet($csspath . 'tooltips.css');
+	$document->addStyleSheet($csspath . 'toplinks.css');
+	$document->addStyleSheet($csspath . 'uploader.css');
+	$document->addStyleSheet($csspath . 'welcome.css');
 	}
 }
 

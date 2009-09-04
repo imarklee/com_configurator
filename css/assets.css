@@ -39,14 +39,12 @@
 #cfg .list-view ul.assets-headers li.th-delete { width:110px; }
 #cfg .list-view ul.buttons li.btn-activate { width:110px; }
 #cfg .list-view ul.assets-headers li.th-date,
-#cfg .list-view ul.themelet-summary li.tl-date,
-#cfg .list-view ul.logo-summary li.tl-date,
-#cfg .list-view ul.background-summary li.tl-date { width:100px; }
+#cfg .list-view ul.assets-summary li.tl-date { width:100px; }
+
 #cfg .list-view ul.assets-headers li.th-installed,
 #cfg .list-view ul.assets-headers li.th-current,
-#cfg .list-view ul.themelet-summary li.tl-current,
-#cfg .list-view ul.logo-summary li.tl-current,
-#cfg .list-view ul.background-summary li.tl-current { width:100px; }
+#cfg .list-view ul.assets-summary li.tl-current { width:100px; }
+
 #cfg .list-view ul.assets-headers li.th-name { padding-left:7px; text-align:left; width:268px; }
 #cfg .list-view ul.assets-headers li.th-preview { border-right:0; width:110px; }
 #cfg .list-view ul.buttons { left:575px; overflow:hidden; position:absolute; top:0; width:350px; margin:0; padding:0; }
@@ -57,15 +55,9 @@
 #cfg .list-view ul.buttons li.btn-delete a { margin-left:-3px; }
 #cfg .list-view ul.buttons li.btn-preview { border-right:0; display:block; width:75px; }
 #cfg .list-view ul.buttons li.btn-preview a { margin-left:30px; }
-#cfg .list-view ul.themelet-summary li,
-#cfg .list-view ul.logo-summary li,
-#cfg .list-view ul.background-summary li {background:none;border:0;border-right:1px solid #ccc;float:left;height:30px;line-height:32px;text-align:center;width:auto;margin:0;padding:0;}
-#cfg .list-view ul.themelet-summary li.tl-installed,
-#cfg .list-view ul.logo-summary li.tl-installed,
-#cfg .list-view ul.background-summary li.tl-installed{width:100px;}
-#cfg .list-view ul.themelet-summary,
-#cfg .list-view ul.logo-summary,
-#cfg .list-view ul.background-summary{left:275px;position:absolute;top:0;border-left:1px solid #ccc;}
+#cfg .list-view ul.assets-summary li {background:none;border:0;border-right:1px solid #ccc;float:left;height:30px;line-height:32px;text-align:center;width:auto;margin:0;padding:0;}
+#cfg .list-view ul.assets-summary li.tl-installed{width:100px;}
+#cfg .list-view ul.assets-summary{left:275px;position:absolute;top:0;border-left:1px solid #ccc;}
 #cfg .list-view li img,
 #cfg .list-view li h4{display:none;}
 #cfg .list-view .image-container{display:none;}
@@ -93,9 +85,7 @@
 #cfg .thumb-view li:hover .btn-preview,
 #cfg .thumb-view .assets-list li.tl-active:hover h4,
 #cfg .thumb-view .assets-list li.tl-active:hover .buttons,
-#cfg .thumb-view .assets-list li h4{
-display: none;
-}
+#cfg .thumb-view .assets-list li h4{display: none;}
 
 #cfg .thumb-view .assets-list li.tl-active:hover h3,
 #cfg .thumb-view .assets-list li.tl-active:hover img,

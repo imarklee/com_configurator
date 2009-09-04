@@ -58,8 +58,8 @@
 #action li.next .btn-install{background:#DDDAD2 url(../images/btn-upload.png) no-repeat;display:block;width:255px;height:50px;text-indent:-7998px;float:left;border:0;margin:-15px 15px 0 0;}
 #action li.next .install-sample{background:#DDDAD2 url(../images/btn-quicksetup.png) no-repeat;width:300px;}
 #action li.next .launch-cfg{background:#DDDAD2 url(../images/btn-complete.png) no-repeat;}
-#action li.next .continue-install{background:#DDDAD2 url(../images/btn-cont-with-install.png) no-repeat;}
-#action li.next .finish-install{background:#DDDAD2 url(../images/btn-finish-install.png) no-repeat;}
+#action li.next .continue-install{background:#DDDAD2 url(../images/btn-cont-with-install.png) no-repeat;width:299px;}
+#action li.next .finish-install{background:#DDDAD2 url(../images/btn-finish-install.png) no-repeat;width:270px;}
 #action li.next .btn-install:hover{background-position:center left;cursor:pointer;}
 #action li.next .btn-install:focus{background-position:bottom left;}
 #install-body .success{text-align:center;color:green;font:bold 35px/70px arial;display:block;padding-top:2.5em;}

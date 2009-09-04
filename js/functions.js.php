@@ -90,7 +90,7 @@ jQuery.noConflict();
 		$(".upload-themelet").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",3);
+		maintabs.tabs("select",4);
 		subtabs.tabs("select",0);
 		$('#install-type label.label-selected').removeClass('label-selected');
 		$("#upload_themelet").attr("checked",true).parent().addClass('label-selected');
@@ -100,7 +100,7 @@ jQuery.noConflict();
 		$(".upload-logo").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",3);
+		maintabs.tabs("select",4);
 		subtabs.tabs("select",0);
 		$('#install-type label.label-selected').removeClass('label-selected');
 		$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
@@ -110,7 +110,7 @@ jQuery.noConflict();
 		$(".upload-bg").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",3);
+		maintabs.tabs("select",4);
 		subtabs.tabs("select",0);
 		$('#install-type label.label-selected').removeClass('label-selected');
 		$("#upload_background").attr("checked",true).parent().addClass('label-selected');
@@ -120,7 +120,7 @@ jQuery.noConflict();
 		$(".upload-iphone").click(function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",3);
+		maintabs.tabs("select",4);
 		subtabs.tabs("select",0);
 		$('#install-type label.label-selected').removeClass('label-selected');
 		$("#upload_iphone").attr("checked",true).parent().addClass('label-selected');

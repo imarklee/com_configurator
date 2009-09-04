@@ -132,7 +132,9 @@
 <input type="hidden" name="option" value="<?php echo $option; ?>"/>
 <input type="hidden" name="t" value="morph"/>
 <input type="hidden" name="task" value="" />
+<?php if($cfg_pref->bottom_save == 1){ ?>
 <div id="bottom-save"><a href="#">Save your settings</a></div>
+<?php } ?>
 </form>
 
 

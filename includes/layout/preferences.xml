@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <preferences>
 	<params group="cfg_prefs">
-		<param name="quick_tips" default="1" type="radio" label="Show Quick Tips">
+		<param name="quick_tips" default="1" type="radio" label="Show quick tips">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<param name="show_intros" default="1" type="radio" label="Show Tab Introductions">
+		<param name="show_intros" default="1" type="radio" label="Show tab descriptions">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<!--<param name="sort_tabs" default="1" type="radio" label="Sortable Tabs">
-			<option value="1">Yes</option>
-			<option value="0">No</option>
-		</param>-->
 		<param name="check_updates" default="1" type="radio" label="Automatically check for updates">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<param name="short_keys" default="1" type="radio" label="Enable Keyboard Shortcuts">
+		<param name="short_keys" default="1" type="radio" label="Enable keyboard shortcuts">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<param name="show_branding" default="1" type="radio" label="Show Top Branding">
+		<param name="show_branding" default="1" type="radio" label="Show top branding">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<param name="show_footer" default="1" type="radio" label="Show Footer and Links">
+		<param name="show_footer" default="1" type="radio" label="Show footer links">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<param name="shelf_position" default="1" type="list" label="Shelf Position" position="last">
+		<param name="shelf_position" default="1" type="list" label="Shelf position">
 			<option value="0">Off</option>
 			<option value="1">Top</option>
 			<option value="2">Bottom</option>
+		</param>
+		<param name="bottom_save" default="1" type="radio" label="Show bottom save bar" position="last">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
 		</param>
 	</params>
 </preferences>

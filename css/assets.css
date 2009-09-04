@@ -92,8 +92,8 @@
 #cfg .thumb-view .assets-list li.tl-active:hover .image-container,
 #cfg .thumb-view .assets-list li.tl-active:hover .assets-summary{display:block;}
 
-#cfg .thumb-view .assets-list li:hover h4{display: block;position:absolute;top:25%;width:100%;text-align:center;font-size:15px;}
-#cfg .thumb-view .assets-list li:hover .assets-inner{background:#fff url(../images/assets-inactive-bg.jpg) repeat-x bottom;}
+#cfg .thumb-view .assets-list li:hover h4{display: block;position:absolute;top:25%;width:100%;text-align:center;font-size:15px;color:#333;}
+#cfg .thumb-view .assets-list li:hover .assets-inner{background:#fff url(../images/assets-hover.jpg) repeat-x bottom;}
 #cfg .thumb-view li:hover ul.buttons {display:block;left:30%;position:absolute;top:50%;width:100%;}
 #cfg .thumb-view .assets-list li.tl-active:hover{background:#E3E3E3 url(../images/assets-active-bg.png) repeat-x bottom;border:1px solid #8FAB60;}
 #cfg .thumb-view .assets-list li.tl-active:hover .assets-inner{background:transparent url(../images/active-badge.png) no-repeat top right;}

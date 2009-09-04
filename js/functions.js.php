@@ -1799,7 +1799,7 @@ jQuery.noConflict();
 			}
 		}
 		
-		$('td#toolbar-apply a').attr('onclick', '').click(function(){
+		$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(){
 			overlay('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({

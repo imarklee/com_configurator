@@ -268,7 +268,7 @@
 										}
 									}
 								});
-								if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
+								if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your themelet files were backed up to: </strong><small>'+data.backuploc+'.gz</small></p>'; } else { backupmsg = ''; }
 								$('#dialog').html('<div class="dialog-msg">'+data.msg+backupmsg+'</div>');
 								$('#dialog').dialog('open');
 	                        }

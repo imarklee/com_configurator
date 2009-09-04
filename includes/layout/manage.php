@@ -110,8 +110,8 @@
 					<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
 					<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
 					<li class="icon-iphone"><a href="#assets-iphone">iPhone</a></li>
-					<li class="icon-backup"><a href="#">Download a backup of your assets</a></li>
-				</ul>				
+				</ul>
+				<a class="icon-backup" href="../administrator/index.php?option=com_configurator&task=assets_backup&format=raw">Download a backup of your assets</a>			
 				<?php include dirname(__FILE__) . '/../assets/themelets.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/logos.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/backgrounds.php'; ?>

@@ -187,7 +187,14 @@ class ConfiguratorController extends JController {
 	HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
 	}
 
-
+	function assets_backup(){
+		$assets = JPATH_ROOT .DS.'morph_assets';
+		JArchive::create(JPATH_ROOT.DS.'assets_backup',$assets, 'gz', '', JPATH_ROOT, true);
+		header('Content-disposition: attachment; filename=assets_backup.gz');
+		header('Content-type: application/x-gzip');
+		readfile(JPATH_ROOT.DS.'assets_backup.gz');
+		//return false;		
+	}
 	function removeicon() {
 		global $mainframe;
 		$option = JRequest::getVar('option');
@@ -553,18 +560,8 @@ class ConfiguratorController extends JController {
 				}else{
 					JPath::setPermissions($themelet_dir);
 				}
-			}else{
-				$themelet_name = str_replace('themelet_', '', strtolower(basename($themelet_details['name'])));
-				$themelet_name = str_replace(strstr($themelet_name, '_'), '', $themelet_name);
-
-				$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
-				$backupfile = $backupdir . DS . $themelet_name . '_files_' . date("His_dmY");
-				if(!@Jarchive::create($backupfile, $themelet_dir . DS . $themelet_name, 'gz', '', $themelet_dir, true)){
-					$error = 'error: "Could not backup themelet!"';
-					return $error;
-				}
-				
 			}
+			
 			if( !is_writable($themelet_dir) ){
 				$error = 'error: "Could not save file, permission error!"';
 				return $error;
@@ -572,6 +569,19 @@ class ConfiguratorController extends JController {
 			if( !move_uploaded_file($themelet_details['tmp_name'], $themelet_dir . DS . strtolower(basename($themelet_details['name']))) ){
 				$error = 'error: "Could not move file to required location!"';
 				return $error;
+			}
+			
+			$themelet_name = str_replace('themelet_', '', strtolower(basename($themelet_details['name'])));
+			$themelet_name = str_replace(strstr($themelet_name, '_'), '', $themelet_name);
+			if(is_dir($themelet_dir . DS . $themelet_name)){
+				$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
+				$backupfile = $backupdir . DS . $themelet_name . '_files_' . date("His_dmY");
+				if(!@Jarchive::create($backupfile, $themelet_dir . DS . $themelet_name, 'gz', '', $themelet_dir, true)){
+					$error = 'error: "Could not backup themelet!"';
+					return $error;
+				}
+			}else{
+				$backupfile = '';
 			}
 		
 			JPath::setPermissions($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
@@ -797,7 +807,7 @@ class ConfiguratorController extends JController {
 		if (JFolder::exists( dirname($p_filename).DS.$_themeletdir ) ) {
 			$retval['dir'] = $extractdir;
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
-			$success = 'success: "Themelet Successfully Installed", backuploc: "'.$b.'", themelet: "'.$_themeletdir.'", error: "", msg: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'"';
+			$success = 'success: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'", backuploc: "'.$b.'", error: "", msg: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'"';
 			return $success;
 		}
 		

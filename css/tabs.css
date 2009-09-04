@@ -38,6 +38,9 @@
 #tabs .primary li.tools-icon.ui-state-active a{background:#fff url(../images/tools.png) no-repeat 20px 50%;}
 #tabs .primary li.help-icon.ui-state-active a{background:#fff url(../images/lifebuoy.png) no-repeat 20px 50%;}
 
+#tabs #assets .subtabs .icon-backup{float:right;border:0;}
+#tabs #assets .subtabs .icon-backup a{text-decoration:underline;}
+
 #tabs .ui-tabs-panel{background:#fff none repeat scroll 0 0;float:left;padding:20px;width:920px;}
 /* sub tabs styling */
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav,#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li,#tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}

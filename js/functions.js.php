@@ -32,7 +32,6 @@ jQuery.noConflict();
 		$("#submenu li:last").addClass("last");
 		$("#submenu li:first").addClass("dashboard");
 		$("#blocks-tabs .ui-tabs-nav li:last").addClass("last");
-		
 		$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
 		$("#tabs ol.forms li:first-child").addClass("first");		
 		$("#tabs ol.forms li:last-child").addClass("last");		
@@ -315,7 +314,8 @@ jQuery.noConflict();
 
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#themelets").removeClass("ui-widget-content");			
-		
+		$("#assets-tabs li.icon-backup").removeClass("ui-state-disabled");	
+
 		<?php include 'functions/colorpicker.js'; ?>
      	
      	//all hover and click logic for buttons

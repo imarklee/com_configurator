@@ -1,4 +1,4 @@
-#utilities{text-align:right;overflow:hidden;height:31px;background:#ccc url(../images/gradient1.jpg) repeat-x;}
+#utilities{text-align:right;overflow:hidden;height:31px;background-color:#444;}
 #shelf.open #utilities{-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
 #shelf.closed #utilities{-moz-border-radius-bottomleft:7px;-moz-border-radius-bottomright:7px;-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
 #current-themelet ul,

@@ -16,9 +16,9 @@
 #cfg .switch h2{color:#666;float:left;font:bold 22px/30px arial;height:30px;width:40%;margin:0;padding:0;}
 #cfg .switch h2 strong{color:#999;}
 #cfg .switch p{display:block;float:right;text-align:right;width:60%;height:30px;line-height:30px;margin:0;padding:0;}
-#cfg .assets-list a.switch-view{background:#fff url(../images/switch-view.png) no-repeat;padding:4px 55px 4px 8px;}
-#cfg a.switch-view.swap{background-position:bottom left;}
-#cfg a.switch-view:hover{-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=75);filter:alpha(opacity=75); opacity:.75;}
+#cfg #assets-tabs a.switch-view{background:#fff url(../images/switch-view.png) no-repeat;padding:4px 55px 4px 8px;}
+#cfg #assets-tabs a.switch-view.swap{background-position:bottom left;}
+#cfg #assets-tabs a.switch-view:hover{-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=75);filter:alpha(opacity=75); opacity:.75;}
 #cfg li.tl-active ul.buttons li.btn-activate a,
 #cfg li.tl-active ul.buttons li.btn-activate a:hover,
 #cfg li.tl-active ul.buttons li.btn-delete a,

@@ -40,3 +40,29 @@
 #tabs .primary li.assets-icon.ui-state-active a{background:#fff url(../images/assets.png) no-repeat 20px 50%;}
 #tabs .primary li.tools-icon.ui-state-active a{background:#fff url(../images/tools.png) no-repeat 20px 50%;}
 #tabs .primary li.help-icon.ui-state-active a{background:#fff url(../images/lifebuoy.png) no-repeat 20px 50%;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#utilities,
+#minwidth-body #system-message dd.message,
+.ui-dialog .ui-dialog-titlebar,
+#container li {background: url(../images/gradient-sprite.png) no-repeat top left;}
+.ui-dialog .ui-dialog-titlebar{ background-position: 0 0; } 
+#minwidth-body #system-message dd.message{ background-position: 0 -39px; } 
+#utilities{ background-position: 0 -80px; } 
+.small-btn-off { background-position: 0 -112px; } 
+.small-btn-over { background-position: 0 -136px; } 
+.splash-tab { background-position: 0 -160px; } 
+.subtabs { background-position: 0 -200px; } 
+.tabs-off { background-position: 0 -226px; } 
+.tabs-on { background-position: 0 -277px; } 

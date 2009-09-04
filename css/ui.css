@@ -60,7 +60,7 @@
 /* Dialog
 ----------------------------------*/
 .ui-dialog{position:relative;padding:0;background:none;}
-.ui-dialog .ui-dialog-titlebar{position:relative;-moz-border-radius-topleft:7px;-webkit-border-top-left-radius:7px;-moz-border-radius-topright:7px;-webkit-border-top-right-radius:7px;background:#ccc url(../images/dialog-header.jpg) repeat-x;height:38px;line-height:37px;}
+.ui-dialog .ui-dialog-titlebar{position:relative;-moz-border-radius-topleft:7px;-webkit-border-top-left-radius:7px;-moz-border-radius-topright:7px;-webkit-border-top-right-radius:7px;background-color:#ccc;;height:38px;line-height:37px;}
 .ui-dialog .ui-dialog-title{float:left;margin:0;padding:0 0 0 15px;font:bold 14px/37px arial;border:0 solid #aaa;color:#5D656E;text-shadow:0 1px 0 #F1F7F9;}
 .ui-dialog .ui-dialog-title .ui-icon{display:none;}
 .ui-dialog .ui-dialog-titlebar-close{position:absolute;right:.8em;top:50%;width:16px;height:17px;margin:-8px 0 0 0;padding:0;border:0;background:transparent url(../images/dialog-close.png) no-repeat;}

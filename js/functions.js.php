@@ -236,6 +236,13 @@ jQuery.noConflict();
 			$.cookie('hideintros', true);
 			return false; 
 		});
+		$('#plugins-desc a').click(function(){
+			$('#plugins-desc').hide('slow');
+			$('#plugins-tabs .desc-overlay').fadeTo('fast',0).remove();
+			$.cookie('plugins-desc', true,{path:'/',expires:30});
+			$.cookie('hideintros', true);
+			return false; 
+		});
 		$('#tools-desc a').click(function(){
 			$('#tools-desc').hide('slow');
 			$('#tools-tabs .desc-overlay').fadeTo('fast',0).remove();
@@ -307,6 +314,8 @@ jQuery.noConflict();
 			cookie: {				name: 'themelet-tabs',				expires: 30,				path: '/',		 	} 		});
     	$('#blocks-tabs').tabs({
 			fx: { opacity: 'toggle' },			cookie: {				name: 'block-tabs',				expires: 30,				path: '/',		 	} 		});
+		$('#plugins-tabs').tabs({
+			fx: { opacity: 'toggle' },			cookie: {				name: 'plugins-tabs',				expires: 30,				path: '/',		 	} 		});
 		$('#tools-tabs').tabs({
 			fx: { opacity: 'toggle' },			cookie: {				name: 'tools-tabs',				expires: 30,				path: '/',		 	} 		});
 		$('#assets-tabs').tabs({

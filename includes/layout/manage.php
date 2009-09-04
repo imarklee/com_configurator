@@ -9,11 +9,12 @@
 	<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 			<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
-			<li class="themelet-icon"><a href="#themelets">Customization</a></li>
+			<li class="themelet-icon"><a href="#themelets">Customize</a></li>
 			<li class="blocks-icon"><a href="#blocks">Building Blocks</a></li>
-			<li class="tools-icon"><a href="#tools">Toolbox</a></li>
-			<li class="assets-icon"><a href="#assets">Your Assets</a></li>
-			<li class="help-icon last"><a href="#help">Help &amp; Support</a></li>
+			<li class="plugins-icon"><a href="#plugins">Plugins</a></li>
+			<li class="tools-icon"><a href="#tools">Tools</a></li>
+			<li class="assets-icon"><a href="#assets">Browse Assets</a></li>
+			<li class="help-icon last"><a href="#help">Help</a></li>
 		</ul>
 		<div id="site">					
 			<div id="site-tabs" class="subtabs">
@@ -21,7 +22,7 @@
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
 					<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
-					<li class="icon-performance"><a href="#performance-tab">Performance Tuning</a></li>
+					<li class="icon-performance"><a href="#performance-tab">Performance</a></li>
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
 <!--					<li class="icon-components"><a href="#components-tab">Components</a></li>-->
 				</ul>
@@ -81,6 +82,16 @@
 			</div>
 		</div>
 
+		<div id="plugins" class="ui-tabs-hide">
+			<div id="plugins-tabs" class="subtabs">
+				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['plugins-desc'])) { include dirname(__FILE__) . '/../plugins/desc-plugins.php'; } ?>
+				<ul class="ui-helper-clearfix ui-tabs-nav">
+					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab">Fancy Captions</a></li>
+				</ul>
+				<?php include dirname(__FILE__) . '/../plugins/captify.php' ?>
+			</div>
+		</div>
+
 		<div id="tools" class="ui-tabs-hide">
 			<div id="tools-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['tools-desc'])) { include dirname(__FILE__) . '/../tools/desc-tools.php'; } ?>
@@ -121,6 +132,7 @@
 <input type="hidden" name="option" value="<?php echo $option; ?>"/>
 <input type="hidden" name="t" value="morph"/>
 <input type="hidden" name="task" value="" />
+<div id="bottom-save"><a href="#">Save your settings</a></div>
 </form>
 
 

@@ -1,7 +1,3 @@
-jQuery.noConflict();
-(function($){
-	$(document).ready(function(){
-	
 		var thisPage = location.href.substring((location.href.lastIndexOf("/"))+1);
 		var base;
 		if(thisPage != 'install.configurator.php'){ base = './components/com_configurator'; }else{ base = '.'; }
@@ -13,26 +9,19 @@ jQuery.noConflict();
 			return false;
 		});
 		
+		upgrade();
+		
 		function assetsCreate(callback,step){
 			
-			$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Creating Assets folder...</span></div></div>').appendTo('body');
-			$('#saving').css({
-				'display': 'block',
-				'z-index': '9998',
-				position: 'absolute',
-		        top: 0,
-		        left: 0,
-		        width: arrPageSizes[0],
-				height: arrPageSizes[1]
-			});
+			overlay('Processing...')
 			
 			$.get(
 				'../administrator/index.php?option=com_configurator&task=assets_create&format=raw', '',
 				function(data, status){
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){
+							closeOverlay();
 							hideScroll();
-							$('#saving').remove();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -43,7 +32,7 @@ jQuery.noConflict();
 					   			title: 'Error',
 			   					overlay: {
 			   						backgroundColor: '#000000', 
-			   						opacity: 0.8 
+			   						opacity: 0.9 
 			   					},
 								close: function(){
 			   						$(this).dialog('destroy');
@@ -60,8 +49,8 @@ jQuery.noConflict();
 							$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
 							$('#dialog').dialog('open');
 						}else{
+							closeOverlay();
 							hideScroll();
-                            $('#saving').remove();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -72,7 +61,7 @@ jQuery.noConflict();
 					   			title: 'Success',
 			   					overlay: {
 			   						backgroundColor: '#000000', 
-			   						opacity: 0.8 
+			   						opacity: 0.9 
 			   					},
 			   					close: function(){
 			   						$(this).dialog('destroy');
@@ -114,18 +103,7 @@ jQuery.noConflict();
 			
 			
 			if($('#template-file').val() != ''){
-				$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing template...</span></div></div>').appendTo('body');
-				hideScroll();
-				$('#saving').css({
-					'display': 'block',
-					'z-index': '9998',
-					position: 'absolute',
-			        top: 0,
-			        left: 0,
-			        width: arrPageSizes[0],
-					height: arrPageSizes[1]
-				});
-				
+				overlay('Processing...');				
 				$.ajaxFileUpload({
 					url: '../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup='+backupval+'&publish='+publish,
 					fileElementId:'template-file',
@@ -136,8 +114,8 @@ jQuery.noConflict();
 	                    {
 	                        if(data.error != '')
 	                        {
+	                            closeOverlay();
 	                            hideScroll();
-	                            $('#saving').remove();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
 						   			resizable: false,
@@ -147,7 +125,7 @@ jQuery.noConflict();
 						   			title: 'Error',
 				   					overlay: {
 				   						backgroundColor: '#000000', 
-				   						opacity: 0.8 
+				   						opacity: 0.9 
 				   					},
 									close: function(){
 				   						$(this).dialog('destroy');
@@ -163,8 +141,8 @@ jQuery.noConflict();
 								$('#dialog').dialog('open');
 	                        }else{
 	                        	if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
+	                            closeOverlay();
 	                            hideScroll();
-	                            $('#saving').remove();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
 						   			resizable: false,
@@ -174,7 +152,7 @@ jQuery.noConflict();
 						   			title: 'Success',
 				   					overlay: {
 				   						backgroundColor: '#000000', 
-				   						opacity: 0.8 
+				   						opacity: 0.9 
 				   					},
 				   					close: function(){
 				   						$(this).dialog('destroy');
@@ -213,7 +191,7 @@ jQuery.noConflict();
 					modal: true,
 					overlay: {
 						backgroundColor: 'black',
-						opacity: 0.8
+						opacity: 0.9
 					}
 				});
 			}
@@ -226,17 +204,7 @@ jQuery.noConflict();
 				var actval = 'false';
 			}
 			if($('#insfile').val() != ''){
-				$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing themelet...</span></div></div>').appendTo('body');
-				hideScroll();
-				$('#saving').css({
-					'display': 'block',
-					'z-index': '9998',
-					position: 'absolute',
-			        top: 0,
-			        left: 0,
-			        width: arrPageSizes[0],
-					height: arrPageSizes[1]
-				});
+				overlay('Processing...');
 				
 				$.ajaxFileUpload({
 					url: '../administrator/index.php?option=com_configurator&task=install_themelet&format=raw&act_themelet='+actval,
@@ -248,8 +216,8 @@ jQuery.noConflict();
 	                    {
 	                        if(data.error != '')
 	                        {
+	                            closeOverlay();
 	                            hideScroll();
-	                            $('#saving').remove();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
 						   			resizable: false,
@@ -259,7 +227,7 @@ jQuery.noConflict();
 						   			title: 'Error',
 				   					overlay: {
 				   						backgroundColor: '#000000', 
-				   						opacity: 0.8 
+				   						opacity: 0.9 
 				   					},
 									close: function(){
 				   						$(this).dialog('destroy');
@@ -274,8 +242,8 @@ jQuery.noConflict();
 								$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
 								$('#dialog').dialog('open');
 	                        }else{
+	                            closeOverlay();
 	                            hideScroll();
-	                            $('#saving').remove();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
 						   			resizable: false,
@@ -285,7 +253,7 @@ jQuery.noConflict();
 						   			title: 'Success',
 				   					overlay: {
 				   						backgroundColor: '#000000', 
-				   						opacity: 0.8 
+				   						opacity: 0.9 
 				   					},
 				   					close: function(){
 				   						$(this).dialog('destroy');
@@ -300,10 +268,14 @@ jQuery.noConflict();
 										}
 									}
 								});
-								$('#dialog').html('<div class="dialog-msg">'+data.msg+'</div>');
+								if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
+								$('#dialog').html('<div class="dialog-msg">'+data.msg+backupmsg+'</div>');
 								$('#dialog').dialog('open');
 	                        }
 	                    }
+	                },
+	                error: function(e){
+	                	console.log(e);
 	                }
 				});
 			}else{
@@ -325,7 +297,7 @@ jQuery.noConflict();
 					modal: true,
 					overlay: {
 						backgroundColor: 'black',
-						opacity: 0.8
+						opacity: 0.9
 					}
 				});
 			}
@@ -356,7 +328,7 @@ jQuery.noConflict();
 		   			title: 'Error',
    					overlay: {
    						backgroundColor: '#000000', 
-   						opacity: 0.8 
+   						opacity: 0.9 
    					},
 					close: function(){
    						$(this).dialog('destroy');
@@ -373,16 +345,7 @@ jQuery.noConflict();
 				return false;
 			}
 			
-			$('<div id="saving"><div><img src="'+base+'/installer/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>Installing sample data...</span></div></div>').appendTo('body');
-			$('#saving').css({
-				'display': 'block',
-				'z-index': '9998',
-				position: 'absolute',
-		        top: 0,
-		        left: 0,
-		        width: arrPageSizes[0],
-				height: arrPageSizes[1]
-			});
+			overlay('Processing...');
 			
 			$.post(
 				'../administrator/index.php?option=com_configurator&task=install_sample&format=raw',
@@ -394,8 +357,8 @@ jQuery.noConflict();
 				function(data, status){
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){
+							closeOverlay();
 							hideScroll();
-							$('#saving').remove();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -406,7 +369,7 @@ jQuery.noConflict();
 					   			title: 'Error',
 			   					overlay: {
 			   						backgroundColor: '#000000', 
-			   						opacity: 0.8 
+			   						opacity: 0.9 
 			   					},
 								close: function(){
 			   						$(this).dialog('destroy');
@@ -423,8 +386,8 @@ jQuery.noConflict();
 						}else{
 							if(data.db == 'backedup'){ var dbstore = '<p><strong>Your database was backed up to: </strong></p><p><small>'+data.dbstore+'</small></p>'; }else{ var dbstore = '' }
 						
+							closeOverlay();
 							hideScroll();
-                            $('#saving').remove();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
 					   			resizable: false,
@@ -435,7 +398,7 @@ jQuery.noConflict();
 					   			title: 'Success',
 			   					overlay: {
 			   						backgroundColor: '#000000', 
-			   						opacity: 0.8 
+			   						opacity: 0.9 
 			   					},
 			   					close: function(){
 			   						$(this).dialog('destroy');
@@ -476,7 +439,7 @@ jQuery.noConflict();
 		   			title: 'Step 1 Help',
    					overlay: {
    						backgroundColor: '#000000', 
-   						opacity: 0.8 
+   						opacity: 0.9 
    					},
 					buttons: {
 						'Ok': function(){
@@ -506,7 +469,7 @@ jQuery.noConflict();
 		   			title: 'Step 2 Help',
    					overlay: {
    						backgroundColor: '#000000', 
-   						opacity: 0.8 
+   						opacity: 0.9 
    					},
 					buttons: {
 						'Ok': function(){
@@ -534,7 +497,7 @@ jQuery.noConflict();
 		   			title: 'Step 3 Help',
    					overlay: {
    						backgroundColor: '#000000', 
-   						opacity: 0.8 
+   						opacity: 0.9 
    					},
 					buttons: {
 						'Ok': function(){
@@ -549,6 +512,75 @@ jQuery.noConflict();
 			});
 		}
 		
+		function upgrade(){
+			if($('#install-body').hasClass('upgrade')){
+
+				$('li.next a').fadeTo('fast', 0.3).removeClass('launch-cfg').click(function(){ return false; }).css('cursor', 'default');
+				
+				
+				$('input[name="upgrade"]').change(function(){			
+					if($(this).val() == 'opt2'){
+						$('div.upgrade-sub-options ul').show();
+						$('li.next a').addClass('continue-install').removeClass('finish-install').fadeTo('fast', 1).css('cursor', 'pointer');
+					}
+					
+					if($(this).val() == 'opt1'){
+						$('div.upgrade-sub-options ul').hide();
+						$('li.next a').addClass('finish-install').removeClass('continue-install').fadeTo('fast', 1).css('cursor', 'pointer');
+						$('div.upgrade-sub-options input').attr('checked', false);
+					}
+				});
+				
+				$('input[name="upgrade_type"]').change(function(){
+					if($(this).val() == 'fresh'){
+						$.cookie('upgrade-type', 'fresh-install');
+					}
+					if($(this).val() == 'existing'){
+						$.cookie('upgrade-type', 'upgrade');
+					}
+				});
+					
+				$('li.next a').click(function(){
+					if($(this).hasClass('continue-install')){
+						if($('input[name="upgrade_type"]').is(':checked')){
+							loadstep1(template);
+							return false;					
+						}else{
+							hideScroll();
+							$('<div class="dialog-msg"><p>Please select an upgrade option.</p></div>').dialog({
+				            	bgiframe: true,
+								autoOpen: true,
+								stack: true,
+								title: 'Error',
+								buttons: {
+									'Ok': function(){
+										$(this).dialog('close');
+									}
+								},
+								close: function(){
+									$(this).dialog('destroy');
+									showScroll();
+								},
+								modal: true,
+								overlay: {
+									backgroundColor: 'black',
+									opacity: 0.9
+								}
+							});
+						}
+					}
+					if($(this).hasClass('finish-install')){
+						loadcompleted(completed);
+						return false;
+					}
+				return false;
+				});
+				
+			}else{
+				return false;
+			}
+		}
+		
 		function template(){
 			$('.skip-step1').click(function(){ loadstep2(themelet); return false; });
 			$('.refresh-step1').click(function(){ loadstep1(template); return false; });
@@ -557,6 +589,8 @@ jQuery.noConflict();
 				return false;
 			});
 			helpstep1();
+			upgrade();
+			
 			if($('#assets_folder_exists').length > 0){
 				$.cookie('assets_check_again', null);
 				$.cookie('asset_exists', 'true');
@@ -592,6 +626,14 @@ jQuery.noConflict();
 		function completed(){
 			$('.back-step3').click(function(){ loadstep3(sample); return false; });
 			$('.skip-completed').click(function(){ gotomanage(); return false; });
+			var cookies = new Array('cfg', 'nomorph', 'bkpmorph', 'morph', 'pubmorph', 'themelet', 'actthemelet', 'bkpdb', 'gzip', 'samplecont', 'samplemods');
+			for(i=0;i < cookies.length;i++){
+				if($.cookie('installed_'+cookies[i])){
+					$.cookie('installed_'+cookies[i], null);
+				}
+			}
+			$.cookie('asset_exists', null);
+			$.cookie('ins_themelet_name', null);
 		}
 		
 		$('.skip-step1').click(function(){ loadstep2(themelet); return false; });
@@ -683,61 +725,6 @@ jQuery.noConflict();
 		}
 		checkAll();
 		
-		function hideScroll(){
-			$(document).bind('scroll', function(){return false;});
-			$('html').css({'overflow-y': 'hidden', paddingRight: '15px'});
-			return true;
-		}
-		
-		function showScroll(){
-			$(document).bind('scroll', function(){return false;});
-			$('html').css({'overflow-y': 'scroll', paddingRight: '0'});
-			return true;
-		}
-		
-		function ___getPageSize() {
-			var xScroll, yScroll;
-			if (window.innerHeight && window.scrollMaxY) {	
-				xScroll = window.innerWidth + window.scrollMaxX;
-				yScroll = window.innerHeight + window.scrollMaxY;
-			} else if (document.body.scrollHeight > document.body.offsetHeight){ // all but Explorer Mac
-				xScroll = document.body.scrollWidth;
-				yScroll = document.body.scrollHeight;
-			} else { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari
-				xScroll = document.body.offsetWidth;
-				yScroll = document.body.offsetHeight;
-			}
-			var windowWidth, windowHeight;
-			if (self.innerHeight) {	// all except Explorer
-				if(document.documentElement.clientWidth){
-					windowWidth = document.documentElement.clientWidth; 
-				} else {
-					windowWidth = self.innerWidth;
-				}
-				windowHeight = self.innerHeight;
-			} else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
-				windowWidth = document.documentElement.clientWidth;
-				windowHeight = document.documentElement.clientHeight;
-			} else if (document.body) { // other Explorers
-				windowWidth = document.body.clientWidth;
-				windowHeight = document.body.clientHeight;
-			}	
-			// for small pages with total height less then height of the viewport
-			if(yScroll < windowHeight){
-				pageHeight = windowHeight;
-			} else { 
-				pageHeight = yScroll;
-			}
-			// for small pages with total width less then width of the viewport
-			if(xScroll < windowWidth){	
-				pageWidth = xScroll;		
-			} else {
-				pageWidth = windowWidth;
-			}
-			arrayPageSize = new Array(pageWidth,pageHeight,windowWidth,windowHeight);
-			return arrayPageSize;
-		};
-		
 		$('#error-assets').dialog({
 			bgiframe: true,
 			autoOpen: false,
@@ -752,7 +739,7 @@ jQuery.noConflict();
 			},
 			overlay: {
 				backgroundColor: '#000000', 
-				opacity: 0.8 
+				opacity: 0.9 
 			},
 			closeOnEscape: false,
 			buttons: {
@@ -772,6 +759,3 @@ jQuery.noConflict();
 		if(!$.cookie('assets_check_again') && !$.cookie('asset_exists')){
 			$('#error-assets').dialog('open');
 		}
-	
-	});
-})(jQuery);

@@ -252,7 +252,6 @@ class ConfiguratorController extends JController {
 		$params[18] = JRequest::getVar( 'inner-sidebar', null, 'post', 'array' );
 		$params[19] = JRequest::getVar( 'outer-sidebar', null, 'post', 'array' );
 		$params[20] = JRequest::getVar( 'footer', null, 'post', 'array' );
-		$params[21] = JRequest::getVar( 'captify', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
@@ -325,7 +324,6 @@ class ConfiguratorController extends JController {
 		$params[18] = JRequest::getVar( 'inner-sidebar', null, 'post', 'array' );
 		$params[19] = JRequest::getVar( 'outer-sidebar', null, 'post', 'array' );
 		$params[20] = JRequest::getVar( 'footer', null, 'post', 'array' );
-		$params[21] = JRequest::getVar( 'captify', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
@@ -546,10 +544,7 @@ class ConfiguratorController extends JController {
 				$error = 'error: "Not an uploaded file! Hack attempt?"';
 				return $error;
 			}
-			if( file_exists($themelet_dir . DS . strtolower(basename($themelet_details['name']))) ) {
-				$error = 'error: "A file with that name already exists!"';
-				return $error;
-			}
+			
 			if( !is_dir($themelet_dir) ) {
 				// Directory doesnt exist, try to create it.
 				if( !mkdir($themelet_dir) ){
@@ -558,6 +553,17 @@ class ConfiguratorController extends JController {
 				}else{
 					JPath::setPermissions($themelet_dir);
 				}
+			}else{
+				$themelet_name = str_replace('themelet_', '', strtolower(basename($themelet_details['name'])));
+				$themelet_name = str_replace(strstr($themelet_name, '_'), '', $themelet_name);
+
+				$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
+				$backupfile = $backupdir . DS . $themelet_name . '_files_' . date("His_dmY");
+				if(!@Jarchive::create($backupfile, $themelet_dir . DS . $themelet_name, 'gz', '', $themelet_dir, true)){
+					$error = 'error: "Could not backup themelet!"';
+					return $error;
+				}
+				
 			}
 			if( !is_writable($themelet_dir) ){
 				$error = 'error: "Could not save file, permission error!"';
@@ -569,7 +575,7 @@ class ConfiguratorController extends JController {
 			}
 		
 			JPath::setPermissions($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
-			$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
+			$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])), $backupfile);
 			
 			return $msg;
 		}
@@ -596,7 +602,7 @@ class ConfiguratorController extends JController {
 	
 	function themelet_activate_existing($themelet=''){
 		$db = JFactory::getDBO();
-		$query = $db->setQuery("DELETE FROM `jos_configurator` where source='themelet';");
+		$query = $db->setQuery("DELETE FROM `#__configurator` where source='themelet';");
 		$db->query($query);
 		
 		if($themelet == ''){
@@ -619,8 +625,14 @@ class ConfiguratorController extends JController {
 	
 	function themelet_activate($themelet = ''){
 		global $mainframe;
+		
 		$db = JFactory::getDBO();
-		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';
+		$pref = $db->getPrefix();
+		
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		if(!is_dir($backupdir)){mkdir($backupdir);}
+		@JPath::setPermissions($backupdir);
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db'. DS . 'themelets';
 		if(!is_dir($backupdir)){mkdir($backupdir);}
 		@JPath::setPermissions($backupdir);
 		
@@ -660,7 +672,7 @@ class ConfiguratorController extends JController {
 		}
 		
 		if(!empty($db_themelet)){
-			
+
 			$template_xml = $template_dir . DS . 'core' . DS . 'morphDetails.xml';
 			
 			$xml_param_loader = new morphXMLLoader($template_xml);
@@ -692,7 +704,7 @@ class ConfiguratorController extends JController {
 			if(file_exists($backupfile)){
 				JFile::delete($backupfile);
 			}
-			$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure('jos_configurator', "source='themelet'"));
+			$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure($pref . 'configurator', "source='themelet'"));
 			
 			// delete themelet settings from database
 			$query = "delete from #__configurator where source = 'themelet';";
@@ -745,7 +757,7 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
-	function unpackThemelet($p_filename){
+	function unpackThemelet($p_filename, $b){
 		$archivename = $p_filename;
 		$dirname = uniqid('themeletins_');
 		$extractdir = JPath::clean(dirname($p_filename).DS.$dirname);
@@ -785,7 +797,7 @@ class ConfiguratorController extends JController {
 		if (JFolder::exists( dirname($p_filename).DS.$_themeletdir ) ) {
 			$retval['dir'] = $extractdir;
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
-			$success = 'success: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'", error: "", msg: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'"';
+			$success = 'success: "Themelet Successfully Installed", backuploc: "'.$b.'", themelet: "'.$_themeletdir.'", error: "", msg: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'"';
 			return $success;
 		}
 		
@@ -1077,16 +1089,16 @@ class ConfiguratorController extends JController {
 		
 		if(isset($activation) && $activation == 'true'){
 		
-			$this->themelet_activate($themelet);
+			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install')	{ $this->themelet_activate($themelet); }
 			setcookie('installed_actthemelet', 'true');
 			$db = JFactory::getDBO();
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
 			$query = $db->query($query);
 			$themelet_num = $db->getNumRows($query);
 			if($themelet_num == '0'){
-				$new_query = "INSERT INTO jos_configurator VALUES ('' , 'morph', 'themelet', '".mysql_real_escape_string($themelet)."', '1', 'themelet');";
+				$new_query = "INSERT INTO #__configurator VALUES ('' , 'morph', 'themelet', '".mysql_real_escape_string($themelet)."', '1', 'themelet');";
 			}else{
-				$new_query = "UPDATE jos_configurator SET param_value = '".mysql_real_escape_string($themelet)."' where param_name = 'themelet';";
+				$new_query = "UPDATE #__configurator SET param_value = '".mysql_real_escape_string($themelet)."' where param_name = 'themelet';";
 			}
 			$query = $db->setQuery( $new_query );
 			$db->query($query) or die($db->getErrorMsg());
@@ -1095,52 +1107,52 @@ class ConfiguratorController extends JController {
 		$ret = '{'.$return.'}';
 		echo $ret;
 	}
+	
 	function assets_create(){
 	
+		JPath::setPermissions(JPATH_SITE);
+	
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
+		$dbdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		$themeletsdbdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';
 		$logosdir = JPATH_SITE . DS . 'morph_assets' . DS . 'logos';
 		$backgroundsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backgrounds';
 		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
 		$iphonedir = JPATH_SITE . DS . 'morph_assets' . DS . 'iphone';
 		
-		JPath::setPermissions(JPATH_SITE);
+		// create assets folders
+		if(!is_dir(JPATH_SITE . DS . 'morph_assets')) : 
+		(!@mkdir(JPATH_SITE . DS . 'morph_assets')) ? $error = 'error: "There was an error creating the assets folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE . DS . 'morph_assets'); 
+		endif;
 		
-		// create assets folder
-		if(!@mkdir(JPATH_SITE . DS . 'morph_assets')){
-			$error = 'error: "There was an error creating the assets folder. Please check your permissions."';
-		}else{
-			JPath::setPermissions(JPATH_SITE . DS . 'morph_assets');
-		}
-	
-		if(!@mkdir($backupdir)){
-			$error = 'error: "There was an error creating the backup folder. Please check your permission on the assets folder"'; 
-		}else{
-			JPath::setPermissions($backupdir);
-		}
-	
-		if(!@mkdir($logosdir)){
-			$error = 'error: "There was an error creating the logos folder. Please check your permission on the assets folder"'; 
-		}else{
-			JPath::setPermissions($logosdir);
-		}
+		if(!is_dir($backupdir)) :
+		(!@mkdir($backupdir)) ? $error = 'error: "There was an error creating the backup folder. Please check your permissions on the assets folder"' : JPath::setPermissions($backupdir);
+		endif;
 		
-		if(!@mkdir($backgroundsdir)){
-				$error = 'error: "There was an error creating the backgrounds folder. Please check your permission on the assets folder"'; 
-		}else{
-			JPath::setPermissions($backgroundsdir);
-		}
-		if(!@mkdir($themeletsdir)){
-			$error = 'error: "There was an error creating the themelets folder. Please check your permission on the assets folder"'; 
-		}else{
-			JPath::setPermissions($themeletsdir);
-		}
+		if(!is_dir($dbdir)) :
+		(!@mkdir($dbdir)) ? $error = 'error: "There was an error creating the database backup folder. Please check your permissions on the assets folder"' : JPath::setPermissions($dbdir);
+		endif;
 		
-		if(!@mkdir($iphonedir)){
-			$error = 'error: "There was an error creating the iphone folder. Please check your permission on the assets folder"'; 
-		}else{
-			JPath::setPermissions($iphonedir);
-		}
+		if(!is_dir($themeletsdbdir)) :
+		(!@mkdir($themeletsdbdir)) ? $error = 'error: "There was an error creating the themelets database backup folder. Please check your permissions on the assets folder"' : JPath::setPermissions($themeletsdbdir);
+		endif;
 		
+		if(!is_dir($logosdir)) :
+		(!@mkdir($logosdir)) ? $error = 'error: "There was an error creating the logos folder. Please check your permissions on the assets folder"' : JPath::setPermissions($logosdir);
+		endif;
+			
+		if(!is_dir($backgroundsdir)) :
+		(!@mkdir($backgroundsdir)) ? $error = 'error: "There was an error creating the backgrounds folder. Please check your permissions on the assets folder"' : JPath::setPermissions($backgroundsdir);
+		endif;
+		
+		if(!is_dir($themeletsdir)) :
+		(!@mkdir($themeletsdir)) ? $error = 'error: "There was an error creating the themelets folder. Please check your permissions on the assets folder"' : JPath::setPermissions($themeletsdir);
+		endif;
+		
+		if(!is_dir($iphonedir)) :
+		(!@mkdir($iphonedir)) ? $error = 'error: "There was an error creating the iphone folder. Please check your permissions on the assets folder"' : JPath::setPermissions($iphonedir);
+		endif;
+				
 		if(isset($error)){
 			$ret = '{'.$error.'}';
 			echo $ret;
@@ -1151,46 +1163,60 @@ class ConfiguratorController extends JController {
 	
 	function install_template(){
 	
-		function db_update(){
-			$templatesdir = JPATH_SITE . DS . 'templates';
-			$xml_param_loader = new morphXMLLoader($templatesdir.DS.'morph/core'.DS.'morphDetails.xml');
-			$main_xml_params = $xml_param_loader->getParamDefaults();
-			
-			$removeParams = array(
-				'Color Picker Param',
-				'Filelist Param',
-				'Folderlist Param',
-				'Heading Param',
-				'Imagelist Param',
-				'List Param',
-				'Radio Param',
-				'Spacer Param',
-				'Text Param',
-				'Textarea Param',
-				'Themelet Param',
-			);
-			foreach($removeParams as $r){
-				unset($main_xml_params[$r]);
-			}
-			
-			JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
-			
-			foreach($main_xml_params as $param_name => $param_value){
-				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				$setting->source = 'template';
-				$setting->template_name = 'morph';
-				$setting->published = '1';
-				$setting->param_name = $param_name;
-				$setting->loadByKey();
-				$setting->param_value = $param_value;
-				
-				if (!$setting->store(TRUE)) {
-					echo $setting->getError();
-					die();
-				}
+		$db = JFactory::getDBO();
 	
-				unset($setting);
-				$setting = null;
+		if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
+			$query = $db->setQuery('DROP TABLE #__configurator');
+			$db->query($query);
+			$query = $db->setQuery('DROP TABLE #__configurator_preferences');
+			$db->query($query);
+			$this->parse_mysql_dump(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'install.sql');
+		}
+		
+		function db_update(){
+			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
+				$templatesdir = JPATH_SITE . DS . 'templates';
+				$xml_param_loader = new morphXMLLoader($templatesdir.DS.'morph/core'.DS.'morphDetails.xml');
+				$main_xml_params = $xml_param_loader->getParamDefaults();
+				
+				$removeParams = array(
+					'Color Picker Param',
+					'Filelist Param',
+					'Folderlist Param',
+					'Heading Param',
+					'Imagelist Param',
+					'List Param',
+					'Radio Param',
+					'Spacer Param',
+					'Text Param',
+					'Textarea Param',
+					'Themelet Param',
+				);
+				foreach($removeParams as $r){
+					unset($main_xml_params[$r]);
+				}
+				
+				JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
+				
+				foreach($main_xml_params as $param_name => $param_value){
+					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+					$setting->source = 'template';
+					$setting->template_name = 'morph';
+					$setting->published = '1';
+					$setting->param_name = $param_name;
+					$setting->loadByKey();
+					$setting->param_value = $param_value;
+					
+					if (!$setting->store(TRUE)) {
+						echo $setting->getError();
+						die();
+					}
+		
+					unset($setting);
+					$setting = null;
+				}
+			}else{
+				return true;
 			}
 		}
 		
@@ -1390,7 +1416,7 @@ class ConfiguratorController extends JController {
 			}
 		}
 		
-		if($table !== '') $table[] = $table; $sql_structure = null;
+		if($table == '') { $table[] = $table; $sql_structure = null; }
 		
 		foreach($table as $t){
 			if($where !== '') { 
@@ -1409,8 +1435,8 @@ class ConfiguratorController extends JController {
 			}
 		}
 		
-		if($sql_structure !== null) { $sql = '--- Create Database Structure' . "\n\n" . $sql_structure  . "\n\n"; };
-		$sql .= '--- Create Inserts' . "\n\n" . $sql_data;
+		if($sql_structure !== null) { $sql = '#--- Create Database Structure' . "\n\n" . $sql_structure  . "\n\n"; };
+		$sql .= '#--- Create Inserts' . "\n\n" . $sql_data;
 		return $sql; 
 	}
 	

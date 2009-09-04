@@ -10,6 +10,14 @@ include '../../js/ui.js';
 include '../../js/corners.js';
 include '../../js/fileupload.js';
 include '../../js/cookie.js';
-include 'install.configurator.js';
-ob_end_flush();
 ?>
+jQuery.noConflict();
+(function($){
+	$(document).ready(function(){
+	<?php
+	include '../../js/functions/common.js';
+	include 'install.configurator.js';
+	?>
+	})
+})(jQuery);
+<?php ob_end_flush(); ?>

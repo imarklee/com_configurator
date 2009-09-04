@@ -19,6 +19,10 @@
 #install-body.complete h3{color:#326C02;}
 #install-body h3 strong{color:#58842F;}
 #install-body h4{font:normal 15px arial;margin:1.5em 0 .8em 0;padding-top:1.5em;color:#444;border-top:3px solid #eee;}
+#install-body h4.blank{border-top:3px solid #eee;padding-top:1.5em;margin:0;}
+#install-body label.upgrade { font-size: 15px; margin: 0 0 .8em;}
+#install-body div.upgrade-sub-options ul {margin:0 0 1.5em 30px;padding:0;display:none;}
+#install-body div.upgrade-sub-options ul li span {display:block; padding: 0 0 0 1.8em; }
 #install-body .alert{margin-bottom:1.5em;width:700px;}
 #install-body .alert strong{color:#990000;}
 #install-body p{font:normal 15px/22px arial;color:#777;}
@@ -54,6 +58,8 @@
 #action li.next .btn-install{background:#DDDAD2 url(../images/btn-upload.png) no-repeat;display:block;width:255px;height:50px;text-indent:-7998px;float:left;border:0;margin:-15px 15px 0 0;}
 #action li.next .install-sample{background:#DDDAD2 url(../images/btn-quicksetup.png) no-repeat;width:300px;}
 #action li.next .launch-cfg{background:#DDDAD2 url(../images/btn-complete.png) no-repeat;}
+#action li.next .continue-install{background:#DDDAD2 url(../images/btn-cont-with-install.png) no-repeat;}
+#action li.next .finish-install{background:#DDDAD2 url(../images/btn-finish-install.png) no-repeat;}
 #action li.next .btn-install:hover{background-position:center left;cursor:pointer;}
 #action li.next .btn-install:focus{background-position:bottom left;}
 #install-body .success{text-align:center;color:green;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
@@ -63,6 +69,7 @@
 #saving div span{position:absolute;left:20px;top:-1px;}
 #minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}
 #dialog{padding:1em;}
+.dialog-msg{padding:15px;font:normal 15px arial;}
 #dialog p small{padding:2px 0;background:yellow;line-height:1.6em;font-size:11px;}
 .installer-help{font:normal 15px/21px arial;padding:0 1em 1em 1em;}
 .installer-help h3{font:bold 20px/17px arial;margin:1em 0 0 0;}

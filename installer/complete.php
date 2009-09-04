@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 if(strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false){
 $base = './components/com_configurator';
 }else{
@@ -53,3 +54,4 @@ function summaryclass($cookie){
 	</div>
 </div>	
 </div>
+<?php ob_end_flush(); ?>

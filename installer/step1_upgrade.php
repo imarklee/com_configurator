@@ -1,5 +1,4 @@
 <?php
-ob_start();
 if(strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false){
 $base = './components/com_configurator';
 }else{
@@ -23,29 +22,42 @@ if(is_dir(JROOT . '/morph_assets')){ echo '<div id="assets_folder_exists" style=
 				<a href="#" class="help-step1">Help with this step</a>
 			</div>
 			
-			<div id="install-body">
-				<h3>In this step, you will install and publish the Morph template.</h3>
-				<p>If you already have a copy of Morph installed, you can choose to have a backup automatically created for you or skip this step completely.</p>
+			<div id="install-body" class="upgrade">
+				<h3>Are you upgrading?</h3>
+				<p>It seems like you are upgrading your install of Morph's Configurator component. 
+				Please select from the options below to continue.</p>
 				
-				<label class="upload"><h4>Select the template framework install file:</h4>
-				<input type="file" name="template-file" id="template-file" /></label>
+				<h4 class="blank">&nbsp;</h4>
 				
-				<label class="backup"><input type="checkbox" name="publish_template" id="publish_template" checked="checked" value="true" />
-				Publish Morph as the default template?</label>
-				
-				<?php if(is_dir(JROOT . 'templates/morph')){ ?>
-				<label class="backup"><input type="checkbox" name="backup_template" id="backup_template" checked="checked" value="true" />
-				Backup your existing copy of Morph?</label>
-				<?php }else{ setcookie('installed_nomorph', 'true'); } ?>
-				<span class="mascot">&nbsp;</span>
+				<label class="upgrade">
+					<input type="radio" name="upgrade" value="opt1">
+						<strong>Option 1:</strong> I just want to upgrade Configurator.
+				</label>
+				<div class="upgrade-sub-options">
+					<label class="upgrade">
+						<input type="radio" name="upgrade" value="opt2">
+							<strong>Option 2:</strong> Upgrade Configurator, Morph and/or a themelet.
+							<ul>
+								<li><label><input type="radio" name="upgrade_type" value="fresh" />
+									<strong>Start from scratch </strong>
+									<span>This option will empty the component database and install the default settings.</span>
+								</label></li>
+								<li><label><input type="radio" name="upgrade_type" value="existing" />
+									<strong>Keep existing settings </strong>
+									<span>This option will keep your existing installation and configuration intact.</span>
+								</label></li>
+							</ul>
+					</label>
+				</div>
 				
 			</div>
 				
 			<div id="install-foot">
 				<ul id="action">
-					<?php if(is_dir(JROOT . 'morph_assets')){ ?><li class="next"><input class="action install-template btn-install" type="submit" value="submit" /></li><?php } ?>
+					
 					<li class="previous"><span>&laquo; </span>Previous step</li>
 					<li class="skip"><a href="#" class="btn-skip skip-step1">Skip this step<span> &raquo;</span></a></li>
+					<li class="next"><a href="#" class="launch-cfg btn-install" title="click here to get started with configurator">Launch Configurator</a></li>
 				</ul>
 			</div>
 		</div>	

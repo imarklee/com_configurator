@@ -33,36 +33,32 @@
 .sprite-manage-link { background-position: 0 -1380px; } 
 .sprite-yes { background-position: 0 -1426px; }
 
-
-
 #tabs .primary li.themelet-icon.ui-state-active a{background:#fff url(../images/icon-themelet.png) no-repeat 20px 50%;}
 #tabs .primary li.blocks-icon.ui-state-active a{background:#fff url(../images/blocks1.png) no-repeat 20px 50%;}
 #tabs .primary li.assets-icon.ui-state-active a{background:#fff url(../images/assets.png) no-repeat 20px 50%;}
 #tabs .primary li.tools-icon.ui-state-active a{background:#fff url(../images/tools.png) no-repeat 20px 50%;}
 #tabs .primary li.help-icon.ui-state-active a{background:#fff url(../images/lifebuoy.png) no-repeat 20px 50%;}
 
+/*#cfg #getting-started #welcome-tabs li,
+#cfg #tabs .primary li a:hover,
+#cfg #tabs .primary li a,
+#cfg #tabs .ui-tabs-panel .subtabs .ui-tabs-nav,
+#cfg .docs-wrap a:hover.btn-link,
+#cfg .thumb-view ul.buttons li a:hover,
+#cfg a.btn-link:hover,
+#cfg a.btn-link,
+#cfg #utilities,
+#cfg #minwidth-body #system-message dd.message,
+#cfg .ui-dialog .ui-dialog-titlebar{background: url(../images/gradient-sprite.png) repeat-x top left;}
 
-
-
-
-
-
-
-
-
-
-
-
-#utilities,
-#minwidth-body #system-message dd.message,
-.ui-dialog .ui-dialog-titlebar,
-#container li {background: url(../images/gradient-sprite.png) no-repeat top left;}
 .ui-dialog .ui-dialog-titlebar{ background-position: 0 0; } 
 #minwidth-body #system-message dd.message{ background-position: 0 -39px; } 
 #utilities{ background-position: 0 -80px; } 
-.small-btn-off { background-position: 0 -112px; } 
-.small-btn-over { background-position: 0 -136px; } 
-.splash-tab { background-position: 0 -160px; } 
-.subtabs { background-position: 0 -200px; } 
-.tabs-off { background-position: 0 -226px; } 
-.tabs-on { background-position: 0 -277px; } 
+#cfg a.btn-link{ background-position: 0 -112px; } 
+.docs-wrap a:hover.btn-link,
+#cfg .thumb-view ul.buttons li a:hover,
+#cfg a.btn-link:hover{ background-position: 0 -136px; } 
+#getting-started #welcome-tabs li{ background-position: 0 -160px; } 
+#tabs .ui-tabs-panel .subtabs .ui-tabs-nav{ background-position: 0 -200px; } 
+#tabs .primary li a{ background-position: 0 -226px; } 
+#tabs .primary li a:hover{ background-position: 0 -277px; } */

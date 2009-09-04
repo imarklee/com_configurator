@@ -2,16 +2,16 @@
 <div id="splash">
 	<ul id="welcome-tabs">
 		<li class="splash-start"><a href="#splashtab-start">Getting started</a></li>
-		<li class="splash-fullscreen"><a href="#splashtab-fullscreen" class="">Fullscreen mode</a></li>
-		<li class="splash-updates"><a href="#splashtab-updates" class="">Update notifications</a></li>
-		<li class="splash-assets"><a href="#splashtab-assets" class="">Working with assets</a></li>
-		<li class="splash-methods"><a href="#splashtab-methods" class="">Methods of control</a></li>
+		<li class="splash-fullscreen"><a href="#splashtab-fullscreen">Fullscreen mode</a></li>
+		<li class="splash-updates"><a href="#splashtab-updates">Update notifications</a></li>
+		<li class="splash-assets"><a href="#splashtab-assets">Working with assets</a></li>
+		<li class="splash-methods"><a href="#splashtab-methods">Methods of control</a></li>
 		<li class="splash-guides"><a href="#splashtab-guides">Quick start guides</a></li>
-		<li class="splash-contextual"><a href="#splashtab-contextual" class="">Contextual help</a></li>
-		<li class="splash-shortcuts"><a href="#splashtab-shortcuts" class="">Keyboard shortcuts</a></li>
-		<li class="splash-prefs"><a href="#splashtab-prefs" class="">Preferences pane</a></li>
-		<li class="splash-feedback"><a href="#splashtab-feedback" class="">Sending feedback</a></li>
-		<li class="splash-docs"><a href="#splashtab-docs" class="">Online documentation</a></li>
+		<li class="splash-contextual"><a href="#splashtab-contextual">Contextual help</a></li>
+		<li class="splash-shortcuts"><a href="#splashtab-shortcuts">Keyboard shortcuts</a></li>
+		<li class="splash-prefs"><a href="#splashtab-prefs">Preferences pane</a></li>
+		<li class="splash-feedback"><a href="#splashtab-feedback">Sending feedback</a></li>
+		<li class="splash-docs"><a href="#splashtab-docs">Online documentation</a></li>
 	</ul>
 	<div class="tabContainer">
 		<div id="splashtab-start" class="splashtabs">

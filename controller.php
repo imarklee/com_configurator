@@ -252,6 +252,7 @@ class ConfiguratorController extends JController {
 		$params[18] = JRequest::getVar( 'inner-sidebar', null, 'post', 'array' );
 		$params[19] = JRequest::getVar( 'outer-sidebar', null, 'post', 'array' );
 		$params[20] = JRequest::getVar( 'footer', null, 'post', 'array' );
+		$params[21] = JRequest::getVar( 'captify', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
@@ -324,6 +325,7 @@ class ConfiguratorController extends JController {
 		$params[18] = JRequest::getVar( 'inner-sidebar', null, 'post', 'array' );
 		$params[19] = JRequest::getVar( 'outer-sidebar', null, 'post', 'array' );
 		$params[20] = JRequest::getVar( 'footer', null, 'post', 'array' );
+		$params[21] = JRequest::getVar( 'captify', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');

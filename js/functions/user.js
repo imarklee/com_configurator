@@ -62,7 +62,7 @@ the timer to countdown from the current difference from current time to the futu
 set interval is kept. ***/
 };
 
-var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', '.themelet-summary');
+var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet');
 getUpdates(updEl);
 
 $('.updates-refresh-link').click(function(){

@@ -268,7 +268,8 @@
 										}
 									}
 								});
-								if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your themelet files were backed up to: </strong><small>'+data.backuploc+'.gz</small></p>'; } else { backupmsg = ''; }
+								
+								if(data.backuploc !== ''){ var backupmsg = '<p><strong>Your themelet files were backed up to: </strong><small>'+data.backuploc+'.gz</small></p>'; } else { var backupmsg = ''; }
 								$('#dialog').html('<div class="dialog-msg">'+data.msg+backupmsg+'</div>');
 								$('#dialog').dialog('open');
 	                        }
@@ -626,14 +627,6 @@
 		function completed(){
 			$('.back-step3').click(function(){ loadstep3(sample); return false; });
 			$('.skip-completed').click(function(){ gotomanage(); return false; });
-			var cookies = new Array('cfg', 'nomorph', 'bkpmorph', 'morph', 'pubmorph', 'themelet', 'actthemelet', 'bkpdb', 'gzip', 'samplecont', 'samplemods');
-			for(i=0;i < cookies.length;i++){
-				if($.cookie('installed_'+cookies[i])){
-					$.cookie('installed_'+cookies[i], null);
-				}
-			}
-			$.cookie('asset_exists', null);
-			$.cookie('ins_themelet_name', null);
 		}
 		
 		$('.skip-step1').click(function(){ loadstep2(themelet); return false; });

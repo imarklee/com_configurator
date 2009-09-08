@@ -25,9 +25,10 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 			
 			<label class="upload"><h4>Select your themelet install file:</h4>
 			<input type="file" name="insfile" id="insfile" /></label>
-			
+			<?php if(isset($_COOKIE['is_themelet_installed'])) { ?><span style="display:none;"><?php } ?>
 			<label class="backup"><input type="checkbox" name="activate_themelet" id="activate_themelet" checked="checked" value="true" />
 			Activate themelet (recommended for first time installs)</label>
+			<?php if(isset($_COOKIE['is_themelet_installed'])) { ?></span><?php } ?>
 		</div>	
 		<div id="install-foot">
 			<ul id="action">

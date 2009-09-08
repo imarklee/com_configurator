@@ -44,16 +44,32 @@ $document = JFactory::getDocument();
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/installer/js/install.js.php');
 $document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/installer/css/install.css.php');
 $db = JFactory::getDBO();
+
+// count number of param values stored in the db for upgrade purposes
 $query = $db->setQuery("select count(*) from #__configurator where template_name = 'morph';");
 $count_rows = $db->loadResult($query);
 
+// remove cookies from previous installs
 $cookies = array('cfg', 'nomorph', 'bkpmorph', 'morph', 'pubmorph', 'themelet', 'actthemelet', 'bkpdb', 'gzip', 'samplecont', 'samplemods');
 foreach ($cookies as $cookie){
 	if(isset($_COOKIE['installed_'.$cookie])) setcookie('installed_'.$cookie, '', time()-3600);
 }
-setcookie('asset_exist', '', time()-3600);
-setcookie('ins_themelet_name', '', time()-3600);
+if(isset($_COOKIE['asset_exist'])) setcookie('asset_exist', '', time()-3600);
+if(isset($_COOKIE['ins_themelet_name'])) setcookie('ins_themelet_name', '', time()-3600);
+if(isset($_COOKIE['asset_exist'])) setcookie('is_themelet_installed', '', time()-3600);
+
+// check if a themelet is installed and if not set a cookie to hide the activation checkbox
+$query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");
+$themelet_installed = $db->loadResult($query);
+if($themelet_installed == null) setcookie('is_themelet_installed', 'no');
+
+// set cookie for configurator installer
 setcookie('installed_cfg', 'true');
+
+// set permissions on templates, assets and components folder.
+JPath::setPermissions(JPATH_ROOT.DS.'templates');
+JPath::setPermissions(JPATH_ROOT.DS.'administrator'.DS.'components');
+
 ?>
 <div id="install-wrap">
 	<div id="installer">

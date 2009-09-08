@@ -1,5 +1,6 @@
 <div id="toolbar-tab">
 	<div id="toolbar-options" class="options-panel">
+	    <h3>Toolbar Block Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?>
 		</ol>

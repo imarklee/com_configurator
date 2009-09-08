@@ -1,5 +1,6 @@
 <div id="topnav-tab" class="ui-tabs-hide">
 	<div id="topnav-options" class="options-panel disabled">
+	    <h3>Top Menu Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
 		</ol>

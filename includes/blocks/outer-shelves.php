@@ -1,19 +1,14 @@
 <div id="outer-shelves-tab" class="ui-tabs-hide">
-	
 	<div id="shelf-options" class="options-panel">
-	
    	    <h3>Top Shelf Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('topshelf', 'topshelfdata')); ?>
 		</ol>
-		
    	    <h3>Bottom Shelf Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('bottomshelf', 'bottomshelfdata')); ?>
 		</ol>
-		
 	</div>
-	
 	<div id="shelves-info" class="info-panel">
 		<h3>Top &amp; bottom shelves</h3>
 		<p class="teaser">The top &amp; bottom shelves are outside of the main content block. 

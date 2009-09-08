@@ -8,12 +8,12 @@
 
 	<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
-			<li class="site-icon ui-tabs-selected"><a href="#site">General Settings</a></li>
-			<li class="themelet-icon"><a href="#themelets">Customize</a></li>
-			<li class="blocks-icon"><a href="#blocks">Building Blocks</a></li>
+			<li class="site-icon ui-tabs-selected"><a href="#site">General</a></li>
+			<li class="themelet-icon"><a href="#customize">Customize</a></li>
+			<li class="blocks-icon"><a href="#blocks">Blocks</a></li>
 			<li class="plugins-icon"><a href="#plugins">Plugins</a></li>
 			<li class="tools-icon"><a href="#tools">Tools</a></li>
-			<li class="assets-icon"><a href="#assets">Browse Assets</a></li>
+			<li class="assets-icon"><a href="#assets">Assets</a></li>
 			<li class="help-icon last"><a href="#help">Help</a></li>
 		</ul>
 		<div id="site">					
@@ -34,8 +34,8 @@
 			</div>
 		</div>
 
-		<div id="themelets" class="ui-tabs-hide">
-			<div id="themelet-tabs" class="subtabs">
+		<div id="customize" class="ui-tabs-hide">
+			<div id="customize-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['themelet-desc'])) { include dirname(__FILE__) . '/../customize/desc-customize.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>

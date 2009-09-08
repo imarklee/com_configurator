@@ -37,7 +37,7 @@ jQuery.noConflict();
 		$("#tabs ol.forms li:last-child").addClass("last");		
 		$("#tabs ol.forms li:odd").addClass("alt");	
 
-		$("#assets-tabs #themelets-list li:even").addClass("alt");			
+		$("#assets-tabs #customize-list li:even").addClass("alt");			
 		$("#assets-tabs #logos-list li:even").addClass("alt");			
 		$("#assets-tabs #backgrounds-list li:even").addClass("alt");
 		$("#assets-tabs #iphone-list li:even").addClass("alt");		
@@ -129,7 +129,7 @@ jQuery.noConflict();
 
 		$(".logo-tab").click(function(){
 		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#themelet-tabs").tabs();
+		var subtabs = $("#customize-tabs").tabs();
 		maintabs.tabs("select",1);
 		subtabs.tabs("select",1);
 		return false;
@@ -145,7 +145,7 @@ jQuery.noConflict();
 
 		$(".backgrounds-tab").click(function(){
 		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#themelet-tabs").tabs();
+		var subtabs = $("#customize-tabs").tabs();
 		maintabs.tabs("select",1);
 		subtabs.tabs("select",2);
 		return false;
@@ -153,7 +153,7 @@ jQuery.noConflict();
 		
 		$(".themelet-tab").click(function(){
 		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#themelet-tabs").tabs();
+		var subtabs = $("#customize-tabs").tabs();
 		maintabs.tabs("select",1);
 		subtabs.tabs("select",0);
 		return false;
@@ -169,7 +169,7 @@ jQuery.noConflict();
 
 		$(".menu-tab").click(function(){
 		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#themelet-tabs").tabs();
+		var subtabs = $("#customize-tabs").tabs();
 		maintabs.tabs("select",1);
 		subtabs.tabs("select",3);
 		return false;
@@ -231,7 +231,7 @@ jQuery.noConflict();
 		});
 		$('#themelet-desc a').click(function(){
 			$('#themelet-desc').hide('slow');
-			$('#themelet-tabs .desc-overlay').fadeTo('fast',0).remove();
+			$('#customize-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('themelet-desc', true,{path:'/',expires:30});
 			$.cookie('hideintros', true);
 			return false; 
@@ -309,7 +309,7 @@ jQuery.noConflict();
 		$('#site-tabs').tabs({
 			fx: { opacity: 'toggle' },
 			cookie: {				name: 'site-tabs',				expires: 30,				path: '/',		 	}		});
-		$('#themelet-tabs').tabs({
+		$('#customize-tabs').tabs({
 			fx: { opacity: 'toggle' },
 			cookie: {				name: 'themelet-tabs',				expires: 30,				path: '/',		 	} 		});
     	$('#blocks-tabs').tabs({
@@ -322,7 +322,7 @@ jQuery.noConflict();
 			fx: { opacity: 'toggle' },			cookie: {				name: 'assets-tabs',				expires: 30,				path: '/',		 	} 		});
 
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
-		$("#themelets").removeClass("ui-widget-content");			
+		$("#customize").removeClass("ui-widget-content");			
 		$("#assets-tabs li.icon-backup").removeClass("ui-state-disabled");	
 
 		<?php include 'functions/colorpicker.js'; ?>
@@ -372,14 +372,14 @@ jQuery.noConflict();
 	
 		$("#themelet-switch a.switch-view").toggle(function(){
 			$(this).addClass("swap");
-			$("#themelets-list").fadeOut("fast", function() {
+			$("#customize-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
 				$.cookie('themelets-view', 'list', options);
 				return false;		
 			});
 		}, function () {
 			$(this).removeClass("swap");
-			$("#themelets-list").fadeOut("fast", function() {
+			$("#customize-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
 				$.cookie('themelets-view', 'thumb', options);
 				return false;		
@@ -816,8 +816,8 @@ jQuery.noConflict();
 							$('#current-themelet li.ct-version').html('<span>Version: </span>'+$('ul.'+setThemelet+' li.tl-installed').text().replace('Installed version: ',''));
 							$('#current-themelet li.ct-thumb').html('<span>&nbsp;</span><img src="../morph_assets/themelets/'+setThemelet+'/themelet_thumb.png" width="108" height="72" align="middle" alt="'+$('#current-themelet li.ct-name').text()+'" />');
 							
-							$('#themelets-list ul li.tl-active ul li.btn-activate a, #themelets-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
-			   				$('#themelets-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
+							$('#customize-list ul li.tl-active ul li.btn-activate a, #customize-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
+			   				$('#customize-list ul li.tl-active').switchClass('tl-inactive', 'tl-active', 'slow');
 			   				a.parent().parent().parent().parent().switchClass('tl-active', 'tl-inactive', 'slow');
 			   				a.fadeTo('slow', 0.5).click(function(e){ e.preventDefault(); return false; });
 			   				a.parent().next().children().click(function(e){ e.preventDefault(); return false; });
@@ -910,7 +910,7 @@ jQuery.noConflict();
 		   			close: function(){
 						showScroll();
 			   			var mainTabs = $('#tabs').tabs();
-						var subTabs = $('#themelet-tabs').tabs();
+						var subTabs = $('#customize-tabs').tabs();
 						mainTabs.tabs('select', 1);
 						subTabs.tabs('select', 1);
 						window.location.reload(true);
@@ -980,7 +980,7 @@ jQuery.noConflict();
 		   			},
 		   			close: function(){
 		   				var mainTabs = $('#tabs').tabs();
-						var subTabs = $('#themelet-tabs').tabs();
+						var subTabs = $('#customize-tabs').tabs();
 						mainTabs.tabs('select', 1);
 						subTabs.tabs('select', 2);
 						$(this).remove();
@@ -1068,7 +1068,7 @@ jQuery.noConflict();
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=themelet&asset='+setThemelet,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
-			   						if($('#themelets-list').hasClass('thumb-view')){
+			   						if($('#customize-list').hasClass('thumb-view')){
 			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
 			   						}else{
 			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow');
@@ -1628,7 +1628,7 @@ jQuery.noConflict();
 												var logoOption = $('#logologo_image option:last').after('<option selected="selected" value="'+setLogo+'">'+setLogo+'</option>');
 			   									submitbutton('applytemplate');
 			   									var $tabs = $('#tabs').tabs();
-												var logoTabs = $('#themelet-tabs').tabs();
+												var logoTabs = $('#customize-tabs').tabs();
 												$tabs.tabs('select', 1);
 												logoTabs.tabs('select', 1);
 												$(this).dialog('destroy');
@@ -1638,7 +1638,7 @@ jQuery.noConflict();
 										},
 										'Configure': function(){
 											var $tabs = $('#tabs').tabs();
-											var logoTabs = $('#themelet-tabs').tabs();
+											var logoTabs = $('#customize-tabs').tabs();
 											$tabs.tabs('select', 1);
 											logoTabs.tabs('select', 1);
 											window.location.reload(true); 
@@ -1660,7 +1660,7 @@ jQuery.noConflict();
 												var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
 			   									submitbutton('applytemplate');
 			   									var $tabs = $('#tabs').tabs();
-												var bgTabs = $('#themelet-tabs').tabs();
+												var bgTabs = $('#customize-tabs').tabs();
 												$tabs.tabs('select', 1);
 												bgTabs.tabs('select', 2);
 												$(this).dialog('destroy');
@@ -1670,7 +1670,7 @@ jQuery.noConflict();
 										},
 										'Configure': function(){
 											var $tabs = $('#tabs').tabs();
-											var bgTabs = $('#themelet-tabs').tabs();
+											var bgTabs = $('#customize-tabs').tabs();
 											$tabs.tabs('select', 1);
 											bgTabs.tabs('select', 2);
 											window.location.reload(true);

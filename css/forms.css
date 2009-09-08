@@ -1,8 +1,7 @@
 #general-settings ol.forms li.buttons{float:none;margin-left:100px;width:auto;}
-.options-inner{/*border:1px solid #546F29;*/
-border:1px solid #999;float:left;width:523px;}
-#tabs ol.forms{border:1px solid #fff;float:left;list-style-image:none;list-style-position:outside;list-style-type:none;margin:0 0 0 2px;padding:1px;width:517px;}
-#tabs ol.forms li{border-bottom:1px solid #ddd;border-top:1px solid #fff;clear:both;color:#222;float:left;margin:0 0 0 -3px;padding:0 10px;position:relative;width:502px;height:30px;font:normal 13px/30px arial;background:#fff url(../images/form-bg2.jpg) repeat-y;}
+.options-inner{overflow:hidden;border:1px solid #999;border-top:0;float:left;width:523px;}
+#tabs ol.forms{overflow:hidden;border:0;list-style-type:none;margin:0;padding:0;width:523px;}
+#tabs ol.forms li{border-bottom:1px solid #ddd;border-top:1px solid #fff;clear:both;color:#222;float:left;margin:0 0 0 -3px;padding:0 10px;position:relative;width:501px;height:30px;font:normal 13px/30px arial;background:#fff url(../images/form-bg2.jpg) repeat-y;}
 #tabs ol.forms li.alt{background:#FEFDEE url(../images/form-bg3.jpg) repeat-y;}
 #tabs ol.forms li.first{border-top:0;}
 #tabs ol.forms li.last{border-bottom:0;}
@@ -22,10 +21,6 @@ border:1px solid #999;float:left;width:523px;}
 #tabs ol.forms li.buttons{float:none;margin-left:100px;width:auto;}
 #tabs ol.forms li.textarea{height:auto;}
 #tabs ol.forms li.textarea textarea{margin-top:5px;}
-#tabs ol.forms li.heading{background:#fff none repeat scroll 0 0;height:27px;}
-#tabs ol.forms li.heading.first{height:26px;}
-#tabs ol.forms li.heading h3{text-align:center;background:url(../images/heading-bg2.jpg) repeat-x left bottom;border:1px solid #999;border-bottom:1px solid #fff;margin:-2px -11px 0 -12px;text-align:center;}
-#tabs ol.forms li.heading.first h3{margin:-3px -11px -2px -12px;}
 #tabs #colors li.palette{position:relative;}
 #tabs li.palette .picker{width:50px;height:20px;line-height:20px;padding-left:21px;display:block;position:absolute;top:5px;right:18px;cursor:pointer;text-decoration:underline;font-size:11px;background:transparent url(../images/colorpicker-bg.png) no-repeat 0;}
 #tabs li.palette .picker span{display:none;}

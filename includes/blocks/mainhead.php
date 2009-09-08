@@ -1,7 +1,7 @@
 <div id="mainhead-tab" class="ui-tabs-hide">
 	<div id="mainhead-options" class="options-panel">
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('masterhead', 'masterheaddata')); ?>
+			<?php echo renderParams($params->renderToArray('masthead', 'mastheaddata')); ?>
 		</ol>
 	</div>
 	<div id="mainhead-info" class="info-panel">

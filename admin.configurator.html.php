@@ -28,6 +28,7 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addScript($jspath . 'showpassword.js');
 	} else {
 	// manage
+	$document->addScript($jspath . 'accordion.js');
 	$document->addScript($jspath . 'colorpicker.js');
 	$document->addScript($jspath . 'form.js');
 	$document->addScript($jspath . 'fileupload.js');
@@ -51,6 +52,7 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addStyleSheet($csspath . 'login.css');
 	} else {
 	// manage
+	$document->addStyleSheet($csspath . 'accordion.css');
 	$document->addStyleSheet($csspath . 'assets.css');
 	$document->addStyleSheet($csspath . 'colorpicker.css');
 	$document->addStyleSheet($csspath . 'docs.css');

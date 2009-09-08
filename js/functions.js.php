@@ -77,6 +77,8 @@ jQuery.noConflict();
 		if ($("#toolbar-box div.header").val() == " Configurator "){
 		$("#toolbar-box div.header").text(" Configurator Manage ");
 		}
+
+
 		
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("Use themelets default");
@@ -320,10 +322,20 @@ jQuery.noConflict();
 			fx: { opacity: 'toggle' },			cookie: {				name: 'tools-tabs',				expires: 30,				path: '/',		 	} 		});
 		$('#assets-tabs').tabs({
 			fx: { opacity: 'toggle' },			cookie: {				name: 'assets-tabs',				expires: 30,				path: '/',		 	} 		});
-
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#customize").removeClass("ui-widget-content");			
 		$("#assets-tabs li.icon-backup").removeClass("ui-state-disabled");	
+
+
+
+
+
+
+
+
+
+
+
 
 		<?php include 'functions/colorpicker.js'; ?>
      	
@@ -1320,6 +1332,13 @@ jQuery.noConflict();
 	    
 	    logoPreview('#logologo_image');
 	    logoPreview('#backgroundsbg_image', 'bg');
+	    
+	    
+	    $("#shelf-options").accordion({
+		    header: "h3",
+			collapsible: true
+    	});
+
 	    
 	    /* Login ------------------------------
 	    ------------------------------------ */

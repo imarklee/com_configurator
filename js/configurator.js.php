@@ -13,6 +13,7 @@ if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 include('showpassword.js');
 } else {
 // manage
+include('accordion.js');
 include('colorpicker.js');
 include('form.js');
 include('fileupload.js');

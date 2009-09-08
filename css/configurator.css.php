@@ -13,6 +13,7 @@ if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 	include('login.css');
 } else {
 	// manage
+	include('accordion.css');
 	include('assets.css');
 	include('colorpicker.css');
 	include('docs.css');

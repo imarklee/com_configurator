@@ -462,7 +462,7 @@ jQuery.noConflict();
 			function validate(formData, jqForm, options) { 
 			    for (var i=0; i < formData.length; i++) { 
 			    	if (!formData[i].value) { 
-			            $('<p>All fields are required</p>').dialog({
+			            $('<div class="dialog-msg">All fields are required</div>').dialog({
 			            	bgiframe: true,
 							autoOpen: true,
 							stack: true,
@@ -1258,7 +1258,7 @@ jQuery.noConflict();
 				$(".upload-logo").click(function(){
 					var maintabs = $("#tabs").tabs();
 					var subtabs = $("#tools-tabs").tabs();
-					maintabs.tabs("select",3);
+					maintabs.tabs("select",4);
 					subtabs.tabs("select",0);
 					$('#install-type label.label-selected').removeClass('label-selected');
 					$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
@@ -1283,7 +1283,7 @@ jQuery.noConflict();
 					$(".upload-logo").click(function(){
 						var maintabs = $("#tabs").tabs();
 						var subtabs = $("#tools-tabs").tabs();
-						maintabs.tabs("select",3);
+						maintabs.tabs("select",4);
 						subtabs.tabs("select",0);
 						$('#install-type label.label-selected').removeClass('label-selected');
 						$("#upload_logo").attr("checked",true).parent().addClass('label-selected');

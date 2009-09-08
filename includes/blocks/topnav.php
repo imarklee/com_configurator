@@ -1,5 +1,5 @@
 <div id="topnav-tab" class="ui-tabs-hide">
-	<div id="topnav-options" class="options-panel">
+	<div id="topnav-options" class="options-panel disabled">
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
 		</ol>

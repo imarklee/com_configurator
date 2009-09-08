@@ -52,3 +52,5 @@
 #tabs #assets-tabs.subtabs { position: relative; }
 #cfg #tabs .icon-backup{border-right:0;position: absolute; top: 2px; right: 9px;}
 #cfg #tabs .icon-backup a{text-decoration:underline;}
+#tabs .options-panel.disabled{border-color:#D33538;}
+#tabs .options-panel.disabled .options-inner{border-color:#670D11;}

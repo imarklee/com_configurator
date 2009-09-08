@@ -197,35 +197,23 @@ function blockDisable(elid, cont){
 		act2.removeAttr('disabled');
 	}
 	
-	if($(elid+'_show0').attr('checked')){ hide($(elid+'_show0'), $(elid+'_show1')); }
-	$(elid+'_show0').click(function(){ hide($(elid+'_show0'), $(elid+'_show1')); });
+	if($(elid+'_show0').attr('checked')){ show($(elid+'_show0'), $(elid+'_show1')); }
+	$(elid+'_show0').click(function(){ show($(elid+'_show0'), $(elid+'_show1')); });
 	
-	if($(elid+'_show1').attr('checked')){ show($(elid+'_show0'), $(elid+'_show1')); }
-	$(elid+'_show1').click(function(){ show($(elid+'_show0'), $(elid+'_show1')); });
+	if($(elid+'_show1').attr('checked')){ hide($(elid+'_show0'), $(elid+'_show1')); }
+	$(elid+'_show1').click(function(){ hide($(elid+'_show0'), $(elid+'_show1')); });
 
 }
 
 blockDisable('#toolbartoolbar', '#toolbar-options');
-blockDisable('#masterheadmasthead_chrome','#mainhead-options');
-blockDisable('#subheadsubhead_chrome','#subhead-options');
-blockDisable('#topnavtopnav_chrome','#topnav-options');
-blockDisable('#shelvestopshelf_chrome','#shelvestopshelf');
-blockDisable('#shelvesbottomshelf_chrome','#shelvesbottomshelf');
-blockDisable('#inlineshelvesuser1_chrome','#inlineshelvesuser1');
-blockDisable('#inlineshelvesuser2_chrome','#inlineshelvesuser2');
-blockDisable('#outer-sidebarsplitleft_chrome','#outer-sidebarsplitleft');
-blockDisable('#outer-sidebartopleft_chrome','#outer-sidebartopleft');
-blockDisable('#outer-sidebarleft_chrome','#outer-sidebarleft');
-blockDisable('#outer-sidebarbottomleft_chrome','#outer-sidebarbottomleft');
-blockDisable('#inner-sidebarsplitright_chrome','#inner-sidebarsplitright');
-blockDisable('#inner-sidebartopright_chrome','#inner-sidebartopright');
-blockDisable('#inner-sidebarright_chrome','#inner-sidebarright');
-blockDisable('#inner-sidebarbottomright_chrome','#inner-sidebarbottomright');
-blockDisable('#insetsinset1_chrome','#insetsinset1');
-blockDisable('#insetsinset2_chrome','#insetsinset2');
-blockDisable('#insetsinset3_chrome','#insetsinset3');
-blockDisable('#insetsinset4_chrome','#insetsinset4');
-blockDisable('#footerfooter_chrome','#footerfooter');
+blockDisable('#masterheadmasthead','#mainhead-options');
+blockDisable('#subheadsubhead','#subhead-options');
+blockDisable('#topnavtopnav','#topnav-options');
+blockDisable('#shelvestopshelf','#shelves-options');
+blockDisable('#shelvesbottomshelf','#shelves-options');
+blockDisable('#inlineshelvesuser1','#inlineshelvesuser1');
+blockDisable('#inlineshelvesuser2','#inlineshelvesuser2');
+blockDisable('#footerfooter','#footer-options');
 
 function footerOptions(elid, hideid){
 	

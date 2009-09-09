@@ -10,10 +10,10 @@
 		<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 			<li class="site-icon ui-tabs-selected"><a href="#site">General</a></li>
 			<li class="themelet-icon"><a href="#customize">Customize</a></li>
-			<li class="blocks-icon"><a href="#blocks">Blocks</a></li>
+			<li class="blocks-icon"><a href="#blocks">Building Blocks</a></li>
 			<li class="plugins-icon"><a href="#plugins">Plugins</a></li>
 			<li class="tools-icon"><a href="#tools">Tools</a></li>
-			<li class="assets-icon"><a href="#assets">Assets</a></li>
+			<li class="assets-icon"><a href="#assets">Your Assets</a></li>
 			<li class="help-icon last"><a href="#help">Help</a></li>
 		</ul>
 		<div id="site">					

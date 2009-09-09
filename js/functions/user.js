@@ -88,40 +88,51 @@ if($.jqURL.get('task') == 'dashboard'){
 }
 
 $.fn.toggleSettings = function(){
-	$this = $(this);
+	var $this = this;
+	var cookiename, cookiesplit, e;
 	
-	$this.each(function(){
-		var cookiename = $this.parent().attr('id')+'_'+$this.index(this);
-		var cookiesplit = cookiename.split('_');
-		var e = $('#'+cookiesplit[0]+' h3').get(cookiesplit[1]);
+	$this.click(function(){
 	
+		cookiename = $this.parent().parent().attr('id')+'_'+$this.index(this);
+		cookiesplit = cookiename.split('_');
+		e = $('#'+cookiesplit[0]+' h3').get(cookiesplit[1]);
+			
+		if($(e).attr('open_settings') == 'false'){
+			$(e).attr('open_settings', 'true');
+			$(e).next('ol').slideDown('fast');
+			$.cookie(cookiename, 'open');
+		}else{
+			$(e).attr('open_settings', 'false');
+			$(e).next('ol').slideUp('fast');
+			$.cookie(cookiename, 'close');
+		}
+		return false;
+	});
+	
+	return this.each(function(){
+			
+		cookiename = $this.parent().attr('id')+'_'+$this.index(this);
+		cookiesplit = cookiename.split('_');
+		e = $('#'+cookiesplit[0]+' h3').get(cookiesplit[1]);
+		if(!$.cookie(cookiename)){
+			if(cookiesplit[1] == 0){
+				$(e).attr('open_settings', 'true');
+				$(e).next('ol').show();
+			}else{
+				$(e).attr('open_settings', 'false');
+				$(e).next('ol').hide();
+			}
+		}
+		
 		if($.cookie(cookiename) == 'close'){
-			$(e).attr('open', 'false');
+			$(e).attr('open_settings', 'false');
 			$(e).next('ol').hide();
 		}
 		
 		if($.cookie(cookiename) == 'open'){
-			$(e).attr('open', 'true');
+			$(e).attr('open_settings', 'true');
 			$(e).next('ol').show();
 		}
-			
-	});
-	
-	$this.click(function(){
-		var cookie = $this.parent().parent().attr('id')+'_'+$this.index(this);
-		var cookiesplit = cookie.split('_');
-		var e = $('#'+cookiesplit[0]+' h3').get(cookiesplit[1]);
-		
-		if($(e).attr('open') == 'false' || typeof $(e).attr('open') == 'undefined'){
-			$(e).attr('open', 'true');
-			$(e).next().slideDown('fast');
-			$.cookie(cookie, 'open');
-		}else{
-			$(e).attr('open', 'false');
-			$(e).next('ol').slideUp('fast');
-			$.cookie(cookie, 'close');
-		}
-	return false;
 	});
 }
 
@@ -140,11 +151,6 @@ function showSettings(e, effect){
 
 showSettings('#shelf-options', $.cookie('settings_effect'));
 showSettings('#user-options', $.cookie('settings_effect'));
-showSettings('#inner-sidebar-options', $.cookie('settings_effect'));
-showSettings('#outer-sidebar-options', $.cookie('settings_effect'));
 showSettings('#inset-options', $.cookie('settings_effect'));
 showSettings('#outer-sidebar-options', $.cookie('settings_effect'));
 showSettings('#inner-sidebar-options', $.cookie('settings_effect'));
-//$("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-
-

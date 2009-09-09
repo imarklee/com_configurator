@@ -86,3 +86,13 @@ if($.jqURL.get('task') == 'dashboard'){
 		$("#submenu").append('<li class="feedback"><a href="#" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
 	}
 }
+
+$("#shelf-options").accordion({
+	header: 'h3',
+	collapsible: true
+});
+//		    header: "h3",
+//			collapsible: true
+//    	});
+
+

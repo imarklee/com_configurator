@@ -326,17 +326,6 @@ jQuery.noConflict();
 		$("#customize").removeClass("ui-widget-content");			
 		$("#assets-tabs li.icon-backup").removeClass("ui-state-disabled");	
 
-
-
-
-
-
-
-
-
-
-
-
 		<?php include 'functions/colorpicker.js'; ?>
      	
      	//all hover and click logic for buttons
@@ -1333,13 +1322,6 @@ jQuery.noConflict();
 	    logoPreview('#logologo_image');
 	    logoPreview('#backgroundsbg_image', 'bg');
 	    
-	    
-	    $("#shelf-options").accordion({
-		    header: "h3",
-			collapsible: true
-    	});
-
-	    
 	    /* Login ------------------------------
 	    ------------------------------------ */
 	    $('.alf-check').change(function(){
@@ -1405,7 +1387,7 @@ jQuery.noConflict();
 	    	}
 	    	
 	    	if(username != 'username' || password != 'password'){
-	    	
+	    	    	
 	    		$('#alf-image').css('display','block');
 				//$('#cl-inner').fadeTo("fast", 0.1);
 	    	
@@ -1478,8 +1460,7 @@ jQuery.noConflict();
 										$.cookie('member_email', member_email, { path: '/', expires: days });
 										$.cookie('member_name', member_name, { path: '/', expires: days });
 										$.cookie('member_surname', member_surname, { path: '/', expires: days });
-										$.cookie('vbseo_loggedin', 'true', { host: 'http://www.joomlajunkie.com', path: '/', expires: days });
-									
+																		
 										// db
 										var mem_screen_res = screen.width+'x'+screen.height
 										var mem_browser = $.browser.name+' '+$.browser.version;

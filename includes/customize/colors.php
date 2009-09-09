@@ -1,5 +1,6 @@
 <div id="colors-tab">
 	<div id="color-options" class="options-panel ui-helper-clearfix">
+		<h3>Color Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>
 		</ol>

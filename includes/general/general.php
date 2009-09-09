@@ -1,5 +1,6 @@
 <div id="general-tab" class="ui-tabs-panel">
 	<div id="general-options" class="options-panel">
+		<h3>General Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('general', 'generaldata')); ?>
 		</ol>

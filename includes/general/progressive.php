@@ -1,5 +1,6 @@
 <div id="progressive-tab" class="ui-tabs-hide">
 	<div id="progressive-options" class="options-panel">
+		<h3>Progressive Enhancements Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('progressive', 'progressivedata')); ?>
 		</ol>

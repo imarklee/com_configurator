@@ -1,5 +1,6 @@
 <div id="performance-tab" class="ui-tabs-hide">
 	<div id="performance-options" class="options-panel">
+		<h3>Performance Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('performance', 'performancedata')); ?>
 		</ol>

@@ -142,7 +142,22 @@ function showSettings(e, effect){
 			$(e+' h3').toggleSettings();
 		}	
 		if(effect == 'accordion'){
-			$(e).accordion({ header: "h3",collapsible: true,autoHeight: false });
+			cookie_name = e.replace('#');
+			var index = $.cookie("accordion_"+cookie_name);
+			var active;
+			if (index !== undefined) {
+				active = $(e).find("h3:eq(" + index + ")");
+			}			
+			$(e).accordion({
+			    header: "h3",
+			    collapsible: true,
+			    active: active,
+				autoHeight: false,
+			    change: function(event, ui) {
+		            var index = $(this).find("h3").index ( ui.newHeader[0] );
+		           	$.cookie("accordion_"+cookie_name, index);
+			    }
+			});
 		}
 	}else{
 		$(e+' h3').toggleSettings();

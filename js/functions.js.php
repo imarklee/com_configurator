@@ -1321,6 +1321,18 @@ jQuery.noConflict();
 	    
 	    logoPreview('#logologo_image');
 	    logoPreview('#backgroundsbg_image', 'bg');
+	     
+	    //$("#toolbar-options").accordion({ header: "h3",collapsible: true });
+	    //$("#mainhead-options").accordion({ header: "h3",collapsible: true });
+	    //$("#subhead-options").accordion({ header: "h3",collapsible: true });
+	    //$("#topnav-options").accordion({ header: "h3",collapsible: true });
+	    $("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+	    $("#user-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+	    //$("#main-options").accordion({ header: "h3",collapsible: true });
+	    $("#inset-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+	    $("#outer-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+	    $("#inner-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+	    //$("#footer-options").accordion({ header: "h3",collapsible: true });  
 	    
 	    /* Login ------------------------------
 	    ------------------------------------ */

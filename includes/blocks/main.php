@@ -1,5 +1,6 @@
 <div id="main-tab" class="ui-tabs-hide">
 	<div id="main-options" class="options-panel">
+	    <h3>Main Block Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('main', 'maindata')); ?>
 		</ol>

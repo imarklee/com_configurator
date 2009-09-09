@@ -1,5 +1,6 @@
 <div id="footer-tab" class="ui-tabs-hide">
 	<div id="footer-options" class="options-panel">
+	    <h3>Footer Block Options</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('footer', 'footerdata')); ?>
 		</ol>

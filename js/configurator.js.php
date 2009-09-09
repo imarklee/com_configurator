@@ -1,6 +1,11 @@
 <?php
-ob_start();
-header('content-type: text/javascript; charset: UTF-8');
+if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
+	if(!ob_start("ob_gzhandler")) ob_start();
+}else{
+	ob_start();
+}
+header("cache-control: must-revalidate");$offset = 60 * 10000;$expire = "expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";header($expire);
+header("content-type: text/javascript; charset: UTF-8");
 // global
 include('jquery.js');
 include('ui.js');

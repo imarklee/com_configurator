@@ -17,7 +17,7 @@
 #element-box .m{background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;padding:15px 0;border:0;}
 
 .options-panel{border:5px solid #E3E3E3;float:left;width:525px;z-index:10;}
-.info-panel{padding-right:10px;width:350px;float:right;font:normal 12px/20px arial;}
+.info-panel{padding-right:10px;width:360px;float:right;font:normal 12px/20px arial;}
 .info-panel h3{font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:0.4px;color:#303030;font-size:22px;margin-bottom:15px;padding:0;}
 .info-panel h4{font:bold 15px arial;margin:0 0 7px 0;padding:0;color:#333;}
 .info-panel ul.morph-resources{margin-top:-10px;}

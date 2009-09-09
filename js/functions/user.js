@@ -143,6 +143,8 @@ showSettings('#user-options', $.cookie('settings_effect'));
 showSettings('#inner-sidebar-options', $.cookie('settings_effect'));
 showSettings('#outer-sidebar-options', $.cookie('settings_effect'));
 showSettings('#inset-options', $.cookie('settings_effect'));
+showSettings('#outer-sidebar-options', $.cookie('settings_effect'));
+showSettings('#inner-sidebar-options', $.cookie('settings_effect'));
 //$("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
 
 

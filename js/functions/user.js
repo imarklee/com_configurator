@@ -112,7 +112,7 @@ $.fn.toggleSettings = function(){
 		var cookiesplit = cookie.split('_');
 		var e = $('#'+cookiesplit[0]+' h3').get(cookiesplit[1]);
 		
-		if($(e).attr('open') == 'false'){
+		if($(e).attr('open') == 'false' || typeof $(e).attr('open') == 'undefined'){
 			$(e).attr('open', 'true');
 			$(e).next().slideDown('fast');
 			$.cookie(cookie, 'open');
@@ -139,24 +139,10 @@ function showSettings(e, effect){
 }
 
 showSettings('#shelf-options', $.cookie('settings_effect'));
+showSettings('#user-options', $.cookie('settings_effect'));
+showSettings('#inner-sidebar-options', $.cookie('settings_effect'));
+showSettings('#outer-sidebar-options', $.cookie('settings_effect'));
 showSettings('#inset-options', $.cookie('settings_effect'));
 //$("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-
-
-//$('#shelf-options h3').accordion({ header: "h3",collapsible: true });
-//.toggleSettings();
-//$("#inset-options h3").toggleSettings();
-
-//$("#toolbar-options").accordion({ header: "h3",collapsible: true });
-//$("#mainhead-options").accordion({ header: "h3",collapsible: true });
-//$("#subhead-options").accordion({ header: "h3",collapsible: true });
-//$("#topnav-options").accordion({ header: "h3",collapsible: true });
-//$("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-//$("#user-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-//$("#main-options").accordion({ header: "h3",collapsible: true });
-//$("#inset-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-//$("#outer-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-//$("#inner-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-//$("#footer-options").accordion({ header: "h3",collapsible: true }); 
 
 

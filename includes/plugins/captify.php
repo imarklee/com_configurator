@@ -1,5 +1,6 @@
 <div id="captify-tab" class="ui-tabs-hide">
 	<div id="captify-options" class="options-panel">
+	    <h3>Fancy Captions Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('captify', 'captifydata')); ?>
 		</ol>

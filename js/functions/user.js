@@ -163,6 +163,7 @@ function showSettings(e, effect){
 		$(e+' h3').toggleSettings();
 	}
 }
+showSettings('#logo-options', $.cookie('settings_effect'));
 
 showSettings('#shelf-options', $.cookie('settings_effect'));
 showSettings('#user-options', $.cookie('settings_effect'));

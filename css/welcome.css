@@ -5,7 +5,7 @@
 #welcome-tabs li{margin:0;padding:0;background:none;list-style:none;border:0;-moz-border-radius:0;width:200px;}
 #getting-started #welcome-tabs{position:absolute;top:0;left:0;height:450px;background:#222;width:220px;margin-bottom:0;overflow:hidden;}
 #getting-started #welcome-tabs li{width:220px;border-bottom:1px solid #484848;background:#222 url(../images/splash-tab-bg.jpg) repeat-x;}
-#welcome-tabs li a{background: url(../images/splash-icons.png) no-repeat top left;olor:#999;display:block;font:normal 13px/40px arial;height:40px;padding:0 10px 0 35px;text-decoration:none;width:200px;}
+#welcome-tabs li a{background: url(../images/splash-icons.png) no-repeat top left;color:#999;display:block;font:normal 13px/40px arial;height:40px;padding:0 10px 0 35px;text-decoration:none;width:200px;}
 #welcome-tabs li a:hover{color:#ccc;}
 #welcome-tabs li.splash-assets a{ background-position: 9px 12px; } 
 #welcome-tabs li.splash-contextual a{ background-position: 9px -24px; } 

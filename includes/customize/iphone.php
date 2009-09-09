@@ -1,5 +1,6 @@
 <div id="iphone-tab" class="ui-tabs-hide">
 	<div id="iphone-options" class="options-panel">
+		<h3>iPhone Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('iphone', 'iphonedata')); ?>
 		</ol>

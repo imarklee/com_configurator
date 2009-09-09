@@ -180,18 +180,18 @@ $(function(){
 	blockSettingsOptions('#footerfooter_chrome','#footerfooter');
 });
 
-function blockDisable(elid, cont){
+function blockDisable(elid){
 
 	function show(act1, act2){
-		$(cont).removeClass('disabled');
-		$(cont+' li input,'+cont+' li select,'+cont+' li textarea').removeAttr('disabled');
+		act1.parent().parent().removeClass('disabled');
+		act1.parent().prevAll('li').children().removeAttr('disabled');
 		act1.parent().prevAll('li').fadeTo('fast', 1);
 		act1.removeAttr('disabled');
 		act2.removeAttr('disabled');
 	}
 	function hide(act1, act2){
-		$(cont).addClass('disabled');
-		$(cont+' li input,'+cont+' li select,'+cont+' li textarea').attr('disabled',true);
+		act1.parent().parent().addClass('disabled');
+		act1.parent().prevAll('li').children().attr('disabled',true);
 		act1.parent().prevAll('li').fadeTo('fast', 0.4);
 		act1.removeAttr('disabled');
 		act2.removeAttr('disabled');
@@ -205,15 +205,15 @@ function blockDisable(elid, cont){
 
 }
 
-blockDisable('#toolbartoolbar', '#toolbar-options');
-blockDisable('#masterheadmasthead','#mainhead-options');
-blockDisable('#subheadsubhead','#subhead-options');
-blockDisable('#topnavtopnav','#topnav-options');
-blockDisable('#shelvestopshelf','#shelves-options');
-blockDisable('#shelvesbottomshelf','#shelves-options');
-blockDisable('#inlineshelvesuser1','#inlineshelvesuser1');
-blockDisable('#inlineshelvesuser2','#inlineshelvesuser2');
-blockDisable('#footerfooter','#footer-options');
+blockDisable('#toolbartoolbar');
+blockDisable('#mastheadmasthead');
+blockDisable('#subheadsubhead');
+blockDisable('#topnavtopnav');
+blockDisable('#topshelftopshelf');
+blockDisable('#bottomshelfbottomshelf');
+blockDisable('#user1user1');
+blockDisable('#user2user2');
+blockDisable('#footerfooter');
 
 function footerOptions(elid, hideid){
 	

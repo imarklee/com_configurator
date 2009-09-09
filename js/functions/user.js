@@ -139,6 +139,7 @@ function showSettings(e, effect){
 }
 
 showSettings('#shelf-options', $.cookie('settings_effect'));
+showSettings('#inset-options', $.cookie('settings_effect'));
 //$("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
 
 
@@ -151,11 +152,11 @@ showSettings('#shelf-options', $.cookie('settings_effect'));
 //$("#subhead-options").accordion({ header: "h3",collapsible: true });
 //$("#topnav-options").accordion({ header: "h3",collapsible: true });
 //$("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-$("#user-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+//$("#user-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
 //$("#main-options").accordion({ header: "h3",collapsible: true });
 //$("#inset-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-$("#outer-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
-$("#inner-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+//$("#outer-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+//$("#inner-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
 //$("#footer-options").accordion({ header: "h3",collapsible: true }); 
 
 

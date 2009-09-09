@@ -30,9 +30,13 @@
 			<option value="1">Top</option>
 			<option value="2">Bottom</option>
 		</param>
-		<param name="bottom_save" default="1" type="radio" label="Show bottom save bar" position="last">
+		<param name="bottom_save" default="1" type="radio" label="Show bottom save bar">
 			<option value="1">Yes</option>
 			<option value="0">No</option>
+		</param>
+		<param name="settings_effect" default="toggle" type="list" label="Show settings as" position="last">
+			<option value="toggle">Toggle</option>
+			<option value="accordion">Accordion</option>
 		</param>
 	</params>
 </preferences>

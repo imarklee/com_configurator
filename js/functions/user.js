@@ -87,12 +87,75 @@ if($.jqURL.get('task') == 'dashboard'){
 	}
 }
 
-$("#shelf-options").accordion({
-	header: 'h3',
-	collapsible: true
-});
-//		    header: "h3",
-//			collapsible: true
-//    	});
+$.fn.toggleSettings = function(){
+	$this = $(this);
+	
+	$this.each(function(){
+		var cookiename = $this.parent().attr('id')+'_'+$this.index(this);
+		var cookiesplit = cookiename.split('_');
+		var e = $('#'+cookiesplit[0]+' h3').get(cookiesplit[1]);
+	
+		if($.cookie(cookiename) == 'close'){
+			$(e).attr('open', 'false');
+			$(e).next('ol').hide();
+		}
+		
+		if($.cookie(cookiename) == 'open'){
+			$(e).attr('open', 'true');
+			$(e).next('ol').show();
+		}
+			
+	});
+	
+	$this.click(function(){
+		var cookie = $this.parent().parent().attr('id')+'_'+$this.index(this);
+		var cookiesplit = cookie.split('_');
+		var e = $('#'+cookiesplit[0]+' h3').get(cookiesplit[1]);
+		
+		if($(e).attr('open') == 'false'){
+			$(e).attr('open', 'true');
+			$(e).next().slideDown('fast');
+			$.cookie(cookie, 'open');
+		}else{
+			$(e).attr('open', 'false');
+			$(e).next('ol').slideUp('fast');
+			$.cookie(cookie, 'close');
+		}
+	return false;
+	});
+}
+
+function showSettings(e, effect){
+	if(effect){
+		if(effect == 'toggle'){
+			$(e+' h3').toggleSettings();
+		}	
+		if(effect == 'accordion'){
+			$(e).accordion({ header: "h3",collapsible: true,autoHeight: false });
+		}
+	}else{
+		$(e+' h3').toggleSettings();
+	}
+}
+
+showSettings('#shelf-options', $.cookie('settings_effect'));
+//$("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+
+
+//$('#shelf-options h3').accordion({ header: "h3",collapsible: true });
+//.toggleSettings();
+//$("#inset-options h3").toggleSettings();
+
+//$("#toolbar-options").accordion({ header: "h3",collapsible: true });
+//$("#mainhead-options").accordion({ header: "h3",collapsible: true });
+//$("#subhead-options").accordion({ header: "h3",collapsible: true });
+//$("#topnav-options").accordion({ header: "h3",collapsible: true });
+//$("#shelf-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+$("#user-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+//$("#main-options").accordion({ header: "h3",collapsible: true });
+//$("#inset-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+$("#outer-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+$("#inner-sidebar-options").accordion({ header: "h3",collapsible: true,autoHeight: false });
+//$("#footer-options").accordion({ header: "h3",collapsible: true }); 
 
 

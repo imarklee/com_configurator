@@ -84,16 +84,23 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         
         // preference cookies
         // auto updates
-        if($cfg_pref->check_updates == 0 && !isset($_COOKIE['noupdates'])){
+        if($cfg_pref->check_updates == 0){
         	setcookie('noupdates', 'true');
         }else{
         	setcookie('noupdates', '', time()-3600);
         }
         // keyboard shortcuts
-        if($cfg_pref->short_keys == 0 && !isset($_COOKIE['noshortkeys'])){
+        if($cfg_pref->short_keys == 0){
         	setcookie('noshortkey', 'true');
         }else{
         	setcookie('noshortkey', '', time()-3600);
+        }
+
+		// toggle settings effect
+        if($cfg_pref->settings_effect == 'toggle'){
+        	setcookie('settings_effect', 'toggle');
+        }else{
+        	setcookie('settings_effect', 'accordion');
         }
         
         if (!$morph_installed){

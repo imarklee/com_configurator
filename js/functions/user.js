@@ -142,12 +142,14 @@ function showSettings(e, effect){
 			$(e+' h3').toggleSettings();
 		}	
 		if(effect == 'accordion'){
-			cookie_name = e.replace('#');
-			var index = $.cookie("accordion_"+cookie_name);
+			cookie_name = e.replace('#', '');
+			var index = $.cookie("accordion_"+$(e).attr('id'));
 			var active;
-			if (index !== undefined) {
+			if (index !== null) {
 				active = $(e).find("h3:eq(" + index + ")");
-			}			
+			}else{
+				active = $(e).find("h3:eq(0)");
+			}
 			$(e).accordion({
 			    header: "h3",
 			    collapsible: true,
@@ -155,12 +157,12 @@ function showSettings(e, effect){
 				autoHeight: false,
 			    change: function(event, ui) {
 		            var index = $(this).find("h3").index ( ui.newHeader[0] );
-		           	$.cookie("accordion_"+cookie_name, index);
+		           	$.cookie("accordion_"+$(this).attr('id'), index);
 			    }
 			});
 		}
 	}else{
-		$(e+' h3').toggleSettings();
+		return;
 	}
 }
 

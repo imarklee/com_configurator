@@ -37,6 +37,7 @@
 		<param name="settings_effect" default="toggle" type="list" label="Show settings as" position="last">
 			<option value="toggle">Toggle</option>
 			<option value="accordion">Accordion</option>
+			<option value="all">Show All</option>
 		</param>
 	</params>
 </preferences>

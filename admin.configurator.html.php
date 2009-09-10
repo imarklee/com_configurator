@@ -99,9 +99,11 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 		// toggle settings effect
         if($cfg_pref->settings_effect == 'toggle'){
         	setcookie('settings_effect', 'toggle');
-        }else{
+        }elseif($cfg_pref->settings_effect == 'accordion'){
         	setcookie('settings_effect', 'accordion');
-        }
+        }else{
+			setcookie('settings_effect', 'all');
+		}
         
         if (!$morph_installed){
 	        echo '<div id="nomorph">';

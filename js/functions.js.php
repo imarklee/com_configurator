@@ -1900,7 +1900,6 @@ jQuery.noConflict();
 		
 		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a').click(function(){
 			var $this = $(this);
-			alert ($this.attr('href'));
 			var target;
 			if($.cookie('formChanges')){			
 				$('<div id="changesDialog">You have made changes to Configurator that will be lost if you navigate from this page. Are you sure you want to continue without saving?</div>').dialog({

@@ -33,3 +33,4 @@
 .newColorpicker{z-index:9999;}
 #tabs li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:7px;right:102px;background:#ccc;-moz-border-radius:3px;}
 .full-mode #tabs li.palette .color-preview{top:8px;}
+.colorpicker {position:relative;bottom:33px;right:-22px}

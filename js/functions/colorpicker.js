@@ -1,52 +1,69 @@
 /* Colour Picker ----------------------
 ------------------------------------ */
-function loadColourPicker(elid) {
-	
+function loadColourPicker(elid, cpid) {
 	// keep applied colour
 	if($(elid).prev().val() != 'default'){
 		$(elid).css({
 			'background-color': '#'+$(elid).prev().val()
 		});
 	}
-	// load the colour picker
-	var cp = $(elid).children().attr('id');
-	$(elid).ColorPicker({
-		flat: true,
-		livePreview: true,
-		onSubmit: function(hsb, hex, rgb){
-			var cp = $(elid).children().attr('id');
-			$(elid).prev().val('#'+hex);
-			$('#'+cp).fadeOut(500);
-			$(elid).css('background-color', '#' + hex);
-		},
-		onHide: function(){
-			var cp = $(elid).children().attr('id');
-			$('#'+cp).fadeOut(500);
+		if(cpid == undefined){ // first load
+			$(elid).ColorPicker({
+				flat: true,
+				livePreview: true,
+				onShow: function(){
+					alert('showing');
+				},
+				onSubmit: function(hsb, hex, rgb){
+					cp = $(elid).children().attr('id');
+					$(elid).prev().val('#'+hex);
+					$('#'+cp).fadeOut(500);
+					$(elid).css('background-color', '#' + hex);
+					$('#color-options').removeAttr('colorpicker_loaded');
+				},
+				onHide: function(){
+					cp = $(elid).children().attr('id');
+					$('#'+cp).fadeOut(500);
+					$('#color-options').removeAttr('colorpicker_loaded');
+				}
+			})
+			.bind('keydown', function(){
+				$(this).ColorPickerSetColor(this.value);
+			});
+			cp = $(elid).children().attr('id');
+		}else{
+			cp = cpid;
+			$('#'+cp).fadeIn(500);
 		}
-	})
-	.bind('keydown', function(){
-		$(this).ColorPickerSetColor(this.value);
-	});
-
+	
+	// fake attribute to allow one picker at a time.
+	$('#color-options').attr('colorpicker_loaded', cp);
+	
 	$(document).bind("keydown.colorpicker", function(e){
 		keycode = (e.which || e.keyCode);
 		if(keycode == 27){
 			$(elid).children().fadeOut(500);
+			$('#color-options').removeAttr('colorpicker_loaded');
 			return false;
 		}
-	}); 
+	});
+	$('.colorpicker_close').click(function(){
+		var cp = $(elid).children().attr('id');
+		$('#'+cp).fadeOut(500);
+		$('#color-options').removeAttr('colorpicker_loaded');
+	});
+	
 	return false;
 }
 
 $('a.picker').click(function(){
-	cp = $(this).prev().children().attr('id');
-	loadColourPicker($(this).prev());
-	$('#'+cp).fadeIn(500).css({
-		'z-index': '9999',
-		'position': 'relative',
-		'bottom': '33px',
-		'right': '-23px'
-	});		
+	var cp = $(this).prev().children().attr('id');
+	if($('#color-options').attr('colorpicker_loaded') == undefined){
+		loadColourPicker($(this).prev(), cp);
+	}else{
+		$('#'+$('#color-options').attr('colorpicker_loaded')).hide();
+		loadColourPicker($(this).prev(), cp);
+	}
 	return false;
 });
 

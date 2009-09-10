@@ -201,7 +201,7 @@
 			},
 			clickClose = function (ev) {
 				var cal = $(this).parent();
-				var col = cal.hide();
+				var col = cal.fadeOut(500);
 			},
 			show = function (ev) {
 				var cal = $('#' + $(this).data('colorpickerId'));
@@ -218,7 +218,7 @@
 				}
 				cal.css({left: left + 'px', top: top + 'px'});
 				if (cal.data('colorpicker').onShow.apply(this, [cal.get(0)]) != false) {
-					cal.show();
+					cal.fadeIn(500);
 				}
 				$(document).bind('mousedown', {cal: cal}, hide);
 				return false;
@@ -226,7 +226,7 @@
 			hide = function (ev) {
 				if (!isChildOf(ev.data.cal.get(0), ev.target, ev.data.cal.get(0))) {
 					if (ev.data.cal.data('colorpicker').onHide.apply(this, [ev.data.cal.get(0)]) != false) {
-						ev.data.cal.hide();
+						ev.data.cal.fadeOut(500);
 					}
 					$(document).unbind('mousedown', hide);
 				}
@@ -364,7 +364,7 @@
 						$(this).data('colorpickerId', id);
 						var cal = $(tpl).attr('id', id);
 						if (options.flat) {
-							cal.appendTo(this).show();
+							cal.appendTo(this).fadeIn(500);
 						} else {
 							cal.appendTo(document.body);
 						}
@@ -419,7 +419,7 @@
 			hidePicker: function() {
 				return this.each( function () {
 					if ($(this).data('colorpickerId')) {
-						$('#' + $(this).data('colorpickerId')).hide();
+						$('#' + $(this).data('colorpickerId')).fadeOut(500);
 					}
 				});
 			},

@@ -166,7 +166,6 @@ function showSettings(e, effect){
 	}
 }
 showSettings('#logo-options', $.cookie('settings_effect'));
-
 showSettings('#shelf-options', $.cookie('settings_effect'));
 showSettings('#user-options', $.cookie('settings_effect'));
 showSettings('#inset-options', $.cookie('settings_effect'));

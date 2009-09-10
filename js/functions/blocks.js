@@ -158,25 +158,25 @@ function blockSettingsOptions(elid, hideid){
 }
 $(function(){ 
 	blockSettingsOptions('#toolbartoolbar_chrome','#toolbartoolbar');
-	blockSettingsOptions('#masterheadmasthead_chrome','#masterheadmasthead');
+	blockSettingsOptions('#mastheadmasthead_chrome','#mastheadmasthead');
 	blockSettingsOptions('#subheadsubhead_chrome','#subheadsubhead');
 	blockSettingsOptions('#topnavtopnav_chrome','#topnavtopnav');
-	blockSettingsOptions('#shelvestopshelf_chrome','#shelvestopshelf');
-	blockSettingsOptions('#shelvesbottomshelf_chrome','#shelvesbottomshelf');
-	blockSettingsOptions('#inlineshelvesuser1_chrome','#inlineshelvesuser1');
-	blockSettingsOptions('#inlineshelvesuser2_chrome','#inlineshelvesuser2');
-	blockSettingsOptions('#outer-sidebarsplitleft_chrome','#outer-sidebarsplitleft');
-	blockSettingsOptions('#outer-sidebartopleft_chrome','#outer-sidebartopleft');
-	blockSettingsOptions('#outer-sidebarleft_chrome','#outer-sidebarleft');
-	blockSettingsOptions('#outer-sidebarbottomleft_chrome','#outer-sidebarbottomleft');
-	blockSettingsOptions('#inner-sidebarsplitright_chrome','#inner-sidebarsplitright');
-	blockSettingsOptions('#inner-sidebartopright_chrome','#inner-sidebartopright');
-	blockSettingsOptions('#inner-sidebarright_chrome','#inner-sidebarright');
-	blockSettingsOptions('#inner-sidebarbottomright_chrome','#inner-sidebarbottomright');
-	blockSettingsOptions('#insetsinset1_chrome','#insetsinset1');
-	blockSettingsOptions('#insetsinset2_chrome','#insetsinset2');
-	blockSettingsOptions('#insetsinset3_chrome','#insetsinset3');
-	blockSettingsOptions('#insetsinset4_chrome','#insetsinset4');
+	blockSettingsOptions('#topshelftopshelf_chrome','#topshelftopshelf');
+	blockSettingsOptions('#bottomshelfbottomshelf_chrome','#bottomshelfbottomshelf');
+	blockSettingsOptions('#user1user1_chrome','#user1user1');
+	blockSettingsOptions('#user2user2_chrome','#user2user2');
+	blockSettingsOptions('#splitleftsplitleft_chrome','#splitleftsplitleft');
+	blockSettingsOptions('#toplefttopleft_chrome','#toplefttopleft');
+	blockSettingsOptions('#leftleft_chrome','#leftleft');
+	blockSettingsOptions('#bottomleftbottomleft_chrome','#bottomleftbottomleft');
+	blockSettingsOptions('#splitrightsplitright_chrome','#splitrightsplitright');
+	blockSettingsOptions('#toprighttopright_chrome','#toprighttopright');
+	blockSettingsOptions('#rightright_chrome','#rightright');
+	blockSettingsOptions('#bottom-rightbottomright_chrome','#bottom-rightbottomright');
+	blockSettingsOptions('#inset1inset1_chrome','#inset1inset1');
+	blockSettingsOptions('#inset2inset2_chrome','#inset2inset2');
+	blockSettingsOptions('#inset3inset3_chrome','#inset3inset3');
+	blockSettingsOptions('#inset4inset4_chrome','#inset4inset4');
 	blockSettingsOptions('#footerfooter_chrome','#footerfooter');
 });
 

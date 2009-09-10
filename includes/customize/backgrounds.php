@@ -1,11 +1,11 @@
 <div id="backgrounds-tab" class="ui-tabs-hide">
-	<div id="backgrounds-options" class="options-panel">
+	<div id="background-options" class="options-panel">
 		<h3>Background Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('backgrounds', 'backgrounddata')); ?>
 		</ol>
 	</div>
-	<div id="backgrounds-info" class="info-panel">
+	<div id="background-info" class="info-panel">
 		<h3>Backgrounds overview</h3>
 		<p class="teaser">These options allow you to easily customize your sites background.</p>
 		<!--<p><a href="#" class="upload-bg btn-link">Upload a new background image</a></p>-->

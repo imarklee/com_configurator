@@ -6,7 +6,7 @@
 
 	<div class="clear spacer">&nbsp;</div>
 
-	<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+	<div id="tabs" class="ui-tabs ui-widget ui-widget-content <?php echo $cfg_pref->settings_effect; ?>">
 		<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 			<li class="site-icon ui-tabs-selected"><a href="#site">General</a></li>
 			<li class="themelet-icon"><a href="#customize">Customize</a></li>
@@ -24,7 +24,7 @@
 					<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
 					<li class="icon-performance"><a href="#performance-tab">Performance</a></li>
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
-<!--					<li class="icon-components"><a href="#components-tab">Components</a></li>-->
+                    <!-- <li class="icon-components"><a href="#components-tab">Components</a></li>-->
 				</ul>
 				<?php include dirname(__FILE__) . '/../general/general.php' ?>
 				<?php include dirname(__FILE__) . '/../general/progressive.php' ?>

@@ -1,7 +1,7 @@
 <div id="menus-tab" class="ui-tabs-hide">
 	<div id="menu-options" class="options-panel">
+	    <h3>Horizontal Menu Settings</h3>
 		<ol class="forms">
-		    <h3>Horizontal Menu Settings</h3>
 			<?php echo renderParams($params->renderToArray('menu', 'menudata')); ?>
 		</ol>
 	</div>

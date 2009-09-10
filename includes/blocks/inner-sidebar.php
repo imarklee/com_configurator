@@ -2,7 +2,7 @@
 	<div id="inner-sidebar-options" class="options-panel">
 	    <h3>Inner Sidebar (Right) Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inner-sidebar', 'innersidebardata')); ?>
+			<?php echo renderParams($params->renderToArray('innersidebar', 'innersidebardata')); ?>
 		</ol>
 	    <h3>Split Right Settings</h3>
 		<ol class="forms">

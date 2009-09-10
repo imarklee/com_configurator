@@ -174,7 +174,6 @@ showSettings('#logo-options', $.cookie('settings_effect'));
 showSettings('#background-options', $.cookie('settings_effect'));
 showSettings('#menu-options', $.cookie('settings_effect'));
 showSettings('#iphone-options', $.cookie('settings_effect'));
-
 showSettings('#shelf-options', $.cookie('settings_effect'));
 showSettings('#user-options', $.cookie('settings_effect'));
 showSettings('#inset-options', $.cookie('settings_effect'));

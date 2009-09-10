@@ -174,8 +174,16 @@ showSettings('#logo-options', $.cookie('settings_effect'));
 showSettings('#background-options', $.cookie('settings_effect'));
 showSettings('#menu-options', $.cookie('settings_effect'));
 showSettings('#iphone-options', $.cookie('settings_effect'));
+
+showSettings('#toolbar-options', $.cookie('settings_effect'));
+showSettings('#mainhead-options', $.cookie('settings_effect'));
+showSettings('#subhead-options', $.cookie('settings_effect'));
+showSettings('#topnav-options', $.cookie('settings_effect'));
 showSettings('#shelf-options', $.cookie('settings_effect'));
 showSettings('#user-options', $.cookie('settings_effect'));
+showSettings('#main-options', $.cookie('settings_effect'));
 showSettings('#inset-options', $.cookie('settings_effect'));
 showSettings('#outer-sidebar-options', $.cookie('settings_effect'));
 showSettings('#inner-sidebar-options', $.cookie('settings_effect'));
+showSettings('#shelf-options', $.cookie('settings_effect'));
+showSettings('#footer-options', $.cookie('settings_effect'));

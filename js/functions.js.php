@@ -1807,6 +1807,7 @@ jQuery.noConflict();
 		
 		function checkChanges(action){
 			var target;
+			var $this = $(this);
 			if($.cookie('formChanges')){			
 				$('<div id="changesDialog"><p>You have made changes to Configurator that will be saved upon activation. Are you sure you want to activate and save these changes?</p><p><strong>If you cancel, this page will reload and your changes will be lost.</strong></p></div>').dialog({
 					autoOpen: true,

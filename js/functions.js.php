@@ -306,22 +306,61 @@ jQuery.noConflict();
  		
  	   	/* Tabs -------------------------------
 	    ------------------------------------ */
-    	$('#tabs').tabs({ 			cookie: {				name: 'main-tabs',				expires: 30,				path: '/',		 	}
+    	$('#tabs').tabs({ 
+			cookie: {
+				name: 'main-tabs',
+				expires: 30,
+				path: '/',
+		 	}
 		});
 		$('#site-tabs').tabs({
 			fx: { opacity: 'toggle' },
-			cookie: {				name: 'site-tabs',				expires: 30,				path: '/',		 	}		});
+			cookie: {
+				name: 'site-tabs',
+				expires: 30,
+				path: '/',
+		 	}
+		});
 		$('#customize-tabs').tabs({
 			fx: { opacity: 'toggle' },
-			cookie: {				name: 'themelet-tabs',				expires: 30,				path: '/',		 	} 		});
+			cookie: {
+				name: 'themelet-tabs',
+				expires: 30,
+				path: '/',
+		 	} 
+		});
     	$('#blocks-tabs').tabs({
-			fx: { opacity: 'toggle' },			cookie: {				name: 'block-tabs',				expires: 30,				path: '/',		 	} 		});
+			fx: { opacity: 'toggle' },
+			cookie: {
+				name: 'block-tabs',
+				expires: 30,
+				path: '/',
+		 	} 
+		});
 		$('#plugins-tabs').tabs({
-			fx: { opacity: 'toggle' },			cookie: {				name: 'plugins-tabs',				expires: 30,				path: '/',		 	} 		});
+			fx: { opacity: 'toggle' },
+			cookie: {
+				name: 'plugins-tabs',
+				expires: 30,
+				path: '/',
+		 	} 
+		});
 		$('#tools-tabs').tabs({
-			fx: { opacity: 'toggle' },			cookie: {				name: 'tools-tabs',				expires: 30,				path: '/',		 	} 		});
+			fx: { opacity: 'toggle' },
+			cookie: {
+				name: 'tools-tabs',
+				expires: 30,
+				path: '/',
+		 	} 
+		});
 		$('#assets-tabs').tabs({
-			fx: { opacity: 'toggle' },			cookie: {				name: 'assets-tabs',				expires: 30,				path: '/',		 	} 		});
+			fx: { opacity: 'toggle' },
+			cookie: {
+				name: 'assets-tabs',
+				expires: 30,
+				path: '/',
+		 	} 
+		});
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
 		$("#customize").removeClass("ui-widget-content");			
 		$("#assets-tabs li.icon-backup").removeClass("ui-state-disabled");	
@@ -1959,7 +1998,13 @@ jQuery.noConflict();
 				return false;
 			});
 			$('#splash').tabs({
-				fx: { opacity: 'toggle' },				cookie: {					name: 'welcome-screen',					expires: 30,					path: '/',			 	}			});
+				fx: { opacity: 'toggle' },
+				cookie: {
+					name: 'welcome-screen',
+					expires: 30,
+					path: '/',
+			 	}
+			});
 	    }
 	    
 	    $('.info-link').click(function(){
@@ -2169,6 +2214,8 @@ jQuery.noConflict();
 			}
 			
     	}
+
+		<?php include 'functions/scroll.js'; ?>
 		
 		/* Lost Password ------------------
 		-------------------------------- */

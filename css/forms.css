@@ -2,10 +2,10 @@
 #general-settings ol.forms li.buttons{float:none;margin-left:100px;width:auto;}
 #cfg #tabs .options-inner{border:1px solid #999;border-top:0;float:left;width:523px;}
 #cfg #tabs ol.forms{border:0;border-top:1px solid #999;border-bottom:1px solid #999;list-style-type:none;margin:0;padding:0;width:523px;}
-#cfg #tabs ol.forms li{border-bottom:1px solid #ddd;border-top:1px solid #fff;clear:both;color:#222;float:left;margin:0;padding:0 10px;position:relative;width:503px;height:30px;font:normal 13px/30px arial;background:#fff url(../images/form-bg2.jpg) repeat-y;}
-#tabs ol.forms li.alt{background:#FEFDEE url(../images/form-bg3.jpg) repeat-y;}
-#tabs ol.forms li.first{border-top:0;}
-#tabs ol.forms li.last{border-bottom:1px solid #999;}
+#cfg #tabs ol.forms li{border-bottom:1px solid #ddd;border-top:1px solid #fff;clear:both;color:#222;float:left;margin:0;padding:0 10px;position:relative;width:503px;font:normal 13px/30px arial;background:#fff url(../images/form-bg2.jpg) repeat-y;}
+#cfg #tabs ol.forms li.alt{background:#FEFDEE url(../images/form-bg3.jpg) repeat-y;}
+#cfg #tabs ol.forms li.first{border-top:0;}
+#cfg #tabs ol.forms li.last{border-bottom:0;}
 #tabs ol.forms label,#tabs ol.forms li.radio-item label.to-label{color:#455C21;color:#444;cursor:pointer;display:block;float:left;margin:0 21px 0 0;padding:0 35px 0 0;text-align:right;width:200px;}
 #tabs ol.forms li.radio-item label{display:inline;float:none;font-weight:normal;margin:0 10px 0 0;width:auto;background:none;padding:0;color:#222;}
 #tabs ol.forms li.radio-item input{width:auto;margin:0;padding:0;}

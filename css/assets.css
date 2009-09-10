@@ -75,7 +75,7 @@
 #cfg .thumb-view ul.themelet-summary li.alt{margin-left:0;}
 #cfg .thumb-view li.tl-active{background:#E3E3E3 url(../images/assets-active-bg.png) repeat-x bottom;border:1px solid #8FAB60;}
 #cfg .thumb-view li.tl-active .assets-inner{background:transparent url(../images/active-badge.png) no-repeat top right;}
-#cfg .thumb-view li.deleted{background:transparent url(../images/deleted.png) 0 0 no-repeat;border:1px solid #ccc;overflow:hidden;}
+#cfg .thumb-view li.deleted{background:transparent url(../images/deleted.png) no-repeat scroll 50% 65%;border:1px solid #ccc;overflow:hidden;}
 
 #cfg .thumb-view ul.buttons,
 #cfg .thumb-view li:hover h3,

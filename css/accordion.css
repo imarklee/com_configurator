@@ -2,7 +2,7 @@
 ----------------------------------*/
 .options-panel h3{
 position:relative;
-margin:0;
+margin:-1px 0 0;
 background:transparent url(../images/heading-bg2.jpg) repeat-x;
 font:bold 12px arial;
 padding:7px 0;

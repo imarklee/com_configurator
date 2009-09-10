@@ -1824,7 +1824,7 @@ jQuery.noConflict();
 						'Activate only': function(){
 							$.cookie('formChanges', null);
 							if($this.attr('target') == ''){ 
-								window.location.href($this.attr('href'));
+								window.location.href = $this.attr('href');
 			   				}else{ 
 			   					target = $this.attr('target');
 			   					window.open($this.attr('href'), target);
@@ -1928,7 +1928,7 @@ jQuery.noConflict();
 										$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 						   				hideScroll();
 						   				if($this.attr('target') == ''){ 
-   											window.location.href($this.attr('href'));
+   											window.location.href = $this.attr('href');
 						   				}else{ 
 						   					target = $this.attr('target');
 						   					window.open($this.attr('href'), target);
@@ -1945,7 +1945,7 @@ jQuery.noConflict();
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
 							if($this.attr('target') == ''){ 
-			   					window.location.href($this.attr('href'));
+			   					window.location.href = $this.attr('href');
 			   				}else{ 
 			   					target = $this.attr('target');
 			   					window.open($this.attr('href'), target);
@@ -1956,7 +1956,7 @@ jQuery.noConflict();
 				});
 			}else{
    				if($this.attr('target') == ''){ 
-   					window.location.href($this.attr('href'));
+   					window.location.href = $this.attr('href');
    				}else{ 
    					target = $this.attr('target');
    					window.open($this.attr('href'), target);

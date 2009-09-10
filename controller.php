@@ -690,7 +690,8 @@ class ConfiguratorController extends JController {
 		$template_params = $db->loadAssocList('param_name');
 				
 		// themelet
-		$curr_themelet = $template_params['themelet']['param_value'];
+		$curr_themelet = '';
+		if(isset($template_params['themelet'])) $curr_themelet = $template_params['themelet']['param_value'];
 		if(isset($_COOKIE['current_themelet'])) $curr_themelet = $_COOKIE['current_themelet'];
 		
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');			
@@ -1127,7 +1128,7 @@ class ConfiguratorController extends JController {
 		
 		if(isset($activation) && $activation == 'true'){
 		
-			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install')	{ $this->themelet_activate($themelet); }
+			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install' || !isset($_COOKIE['upgrade-type']))	{ $this->themelet_activate($themelet); }
 			setcookie('installed_actthemelet', 'true');
 			$db = JFactory::getDBO();
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");

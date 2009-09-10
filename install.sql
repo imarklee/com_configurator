@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `jos_configurator` (
+CREATE TABLE IF NOT EXISTS `#__configurator` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `template_name` varchar(255) NOT NULL,
   `param_name` varchar(64) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `jos_configurator` (
   KEY `template_name` (`template_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `jos_configurator_preferences` (
+CREATE TABLE IF NOT EXISTS `#__configurator_preferences` (
   `id` int(4) NOT NULL auto_increment,
   `pref_name` varchar(64) NOT NULL,
   `pref_value` varchar(264) NOT NULL,

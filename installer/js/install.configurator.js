@@ -274,9 +274,6 @@
 								$('#dialog').dialog('open');
 	                        }
 	                    }
-	                },
-	                error: function(e){
-	                	console.log(e);
 	                }
 				});
 			}else{

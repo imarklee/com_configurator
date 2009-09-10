@@ -1,12 +1,14 @@
 /* Accordion
 ----------------------------------*/
-.options-panel  h3{cursor: pointer; position: relative;margin:0;background:transparent url(../images/heading-bg2.jpg) repeat-x;font:bold 12px arial;padding:7px 0;float:left;width:100%;text-indent:10px;border-top:1px solid #999;border-bottom:1px solid #999;}
+#tabs.toggle .options-panel h3{
+cursor: pointer;position:relative;margin:0;background:transparent url(../images/heading-bg2.jpg) repeat-x;font:bold 12px arial;padding:7px 0;float:left;width:100%;text-indent:10px;border-top:1px solid #999;border-bottom:1px solid #999;}
 .ui-accordion  h3{margin-bottom:-1px;}
-.options-panel  h3:hover{opacity:.8;}
+#tabs.toggle .options-panel  h3:hover,
+.ui-accordion  h3:hover{opacity:.8;}
 .ui-accordion .ui-accordion-header { cursor: pointer; position: relative;zoom: 1; }
 .ui-accordion .ui-accordion-li-fix { display: inline; }
 .ui-accordion .ui-accordion-header-active { border-bottom: 0 !important; }
 .ui-accordion .ui-accordion-header a { display: block; font-size: 1em; padding:0}
 .ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: .5em; top: 50%; margin-top: -8px; }
-.ui-accordion .ui-accordion-content { margin-top:-2px;position:relative;top:1px;margin-bottom:2px;overflow:auto;border-top: 0; display: none; }
+.ui-accordion .ui-accordion-content { position:relative;top:1px;border-top: 0; display: none; }
 .ui-accordion .ui-accordion-content-active { display: block; }

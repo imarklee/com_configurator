@@ -6,7 +6,7 @@
 
 	<div class="clear spacer">&nbsp;</div>
 
-	<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+	<div id="tabs" class="ui-tabs ui-widget ui-widget-content <?php echo $cfg_pref->settings_effect; ?>">
 		<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 			<li class="site-icon ui-tabs-selected"><a href="#site">General</a></li>
 			<li class="themelet-icon"><a href="#customize">Customize</a></li>

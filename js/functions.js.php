@@ -1824,7 +1824,7 @@ jQuery.noConflict();
 						'Activate only': function(){
 							$.cookie('formChanges', null);
 							if($this.attr('target') == ''){ 
-								window.location.href($this.attr('href'));
+								window.location.href = $this.attr('href');
 			   				}else{ 
 			   					target = $this.attr('target');
 			   					window.open($this.attr('href'), target);
@@ -1900,6 +1900,7 @@ jQuery.noConflict();
 		
 		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a').click(function(){
 			var $this = $(this);
+			alert ($this.attr('href'));
 			var target;
 			if($.cookie('formChanges')){			
 				$('<div id="changesDialog">You have made changes to Configurator that will be lost if you navigate from this page. Are you sure you want to continue without saving?</div>').dialog({
@@ -1928,7 +1929,7 @@ jQuery.noConflict();
 										$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 						   				hideScroll();
 						   				if($this.attr('target') == ''){ 
-   											window.location.href($this.attr('href'));
+   											window.location.href = $this.attr('href');
 						   				}else{ 
 						   					target = $this.attr('target');
 						   					window.open($this.attr('href'), target);
@@ -1945,7 +1946,7 @@ jQuery.noConflict();
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
 							if($this.attr('target') == ''){ 
-			   					window.location.href($this.attr('href'));
+			   					window.location.href = $this.attr('href');
 			   				}else{ 
 			   					target = $this.attr('target');
 			   					window.open($this.attr('href'), target);
@@ -1956,7 +1957,7 @@ jQuery.noConflict();
 				});
 			}else{
    				if($this.attr('target') == ''){ 
-   					window.location.href($this.attr('href'));
+   					window.location.href = $this.attr('href');
    				}else{ 
    					target = $this.attr('target');
    					window.open($this.attr('href'), target);

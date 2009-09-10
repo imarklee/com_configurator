@@ -14,13 +14,13 @@ function LogoOptions(){
 		var display;
 		if(val == 'on'){ display='block'; }else{ display='none'; }
 		
-		$('#logo-options li #logoslogan_text').parent().css('display', display);
-		$('#logo-options li #logoslogan_textcolor').parent().css('display', display);
-		$('#logo-options li #logoslogan_fontsize').parent().css('display', display);
-		$('#logo-options li #logoslogan_fontfamily').parent().css('display', display);
-		$('#logo-options li #logoslogan_top').parent().css('display', display);
-		$('#logo-options li #logoslogan_left').parent().css('display', display);
-		$('#logo-options li #logoslogan_stack').parent().css('display', display);
+		$('#logo-options li #taglineslogan_text').parent().css('display', display);
+		$('#logo-options li #taglineslogan_textcolor').parent().css('display', display);
+		$('#logo-options li #taglineslogan_fontsize').parent().css('display', display);
+		$('#logo-options li #taglineslogan_fontfamily').parent().css('display', display);
+		$('#logo-options li #taglineslogan_top').parent().css('display', display);
+		$('#logo-options li #taglineslogan_left').parent().css('display', display);
+		$('#logo-options li #taglineslogan_stack').parent().css('display', display);
 	}
 	
 	function ieLogo(val){
@@ -45,7 +45,7 @@ function LogoOptions(){
 			$('#logo-options li #logologo_textcolor').parent().css('display', 'block');
 			$('#logo-options li #logologo_fontsize').parent().css('display', 'block');
 			$('#logo-options li #logologo_fontfamily').parent().css('display', 'block');
-			$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+			$('#logo-options li #taglinedisplay_slogan0').parent().css('display', 'block');
 			$('#logo-options li #logologo_text').parent().css('display', 'block');
 			$('#logo-options li #logologo_top').parent().css('display', 'block');
 			$('#logo-options li #logologo_left').parent().css('display', 'block');
@@ -58,7 +58,7 @@ function LogoOptions(){
 			$('#logo-options li #logologo_image').parent().css('display', 'block');
 			$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
 			$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
-			$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+			$('#logo-options li #taglinedisplay_slogan0').parent().css('display', 'block');
 			$('#logo-options li #logologo_text').parent().css('display', 'block');
 			$('#logo-options li #logologo_autodimensions1').parent().css('display', 'block');
 			$('#logo-options li #logologo_top').parent().css('display', 'block');
@@ -73,7 +73,7 @@ function LogoOptions(){
 			$('#logo-options li #logodisplay_ie_logo0').parent().css('display', 'block');
 			$('#logo-options li #logologo_alttext').parent().css('display', 'block');
 			$('#logo-options li #logologo_linktitle').parent().css('display', 'block');
-			$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+			$('#logo-options li #taglinedisplay_slogan0').parent().css('display', 'block');
 			$('#logo-options li #logologo_autodimensions1').parent().css('display', 'block');
 			$('#logo-options li #logologo_top').parent().css('display', 'block');
 			$('#logo-options li #logologo_left').parent().css('display', 'block');
@@ -83,7 +83,7 @@ function LogoOptions(){
 			$('#logo-options li').css('display', 'none');
 			$('#logo-options li.heading:first').css('display', 'block');
 			$('#logologo_type').parent().css('display', 'block');
-			$('#logo-options li #logodisplay_slogan0').parent().css('display', 'block');
+			$('#logo-options li #taglinedisplay_slogan0').parent().css('display', 'block');
 			$('#logo-options li #logologo_top').parent().css('display', 'block');
 			$('#logo-options li #logologo_left').parent().css('display', 'block');
 			break;
@@ -91,13 +91,13 @@ function LogoOptions(){
 		
 		//
 		
-		if($('#logodisplay_slogan0').attr('checked') == 'checked'){ slogan('off'); }
-		$('#logodisplay_slogan0').click( function(){ slogan('off'); } );
+		if($('#taglinedisplay_slogan0').attr('checked') == 'checked'){ slogan('off'); }
+		$('#taglinedisplay_slogan0').click( function(){ slogan('off'); } );
 		
-		if($('#logodisplay_slogan1').attr('checked')){ slogan('on'); }
-		$('#logodisplay_slogan1').click( function(){ slogan('on'); } );
+		if($('#taglinedisplay_slogan1').attr('checked')){ slogan('on'); }
+		$('#taglinedisplay_slogan1').click( function(){ slogan('on'); } );
 
-		if($('#logodisplay_ie_logo1').attr('checked')){ ieLogo('on'); }
+		if($('#display_ie_logo1').attr('checked')){ ieLogo('on'); }
 		$('#logodisplay_ie_logo1').click( function(){ ieLogo('on'); } );
 		
 		if($('#logodisplay_ie_logo0').attr('checked')){ ieLogo('off'); }
@@ -278,10 +278,10 @@ function sliderOptionsOff(elid, hideid){
 $(function(){
 	sliderOptionsOn('#toolbartoolbar_slider1','#toolbartoolbar_slider_text');
 	sliderOptionsOff('#toolbartoolbar_slider0','#toolbartoolbar_slider_text');
-	sliderOptionsOn('#shelvesbottomshelf_slider1','#shelvesbottomshelf_slider_text');
-	sliderOptionsOff('#shelvesbottomshelf_slider0','#shelvesbottomshelf_slider_text');
-	sliderOptionsOn('#shelvestopshelf_slider1','#shelvestopshelf_slider_text');
-	sliderOptionsOff('#shelvestopshelf_slider0','#shelvestopshelf_slider_text');
+	sliderOptionsOn('#bottomshelfbottomshelf_slider1','#bottomshelfbottomshelf_slider_text');
+	sliderOptionsOff('#bottomshelfbottomshelf_slider0','#bottomshelfbottomshelf_slider_text');
+	sliderOptionsOn('#topshelftopshelf_slider1','#topshelftopshelf_slider_text');
+	sliderOptionsOff('#topshelftopshelf_slider0','#topshelftopshelf_slider_text');
 	sliderOptionsOn('#progressiverounded_corners1', '#progressiverounded_amount');
 	sliderOptionsOff('#progressiverounded_corners0', '#progressiverounded_amount');
 });

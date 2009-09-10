@@ -185,5 +185,4 @@ showSettings('#main-options', $.cookie('settings_effect'));
 showSettings('#inset-options', $.cookie('settings_effect'));
 showSettings('#outer-sidebar-options', $.cookie('settings_effect'));
 showSettings('#inner-sidebar-options', $.cookie('settings_effect'));
-showSettings('#shelf-options', $.cookie('settings_effect'));
 showSettings('#footer-options', $.cookie('settings_effect'));

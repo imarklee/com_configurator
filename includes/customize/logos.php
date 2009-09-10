@@ -1,4 +1,4 @@
-<div id="logos-tab" class="ui-tabs-hide ui-tabs-panel">
+<div id="logos-tab" class="ui-tabs-hide">
 	<div id="logo-options" class="options-panel">
 	    <h3>Logo Settings</h3>
 		<ol class="forms">

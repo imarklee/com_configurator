@@ -34,10 +34,10 @@
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<param name="settings_effect" default="toggle" type="list" label="Show settings as" position="last">
-			<option value="toggle">Toggle</option>
-			<option value="accordion">Accordion</option>
-			<option value="all">Show All</option>
+		<param name="settings_effect" default="accordion" type="list" label="Display option groups as" position="last">
+			<option value="toggle">Toggle Panels</option>
+			<option value="accordion">Accordion Panels</option>
+			<option value="all">Always Show</option>
 		</param>
 	</params>
 </preferences>

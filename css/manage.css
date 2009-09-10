@@ -19,7 +19,7 @@
 button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
 .icon-48-configurator{background:transparent url(../images/icon-48-configurator.png) repeat scroll 5px 8px;}
 #logologo_image{width:175px;}
-#top{height:90px;overflow:hidden;}
+#top{height:90px;position:relative;}
 #branding{width:200px;float:left;height:90px;}
 #branding img{margin-top:15px;}
 #minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}

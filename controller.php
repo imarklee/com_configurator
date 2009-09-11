@@ -273,6 +273,8 @@ class ConfiguratorController extends JController {
 		$params[32] = JRequest::getVar( 'left', null, 'post', 'array' );
 		$params[33] = JRequest::getVar( 'bottomleft', null, 'post', 'array' );
 		$params[34] = JRequest::getVar( 'footer', null, 'post', 'array' );
+		$params[35] = JRequest::getVar( 'components_inner', null, 'post', 'array' );
+		$params[36] = JRequest::getVar( 'components_outer', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');

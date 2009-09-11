@@ -10,7 +10,7 @@ function innerLayouts($id){
 		'75/25 Split',
 		'25/75 Split'
 	);
-	$select = '<select id="'.$id.'">';
+	$select = '<select id="'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
 	foreach($innerPageSuffix as $key => $val){
 		$select .= '<option value="'.$key.'">'.$select_option[$key].'</option>';
 	}
@@ -31,7 +31,7 @@ function outerLayouts($id){
 		'200px left',
 		'200px right'
 	);
-	$select = '<select id="'.$id.'">';
+	$select = '<select id="'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
 	foreach($outerPageSuffix as $key => $val){
 		$select .= '<option value="'.$key.'">'.$select_option[$key].'</option>';
 	}
@@ -46,14 +46,17 @@ function outerLayouts($id){
 		<ol class="forms">
 			<?php
 			$db = JFactory::getDBO();
-			$query = $db->setQuery("select * from #__components where parent = '0' ;");
+			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
+							' FROM #__components AS c' .
+							' WHERE c.link <> "" AND parent = 0' .
+							' ORDER BY c.name');
 			$res = $db->loadAssocList($query);
 			foreach($res as $r){ 
 				$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>
 				<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab; ?>">	
 				<?php echo $r['name']; ?></label>
-				<?php echo innerLayouts($rlab);?>
-				<?php echo outerLayouts($rlab);?>
+				<?php echo innerLayouts($r['option']);?>
+				<?php echo outerLayouts($r['option']);?>
 				</li>
 			<?php } ?>
 		</ol>

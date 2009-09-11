@@ -81,7 +81,7 @@ jQuery.noConflict();
 
 		
 		if ($("#backgroundsbg_image option:first").val() == ""){
-		$("#backgroundsbg_image option:first").text("Use themelets default");
+		$("#backgroundsbg_image option:first").text("None");
 		}
 
 		$("#footer").fadeTo("slow", 0.3).hover(

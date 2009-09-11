@@ -3,7 +3,7 @@ function innerLayouts($id){
 	error_reporting(E_ALL ^ E_NOTICE);
 	include JPATH_ROOT.'/templates/morph/core/InnerLayout.php';
 	$select_option = array(
-		'Select Inner Default',
+		'Inner default',
 		'50/50 Split',
 		'66/33 Split',
 		'33/66 Split',
@@ -20,7 +20,7 @@ function innerLayouts($id){
 function outerLayouts($id){
 	include JPATH_ROOT.'/templates/morph/core/OuterLayout.php';
 	$select_option = array(
-		'Select Outer Default',
+		'Outer default',
 		'160px left',
 		'180px left',
 		'300px left',
@@ -62,7 +62,10 @@ function outerLayouts($id){
 		</ol>
 	</div>
 	<div id="components-info" class="info-panel">
-	<p>Feed me content ;)</p>
+		<h3>Setting component default layouts</h3>
+		<p class="teaser">These options allow you to set the default inner and outer layouts for each of your installed components.</p>
+		
+		<p></p>
 	</div>
 </div>
 

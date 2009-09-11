@@ -18,7 +18,7 @@
 		</ol>
 	    <h3>Bottom Right Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('bottom-right', 'bottomrightdata')); ?>
+			<?php echo renderParams($params->renderToArray('bottomright', 'bottomrightdata')); ?>
 		</ol>
 	</div>
 	<div id="inner-sidebar-info" class="info-panel">

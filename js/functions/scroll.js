@@ -11,4 +11,4 @@ function showSave(){
 $('#bottom-save').hide();
 $(window).scroll(function(){	
 	showSave();
-})
+});

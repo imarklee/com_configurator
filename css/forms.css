@@ -50,3 +50,7 @@ width:120px;
 #components-options ol.forms{
 
 }
+#tabs #components-options ol.forms label{
+padding-right:0;
+width:238px;
+}

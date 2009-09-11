@@ -6,6 +6,7 @@
 .ui-accordion h3{margin-bottom:-1px;}
 #tabs.toggle .options-panel h3:hover,
 .ui-accordion h3:hover{opacity:.8;}
+#tabs.all .options-panel h3{text-indent:10px;}
 .ui-accordion .ui-accordion-header{cursor:pointer;position:relative;zoom:1;}
 .ui-accordion .ui-accordion-li-fix{display:inline;}
 .ui-accordion .ui-accordion-header-active{border-bottom:0 !important;}

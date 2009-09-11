@@ -4,14 +4,17 @@
 #lost-password{-moz-border-radius:7px;-webkit-border-radius:7px;margin:5px 0 10px 0;}
 .btn-getpass{-moz-border-radius:7px;-webkit-border-radius:7px;padding:5px 10px;}
 
+
 #cfg.noshelf.nobranding #tabs{margin-top:1.5em;}
 #cfg.shelftop #shelf{padding-top:0;}
+#cfg.shelfbtm.nofooter.nobranding,
 #cfg.shelftop.nobranding #shelf{padding-top:1.5em;}
 #cfg.shelfbtm #shelf{margin-top:1.5em;}
 #cfg.nofooter{margin-bottom:1.5em;}
 #cfg.footer{}
 #cfg.nobranding{}
 #cfg.branding{}
+
 
 #element-box .t,#element-box .b{display:none;}
 #element-box .m{background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;padding:15px 0;border:0;}

@@ -2217,6 +2217,7 @@ jQuery.noConflict();
     	}
 
 		<?php include 'functions/scroll.js'; ?>
+		<?php include 'functions/dbmanager.js'; ?>
 		
 		/* Lost Password ------------------
 		-------------------------------- */

@@ -14,7 +14,7 @@
 #visual-refs h3 span{color:#999;padding-left:90px;}
 #visual-refs h3 span a{font-size:12px;margin:0 2px;text-decoration:underline;}
 #visual-refs h3 span a:hover{text-decoration:none;}
-#shelf{margin:0 0 20px 0;}
+#shelf{margin:0 0 20px 0;position:relative;}
 #shelf #shelf-contents{border-top:0;background:#fff;overflow:hidden;border:0;}
 #shelf.closed #shelf-contents{display:none;}
 #shelf #utilities.ui-widget-header{border:0!important;}

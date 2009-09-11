@@ -37,7 +37,7 @@ jQuery.noConflict();
 		$("#tabs ol.forms li:last-child").addClass("last");		
 		$("#tabs ol.forms li:odd").addClass("alt");	
 
-		$("#assets-tabs #customize-list li:even").addClass("alt");			
+		$("#assets-tabs #themelets-list li:even").addClass("alt");			
 		$("#assets-tabs #logos-list li:even").addClass("alt");			
 		$("#assets-tabs #backgrounds-list li:even").addClass("alt");
 		$("#assets-tabs #iphone-list li:even").addClass("alt");		

@@ -1,7 +1,7 @@
 #cfg #tabs .options-panel{border:5px solid #E3E3E3;float:left;width:525px;z-index:10;}
 #general-settings ol.forms li.buttons{float:none;margin-left:100px;width:auto;}
 #cfg #tabs .options-inner{border:1px solid #999;border-top:0;float:left;width:523px;}
-#cfg #tabs ol.forms{border:0;border-top:1px solid #999;border-bottom:1px solid #999;list-style-type:none;margin:0;padding:0;width:523px;}
+#cfg #tabs ol.forms{border:0;border-top:1px solid #999;border-bottom:1px solid #999;list-style-type:none;margin:-1px 0 0 0;padding:0;width:523px;}
 #cfg #tabs ol.forms li{border-bottom:1px solid #ddd;border-top:1px solid #fff;clear:both;color:#222;float:left;margin:0;padding:0 10px;position:relative;width:503px;font:normal 13px/30px arial;background:#fff url(../images/form-bg2.jpg) repeat-y;}
 #cfg #tabs ol.forms li.alt{background:#FEFDEE url(../images/form-bg3.jpg) repeat-y;}
 #cfg #tabs ol.forms li.first{border-top:0;}

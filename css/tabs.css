@@ -50,7 +50,7 @@
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a{color:#fff;}
 #tabs .subtabs .ui-tabs-panel{background:#fff;padding:0;width:100%;float:left;}
 #tabs #assets-tabs.subtabs { position: relative; }
-#cfg #tabs .icon-backup{border-right:0 none;font-size:11px;position:absolute;right:9px;top:6px;}}
+#cfg #tabs .icon-backup{border-right:0 none;font-size:11px;position:absolute;right:9px;top:5px;}
 #cfg #tabs .icon-backup a{text-decoration:underline;}
 #tabs .options-panel.disabled{border-color:#D33538;}
 #tabs .options-panel.disabled .options-inner{border-color:#670D11;}

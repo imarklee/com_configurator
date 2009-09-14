@@ -4,11 +4,11 @@ function innerLayouts($id){
 	include JPATH_ROOT.'/templates/morph/core/InnerLayout.php';
 	$select_option = array(
 		'Inner default',
-		'50/50 Split',
-		'66/33 Split',
-		'33/66 Split',
-		'75/25 Split',
-		'25/75 Split'
+		'50% Right',
+		'33% Right',
+		'25% Right',
+		'200px Left',
+		'200px Right'
 	);
 	
 	$db = JFactory::getDBO();
@@ -27,18 +27,15 @@ function outerLayouts($id){
 	include JPATH_ROOT.'/templates/morph/core/OuterLayout.php';
 	$select_option = array(
 		'Outer default',
-		'160px left',
-		'180px left',
-		'300px left',
-		'180px right',
-		'240px right',
-		'300px right',
-		'Not Avail',
-		'200px left',
-		'200px right'
+		'160px Left',
+		'180px Left',
+		'300px Left',
+		'180px Right',
+		'240px Right',
+		'300px Right',
+		'200px Left',
+		'200px Right'
 	);
-	unset($outerPageSuffix[7]);
-	unset($select_option[7]);
 	
 	$db = JFactory::getDBO();
 	$query = $db->setQuery("select param_value from #__configurator where param_name = 'od_".$id."';");

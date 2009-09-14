@@ -485,7 +485,7 @@ class ConfiguratorController extends JController {
 		$conf = JFactory::getConfig();
 		$database = $conf->getValue('config.db');
 		
-		$backupfile = 'morphdb_'.$database.'_'.date("His_dmY").'.sql.gz';
+		$backupfile = 'db_full_'.$database.'_'.date("His_dmY").'.sql.gz';
 		
 		if( !$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure()) ){
 			$error = 'error: "Unable to create DB backup. Please check your permissions on the morph_assets folder"';
@@ -663,18 +663,30 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
+	function create_db_backup($type, $name){
+	
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		if(!is_dir($backupdir)){mkdir($backupdir);}
+		@JPath::setPermissions($backupdir);
+		
+		// backup themelet settings
+		$backupfile = 'db_themelet_'.$curr_themelet.'_'.time().'.sql.gz';
+		if(file_exists($backupfile)){
+			JFile::delete($backupfile);
+		}
+		$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure($pref . 'configurator', "source='themelet'"));
+		
+		
+	
+	}
+	
 	function themelet_activate($themelet = ''){
 		global $mainframe;
 		
 		$db = JFactory::getDBO();
 		$pref = $db->getPrefix();
 		
-		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
-		if(!is_dir($backupdir)){mkdir($backupdir);}
-		@JPath::setPermissions($backupdir);
-		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db'. DS . 'themelets';
-		if(!is_dir($backupdir)){mkdir($backupdir);}
-		@JPath::setPermissions($backupdir);
+		
 		
 		if($themelet == ''){
 			if(isset($_REQUEST['themelet_name'])){
@@ -740,12 +752,7 @@ class ConfiguratorController extends JController {
 				}
 			}
 			
-			// backup themelet settings
-			$backupfile = $curr_themelet.'.sql.gz';
-			if(file_exists($backupfile)){
-				JFile::delete($backupfile);
-			}
-			$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure($pref . 'configurator', "source='themelet'"));
+			
 			
 			// delete themelet settings from database
 			$query = "delete from #__configurator where source = 'themelet';";

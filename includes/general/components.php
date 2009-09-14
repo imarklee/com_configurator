@@ -10,9 +10,15 @@ function innerLayouts($id){
 		'75/25 Split',
 		'25/75 Split'
 	);
+	
+	$db = JFactory::getDBO();
+	$query = $db->setQuery("select param_value from #__configurator where param_name = 'id_".$id."';");
+	$res = $db->loadResult($query);
+	
 	$select = '<select id="'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
 	foreach($innerPageSuffix as $key => $val){
-		$select .= '<option value="'.$key.'">'.$select_option[$key].'</option>';
+		if($key == $res){ $selected = ' selected="selected"'; }else{ $selected = ''; }
+		$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
 	}
 	$select .= '</select>';
 	return $select;
@@ -31,9 +37,17 @@ function outerLayouts($id){
 		'200px left',
 		'200px right'
 	);
+	unset($outerPageSuffix[7]);
+	unset($select_option[7]);
+	
+	$db = JFactory::getDBO();
+	$query = $db->setQuery("select param_value from #__configurator where param_name = 'od_".$id."';");
+	$res = $db->loadResult($query);
+	
 	$select = '<select id="'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
 	foreach($outerPageSuffix as $key => $val){
-		$select .= '<option value="'.$key.'">'.$select_option[$key].'</option>';
+		if($key == $res){ $selected = ' selected="selected"'; }else{ $selected = ''; }
+		$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
 	}
 	$select .= '</select>';
 	return $select;

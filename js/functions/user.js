@@ -169,6 +169,7 @@ showSettings('#general-options', $.cookie('settings_effect'));
 showSettings('#progressive-options', $.cookie('settings_effect'));
 showSettings('#performance-options', $.cookie('settings_effect'));
 showSettings('#debugging-options', $.cookie('settings_effect'));
+showSettings('#components-options', $.cookie('settings_effect'));
 showSettings('#color-options', $.cookie('settings_effect'));
 showSettings('#logo-options', $.cookie('settings_effect'));
 showSettings('#background-options', $.cookie('settings_effect'));

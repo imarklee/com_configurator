@@ -18,8 +18,8 @@
 #database-manager ul ul{margin:5px 0 0 5px;background:#fff;padding:1em;width:395px;}
 #database-manager li{font-weight:bold;margin:0;padding:1em 1em 1.5em 1em;border-bottom:1px solid #ccc;}
 #database-manager li li{font-weight:normal;padding:0;border-bottom:0;}
-#database-manager .action{padding:1em 0 .7em 1.2em;border-bottom:0;background:#ddd;}
-#database-manager .action input{padding:5px 8px;}
+#database-manager .action{padding:1em 0 1em 1.2em;border-bottom:0;background:#ddd;}
+#database-manager .action input{padding:5px 8px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
 table.table{border:1px solid #ccc;width:100%;}
 table.table th{border:1px solid #ccc;background:#eee;}
 table.table td{border:1px solid #ccc;padding:2px 5px;text-align:center;}

@@ -33,7 +33,7 @@
 #components-options ol.forms select{margin:0;padding:0;width:120px;}
 #tabs #components-options ol.forms label{padding-right:0;width:238px;}
 
-#cfg #tabs ol.forms li.last{background:green;}
-#cfg #tabs ol.forms li.last label{color:#fff;}
-#cfg #tabs ol.forms.disabled li.last{border-top:1px solid #ccc;background:red;}
+/*#cfg #tabs ol.forms li.last{background:green;}
+#cfg #tabs ol.forms li.last label{color:#fff;}*/
+#cfg #tabs ol.forms.disabled li.last{border-top:1px solid #ccc;background: #CB0D0D;}
 #cfg #tabs ol.forms.disabled li.last label{color:#fff;}

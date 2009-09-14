@@ -97,8 +97,8 @@
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['tools-desc'])) { include dirname(__FILE__) . '/../tools/desc-tools.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
-					<li class="icon-backupmgr"><a href="#backup-manager">Backup Manager</a></li>
-					<li class="icon-db"><a href="#database-manager">Database Manager</a></li>
+					<li class="icon-backupmgr"><a href="#backup-manager">Database Backups</a></li>
+					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
 				</ul>
 				<?php include dirname(__FILE__) . '/../tools/uploader.php'; ?>
 				<?php include dirname(__FILE__) . '/../tools/backup.php'; ?>

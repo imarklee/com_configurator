@@ -35,7 +35,7 @@ include('tabs.css');
 include('tips.css');
 include('tooltips.css');
 include('toplinks.css');
-include('uploader.css');
+include('tools.css');
 include('welcome.css');
 }
 ob_end_flush();

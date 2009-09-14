@@ -69,7 +69,7 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addStyleSheet($csspath . 'tips.css');
 	$document->addStyleSheet($csspath . 'tooltips.css');
 	$document->addStyleSheet($csspath . 'toplinks.css');
-	$document->addStyleSheet($csspath . 'uploader.css');
+	$document->addStyleSheet($csspath . 'tools.css');
 	$document->addStyleSheet($csspath . 'welcome.css');
 	}
 }

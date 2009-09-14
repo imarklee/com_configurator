@@ -195,6 +195,32 @@ class ConfiguratorController extends JController {
 		readfile(JPATH_ROOT.DS.'assets_backup.gz');
 		//return false;		
 	}
+	
+	function handle_db_backup(){
+		$action = $_REQUEST['action'];
+		$filename = $_REQUEST['filename'];
+		$db_folder = JPATH_ROOT .DS.'morph_assets'.DS.'backups'.DS.'db';
+		
+		if(file_exists($db_folder.DS.$filename)){
+			switch($action){
+				case 'delete':
+					JFile::delete($db_folder.DS.$filename);
+					echo '<strong>'.$filename.'</strong> deleted successfully</div>';
+				break;
+				case 'download':
+					header('Content-disposition: attachment; filename='.$filename.'');
+					header('Content-type: application/x-gzip');
+					readfile($db_folder.DS.$filename);
+				break;
+				case 'restore':
+					echo 'restored';
+				break;
+			}
+		}else{
+			echo 'File doesn\'t exist';
+		}
+	}
+	
 	function removeicon() {
 		global $mainframe;
 		$option = JRequest::getVar('option');
@@ -507,6 +533,25 @@ class ConfiguratorController extends JController {
 
 	}
 	
+	function restore_db_backup(){
+	
+		$filename = $_REQUEST['filename'];
+		$backupdir 	= JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		$tempdir 	= JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'temp';
+
+		if(!is_dir($tempdir)){JFolder::create($tempdir);}
+		JPath::setPermissions($tempdir);
+		
+		$result = JArchive::extract( $backupdir . DS . strtolower($filename), $tempdir);
+		$this->parse_mysql_dump($tempdir . DS . str_replace('.gz', '', strtolower($filename)) );
+		
+		$this->cleanupThemeletInstall(strtolower($filename), $tempdir);
+		
+		$message = '<strong>'.$filename.'</strong> restored successfully.';
+		echo $message;
+		return;
+	}
+	
 	function iphone_upload(){
 		$msg = '';
 		$error = '';
@@ -663,30 +708,56 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
-	function create_db_backup($type, $name){
+	function create_db_backup($type='', $name='', $download=''){
 	
-		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
-		if(!is_dir($backupdir)){mkdir($backupdir);}
-		@JPath::setPermissions($backupdir);
+		$db = JFactory::getDBO();
+		$pref = $db->getPrefix();
+		$n = '';
 		
-		// backup themelet settings
-		$backupfile = 'db_themelet_'.$curr_themelet.'_'.time().'.sql.gz';
-		if(file_exists($backupfile)){
-			JFile::delete($backupfile);
+		if(isset($_REQUEST['url'])){
+			if(isset($_REQUEST['type'])) $type = $_REQUEST['type'];
+			if(isset($_REQUEST['name'])) $name = $_REQUEST['name'];
+			if(isset($_REQUEST['download'])) $download = $_REQUEST['download'];
 		}
-		$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure($pref . 'configurator', "source='themelet'"));
 		
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		if(!is_dir($backupdir)) mkdir($backupdir);
+		JPath::setPermissions($backupdir);
+		if($name !== '') $n = $name.'_';
+		$backupfile = 'db_'.$type.'_'.$n.time().'.sql.gz';
 		
-	
+		switch($type){
+			case 'themelet-settings':
+				$files = JFolder::files($backupdir);
+				foreach($files as $f){
+					if(preg_match('/'.$name.'/i', $f)){
+						$backup = $backupdir.DS.$f;
+						if(file_exists($backup)) JFile::delete($backup);
+					}	
+				}
+				$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure($pref . 'configurator', "source='themelet'", false, true));
+			break;
+			case 'full-database':
+				if(isset($download) && $download == 'true'){
+					header('Content-disposition: attachment; filename='.$backupfile);
+					header('Content-type: application/x-gzip');
+					echo gzencode($this->get_structure('','',true, false), 9);
+				}else{
+					$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure('','',true, false));
+				}
+			break;
+			case 'configurator-settings':
+				$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure($pref . 'configurator', '', true, false));	
+			break;
+			case 'configurator-preferences':
+				$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure($pref . 'configurator_preferences', '', true, false));
+			break;
+		}
 	}
 	
 	function themelet_activate($themelet = ''){
 		global $mainframe;
-		
 		$db = JFactory::getDBO();
-		$pref = $db->getPrefix();
-		
-		
 		
 		if($themelet == ''){
 			if(isset($_REQUEST['themelet_name'])){
@@ -752,8 +823,9 @@ class ConfiguratorController extends JController {
 				}
 			}
 			
-			
-			
+			// backup
+			$this->create_db_backup('themelet-settings', $curr_themelet);
+
 			// delete themelet settings from database
 			$query = "delete from #__configurator where source = 'themelet';";
 			$db->setQuery( $query );
@@ -1446,45 +1518,97 @@ class ConfiguratorController extends JController {
 		
 	}
 	
-	function get_structure($table='', $where='') { 
+	function addslashesextended($arr_r){
+	    if(is_array($arr_r)){
+	        foreach ($arr_r as $val)
+	            is_array($val) ? addslashesextended($val):$val=addslashes($val);
+	        	unset($val);
+	    }else{
+	    	$arr_r=addslashes($arr_r);
+	    }
+	}
+	
+	function get_structure($table='', $where='', $structure='', $delete='') {
+	
+		function clean($array) {
+    		return array_map('mysql_real_escape_string', $array);
+		}
+		
         $sql = null;
 		$sql_structure = null;
 		$sql_data = null;
 		$i = 0;
-		$table = array();
+		if($table == '') $table = array();
 		
-		$db = JFactory::getDBO();
-		$td = $db->getTableList();
-		$r = $db->getTableCreate($td);
-
-		if($r){
-			foreach($r as $k => $v){
-				$sql_structure .= 'DROP TABLE IF EXISTS `'. $k . "`;\n" . $v . ";\n\n";
-				$table[] = $k;
+		if(isset($_GET['url'])){
+			if(isset($_GET['table'])) $table = $_GET['table'];
+			if(isset($_GET['where'])) $where = stripslashes($_GET['where']);
+			if(isset($_GET['structure'])) {
+				if($_GET['structure'] == 'true'){
+					$structure = true;
+				}else{
+					$structure = false;
+				}
 			}
 		}
 		
-		if($table == '') { $table[] = $table; $sql_structure = null; }
+		$db = JFactory::getDBO();
+		if($table == '' || empty($table)) { $td = $db->getTableList(); } else { $td = $table; }
+		$r = $db->getTableCreate($td);
 		
-		foreach($table as $t){
+		if($r){
+			foreach($r as $k => $v){
+				$sql_structure .= 'DROP TABLE IF EXISTS `'. $k . "`;\n" . $v . ";\n\n";
+				if(is_array($table)) $table[] = $k;
+			}
+		}
+		
+		if($structure == false) $sql_structure = null;
+		
+		if(is_array($table)){
+			foreach($table as $t){
+				if($where !== '') { 
+					$db->setQuery("SELECT * FROM `$t` where " . $where . ";"); }else{ $db->setQuery("SELECT * FROM `$t`"); 
+				}
+				
+				$data = $db->loadAssocList();
+				if(!empty($data)){
+					foreach ($data as $v){
+						if($where !== '') $v['id'] = '';
+						$v = clean($v);
+						$sql_data .= "INSERT INTO `$t` VALUES(";
+					    $sql_data .= "'".implode("','",$v)."'";
+						$sql_data .= ");\n";	
+					}
+					if ($i++>0) $sql_data .="\n";
+				}
+			}
+		}else{
 			if($where !== '') { 
-				$db->setQuery("SELECT * FROM `$t` where " . $where . ";"); }else{ $db->setQuery("SELECT * FROM `$t`"); 
+				$db->setQuery("SELECT * FROM `$table` WHERE " . $where . ";"); }else{ $db->setQuery("SELECT * FROM `$table`"); 
+			}
+			$data = $db->loadAssocList();
+			
+			if($delete){
+				$sql_data .= "DELETE FROM `$table` WHERE source = 'themelet';" . "\n\n";
 			}
 			
-			$data = $db->loadAssocList();
 			if(!empty($data)){
 				foreach ($data as $v){
 					if($where !== '') $v['id'] = '';
-					$sql_data .= "INSERT INTO `$t` VALUES(";
-				    mysql_real_escape_string($sql_data .= "'".implode("','",$v)."'");
+					$v = clean($v);
+					$sql_data .= "INSERT INTO `$table` VALUES(";
+				    $sql_data .= "'".implode("','",$v)."'";
 					$sql_data .= ");\n";	
 				}
 				if ($i++>0) $sql_data .="\n";
 			}
 		}
 		
-		if($sql_structure !== null) { $sql = '#--- Create Database Structure' . "\n\n" . $sql_structure  . "\n\n"; };
+		if($sql_structure !== null) { $sql = '#--- Create Database Structure' . "\n\n" . $sql_structure  . "\n"; };
 		$sql .= '#--- Create Inserts' . "\n\n" . $sql_data;
+		
+		if(isset($_GET['echo'])) echo $sql;
 		return $sql; 
 	}
 	

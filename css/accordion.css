@@ -1,11 +1,12 @@
 /* Accordion
 ----------------------------------*/
-.options-panel h3{position:relative;margin:-1px 0 0;background:transparent url(../images/heading-bg2.jpg) repeat-x;font:bold 12px arial;padding:7px 0;float:left;width:100%;text-indent:27px;border-top:1px solid #999;border-bottom:1px solid #999;color:#555;}
-#tabs.accordion .options-panel h3
+.options-panel h3{position:relative;margin:-1px 0 0;background:transparent url(../images/heading-bg2.jpg) repeat-x;font:bold 12px arial;padding:7px 0;text-indent:27px;border-top:1px solid #999;border-bottom:1px solid #999;color:#555;}
+#tabs.accordion .options-panel h3,
 #tabs.toggle .options-panel h3{cursor:pointer;}
 .ui-accordion h3{margin-bottom:-1px;}
 #tabs.toggle .options-panel h3:hover,
 .ui-accordion h3:hover{opacity:.8;}
+#tabs.toggle .options-panel h3,
 #tabs.all .options-panel h3{text-indent:10px;}
 .ui-accordion .ui-accordion-header{cursor:pointer;position:relative;zoom:1;}
 .ui-accordion .ui-accordion-li-fix{display:inline;}

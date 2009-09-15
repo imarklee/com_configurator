@@ -49,6 +49,11 @@ $('#database-manager ul li.action input').click(function(){
 							closeOverlay();
 							$(this).dialog('destroy');
 							overlay('Refreshing...');
+							var maintabs = $("#tabs").tabs();
+							var subtabs = $("#tools-tabs").tabs();
+							maintabs.tabs("select",4);
+							subtabs.tabs("select",1);
+							closeOverlay();
 							window.location.reload();
 						}
 					});
@@ -67,9 +72,79 @@ $('#database-manager ul li.action input').click(function(){
 				}
 			});
 			$('.dialog-msg').dialog('open');
-		}
-		
+		}		
 	}else{
+		var file = $('#import_file');
+		if(file.val() != ''){
+		
+			$('.dialog-msg').html('<p><strong>You are about to restore a database backup!</strong></p>Would you like to download a temporary database backup before restoring?');
+			$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
+			$('.dialog-msg').dialog('option', 'buttons', {
+				'Yes': function(){
+					window.location.href = '../administrator/index.php?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
+					$(this).dialog('close');
+					overlay('Processing...');
+					$.ajaxFileUpload({
+						url: '../administrator/index.php?option=com_configurator&format=raw&task=import_db',
+						dataType: 'json',
+						fileElementId:'import_file',
+						success: function (data, status){
+							closeOverlay();
+							$('.dialog-msg').html(data.success);
+							$('.dialog-msg').dialog('option', 'title', 'Error');
+							$('.dialog-msg').dialog('option', 'buttons', {
+								'OK': function(){
+									$(this).dialog('destroy');
+									overlay('Reloading...');
+									window.location.reload(true);
+								}
+							});
+							$('.dialog-msg').dialog('open');
+							
+						}
+					});
+				},
+				'No':function(){
+					$(this).dialog('close');
+					overlay('Processing...');
+					$.ajaxFileUpload({
+						url: '../administrator/index.php?option=com_configurator&format=raw&task=import_db',
+						dataType: 'json',
+						fileElementId:'import_file',
+						success: function (data, status){
+							closeOverlay();
+							$('.dialog-msg').html(data.success);
+							$('.dialog-msg').dialog('option', 'title', 'Error');
+							$('.dialog-msg').dialog('option', 'buttons', {
+								'OK': function(){
+									$(this).dialog('destroy');
+									
+									overlay('Reloading...');
+									window.location.reload(true);
+								}
+							});
+							$('.dialog-msg').dialog('open');
+							
+						}
+					});
+				}
+			});
+			closeOverlay();
+			$('.dialog-msg').dialog('open');
+		
+		}else{
+			closeOverlay();
+			hideScroll();
+			$('.dialog-msg').html('Please select a file to import.');
+			$('.dialog-msg').dialog('option', 'title', 'Error');
+			$('.dialog-msg').dialog('option', 'buttons', {
+				'OK': function(){
+					$(this).dialog('destroy');
+					showScroll();
+				}
+			});
+			$('.dialog-msg').dialog('open');
+		}
 	
 	}
 	
@@ -123,6 +198,8 @@ $('#backup-list a').click(function(){
 								'OK': function(){
 									closeOverlay();
 									$('.dialog-msg').dialog('destroy').remove();
+									overlay('Reloading');
+									window.location.reload(true);
 								}
 							});
 							$('.dialog-msg').dialog('option', 'title', 'Restore');
@@ -144,6 +221,8 @@ $('#backup-list a').click(function(){
 								'OK': function(){
 									closeOverlay();
 									$('.dialog-msg').dialog('destroy').remove();
+									overlay('Reloading');
+									window.location.reload(true);
 								}
 							});
 							$('.dialog-msg').dialog('option', 'title', 'Restore');

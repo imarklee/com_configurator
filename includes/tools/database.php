@@ -17,7 +17,7 @@ $curr_themelet = $db->loadResult($query);
 		    </li>
 		    <li><label><input type="radio" name="dbmanage" value="import">Import</input></label>
 			    <ul>
-				    <li><input type="file" name="import_file"></li>
+				    <li><input type="file" name="import_file" id="import_file"></li>
 				</ul>
 		    </li>
 		    <li class="action">

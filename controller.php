@@ -721,6 +721,28 @@ class ConfiguratorController extends JController {
 		echo '<strong>Database Export Successfull</strong><br />Your files have been exported into the Morph Assets folder and can be managed in the Database Backups tool in Configurator.';
 		return;
 	}
+	
+	function import_db(){
+		$backupdir 	= JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		$tempdir 	= JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'temp';
+		$file 		= JRequest::getVar( 'import_file', '', 'files', 'array' );
+		
+		if(!is_dir($tempdir)){JFolder::create($tempdir);}
+		JPath::setPermissions($tempdir);
+		
+		if( !move_uploaded_file($file['tmp_name'], $tempdir . DS . strtolower(basename($file['name']))) ){
+			$error = 'error: "Could not move file to required location!"';
+			return $error;
+		}
+		
+		$result = JArchive::extract( $tempdir . DS . strtolower(basename($file['name'])), $tempdir);
+		$this->parse_mysql_dump($tempdir . DS . str_replace('.zip', '', strtolower(basename($file['name']))) );
+		
+		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempdir);
+		
+		echo '{success: "SQL file imported successfully."}';
+//		return true;
+	}
 		
 	function create_db_backup($type='', $name='', $download=''){
 	

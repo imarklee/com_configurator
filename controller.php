@@ -511,12 +511,7 @@ class ConfiguratorController extends JController {
 		$conf = JFactory::getConfig();
 		$database = $conf->getValue('config.db');
 		
-		$backupfile = 'db_full_'.$database.'_'.date("His_dmY").'.sql.gz';
-		
-		if( !$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure()) ){
-			$error = 'error: "Unable to create DB backup. Please check your permissions on the morph_assets folder"';
-			return $error;
-		}
+		$this->create_db_backup('full-database');
 		
 		if( !move_uploaded_file($file['tmp_name'], $tempdir . DS . strtolower(basename($file['name']))) ){
 			$error = 'error: "Could not move file to required location!"';
@@ -676,13 +671,22 @@ class ConfiguratorController extends JController {
 				return false;
 			}
 		}
-		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';
-		if(file_exists($backupdir.DS.$themelet.'.sql.gz')){
-			echo '{ exists: "true" }';
-		}else{
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+		$files = JFolder::files($backupdir);
+		foreach($files as $f){
+			if(preg_match('/'.$themelet.'/i', $f)){
+				if(file_exists($backupdir.DS.$f)){
+					echo '{ exists: "true" }';
+					return true;
+				}
+			}else{
+				$exists = false;
+			}
+		}
+		if(!$exists){
 			echo '{ exists: "false" }';
 		}
-		return true;
+		
 	}
 	
 	function themelet_activate_existing($themelet=''){
@@ -698,12 +702,16 @@ class ConfiguratorController extends JController {
 			}
 		}
 
-		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';		
-		if(JFile::exists($backupdir.DS.$themelet.'.sql.gz')){
-			JArchive::extract($backupdir.DS.$themelet.'.sql.gz', $backupdir);
-			if(!$this->parse_mysql_dump($backupdir.DS.$themelet.'.sql')){
-				JFile::delete($backupdir.DS.$themelet.'.sql');
-				return true;
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';		
+		$files = JFolder::files($backupdir);
+		foreach($files as $f){
+			if(preg_match('/'.$themelet.'/i', $f)){
+				JArchive::extract($backupdir.DS.$f, $backupdir);
+				if(file_exists($backupdir.DS.str_replace('.gz', '', $f))){
+					$this->parse_mysql_dump($backupdir.DS.str_replace('.gz', '', $f));
+					JFile::delete($backupdir.DS.str_replace('.gz', '', $f));
+					return true;
+				}
 			}
 		}
 	}
@@ -741,7 +749,7 @@ class ConfiguratorController extends JController {
 		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempdir);
 		
 		echo '{success: "SQL file imported successfully."}';
-//		return true;
+		return true;
 	}
 		
 	function create_db_backup($type='', $name='', $download=''){
@@ -789,6 +797,8 @@ class ConfiguratorController extends JController {
 				$this->create_sql_file($backupdir.DS.$backupfile, $this->get_structure($pref . 'configurator_preferences', '', true, false));
 			break;
 		}
+		
+		return $backupdir.DS.$backupfile;
 	}
 	
 	function themelet_activate($themelet = ''){
@@ -818,7 +828,6 @@ class ConfiguratorController extends JController {
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');			
 			
 		// get existing themelet values
-		$db = JFactory::getDBO();
 		$query = "select * from #__configurator where source = 'themelet';";
 		$query = $db->setQuery( $query );
 		$result = $db->loadAssocList();
@@ -830,7 +839,7 @@ class ConfiguratorController extends JController {
 				$db_themelet[$t['param_name']] = $t['param_value'];
 			}
 		}
-		
+
 		if(!empty($db_themelet)){
 
 			$template_xml = $template_dir . DS . 'core' . DS . 'morphDetails.xml';
@@ -1270,7 +1279,6 @@ class ConfiguratorController extends JController {
 	
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
 		$dbdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
-		$themeletsdbdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';
 		$logosdir = JPATH_SITE . DS . 'morph_assets' . DS . 'logos';
 		$backgroundsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backgrounds';
 		$themeletsdir = JPATH_SITE . DS . 'morph_assets' . DS . 'themelets';
@@ -1287,10 +1295,6 @@ class ConfiguratorController extends JController {
 		
 		if(!is_dir($dbdir)) :
 		(!@mkdir($dbdir)) ? $error = 'error: "There was an error creating the database backup folder. Please check your permissions on the assets folder"' : JPath::setPermissions($dbdir);
-		endif;
-		
-		if(!is_dir($themeletsdbdir)) :
-		(!@mkdir($themeletsdbdir)) ? $error = 'error: "There was an error creating the themelets database backup folder. Please check your permissions on the assets folder"' : JPath::setPermissions($themeletsdbdir);
 		endif;
 		
 		if(!is_dir($logosdir)) :
@@ -1712,10 +1716,10 @@ class ConfiguratorController extends JController {
 				$conf = JFactory::getConfig();
 				$database = $conf->getValue('config.db');
 				
-				$backupfile = 'morphdb_'.$database.'_'.date("His_dmY").'.sql.gz';
-				$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure());
+				$backupfile = $this->create_db_backup('full-database');
+				
 				$message['db'] = 'backedup';
-				$message['dbstore'] = "$backupdir/$backupfile"; 
+				$message['dbstore'] = $backupfile; 
 				setcookie('installed_bkpdb', 'true');
 				
 			}else{

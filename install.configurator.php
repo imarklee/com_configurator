@@ -8,7 +8,6 @@ define('ROOT', str_replace(array('/administrator/components/com_configurator','\
 
 $backupdir = ROOT . DS . 'morph_assets' . DS . 'backups';
 $dbdir = ROOT . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
-$themeletsdbdir = ROOT . DS . 'morph_assets' . DS . 'backups' . DS . 'db' . DS . 'themelets';
 $logosdir = ROOT . DS . 'morph_assets' . DS . 'logos';
 $backgroundsdir = ROOT . DS . 'morph_assets' . DS . 'backgrounds';
 $themeletsdir = ROOT . DS . 'morph_assets' . DS . 'themelets';
@@ -23,9 +22,6 @@ if(!is_dir($backupdir))
 
 if(!is_dir($dbdir))
 (!@mkdir($dbdir)) ? $error = true : JPath::setPermissions($dbdir);
-
-if(!is_dir($themeletsdbdir))
-(!@mkdir($themeletsdbdir)) ? $error = true : JPath::setPermissions($themeletsdbdir);
 
 if(!is_dir($logosdir))
 (!@mkdir($logosdir)) ? $error = true : JPath::setPermissions($logosdir);

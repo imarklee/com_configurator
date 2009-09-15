@@ -220,8 +220,23 @@ jQuery.noConflict();
 				},
 				title: 'Tips'
 			});
-			$('#tips').remove();
-			$.cookie('tips', true,{path:'/',expires:30});
+			$('#cfgquick_tips1').removeAttr('checked');
+			$('#cfgquick_tips0').attr('checked', 'checked');
+			$('#preferences-form').submit(function(){
+	   			$(this).ajaxSubmit({
+	   				type: 'POST',
+	   				url: '../administrator/index.php?format=raw',
+	   				data: {
+	   					option: 'com_configurator',
+	   					task: 'saveprefs'
+	   				},
+		   			success: function(data, textStatus){
+		    			$('#tips').remove();
+		   			}
+	   			});
+	   			return false;
+	   		});
+	   		$('#preferences-form').trigger('submit');
 			return false; 
 		});		
 		$('#site-desc a').click(function(){

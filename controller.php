@@ -708,6 +708,20 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
+	function export_db(){
+		$data = $_POST['export_data'];
+		foreach($data as $d){
+			if(!preg_match('/ /i', $d)){
+				$this->create_db_backup($d);
+			}else{
+				$t = explode(' ', $d);
+				$this->create_db_backup($t[0], $t[1]);
+			}
+		}
+		echo '<strong>Database Export Successfull</strong><br />Your files have been exported into the Morph Assets folder and can be managed in the Database Backups tool in Configurator.';
+		return;
+	}
+		
 	function create_db_backup($type='', $name='', $download=''){
 	
 		$db = JFactory::getDBO();

@@ -1,7 +1,81 @@
-$('#database-manager ul.actions li ul').css('display', 'none');
-$('#database-manager ul.actions li input[type="radio"]').click(function(){
-	$(this).parent().parent().children('ul').css('display', 'block');
+$('#database-manager ul li ul').css('display', 'none');
+$('#database-manager ul li input[type="radio"]').click(function(){
+	$('#database-manager ul li ul').css('display', 'none');
+	$(this).parent().next().css('display', 'block');
 });
+
+$('#database-manager ul li ul li input').click(function(){
+	if($(this).is(':checked')){
+		$(this).parent().css('font-weight', 'bold');
+	}else{
+		$(this).parent().css('font-weight', 'normal');
+	}
+});
+
+$('#database-manager ul li.action input').click(function(){
+	var action = $('#database-manager ul li input[type="radio"]:checked').val();
+	
+	$('<div class="dialog-msg"></div>').dialog({
+		bgiframe: true,
+		autoOpen: false,
+		minHeight: 20,
+		stack: false,
+		modal: true, 
+		title: 'Export Successful',
+		overlay: {
+			'background-color': '#000', 
+			opacity: 0.8 
+		}
+   	});
+	overlay('Processing...');
+	
+	if(action == 'export'){
+		var checkVal = [];
+			
+		$('#database-manager ul li ul li input').each(function(){
+			if($(this).is(':checked')){
+				checkVal.push($(this).val());
+			}
+		});
+		
+		if(checkVal.length > 0){	
+			$.post('../administrator/index.php?option=com_configurator&task=export_db&format=raw', { 'export_data[]': checkVal },
+				function(data, status){
+					closeOverlay();
+					hideScroll();
+					$('.dialog-msg').html(data);
+					$('.dialog-msg').dialog('option', 'buttons', {
+						'OK': function(){
+							closeOverlay();
+							$(this).dialog('destroy');
+							overlay('Refreshing...');
+							window.location.reload();
+						}
+					});
+					$('.dialog-msg').dialog('open');
+				}
+			);
+		}else{
+			closeOverlay();
+			hideScroll();
+			$('.dialog-msg').html('No export options were selected. Please select an option');
+			$('.dialog-msg').dialog('option', 'title', 'Error');
+			$('.dialog-msg').dialog('option', 'buttons', {
+				'OK': function(){
+					$(this).dialog('destroy');
+					showScroll();
+				}
+			});
+			$('.dialog-msg').dialog('open');
+		}
+		
+	}else{
+	
+	}
+	
+	return false;
+});
+
 
 $('#backup-list a').click(function(){
 	var $this = $(this);
@@ -16,15 +90,14 @@ $('#backup-list a').click(function(){
 		minHeight: 20,
 		stack: false,
 		modal: true, 
-		title: 'Activate',
 		overlay: {
 			'background-color': '#000', 
 			opacity: 0.8 
 		},
 		buttons: { 
 			'OK': function(){
-				$(this).dialog('close');
-				showScroll();
+				closeOverlay();
+				$('.dialog-msg').dialog('destroy').remove();
    			}
    		}
    	});
@@ -33,6 +106,7 @@ $('#backup-list a').click(function(){
 		overlay('Processing...');
 		if(action == 'restore'){
 			$('.dialog-msg').html('<p><strong>You are about to restore a database backup!</strong></p>Would you like to download a temporary database backup before restoring?');
+			$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
 			$('.dialog-msg').dialog('option', 'buttons', {
 				'Yes': function(){
 					window.location.href = '../administrator/index.php?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
@@ -47,10 +121,11 @@ $('#backup-list a').click(function(){
 							$('.dialog-msg').html(data);
 							$('.dialog-msg').dialog('option', 'buttons', {
 								'OK': function(){
-									$(this).dialog('destroy');
-									showScroll();
+									closeOverlay();
+									$('.dialog-msg').dialog('destroy').remove();
 								}
 							});
+							$('.dialog-msg').dialog('option', 'title', 'Restore');
 							$('.dialog-msg').dialog('open');
 						}
 					});
@@ -67,10 +142,11 @@ $('#backup-list a').click(function(){
 							$('.dialog-msg').html(data);
 							$('.dialog-msg').dialog('option', 'buttons', {
 								'OK': function(){
-									$(this).dialog('destroy');
-									showScroll();
+									closeOverlay();
+									$('.dialog-msg').dialog('destroy').remove();
 								}
 							});
+							$('.dialog-msg').dialog('option', 'title', 'Restore');
 							$('.dialog-msg').dialog('open');
 						}
 					});

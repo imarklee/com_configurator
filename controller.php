@@ -1519,6 +1519,7 @@ class ConfiguratorController extends JController {
 	}
 	
 	function clean($array) {
+		// this steps through the array and escapes all unescaped characters
 		return array_map('mysql_real_escape_string', $array);
 	}
 	

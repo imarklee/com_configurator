@@ -213,7 +213,7 @@ class ConfiguratorController extends JController {
 					readfile($db_folder.DS.$filename);
 				break;
 				case 'restore':
-					echo 'restored';
+					echo $this->restore_db_backup();
 				break;
 			}
 		}else{
@@ -1518,21 +1518,11 @@ class ConfiguratorController extends JController {
 		
 	}
 	
-	function addslashesextended($arr_r){
-	    if(is_array($arr_r)){
-	        foreach ($arr_r as $val)
-	            is_array($val) ? addslashesextended($val):$val=addslashes($val);
-	        	unset($val);
-	    }else{
-	    	$arr_r=addslashes($arr_r);
-	    }
+	function clean($array) {
+		return array_map('mysql_real_escape_string', $array);
 	}
 	
 	function get_structure($table='', $where='', $structure='', $delete='') {
-	
-		function clean($array) {
-    		return array_map('mysql_real_escape_string', $array);
-		}
 		
         $sql = null;
 		$sql_structure = null;
@@ -1575,7 +1565,7 @@ class ConfiguratorController extends JController {
 				if(!empty($data)){
 					foreach ($data as $v){
 						if($where !== '') $v['id'] = '';
-						$v = clean($v);
+						$v = $this->clean($v);
 						$sql_data .= "INSERT INTO `$t` VALUES(";
 					    $sql_data .= "'".implode("','",$v)."'";
 						$sql_data .= ");\n";	
@@ -1596,7 +1586,7 @@ class ConfiguratorController extends JController {
 			if(!empty($data)){
 				foreach ($data as $v){
 					if($where !== '') $v['id'] = '';
-					$v = clean($v);
+					$v = $this->clean($v);
 					$sql_data .= "INSERT INTO `$table` VALUES(";
 				    $sql_data .= "'".implode("','",$v)."'";
 					$sql_data .= ");\n";	

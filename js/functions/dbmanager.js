@@ -40,11 +40,11 @@ $('#backup-list a').click(function(){
 					overlay('Processing...')
 					$.ajax({
 						type: 'POST',
-						url: '../administrator/index.php?option=com_configurator&task=restore_db_backup&format=raw&url&filename='+filename,
+						url: '../administrator/index.php?option=com_configurator&format=raw&url&task=handle_db_backup&action='+action+'&filename='+filename,
 						success: function(data){
 							closeOverlay();
 							hideScroll();
-							$('.dialog-msg').html('restored with backup');
+							$('.dialog-msg').html(data);
 							$('.dialog-msg').dialog('option', 'buttons', {
 								'OK': function(){
 									$(this).dialog('destroy');
@@ -60,7 +60,7 @@ $('#backup-list a').click(function(){
 					overlay('Processing...')
 					$.ajax({
 						type: 'POST',
-						url: '../administrator/index.php?option=com_configurator&task=restore_db_backup&format=raw&url&filename='+filename,
+						url: '../administrator/index.php?option=com_configurator&format=raw&url&task=handle_db_backup&action='+action+'&filename='+filename,
 						success: function(data){
 							closeOverlay();
 							hideScroll();

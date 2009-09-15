@@ -736,7 +736,7 @@ class ConfiguratorController extends JController {
 		}
 		
 		$result = JArchive::extract( $tempdir . DS . strtolower(basename($file['name'])), $tempdir);
-		$this->parse_mysql_dump($tempdir . DS . str_replace('.zip', '', strtolower(basename($file['name']))) );
+		$this->parse_mysql_dump($tempdir . DS . str_replace('.gz', '', strtolower(basename($file['name']))) );
 		
 		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempdir);
 		

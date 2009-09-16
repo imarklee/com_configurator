@@ -1,3 +1,4 @@
+#tabs .ui-tabs-panel .subtabs{position:relative;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li a{padding-left:30px;}
 #tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li a{padding-left:7px!important;background:none!important;}
 #tabs .ui-tabs-panel #blocks-tabs .ui-tabs-nav li a{border-left:0 solid #fff;padding:5px 7px 5px 10px;}
@@ -43,6 +44,3 @@ padding:15px 23px 14px;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bo
 #cfg #tabs .icon-backup a{text-decoration:underline;}
 #tabs .options-panel.disabled{border-color:#D33538;}
 #tabs .options-panel.disabled .options-inner{border-color:#670D11;}
-
-  -webkit-border-top-left-radius: 20px;
-  -moz-border-radius-topleft: 20px;

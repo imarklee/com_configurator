@@ -1,16 +1,18 @@
 function getUpdates(){
-	updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
-	$.ajax({
-		method: 'get',
-		url: updateURL,
-		cache: false,
-		dataType: 'json',
-		timeout: (2*1000),
-		success: function(obj, status){
-			var updates = $.toJSON(obj);
-			$.cookie('updates', updates, { expires: 730 } );
-		}
-	});
+	if($.cookie('noupdates')){
+		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
+		$.ajax({
+			method: 'get',
+			url: updateURL,
+			cache: false,
+			dataType: 'json',
+			timeout: (2*1000),
+			success: function(obj, status){
+				var updates = $.toJSON(obj);
+				$.cookie('updates', updates, { expires: 730 } );
+			}
+		});
+	}
 };
 updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', 'ul.themelet-summary');
 getUpdates();
@@ -19,11 +21,8 @@ function showUpdates(e, callback){
 	
 	if($.cookie('updates') == null){
 		return setTimeout(function(){
-			$('#updates-summary dl').fadeTo('fast', 0.1, function(){
-				$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
-			});
 			return showUpdates(updEl, function(){
-				$('.updates-msg').fadeTo('fast', 0);;
+				$('.updates-msg').css('display', 'none').remove();
 				$('#updates-summary dl').fadeTo('fast', 1);
 			})
 		}, 2000);

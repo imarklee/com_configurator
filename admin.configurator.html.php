@@ -82,8 +82,6 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         
         JToolBarHelper::title( 'Configurator', 'configurator' );
         
-        // preference cookies
-       
         // keyboard shortcuts
         if($cfg_pref->short_keys == 0){
         	setcookie('noshortkey', 'true');
@@ -112,8 +110,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
 	        
 	        // Show a specific template in editable mode.
-	        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>
-			
+	        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>			
 			<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 				include 'includes/layout/login.php';
 	        } else {

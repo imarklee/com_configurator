@@ -32,41 +32,46 @@ function showUpdates(e, callback){
 		var json = $.secureEvalJSON($.cookie('updates'));
 		var x = $(e).length;
 		var online = json.updates;
-		for(i=0;i<x;i++){
-			type = $(e[i]).attr('type');
-	   		if(type == 'shelf'){
-	   			name = $(e[i]).attr('name');
-	   			name_html = $(e[i]).html();
-		   		current_version = $(e[i]).next().children().html();
-		   		latest_version = online[name].version;
-		   		latest_placeholder = $(e[i]).next().next();
-		   		latest_titletext = 'The latest available version is '+latest_version+'. Click on the help link above for more information.';
-		   		latest_placeholder.html('<span title="'+latest_titletext+'">'+latest_version+'</span>');
-		   		icon_placeholder = $(e[i]).next().next().next();
-		   		if(current_version < latest_version){
-		   			icon_placeholder.html('<span class="update-no" title="There is an update available">Update Available</span>');
-		   			$(e[i]).html('<a title="Click here to download the latest version of '+online[name].long_name+' now" href="'+online[name].download+'">'+name_html+'</a>');
-		   		}else{
-		   			icon_placeholder.html('<span class="update-yes" title="You are up to date">Up to date</span>');
-		   		}
-		   	}
-		   	if(type == 'assets'){
-		   		$(e[i]).each(function(){
-			   		name = $(this).attr('name');
-			   		name_html = $(this).prev().prev().html();
-			   		current_version = $($(this).children().children()[0]).next().html();
-			   		latest_version = online[name].version;
-			   		latest_placeholder = $($(this).children().children()[2]).next();
-			   		latest_placeholder.html(online[name].version);
-			   		latest_date_placeholder = $($(this).children().children()[4]).next();
-			   		latest_date_placeholder.html(online[name].updated);
-	
-			   		if(current_version < latest_version) $(this).prev().prev().html('<a title="Click here to download the latest version of '+online[name].long_name+' now" href="'+online[name].download+'">'+name_html+'</a>');
-			   	});
-		   	}
-		}
-		if(typeof callback == 'function') return callback();
-		return;
+			for(i=0;i<x;i++){
+				type = $(e[i]).attr('type');
+		   		if(type == 'shelf'){
+		   			name = $(e[i]).attr('name');
+		   			if(typeof online[name] != 'undefined'){
+			   			name_html = $(e[i]).html();
+				   		current_version = $(e[i]).next().children().html();
+				   		latest_version = online[name].version;
+				   		latest_placeholder = $(e[i]).next().next();
+				   		latest_titletext = 'The latest available version is '+latest_version+'. Click on the help link above for more information.';
+				   		latest_placeholder.html('<span title="'+latest_titletext+'">'+latest_version+'</span>');
+				   		icon_placeholder = $(e[i]).next().next().next();
+				   		if(current_version < latest_version){
+				   			icon_placeholder.html('<span class="update-no" title="There is an update available">Update Available</span>');
+				   			$(e[i]).html('<a title="Click here to download the latest version of '+online[name].long_name+' now" href="'+online[name].download+'">'+name_html+'</a>');
+				   		}else{
+				   			icon_placeholder.html('<span class="update-yes" title="You are up to date">Up to date</span>');
+				   		}
+				   	}
+			   	}
+			   	if(type == 'assets'){
+			   		$(e[i]).each(function(){
+			   			name = $(this).attr('name');
+			   			if(typeof online[name] != 'undefined'){
+					   		name_html = $(this).prev().prev().html();
+					   		current_version = $($(this).children().children()[0]).next().html();
+					   		latest_version = online[name].version;
+					   		latest_placeholder = $($(this).children().children()[2]).next();
+					   		latest_placeholder.html(online[name].version);
+					   		latest_date_placeholder = $($(this).children().children()[4]).next();
+					   		latest_date_placeholder.html(online[name].updated);
+			
+					   		if(current_version < latest_version) $(this).prev().prev().html('<a title="Click here to download the latest version of '+online[name].long_name+' now" href="'+online[name].download+'">'+name_html+'</a>');
+					   	}
+				   	});
+			   	}
+			}
+			if(typeof callback == 'function') return callback();
+			return;
+		
 	}
 	return;
 }
@@ -86,7 +91,6 @@ $('.updates-refresh-link').click(function(){
 		})
 	}, 2000);
 });
-
 
 if($.jqURL.get('task') == 'dashboard'){
 	$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');

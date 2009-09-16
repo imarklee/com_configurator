@@ -16,11 +16,9 @@ return $pageURL;
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
-		
+		<?php include 'functions/common.js'; ?>
 		$.preloadCssImages();
 		
-		<?php include 'functions/common.js'; ?>
-	
 		$("input[type=text], textarea").focus(function(){
 		    this.select();
 		});
@@ -2337,6 +2335,7 @@ jQuery.noConflict();
 				return false;
 			});
 			return false;
-		});		
+		});
 	});
+	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) include 'functions/loading.js'; ?>
 })(jQuery);

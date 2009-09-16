@@ -85,7 +85,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         // preference cookies
         // auto updates
         if($cfg_pref->check_updates == 0){
-        	setcookie('noupdates', 'true');
+        	setcookie('noupdates', 'true', time()+3600);
         }else{
         	setcookie('noupdates', '', time()-3600);
         }

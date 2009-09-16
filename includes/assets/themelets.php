@@ -47,10 +47,10 @@ if(is_dir($themelet_dir)) {
 				<div class="assets-inner">
 				<h3><?php echo $themelet_uc; ?></h3>
 				<img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail">
-				<ul class="themelet-summary assets-summary">
-					<li class="tl-installed"><strong>Installed version: </strong><?php echo $themelet_arr['version']; ?></li>
-					<li class="tl-current"><strong>Current version: </strong><?php echo $us_version; ?></li>
-					<li class="tl-date"><strong>Last update: </strong><?php echo $us_updated; ?></li>
+				<ul name="<?php echo $themelet_arr['foldername']; ?>" type="assets" class="themelet-summary assets-summary">
+					<li type="current" class="tl-installed"><strong>Installed version: </strong><span><?php echo $themelet_arr['version']; ?></span></li>
+					<li type="latest" class="tl-current"><strong>Current version: </strong><span></span></li>
+					<li type="updated" class="tl-date"><strong>Last update: </strong><span></span></li>
 				</ul>
 				<h4>Options for this file:</h4>
 				<ul class="buttons">

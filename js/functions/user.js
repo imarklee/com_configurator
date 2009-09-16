@@ -1,81 +1,92 @@
-function getUpdates(elm, time, checknow, callback){
+function getUpdates(){
+	if($.cookie('noupdates')){
+		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
+		$.ajax({
+			method: 'get',
+			url: updateURL,
+			cache: false,
+			dataType: 'json',
+			timeout: (2*1000),
+			success: function(obj, status){
+				var updates = $.toJSON(obj);
+				$.cookie('updates', updates, { expires: 730 } );
+			}
+		});
+	}
+};
+updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', 'ul.themelet-summary');
+getUpdates();
 
-	var cookiedate = new Date();
-	var minutes = cookiedate.getMinutes();
-	if(typeof time == 'undefined' || time == null){ minutes += 60; }else{ minutes += time; }
-	cookiedate.setMinutes(minutes);	
-	updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
+function showUpdates(e, callback){
 	
-	if(!$.cookie('noupdates') || checknow){
-		
-		if(!$.cookie('checkedforupdates') || checknow){
-			$.ajax({
-				method: 'get',
-				url: updateURL,
-				cache: false,
-				dataType: 'json',
-				timeout: (2*1000),
-				success: function(obj, status){
-					check(obj, status);
-   				}
-   			});
-			function check(json){
-   				for(i=0;i<4;i++){
-			   		if($(elm[i]).attr('class') !== undefined){
-				   		var classes = $(elm[i]).attr('class').split(' ');
-				   		var type = classes[0];
-				   		var name = classes[1];
-				   		if(elm[i] == '.themelet-summary'){ isOtherThemelet = 'true'; }
-				   		if(name !== 'no-themelets'){
-				   			var cookiename = json.updates[name].short_name;
-				   			var version = json.updates[name].version;
-				   			var updated = json.updates[name].updated;
-				   			$.cookie('us_'+cookiename, version+'##'+updated, { expires: cookiedate });
-				   			var current = $('dt.'+cookiename).next().children();
-				   			var latest = $('dt.'+cookiename).next().next();
-				   			latest.html('<span title="The latest available version is '+version+'. Click on the help link above for more information."">'+version+'</span>');
-				   			
-				   			if(current.html() < version){
-				   				$('dt.'+cookiename).next().next().next().html('<span class="update-no" title="There is an update available">Update Available</span>');
-				   			}else{
-				   				$('dt.'+cookiename).next().next().next().html('<span class="update-yes" title="You are up to date">Up to date</span>');
-				   			}
-				   			$.cookie('checkedforupdates', true, { expires: cookiedate });
-				   			
-				   			if(typeof callback == 'function'){
-				   				return callback();
-				   			}
-				   		}
-			   		}
-		   		}
-		   	}
-	   	}else{
-	   		return false;
-	   	}
-	}else{
-		return false;
+	if($.cookie('updates') == null){
+		return setTimeout(function(){
+			return showUpdates(updEl, function(){
+				$('.updates-msg').css('display', 'none').remove();
+				$('#updates-summary dl').fadeTo('fast', 1);
+			})
+		}, 2000);
 	}
 	
+	if($.cookie('updates')){
+		var json = $.secureEvalJSON($.cookie('updates'));
+		var x = $(e).length;
+		var online = json.updates;
+		for(i=0;i<x;i++){
+			type = $(e[i]).attr('type');
+	   		if(type == 'shelf'){
+	   			name = $(e[i]).attr('name');
+	   			name_html = $(e[i]).html();
+		   		current_version = $(e[i]).next().children().html();
+		   		latest_version = online[name].version;
+		   		latest_placeholder = $(e[i]).next().next();
+		   		latest_titletext = 'The latest available version is '+latest_version+'. Click on the help link above for more information.';
+		   		latest_placeholder.html('<span title="'+latest_titletext+'">'+latest_version+'</span>');
+		   		icon_placeholder = $(e[i]).next().next().next();
+		   		if(current_version < latest_version){
+		   			icon_placeholder.html('<span class="update-no" title="There is an update available">Update Available</span>');
+		   			$(e[i]).html('<a title="Click here to download the latest version of '+online[name].long_name+' now" href="'+online[name].download+'">'+name_html+'</a>');
+		   		}else{
+		   			icon_placeholder.html('<span class="update-yes" title="You are up to date">Up to date</span>');
+		   		}
+		   	}
+		   	if(type == 'assets'){
+		   		$(e[i]).each(function(){
+			   		name = $(this).attr('name');
+			   		name_html = $(this).prev().prev().html();
+			   		current_version = $($(this).children().children()[0]).next().html();
+			   		latest_version = online[name].version;
+			   		latest_placeholder = $($(this).children().children()[2]).next();
+			   		latest_placeholder.html(online[name].version);
+			   		latest_date_placeholder = $($(this).children().children()[4]).next();
+			   		latest_date_placeholder.html(online[name].updated);
+	
+			   		if(current_version < latest_version) $(this).prev().prev().html('<a title="Click here to download the latest version of '+online[name].long_name+' now" href="'+online[name].download+'">'+name_html+'</a>');
+			   	});
+		   	}
+		}
+		if(typeof callback == 'function') return callback();
+		return;
+	}
+	return;
+}
 
-/*** add update checker set to a future date ( system time + defined interval). on refresh reset 
-the timer to countdown from the current difference from current time to the future date so that 
-set interval is kept. ***/
-};
+showUpdates(updEl);
 
-var updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet');
-getUpdates(updEl);
-
+// refresh versions on click
 $('.updates-refresh-link').click(function(){
 	$('#updates-summary dl').fadeTo('fast', 0.1, function(){
 		$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
 	});
-	getUpdates(updEl, null, true, function(){
-		$('#updates-summary .updates-msg').remove();
-		$('#updates-summary dl').fadeTo('fast', 1);
-		
-	});	
-	return false;
+	getUpdates();
+	return setTimeout(function(){
+		return showUpdates(updEl, function(){
+			$('.updates-msg').remove();
+			$('#updates-summary dl').fadeTo('fast', 1);
+		})
+	}, 2000);
 });
+
 
 if($.jqURL.get('task') == 'dashboard'){
 	$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');

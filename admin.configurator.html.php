@@ -83,12 +83,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         JToolBarHelper::title( 'Configurator', 'configurator' );
         
         // preference cookies
-        // auto updates
-        if($cfg_pref->check_updates == 0){
-        	setcookie('noupdates', 'true');
-        }else{
-        	setcookie('noupdates', '', time()-3600);
-        }
+       
         // keyboard shortcuts
         if($cfg_pref->short_keys == 0){
         	setcookie('noshortkey', 'true');
@@ -123,6 +118,12 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 				include 'includes/layout/login.php';
 	        } else {
 				include 'includes/layout/manage.php';
+				 // auto updates
+		        if($cfg_pref->check_updates == 0){
+		        	setcookie('noupdates', 'true', time()+3600);
+		        }else{
+		        	setcookie('noupdates', '', time()-3600);
+		        }
 			}
 			include 'includes/layout/report-bug.php';
 	 	}      

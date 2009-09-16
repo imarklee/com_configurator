@@ -1,12 +1,12 @@
 #minwidth-body .m{padding:0!important;}
 #minwidth-body .m #templateform{background:#111111 url(../images/install-bg.jpg) no-repeat 50% 0;}
 #minwidth-body.full-mode{position:relative;background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;margin:0;}
-#minwidth-body.full-mode #toolbar {background:#000;height:35px;left:0;position:absolute;top:0;width:100%;z-index:999;}
+#minwidth-body.full-mode #toolbar {background:#000;height:32px;left:0;position:absolute;top:0;width:100%;z-index:999;border-bottom:1px solid #333;}
 #minwidth-body.full-mode .m #templateform{background:none;}
 #minwidth-body.full-mode #border-top,#minwidth-body.full-mode #header-box,#minwidth-body.full-mode #content-box,#minwidth-body.full-mode .padding,#minwidth-body.full-mode .m,#minwidth-body.full-mode .t{background:#000;border:0!important;margin:0;padding:0;}
-#minwidth-body.full-mode #content-box .padding #element-box{position:absolute;top:34px;left:0;width:100%;z-index:999;background:#111;}
+#minwidth-body.full-mode #content-box .padding #element-box{position:absolute;top:33px;left:0;width:100%;z-index:999;background:#111;}
 #minwidth-body.full-mode #content-box .padding #element-box .m{background:none;padding:0;margin:0;}
-#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{position:absolute;top:5px;right:0;z-index:99999;width:600px;height:5px;float:none;}
+#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{position:absolute;top:4px;right:-2px;z-index:99999;width:600px;height:5px;float:none;}
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar td{margin:0 5px 0 0;padding:0;width:auto;float:right;display:block;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar a{padding:2px 5px;border:1px solid #222;background:#111;color:#fff;}
 #minwidth-body.full-mode #toolbar-box #toolbar .toolbar a:hover{border:1px solid #789F3A;background:#5A772B;}
@@ -24,3 +24,6 @@
 #minwidth-body.full-mode #submenu-box div.m ul#submenu li.preferences a{border-right:1px solid #81B34F;}
 #minwidth-body.full-mode #submenu-box div.m ul#submenu{margin-right:80px;}
 #minwidth-body.full-mode #submenu-box div.m ul#submenu li a:hover{color:#ACEF69;}
+#minwidth-body.full-mode #border-top,
+#minwidth-body.full-mode #toolbar-box .t,
+#minwidth-body.full-mode #header-box{display:none;}

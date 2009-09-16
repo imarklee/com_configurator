@@ -1,5 +1,5 @@
-<div id="colors-tab">
-	<div id="color-options" class="options-panel ui-helper-clearfix">
+<div id="colors-tab" class="ui-tabs-hide ui-tabs-panel">
+	<div id="color-options" class="options-panel">
 		<h3>Color Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>

@@ -2,7 +2,6 @@
 #tabs #help.off{background:#fff url(../images/maskot-sitting.png) no-repeat 5% 70%;}
 #tabs #help.on{background:#fff url(../images/maskot-sitting.png) no-repeat 5% 70%;}
 #help div{width:30%;float:right;}
-#tabs a:link,#tabs a:visited{color:#546F29;text-decoration:underline;}
 #help .help-block1{margin-left:40px;width:30%;}
 #help h3{font:bold 17px arial;color:#666;margin:0 0 10px 0;}
 #help p{font:normal 13px/20px arial;color:#222;}

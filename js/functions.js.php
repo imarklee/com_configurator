@@ -424,14 +424,14 @@ jQuery.noConflict();
 	
 		$("#themelet-switch a.switch-view").toggle(function(){
 			$(this).addClass("swap");
-			$("#customize-list").fadeOut("fast", function() {
+			$("#themelets-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("thumb-view").addClass("list-view");
 				$.cookie('themelets-view', 'list', options);
 				return false;		
 			});
 		}, function () {
 			$(this).removeClass("swap");
-			$("#customize-list").fadeOut("fast", function() {
+			$("#themelets-list").fadeOut("fast", function() {
 				$(this).fadeIn("fast").removeClass("list-view").addClass("thumb-view");
 				$.cookie('themelets-view', 'thumb', options);
 				return false;		

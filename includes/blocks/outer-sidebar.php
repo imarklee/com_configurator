@@ -1,4 +1,4 @@
-<div id="outer-sidebar-tab" class="ui-tabs-hide">
+<div id="outer-sidebar-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="outer-sidebar-options" class="options-panel">
 	    <h3>Outer Sidebar (Left) Settings</h3>
 		<ol class="forms">

@@ -46,6 +46,7 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addStyleSheet($csspath . 'text.css');
 	$document->addStyleSheet($csspath . 'overlay.css');
 	$document->addStyleSheet($csspath . 'sprite.css');
+	$document->addStyleSheet($csspath . 'manage.css');
 	// dashboard
 	// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
 	if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
@@ -53,15 +54,14 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addStyleSheet($csspath . 'login.css');
 	} else {
 	// manage
-	$document->addStyleSheet($csspath . 'manage.css');
 	$document->addStyleSheet($csspath . 'welcome.css');
 	$document->addStyleSheet($csspath . 'toplinks.css');
+	$document->addStyleSheet($csspath . 'assets.css');
 	$document->addStyleSheet($csspath . 'tabs.css');
 	$document->addStyleSheet($csspath . 'accordion.css');
 	$document->addStyleSheet($csspath . 'tips.css');
 	$document->addStyleSheet($csspath . 'shelf.css');
 	$document->addStyleSheet($csspath . 'forms.css');
-	$document->addStyleSheet($csspath . 'assets.css');
 	$document->addStyleSheet($csspath . 'footer.css');
 	$document->addStyleSheet($csspath . 'help.css');
 	$document->addStyleSheet($csspath . 'keyboard.css');

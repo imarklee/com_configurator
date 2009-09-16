@@ -1,4 +1,4 @@
-<div id="loading">&nbsp;</div>
+<?php if(!isset($_COOKIE['welcome_screen'])) { ?><div id="loading">&nbsp;</div><?php } ?>
 <form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
 <div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?>">
 	
@@ -138,7 +138,7 @@
 <input type="hidden" name="t" value="morph"/>
 <input type="hidden" name="task" value="" />
 <?php if($cfg_pref->bottom_save == 1){ ?>
-<div id="bottom-save"><a href="#">Save your settings</a></div>
+<div id="bottom-save" style="display:none;"><a href="#">Save your settings</a></div>
 <?php } ?>
 </form>
 

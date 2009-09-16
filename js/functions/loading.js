@@ -1,5 +1,5 @@
 $(function(){
 	$(window).load(function(){
-		$('#firstloadoverlay').fadeTo('fast', 0).remove();
+		$('#loading').fadeTo('normal', 0).remove();
 	});
 });

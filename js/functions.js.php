@@ -1993,6 +1993,9 @@ jQuery.noConflict();
 	   			modal: true, 
 	   			dialogClass: 'welcome',
 	   			title: 'Welcome to Configurator',
+	   			open: function(event, ui) {
+	   				$('#loading').fadeTo('slow', 0).remove();
+	   			},
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 

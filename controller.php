@@ -459,7 +459,7 @@ class ConfiguratorController extends JController {
 				if($the_files['name'] != ''){
 					switch($install_type){
 						case 'themelet':
-						$return = $this->themelet_upload();
+						$return = $this->themelet_upload($the_files);
 						break;
 						case 'logo':
 						$return = $this->logo_upload();
@@ -650,6 +650,7 @@ class ConfiguratorController extends JController {
 					$error = 'error: "Could not backup themelet!"';
 					return $error;
 				}
+				JFolder::delete($themelet_dir . DS . $themelet_name);
 			}else{
 				$backupfile = '';
 			}
@@ -922,7 +923,8 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
-	function unpackThemelet($p_filename, $b){
+	function unpackThemelet($p_filename='', $b){
+
 		$archivename = $p_filename;
 		$dirname = uniqid('themeletins_');
 		$extractdir = JPath::clean(dirname($p_filename).DS.$dirname);

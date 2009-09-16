@@ -304,6 +304,17 @@ jQuery.noConflict();
 		
 
 	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) { ?> $('.text_area').simpleautogrow(); <?php } ?>
+					
+	    /* Inputs and checkboxes --------------
+	    ------------------------------------ */
+	    $('.alf-input').focus(function(){
+ 			if(this.value == 'username' || this.value == 'password'){ 
+ 				$(this).val(''); 
+ 			}
+ 		}).blur(function(){
+ 			if(this.value == ''){ $(this).val($(this).attr('title')); }
+ 		});
+
  		
  	   	/* Tabs -------------------------------
 	    ------------------------------------ */
@@ -1402,9 +1413,9 @@ jQuery.noConflict();
 	    	var setcookie = $('input[name="am-keep-login"]').attr('checked');
 	    	
 	    	if(username == '' || password == ''){
-	    		$('.dialog-msg').html('Please enter a username and password in the fields below. Thanks.');
+	    		$('#alf-warning').html('<div class="dialog-msg">Please enter a username and password in the fields below. Thanks.</div>');
 				hideScroll();
-				$('.dialog-msg').dialog({
+				$('#alf-warning').dialog({
 		   			autoOpen: true, 
 		   			bgiframe: true, 
 		   			resizable: false,
@@ -1461,16 +1472,17 @@ jQuery.noConflict();
 										$('#alf-image').css('display','none');
 										$('#cl-inner').fadeTo(10, 1);
 										
-										retval = 'Login failed: '+rdata.message;
+										retval = 'Login Failed: '+rdata.message;
+										$('#alf-output').html('<p><span class="error-text">'+retval+'</span></p>');
 										hideScroll();
-										$('<div class="dialog-msg"></div>').dialog({
-								   			autoOpen: false, 
+										$('#alf-output').dialog({
+								   			autoOpen: true, 
 								   			bgiframe: true, 
 								   			resizable: false,
 								   			draggable: false,
 								   			minHeight: 20,
 								   			modal: true, 
-								   			title: 'Login error',
+								   			title: 'Login Error',
 								   			overlay: {
 								   				backgroundColor: '#000', 
 								   				opacity: 0.5 
@@ -1482,8 +1494,6 @@ jQuery.noConflict();
 												}
 											}
 										});
-										$('.dialog-msg').html(retval);
-										$('.dialog-msg').dialog('open');
 									}else{
 										
 										var days;
@@ -1539,9 +1549,9 @@ jQuery.noConflict();
 					}
 				});
 			}else{
-				$('.dialog-msg').html('Please enter a username and password in the fields below. Thanks.');
+				$('#alf-warning').html('<p><span class="error-text">Please enter a username and password in the fields below. Thanks.</span></p>');
 				hideScroll();
-				$('.dialog-msg').dialog({
+				$('#alf-warning').dialog({
 		   			autoOpen: true, 
 		   			bgiframe: true, 
 		   			resizable: false,
@@ -1628,7 +1638,9 @@ jQuery.noConflict();
 			   				});
 			   				
 							if(uploadType == 'themelet'){
-								$('#upload-message').html(data.success);
+								var backupmsg;
+								if(data.backuploc != 'undefined') backupmsg = '<p><br /><strong>Your existing themelet files were backed up to: </strong><small>'+data.backuploc+'</small></p>';
+								$('#upload-message').html('<div class="dialog-msg">'+data.success+backupmsg+'</div>');
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
 										'Activate Themelet': function(){

@@ -35,6 +35,7 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addScript($jspath . 'autoresize.js');
 	$document->addScript($jspath . 'qtip.js');
 	$document->addScript($jspath . 'getparams.js');
+	$document->addScript($jspath . 'jsoncookie.js');
 	}
 	/* unpacked css
 	*****************************************/

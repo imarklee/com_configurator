@@ -1,5 +1,5 @@
-function getUpdates(){
-	if($.cookie('noupdates')){
+function getUpdates(checknow){
+	if(!$.cookie('noupdates') || checknow){
 		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
 		$.ajax({
 			method: 'get',
@@ -15,17 +15,17 @@ function getUpdates(){
 	}
 };
 updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', 'ul.themelet-summary');
-getUpdates();
 
 function showUpdates(e, callback){
 	
 	if($.cookie('updates') == null){
+		getUpdates(true);
 		return setTimeout(function(){
 			return showUpdates(updEl, function(){
 				$('.updates-msg').css('display', 'none').remove();
 				$('#updates-summary dl').fadeTo('fast', 1);
 			})
-		}, 2000);
+		}, 1000);
 	}
 	
 	if($.cookie('updates')){
@@ -83,7 +83,7 @@ $('.updates-refresh-link').click(function(){
 	$('#updates-summary dl').fadeTo('fast', 0.1, function(){
 		$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
 	});
-	getUpdates();
+	getUpdates(true);
 	return setTimeout(function(){
 		return showUpdates(updEl, function(){
 			$('.updates-msg').remove();
@@ -91,6 +91,7 @@ $('.updates-refresh-link').click(function(){
 		})
 	}, 2000);
 });
+
 
 if($.jqURL.get('task') == 'dashboard'){
 	$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');

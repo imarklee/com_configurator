@@ -115,13 +115,13 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 				include 'includes/layout/login.php';
 	        } else {
-				include 'includes/layout/manage.php';
-				 // auto updates
+	        	// auto updates
 		        if($cfg_pref->check_updates == 0){
-		        	setcookie('noupdates', 'true', time()+3600);
+		        	setcookie('noupdates', 'true', time()+60*60*24*365);
 		        }else{
-		        	setcookie('noupdates', '', time()-3600);
+		        	setcookie('noupdates', 'true', time()+3600);
 		        }
+				include 'includes/layout/manage.php';
 			}
 			include 'includes/layout/report-bug.php';
 	 	}      

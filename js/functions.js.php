@@ -304,17 +304,6 @@ jQuery.noConflict();
 		
 
 	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) { ?> $('.text_area').simpleautogrow(); <?php } ?>
-					
-	    /* Inputs and checkboxes --------------
-	    ------------------------------------ */
-	    $('.alf-input').focus(function(){
- 			if(this.value == 'username' || this.value == 'password'){ 
- 				$(this).val(''); 
- 			}
- 		}).blur(function(){
- 			if(this.value == ''){ $(this).val($(this).attr('title')); }
- 		});
-
  		
  	   	/* Tabs -------------------------------
 	    ------------------------------------ */
@@ -1413,9 +1402,9 @@ jQuery.noConflict();
 	    	var setcookie = $('input[name="am-keep-login"]').attr('checked');
 	    	
 	    	if(username == '' || password == ''){
-	    		$('#alf-warning').html('<div class="dialog-msg">Please enter a username and password in the fields below. Thanks.</div>');
+	    		$('.dialog-msg').html('Please enter a username and password in the fields below. Thanks.');
 				hideScroll();
-				$('#alf-warning').dialog({
+				$('.dialog-msg').dialog({
 		   			autoOpen: true, 
 		   			bgiframe: true, 
 		   			resizable: false,
@@ -1472,17 +1461,16 @@ jQuery.noConflict();
 										$('#alf-image').css('display','none');
 										$('#cl-inner').fadeTo(10, 1);
 										
-										retval = 'Login Failed: '+rdata.message;
-										$('#alf-output').html('<p><span class="error-text">'+retval+'</span></p>');
+										retval = 'Login failed: '+rdata.message;
 										hideScroll();
-										$('#alf-output').dialog({
-								   			autoOpen: true, 
+										$('<div class="dialog-msg"></div>').dialog({
+								   			autoOpen: false, 
 								   			bgiframe: true, 
 								   			resizable: false,
 								   			draggable: false,
 								   			minHeight: 20,
 								   			modal: true, 
-								   			title: 'Login Error',
+								   			title: 'Login error',
 								   			overlay: {
 								   				backgroundColor: '#000', 
 								   				opacity: 0.5 
@@ -1494,6 +1482,8 @@ jQuery.noConflict();
 												}
 											}
 										});
+										$('.dialog-msg').html(retval);
+										$('.dialog-msg').dialog('open');
 									}else{
 										
 										var days;
@@ -1549,9 +1539,9 @@ jQuery.noConflict();
 					}
 				});
 			}else{
-				$('#alf-warning').html('<p><span class="error-text">Please enter a username and password in the fields below. Thanks.</span></p>');
+				$('.dialog-msg').html('Please enter a username and password in the fields below. Thanks.');
 				hideScroll();
-				$('#alf-warning').dialog({
+				$('.dialog-msg').dialog({
 		   			autoOpen: true, 
 		   			bgiframe: true, 
 		   			resizable: false,

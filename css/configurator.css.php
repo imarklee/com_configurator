@@ -13,30 +13,30 @@ include('960.css');
 include('ui.css');
 include('overlay.css');
 include('sprite.css');
+include('manage.css');
 if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 // login
 include('login.css');
 } else {
 // manage
+include('welcome.css');
+include('toplinks.css');
+include('tabs.css');
 include('accordion.css');
-include('assets.css');
-include('colorpicker.css');
-include('docs.css');
-include('feedback.css');
-include('footer.css');
+include('tips.css');
+include('shelf.css');
 include('forms.css');
-include('fullscreen.css');
+include('assets.css');
+include('footer.css');
 include('help.css');
 include('keyboard.css');
-include('manage.css');
 include('preferences.css');
-include('shelf.css');
-include('tabs.css');
-include('tips.css');
 include('tooltips.css');
-include('toplinks.css');
 include('tools.css');
-include('welcome.css');
+include('colorpicker.css');
+include('feedback.css');
+include('docs.css');
+include('fullscreen.css');
 }
 ob_end_flush();
 ?>

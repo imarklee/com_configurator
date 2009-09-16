@@ -3,7 +3,7 @@
 #conf-login p{margin:0 0 15px 0;padding:0;font:normal 13px/17px Arial;width:360px;}
 #cl-top{padding:0;margin:0 auto;width:590px;}
 #cl-top img{margin:0 0 10px 0;}
-#cl-inner{background:#fff;border:1px solid #111;color:#313131;display:block;height:290px;padding:20px;margin:0 auto;position:relative;width:550px;}
+#cl-inner{background:#fff;color:#313131;display:block;height:290px;padding:20px;margin:0 auto;position:relative;width:550px;}
 #conf-login label.label-username,#conf-login label.label-password{width:350px;height:33px;margin:0 0 10px 0;padding:0;background:#ddd url(../images/input-bg.jpg) repeat-x;position:relative;border:1px solid #ccc;text-indent:10px;font:normal 15px/35px arial;display:block;float:left;}
 #conf-login label.label-username{margin:0 0 20px 0;}
 #conf-login #alf-cont label.label-username span,

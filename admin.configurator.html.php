@@ -53,25 +53,25 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addStyleSheet($csspath . 'login.css');
 	} else {
 	// manage
+	$document->addStyleSheet($csspath . 'manage.css');
+	$document->addStyleSheet($csspath . 'welcome.css');
+	$document->addStyleSheet($csspath . 'toplinks.css');
+	$document->addStyleSheet($csspath . 'tabs.css');
 	$document->addStyleSheet($csspath . 'accordion.css');
-	$document->addStyleSheet($csspath . 'assets.css');
-	$document->addStyleSheet($csspath . 'colorpicker.css');
-	$document->addStyleSheet($csspath . 'docs.css');
-	$document->addStyleSheet($csspath . 'feedback.css');
-	$document->addStyleSheet($csspath . 'footer.css');
+	$document->addStyleSheet($csspath . 'tips.css');
+	$document->addStyleSheet($csspath . 'shelf.css');
 	$document->addStyleSheet($csspath . 'forms.css');
-	$document->addStyleSheet($csspath . 'fullscreen.css');
+	$document->addStyleSheet($csspath . 'assets.css');
+	$document->addStyleSheet($csspath . 'footer.css');
 	$document->addStyleSheet($csspath . 'help.css');
 	$document->addStyleSheet($csspath . 'keyboard.css');
-	$document->addStyleSheet($csspath . 'manage.css');
 	$document->addStyleSheet($csspath . 'preferences.css');
-	$document->addStyleSheet($csspath . 'shelf.css');
-	$document->addStyleSheet($csspath . 'tabs.css');
-	$document->addStyleSheet($csspath . 'tips.css');
 	$document->addStyleSheet($csspath . 'tooltips.css');
-	$document->addStyleSheet($csspath . 'toplinks.css');
 	$document->addStyleSheet($csspath . 'tools.css');
-	$document->addStyleSheet($csspath . 'welcome.css');
+	$document->addStyleSheet($csspath . 'colorpicker.css');
+	$document->addStyleSheet($csspath . 'feedback.css');
+	$document->addStyleSheet($csspath . 'docs.css');
+	$document->addStyleSheet($csspath . 'fullscreen.css');
 	}
 }
 

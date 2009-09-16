@@ -1,4 +1,4 @@
-<div id="backgrounds-tab" class="ui-tabs-hide">
+<div id="backgrounds-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="background-options" class="options-panel">
 		<h3>Background Settings</h3>
 		<ol class="forms">

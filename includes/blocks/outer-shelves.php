@@ -1,4 +1,4 @@
-<div id="outer-shelves-tab" class="ui-tabs-hide">
+<div id="outer-shelves-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="shelf-options" class="options-panel">
    	    <h3>Top Shelf Settings</h3>
 		<ol class="forms">

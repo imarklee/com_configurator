@@ -21,14 +21,14 @@ include('login.css');
 // manage
 include('welcome.css');
 include('toplinks.css');
-include('tabs.css');
 include('accordion.css');
+include('help.css');
+include('assets.css');
+include('tabs.css');
 include('tips.css');
 include('shelf.css');
 include('forms.css');
-include('assets.css');
 include('footer.css');
-include('help.css');
 include('keyboard.css');
 include('preferences.css');
 include('tooltips.css');

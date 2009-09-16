@@ -1,3 +1,4 @@
+a:link,a:visited{text-decoration:underline;}
 .m{position:relative!important;}
 #loading{width:100%;height:100%;background:#111 url(../images/loading-ui.jpg) no-repeat 50% 30%;z-index:99999;position:absolute;top:0;left:0;}
 #cfg .ui-widget .ui-widget{padding:0;margin:0;background:none;border:0;}
@@ -37,7 +38,7 @@ a.disabled{opacity:0.5;cursor:default;}
 p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF3100;width:325px;}
 .quicktips-box{margin:0 auto;width:615px;padding:5px;}
 .toolguides.ui-dialog-content{padding:5px;}
-.themelet-options{font:normal 11px arial;color:#ccc;padding:8px 36px 0 0;float:right;}
+.themelet-options{font:normal 11px arial;color:#ccc;padding:8px 0 0 7px;}
 .dialog-msg{padding:15px;font:normal 15px arial;}
 .upload-logo-container{font-size:11px;padding-left:30px;color:#666;}
 .upload-bg-container{font-size:11px;padding-left:10px;color:#666;width:60px;}

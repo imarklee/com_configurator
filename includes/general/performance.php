@@ -1,4 +1,4 @@
-<div id="performance-tab" class="ui-tabs-hide">
+<div id="performance-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="performance-options" class="options-panel">
 		<h3>Performance Settings</h3>
 		<ol class="forms">

@@ -1,4 +1,4 @@
-<div id="toolbar-tab">
+<div id="toolbar-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="toolbar-options" class="options-panel">
 	    <h3>Toolbar Block Settings</h3>
 		<ol class="forms">

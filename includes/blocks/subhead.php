@@ -1,4 +1,4 @@
-<div id="subhead-tab" class="ui-tabs-hide">
+<div id="subhead-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="subhead-options" class="options-panel">
 	    <h3>Sub Header Block</h3>
 		<ol class="forms">

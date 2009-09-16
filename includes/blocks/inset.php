@@ -1,4 +1,4 @@
-<div id="insets-tab" class="ui-tabs-hide">
+<div id="insets-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="inset-options" class="options-panel">
 	    <h3>Inset1 Settings</h3>
 		<ol class="forms">

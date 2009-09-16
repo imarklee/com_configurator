@@ -1,4 +1,4 @@
-<div id="mainhead-tab" class="ui-tabs-hide">
+<div id="mainhead-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="mainhead-options" class="options-panel">
    	    <h3>Main Header Settings</h3>
 		<ol class="forms">

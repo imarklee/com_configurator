@@ -1,4 +1,4 @@
-<div id="iphone-tab" class="ui-tabs-hide">
+<div id="iphone-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="iphone-options" class="options-panel">
 		<h3>iPhone Settings</h3>
 		<ol class="forms">

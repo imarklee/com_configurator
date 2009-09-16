@@ -1,4 +1,5 @@
-<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">        	
+<div id="loading">&nbsp;</div>
+<form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
 <div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?>">
 	
 	<?php if($cfg_pref->show_branding == 1){include dirname(__FILE__) . '/../layout/top.php'; } ?>
@@ -16,7 +17,7 @@
 			<li class="assets-icon"><a href="#assets">Your Assets</a></li>
 			<li class="help-icon last"><a href="#help">Help</a></li>
 		</ul>
-		<div id="site">					
+		<div id="site" class="ui-tabs-panel">					
 			<div id="site-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['site-desc'])) { include dirname(__FILE__) . '/../general/desc-site.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
@@ -34,7 +35,7 @@
 			</div>
 		</div>
 
-		<div id="customize" class="ui-tabs-hide">
+		<div id="customize" class="ui-tabs-panel ui-tabs-hide">
 			<div id="customize-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['themelet-desc'])) { include dirname(__FILE__) . '/../customize/desc-customize.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
@@ -52,7 +53,7 @@
 			</div>
 		</div>
 
-		<div id="blocks" class="ui-tabs-hide">
+		<div id="blocks" class="ui-tabs-panel ui-tabs-hide">
 			<div id="blocks-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['blocks-desc'])) { include dirname(__FILE__) . '/../blocks/desc-blocks.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
@@ -82,7 +83,7 @@
 			</div>
 		</div>
 
-		<div id="plugins" class="ui-tabs-hide">
+		<div id="plugins" class="ui-tabs-panel ui-tabs-hide">
 			<div id="plugins-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['plugins-desc'])) { include dirname(__FILE__) . '/../plugins/desc-plugins.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
@@ -92,7 +93,7 @@
 			</div>
 		</div>
 
-		<div id="tools" class="ui-tabs-hide">
+		<div id="tools" class="ui-tabs-panel ui-tabs-hide">
 			<div id="tools-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['tools-desc'])) { include dirname(__FILE__) . '/../tools/desc-tools.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
@@ -106,7 +107,7 @@
 			</div>
 		</div>
 
-		<div id="assets" class="ui-tabs-hide">	
+		<div id="assets" class="ui-tabs-panel ui-tabs-hide">	
 			<div id="assets-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['assets-desc'])) { include dirname(__FILE__) . '/../assets/desc-assets.php'; } ?>
 				<ul class="ui-helper-clearfix">
@@ -123,7 +124,7 @@
 			</div>
 		</div>
 			
-		<div id="help" class="ui-tabs-hide off">
+		<div id="help" class="ui-tabs-panel ui-tabs-hide off">
 			<?php include dirname(__FILE__) . '/../help/help.php'; ?>
 		</div>
 	</div>

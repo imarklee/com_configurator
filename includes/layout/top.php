@@ -11,7 +11,7 @@
 				<?php
 				 
 					foreach(array_shuffle(showTips()) as $tip){
-						echo '<p>'.$tip.'</p>';
+						echo '<p style="display:none;">'.$tip.'</p>';
 					}
 				?>
 				</div>

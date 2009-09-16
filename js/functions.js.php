@@ -51,7 +51,6 @@ jQuery.noConflict();
 	      $(this).switchClass("off", "on", 15000);
 	    });
 
-		$('#tabs .ui-tabs-panel').corners('0px 40px 40px 40px');
 		$('#conf-login').corners('10px');
 		$('#cl-inner').corners('10px');
 		$('#login-details').corners('5px');	

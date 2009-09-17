@@ -9,7 +9,7 @@ $(window).keydown(function(e){
 		var os = $.os.name;
 		
 		function save(){
-			overlay('Saving Settings...');
+			ptOverlay('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({
 					url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
@@ -24,7 +24,7 @@ $(window).keydown(function(e){
 					dataType: 'json',
 					success: function(data, ts){
 						if(data.exists == 'true'){
-							closeOverlay()
+							close_ptOverlay();
 							$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
 					   			bgiframe: true,
 					   			autoOpen: true,

@@ -27,7 +27,7 @@ $('#database-manager ul li.action input').click(function(){
 			opacity: 0.8 
 		}
    	});
-	overlay('Processing...');
+	ptoverlay('Processing...');
 	
 	if(action == 'export'){
 		var checkVal = [];

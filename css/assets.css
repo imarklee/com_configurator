@@ -82,6 +82,10 @@
 #cfg .thumb-view li.tl-active .assets-inner{background:transparent url(../images/active-badge.png) no-repeat top right;}
 #cfg .thumb-view li.deleted{background:transparent url(../images/deleted.png) no-repeat scroll 50% 65%;border:1px solid #ccc;overflow:hidden;}
 
+#cfg .thumb-view .assets-list li.tl-active.update:hover h3,
+#cfg .thumb-view .assets-list li.tl-active.update:hover img,
+#cfg .thumb-view .assets-list li.tl-active.update:hover .image-container,
+#cfg .thumb-view .assets-list li.tl-active.update:hover .assets-summary,
 #cfg .thumb-view ul.buttons,
 #cfg .thumb-view li:hover h3,
 #cfg .thumb-view li:hover img,
@@ -93,6 +97,8 @@
 #cfg .thumb-view .assets-list li.tl-active:hover .buttons,
 #cfg .thumb-view .assets-list li h4{display: none;}
 
+#cfg .thumb-view .assets-list li.tl-active.update:hover h4,
+#cfg .thumb-view .assets-list li.tl-active.update:hover .buttons,
 #cfg .thumb-view .assets-list li.tl-active:hover h3,
 #cfg .thumb-view .assets-list li.tl-active:hover img,
 #cfg .thumb-view .assets-list li.tl-active:hover .image-container,

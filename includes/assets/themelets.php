@@ -45,7 +45,7 @@ if(is_dir($themelet_dir)) {
 				
 			<li class="themelet-item <?php echo $themelet_class; ?>">
 				<div class="assets-inner">
-				<h3><?php echo $themelet_uc; ?></h3>
+				<h3><?php echo $themelet_uc; ?><span class="update-link"> (<a href="#">Download Update</a>)</span></h3>
 				<img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail">
 				<ul name="<?php echo $themelet_arr['foldername']; ?>" type="assets" class="themelet-summary assets-summary">
 					<li type="current" class="tl-installed"><strong>Installed version: </strong><span><?php echo $themelet_arr['version']; ?></span></li>

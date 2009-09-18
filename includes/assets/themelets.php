@@ -57,6 +57,7 @@ if(is_dir($themelet_dir)) {
 					<li class="btn-activate"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Activate <?php echo $themelet_uc; ?>"><span>Activate</span></a></li>
 					<li class="btn-delete"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Delete <?php echo $themelet_uc; ?>"><span>Delete</span></a></li>
 					<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" title="Preview <?php echo $themelet_uc; ?>"><span>Preview</span></a></li>
+					<li class="btn-update"><a href="#" title="Download update"><span>Update</span></a></li>
 				</ul>
 				</div>
 			</li>	

@@ -2,85 +2,102 @@
 defined('_JEXEC') or die('Restricted access');
 include_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'includes' . DS .'HTML_configuratorhelper_admin.php');
 include_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'includes' . DS . 'configurator.functions.php');
+include_once(JPATH_ROOT . DS . 'templates/morph/core/browser.php');
 
 $document 	=& JFactory::getDocument();
 $option 	= JRequest::getVar('option','com_configurator');
 $task 		= JRequest::getCmd('task');
-$csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
-$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
-
-if(!isset($_COOKIE['unpack'])){
-	$document->addScript($jspath . 'configurator.js.php');
-	$document->addStyleSheet($csspath . 'configurator.css.php');
-} else {
-	/* unpacked js
-	*****************************************/
-	// global
-	$document->addScript($jspath . 'jquery.js');
-	$document->addScript($jspath . 'ui.js');
-	$document->addScript($jspath . 'cookie.js');
-	$document->addScript($jspath . 'preload.js');
-	$document->addScript($jspath . 'browser.js');
-	$document->addScript($jspath . 'corners.js');
-	if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
-	// login
-	$document->addScript($jspath . 'showpassword.js');
-	} else {
-	// manage
-	$document->addScript($jspath . 'accordion.js');
-	$document->addScript($jspath . 'colorpicker.js');
-	$document->addScript($jspath . 'form.js');
-	$document->addScript($jspath . 'fileupload.js');
-	$document->addScript($jspath . 'autoresize.js');
-	$document->addScript($jspath . 'qtip.js');
-	$document->addScript($jspath . 'getparams.js');
-	$document->addScript($jspath . 'jsoncookie.js');
-	}
-	$document->addScript($jspath . 'functions.js.php');
-	/* unpacked css
-	*****************************************/
-	// global
-	$document->addStyleSheet($csspath . 'reset.css');
-	$document->addStyleSheet($csspath . '960.css');
-	$document->addStyleSheet($csspath . 'ui.css');
-	$document->addStyleSheet($csspath . 'text.css');
-	$document->addStyleSheet($csspath . 'overlay.css');
-	$document->addStyleSheet($csspath . 'sprite.css');
-	$document->addStyleSheet($csspath . 'manage.css');
-	// dashboard
-	// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
-	if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
-	// login
-	$document->addStyleSheet($csspath . 'login.css');
-	} else {
-	// manage
-	$document->addStyleSheet($csspath . 'welcome.css');
-	$document->addStyleSheet($csspath . 'toplinks.css');
-	$document->addStyleSheet($csspath . 'assets.css');
-	$document->addStyleSheet($csspath . 'tabs.css');
-	$document->addStyleSheet($csspath . 'accordion.css');
-	$document->addStyleSheet($csspath . 'tips.css');
-	$document->addStyleSheet($csspath . 'shelf.css');
-	$document->addStyleSheet($csspath . 'forms.css');
-	$document->addStyleSheet($csspath . 'footer.css');
-	$document->addStyleSheet($csspath . 'help.css');
-	$document->addStyleSheet($csspath . 'keyboard.css');
-	$document->addStyleSheet($csspath . 'preferences.css');
-	$document->addStyleSheet($csspath . 'tooltips.css');
-	$document->addStyleSheet($csspath . 'tools.css');
-	$document->addStyleSheet($csspath . 'colorpicker.css');
-	$document->addStyleSheet($csspath . 'feedback.css');
-	$document->addStyleSheet($csspath . 'docs.css');
-	$document->addStyleSheet($csspath . 'fullscreen.css');
-	}
-}
 
 class HTML_configurator_admin {
 function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
-        global $mainframe;
+        global $mainframe, $browser, $thebrowser, $browserver;
         include_once (JPATH_COMPONENT_ADMINISTRATOR . DS . "configuration.php");
-        $option = JRequest::getVar('option');
         
+        $document 	= JFactory::getDocument();
+        $option 	= JRequest::getVar('option');
+        
+        $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
+		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
+		$browser 	= new Browser();
+		$thebrowser	= str_replace(' ', '-', strtolower(ereg_replace("[^A-Za-z]", "", $browser->getBrowser())));
+		$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
+		
+		if(!isset($_COOKIE['unpack'])){
+			$document->addScript($jspath . 'configurator.js.php');
+			$document->addStyleSheet($csspath . 'configurator.css.php');
+		} else {
+			/* unpacked js
+			*****************************************/
+			// global
+			$document->addScript($jspath . 'jquery.js');
+			$document->addScript($jspath . 'ui.js');
+			$document->addScript($jspath . 'cookie.js');
+			$document->addScript($jspath . 'preload.js');
+			$document->addScript($jspath . 'browser.js');
+			$document->addScript($jspath . 'corners.js');
+			if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+			// login
+			$document->addScript($jspath . 'showpassword.js');
+			} else {
+			// manage
+			$document->addScript($jspath . 'accordion.js');
+			$document->addScript($jspath . 'colorpicker.js');
+			$document->addScript($jspath . 'form.js');
+			$document->addScript($jspath . 'fileupload.js');
+			$document->addScript($jspath . 'autoresize.js');
+			$document->addScript($jspath . 'qtip.js');
+			$document->addScript($jspath . 'getparams.js');
+			$document->addScript($jspath . 'jsoncookie.js');
+			}
+			$document->addScript($jspath . 'functions.js.php');
+			/* unpacked css
+			*****************************************/
+			// global
+			$document->addStyleSheet($csspath . 'reset.css');
+			$document->addStyleSheet($csspath . '960.css');
+			$document->addStyleSheet($csspath . 'ui.css');
+			$document->addStyleSheet($csspath . 'text.css');
+			$document->addStyleSheet($csspath . 'overlay.css');
+			$document->addStyleSheet($csspath . 'sprite.css');
+			$document->addStyleSheet($csspath . 'manage.css');
+			
+			// browser stylesheets
+			switch($thebrowser){
+				case 'safari': $document->addStyleSheet($csspath . 'safari.css'); break;
+				case 'chrome': $document->addStyleSheet($csspath . 'chrome.css'); break;
+				case 'internet-explorer': $document->addStyleSheet($csspath . 'ie.css'); break;
+				case 'opera': $document->addStyleSheet($csspath . 'opera.css'); break;
+				case 'firefox': $document->addStyleSheet($csspath . 'firefox.css'); break;
+			}
+			
+			// dashboard
+			// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
+			if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+			// login
+			$document->addStyleSheet($csspath . 'login.css');
+			} else {
+			// manage
+			$document->addStyleSheet($csspath . 'welcome.css');
+			$document->addStyleSheet($csspath . 'toplinks.css');
+			$document->addStyleSheet($csspath . 'assets.css');
+			$document->addStyleSheet($csspath . 'tabs.css');
+			$document->addStyleSheet($csspath . 'accordion.css');
+			$document->addStyleSheet($csspath . 'tips.css');
+			$document->addStyleSheet($csspath . 'shelf.css');
+			$document->addStyleSheet($csspath . 'forms.css');
+			$document->addStyleSheet($csspath . 'footer.css');
+			$document->addStyleSheet($csspath . 'help.css');
+			$document->addStyleSheet($csspath . 'keyboard.css');
+			$document->addStyleSheet($csspath . 'preferences.css');
+			$document->addStyleSheet($csspath . 'tooltips.css');
+			$document->addStyleSheet($csspath . 'tools.css');
+			$document->addStyleSheet($csspath . 'colorpicker.css');
+			$document->addStyleSheet($csspath . 'feedback.css');
+			$document->addStyleSheet($csspath . 'docs.css');
+			$document->addStyleSheet($csspath . 'fullscreen.css');
+			}
+		}
+		
         JToolBarHelper::title( 'Configurator', 'configurator' );
         
         // keyboard shortcuts
@@ -109,7 +126,10 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 	        $template_dir = JPATH_SITE . DS . 'templates' . DS . 'morph';
 	        $jVer 		= new JVersion();
 			$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
+	        ?>
 	        
+	        <div id="browser-wrap" class="<?php echo $thebrowser . ' ' . $thebrowser.$browserver; ?>">
+	        <?php
 	        // Show a specific template in editable mode.
 	        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>			
 			<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
@@ -122,8 +142,9 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 		        	setcookie('noupdates', 'true', time()+3600);
 		        }
 				include 'includes/layout/manage.php';
-			}
-			include 'includes/layout/report-bug.php';
+			} ?>
+			</div>
+			<?php include 'includes/layout/report-bug.php';
 	 	}      
     }
     function dashboard() {

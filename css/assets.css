@@ -121,7 +121,7 @@
 #cfg .thumb-view .update ul.buttons li.btn-update{display:block;}
 #cfg .thumb-view ul.buttons li.btn-update a span{background:transparent url(../images/btn-icon-update.png) no-repeat 84% 50%;}
 #cfg .thumb-view ul.buttons li.btn-preview{display:none;}
-
+#cfg .thumb-view li.themelet-item.tl-active.update:hover .assets-inner,
 #cfg .thumb-view li.themelet-item.update .assets-inner{background:transparent url(../images/update-badge.png) no-repeat scroll right top;}
 
 #cfg .thumb-view ul.assets-summary{left:223px;position:absolute;top:38px;}

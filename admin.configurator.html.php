@@ -2,8 +2,9 @@
 defined('_JEXEC') or die('Restricted access');
 include_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'includes' . DS .'HTML_configuratorhelper_admin.php');
 include_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'includes' . DS . 'configurator.functions.php');
+if(file_exists(JPATH_ROOT . DS . 'templates/morph/core/browser.php'){
 include_once(JPATH_ROOT . DS . 'templates/morph/core/browser.php');
-
+}
 $document 	=& JFactory::getDocument();
 $option 	= JRequest::getVar('option','com_configurator');
 $task 		= JRequest::getCmd('task');

@@ -65,7 +65,7 @@ function showUpdates(e, callback){
 					   		latest_date_placeholder.html(online[name].updated);
 			
 					   		if(current_version < latest_version){
-					   			//$(this).prev().prev().html('<a title="Click here to download the latest version of '+online[name].long_name+' now" href="'+online[name].download+'">'+name_html+'</a>');
+					   			$(this).prev().prev().children().children().attr('href', online[name].download);
 					   			$(this).parent().parent().addClass('update');
 					   			$(this).next().next().children('li.btn-update').children().attr('href', online[name].download);
 					   		}

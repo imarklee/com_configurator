@@ -59,14 +59,13 @@ $activebg = $db->loadResult();
 				</ul>
 				</div>
 			</li>
-			<?php 
-			}
-		}else{ ?>	
+		<?php } ?>
+		</ul>
+		<?php }else{ ?>
 			<div class="no-assets">
 				There are currently no backgrounds in your assets folder. <a href="#" class="upload-bg">Upload a background?</a>
 			</div>
-		<?php }	?>
-		</ul>
+		<?php }	?>	
 	<!--<p class="assets-location">Your backgrounds are located in: <strong>"<?php echo $background_dir; ?>"</strong>.</p>-->
 	</div>
 </div>

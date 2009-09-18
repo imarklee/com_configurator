@@ -61,14 +61,14 @@ if(is_dir($themelet_dir)) {
 				</ul>
 				</div>
 			</li>	
-			<?php }	
-			} else { ?>
+			
+			<?php }	?>
+			</ul>
+			<?php } else { ?>
+			<div class="no-assets">
+				There are currently no themelets in your assets folder. <a href="#" class="upload-themelet">Upload a themelet?</a>
+			</div>
 				
-				<div class="no-assets">
-					There are currently no themelets in your assets folder. <a href="#" class="upload-themelet">Upload a themelet?</a>
-				</div>
-					
-				<?php }	?>
-		</ul>
+			<?php }	?>
 	</div>
 </div>

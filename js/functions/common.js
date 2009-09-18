@@ -77,7 +77,7 @@ function ___getPageSize() {
 	return arrayPageSize;
 };
 
-function overlay(msg){
+function ptOverlay(msg){
 
 	if(typeof msg !== 'undefined'){
 		$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>'+msg+'</span></div></div>')
@@ -89,8 +89,8 @@ function overlay(msg){
 	
 	var getHeight = new thisHeight;
 	var getWidth = new thisWidth;
-	var scrollTop = window.pageYOffset || document.body.scrollTop
-	var scrollLeft = window.pageXOffset || document.body.scrollLeft
+	var oscrollTop = window.pageYOffset || document.body.scrollTop
+	var oscrollLeft = window.pageXOffset || document.body.scrollLeft
 	var winHeightHalf = getHeight.win/2;
 	var winWidthHalf = getWidth.win/2;
 	var innerHeightHalf = getHeight.inner/2;
@@ -108,16 +108,16 @@ function overlay(msg){
 
 	$('#processing div').css({
 		position: 'absolute',
-		top: winHeightHalf - innerHeightHalf + scrollTop,
-		left: winWidthHalf - innerWidthHalf + scrollLeft + 15
+		top: winHeightHalf - innerHeightHalf + oscrollTop,
+		left: winWidthHalf - innerWidthHalf + oscrollLeft + 15
 	});
 	
 	$(window).resize(function() {
 		var arrPageSizes = ___getPageSize();
 		var getHeight = new thisHeight;
 		var getWidth = new thisWidth;
-		var scrollTop = window.pageYOffset || document.body.scrollTop
-		var scrollLeft = window.pageXOffset || document.body.scrollLeft
+		var oscrollTop = window.pageYOffset || document.body.scrollTop
+		var oscrollLeft = window.pageXOffset || document.body.scrollLeft
 		var winHeightHalf = getHeight.win/2;
 		var winWidthHalf = getWidth.win/2;
 		var innerHeightHalf = getHeight.inner/2;
@@ -129,8 +129,8 @@ function overlay(msg){
 		});
 		$('#processing div').css({
 			position: 'absolute',
-			top: winHeightHalf - innerHeightHalf + scrollTop,
-			left: winWidthHalf - innerWidthHalf + scrollLeft + 15
+			top: winHeightHalf - innerHeightHalf + oscrollTop,
+			left: winWidthHalf - innerWidthHalf + oscrollLeft + 15
 		});
 	});
 	
@@ -138,7 +138,7 @@ function overlay(msg){
 	return false;
 }
 
-function closeOverlay(){
+function close_ptOverlay(){
 	$('#processing').css('display', 'none');
 	showScroll();
 }

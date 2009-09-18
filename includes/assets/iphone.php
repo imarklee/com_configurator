@@ -55,14 +55,13 @@ if(is_dir($iphone_dir)) {
 				</ul>
 				</div>
 			</li>
-			<?php 
-			}
-		}else{ ?>	
+		<?php } ?>
+		</ul>
+		<?php }else{ ?>
 			<div class="no-assets">
 				There is currently no iPhone media in your assets folder. <a href="#" class="upload-iphone">Upload iPhone media?</a>
 			</div>
 		<?php }	?>
-		</ul>
 	<!--<p class="assets-location">Your iphone are located in: <strong>"<?php echo $iphone_dir; ?>"</strong>.</p>-->
 	</div>
 </div>

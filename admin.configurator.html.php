@@ -22,7 +22,6 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addScript($jspath . 'preload.js');
 	$document->addScript($jspath . 'browser.js');
 	$document->addScript($jspath . 'corners.js');
-	$document->addScript($jspath . 'functions.js.php');
 	if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 	// login
 	$document->addScript($jspath . 'showpassword.js');
@@ -37,6 +36,7 @@ if(!isset($_COOKIE['unpack'])){
 	$document->addScript($jspath . 'getparams.js');
 	$document->addScript($jspath . 'jsoncookie.js');
 	}
+	$document->addScript($jspath . 'functions.js.php');
 	/* unpacked css
 	*****************************************/
 	// global

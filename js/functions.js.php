@@ -533,7 +533,7 @@ jQuery.noConflict();
 			            return false; 
 			        } 
 			    }
-			    overlay('Processing');
+			    ptOverlay('Processing');
 			    return true; 
 			}
 			
@@ -554,7 +554,7 @@ jQuery.noConflict();
 					'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
 				},
 				success: function(data, status, error){
-					closeOverlay()
+					close_ptOverlay()
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
@@ -808,7 +808,7 @@ jQuery.noConflict();
 	   		var a = $(this);
 	   		
 	   		function activateThemelet(){
-		   		overlay('Processing...');
+		   		ptOverlay('Processing...');
 		   		
 		   		$('<div class="dialog-msg">Would you like to configure this themelet once activated?</div>').dialog({
 		   			bgiframe: true,
@@ -828,7 +828,7 @@ jQuery.noConflict();
 						subTabs.tabs('select', 0);
 						window.location.reload(true);
 						$(this).dialog('destroy');
-						overlay('Processing...');
+						ptOverlay('Processing...');
 		   			},
 					buttons: { 
 						'Yes': function(){
@@ -838,7 +838,7 @@ jQuery.noConflict();
 			   			'No thanks': function(){
 			   				window.location.reload(true);
 			   				$(this).dialog('destroy');
-							overlay('Processing...');
+							ptOverlay('Processing...');
 			   			}
 			   		}
 			   	});
@@ -888,7 +888,7 @@ jQuery.noConflict();
 								dataType: 'json',
 								success: function(data, ts){
 									if(data.exists == 'true'){
-										closeOverlay();
+										close_ptOverlay();
 										hideScroll();
 										$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
 								   			bgiframe: true,
@@ -923,7 +923,7 @@ jQuery.noConflict();
 									   		}
 									   	});
 									}else{
-										closeOverlay();
+										close_ptOverlay();
 										$('.dialog-msg').dialog('open');
 									}
 								}
@@ -1854,7 +1854,7 @@ jQuery.noConflict();
 		}
 		
 		$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(){
-			overlay('Saving Settings...');
+			ptOverlay('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({
 					url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
@@ -1869,7 +1869,7 @@ jQuery.noConflict();
 					dataType: 'json',
 					success: function(data, ts){
 						if(data.exists == 'true'){
-							<strong>closeOverlay()</strong>
+							close_ptOverlay;
 							$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
 					   			bgiframe: true,
 					   			autoOpen: true,
@@ -1926,7 +1926,7 @@ jQuery.noConflict();
 						'Save & continue': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
-							overlay('Saving Settings...');
+							ptOverlay('Saving Settings...');
 							$('#templateform').submit(function(){
 					   			$(this).ajaxSubmit({
 					   				type: 'POST',
@@ -2072,7 +2072,7 @@ jQuery.noConflict();
 			$('.btn-prefs').click(function(){
 				
 				$('#preferences-screen').dialog('option', 'title', 'Saving...');
-				overlay('Processing...');
+				//ptOverlay('Processing...');
 
 				$('#preferences-form').submit(function(){
 		   			$(this).ajaxSubmit({
@@ -2100,7 +2100,7 @@ jQuery.noConflict();
     	
     	// keyboard screen
 		function keyboardScreen(){
-			overlay();
+			ptOverlay();
 			hideScroll();
 		    $('#keyboard-screen').dialog({
 	    		width: '700px',
@@ -2116,7 +2116,7 @@ jQuery.noConflict();
 	   			},
 	   			close: function(){
 	   				showScroll();
-	   				closeOverlay();
+	   				close_ptOverlay();
 	   				$(this).dialog('destroy');
 	   			},
 	   			zIndex: 9999
@@ -2214,13 +2214,13 @@ jQuery.noConflict();
 					$.cookie('tooltip'+tid, null);
 					$(this).dialog('destroy');
 					$('.toolguides').empty();
-					closeOverlay();
+					close_ptOverlay();
 					showScroll();		
 				}
 			});
     		
     		if(!$.cookie('tooltip'+tid)){
-    			overlay();
+    			ptOverlay();
 				$.cookie('tooltip'+tid, 'open');
 				$('.toolguides').load(toolPage);
 				$('.toolguides').dialog('open');
@@ -2228,7 +2228,7 @@ jQuery.noConflict();
 				$.cookie('tooltip'+tid, null);
 				$('.toolguides').dialog('close');
 				$('.toolguides').empty();
-				closeOverlay();
+				close_ptOverlay();
 			}
 			
     	}
@@ -2277,7 +2277,7 @@ jQuery.noConflict();
 				            return false; 
 				        } 
 				    }
-				    overlay('Processing...');				    
+				    ptOverlay('Processing...');				    
 				    return true; 
 				}
 				
@@ -2289,7 +2289,7 @@ jQuery.noConflict();
 						format: 'json'
 					},
 					success: function(data, status, error){
-						closeOverlay()
+						close_ptOverlay()
 						if(typeof(data.error) != 'undefined'){						
 							if(data.error != ''){
 								$('<div>'+data.error+'</div>').dialog({

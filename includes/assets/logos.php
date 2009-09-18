@@ -29,45 +29,42 @@ $activelogo = $db->loadResult();
 			<li class="th-preview">Preview</li>
 		</ul>
 		<ul class="assets-list">
-				<?php 
-					foreach ($lists['logos'] as $logo){
-					$logo_src = $logo_url.DS.$logo;
-					$logo_size = getimagesize($logo_dir.DS.$logo);
-					$logo_width =  $logo_size[0];
-					$logo_height =  $logo_size[1];
-					$logo_size = formatBytes(filesize($logo_dir.DS.$logo));
-					
-					if( $logo !== $activelogo ) { $logo_class = 'tl-inactive'; } else { $logo_class = 'tl-active'; }
-				?>	
-				<li class="logo-item <?php echo $logo_class; ?>">
-					<div class="assets-inner">
-					<h3><?php echo $logo; ?></h3>
-					<div class="image-container">
-						<div style="background-image: url('<?php echo $logo_src; ?>');">&nbsp;</div>
-					</div>
-					<ul class="logo-summary assets-summary">
-						<li class="tl-installed"><strong>File size: </strong><?php echo $logo_size; ?></li>
-						<li class="tl-current"><strong>Width: </strong><?php echo $logo_width; ?>px</li>
-						<li class="tl-date"><strong>Height: </strong><?php echo $logo_height; ?>px</li>
-					</ul>
-				    <h4>Options for this file:</h4>
-					<ul class="buttons">
-						<li class="btn-activate"><a name="<?php echo $logo; ?>" href="#" title="Activate <?php echo $logo; ?>"><span>Activate</span></a></li>
-						<li class="btn-delete"><a name="<?php echo $logo; ?>" href="#" title="Delete <?php echo $logo; ?>"><span>Delete</span></a></li>
-						<li class="btn-preview"><a class="assets-logo-preview" href="<?php echo $logo_src; ?>" title="Preview Logo"><span>Preview</span></a></li>
-					</ul>
-					</div>
-				</li>
-				<?php 
-					}
-				}else{ ?>
+			<?php 
+				foreach ($lists['logos'] as $logo){
+				$logo_src = $logo_url.DS.$logo;
+				$logo_size = getimagesize($logo_dir.DS.$logo);
+				$logo_width =  $logo_size[0];
+				$logo_height =  $logo_size[1];
+				$logo_size = formatBytes(filesize($logo_dir.DS.$logo));
 				
-				<div class="no-assets">
-					There are currently no logos in your assets folder. <a href="#" class="upload-logo">Upload a logo?</a>
+				if( $logo !== $activelogo ) { $logo_class = 'tl-inactive'; } else { $logo_class = 'tl-active'; }
+			?>	
+			<li class="logo-item <?php echo $logo_class; ?>">
+				<div class="assets-inner">
+				<h3><?php echo $logo; ?></h3>
+				<div class="image-container">
+					<div style="background-image: url('<?php echo $logo_src; ?>');">&nbsp;</div>
 				</div>
-					
-				<?php }	?>
+				<ul class="logo-summary assets-summary">
+					<li class="tl-installed"><strong>File size: </strong><?php echo $logo_size; ?></li>
+					<li class="tl-current"><strong>Width: </strong><?php echo $logo_width; ?>px</li>
+					<li class="tl-date"><strong>Height: </strong><?php echo $logo_height; ?>px</li>
+				</ul>
+			    <h4>Options for this file:</h4>
+				<ul class="buttons">
+					<li class="btn-activate"><a name="<?php echo $logo; ?>" href="#" title="Activate <?php echo $logo; ?>"><span>Activate</span></a></li>
+					<li class="btn-delete"><a name="<?php echo $logo; ?>" href="#" title="Delete <?php echo $logo; ?>"><span>Delete</span></a></li>
+					<li class="btn-preview"><a class="assets-logo-preview" href="<?php echo $logo_src; ?>" title="Preview Logo"><span>Preview</span></a></li>
+				</ul>
+				</div>
+			</li>
+		<?php } ?>
 		</ul>
+		<?php }else{ ?>
+		<div class="no-assets">
+			There are currently no logos in your assets folder. <a href="#" class="upload-logo">Upload a logo?</a>
+		</div>
+		<?php }	?>
 	<!--<p class="assets-location">Your logos are located in: <strong>"<?php echo $logo_dir; ?>"</strong>.</p>-->
 	</div>
 </div>

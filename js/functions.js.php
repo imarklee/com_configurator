@@ -34,11 +34,9 @@ jQuery.noConflict();
 		$("#tabs ol.forms li:first-child").addClass("first");		
 		$("#tabs ol.forms li:last-child").addClass("last");		
 		$("#tabs ol.forms li:odd").addClass("alt");	
-
-		$("#assets-tabs #themelets-list li:even").addClass("alt");			
-		$("#assets-tabs #logos-list li:even").addClass("alt");			
-		$("#assets-tabs #backgrounds-list li:even").addClass("alt");
-		$("#assets-tabs #iphone-list li:even").addClass("alt");		
+		$("ul.assets-list").each(function(){
+			$(this).children(':even').addClass('alt');
+		});
 		$("#preferences-form .prefs li:last").addClass("last");
 		
 		<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>

@@ -63,10 +63,15 @@
 #cfg .list-view .image-container{display:none;}
 
 #cfg .list-view li.tl-active{background:#E3E3E3 url(../images/assets-active-bg.png) repeat-x top;}
+#cfg .thumb-view li.themelet-item .update-link,
+#cfg .list-view li.themelet-item .update-link{display:none;}
+#cfg .list-view li.themelet-item.update .update-link{display:inline;color:#999;}
+#cfg .list-view li.themelet-item.update .update-link a{text-decoration:underline;}
 
 #cfg .thumb-view .assets-headers{display:none;}
 #cfg .thumb-view .assets-list{margin-top:-20px;}
-#cfg .thumb-view .assets-list li .assets-inner{height:85px;overflow:hidden;background:#fff url(../images/assets-inactive-bg.jpg) repeat-x bottom;position:relative;padding:0;border:1px solid #fff;padding:8px;}
+#cfg .thumb-view .assets-list li{background:#fff url(../images/assets-inactive-bg.jpg) repeat-x bottom;}
+#cfg .thumb-view .assets-list li .assets-inner{position:relative;padding:0;border:1px solid #fff;padding:8px;height:85px;overflow:hidden;}
 #cfg .thumb-view h3{font-size:17px;font-weight:bold;position:absolute;top:10px;left:223px;width:200px;}
 #cfg .thumb-view .assets-list li{border:1px solid #ccc;width:448px;float:left;margin-top:20px;}
 #cfg .thumb-view .assets-list li.alt{margin-left:20px;}
@@ -83,6 +88,7 @@
 #cfg .thumb-view li:hover .image-container,
 #cfg .thumb-view li:hover .assets-summary,
 #cfg .thumb-view li:hover .btn-preview,
+#cfg .thumb-view li.btn-update,
 #cfg .thumb-view .assets-list li.tl-active:hover h4,
 #cfg .thumb-view .assets-list li.tl-active:hover .buttons,
 #cfg .thumb-view .assets-list li h4{display: none;}
@@ -97,6 +103,7 @@
 #cfg .thumb-view li:hover ul.buttons {display:block;left:30%;position:absolute;top:50%;width:100%;}
 #cfg .thumb-view .assets-list li.tl-active:hover{background:#E3E3E3 url(../images/assets-active-bg.png) repeat-x bottom;border:1px solid #8FAB60;}
 #cfg .thumb-view .assets-list li.tl-active:hover .assets-inner{background:transparent url(../images/active-badge.png) no-repeat top right;}
+#cfg .thumb-view .update ul.buttons{left:15%!important;}
 
 #cfg .thumb-view ul.buttons li{background:none;border:0;float:left;width:auto;margin:0 10px 0 0;}
 #cfg .thumb-view ul.buttons li a{text-decoration:none;color:#555;display:block;line-height:1;background:#fff url(../images/btn-link-bg.jpg) repeat-x bottom;border:1px solid #ccc;text-decoration:none;color:#444;padding:2px 8px;font-size:13px;font-weight:bold;}
@@ -105,7 +112,11 @@
 #cfg .thumb-view ul.buttons li a span{display:block;padding:5px 29px 5px 8px;}
 #cfg .thumb-view ul.buttons li.btn-activate a span{background:transparent url(../images/btn-icon-activate.png) no-repeat 88% 50%; }
 #cfg .thumb-view ul.buttons li.btn-delete a span{background:transparent url(../images/btn-icon-delete.png) no-repeat 84% 50%;}
+#cfg .thumb-view .update ul.buttons li.btn-update{display:block;}
+#cfg .thumb-view ul.buttons li.btn-update a span{background:transparent url(../images/btn-icon-update.png) no-repeat 84% 50%;}
 #cfg .thumb-view ul.buttons li.btn-preview{display:none;}
+
+#cfg .thumb-view li.themelet-item.update .assets-inner{background:transparent url(../images/update-badge.png) no-repeat scroll right top;}
 
 #cfg .thumb-view ul.assets-summary{left:223px;position:absolute;top:38px;}
 #cfg .thumb-view ul.assets-summary li{background:none;border:0;line-height:17px;width:200px;padding:0;margin-top:0;}

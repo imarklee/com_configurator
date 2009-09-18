@@ -51,7 +51,7 @@ function outerLayouts($id){
 }
 ?>
 
-<div id="components-tab" class="ui-tabs-panel ui-tabs-panel">
+<div id="components-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="components-options" class="options-panel">
 		<h3>Customize the sidebar layouts for your installed components</h3>
 		<ol class="forms">

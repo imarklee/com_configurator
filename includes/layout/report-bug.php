@@ -15,7 +15,7 @@ $template_arr = $template_details['install'];
 $themelet_arr = $themelet_details['install'];
 $component_arr = $component_details['install'];
 ?>
-<div id="report-bug" title="Send us your feedback">
+<div id="report-bug" title="Send us your feedback" class="ui-tabs-hide">
 	<p class="teaser">Your feedback and suggestions are important to us. If there is anything that could be done better, or improved on - even the terminology we use, we want to know! Fill in the form below, with as much detail as possible.</p>
 
 	<form id="feedbackform" method="post" action="">

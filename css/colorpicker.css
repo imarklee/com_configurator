@@ -26,11 +26,11 @@
 #cfg .colorpicker_hex.colorpicker_focus{background-position:bottom;}
 #cfg .colorpicker_submit.colorpicker_focus{background-position:bottom;}
 #cfg .colorpicker_slider{background-position:bottom;}
-#tabs #colors li.palette{position:relative;}
-#tabs li.palette .picker{width:50px;height:20px;line-height:20px;padding-left:21px;display:block;position:absolute;top:5px;right:18px;cursor:pointer;text-decoration:underline;font-size:11px;background:transparent url(../images/colorpicker-bg.png) no-repeat 0;}
+#cfg #tabs ol.forms li.palette{position:relative;width:503px;height:28px;}
+#tabs li.palette .picker{width:50px;height:20px;line-height:20px;padding-left:21px;display:block;position:absolute;top:5px;right:23px;cursor:pointer;text-decoration:underline;font-size:11px;background:transparent url(../images/colorpicker-bg.png) no-repeat 0;}
 #tabs li.palette .picker span{display:none;}
-#tabs li.palette .picker:hover span{display:block;}
+#tabs li.palette .picker:hover span{display:inline;}
 .newColorpicker{z-index:9999;}
-#tabs li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:7px;right:102px;background:#ccc;-moz-border-radius:3px;-webkit-border-radius:3px;}
+#cfg #tabs ol.forms li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:8px;right:102px;background:#ccc;-moz-border-radius:3px;-webkit-border-radius:3px;}
 .full-mode #tabs li.palette .color-preview{top:8px;}
 .colorpicker {position:relative;bottom:33px;right:-22px}

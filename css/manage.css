@@ -50,7 +50,7 @@ p.important{background:#FEFF8F;border:1px solid #FF981F;padding:1em;color:#BF310
 #updates-summary dd span{color:#444;border-bottom:1px dashed #ccc;}
 #updates-summary dd.icon span{border-bottom:0;}
 body{font:13px/1.5 Helvetica,Arial,'Liberation Sans',FreeSans,sans-serif}
-a:focus{outline:1px dotted invert}
+#cfg a:focus{outline:none;}
 hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}
 h1{font-size:25px}
 h2{font-size:23px}

@@ -1,5 +1,9 @@
-#tabs li.palette .color-preview{
+#cfg #tabs ol.forms li.palette .color-preview{
 right:109px;
+top:7px;
+}
+#tabs li.palette .picker{
+right:28px;
 }
 #preferences-form .to-label{
 width:210px;
@@ -14,6 +18,9 @@ background:none;
 }
 #select-file input{
 border:0;
+}
+#cfg #tabs ol.forms li{
+padding: 5px 10px 0px 10px;
 }
 
 #assets-tabs .thumb-view ul.buttons li a span,

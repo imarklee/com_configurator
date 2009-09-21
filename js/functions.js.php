@@ -1585,12 +1585,14 @@ jQuery.noConflict();
 		--------------------------------- */
 		
 		$('#uploader-button').click(function(){
+			ptOverlay('Installing...');
 			var uploadType = $('input[type="radio"]:checked','#install-type').val();
 			$.ajaxFileUpload({
 				url: '../administrator/index.php?option=com_configurator&task=uni_installer&format=raw&do=upload&itype='+uploadType,
 				fileElementId:'insfile',
 				dataType: 'json',
 				success: function (data, status){
+					close_ptOverlay();
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							hideScroll();
@@ -1637,7 +1639,8 @@ jQuery.noConflict();
 			   				
 							if(uploadType == 'themelet'){
 								var backupmsg;
-								if(data.backuploc != 'undefined') backupmsg = '<p><br /><strong>Your existing themelet files were backed up to: </strong><small>'+data.backuploc+'</small></p>';
+								console.log(data.backuploc);
+								if(data.backuploc != undefined || data.backuploc != '') backupmsg = '<p><br /><strong>Your existing themelet files were backed up to: </strong><small>'+data.backuploc+'</small></p>';
 								$('#upload-message').html('<div class="dialog-msg">'+data.success+backupmsg+'</div>');
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
@@ -1650,18 +1653,23 @@ jQuery.noConflict();
 													url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
 													method: 'post',
 													success: function(ts, data){
+														ptOverlay('Processing...');
 														submitbutton('applytemplate');
 												   		$(this).dialog('destroy');
-												   		showScroll();
 														return true;
 													}
 												});
 										   	}
 										   	checkChanges(actThemelet);
 										},
-										'Do Nothing': function(){
+										'View Themelets': function(){
 											$(this).dialog('destroy');
-											showScroll();
+											ptOverlay('Processing...');
+											var $tabs = $('#tabs').tabs();
+											var assetsTabs = $('#assets-tabs').tabs();
+											$tabs.tabs('select', 5);
+											assetsTabs.tabs('select', 0);									
+											window.location.reload()
 										}
 									}
 								);

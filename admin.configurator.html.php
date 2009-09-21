@@ -35,7 +35,6 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addScript($jspath . 'cookie.js');
 			$document->addScript($jspath . 'preload.js');
 			$document->addScript($jspath . 'browser.js');
-			$document->addScript($jspath . 'corners.js');
 			if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 			// login
 			$document->addScript($jspath . 'showpassword.js');
@@ -61,16 +60,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addStyleSheet($csspath . 'overlay.css');
 			$document->addStyleSheet($csspath . 'sprite.css');
 			$document->addStyleSheet($csspath . 'manage.css');
-			
-			// browser stylesheets
-			switch($thebrowser){
-				case 'safari': $document->addStyleSheet($csspath . 'safari.css'); break;
-				case 'chrome': $document->addStyleSheet($csspath . 'chrome.css'); break;
-				case 'internet-explorer': $document->addStyleSheet($csspath . 'ie.css'); break;
-				case 'opera': $document->addStyleSheet($csspath . 'opera.css'); break;
-				case 'firefox': $document->addStyleSheet($csspath . 'firefox.css'); break;
-			}
-			
+					
 			// dashboard
 			// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
 			if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
@@ -96,6 +86,15 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addStyleSheet($csspath . 'feedback.css');
 			$document->addStyleSheet($csspath . 'docs.css');
 			$document->addStyleSheet($csspath . 'fullscreen.css');
+			}
+			
+			// browser stylesheets
+			switch($thebrowser){
+				case 'safari': $document->addStyleSheet($csspath . 'safari.css'); break;
+				case 'chrome': $document->addStyleSheet($csspath . 'chrome.css'); break;
+				case 'internet-explorer': $document->addStyleSheet($csspath . 'ie.css'); break;
+				case 'opera': $document->addStyleSheet($csspath . 'opera.css'); break;
+				case 'firefox': $document->addStyleSheet($csspath . 'firefox.css'); break;
 			}
 		}
 		

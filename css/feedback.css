@@ -1,4 +1,4 @@
-#report-bug{padding:1.2em;overflow:hidden;font:normal 12px arial;}
+#report-bug{padding:1.2em;overflow:hidden;font:normal 12px arial;display:none;}
 #report-bug fieldset{margin:0;padding:10px 0 0 0;border:0;border-top:1px solid #ccc;width:100%;}
 #report-bug input{float:left;}
 #report-bug ul,

@@ -7,7 +7,7 @@ if(is_dir($themelet_dir)) {
 	$lists['themelets'] = 'test';
 }
 ?>
-<div id="assets-themelets">
+<div id="assets-themelets" style="display:none;">
 	<div id="themelet-switch" class="switch">
 		<h2>Manage your assets: <strong>Themelets</strong></h2>
 		<p><a href="#" class="themelet-tab btn-link">Customize themelet</a>&nbsp;&nbsp;<a href="#" class="upload-themelet btn-link">Upload a new themelet</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>

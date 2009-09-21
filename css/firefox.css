@@ -1,0 +1,48 @@
+#assets-tabs .thumb-view ul.buttons li a span,
+#assets-tabs .thumb-view ul.buttons li a,
+a.btn-link,
+a.switch-view,
+#qtip-content .docs-wrap a.btn-link,
+#system-message dd.message ul,
+#system-message dd.message,
+#conf-login label.label-username,
+#conf-login label.label-password,
+#conf-login,
+#cl-inner{
+-moz-border-radius:10px;
+}
+#shelf.closed #utilities,
+#shelf,
+#element-box .m,
+.#tips .inner,
+#minwidth-body .m #templateform{
+-moz-border-radius:7px;
+}
+#login-details{
+-moz-border-radius:5px;
+}
+#utilities ul li #toggle-shelf{
+-moz-border-radius:4px;
+}
+#conf-login #alf-cont label.label-username span, 
+#conf-login #alf-cont label.label-password span{
+-moz-border-radius-topleft:8px;
+-moz-border-radius-topright:0;
+-moz-border-radius-bottomleft:8px;
+-moz-border-radius-bottomright:0;
+}
+#shelf-contents,
+#tabs .ui-tabs-panel{
+-moz-border-radius-topleft:0;
+-moz-border-radius-topright:0;
+-moz-border-radius-bottomleft:7px;
+-moz-border-radius-bottomright:7px;
+}
+ul.assets-headers,
+#shelf.open #utilities,
+#tabs .primary.ui-tabs-nav li a{
+-moz-border-radius-topleft:7px;
+-moz-border-radius-topright:7px;
+-moz-border-radius-bottomleft:0;
+-moz-border-radius-bottomright:0;
+}

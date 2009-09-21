@@ -1,4 +1,4 @@
-<div class="help-block1">
+<div class="help-block1" style="display:none;">
 <h3>Inline Help &amp; Documentation:</h3>
 <p>We are working on extensive documentation for Morph &amp; Configurator, explaining each and every option that is available.</p>
 <!--<p class="help-links"><a href="#" target="_blank" class="btn-link disabled" title="coming soon!" title="coming soon!">View the help index</a></p>-->

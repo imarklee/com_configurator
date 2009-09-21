@@ -1,4 +1,4 @@
-.m { padding: 0; margin: 0; }
+.m{padding:0;margin:0;}
 #conf-login{position:relative;background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;color:#313131;width:100%;padding:50px 0;display:block;text-align:left;}
 #conf-login h2{font:bold 32px Arial;margin:0 0 10px 0;padding:0;}
 #conf-login p{margin:0 0 15px 0;padding:0;font:normal 13px/17px Arial;width:360px;}
@@ -25,7 +25,8 @@
 #conf-login p.login-sub{color:#999;font-size:11px;}
 #conf-login p a{text-decoration:underline;}
 #am-login-form #alf-cont #alf-inp-cont{margin:5px 0 20px 0;}
-#alf-warning,#alf-output{text-align:left;padding-top:10px;}
+#alf-warning,
+#alf-output{text-align:left;padding-top:10px;}
 #alf-warning p{margin:5px 0 0 0;font:normal 12px/17px arial;}
 #alf-warning p strong{margin:0;font:bold 15px arial;}
 

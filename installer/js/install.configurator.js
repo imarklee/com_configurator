@@ -13,14 +13,14 @@
 		
 		function assetsCreate(callback,step){
 			
-			overlay('Processing...')
+			ptOverlay('Processing...')
 			
 			$.get(
 				'../administrator/index.php?option=com_configurator&task=assets_create&format=raw', '',
 				function(data, status){
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){
-							closeOverlay();
+							close_ptOverlay();
 							hideScroll();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
@@ -49,7 +49,7 @@
 							$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
 							$('#dialog').dialog('open');
 						}else{
-							closeOverlay();
+							close_ptOverlay();
 							hideScroll();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
@@ -103,7 +103,7 @@
 			
 			
 			if($('#template-file').val() != ''){
-				overlay('Processing...');				
+				ptOverlay('Processing...');				
 				$.ajaxFileUpload({
 					url: '../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup='+backupval+'&publish='+publish,
 					fileElementId:'template-file',
@@ -114,7 +114,7 @@
 	                    {
 	                        if(data.error != '')
 	                        {
-	                            closeOverlay();
+	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
@@ -141,7 +141,7 @@
 								$('#dialog').dialog('open');
 	                        }else{
 	                        	if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
-	                            closeOverlay();
+	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
@@ -204,7 +204,7 @@
 				var actval = 'false';
 			}
 			if($('#insfile').val() != ''){
-				overlay('Processing...');
+				ptOverlay('Processing...');
 				
 				$.ajaxFileUpload({
 					url: '../administrator/index.php?option=com_configurator&task=install_themelet&format=raw&act_themelet='+actval,
@@ -216,7 +216,7 @@
 	                    {
 	                        if(data.error != '')
 	                        {
-	                            closeOverlay();
+	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
@@ -242,7 +242,7 @@
 								$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
 								$('#dialog').dialog('open');
 	                        }else{
-	                            closeOverlay();
+	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({
 						   			bgiframe: true, 
@@ -343,7 +343,7 @@
 				return false;
 			}
 			
-			overlay('Processing...');
+			ptOverlay('Processing...');
 			
 			$.post(
 				'../administrator/index.php?option=com_configurator&task=install_sample&format=raw',
@@ -355,7 +355,7 @@
 				function(data, status){
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){
-							closeOverlay();
+							close_ptOverlay();
 							hideScroll();
 							$('#dialog').dialog({
 					   			bgiframe: true, 
@@ -384,7 +384,7 @@
 						}else{
 							if(data.db == 'backedup'){ var dbstore = '<p><strong>Your database was backed up to: </strong></p><p><small>'+data.dbstore+'</small></p>'; }else{ var dbstore = '' }
 						
-							closeOverlay();
+							close_ptOverlay();
 							hideScroll();
 							$('#dialog').dialog({
 					   			bgiframe: true, 

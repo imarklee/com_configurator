@@ -78,7 +78,8 @@ function ___getPageSize() {
 };
 
 function ptOverlay(msg){
-
+	
+	$('#processing').remove();
 	if(typeof msg !== 'undefined'){
 		$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>'+msg+'</span></div></div>')
 		.appendTo('body');

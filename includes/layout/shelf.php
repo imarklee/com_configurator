@@ -16,32 +16,8 @@ $template_arr = $template_details['install'];
 $themelet_arr = $themelet_details['install'];
 $component_arr = $component_details['install'];
 
-setcookie('current_themelet', $themelet_arr['foldername']);
+setcookie('current_themelet', $themelet_arr['foldername']); ?>
 
-if(isset($_COOKIE['us_'.$themelet_arr['foldername']])){ 
-	$themelet_cookie_val = explode('##', $_COOKIE['us_'.$themelet_arr['foldername']]); 
-	$themelet_us_version = $themelet_cookie_val[0];
-}else{ $themelet_us_version = ''; }
-
-if(isset($_COOKIE['us_'.$template_arr['foldername']])){ 
-	$template_cookie_val = explode('##', $_COOKIE['us_'.$template_arr['foldername']]); 
-	$template_us_version = $template_cookie_val[0];
-}else{ $template_us_version = ''; }
-
-if(isset($_COOKIE['us_'.$component_arr['foldername']])){ 
-	$component_cookie_val = explode('##', $_COOKIE['us_'.$component_arr['foldername']]); 
-	$component_us_version = $component_cookie_val[0];
-}else{ $component_us_version = ''; }
-
-function showIcon($curr, $serv){
-	if($curr < $serv){
-		return '<span class="update-no" title="There is an update available">Update Available</span>';
-	}else{
-		return '<span class="update-yes" title="You are up to date">Up to date</span>';
-	}
-}
-
-?>
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 	<div id="utilities">
 		<ul>
@@ -61,17 +37,17 @@ function showIcon($curr, $serv){
 					<dt name="com_configurator" type="shelf" id="us-configurator">Configurator</dt>
 					<dd class="current"><span title="Your installed version is <?php echo $component_arr['version']; ?>. Click on the help link above for more information."><?php echo $component_arr['version']; ?></span></dd>
 					<dd class="latest"><span title="The latest available version is <?php echo $component_us_version; ?>. Click on the help link above for more information."><?php echo $component_us_version; ?></span></dd>
-					<dd class="icon"><?php if(isset($_COOKIE['us_'.$component_arr['foldername']])){ echo showIcon($component_arr['version'], $component_us_version); } ?></dd>
+					<dd class="icon"></dd>
 	
 					<dt name="morph" type="shelf" id="us-morph">Morph</dt>
 					<dd class="current"><span title="Your installed version is <?php echo $template_arr['version']; ?>. Click on the help link above for more information."><?php echo $template_arr['version']; ?></dd>
 					<dd class="latest"><span title="The latest available version is <?php echo $template_us_version; ?>. Click on the help link above for more information."><?php echo $template_us_version; ?></dd>
-					<dd class="icon"><?php if(isset($_COOKIE['us_'.$component_arr['foldername']])){ echo showIcon($template_arr['version'], $template_us_version); } ?></dd>
+					<dd class="icon"></dd>
 				
 					<dt name="<?php echo $themelet_arr['foldername']; ?>" type="shelf" id="us-themelet"><?php echo $themelet_arr['name']; ?></dt>
 					<dd class="current"><span title="Your installed version is <?php echo $themelet_arr['version']; ?>. Click on the help link above for more information."><?php echo $themelet_arr['version']; ?></dd>
 					<dd class="latest"><span title="The latest available version is <?php echo $themelet_us_version; ?>. Click on the help link above for more information."><?php echo $themelet_us_version; ?></dd>
-					<dd class="icon"><?php if(isset($_COOKIE['us_'.$component_arr['foldername']])){ echo showIcon($themelet_arr['version'], $themelet_us_version); } ?></dd>						
+					<dd class="icon"></dd>						
 				</dl>
 		</div>  
 		<div id="current-themelet">

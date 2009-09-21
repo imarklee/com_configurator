@@ -35,7 +35,7 @@ jQuery.noConflict();
 		$("#tabs ol.forms li:last-child").addClass("last");		
 		$("#tabs ol.forms li:odd").addClass("alt");	
 		$("ul.assets-list").each(function(){
-			$(this).children(':even').addClass('alt');
+			$(this).children(':odd').addClass('alt');
 		});
 		$("#preferences-form .prefs li:last").addClass("last");
 		

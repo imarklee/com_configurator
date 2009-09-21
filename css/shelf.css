@@ -1,6 +1,4 @@
 #utilities{text-align:right;overflow:hidden;height:31px;background-color:#444;}
-#shelf.open #utilities{-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
-#shelf.closed #utilities{-moz-border-radius-bottomleft:7px;-moz-border-radius-bottomright:7px;-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
 #current-themelet ul,
 #updates-summary dl{font-size:12px;font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:1;line-height:19px;}
 #utilities ul{overflow:hidden;margin-left:10px;}
@@ -10,7 +8,7 @@
 #utilities ul li.logged-in a:hover{color:#eee;text-decoration:none;}
 #utilities ul li{display:block;float:right;margin:0;}
 #utilities ul li a{padding:0 15px 0 0;height:30px;display:block;border-left:0;text-decoration:underline;float:left;font:normal 12px/30px Arial;color:#111;}
-#utilities ul li #toggle-shelf{padding:3px 5px;margin:7px 8px 0 0;height:auto;line-height:1;color:#ccc;text-transform:lowercase;font-size:11px;display:block;background:#333;-moz-border-radius:4px;-webkit-border-radius:4px;text-decoration:none;}
+#utilities ul li #toggle-shelf{padding:3px 5px;margin:7px 8px 0 0;height:auto;line-height:1;color:#ccc;text-transform:lowercase;font-size:11px;display:block;background:#333;text-decoration:none;}
 #utilities ul li #toggle-shelf:hover{color:#eee;background:#222;}
 #visual-refs h3 span{color:#999;padding-left:90px;}
 #visual-refs h3 span a{font-size:12px;margin:0 2px;text-decoration:underline;}

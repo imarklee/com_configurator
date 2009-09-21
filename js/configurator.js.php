@@ -12,7 +12,6 @@ include('ui.js');
 include('cookie.js');
 include('preload.js');
 include('browser.js');
-include('corners.js');
 if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 // login
 include('showpassword.js');

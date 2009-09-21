@@ -18,7 +18,8 @@
 #am-login-form #alf-cont{overflow:hidden;width:355px;}
 #conf-login span.mascot{background:transparent url(../images/login-mascot.png) no-repeat scroll 0 0;display:block;height:450px;position:absolute;right:10px;top:-101px;width:195px;}
 #conf-login #am-login-form .alf-login{width:250px;height:40px;overflow:hidden;border:0;background:none;padding:40px 0 0 0;margin:0;background:transparent url(../images/btn-configurator-login.png) no-repeat;cursor:pointer;}
-#conf-login #am-login-form .alf-login:hover,#conf-login #am-login-form .alf-login:focus{background-position:left center;}
+#conf-login #am-login-form .alf-login:hover,
+#conf-login #am-login-form .alf-login:focus{background-position:left center;}
 #conf-login #am-login-form .alf-login:focus{opacity:0.5;}
 #conf-login label.login-checkbox{font:normal 11px arial;color:#777;margin-bottom:10px;}
 #conf-login p.login-sub{color:#999;font-size:11px;}

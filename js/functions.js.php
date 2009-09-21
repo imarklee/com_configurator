@@ -50,26 +50,10 @@ jQuery.noConflict();
 			}, function() {
 	      $(this).switchClass("off", "on", 15000);
 	    });
-
-		$('#conf-login').corners('10px');
-		$('#cl-inner').corners('10px');
-		$('#login-details').corners('5px');	
-		$('#minwidth-body .m #templateform').corners('7px');	
-		$('#tips .inner').corners('7px');	
-		$("#tabs .primary.ui-tabs-nav li a").corners("7px top");
-		$("#shelf-contents").corners("7px bottom");
-		$("#element-box .m").corners("7px");
-		$("#shelf").corners("7px");
-		$("#system-message dd.message").corners("10px");		
-		$("#system-message dd.message ul").corners("10px");		
+	
 		$('#system-message').delay(3000, function(){$('#system-message').fadeOut()})
-		$("ul.assets-headers").corners("5px top");
-		$("#qtip-content .docs-wrap a.btn-link").corners("10px");
-		$("a.btn-link,a.switch-view").corners("10px");
-		$("#assets-tabs .thumb-view ul.buttons li a").corners("10px");
-		$("#assets-tabs .thumb-view ul.buttons li a span").corners("10px");
-		$("#conf-login label.label-username,#conf-login label.label-password").corners("10px");
-		$("#conf-login #alf-cont label span").corners("top-left bottom-left 8px");
+
+
 		
 		if ($("#toolbar-box div.header").val() == " Configurator "){
 		$("#toolbar-box div.header").text(" Configurator Manage ");
@@ -373,7 +357,7 @@ jQuery.noConflict();
 				path: '/',
 		 	} 
 		});
-		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom").corners("7px bottom");
+		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom");
 		$("#customize").removeClass("ui-widget-content");			
 		$("#assets-tabs li.icon-backup").removeClass("ui-state-disabled");	
 
@@ -856,9 +840,7 @@ jQuery.noConflict();
 		   				},
 			   			success: function(data, textStatus){
 			   		
-			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
-	  						$("#system-message dd.message").corners("10px");		
-							$("#system-message dd.message ul").corners("10px");		
+			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');	
 							$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 							
 							$('.tl-active ul.buttons li.btn-activate a, .tl-active ul.buttons li.btn-delete a').fadeTo('fast', 1).attr('href', '#active').css('cursor', 'pointer').click(function(){ return false; });
@@ -993,8 +975,7 @@ jQuery.noConflict();
 		   				success: function(data, textStatus){
 			   			
 			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
-	  						$("#system-message dd.message").corners("10px");		
-							$("#system-message dd.message ul").corners("10px");		
+		
 							$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 			   				$('.dialog-msg').dialog('open');
 			   				$('#logos-list ul li.tl-active ul li.btn-activate a, #logos-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
@@ -1065,9 +1046,7 @@ jQuery.noConflict();
 		   					isajax: 'true',
 		   				},
 			   			success: function(data, textStatus){
-			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
-	  						$("#system-message dd.message").corners("10px");		
-							$("#system-message dd.message ul").corners("10px");		
+			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');	
 							$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 			   				$('.dialog-msg').dialog('open');
 			   				$('#backgrounds-list ul li.tl-active ul li.btn-activate a, #backgrounds-list ul li.tl-active ul li.btn-delete a,').fadeTo('slow', 1);
@@ -1937,9 +1916,7 @@ jQuery.noConflict();
 					   					isajax: 'true',
 					   				},
 					   				success: function(data, textStatus){
-						   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');
-				  						$("#system-message dd.message").corners("10px");		
-										$("#system-message dd.message ul").corners("10px");		
+						   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');	
 										$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 						   				hideScroll();
 						   				if($this.attr('target') == ''){ 
@@ -2061,7 +2038,6 @@ jQuery.noConflict();
 	   				$(this).dialog('destroy');
 	   			}
 	    	});
-	    	$('#preferences-screen a.close-preferences').corners('bottom-left 10px');
 	    	$(".close-preferences").click(function(){
 				$('#preferences-screen').dialog("close");
 				showScroll();

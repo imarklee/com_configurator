@@ -24,15 +24,6 @@ include('overlay.css');
 include('sprite.css');
 include('manage.css');
 
-// browser stylesheets
-switch($thebrowser){
-	case 'safari': include('safari.css'); break;
-	case 'chrome': include('chrome.css'); break;
-	case 'internet-explorer': include('ie.css'); break;
-	case 'opera': include('opera.css'); break;
-	case 'firefox': include('firefox.css'); break;
-}
-
 if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 // login
 include('login.css');
@@ -56,6 +47,15 @@ include('feedback.css');
 include('docs.css');
 include('fullscreen.css');
 include('tips.css');
+}
+
+// browser stylesheets
+switch($thebrowser){
+	case 'safari': include('safari.css'); break;
+	case 'chrome': include('chrome.css'); break;
+	case 'internet-explorer': include('ie.css'); break;
+	case 'opera': include('opera.css'); break;
+	case 'firefox': include('firefox.css'); break;
 }
 ob_end_flush();
 ?>

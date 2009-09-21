@@ -11,9 +11,43 @@ width: 434px;
 #conf-login label.login-checkbox{
 background:none;
 }
+#database-manager label input,
 .radio-item input{
 border:0;
 }
+#cfg #tabs ol.forms li{
+padding: 5px 10px 0px 10px;
+}
+#conf-login #alf-cont label.label-username input.alf-input,
+#conf-login #alf-cont label.label-password input.alf-input{
+padding:0;
+background:none;
+}
+#cfg .list-view ul.assets-headers li{
+list-style:none;
+}
+#cfg #tabs ol.forms li.palette .color-preview{
+right:121px;
+top:7px;
+}
+#tabs li.palette .picker{
+right:39px;
+}
+#preferences-form .to-label{
+width:210px;
+}
+#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{
+width: 334px;
+}
+
+
+
+/*
+border-radius: 5px;
+border-top-left-radius:5px;
+border-top-left-radius:5px;
+border-bottom-right-radius:5px;
+*/
 
 #assets-tabs .thumb-view ul.buttons li a span,
 #assets-tabs .thumb-view ul.buttons li a,
@@ -26,40 +60,40 @@ a.switch-view,
 #conf-login label.label-password,
 #conf-login,
 #cl-inner{
--webkit-border-radius:10px;
+border-radius:10px;
 }
 #shelf.closed #utilities,
 #shelf,
 #element-box .m,
 .#tips .inner,
 #minwidth-body .m #templateform{
--webkit-border-radius:7px;
+border-radius:7px;
 }
 #login-details{
--webkit-border-radius:5px;
+border-radius:5px;
 }
 #utilities ul li #toggle-shelf{
--webkit-border-radius:4px;
+border-radius:4px;
 }
 #conf-login #alf-cont label.label-username span, 
 #conf-login #alf-cont label.label-password span{
--webkit-border-top-left-radius:8px;
--webkit-border-top-right-radius:0;
--webkit-border-bottom-left-radius:8px;
--webkit-border-bottom-right-radius:0;
+border-top-left-radius:8px;
+border-top-right-radius:0;
+border-bottom-left-radius:8px;
+border-bottom-right-radius:0;
 }
 #shelf-contents,
 #tabs .ui-tabs-panel{
--webkit-border-top-left-radius:0;
--webkit-border-top-right-radius:0;
--webkit-border-bottom-left-radius:7px;
--webkit-border-bottom-right-radius:7px;
+border-top-left-radius:0;
+border-top-right-radius:0;
+border-bottom-left-radius:7px;
+border-bottom-right-radius:7px;
 }
 ul.assets-headers,
 #shelf.open #utilities,
 #tabs .primary.ui-tabs-nav li a{
--webkit-border-top-left-radius:7px;
--webkit-border-top-right-radius:7px;
--webkit-border-bottom-left-radius:0;
--webkit-border-bottom-right-radius:0;
+border-top-left-radius:7px;
+border-top-right-radius:7px;
+border-bottom-left-radius:0;
+border-bottom-right-radius:0;
 }

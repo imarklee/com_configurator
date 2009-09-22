@@ -8,6 +8,9 @@ text-indent:-7998px;
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{
 width: 434px;
 }
+.win #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{
+width: 600px;
+}
 #conf-login label.login-checkbox{
 background:none;
 }

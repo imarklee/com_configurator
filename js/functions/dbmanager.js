@@ -27,7 +27,7 @@ $('#database-manager ul li.action input').click(function(){
 			opacity: 0.8 
 		}
    	});
-	ptoverlay('Processing...');
+	ptOverlay('Processing...');
 	
 	if(action == 'export'){
 		var checkVal = [];
@@ -41,19 +41,19 @@ $('#database-manager ul li.action input').click(function(){
 		if(checkVal.length > 0){	
 			$.post('../administrator/index.php?option=com_configurator&task=export_db&format=raw', { 'export_data[]': checkVal },
 				function(data, status){
-					closeOverlay();
+					close_ptOverlay();
 					hideScroll();
 					$('.dialog-msg').html(data);
 					$('.dialog-msg').dialog('option', 'buttons', {
 						'OK': function(){
-							closeOverlay();
+							close_ptOverlay();
 							$(this).dialog('destroy');
 							overlay('Refreshing...');
 							var maintabs = $("#tabs").tabs();
 							var subtabs = $("#tools-tabs").tabs();
 							maintabs.tabs("select",4);
 							subtabs.tabs("select",1);
-							closeOverlay();
+							close_ptOverlay();
 							window.location.reload();
 						}
 					});
@@ -61,7 +61,7 @@ $('#database-manager ul li.action input').click(function(){
 				}
 			);
 		}else{
-			closeOverlay();
+			close_ptOverlay();
 			hideScroll();
 			$('.dialog-msg').html('No export options were selected. Please select an option');
 			$('.dialog-msg').dialog('option', 'title', 'Error');
@@ -89,7 +89,7 @@ $('#database-manager ul li.action input').click(function(){
 						dataType: 'json',
 						fileElementId:'import_file',
 						success: function (data, status){
-							closeOverlay();
+							close_ptOverlay();
 							$('.dialog-msg').html(data.success);
 							$('.dialog-msg').dialog('option', 'title', 'Error');
 							$('.dialog-msg').dialog('option', 'buttons', {
@@ -112,7 +112,7 @@ $('#database-manager ul li.action input').click(function(){
 						dataType: 'json',
 						fileElementId:'import_file',
 						success: function (data, status){
-							closeOverlay();
+							close_ptOverlay();
 							$('.dialog-msg').html(data.success);
 							$('.dialog-msg').dialog('option', 'title', 'Error');
 							$('.dialog-msg').dialog('option', 'buttons', {
@@ -129,11 +129,11 @@ $('#database-manager ul li.action input').click(function(){
 					});
 				}
 			});
-			closeOverlay();
+			close_ptOverlay();
 			$('.dialog-msg').dialog('open');
 		
 		}else{
-			closeOverlay();
+			close_ptOverlay();
 			hideScroll();
 			$('.dialog-msg').html('Please select a file to import.');
 			$('.dialog-msg').dialog('option', 'title', 'Error');
@@ -171,7 +171,7 @@ $('#backup-list a').click(function(){
 		},
 		buttons: { 
 			'OK': function(){
-				closeOverlay();
+				close_ptOverlay();
 				$('.dialog-msg').dialog('destroy').remove();
    			}
    		}
@@ -191,12 +191,12 @@ $('#backup-list a').click(function(){
 						type: 'POST',
 						url: '../administrator/index.php?option=com_configurator&format=raw&url&task=handle_db_backup&action='+action+'&filename='+filename,
 						success: function(data){
-							closeOverlay();
+							close_ptOverlay();
 							hideScroll();
 							$('.dialog-msg').html(data);
 							$('.dialog-msg').dialog('option', 'buttons', {
 								'OK': function(){
-									closeOverlay();
+									close_ptOverlay();
 									$('.dialog-msg').dialog('destroy').remove();
 									overlay('Reloading');
 									window.location.reload(true);
@@ -214,12 +214,12 @@ $('#backup-list a').click(function(){
 						type: 'POST',
 						url: '../administrator/index.php?option=com_configurator&format=raw&url&task=handle_db_backup&action='+action+'&filename='+filename,
 						success: function(data){
-							closeOverlay();
+							close_ptOverlay();
 							hideScroll();
 							$('.dialog-msg').html(data);
 							$('.dialog-msg').dialog('option', 'buttons', {
 								'OK': function(){
-									closeOverlay();
+									close_ptOverlay();
 									$('.dialog-msg').dialog('destroy').remove();
 									overlay('Reloading');
 									window.location.reload(true);
@@ -231,14 +231,14 @@ $('#backup-list a').click(function(){
 					});
 				}
 			});
-			closeOverlay();
+			close_ptOverlay();
 			$('.dialog-msg').dialog('open');
 		}else{
 			$.ajax({
 				type: 'POST',
 				url: url,
 				success: function(data, status){
-					closeOverlay();
+					close_ptOverlay();
 					hideScroll();
 					$('.dialog-msg').html(data);
 					$('.dialog-msg').dialog('open');

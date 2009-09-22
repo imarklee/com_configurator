@@ -13,7 +13,7 @@ class TOOLBAR_morph
 			if(isset($_COOKIE['am_logged_in'])){
 				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Save').'</a>', 'apply' );
 				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Fullscreen').'</a>', 'fullscreen' );
-				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Preferences').'</a>', 'preferences' );
+				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Preferences ').'</a>', 'preferences' );
 				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Feedback').'</a>', 'report-bug-link' );
 			}else{
 				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Report Bug').'</a>', 'report-bug-email-link' );

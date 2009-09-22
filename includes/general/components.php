@@ -1,9 +1,8 @@
 <?php
 function innerLayouts($id){
-	error_reporting(E_ALL ^ E_NOTICE);
 	include JPATH_ROOT.'/templates/morph/core/InnerLayout.php';
-	$select_option = array(
-		'Inner default',
+	$select_option = array('default' => 'Inner Default',
+		'None',
 		'50% Right',
 		'33% Right',
 		'25% Right',
@@ -16,17 +15,20 @@ function innerLayouts($id){
 	$res = $db->loadResult($query);
 	
 	$select = '<select id="'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
-	foreach($innerPageSuffix as $key => $val){
-		if($key == $res){ $selected = ' selected="selected"'; }else{ $selected = ''; }
-		$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
-	}
+		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Inner Default</option>'; } 
+		else { $select .= '<option value="default">Inner Default</option>'; }
+		
+		foreach($innerPageSuffix as $key => $val){
+			if($res !== NULL && $res !== 'default' && $res == $key){ $selected = ' selected="selected"'; }else{ $selected = ''; }
+			$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
+		}
 	$select .= '</select>';
 	return $select;
 }
 function outerLayouts($id){
 	include JPATH_ROOT.'/templates/morph/core/OuterLayout.php';
 	$select_option = array(
-		'Outer default',
+		'None',
 		'160px Left',
 		'180px Left',
 		'300px Left',
@@ -42,10 +44,13 @@ function outerLayouts($id){
 	$res = $db->loadResult($query);
 	
 	$select = '<select id="'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
-	foreach($outerPageSuffix as $key => $val){
-		if($key == $res){ $selected = ' selected="selected"'; }else{ $selected = ''; }
-		$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
-	}
+		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Outer Default</option>'; }
+		else { $select .= '<option value="default">Outer Default</option>'; }
+		
+		foreach($outerPageSuffix as $key => $val){
+			if($res !== NULL && $res !== 'default' && $res == $key){ $selected = ' selected="selected"'; }else{ $selected = ''; }
+			$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
+		}
 	$select .= '</select>';
 	return $select;
 }
@@ -62,7 +67,7 @@ function outerLayouts($id){
 							' WHERE c.link <> "" AND parent = 0' .
 							' ORDER BY c.name');
 			$res = $db->loadAssocList($query);
-			foreach($res as $r){ 
+			foreach($res as $r){
 				$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>
 				<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab; ?>">	
 				<?php echo $r['name']; ?></label>

@@ -23,4 +23,6 @@ a.switch-view,
 ul.assets-headers,
 #shelf.open #utilities,
 #tabs .primary.ui-tabs-nav li a{-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;}
+div#element-box div.m,
+#minwidth-body .m #templateform,
 #shelf.closed #utilities{-moz-border-radius:7px;}

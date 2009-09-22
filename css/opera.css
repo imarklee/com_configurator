@@ -30,6 +30,9 @@ list-style:none;
 right:121px;
 top:7px;
 }
+.win #cfg #tabs ol.forms li.palette .color-preview{
+right:119px;
+}
 #tabs li.palette .picker{
 right:39px;
 }

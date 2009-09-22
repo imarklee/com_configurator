@@ -278,10 +278,12 @@ jQuery.noConflict();
 		    $(this).parents("label.label-username,label.label-password").removeClass("label-focus");
 		});
 		
-	$('#install-type input[type="radio"]').focus( function(){
+	$('#install-type input[type="radio"]').click( function(){
+	
 		$('#install-type label.label-selected').removeClass('label-selected');
 		$(this).parent().addClass('label-selected');
 		//$(this).children("#install-type input[type=radio]").click();
+		return false;
 	});
 		
 
@@ -2093,6 +2095,7 @@ jQuery.noConflict();
 	    		bgiframe: true,
 	   			autoOpen: true,
 	   			minHeight: 20,
+	   			draggable: false,
 	   			//modal: true,
 	   			dialogClass: 'keyboard', 
 	   			title: 'Keyboard Shortcuts',
@@ -2101,6 +2104,7 @@ jQuery.noConflict();
 	   				opacity: 0.8 
 	   			},
 	   			close: function(){
+	   				$.cookie('keys', null);
 	   				showScroll();
 	   				close_ptOverlay();
 	   				$(this).dialog('destroy');
@@ -2110,7 +2114,7 @@ jQuery.noConflict();
 	    }
 	    
     	$('#keyboard-toggle').click(function(){ 
-	    	$('#keyboard-screen').load('../administrator/components/com_configurator/includes/keyboard.php', function(){
+	    	$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard.php', function(){
 		    	return keyboardScreen();
 		    }); 
 			return false;

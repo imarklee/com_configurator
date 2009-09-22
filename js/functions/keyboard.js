@@ -155,15 +155,13 @@ $(window).keydown(function(e){
 		
 		function keyboard(){
 			if(!$.cookie('keys')){
-				$('#keyboard-screen').load('../administrator/components/com_configurator/includes/keyboard.php', function(){
-			    	return keyboardScreen();
+				$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard.php', function(){
+			    	keyboardScreen();
 			    });
 			    $.cookie('keys', 'open');
 			}else{
 				$.cookie('keys', null);
-				$('#keyboard-screen').dialog("destroy");
-				showScroll();
-				$('#qtip-blanket').hide();
+				$('#keyboard-screen').dialog("close");
 			}
 			e.preventDefault();
 			return false;

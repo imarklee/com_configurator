@@ -20,13 +20,13 @@ function showScroll(){
 var thisWidth = function(){
 	this.win = window.innerWidth || document.body.clientWidth;
 	this.body = arrPageSizes[0]+15;
-	this.inner = $('#processing div').css('width').replace('px', '');
+	if($('#processing').children().is('div')) this.inner = $('#processing div').css('width').replace('px', '');
 }
 
 var thisHeight = function(){
 	this.win = window.innerHeight || document.body.clientHeight;
 	this.body = arrPageSizes[1];
-	this.inner = $('#processing div').css('height').replace('px', '');
+	if($('#processing').children().is('div')) this.inner = $('#processing div').css('height').replace('px', '');
 }
 
 /**

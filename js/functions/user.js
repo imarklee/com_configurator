@@ -95,6 +95,7 @@ $('.updates-refresh-link').click(function(){
 			$('#updates-summary dl').fadeTo('fast', 1);
 		})
 	}, 2000);
+	return false;
 });
 
 

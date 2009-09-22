@@ -1,5 +1,6 @@
 function getUpdates(checknow){
 	if(!$.cookie('noupdates') || checknow){
+		$.cookie('updates', null, { expires: 730 } );
 		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
 		$.ajax({
 			method: 'get',

@@ -196,7 +196,7 @@ showSettings('#logo-options', $.cookie('settings_effect'));
 showSettings('#background-options', $.cookie('settings_effect'));
 showSettings('#menu-options', $.cookie('settings_effect'));
 showSettings('#iphone-options', $.cookie('settings_effect'));
-
+showSettings('#captify-options', $.cookie('settings_effect'));
 showSettings('#toolbar-options', $.cookie('settings_effect'));
 showSettings('#mainhead-options', $.cookie('settings_effect'));
 showSettings('#subhead-options', $.cookie('settings_effect'));

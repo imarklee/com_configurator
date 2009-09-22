@@ -1,9 +1,5 @@
 #quicktips{z-index:0;width:500px;position:absolute;right:-7px;background:transparent url(../images/maskot-top.png) no-repeat 98% 2%;height:280px;}
-#quicktips .inner{
--webkit-border-radius:10px;
-border-radius:10px;
--moz-border-radius:10px;
-}
+#quicktips .inner{-webkit-border-radius:10px;border-radius:10px;-moz-border-radius:10px;}
 #tips{background:transparent url(../images/tips-bg.png) no-repeat scroll 100% 25%;color:#222;margin:11px 0 0;width:424px;}
 #tips .inner{background:#FFFFFF none repeat scroll 0 0;color:#222;padding:10px;width:370px;position:relative;}
 #tips h4{font:bold 13px arial;margin:0 0 2px 3px;}

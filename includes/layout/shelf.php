@@ -22,8 +22,7 @@ setcookie('current_themelet', $themelet_arr['foldername']); ?>
 	<div id="utilities">
 		<ul>
 			<li class="logged-in">Logged in as: <strong><?php echo $_COOKIE['am_logged_in_user']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a></li>
-			<li class="toggle-shelf"><a href="#" title="" id="toggle-shelf">
-			<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Open Shelf'; } ?></a></li>
+			<li class="toggle-shelf"><a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf"><?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Show Shelf'; } ?></a></li>
 		</ul>
 	</div>
 	<div id="shelf-contents">
@@ -36,17 +35,17 @@ setcookie('current_themelet', $themelet_arr['foldername']); ?>
 				<dl>
 					<dt name="com_configurator" type="shelf" id="us-configurator">Configurator</dt>
 					<dd class="current"><span title="Your installed version is <?php echo $component_arr['version']; ?>. Click on the help link above for more information."><?php echo $component_arr['version']; ?></span></dd>
-					<dd class="latest"><span title="The latest available version is <?php echo $component_us_version; ?>. Click on the help link above for more information."><?php echo $component_us_version; ?></span></dd>
+					<dd class="latest"></dd>
 					<dd class="icon"></dd>
 	
 					<dt name="morph" type="shelf" id="us-morph">Morph</dt>
 					<dd class="current"><span title="Your installed version is <?php echo $template_arr['version']; ?>. Click on the help link above for more information."><?php echo $template_arr['version']; ?></dd>
-					<dd class="latest"><span title="The latest available version is <?php echo $template_us_version; ?>. Click on the help link above for more information."><?php echo $template_us_version; ?></dd>
+					<dd class="latest"></dd>
 					<dd class="icon"></dd>
 				
 					<dt name="<?php echo $themelet_arr['foldername']; ?>" type="shelf" id="us-themelet"><?php echo $themelet_arr['name']; ?></dt>
 					<dd class="current"><span title="Your installed version is <?php echo $themelet_arr['version']; ?>. Click on the help link above for more information."><?php echo $themelet_arr['version']; ?></dd>
-					<dd class="latest"><span title="The latest available version is <?php echo $themelet_us_version; ?>. Click on the help link above for more information."><?php echo $themelet_us_version; ?></dd>
+					<dd class="latest"></dd>
 					<dd class="icon"></dd>						
 				</dl>
 		</div>  

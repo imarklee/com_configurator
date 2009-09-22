@@ -386,18 +386,22 @@ jQuery.noConflict();
 		
 				
 		$("#toggle-shelf").click(function(){
-			toggleShelf();
+			toggleShelf($(this));
 			return false;
 		});
-		function toggleShelf(){
-			if(!$.cookie('shelf')){
-				$('.open').switchClass('open', 'closed', 300);
-				$.cookie('shelf', 'hide', { path: '/', expires: 30 });
+		function toggleShelf(e){
+			if(typeof $.cookie('shelf') == undefined || $('#toggle-shelf').attr('toggle') == 'show'){
+				$('#shelf-contents').slideUp('normal');
+				$('#shelf').addClass('closed').removeClass('open');
 				$('#toggle-shelf').text('Show Shelf');
+				$('#toggle-shelf').attr('toggle', 'hide');
+				$.cookie('shelf', 'hide', { path: '/', expires: 30 });
 			}else{
-				$('.closed').switchClass('closed', 'open', 300);
-				$.cookie('shelf', null, { path: '/', expires: 30 });
+				$('#shelf-contents').slideDown('normal');
+				$('#shelf').addClass('open').removeClass('closed');
 				$('#toggle-shelf').text('Hide Shelf');
+				$('#toggle-shelf').attr('toggle', 'show');
+				$.cookie('shelf', null, { path: '/', expires: 30 });
 			}
 			return false;
 		}
@@ -2054,7 +2058,7 @@ jQuery.noConflict();
 			$('.btn-prefs').click(function(){
 				
 				$('#preferences-screen').dialog('option', 'title', 'Saving...');
-				//ptOverlay('Processing...');
+				ptOverlay('Processing...');
 
 				$('#preferences-form').submit(function(){
 		   			$(this).ajaxSubmit({

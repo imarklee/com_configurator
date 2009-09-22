@@ -23,6 +23,8 @@ include('text.css');
 include('overlay.css');
 include('sprite.css');
 include('manage.css');
+include('toplinks.css');
+include('feedback.css');
 
 if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 // login
@@ -30,7 +32,6 @@ include('login.css');
 } else {
 // manage
 include('welcome.css');
-include('toplinks.css');
 include('assets.css');
 include('tabs.css');
 include('accordion.css');
@@ -43,7 +44,6 @@ include('preferences.css');
 include('tooltips.css');
 include('tools.css');
 include('colorpicker.css');
-include('feedback.css');
 include('docs.css');
 include('fullscreen.css');
 include('tips.css');

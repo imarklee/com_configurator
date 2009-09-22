@@ -13,7 +13,7 @@ a.switch-view,
 #shelf,
 #element-box .m,
 .#tips .inner,
-#minwidth-body .m #templateform{-moz-border-radius:7px;}
+#minwidth-body .m #templateform{-moz-border-radius:7px!important;}
 #login-details{-moz-border-radius:5px;}
 #utilities ul li #toggle-shelf{-moz-border-radius:4px;}
 #conf-login #alf-cont label.label-username span,
@@ -23,3 +23,4 @@ a.switch-view,
 ul.assets-headers,
 #shelf.open #utilities,
 #tabs .primary.ui-tabs-nav li a{-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;}
+#shelf.closed #utilities{-moz-border-radius:7px;}

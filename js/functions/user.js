@@ -98,17 +98,6 @@ $('.updates-refresh-link').click(function(){
 	return false;
 });
 
-
-if($.jqURL.get('task') == 'dashboard'){
-	$("#submenu").append('<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
-}else if($.jqURL.get('task') == 'manage' || $.jqURL.get('task') == 'manage#'){
-	if($.cookie('am_logged_in')){
-		$("#toolbar .toolbar tr").append('<td id="fullscreen"><a href="#">Fullscreen</a></td>','<td id="preferences"><a href="#">Preferences</a></td>','<td id="report-bug-email-link"><a href="#">Feedback</a></td>	');
-	}else{
-		$("#submenu").append('<li class="feedback"><a href="#" id="report-bug-email-link">Problems Logging in?</a></li>','<li class="full-mode" id="fullscreen"><a href="#" id="screenmode">Fullscreen Mode</a></li>');
-	}
-}
-
 $.fn.toggleSettings = function(){
 	var $this = this;
 	var cookiename, cookiesplit, e;

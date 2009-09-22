@@ -60,6 +60,8 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addStyleSheet($csspath . 'overlay.css');
 			$document->addStyleSheet($csspath . 'sprite.css');
 			$document->addStyleSheet($csspath . 'manage.css');
+			$document->addStyleSheet($csspath . 'toplinks.css');
+			$document->addStyleSheet($csspath . 'feedback.css');
 					
 			// dashboard
 			// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
@@ -69,7 +71,6 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			} else {
 			// manage
 			$document->addStyleSheet($csspath . 'welcome.css');
-			$document->addStyleSheet($csspath . 'toplinks.css');
 			$document->addStyleSheet($csspath . 'assets.css');
 			$document->addStyleSheet($csspath . 'tabs.css');
 			$document->addStyleSheet($csspath . 'accordion.css');
@@ -83,7 +84,6 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addStyleSheet($csspath . 'tooltips.css');
 			$document->addStyleSheet($csspath . 'tools.css');
 			$document->addStyleSheet($csspath . 'colorpicker.css');
-			$document->addStyleSheet($csspath . 'feedback.css');
 			$document->addStyleSheet($csspath . 'docs.css');
 			$document->addStyleSheet($csspath . 'fullscreen.css');
 			}

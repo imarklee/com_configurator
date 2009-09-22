@@ -166,17 +166,17 @@ jQuery.noConflict();
 		
 		if($.cookie('fullscreen') == 'true'){
 			$('#minwidth-body').addClass('full-mode');
-			$('#fullscreen a').text('Normal Mode');
+			$('#toolbar-fullscreen a').text('Normal Mode');
 		}
 		
-		$('#fullscreen a').click(function(){
+		$('#toolbar-fullscreen a').click(function(){
 			$('#minwidth-body').toggleClass("full-mode");
-			$('#fullscreen').toggleClass("normal-mode");
-			if($('#fullscreen a').text() == 'Fullscreen'){ 
-				$('#fullscreen a').text('Normal Mode'); 
+			$('#toolbar-fullscreen').toggleClass("normal-mode");
+			if($('#toolbar-fullscreen a').text() == 'Fullscreen'){ 
+				$('#toolbar-fullscreen a').text('Normal Mode'); 
 				$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
 			}else{ 
-				$('#fullscreen a').text('Fullscreen'); 
+				$('#toolbar-fullscreen a').text('Fullscreen'); 
 				$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
 			}
 			return false; 
@@ -487,7 +487,7 @@ jQuery.noConflict();
 				opacity: 0.8
 			}
 		});
-		$('#report-bug-link, #report-bug-email-link a').click(function() {
+		$('#toolbar-report-bug-link, #toolbar-report-bug-email-link a').click(function() {
 			$('#report-bug').dialog('open');
 			return false;
 		});
@@ -2081,7 +2081,7 @@ jQuery.noConflict();
 			});
 	    }
 	    
-    	$('td#preferences a').click(function(){ 
+    	$('td#toolbar-preferences a').click(function(){ 
 		    preferencesScreen();
 			return false;
     	});

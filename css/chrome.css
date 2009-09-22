@@ -3,6 +3,10 @@
 padding:0;
 background:none;
 }
+.win #cfg #tabs ol.forms li.palette .color-preview{
+right:101px;
+top:7px;
+}
 
 #assets-tabs .thumb-view ul.buttons li a span,
 #assets-tabs .thumb-view ul.buttons li a,

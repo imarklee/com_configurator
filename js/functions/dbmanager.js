@@ -48,7 +48,7 @@ $('#database-manager ul li.action input').click(function(){
 						'OK': function(){
 							close_ptOverlay();
 							$(this).dialog('destroy');
-							overlay('Refreshing...');
+							ptOverlay('Refreshing...');
 							var maintabs = $("#tabs").tabs();
 							var subtabs = $("#tools-tabs").tabs();
 							maintabs.tabs("select",4);
@@ -83,7 +83,7 @@ $('#database-manager ul li.action input').click(function(){
 				'Yes': function(){
 					window.location.href = '../administrator/index.php?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
 					$(this).dialog('close');
-					overlay('Processing...');
+					ptOverlay('Processing...');
 					$.ajaxFileUpload({
 						url: '../administrator/index.php?option=com_configurator&format=raw&task=import_db',
 						dataType: 'json',
@@ -95,7 +95,7 @@ $('#database-manager ul li.action input').click(function(){
 							$('.dialog-msg').dialog('option', 'buttons', {
 								'OK': function(){
 									$(this).dialog('destroy');
-									overlay('Reloading...');
+									ptOverlay('Reloading...');
 									window.location.reload(true);
 								}
 							});
@@ -106,7 +106,7 @@ $('#database-manager ul li.action input').click(function(){
 				},
 				'No':function(){
 					$(this).dialog('close');
-					overlay('Processing...');
+					ptOverlay('Processing...');
 					$.ajaxFileUpload({
 						url: '../administrator/index.php?option=com_configurator&format=raw&task=import_db',
 						dataType: 'json',
@@ -119,7 +119,7 @@ $('#database-manager ul li.action input').click(function(){
 								'OK': function(){
 									$(this).dialog('destroy');
 									
-									overlay('Reloading...');
+									ptOverlay('Reloading...');
 									window.location.reload(true);
 								}
 							});
@@ -178,7 +178,7 @@ $('#backup-list a').click(function(){
    	});
 	
 	if(action != 'download'){
-		overlay('Processing...');
+		ptOverlay('Processing...');
 		if(action == 'restore'){
 			$('.dialog-msg').html('<p><strong>You are about to restore a database backup!</strong></p>Would you like to download a temporary database backup before restoring?');
 			$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
@@ -186,7 +186,7 @@ $('#backup-list a').click(function(){
 				'Yes': function(){
 					window.location.href = '../administrator/index.php?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
 					$(this).dialog('close');
-					overlay('Processing...')
+					ptOverlay('Processing...')
 					$.ajax({
 						type: 'POST',
 						url: '../administrator/index.php?option=com_configurator&format=raw&url&task=handle_db_backup&action='+action+'&filename='+filename,
@@ -198,7 +198,7 @@ $('#backup-list a').click(function(){
 								'OK': function(){
 									close_ptOverlay();
 									$('.dialog-msg').dialog('destroy').remove();
-									overlay('Reloading');
+									ptOverlay('Reloading');
 									window.location.reload(true);
 								}
 							});
@@ -209,7 +209,7 @@ $('#backup-list a').click(function(){
 				},
 				'No':function(){
 					$(this).dialog('close');
-					overlay('Processing...')
+					ptOverlay('Processing...')
 					$.ajax({
 						type: 'POST',
 						url: '../administrator/index.php?option=com_configurator&format=raw&url&task=handle_db_backup&action='+action+'&filename='+filename,
@@ -221,7 +221,7 @@ $('#backup-list a').click(function(){
 								'OK': function(){
 									close_ptOverlay();
 									$('.dialog-msg').dialog('destroy').remove();
-									overlay('Reloading');
+									ptOverlay('Reloading');
 									window.location.reload(true);
 								}
 							});

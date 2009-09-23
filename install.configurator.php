@@ -66,6 +66,19 @@ setcookie('installed_cfg', 'true');
 JPath::setPermissions(JPATH_ROOT.DS.'templates');
 JPath::setPermissions(JPATH_ROOT.DS.'administrator'.DS.'components');
 
+// set gzip on/off based on browser
+if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
+	$path = JPATH_CONFIGURATION.DS.'configuration.php';
+	JPath::setPermissions($path, '0777');
+	if(file_exists($path) && is_writable($path)){			
+		$str = file_get_contents($path);
+		$line = str_replace('var $gzip = \'0\';', 'var $gzip = \'1\';', $str);
+		file_put_contents($path, $line);
+	}		
+	JPath::setPermissions($path, '0644');
+	setcookie('installed_gzip', 'true');
+}
+
 ?>
 <div id="install-wrap">
 	<div id="installer">
@@ -79,9 +92,6 @@ JPath::setPermissions(JPATH_ROOT.DS.'administrator'.DS.'components');
 	}else{
 		if($_REQUEST['install'] == 'step2'){
 			include 'installer/step2.php';
-		}
-		elseif($_REQUEST['install'] == 'step3'){
-			include 'installer/step3.php';
 		}
 		elseif($_REQUEST['install'] == 'completed'){
 			include 'installer/complete.php';

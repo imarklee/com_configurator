@@ -461,6 +461,9 @@ class ConfiguratorController extends JController {
 						case 'themelet':
 						$return = $this->themelet_upload($the_files);
 						break;
+						case 'template':
+						$return = $this->template_upload();
+						break;
 						case 'logo':
 						$return = $this->logo_upload();
 						break;
@@ -596,6 +599,38 @@ class ConfiguratorController extends JController {
 		}
 		$error = 'error: "There was an error uploading the file. Please try again."';
 		return $error;
+	}
+	
+	function template_upload(){
+		$newtemplatefile = @JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$templatesdir = JPATH_SITE . DS . 'templates';
+		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
+		$backupfile = $backupdir . DS . 'morph_files_' . date("His_dmY");
+		if(!@Jarchive::create($backupfile, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
+			// error creating archive
+			$error = 'error: "There was an error creating a backup archive. Upload failed"'; 
+			return $error;
+		}else{
+			// remove existing
+			@JPath::setPermissions($templatesdir . DS . 'morph');
+			if(!$this->deleteDirectory($templatesdir . DS . 'morph')){
+				// fail: error removing existing folder
+				$error = 'error: "There was an error removing the old install. Upload failed"';	
+				return $error;
+			}else{
+				if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
+					$error = 'error: "Could not move file to required location!"';
+					return $error;
+				}
+				// directory doesn't exist - install as per usual
+				@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
+				$msg .= ', backuploc: "'.$backupfile.'.gz"';
+				
+				$msg = 'error: "", success:"'.$msg.'"';
+				return $msg;
+			}
+		}
 	}
 	
 	function themelet_upload($file = '', $activate = '') {

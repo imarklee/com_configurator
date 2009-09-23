@@ -1767,6 +1767,18 @@ jQuery.noConflict();
 								);
 								$('#upload-message').dialog('moveToTop').dialog('open');
 							}
+							if(uploadType == 'template'){
+								$('#upload-message').html(data.success);
+								$('#upload-message').dialog(
+									'option', 'buttons', { 
+										'Ok': function(){
+											$(this).dialog('destroy');
+	  									  	showScroll();
+										}
+									}
+								);
+								$('#upload-message').dialog('moveToTop').dialog('open');
+							}
 							if(uploadType == 'sample'){
 								$('#upload-message').html(data.success);
 								$('#upload-message').dialog(

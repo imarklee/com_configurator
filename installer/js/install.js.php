@@ -7,7 +7,6 @@ $expire = "expires: " . gmdate ("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($expire);
 include '../../js/jquery.js';
 include '../../js/ui.js';
-include '../../js/corners.js';
 include '../../js/fileupload.js';
 include '../../js/cookie.js';
 ?>

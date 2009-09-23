@@ -1622,6 +1622,18 @@ jQuery.noConflict();
 			   					}
 			   				});
 			   				
+			   				if(uploadType == 'template'){
+								$('#upload-message').html(data.success);
+								$('#upload-message').dialog(
+									'option', 'buttons', { 
+										'Ok': function(){
+											$(this).dialog('destroy');
+	  									  	showScroll();
+										}
+									}
+								);
+								$('#upload-message').dialog('moveToTop').dialog('open');
+							}
 							if(uploadType == 'themelet'){
 								var backupmsg;
 								console.log(data.backuploc);
@@ -1756,18 +1768,6 @@ jQuery.noConflict();
 								}
 							}
 							if(uploadType == 'iphone'){
-								$('#upload-message').html(data.success);
-								$('#upload-message').dialog(
-									'option', 'buttons', { 
-										'Ok': function(){
-											$(this).dialog('destroy');
-	  									  	showScroll();
-										}
-									}
-								);
-								$('#upload-message').dialog('moveToTop').dialog('open');
-							}
-							if(uploadType == 'template'){
 								$('#upload-message').html(data.success);
 								$('#upload-message').dialog(
 									'option', 'buttons', { 

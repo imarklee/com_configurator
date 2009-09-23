@@ -602,7 +602,7 @@ class ConfiguratorController extends JController {
 	}
 	
 	function template_upload(){
-		$newtemplatefile = @JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$newtemplatefile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$templatesdir = JPATH_SITE . DS . 'templates';
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
 		$backupfile = $backupdir . DS . 'morph_files_' . date("His_dmY");
@@ -626,8 +626,6 @@ class ConfiguratorController extends JController {
 				@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 				$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
 				$msg .= ', backuploc: "'.$backupfile.'.gz"';
-				
-				$msg = 'error: "", success:"'.$msg.'"';
 				return $msg;
 			}
 		}
@@ -1576,7 +1574,7 @@ class ConfiguratorController extends JController {
 				}
 			}
 			
-			$success = 'msg: "Template Successfully Installed", error: ""';
+			$success = 'msg: "Template Successfully Installed", success: "Template Successfully Installed", error: ""';
 			return $success;
 		}
 		

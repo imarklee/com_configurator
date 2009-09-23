@@ -131,7 +131,7 @@
 								$('#dialog').html('<div class="dialog-msg">'+data.error+'</div>');
 								$('#dialog').dialog('open');
 	                        }else{
-	                        	if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
+	                        	if(typeof(data.backuploc) != 'undefined'){ backupmsg = '<p><strong>Your morph template files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; } else { backupmsg = ''; }
 	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({

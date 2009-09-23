@@ -39,18 +39,18 @@ function iType($cookie){
 		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	
 		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
-			<li<?php echo summaryclass('installed_cfg'); ?>><?php echo iType('upgrade_cfg'); ?> Configurator component</li>
+			<li<?php echo summaryclass('installed_cfg'); ?>><?php echo iType('upgrade_cfg'); ?> the Configurator component.</li>
 			<?php if(isset($_COOKIE['installed_morph']) && isset($_COOKIE['installed_bkpmorph'])){ ?>
-			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of Morph template</li>
+			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created a backup of the Morph template.</li>
 			<?php } ?>
-			<li<?php echo summaryclass('installed_morph'); ?>><?php echo iType('upgrade_morph'); ?> Morph template</li>
-			<li<?php echo summaryclass('installed_pubmorph'); ?>>Published Morph template</li>
+			<li<?php echo summaryclass('installed_morph'); ?>><?php echo iType('upgrade_morph'); ?> the Morph template.</li>
+			<li<?php echo summaryclass('installed_pubmorph'); ?>>Published the Morph template.</li>
 			<?php if(isset($_COOKIE['installed_themelet']) && isset($_COOKIE['upgrade_themelet'])){ ?>
-			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of <?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
+			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created a backup of the <?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet.</li>
 			<?php } ?>
-			<li<?php echo summaryclass('installed_themelet'); ?>><?php echo iType('upgrade_themelet'); if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
-			<li<?php echo summaryclass('installed_actthemelet'); ?>>Activated<?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
-			<?php if(isset($_COOKIE['installed_gzip'])) { ?><li<?php echo summaryclass('installed_gzip'); ?>>Enabled Joomla's GZIP compression</li><?php } ?>
+			<li<?php echo summaryclass('installed_themelet'); ?>><?php echo iType('upgrade_themelet'); ?> the <?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet.</li>
+			<li<?php echo summaryclass('installed_actthemelet'); ?>>Activated the <?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet.</li>
+			<?php if(isset($_COOKIE['installed_gzip'])) { ?><li<?php echo summaryclass('installed_gzip'); ?>>Enabled Joomla's GZIP compression.</li><?php } ?>
 		</ul>
 	</div>
 	<div id="install-foot">

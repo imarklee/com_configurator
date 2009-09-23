@@ -33,12 +33,6 @@ if(is_dir(JROOT . '/morph_assets')){ echo '<div id="assets_folder_exists" style=
 				<label class="backup"><input type="checkbox" name="publish_template" id="publish_template" checked="checked" value="true" />
 				Publish Morph as the default template?</label>
 				
-				<?php if(is_dir(JROOT . 'templates/morph')){ ?>
-				<label class="backup"><input type="checkbox" name="backup_template" id="backup_template" checked="checked" value="true" />
-				Backup your existing copy of Morph?</label>
-				<?php }else{ setcookie('installed_nomorph', 'true'); } ?>
-				<span class="mascot">&nbsp;</span>
-				
 			</div>
 				
 			<div id="install-foot">

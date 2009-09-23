@@ -85,15 +85,6 @@
 		}
 		
 		function templateInstall(){
-			if(typeof $('#backup_template').val() != 'undefined'){
-				if($('#backup_template').attr('checked')){
-					var backupval = 'true';
-				}else{
-					var backupval = 'false';
-				}
-			}else{
-				backupval = 'nomorph';
-			}
 			
 			if($('#publish_template').attr('checked')){
 					var publish = 'true';
@@ -105,7 +96,7 @@
 			if($('#template-file').val() != ''){
 				ptOverlay('Processing...');				
 				$.ajaxFileUpload({
-					url: '../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup='+backupval+'&publish='+publish,
+					url: '../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup=true&publish='+publish,
 					fileElementId:'template-file',
 					dataType: 'json',
 					success: function (data, status)
@@ -268,7 +259,12 @@
 									}
 								});
 								
-								if(data.backuploc !== ''){ var backupmsg = '<p><strong>Your themelet files were backed up to: </strong><small>'+data.backuploc+'.gz</small></p>'; } else { var backupmsg = ''; }
+								if(data.backuploc !== ''){ 
+									var backupmsg = '<p><strong>Your themelet files were backed up to: </strong><small>'+data.backuploc+'.gz</small></p>';
+									$.cookie('upgrade_themelet', true);
+								} else { 
+									var backupmsg = ''; 
+								}
 								$('#dialog').html('<div class="dialog-msg">'+data.msg+backupmsg+'</div>');
 								$('#dialog').dialog('open');
 	                        }

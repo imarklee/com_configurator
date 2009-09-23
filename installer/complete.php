@@ -15,6 +15,14 @@ function summaryclass($cookie){
 	}
 	return $class;
 }
+function iType($cookie){
+	if(isset($_COOKIE[$cookie])){
+		$iType = 'Upgraded';
+	}else{
+		$iType = 'Installed';
+	}
+	return $iType;
+}
 ?>
 <div id="install-head">
 	<img src="<?php echo JURL; ?>/installer/images/install-logo.png" alt="morph logo" width="160" height="60" border="0" class="logo" />
@@ -31,15 +39,18 @@ function summaryclass($cookie){
 		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	
 		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
-			<li<?php echo summaryclass('installed_cfg'); ?>>Installed Morph's Configurator component</li>
-			<?php if(!isset($_COOKIE['installed_nomorph'])){ ?>
-			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of existing version of the Morph template</li>
+			<li<?php echo summaryclass('installed_cfg'); ?>><?php echo iType('upgrade_cfg'); ?> Configurator component</li>
+			<?php if(isset($_COOKIE['installed_morph']) && isset($_COOKIE['installed_bkpmorph'])){ ?>
+			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of Morph template</li>
 			<?php } ?>
-			<li<?php echo summaryclass('installed_morph'); ?>>Installed new version of the Morph template</li>
-			<li<?php echo summaryclass('installed_pubmorph'); ?>>Published new version of the Morph template</li>
-			<li<?php echo summaryclass('installed_themelet'); ?>>Installed<?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
+			<li<?php echo summaryclass('installed_morph'); ?>><?php echo iType('upgrade_morph'); ?> Morph template</li>
+			<li<?php echo summaryclass('installed_pubmorph'); ?>>Published Morph template</li>
+			<?php if(isset($_COOKIE['installed_themelet']) && isset($_COOKIE['upgrade_themelet'])){ ?>
+			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created backup of <?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
+			<?php } ?>
+			<li<?php echo summaryclass('installed_themelet'); ?>><?php echo iType('upgrade_themelet'); if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
 			<li<?php echo summaryclass('installed_actthemelet'); ?>>Activated<?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
-			<?php if(isset($_COOKIE['installed_gzip'])) { ?><li<?php echo summaryclass('installed_gzip'); ?>>Enabled GZIP compression</li><?php } ?>
+			<?php if(isset($_COOKIE['installed_gzip'])) { ?><li<?php echo summaryclass('installed_gzip'); ?>>Enabled Joomla's GZIP compression</li><?php } ?>
 		</ul>
 	</div>
 	<div id="install-foot">

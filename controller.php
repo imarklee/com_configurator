@@ -1253,12 +1253,12 @@ class ConfiguratorController extends JController {
 		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
 		$themelet_name = str_replace('-',  ' ', $themelet);
 		setcookie('ins_themelet_name', $themelet_name);
+		$db = JFactory::getDBO();
 		
 		if(isset($activation) && $activation == 'true'){
 		
 			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install' || !isset($_COOKIE['upgrade-type']))	{ $this->themelet_activate($themelet); }
 			setcookie('installed_actthemelet', 'true');
-			$db = JFactory::getDBO();
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
 			$query = $db->query($query);
 			$themelet_num = $db->getNumRows($query);
@@ -1269,6 +1269,13 @@ class ConfiguratorController extends JController {
 			}
 			$query = $db->setQuery( $new_query );
 			$db->query($query) or die($db->getErrorMsg());
+		}
+		
+		// temporary step to remove GZIP from CFG if the browser doesnt allow it.
+		if(isset($_COOKIE['installed_no_gzip'])){
+			$gzip_query = "UPDATE #__configurator SET param_value = '0' where param_name = 'gzip_compression';";
+			$query = $db->setQuery($gzip_query);
+			$db->query($query);
 		}
 		
 		$ret = '{'.$return.'}';
@@ -1392,7 +1399,8 @@ class ConfiguratorController extends JController {
 		$ret = '';
 				
 		
-		if(is_dir($templatesdir . DS . 'morph') || $_REQUEST['backup'] !== 'nomorph'){
+		if(is_dir($templatesdir . DS . 'morph')){
+			setcookie('upgrade_morph', 'true');
 			// template folder
 			if($_REQUEST['backup'] == 'true'){
 				setcookie('installed_bkpmorph', 'true');
@@ -1428,27 +1436,6 @@ class ConfiguratorController extends JController {
 						$ret = '{'.$msg.'}';
 						echo $ret;
 					}
-				}
-			}else{
-				// remove existing
-				if(!$this->deleteDirectory($templatesdir . DS . 'morph')){
-					// fail: error removing existing folder
-					$error = 'There was an error removing the old install. Install failed';	
-					$ret = '{'.$error.'}';
-					echo $ret;
-				}else{
-					if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir . DS . strtolower(basename($newtemplatefile['name']))) ){
-						$error = 'error: "Could not move file to required location!"';
-						$ret = '{'.$error.'}';
-						echo $ret;
-					}
-					// directory doesn't exist - install as per usual
-					@JPath::setPermissions($templatesdir . DS . strtolower(basename($newtemplatefile['name'])));
-					$msg = $this->unpackTemplate($templatesdir . DS . strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
-					db_update();
-					setcookie('installed_morph', 'true');
-					$ret = '{'.$msg.'}';
-					echo $ret;
 				}
 			}
 		}else{

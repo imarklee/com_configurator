@@ -1829,12 +1829,15 @@ jQuery.noConflict();
 						},
 						'Activate only': function(){
 							$.cookie('formChanges', null);
-							if($this.attr('target') == ''){ 
-								window.location.href = $this.attr('href');
-			   				}else{ 
-			   					target = $this.attr('target');
-			   					window.open($this.attr('href'), target);
-			   				}
+							$(this).dialog('close');
+							if($this.attr('href') != undefined){
+								if($this.attr('target') == ''){ 
+									window.location.href = $this.attr('href');
+				   				}else{ 
+				   					target = $this.attr('target');
+				   					window.open($this.attr('href'), target);
+				   				}
+				   			}
 							return false;
 						}
 					}

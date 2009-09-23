@@ -13,7 +13,6 @@
 #install-title a{float:right;font:normal 13px arial;color:#666;margin:17px 15px 0 0;padding-right:25px;background:transparent url(../images/lifebuoy.png) no-repeat 99% 50%;}
 #install-body{background:transparent url(../images/bg-step1.jpg) no-repeat 100% 0%;border-top:1px solid #fff;border-bottom:3px solid #9AA3AE;padding:10px 200px 20px 20px;font:normal 18px/27px arial;position:relative;}
 .step2 #install-body{background:transparent url(../images/bg-step2.jpg) no-repeat 100% 0%;padding-bottom:40px;}
-.step3 #install-body{background:transparent url(../images/bg-step3.jpg) no-repeat 100% 60%;padding-bottom:40px;}
 #install-body.complete{background:transparent url(../images/bg-complete.jpg) no-repeat 100% 55%;padding-bottom:40px;}
 #install-body h3{font:bold 20px arial;color:#333;margin:.7em 0;text-shadow:0 1px 0 #fff;}
 #install-body.complete h3{color:#326C02;}
@@ -56,7 +55,6 @@
 #action li.skip a:hover span{background-position:20px -1px;}
 #action li.next{float:right;margin:-2px 0 0 0;background:none;}
 #action li.next .btn-install{background:#DDDAD2 url(../images/btn-upload.png) no-repeat;display:block;width:255px;height:50px;text-indent:-7998px;float:left;border:0;margin:-15px 15px 0 0;}
-#action li.next .install-sample{background:#DDDAD2 url(../images/btn-quicksetup.png) no-repeat;width:300px;}
 #action li.next .launch-cfg{background:#DDDAD2 url(../images/btn-complete.png) no-repeat;}
 #action li.next .continue-install{background:#DDDAD2 url(../images/btn-cont-with-install.png) no-repeat;width:299px;}
 #action li.next .finish-install{background:#DDDAD2 url(../images/btn-finish-install.png) no-repeat;width:270px;}

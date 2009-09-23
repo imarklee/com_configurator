@@ -39,15 +39,12 @@ function summaryclass($cookie){
 			<li<?php echo summaryclass('installed_pubmorph'); ?>>Published new version of the Morph template</li>
 			<li<?php echo summaryclass('installed_themelet'); ?>>Installed<?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
 			<li<?php echo summaryclass('installed_actthemelet'); ?>>Activated<?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet</li>
-			<li<?php echo summaryclass('installed_bkpdb'); ?>>Created full backup of your site's database</li>
-			<li<?php echo summaryclass('installed_gzip'); ?>>Enabled GZIP compression</li>
-			<li<?php echo summaryclass('installed_samplecont'); ?>>Loaded sample content</li>
-			<li<?php echo summaryclass('installed_samplemods'); ?>>Loaded sample modules</li>
+			<?php if(isset($_COOKIE['installed_gzip'])) { ?><li<?php echo summaryclass('installed_gzip'); ?>>Enabled GZIP compression</li><?php } ?>
 		</ul>
 	</div>
 	<div id="install-foot">
 		<ul id="action">
-			<li class="previous"><a href="#" class="btn-skip back-step3"><span>&raquo; </span>Previous step</a></li>
+			<li class="previous"><a href="#" class="btn-skip back-step2"><span>&raquo; </span>Previous step</a></li>
 			<li class="skip">Skip this step<span> &raquo;</span></li>
 			<li class="next"><a href="index.php?option=com_configurator&task=manage" class="launch-cfg btn-install" title="click here to get started with configurator">Launch Configurator</a></li>
 		</ul>

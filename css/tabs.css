@@ -16,7 +16,7 @@
 -webkit-border-top-right-radius:7px;
 -moz-border-radius-topleft:7px;
 -moz-border-radius-topright:7px;
-padding:15px 23px 14px;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #777;}
+padding:15px 23px 14px;background:#444 url(../images/tabs-on.jpg) repeat-x bottom;color:#111;font: normal 18px arial;margin:0;text-decoration: none;text-shadow:0 1px 0 #777;}
 #tabs .primary li a:hover{color:#000;background:#8F8F8F url(../images/tabs-off.jpg) repeat-x bottom;text-shadow:0 1px 0 #ccc;}
 #tabs.ui-tabs .subtabs .ui-tabs-nav li.ui-state-hover a{border-bottom:0 solid #fff!important;}
 #tabs .primary li.ui-tabs-selected.ui-state-active a{font-weight: normal;text-shadow:0 0 0 #fff;border-bottom:1px solid #fff;background:#fff url(../images/tab-general.png) no-repeat 20px 50%;color:#333;padding-left:47px;}
@@ -40,7 +40,7 @@ padding:15px 23px 14px;background:#8F8F8F url(../images/tabs-on.jpg) repeat-x bo
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a{color:#fff;}
 #tabs .subtabs .ui-tabs-panel{background:#fff;padding:0;width:100%;float:left;}
 #tabs #assets-tabs.subtabs { position: relative; }
-#cfg #tabs .icon-backup{border-right:0 none;font-size:11px;position:absolute;right:9px;top:6px;text-decoration:underline;}
+#cfg #tabs .icon-backup{border-right:0 none;font-size:11px;position:absolute;right:9px;top:5px;text-decoration:underline;}
 #cfg #tabs .icon-backup a{text-decoration:underline;}
 #tabs .options-panel.disabled{border-color:#D33538;}
 #tabs .options-panel.disabled .options-inner{border-color:#670D11;}

@@ -96,6 +96,7 @@ $('.updates-refresh-link').click(function(){
 		})
 	}, 2000);
 	return false;
+	e.preventDefault();
 });
 
 $.fn.toggleSettings = function(){

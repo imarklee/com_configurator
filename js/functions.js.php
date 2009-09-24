@@ -1802,7 +1802,7 @@ jQuery.noConflict();
 		$('#templateform').change(function(event, data){
 			var uploaderid = (event.target.id);
 			if(!$.cookie('formChanges')){
-				if(uploaderid == 'insfile') return false;
+				if(uploaderid == 'insfile') { return false; event.preventDefault(); }
 				$.cookie('formChanges', true); 
 			}
 		});

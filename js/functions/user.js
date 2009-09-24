@@ -14,6 +14,7 @@ function getUpdates(checknow){
 			}
 		});
 	}
+	return false;
 };
 updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', 'ul.themelet-summary');
 
@@ -89,14 +90,14 @@ $('.updates-refresh-link').click(function(){
 		$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
 	});
 	getUpdates(true);
-	return setTimeout(function(){
+	setTimeout(function(){
 		return showUpdates(updEl, function(){
 			$('.updates-msg').remove();
 			$('#updates-summary dl').fadeTo('fast', 1);
+			return false;
 		})
 	}, 2000);
 	return false;
-	e.preventDefault();
 });
 
 $.fn.toggleSettings = function(){

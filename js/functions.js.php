@@ -797,39 +797,6 @@ jQuery.noConflict();
 	   		
 	   		function activateThemelet(){
 		   		ptOverlay('Processing...');
-		   		
-		   		$('<div class="dialog-msg">Would you like to configure this themelet once activated?</div>').dialog({
-		   			bgiframe: true,
-		   			autoOpen: false,
-		   			minHeight: 20,
-		   			stack: false,
-		   			modal: true, 
-		   			title: 'Activate',
-		   			overlay: {
-		   				'background-color': '#000', 
-		   				opacity: 0.8 
-		   			},
-		   			close: function(){
-		   				var mainTabs = $('#tabs').tabs();
-						var subTabs = $('#site-tabs').tabs();
-						mainTabs.tabs('select', 1);
-						subTabs.tabs('select', 0);
-						window.location.reload(true);
-						$(this).dialog('destroy');
-						ptOverlay('Processing...');
-		   			},
-					buttons: { 
-						'Yes': function(){
-							$(this).dialog('close');
-							showScroll();
-			   			},
-			   			'No thanks': function(){
-			   				window.location.reload(true);
-			   				$(this).dialog('destroy');
-							ptOverlay('Processing...');
-			   			}
-			   		}
-			   	});
 			   	
 		   		$('#generalthemelet option[value="'+setThemelet+'"]').attr('selected', true);
 		   		$('#templateform input[name="task"]').remove();
@@ -890,7 +857,13 @@ jQuery.noConflict();
 								   			},
 								   			close: function(){
 												$(this).dialog('destroy');
-												$('.dialog-msg').dialog('open');
+												// change to assets tab
+												ptOverlay('Processing...');
+												var mainTabs = $('#tabs').tabs();
+												var subTabs = $('#assets-tabs').tabs();
+												mainTabs.tabs('select', 5);
+												subTabs.tabs('select', 0);
+												window.location.reload(true);
 								   			},
 											buttons: { 
 												'Themelet Default': function(){
@@ -909,8 +882,13 @@ jQuery.noConflict();
 									   		}
 									   	});
 									}else{
-										close_ptOverlay();
-										$('.dialog-msg').dialog('open');
+										// change to assets tab
+										ptOverlay('Processing...');
+										var mainTabs = $('#tabs').tabs();
+										var subTabs = $('#assets-tabs').tabs();
+										mainTabs.tabs('select', 5);
+										subTabs.tabs('select', 0);
+										window.location.reload(true);
 									}
 								}
 							});
@@ -1832,24 +1810,16 @@ jQuery.noConflict();
 					modal: true,
 					width: 350,
 					title: 'Warning!',
-					close: action,
 					buttons: {
-						'Save & activate': function(){
+						'Activate': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('close');
+							action();
 							return true;
 						},
-						'Activate only': function(){
+						'Cancel': function(){
 							$.cookie('formChanges', null);
-							$(this).dialog('close');
-							if($this.attr('href') != undefined){
-								if($this.attr('target') == ''){ 
-									window.location.href = $this.attr('href');
-				   				}else{ 
-				   					target = $this.attr('target');
-				   					window.open($this.attr('href'), target);
-				   				}
-				   			}
+							$(this).dialog('destroy');
 							return false;
 						}
 					}
@@ -1859,7 +1829,7 @@ jQuery.noConflict();
 			}
 		}
 		
-		$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(){
+		$('td#toolbar-apply a ul li a, #bottom-save a').attr('onclick', '').click(function(){
 			ptOverlay('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({
@@ -1919,7 +1889,7 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a').click(function(){
+		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a ul li a').click(function(){
 			var $this = $(this);
 			var target;
 			if($.cookie('formChanges')){			

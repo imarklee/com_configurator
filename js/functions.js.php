@@ -1614,8 +1614,7 @@ jQuery.noConflict();
 							}
 							if(uploadType == 'themelet'){
 								var backupmsg;
-								console.log(data.backuploc);
-								if(data.backuploc != undefined || data.backuploc != '') backupmsg = '<p><br /><strong>Your existing themelet files were backed up to: </strong><small>'+data.backuploc+'</small></p>';
+								if(data.backuploc != '') { backupmsg = '<p><br /><strong>Your existing themelet files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; }else{ backupmsg = ''; }
 								$('#upload-message').html('<div class="dialog-msg">'+data.success+backupmsg+'</div>');
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
@@ -1631,13 +1630,17 @@ jQuery.noConflict();
 														ptOverlay('Processing...');
 														submitbutton('applytemplate');
 												   		$(this).dialog('destroy');
+														var $tabs = $('#tabs').tabs();
+														var assetsTabs = $('#assets-tabs').tabs();
+														$tabs.tabs('select', 5);
+														assetsTabs.tabs('select', 0);
 														return true;
 													}
 												});
 										   	}
 										   	checkChanges(actThemelet);
 										},
-										'View Themelets': function(){
+										'Cancel': function(){
 											$(this).dialog('destroy');
 											ptOverlay('Processing...');
 											var $tabs = $('#tabs').tabs();
@@ -1796,15 +1799,19 @@ jQuery.noConflict();
 		
 		/* Check for Changes ---------------
 		--------------------------------- */
-		$('#templateform').change(function(){
-			if(!$.cookie('formChanges')){ $.cookie('formChanges', true); }
+		$('#templateform').change(function(event, data){
+			var uploaderid = (event.target.id);
+			if(!$.cookie('formChanges')){
+				if(uploaderid == 'insfile') return false;
+				$.cookie('formChanges', true); 
+			}
 		});
 		
 		function checkChanges(action){
 			var target;
 			var $this = $(this);
 			if($.cookie('formChanges')){			
-				$('<div id="changesDialog"><p>You have made changes to Configurator that will be saved upon activation. Are you sure you want to activate and save these changes?</p><p><strong>If you cancel, this page will reload and your changes will be lost.</strong></p></div>').dialog({
+				$('<div id="changesDialog"><p>You have made some changes to Configurator that will be saved upon activation of this themelet. Are you sure you want to activate this themelet and save these changes?</p></div>').dialog({
 					autoOpen: true,
 					bgiframe: true,
 					modal: true,
@@ -1820,6 +1827,12 @@ jQuery.noConflict();
 						'Cancel': function(){
 							$.cookie('formChanges', null);
 							$(this).dialog('destroy');
+							var $tabs = $('#tabs').tabs();
+							var assetsTabs = $('#assets-tabs').tabs();
+							$tabs.tabs('select', 5);
+							assetsTabs.tabs('select', 0);
+							ptOverlay('Processing...')
+							window.location.reload(true);
 							return false;
 						}
 					}
@@ -1889,7 +1902,7 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a ul li a').click(function(){
+		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a').click(function(){
 			var $this = $(this);
 			var target;
 			if($.cookie('formChanges')){			

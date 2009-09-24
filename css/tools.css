@@ -1,6 +1,6 @@
 #uploader{overflow:hidden;}
-#uploader .upload-tool,#uploader .upload-info{width:48%;float:left;}
-#uploader .upload-info{float:right;background:#eee;padding:0;border:1px solid #ccc;}
+#uploader .upload-tool{width:55%;float:left;}
+#uploader .upload-info{width:40%;float:right;background:#eee;padding:0;border:1px solid #ccc;}
 #uploader .upload-info h4{background:#ddd;padding:5px 10px;font:bold 17px arial;border-bottom: 1px solid #ccc;}
 #uploader .upload-info p{margin:0 15px 15px 15px;}
 #uploader h3{font:bold 25px arial;}

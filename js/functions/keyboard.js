@@ -76,12 +76,48 @@ $(window).keydown(function(e){
 						        width: arrPageSizes[0],
 								height: arrPageSizes[1]
 							});
-							setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+							setTimeout(function(){ 
+								$('#templateform').submit(function(){	
+									$(this).ajaxSubmit({
+										type: 'POST',
+										url: '../administrator/index.php?format=raw&isajax=true&task=applytemplate&option=com_configurator',
+										data: {
+											isajax: 'true',
+											task: 'applytemplate',
+											option: 'com_configurator'
+										},
+										success: function(d){
+											alert(d);
+										}
+									});
+								});
+								$('#templateform').trigger('submit');
+								//submitbutton('applytemplate'); 
+							}, 1000);
 						}
 					}
 				});
 			}else{
-				setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+				setTimeout(function(){
+					
+					alert(document.adminForm.task.value);
+					return;
+					$('#templateform').submit(function(){	
+						$(this).ajaxSubmit({
+							type: 'POST',
+							url: '../administrator/index.php?format=raw&isajax=true&task=applytemplate&option=com_configurator',
+							data: {
+								isajax: 'true',
+								task: 'applytemplate',
+								option: 'com_configurator'
+							},
+							success: function(d){
+								alert(d);
+							}
+						});
+					});
+					$('#templateform').trigger('submit');
+			 	}, 1000);
 			}
 			e.preventDefault();
 			return false;

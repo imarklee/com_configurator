@@ -91,11 +91,11 @@ $('.updates-refresh-link').click(function(){
 	});
 	getUpdates(true);
 	setTimeout(function(){
-		return showUpdates(updEl, function(){
+		showUpdates(updEl, function(){
 			$('.updates-msg').remove();
 			$('#updates-summary dl').fadeTo('fast', 1);
-			return false;
-		})
+		return false;
+		});
 	}, 2000);
 	return false;
 });

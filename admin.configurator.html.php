@@ -20,7 +20,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
 		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
 		$browser 	= new Browser();
-		$thebrowser	= str_replace(' ', '-', strtolower(ereg_replace("[^A-Za-z]", "", $browser->getBrowser())));
+		$thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 		$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
 		
 		if(!isset($_COOKIE['unpack'])){
@@ -127,7 +127,6 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 	        $jVer 		= new JVersion();
 			$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
 	        ?>
-	        
 	        <div id="browser-wrap" class="<?php echo $thebrowser . ' ' . $thebrowser.$browserver; ?>">
 	        <?php
 	        // Show a specific template in editable mode.

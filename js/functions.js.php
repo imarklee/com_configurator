@@ -23,6 +23,12 @@ jQuery.noConflict();
 		    this.select();
 		});
 		
+		if($.cookie('save_msg')){
+			$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');	
+			$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
+			$.cookie('save_msg', null);
+		}
+		
 		<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) include 'functions/user.js'; ?>
 	   	
 		/* Generic ----------------------------
@@ -40,7 +46,7 @@ jQuery.noConflict();
 		$("#preferences-form .prefs li:last").addClass("last");
 		
 		<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>
-		$('#loginpass').showPassword('.sp-check', { name: 'show-password' })			
+		$('#loginpass').showPassword('.sp-check', { name: 'show-password' });			
 		<?php } ?>
 		
 		$("#help").hover(function () {
@@ -49,15 +55,13 @@ jQuery.noConflict();
 	      $(this).switchClass("off", "on", 15000);
 	    });
 	
-		$('#system-message').delay(3000, function(){$('#system-message').fadeOut()})
+		$('#system-message').delay(3000, function(){
+			$('#system-message').fadeOut();
+		});
 
-
-		
 		if ($("#toolbar-box div.header").val() == " Configurator "){
-		$("#toolbar-box div.header").text(" Configurator Manage ");
+			$("#toolbar-box div.header").text(" Configurator Manage ");
 		}
-
-
 		
 		if ($("#backgroundsbg_image option:first").val() == ""){
 		$("#backgroundsbg_image option:first").text("None");
@@ -279,26 +283,13 @@ jQuery.noConflict();
 		});
 		
 	$('#install-type input[type="radio"]').click( function(){
-	
+		$(this).attr('checked', 'checked');
 		$('#install-type label.label-selected').removeClass('label-selected');
 		$(this).parent().addClass('label-selected');
-		//$(this).children("#install-type input[type=radio]").click();
-		return false;
 	});
 		
 
 	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) { ?> $('.text_area').simpleautogrow(); <?php } ?>
-					
-	    /* Inputs and checkboxes --------------
-	    ------------------------------------ */
-	    $('.alf-input').focus(function(){
- 			if(this.value == 'username' || this.value == 'password'){ 
- 				$(this).val(''); 
- 			}
- 		}).blur(function(){
- 			if(this.value == ''){ $(this).val($(this).attr('title')); }
- 		});
-
  		
  	   	/* Tabs -------------------------------
 	    ------------------------------------ */
@@ -306,7 +297,7 @@ jQuery.noConflict();
 			cookie: {
 				name: 'main-tabs',
 				expires: 30,
-				path: '/',
+				path: '/'
 		 	}
 		});
 		$('#site-tabs').tabs({
@@ -314,7 +305,7 @@ jQuery.noConflict();
 			cookie: {
 				name: 'site-tabs',
 				expires: 30,
-				path: '/',
+				path: '/'
 		 	}
 		});
 		$('#customize-tabs').tabs({
@@ -322,7 +313,7 @@ jQuery.noConflict();
 			cookie: {
 				name: 'themelet-tabs',
 				expires: 30,
-				path: '/',
+				path: '/'
 		 	} 
 		});
     	$('#blocks-tabs').tabs({
@@ -330,7 +321,7 @@ jQuery.noConflict();
 			cookie: {
 				name: 'block-tabs',
 				expires: 30,
-				path: '/',
+				path: '/'
 		 	} 
 		});
 		$('#plugins-tabs').tabs({
@@ -338,7 +329,7 @@ jQuery.noConflict();
 			cookie: {
 				name: 'plugins-tabs',
 				expires: 30,
-				path: '/',
+				path: '/'
 		 	} 
 		});
 		$('#tools-tabs').tabs({
@@ -346,7 +337,7 @@ jQuery.noConflict();
 			cookie: {
 				name: 'tools-tabs',
 				expires: 30,
-				path: '/',
+				path: '/'
 		 	} 
 		});
 		$('#assets-tabs').tabs({
@@ -354,7 +345,7 @@ jQuery.noConflict();
 			cookie: {
 				name: 'assets-tabs',
 				expires: 30,
-				path: '/',
+				path: '/'
 		 	} 
 		});
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom");
@@ -385,7 +376,6 @@ jQuery.noConflict();
 		    });
 			return false;
 		});
-		
 				
 		$("#toggle-shelf").click(function(){
 			toggleShelf($(this));
@@ -407,8 +397,7 @@ jQuery.noConflict();
 			}
 			return false;
 		}
-	
-		var options = { path: '/', expires: 30 };
+		var options = { path: '/', expires: 30 }
 	
 		$("#themelet-switch a.switch-view").toggle(function(){
 			$(this).addClass("swap");
@@ -425,7 +414,6 @@ jQuery.noConflict();
 				return false;		
 			});
 		}); 
-		
 		
 		$("#backgrounds-switch a.switch-view").toggle(function(){
 			$(this).addClass("swap");
@@ -636,7 +624,7 @@ jQuery.noConflict();
 			           tooltip: 'bottomLeft',
 			           target: 'topRight'
 			        }
-			     },
+			     }
 			});
 			
 			$(this).attr('title', '');
@@ -661,16 +649,15 @@ jQuery.noConflict();
 						color: '#536E28'
 			   		},
 			   		tip: true,
-			   		margin: 0,
+			   		margin: 0
 			   	},
 			   	position: {
 			        corner: {
 			           tooltip: 'bottomLeft',
 			           target: 'topRight'
 			        }
-			     },
+			     }
 			});
-			
 			$(this).attr('title', '');
 	    });
 	    	    
@@ -776,9 +763,7 @@ jQuery.noConflict();
          			background: '#fff',
          			margin: '0px'
 				}
-
 			});
-			
 	   	});
 	   	
 	   	/* Activate functions -----------------
@@ -807,7 +792,7 @@ jQuery.noConflict();
 		   				data: {
 		   					option: 'com_configurator',
 		   					task: 'applytemplate',
-		   					isajax: 'true',
+		   					isajax: 'true'
 		   				},
 			   			success: function(data, textStatus){
 			   		
@@ -893,8 +878,6 @@ jQuery.noConflict();
 								}
 							});
 							return false;
-							
-
 						}
 		   			});
 					
@@ -952,7 +935,7 @@ jQuery.noConflict();
 		   				data: {
 		   					option: 'com_configurator',
 		   					task: 'applytemplate',
-		   					isajax: 'true',
+		   					isajax: 'true'
 		   				},
 		   				success: function(data, textStatus){
 			   			
@@ -1025,7 +1008,7 @@ jQuery.noConflict();
 		   				data: {
 		   					option: 'com_configurator',
 		   					task: 'applytemplate',
-		   					isajax: 'true',
+		   					isajax: 'true'
 		   				},
 			   			success: function(data, textStatus){
 			   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');	
@@ -1265,7 +1248,7 @@ jQuery.noConflict();
 		    		$(this).qtip({
 		       		    content: '<img class="logo-preview-image" src="../morph_assets/logos/'+updatedTitle+'" />',
 					    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
-						    style: { tip: { corner:'bottomMiddle' }, name: 'dark', background: '#fff', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' },
+						style: { tip: { corner:'bottomMiddle' }, name: 'dark', background: '#fff', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' }
 					});
 				});
 				$(".upload-logo").click(function(){
@@ -1285,7 +1268,7 @@ jQuery.noConflict();
 		    			$('.logo-preview').qtip({
 						   	content: '<img src="../morph_assets/logos/'+this.value+'" />',
 						    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
-						    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' },
+						    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' }
 						});
 						return updatedTitle = this.value;
 		    		});
@@ -1501,8 +1484,6 @@ jQuery.noConflict();
 												window.location.reload(true);
 											}
 										});
-
-										
 									}
 								}
 							});
@@ -1842,7 +1823,7 @@ jQuery.noConflict();
 			}
 		}
 		
-		$('td#toolbar-apply a ul li a, #bottom-save a').attr('onclick', '').click(function(){
+		$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(){
 			ptOverlay('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({
@@ -1923,7 +1904,7 @@ jQuery.noConflict();
 					   				data: {
 					   					option: 'com_configurator',
 					   					task: 'applytemplate',
-					   					isajax: 'true',
+					   					isajax: 'true'
 					   				},
 					   				success: function(data, textStatus){
 						   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');	
@@ -2007,7 +1988,7 @@ jQuery.noConflict();
 				cookie: {
 					name: 'welcome-screen',
 					expires: 30,
-					path: '/',
+					path: '/'
 			 	}
 			});
 	    }

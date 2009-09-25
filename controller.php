@@ -263,7 +263,7 @@ class ConfiguratorController extends JController {
 		$database = JFactory::getDBO();
 		$template_name = JRequest::getVar('t');
 		$option = JRequest::getVar('option');
-		
+
 		//$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
 		$params[1] = JRequest::getVar( 'general', null, 'post', 'array' );
 		$params[2] = JRequest::getVar( 'logo', null, 'post', 'array' );
@@ -1109,7 +1109,7 @@ class ConfiguratorController extends JController {
 		$template = 'morph';
 		$background_details = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$image_type = $background_details['type'];
-		$allowed_types = array('image/jpeg','image/png', 'image/jpg', 'image/gif');
+		$allowed_types = array('image/pjpeg','image/jpeg','image/png', 'image/jpg', 'image/gif');
 	
 		if(!in_array($image_type, $allowed_types)){
 			$error = 'error: "This is not a valid background file.<br />Please try again with a valid background (png/gif/jpg)"';

@@ -5,7 +5,10 @@ if(!ob_start("ob_gzhandler")) ob_start();
 }else{
 ob_start();
 }
-header("cache-control: must-revalidate");$offset = 60 * 10000;$expire = "expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";header($expire);
+header("cache-control: must-revalidate");
+$offset = 60 * 10000;
+$expire = "expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
+header($expire);
 
 // browser specific
 if(file_exists('../../../../templates/morph/core/browser.php')){
@@ -13,7 +16,7 @@ include_once('../../../../templates/morph/core/browser.php');
 }
 
 $browser 	= new Browser();
-$thebrowser	= str_replace(' ', '-', strtolower(ereg_replace("[^A-Za-z]", "", $browser->getBrowser())));
+$thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 
 // global
 include('reset.css');

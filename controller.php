@@ -957,7 +957,7 @@ class ConfiguratorController extends JController {
 	}
 	
 	function show_error($err, $type){
-		return '<div class="cfg-message '.$type.'"><div class="error-inner">'.$err.'<div class="error-close"><a href="#">close</a></div></div></div>';
+		return '<div class="cfg-message"><p class="'.$type.'">'.$err.'<a href="#" class="close-msg">close</a></p></div>';
 	}
 	
 	function reset_database(){

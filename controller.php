@@ -956,6 +956,103 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
+	function reset_database(){
+		$db = JFactory::getDBO();
+		$template_dir = JPATH_ROOT . DS .'templates'. DS . 'morph';
+		$themelet_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'themelets';
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
+		
+		if(!isset($_GET['reset_type']) or $_GET['reset_type'] == '') {
+			echo 'error: "No reset type detected. Reset failed.", success: ""';
+			return false;
+		}
+		
+		switch($_GET['reset_type']){
+			case 'prefs':
+				$query = 'truncate table #__configurator_preferences';
+				$db->setQuery($query);
+				$db->query();
+				echo '{ success: "Configurator preferences reset successfully", error: "" }';
+				return true;
+			break;
+			case 'cfg':
+				// get themelet name
+				$query = "select param_value from #__configurator where param_name = 'themelet';";
+				$db->setQuery($query);
+				$c_themelet = $db->loadResult();
+				
+				// truncate table
+				$query = 'truncate table #__configurator';
+				$db->setQuery($query);
+				$db->query();
+				
+				// add morphDetails.xml defaults
+				$template_xml = $template_dir . DS . 'core' . DS . 'morphDetails.xml';
+				$xml_param_loader = new morphXMLLoader($template_xml);
+				$template_xml_params = $xml_param_loader->getParamDefaults();
+
+				// remove the elements grouping from being added to the database
+				$removeParams = array('Color Picker Param','Filelist Param','Folderlist Param','Heading Param','Imagelist Param','List Param','Radio Param','Spacer Param','Text Param','Textarea Param','Themelet Param');
+				foreach($template_xml_params as $key => $val){
+					if(in_array($key, $removeParams)) unset($template_xml_params[$key]);
+				}
+				
+				// add morphDetails.xml defaults to the CFG table
+				foreach($template_xml_params as $param_name => $param_value){
+					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+					$setting->template_name = 'morph';
+					$setting->published = '1';
+					$setting->source = 'templatexml';
+					$setting->param_name = $param_name;
+					$setting->loadByKey();
+					$setting->param_value = $param_value;
+
+					if (!$setting->store(TRUE)) {
+						echo '{ error: "' . $setting->getError() . '", success: "" }';
+						die();
+					}
+
+					unset($setting);
+					$setting = null;
+				}
+				
+				// add themeletDetails.xml to the database
+				$themelet = $themelet_dir . DS . $c_themelet;
+				if(is_file($themelet.DS.'themeletDetails.xml')){
+					$xml_param_loader = new morphXMLLoader($themelet.DS.'themeletDetails.xml');
+					$themelet_xml_params = $xml_param_loader->getParamDefaults();
+
+					foreach($themelet_xml_params as $param_name => $param_value){
+						$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+						$setting->template_name = 'morph';
+						$setting->published = '1';
+						$setting->param_name = $param_name;
+						$setting->loadByKey();
+						$setting->param_value = $param_value;
+						$setting->source = 'themelet';
+
+						if (!$setting->store(TRUE)) {
+							echo '{ error: "' . $setting->getError() . '", success: "" }';
+							die();
+						}
+
+						unset($setting);
+						$setting = null;
+					}
+				}
+				
+				// re-insert themelet
+				$query = "update #__configurator set param_value = '".$c_themelet."', source = 'reset' where param_name = 'themelet';";
+				$db->setQuery($query);
+				$db->query();
+				
+				echo '{ success: "Configurator settings reset successfully", error: ""}';
+				return true;
+			break;
+		}
+		return;
+	}
+	
 	function unpackThemelet($p_filename='', $b){
 
 		$archivename = $p_filename;

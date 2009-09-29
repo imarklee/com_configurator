@@ -91,6 +91,5 @@ $('#reset-settings ul li.action a').click(function(){
 		}, 3000);
 		return false;
 	}
-	
 	return false;
 });

@@ -126,6 +126,19 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 	        $template_dir = JPATH_SITE . DS . 'templates' . DS . 'morph';
 	        $jVer 		= new JVersion();
 			$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
+			
+			
+			
+			if(function_exists('ini_set')){
+				ini_set('memory_limit', '32M');
+			}else{
+				$mem_limit = ini_get('memory_limit');
+				if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit. Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance. <a href="#" id="readmore-memory">click here</a> to find out more.', 'notice');
+			}
+			// temporary error message for styling and JS
+			$mem_limit = ini_get('memory_limit');
+			if(str_replace('M', '', $mem_limit) < 128) echo $this->show_error('We are unable to adjust your memory limit. Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance. <a href="#" id="readmore-memory">click here</a> to find out more.', 'notice');
+			
 	        ?>
 	        <div id="browser-wrap" class="<?php echo $thebrowser . ' ' . $thebrowser.$browserver; ?>">
 	        <?php

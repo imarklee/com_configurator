@@ -2009,7 +2009,7 @@ jQuery.noConflict();
 	    
 	    // prefs
 		function preferencesScreen(){
-			hideScroll();   
+			hideScroll();
 		    $('#preferences-screen').dialog({
 	    		width: '450px',
 	    		bgiframe: true,
@@ -2060,7 +2060,10 @@ jQuery.noConflict();
 			});
 	    }
 	    
-    	$('td#toolbar-preferences a').click(function(){ 
+    	$('td#toolbar-preferences a').click(function(){
+			if($.browser.name == 'opera'){
+				$('#cfgshort_keys1').parent().remove();
+			}
 		    preferencesScreen();
 			return false;
     	});
@@ -2068,7 +2071,10 @@ jQuery.noConflict();
     	// keyboard screen
 		function keyboardScreen(){
 			ptOverlay();
-			hideScroll();
+			if($.browser.name == 'opera'){
+				$('#keyboard-screen').empty();
+				$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard-opera.php');
+			}
 		    $('#keyboard-screen').dialog({
 	    		width: '700px',
 	    		bgiframe: true,
@@ -2084,7 +2090,6 @@ jQuery.noConflict();
 	   			},
 	   			close: function(){
 	   				$.cookie('keys', null);
-	   				showScroll();
 	   				close_ptOverlay();
 	   				$(this).dialog('destroy');
 	   			},

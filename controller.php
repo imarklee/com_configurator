@@ -972,7 +972,7 @@ class ConfiguratorController extends JController {
 				$query = 'truncate table #__configurator_preferences';
 				$db->setQuery($query);
 				$db->query();
-				echo '{ success: "Configurator preferences reset successfully", error: "" }';
+				echo '{ type: "prefs", success: "Configurator preferences reset successfully", error: "" }';
 				return true;
 			break;
 			case 'cfg':
@@ -1046,7 +1046,7 @@ class ConfiguratorController extends JController {
 				$db->setQuery($query);
 				$db->query();
 				
-				echo '{ success: "Configurator settings reset successfully", error: ""}';
+				echo '{ type: "cfg", success: "Configurator settings reset successfully", error: ""}';
 				return true;
 			break;
 		}

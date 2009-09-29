@@ -188,15 +188,6 @@ function tooltip(tid){
 
 // capture keystrokes
 $(window).keypress(function(e){
-	var key = (e.keyCode || e.which);
-	if(keycode == 83 && e.metaKey && !e.ctrlKey) alert(e.getPreventDefault());
-	e.preventDefault();
-	if(keycode == 83 && e.metaKey && !e.ctrlKey) alert(e.getPreventDefault());
-	return false;
-});
-
-
-$(window).keypress(function(e){
 	if($.cookie('am_logged_in') && !$.cookie('noshortkey')){
 		var keycode = (e.keyCode || e.which);
 		var os = $.os.name;

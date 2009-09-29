@@ -2204,6 +2204,7 @@ jQuery.noConflict();
 
 		<?php include 'functions/scroll.js'; ?>
 		<?php include 'functions/dbmanager.js'; ?>
+		<?php include 'functions/reset.js'; ?>
 		
 		/* Lost Password ------------------
 		-------------------------------- */

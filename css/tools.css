@@ -34,4 +34,4 @@ table.table .filename{text-align:left;padding:2px 5px;}
 #reset-settings li li{font-weight:normal;padding:0;border-bottom:0;}
 #reset-settings .action{padding:1em 0 1em 1.2em;border-bottom:0;background:#ddd;}
 #reset-settings .action a{margin: 8px 0 0 5px;padding:5px 8px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px; border:1px solid #aaa; display:block; background: #bbb; color: #2d2d2d; width: 100px;}
-#reset-settings .action a:hover{background: #ccc; border:1px solid #aaa; color: #6d6d6d; width: 100px; text-decoration: none;}
+#reset-settings .action a:hover{background: #ccc; border:1px solid #aaa; color: #6d6d6d6; width: 100px; text-decoration: none;}

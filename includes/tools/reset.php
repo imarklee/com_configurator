@@ -12,7 +12,7 @@ $curr_themelet = $db->loadResult($query);
 		<li><label><input type="checkbox" name="reset-cfg" value="cfg" /> Reset your Configurator Settings</label></li>
 	    <li class="action">
 			<ul>
-				<li><label><input type="checkbox" name="reset-confirm" id="reset-confirm" value="true" />Please confirm that you wish to reset your tables.</label>
+				<li><label><input type="checkbox" name="reset-confirm" id="reset-confirm" value="true" /> Please confirm that you wish to reset your tables.</label></li>
 			</ul>
 	    	<a href="#" name="reset-do" id="reset-do">Reset</a>
 	    </li>

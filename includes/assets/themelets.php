@@ -45,30 +45,28 @@ if(is_dir($themelet_dir)) {
 				
 			<li class="themelet-item <?php echo $themelet_class; ?>">
 				<div class="assets-inner">
-				<h3><?php echo $themelet_uc; ?><span class="update-link"> (<a href="#">Download Update</a>)</span></h3>
-				<img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail">
-				<ul name="<?php echo $themelet_arr['foldername']; ?>" type="assets" class="themelet-summary assets-summary">
-					<li type="current" class="tl-installed"><strong>Installed version: </strong><span><?php echo $themelet_arr['version']; ?></span></li>
-					<li type="latest" class="tl-current"><strong>Current version: </strong><span></span></li>
-					<li type="updated" class="tl-date"><strong>Last update: </strong><span></span></li>
-				</ul>
-				<h4>Options for this file:</h4>
-				<ul class="buttons">
-					<li class="btn-activate"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Activate <?php echo $themelet_uc; ?>"><span>Activate</span></a></li>
-					<li class="btn-delete"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Delete <?php echo $themelet_uc; ?>"><span>Delete</span></a></li>
-					<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" title="Preview <?php echo $themelet_uc; ?>"><span>Preview</span></a></li>
-					<li class="btn-update"><a href="#" title="Download update"><span>Update</span></a></li>
-				</ul>
+					<h3><?php echo $themelet_uc; ?><span class="update-link"> (<a href="#">Download Update</a>)</span></h3>
+					<img src="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail" />
+					<ul name="<?php echo $themelet_arr['foldername']; ?>" type="assets" class="themelet-summary assets-summary">
+						<li type="current" class="tl-installed"><strong>Installed version: </strong><span><?php echo $themelet_arr['version']; ?></span></li>
+						<li type="latest" class="tl-current"><strong>Current version: </strong><span></span></li>
+						<li type="updated" class="tl-date"><strong>Last update: </strong><span></span></li>
+					</ul>
+					<h4>Options for this file:</h4>
+					<ul class="buttons">
+						<li class="btn-activate"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Activate <?php echo $themelet_uc; ?>"><span>Activate</span></a></li>
+						<li class="btn-delete"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Delete <?php echo $themelet_uc; ?>"><span>Delete</span></a></li>
+						<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet . DS .'themelet_thumb.png'; ?>" title="Preview <?php echo $themelet_uc; ?>"><span>Preview</span></a></li>
+						<li class="btn-update"><a href="#" title="Download update"><span>Update</span></a></li>
+					</ul>
 				</div>
 			</li>	
 			<?php }	
 			} else { ?>
-				
 				<div class="no-assets">
 					There are currently no themelets in your assets folder. <a href="#" class="upload-themelet">Upload a themelet?</a>
 				</div>
-					
-				<?php }	?>
+			<?php }	?>
 		</ul>
 	</div>
 </div>

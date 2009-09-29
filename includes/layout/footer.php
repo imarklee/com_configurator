@@ -5,14 +5,14 @@
 			<h4>Stay updated</h4>
 			<ul>
 				<li><a href="http://www.prothemer.com/blog" target="_blank">Prothemer blog</a></li>
-				<li><a href="http://list-manage.com/subscribe?u=716086a59f94568360e58ed2d&id=2519c95511" target="_blank">Subscribe to newsletter</a></li>
+				<li><a href="http://list-manage.com/subscribe?u=716086a59f94568360e58ed2d&amp;id=2519c95511" target="_blank">Subscribe to newsletter</a></li>
 				<li><a href="http://www.joomlajunkie.com/secure" target="_blank">Login to the club</a></li>
 			</ul>
 		</li>
 		<li class="fb">
 			<h4>Help &amp; Support</h4>
 			<ul>
-				<li><a href="http://www.joomlajunkie.com/contact/index.php?act=kb&code=cat&id=7" target="_blank">Frequently asked questions</a></li>
+				<li><a href="http://www.joomlajunkie.com/contact/index.php?act=kb&amp;code=cat&amp;id=7" target="_blank">Frequently asked questions</a></li>
 				<li><a href="http://www.joomlajunkie.com/member/#morph" target="_blank">Morph beta support forum</a></li>
 				<li><a href="http://www.joomlajunkie.com/member/downloads/morph-beta-21/" target="_blank">Download latest versions</a></li>
 			</ul>

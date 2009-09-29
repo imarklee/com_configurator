@@ -24,6 +24,6 @@
 		<p>There are four inset positions available &amp; each can be configured differently. 
 		The diagram below indicates how the inset positions are structured:</p>
 		<p><img src="components/com_configurator/images/insets-layout.png" alt="insets layout 
-		map" border="0" width="355" height="168" />
+		map" border="0" width="355" height="168" /></p>
 	</div>
 </div>

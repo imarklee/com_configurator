@@ -16,7 +16,7 @@
 			<li class="assets-icon"><a href="#assets">Your Assets</a></li>
 			<li class="help-icon last"><a href="#help">Help</a></li>
 		</ul>
-		<div id="site" class="ui-tabs-panel">					
+		<div id="site" class="ui-tabs-panel">
 			<div id="site-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['site-desc'])) { include dirname(__FILE__) . '/../general/desc-site.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
@@ -99,14 +99,16 @@
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-backupmgr"><a href="#backup-manager">Database Backups</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
+					<li class="icon-reset"><a href="#reset-settings">Reset</a></li>
 				</ul>
 				<?php include dirname(__FILE__) . '/../tools/uploader.php'; ?>
 				<?php include dirname(__FILE__) . '/../tools/backup.php'; ?>
 				<?php include dirname(__FILE__) . '/../tools/database.php'; ?>
+				<?php include dirname(__FILE__) . '/../tools/reset.php'; ?>
 			</div>
 		</div>
 
-		<div id="assets" class="ui-tabs-panel ui-tabs-hide">	
+		<div id="assets" class="ui-tabs-panel ui-tabs-hide">
 			<div id="assets-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['assets-desc'])) { include dirname(__FILE__) . '/../assets/desc-assets.php'; } ?>
 				<ul class="ui-helper-clearfix">
@@ -115,7 +117,7 @@
 					<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
 					<li class="icon-iphone"><a href="#assets-iphone">iPhone</a></li>
 				</ul>
-				<a class="icon-backup" href="../administrator/index.php?option=com_configurator&task=assets_backup&format=raw">Download a backup of your assets</a>			
+				<a class="icon-backup" href="../administrator/index.php?option=com_configurator&amp;task=assets_backup&amp;format=raw">Download a backup of your assets</a>			
 				<?php include dirname(__FILE__) . '/../assets/themelets.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/logos.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/backgrounds.php'; ?>
@@ -133,18 +135,15 @@
 	<?php if($cfg_pref->show_footer == 1){ include dirname(__FILE__) . '/../layout/footer.php'; } ?>					
 						
 </div>
-<input type="hidden" name="option" value="<?php echo $option; ?>"/>
-<input type="hidden" name="t" value="morph"/>
-<input type="hidden" name="task" value="applytemplate" />
 <?php if($cfg_pref->bottom_save == 1){ ?>
 <div id="bottom-save" style="display:none;"><a href="#">Save your settings</a></div>
 <?php } ?>
+<input type="hidden" name="option" value="<?php echo $option; ?>"/>
+<input type="hidden" name="t" value="morph"/>
+<input type="hidden" name="task" value="applytemplate" />
 </form>
 
-
 <div id="getting-started" style="display:none;"></div>
-<div id="preferences-screen" style="display:none;">
-	<?php include dirname(__FILE__) . '/../layout/preferences.php'; ?>
-</div>
+<div id="preferences-screen" style="display:none;"><?php include dirname(__FILE__) . '/../layout/preferences.php'; ?></div>
 <div id="keyboard-screen" style="display:none;"></div>
-<div class="toolguides"></div>
+<div class="toolguides" style="display:none;"></div>

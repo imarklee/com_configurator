@@ -12,7 +12,7 @@ $('#database-manager ul li ul li input').click(function(){
 	}
 });
 
-$('#database-manager ul li.action input').click(function(){
+$('#database-manager ul li.action a').click(function(){
 	var action = $('#database-manager ul li input[type="radio"]:checked').val();
 	
 	$('<div class="dialog-msg"></div>').dialog({

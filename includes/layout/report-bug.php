@@ -22,10 +22,10 @@ $component_arr = $component_details['install'];
 	<fieldset>
 		<?php if(isset($_COOKIE['am_logged_in'])){ ?>
 			<span style="display: none;">
-			<label for="name">Your name</label>
-			<input type="text"name="name" id="ff-name" class="text ui-widget-content ui-corner-all" value="<?php echo $_COOKIE['member_name']; ?> <?php echo $_COOKIE['member_surname']; ?>" />
+			<label for="ff-name">Your name</label>
+			<input type="text" name="name" id="ff-name" class="text ui-widget-content ui-corner-all" value="<?php echo $_COOKIE['member_name']; ?> <?php echo $_COOKIE['member_surname']; ?>" />
 			
-			<label for="email">Your email address</label>
+			<label for="ff-email">Your email address</label>
 			<input type="text" name="email" id="ff-email" value="<?php echo $_COOKIE['member_email']; ?>" class="text ui-widget-content ui-corner-all" />
 			</span>
 		<?php } ?>
@@ -49,19 +49,19 @@ $component_arr = $component_details['install'];
 			</li>
 		
 			<li class="fb-product">
-				<label for="category">In relation to:</label>
+				<label>In relation to:</label>
 				<ul class="inline">
-					<li class="fb-cfg"><label for="product_configurator"><input type="radio" name="category" value="7637" id="product_configurator" /> <span>Configurator</span></label></li>
-					<li class="fb-morph"><label for="product_morph"><input type="radio" name="category" value="7635" id="product_morph" /> <span>Morph</span></label></li>
+					<li class="fb-cfg"><label for="product_configurator"><input type="radio" name="category" value="7637" id="product_configurator" /><span>Configurator</span></label></li>
+					<li class="fb-morph"><label for="product_morph"><input type="radio" name="category" value="7635" id="product_morph" /><span>Morph</span></label></li>
 				</ul>
 			</li>
 
 			<li class="fb-subject">
-				<label for="title">Subject:</label>
+				<label for="ff-title">Subject:</label>
 				<input type="text" name="title" id="ff-title" value="<?php if(!isset($_COOKIE['am_logged_in'])){ ?>Unable to login<?php } ?>" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-message">
-				<label for="description">Message:</label>
+				<label for="ff-description">Message:</label>
 				<textarea name="description" id="ff-description" rows="4" cols="40" class="text ui-widget-content ui-corner-all"></textarea>
 			</li>
 			<li class="fb-buttons">
@@ -70,13 +70,16 @@ $component_arr = $component_details['install'];
 			</li>
 		</ul>
 	</fieldset>
-	<textarea name="specs" style="display:none;"rows="4" cols="40" ></textarea>
+	<textarea name="specs" style="display:none;" rows="4" cols="40"></textarea>
+	<?php
+	$url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
+	?>
 	<div id="ff-specs" style="display:none;">
 		<p><strong>Configurator: </strong>Version <?php echo $component_arr['version']; ?><br />
 		<strong>Morph: </strong>Version <?php echo $template_arr['version']; ?><br />
 		<strong>Themelet: </strong><?php echo $themelet_arr['name']; ?> - Version <?php echo $themelet_arr['version']; ?><br />
 		<strong>Joomla: </strong>Version <?php echo JVERSION; ?><br />
-		<strong>URL: </strong><?php echo $url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?><br />
+		<strong>URL: </strong><?php echo urlencode($url); ?><br />
 		<strong>Browser / OS: </strong> <?php echo $_SERVER['HTTP_USER_AGENT']; ?></p>
 	</div>
 	</form>

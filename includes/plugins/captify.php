@@ -11,12 +11,11 @@
 		<p>To use, simply add an image to your Joomla article using the default insert image button, then in the image lightbox:</p>
 	    <ol>
     		<li>Add the text you would like displayed in the <strong>image description</strong> input.</li>
-    		<li>Optionally add a <strong>title</strong> describing the image (recommended).
+    		<li>Optionally add a <strong>title</strong> describing the image (recommended).</li>
     		<li>Tick the <strong>caption</strong> checkbox.</li>
     		<li>Set the <strong>image alignment</strong>.</li>
     		<li>Click the <strong>insert</strong> button on the top right of the popup.</li>
         </ol>
-		<p></p>
 	</div>
 </div>
 

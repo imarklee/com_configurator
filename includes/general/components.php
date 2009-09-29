@@ -14,7 +14,7 @@ function innerLayouts($id){
 	$query = $db->setQuery("select param_value from #__configurator where param_name = 'id_".$id."';");
 	$res = $db->loadResult($query);
 	
-	$select = '<select id="'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
+	$select = '<select id="id_'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
 		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Inner Default</option>'; } 
 		else { $select .= '<option value="default">Inner Default</option>'; }
 		
@@ -43,7 +43,7 @@ function outerLayouts($id){
 	$query = $db->setQuery("select param_value from #__configurator where param_name = 'od_".$id."';");
 	$res = $db->loadResult($query);
 	
-	$select = '<select id="'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
+	$select = '<select id="od_'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
 		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Outer Default</option>'; }
 		else { $select .= '<option value="default">Outer Default</option>'; }
 		

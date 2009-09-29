@@ -2,71 +2,37 @@
  * Keyboard Specific JS Functions
  * @author: Byron Rode
  */
-
-$(window).keydown(function(e){
-	if($.cookie('am_logged_in') && !$.cookie('noshortkey')){
-		var keycode = (e.keyCode || e.which);
-		var os = $.os.name;
-		
-		function save(){
-			ptOverlay('Saving Settings...');
-			if($.cookie('change_themelet')){
-				$.ajax({
-					url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-					method: 'post',
-					success: function(ts, data){
-						return true;
-					}
-				});
-				$.ajax({
-					url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-					method: 'post',
-					dataType: 'json',
-					success: function(data, ts){
-						if(data.exists == 'true'){
-							close_ptOverlay();
-							$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
-					   			bgiframe: true,
-					   			autoOpen: true,
-					   			minHeight: 20,
-					   			width: 500,
-					   			stack: false,
-					   			modal: true, 
-					   			title: 'Activate',
-					   			overlay: {
-					   				'background-color': '#000', 
-					   				opacity: 0.8 
-					   			},
-					   			close: function(){
-									$(this).dialog('destroy');
-									$('#processing').css({
-										'display': 'block',
-										'z-index': '9998',
-										position: 'absolute',
-								        top: 0,
-								        left: 0,
-								        width: arrPageSizes[0],
-										height: arrPageSizes[1]
-									});
-									setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-					   			},
-								buttons: { 
-									'Themelet Defaults': function(){
-										$(this).dialog('close');
-						   			},
-						   			'Previous Settings': function(){
-						   				$.ajax({
-											url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-											method: 'post',
-											success: function(data){
-												return true;
-											}
-										});
-						   				$(this).dialog('close');
-						   			}
-						   		}
-						   	});
-						}else{
+function save(){
+	ptOverlay('Saving Settings...');
+	if($.cookie('change_themelet')){
+		$.ajax({
+			url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+			method: 'post',
+			success: function(ts, data){
+				return true;
+			}
+		});
+		$.ajax({
+			url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+			method: 'post',
+			dataType: 'json',
+			success: function(data, ts){
+				if(data.exists == 'true'){
+					close_ptOverlay();
+					$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
+			   			bgiframe: true,
+			   			autoOpen: true,
+			   			minHeight: 20,
+			   			width: 500,
+			   			stack: false,
+			   			modal: true, 
+			   			title: 'Activate',
+			   			overlay: {
+			   				'background-color': '#000', 
+			   				opacity: 0.8 
+			   			},
+			   			close: function(){
+							$(this).dialog('destroy');
 							$('#processing').css({
 								'display': 'block',
 								'z-index': '9998',
@@ -76,161 +42,168 @@ $(window).keydown(function(e){
 						        width: arrPageSizes[0],
 								height: arrPageSizes[1]
 							});
-							setTimeout(function(){ 
-								$('#templateform').submit(function(){	
-									$(this).ajaxSubmit({
-										type: 'POST',
-										url: '../administrator/index.php?format=raw&isajax=true&task=applytemplate&option=com_configurator',
-										data: {
-											isajax: 'true',
-											task: 'applytemplate',
-											option: 'com_configurator'
-										},
-										success: function(d){
-											alert(d);
-										}
-									});
+							setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+			   			},
+						buttons: { 
+							'Themelet Defaults': function(){
+								$(this).dialog('close');
+				   			},
+				   			'Previous Settings': function(){
+				   				$.ajax({
+									url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+									method: 'post',
+									success: function(data){
+										return true;
+									}
 								});
-								$('#templateform').trigger('submit');
-								//submitbutton('applytemplate'); 
-							}, 1000);
-						}
-					}
-				});
-			}else{
-				setTimeout(function(){
-					
-					alert(document.adminForm.task.value);
-					return;
-					$('#templateform').submit(function(){	
-						$(this).ajaxSubmit({
-							type: 'POST',
-							url: '../administrator/index.php?format=raw&isajax=true&task=applytemplate&option=com_configurator',
-							data: {
-								isajax: 'true',
-								task: 'applytemplate',
-								option: 'com_configurator'
-							},
-							success: function(d){
-								alert(d);
-							}
-						});
+				   				$(this).dialog('close');
+				   			}
+				   		}
+				   	});
+				}else{
+					$('#processing').css({
+						'display': 'block',
+						'z-index': '9998',
+						position: 'absolute',
+				        top: 0,
+				        left: 0,
+				        width: arrPageSizes[0],
+						height: arrPageSizes[1]
 					});
-					$('#templateform').trigger('submit');
-			 	}, 1000);
+					setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+				}
 			}
-			e.preventDefault();
-			return false;
-		}
-		
-		function fullscreen(){
-			$('#minwidth-body').toggleClass("full-mode");
-			$('#fullscreen').toggleClass("normal-mode");
-			if($('#fullscreen a').text() == 'Fullscreen'){ 
-				$('#fullscreen a').text('Normal'); 
-				$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
-			}else{ 
-				$('#fullscreen a').text('Fullscreen'); 
-				$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
-			}
-			e.preventDefault();
-			return false;
-		}
-		
-		function preview(){
-			var thisurl = $('.preview a').attr('href');
-			window.open(thisurl);
-			e.preventDefault();
-			return false;
-		}
-		
-		function previewTpl(){
-			var thisurl = $('.preview a').attr('href');
-			window.open(thisurl+'?tp=1');
-			e.preventDefault();
-			return false;
-		}
-		
-		function info(){
-			if(!$.cookie('info')){
-				$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
-			    	return welcomeScreen();
-			    });
-			    $.cookie('info', 'open');
-			}else{
-				$('#getting-started').dialog("destroy");
-				$.cookie('info', null);
-			}
-			e.preventDefault();
-			return false;
-		}
-		
-		function bugreport(){
-			if(!$.cookie('bug')){
-				$('#report-bug').dialog('open');
-				$.cookie('bug', 'open');
-			}else{
-				$('#report-bug').dialog("close");
-				$.cookie('bug', null);
-			}
-			e.preventDefault();
-			return false;
-		}
-		
-		function prefs(){
-			if(!$.cookie('prefs')){
-			   	preferencesScreen();
-			    $.cookie('prefs', 'open');
-			}else{
-				$('#preferences-screen').dialog("close");
-				$.cookie('prefs', null);
-			}
-			e.preventDefault();
-			return false;
-		}
-		
-		function keyboard(){
-			if(!$.cookie('keys')){
-				$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard.php', function(){
-			    	keyboardScreen();
-			    });
-			    $.cookie('keys', 'open');
-			}else{
-				$.cookie('keys', null);
-				$('#keyboard-screen').dialog("close");
-			}
-			e.preventDefault();
-			return false;
-		}
-		
-		function logout(){
-			if(!$.cookie('logout-toggle')){
-				logoutCfg();
-			    $.cookie('logout-toggle', 'show');
-			}else{
-				$.cookie('logout-toggle', null);
-				$('#logout-message').dialog('close');
-				showScroll();
-			}
-			e.preventDefault();
-			return false;
-		}
-		
-		function toggletop(){
-			toggleShelf();
-			e.preventDefault();
-			return false;
-		}
-		
-		function tooltip(tid){
-			toolGuides(tid);
-			e.preventDefault();
-			return false;
-		}
+		});
+	}else{
+		setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+	}
+	e.preventDefault();
+	return false;
+}
+
+function fullscreen(){
+	$('#minwidth-body').toggleClass("full-mode");
+	$('#fullscreen').toggleClass("normal-mode");
+	if($('#fullscreen a').text() == 'Fullscreen'){ 
+		$('#fullscreen a').text('Normal'); 
+		$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
+	}else{ 
+		$('#fullscreen a').text('Fullscreen'); 
+		$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
+	}
+	e.preventDefault();
+	return false;
+}
+
+function preview(){
+	var thisurl = $('.preview a').attr('href');
+	window.open(thisurl);
+	e.preventDefault();
+	return false;
+}
+
+function previewTpl(){
+	var thisurl = $('.preview a').attr('href');
+	window.open(thisurl+'?tp=1');
+	e.preventDefault();
+	return false;
+}
+
+function info(){
+	if(!$.cookie('info')){
+		$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
+	    	return welcomeScreen();
+	    });
+	    $.cookie('info', 'open');
+	}else{
+		$('#getting-started').dialog("destroy");
+		$.cookie('info', null);
+	}
+	e.preventDefault();
+	return false;
+}
+
+function bugreport(){
+	if(!$.cookie('bug')){
+		$('#report-bug').dialog('open');
+		$.cookie('bug', 'open');
+	}else{
+		$('#report-bug').dialog("close");
+		$.cookie('bug', null);
+	}
+	e.preventDefault();
+	return false;
+}
+
+function prefs(){
+	if(!$.cookie('prefs')){
+	   	preferencesScreen();
+	    $.cookie('prefs', 'open');
+	}else{
+		$('#preferences-screen').dialog("close");
+		$.cookie('prefs', null);
+	}
+	e.preventDefault();
+	return false;
+}
+
+function keyboard(){
+	if(!$.cookie('keys')){
+		$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard.php', function(){
+	    	keyboardScreen();
+	    });
+	    $.cookie('keys', 'open');
+	}else{
+		$.cookie('keys', null);
+		$('#keyboard-screen').dialog("close");
+	}
+	e.preventDefault();
+	return false;
+}
+
+function logout(){
+	if(!$.cookie('logout-toggle')){
+		logoutCfg();
+	    $.cookie('logout-toggle', 'show');
+	}else{
+		$.cookie('logout-toggle', null);
+		$('#logout-message').dialog('close');
+		showScroll();
+	}
+	e.preventDefault();
+	return false;
+}
+
+function toggletop(){
+	toggleShelf();
+	e.preventDefault();
+	return false;
+}
+
+function tooltip(tid){
+	toolGuides(tid);
+	e.preventDefault();
+	return false;
+}
+
+// capture keystrokes
+$(window).keypress(function(e){
+	var key = (e.keyCode || e.which);
+	if(keycode == 83 && e.metaKey && !e.ctrlKey) alert(e.getPreventDefault());
+	e.preventDefault();
+	if(keycode == 83 && e.metaKey && !e.ctrlKey) alert(e.getPreventDefault());
+	return false;
+});
+
+
+$(window).keypress(function(e){
+	if($.cookie('am_logged_in') && !$.cookie('noshortkey')){
+		var keycode = (e.keyCode || e.which);
+		var os = $.os.name;
 		
 		if(os == 'mac'){
-			if(keycode == 224 || keycode == 91 || keycode == 17){ return false; } // disable keycode return on CMD key
-			if(keycode == 83 && e.metaKey && !e.ctrlKey){ return save(); }
+			if(keycode == 224 || keycode == 91 || keycode == 17){ e.preventDefault(); return false; } // disable keycode return on CMD key
+			if(keycode == 83 && e.metaKey && !e.ctrlKey){ e.preventDefault(); save(); return false; }
 			if(keycode == 70 && e.metaKey && !e.ctrlKey){ return fullscreen(); }
 			if(keycode == 79 && e.metaKey && !e.ctrlKey){ return preview(); }
 			if(keycode == 191 && e.metaKey && !e.ctrlKey){ return previewTpl(); }
@@ -250,7 +223,7 @@ $(window).keydown(function(e){
 			
 		}else{
 			if(keycode == 17){ return false; } // disable keycode return on CTRL key
-			if(keycode == 83 && (e.ctrlKey || e.metaKey)){ return save(); }
+			if(keycode == 83 && (e.ctrlKey || e.metaKey)){ e.preventDefault(); return save(); }
 			if(keycode == 70 && (e.ctrlKey || e.metaKey)){ 
 				if($.browser.name == 'safari'){
 					e.preventDefault();

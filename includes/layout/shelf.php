@@ -3,19 +3,15 @@ $template_dir = JPATH_SITE . DS . 'templates' . DS . 'morph/';
 $template_url = JURI::root() . 'templates/morph/';
 $themelet_url = JURI::root() . 'morph_assets/themelets/';
 $component_url = JURI::root() . 'administrator/components/com_configurator/'; 
-							
 $template_xml = $template_url . 'templateDetails.xml';
 $themelet_xml = $themelet_url . $params->get('themelet') .'/themeletDetails.xml';
 $component_xml = $component_url . 'configurator.xml';
-
 $template_details = xml2array($template_xml);
 $themelet_details = xml2array($themelet_xml);
 $component_details = xml2array($component_xml);
-
 $template_arr = $template_details['install'];
 $themelet_arr = $themelet_details['install'];
 $component_arr = $component_details['install'];
-
 setcookie('current_themelet', $themelet_arr['foldername']); ?>
 
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
@@ -39,12 +35,12 @@ setcookie('current_themelet', $themelet_arr['foldername']); ?>
 					<dd class="icon"></dd>
 	
 					<dt name="morph" type="shelf" id="us-morph">Morph</dt>
-					<dd class="current"><span title="Your installed version is <?php echo $template_arr['version']; ?>. Click on the help link above for more information."><?php echo $template_arr['version']; ?></dd>
+					<dd class="current"><span title="Your installed version is <?php echo $template_arr['version']; ?>. Click on the help link above for more information."><?php echo $template_arr['version']; ?></span></dd>
 					<dd class="latest"></dd>
 					<dd class="icon"></dd>
 				
 					<dt name="<?php echo $themelet_arr['foldername']; ?>" type="shelf" id="us-themelet"><?php echo $themelet_arr['name']; ?></dt>
-					<dd class="current"><span title="Your installed version is <?php echo $themelet_arr['version']; ?>. Click on the help link above for more information."><?php echo $themelet_arr['version']; ?></dd>
+					<dd class="current"><span title="Your installed version is <?php echo $themelet_arr['version']; ?>. Click on the help link above for more information."><?php echo $themelet_arr['version']; ?></span></dd>
 					<dd class="latest"></dd>
 					<dd class="icon"></dd>						
 				</dl>

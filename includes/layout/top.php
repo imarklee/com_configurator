@@ -9,7 +9,6 @@
 				<h4>Quick tips on using Morph &amp; Configurator:</h4>
 				<div id="tips-content">
 				<?php
-				 
 					foreach(array_shuffle(showTips()) as $tip){
 						echo '<p style="display:none;">'.$tip.'</p>';
 					}

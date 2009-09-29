@@ -99,7 +99,7 @@
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-backupmgr"><a href="#backup-manager">Database Backups</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
-					<li class="icon-reset"><a href="#reset-settings">Reset</a></li>
+					<li class="icon-reset"><a href="#reset-settings">Reset Settings</a></li>
 				</ul>
 				<?php include dirname(__FILE__) . '/../tools/uploader.php'; ?>
 				<?php include dirname(__FILE__) . '/../tools/backup.php'; ?>

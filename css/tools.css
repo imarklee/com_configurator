@@ -25,11 +25,11 @@ table.table th{border:1px solid #ccc;background:#eee;}
 table.table td{border:1px solid #ccc;padding:2px 5px;text-align:center;}
 table.table .filename{text-align:left;padding:2px 5px;}
 
-#reset-settings{font-family:arial;}
-#reset-settings div.warning { margin-bottom:1.5em;border:5px solid #EF9700; }
+#reset-settings{font-family:arial;overflow:hidden;}
+#reset-settings div.warning { margin-bottom:1.5em;border:5px solid #EF9700;width:46%;float:right; }
 #reset-settings div.warning div.warning-inner{margin:0;padding:1em 1em 1em 2.8em;color:#AF3E00;font:normal 15px/20px arial;background: #FFDC9F url('../images/splash-updates.png') no-repeat 12px 26px;border:1px solid #AF3E00;}
-#reset-settings ul{list-style:none;margin:0;padding:0;clear:both;display:block;float:none;width:50%;background:#eee;border:1px solid #ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
-#reset-settings ul ul{margin:5px 0 0 5px;background:#fff;padding:1em;width:395px;}
+#reset-settings ul{list-style:none;margin:0;padding:0;display:block;float:left;width:50%;background:#eee;border:1px solid #ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
+#reset-settings ul ul{margin:5px 0 0 5px;background:#fff;padding:1em;width:88%;float:none;clear:none;}
 #reset-settings li{font-weight:bold;margin:0;padding:1em 1em 1.5em 1em;border-bottom:1px solid #ccc;}
 #reset-settings li li{font-weight:normal;padding:0;border-bottom:0;}
 #reset-settings .action{padding:1em 0 1em 1.2em;border-bottom:0;background:#ddd;}

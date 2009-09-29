@@ -58,6 +58,37 @@ jQuery.noConflict();
 		$('#system-message').delay(3000, function(){
 			$('#system-message').fadeOut();
 		});
+		$('.cfg-message a.close-msg').click(function(){
+			$(this).parent().fadeOut();
+			$.cookie('notice', 'memory', { expires: 730 });
+			return false;
+		})
+		
+		function notice_dialog(title, file, link_id){
+			$('<div class="toolguides"></div>').dialog({
+				bgiframe: true,
+				autoOpen: false,
+				minHeight: 20,
+				stack: false,
+				modal: true, 
+				width: 700,
+				height: 700,
+				title: title,
+				overlay: {
+					'background-color': '#000', 
+					opacity: 0.8 
+				}
+		   	});
+		
+			$('a'+link_id).click(function(){
+				$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+file, function(){
+					$('.toolguides').dialog('open');
+				});
+		    	return false;
+			});
+		}
+		
+		notice_dialog('Memory Limit', 'memory_limit.php', '#readmore-memory');
 
 		if ($("#toolbar-box div.header").val() == " Configurator "){
 			$("#toolbar-box div.header").text(" Configurator Manage ");

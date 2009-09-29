@@ -129,17 +129,8 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 	        ?>			
 	        <div id="browser-wrap" class="<?php echo $thebrowser . ' ' . $thebrowser.$browserver; ?>">
 			<?php
-			if(function_exists('ini_set')){
-				ini_set('memory_limit', '32M');
-			}else{
-				$mem_limit = ini_get('memory_limit');
-				if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit. Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance. <a href="#" id="readmore-memory">click here</a> to find out more.', 'notice');
-			}
-			// temporary error message for styling and JS
-			$mem_limit = ini_get('memory_limit');
-			if(str_replace('M', '', $mem_limit) < 128) echo $this->show_error('We are unable to adjust your memory limit. Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance. <a href="#" id="readmore-memory">click here</a> to find out more.', 'notice');
-	        
-	        // Show a specific template in editable mode.
+		  	
+			// Show a specific template in editable mode.
 	        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>			
 			<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 				include 'includes/layout/login.php';
@@ -150,6 +141,12 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 		        }else{
 		        	setcookie('noupdates', 'true', time()+3600);
 		        }
+				
+				if(function_exists('ini_set')){ ini_set('memory_limit', '32M'); 
+				}else{
+					$mem_limit = ini_get('memory_limit');
+					if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit. Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance. <a href="#" id="readmore-memory">click here</a> to find out more.', 'notice');
+				}
 				include 'includes/layout/manage.php';
 			} ?>
 			</div>

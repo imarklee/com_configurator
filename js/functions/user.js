@@ -17,7 +17,6 @@ function getUpdates(checknow){
 	return false;
 };
 updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', 'ul.themelet-summary');
-
 function showUpdates(e, callback){
 	
 	if($.cookie('updates') == null){
@@ -79,9 +78,8 @@ function showUpdates(e, callback){
 			return;
 		
 	}
-	return;
+	return false;
 }
-
 showUpdates(updEl);
 
 // refresh versions on click
@@ -90,13 +88,16 @@ $('.updates-refresh-link').click(function(){
 		$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
 	});
 	getUpdates(true);
-	setTimeout(function(){
-		showUpdates(updEl, function(){
-			$('.updates-msg').remove();
-			$('#updates-summary dl').fadeTo('fast', 1);
+	setTimeout(
+		function(){
+			showUpdates(updEl, function(){
+				$('.updates-msg').remove();
+				$('#updates-summary dl').fadeTo('fast', 1);
+				return false;
+			});
 		return false;
-		});
-	}, 2000);
+		}
+	, 2000);
 	return false;
 });
 

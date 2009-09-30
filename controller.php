@@ -189,11 +189,18 @@ class ConfiguratorController extends JController {
 
 	function assets_backup(){
 		$assets = JPATH_ROOT .DS.'morph_assets';
-		JArchive::create(JPATH_ROOT.DS.'assets_backup',$assets, 'gz', '', JPATH_ROOT, true);
-		header('Content-disposition: attachment; filename=assets_backup.gz');
-		header('Content-type: application/x-gzip');
-		readfile(JPATH_ROOT.DS.'assets_backup.gz');
-		//return false;		
+		JArchive::create(JPATH_ROOT.DS.'morph_assets',$assets, 'gz', '', JPATH_ROOT, true);
+		header('Pragma: public');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Cache-Control: private',false);
+		header('Content-Type: application/x-gzip');
+		header('Content-Disposition: attachment; filename="'.basename(JPATH_ROOT .DS.'morph_assets.gz').'"');
+		header('Content-Transfer-Encoding: binary');
+		header('Content-Length: '.filesize(JPATH_ROOT .DS.'morph_assets.gz')); 
+		readfile(JPATH_ROOT .DS.'morph_assets.gz');
+		JFile::delete(JPATH_ROOT .DS.'morph_assets.gz');
+		exit();
 	}
 	
 	function handle_db_backup(){
@@ -975,6 +982,7 @@ class ConfiguratorController extends JController {
 		
 		switch($_GET['reset_type']){
 			case 'prefs':
+				$this->create_db_backup('configurator-preferences');
 				$query = 'truncate table #__configurator_preferences';
 				$db->setQuery($query);
 				$db->query();
@@ -982,6 +990,7 @@ class ConfiguratorController extends JController {
 				return true;
 			break;
 			case 'cfg':
+				$this->create_db_backup('configurator-settings');
 				// get themelet name
 				$query = "select param_value from #__configurator where param_name = 'themelet';";
 				$db->setQuery($query);

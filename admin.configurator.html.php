@@ -16,7 +16,9 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         
         $document 	= JFactory::getDocument();
         $option 	= JRequest::getVar('option');
-        
+		// google chromeframe support to CFG.
+		$document->setMetaData('X-UA-Compatible', 'chrome=1', true);
+		
         $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
 		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
 		$browser 	= new Browser();
@@ -92,12 +94,14 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			switch($thebrowser){
 				case 'safari': $document->addStyleSheet($csspath . 'safari.css'); break;
 				case 'chrome': $document->addStyleSheet($csspath . 'chrome.css'); break;
-				case 'internet-explorer': $document->addStyleSheet($csspath . 'ie.css'); break;
+				case 'internet-explorer': $document->addStyleSheet($csspath . 'ie.css');break;
 				case 'opera': $document->addStyleSheet($csspath . 'opera.css'); break;
 				case 'firefox': $document->addStyleSheet($csspath . 'firefox.css'); break;
 			}
+			
+			// gcf and webkit support
+			if(preg_match('/chromeframe/i', $_SERVER['HTTP_USER_AGENT'])) $document->addStyleSheet($csspath . 'safari.css');
 		}
-		
         JToolBarHelper::title( 'Configurator', 'configurator' );
         
         // keyboard shortcuts
@@ -106,7 +110,8 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         }else{
         	setcookie('noshortkey', '', time()-3600);
         }
-        
+
+
 		// toggle settings effect
         if($cfg_pref->settings_effect == 'toggle'){
         	setcookie('settings_effect', 'toggle');
@@ -145,9 +150,9 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 				if(function_exists('ini_set')){ ini_set('memory_limit', '32M'); 
 				}else{
 					$mem_limit = ini_get('memory_limit');
-					if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit. 
-					Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance. 
-					<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice');
+					if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit.'.
+					'Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance.'.
+					'<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice', 'memory');
 				}
 				include 'includes/layout/manage.php';
 			} ?>

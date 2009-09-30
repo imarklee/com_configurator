@@ -66,7 +66,7 @@ jQuery.noConflict();
 			$('#system-message').fadeOut();
 		});
 		$('.cfg-message a.close-msg').click(function(){
-			$(this).parent().fadeOut();
+			$(this).parent().parent().fadeOut();
 			$.cookie('notice', 'memory', { expires: 730 });
 			return false;
 		})
@@ -639,7 +639,6 @@ jQuery.noConflict();
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 
 	   		var qtTitle = thetitle[1];
-	   		
 	   		$(this).qtip({
    				content: qtTitle ,
 			   	show: 'mouseover',

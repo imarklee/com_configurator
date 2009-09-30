@@ -1,4 +1,6 @@
 <div id="backup-manager">
+    <h2>Database Backups</h2>
+    <p>Below is a list of database backups that are automatically by Configurator. Please use this tool with caution.</p>
 		<?php 
 			$db = JFactory::getDBO();
 			$query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");

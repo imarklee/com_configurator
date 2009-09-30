@@ -1,6 +1,6 @@
 <div id="tools-installer">
 	<div id="uploader">
-	    <h3>Universal Installer</h3>		
+	    <h2>Universal Installer</h2>		
 		<div class="upload-tool">
 			<fieldset id="install-type">
 				<label for="upload_template"> <input type="radio" name="upload_type" value="template" id="upload_template" />Upgrade Morph template</label>
@@ -17,12 +17,12 @@
 				<h4><strong>Step 2:</strong> Then select a file &amp; install</h4>
 				<p class="file-input">
 				<input type="file" id="insfile" name="insfile" class="input-installer" /></p>
-				<p class="install-btn"><input id="uploader-button" type="button" value="Continue" /></p>
+				<p class="install-btn"><input id="uploader-button" type="button" value="Continue" class="tools-btn" /></p>
 			</fieldset>	
 		</div>
     	<div class="note">
     	    <div class="note-inner">
-        	    <h3>About this tool:</h3>
+    	        <h3>About this tool:</h3>
         		<p>Select the type of file you would like to install below. Once you have installed your chosen file type, 
         		open the "customization settings" tab on the left.</p>
         		<p>All of these files (including backups) are located in your template's "assets" folder.</p>

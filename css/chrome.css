@@ -26,3 +26,6 @@ a.switch-view,
 ul.assets-headers,
 #shelf.open #utilities,
 #tabs .primary.ui-tabs-nav li a{-webkit-border-top-left-radius:7px;-webkit-border-top-right-radius:7px;-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0;}
+#shelf.closed #utilities{-webkit-border-radius:7px;}
+#browser-wrap .cfg-message p{-webkit-border-radius:15px;}
+#browser-wrap .cfg-message p a.close-msg{-webkit-border-radius:10px;}

@@ -143,7 +143,7 @@ if($cfg_pref->bottom_save >= 1){ ?>
 <?php } ?>
 <input type="hidden" name="option" value="<?php echo $option; ?>"/>
 <input type="hidden" name="t" value="morph"/>
-<input type="hidden" name="task" value="applytemplate" />
+<input type="hidden" name="task" value="" />
 </form>
 
 <div id="getting-started" style="display:none;"></div>

@@ -5,19 +5,19 @@
 			<?php echo renderParams($params->renderToArray('innersidebar', 'innersidebardata')); ?>
 		</ol>
 	    <h3>Split Right Settings</h3>
-		<ol class="forms" style="display:none;">
+		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('splitright', 'splitrightdata')); ?>
 		</ol>
 	    <h3>Top Right Settings</h3>
-		<ol class="forms" style="display:none;">
+		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('topright', 'toprightdata')); ?>
 		</ol>
 	    <h3>Right Settings</h3>
-		<ol class="forms" style="display:none;">
+		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('right', 'rightdata')); ?>
 		</ol>
 	    <h3>Bottom Right Settings</h3>
-		<ol class="forms" style="display:none;">
+		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('bottomright', 'bottomrightdata')); ?>
 		</ol>
 	</div>

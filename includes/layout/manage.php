@@ -139,7 +139,7 @@
 </div>
 <?php
 if($cfg_pref->bottom_save >= 1){ ?>
-<div id="bottom-save"<?php echo bs_class($cfg_pref->bottom_save); ?> style="display:none;"><a href="#">Save your settings</a></div>
+<div id="bottom-save"<?php echo bs_class($cfg_pref->bottom_save); ?> style="display:none;"><a href="#" title="you can configure how this save bar is displayed in the configurator preferences">Save your settings</a></div>
 <?php } ?>
 <input type="hidden" name="option" value="<?php echo $option; ?>"/>
 <input type="hidden" name="t" value="morph"/>

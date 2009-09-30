@@ -5,10 +5,14 @@ $curr_themelet = $db->loadResult($query);
 ?>
 <div id="reset-settings">
 	<h2>Reset Configurator's Settings</h2>
-	<div class="warning"><div class="warning-inner"><h3>Important: Please Read!</h3>
-	<p>You can use this tool to reset your Configurator Settings and/or Preferences. This tool is not recommended on production
+	<div class="note">
+	    <div class="note-inner">
+	    <h3>Important: Please Read!</h3>
+	    <p>You can use this tool to reset your Configurator Settings and/or Preferences. This tool is not recommended on production
 		sites as it will revert your install back to its initial setup.</p>
-	<p>A backup will be created and will be available to download or reset from the Backup Manager tab.</div></div>
+	    <p>A backup will be created and will be available to download or reset from the Backup Manager tab.</p>
+	    </div>
+	</div>
 	<ul>
 	    <li><label><input type="checkbox" name="reset-prefs" value="prefs" /> Reset your Configurator Preferences</label></li>
 		<li><label><input type="checkbox" name="reset-cfg" value="cfg" /> Reset your Configurator Settings</label></li>

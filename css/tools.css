@@ -1,17 +1,22 @@
 #uploader{overflow:hidden;}
-#uploader .upload-tool{width:55%;float:left;}
-#uploader .upload-info{width:40%;float:right;background:#eee;padding:0;border:1px solid #ccc;}
-#uploader .upload-info h4{background:#ddd;padding:5px 10px;font:bold 17px arial;border-bottom: 1px solid #ccc;}
-#uploader .upload-info p{margin:0 15px 15px 15px;}
+#uploader .upload-tool{width:464px;float:left;background:#eee;}
 #uploader h3{font:bold 25px arial;}
-#uploader legend{font:bold 17px arial;color:#999;margin:0;padding:0;}
-#install-type label{cursor:pointer;position:relative;padding:4px 7px;border:1px solid #ccc;background:#eee;color:#999;}
-#install-type label:hover{color:#333;border:1px solid #666;}
+#uploader h4{font:bold 16px arial;margin:0;padding:10px 0 0 10px;color:#555;}
+#uploader h4 strong{color:#333;}
+#uploader #install-type{width:179px;height:220px;float:left;border-right:1px solid #999;background:#ccc;}
+#install-type label{display:block;cursor:pointer;position:relative;font-size:12px;padding:3px 3px 3px 5px;border-bottom:1px solid #999;color:#444;}
+#install-type label:hover{background:#ddd;color:#333;cursor:pointer;}
 #install-type input{position:absolute;left:-7998px;}
-#install-type .label-selected{border:1px solid #507B21;background:#99CC66;color:#507B21;}
-#uploader legend strong{color:#555;}
-#uploader fieldset{margin:0 0 1em;padding:1em 0 1.8em;border:0;border-bottom:1px dashed #ccc;}
-#uploader fieldset#upload-install{border:0;}
+#install-type .label-selected:hover,
+#install-type .label-selected{background:#eee;color:#222;margin-right:-1px;cursor:default;}
+#uploader fieldset{margin:0;padding:0;border:0;}
+#uploader fieldset#select-file{width:270px;height:220px;float:left;background:#eee;}
+#uploader fieldset#select-file p{padding:0 0 0 10px;}
+#uploader .upload-tool{border:1px solid #999;}
+#uploader p{margin-bottom:1em;}
+#uploader p.install-desc{margin-bottom:.5em;}
+#uploader #uploader-button{padding:5px 10px;background:#fff;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;cursor:pointer;}
+#uploader #uploader-button:hover{background:#ddd;color:#666;}
 
 #database-manager{font-family:arial;}
 #database-manager ul{list-style:none;margin:0;padding:0;clear:both;display:block;float:none;width:50%;background:#eee;border:1px solid #ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
@@ -26,16 +31,18 @@ table.table td{border:1px solid #ccc;padding:2px 5px;text-align:center;}
 table.table .filename{text-align:left;padding:2px 5px;}
 
 #reset-settings{font-family:arial;overflow:hidden;}
-#reset-settings div.warning { margin-bottom:1.5em;border:5px solid #EF9700;width:46%;float:right; }
-#reset-settings div.warning div.warning-inner{margin:0;padding:1em 1em 0 2.7em;color:#AF3E00;font:normal 15px/20px arial;background: #FFDC9F url('../images/splash-updates.png') no-repeat 15px 18px;border:1px solid #AF3E00;}
 #reset-settings ul{list-style:none;margin:0;padding:0;display:block;float:left;width:50%;background:#eee;border:1px solid #ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
 #reset-settings ul ul{margin:5px 0 0 5px;background:#fff;padding:1em;width:88%;float:none;clear:none;}
 #reset-settings li{font-weight:bold;margin:0;padding:1em 1em 1.5em 1em;border-bottom:1px solid #ccc;}
 #reset-settings li li{font-weight:normal;padding:0;border-bottom:0;}
 #reset-settings .action{padding:1em 0 1em 1.2em;border-bottom:0;background:#ddd;}
-#reset-settings .action a{margin: 8px 0 0 5px;padding:5px 8px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px; border:1px solid #aaa; display:block; background: #bbb; color: #2d2d2d; width: 100px;}
+#reset-settings .action a{margin: 8px 0 0 5px;padding:5px 8px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border:1px solid #aaa; display:block; background: #bbb; color: #2d2d2d; width: 100px;}
 #reset-settings .action a:hover{background: #ccc; border:1px solid #aaa; color: #6d6d6d6; width: 100px; text-decoration: none;}
 #reset-settings h3{margin:0 0 .6em 0;font-size:1.3em;}
 
+#cfg div.note { margin-bottom:1.5em;border:5px solid #EF9700;width:46%;float:right; }
+#cfg div.note div.note-inner{margin:0;padding:1em;color:#AF3E00;font:normal 15px/20px arial;background:#FFDC9F;border:1px solid #AF3E00;}
+#cfg div.note h3{background: url('../images/splash-updates.png') no-repeat 0;padding-left:25px;margin-bottom:.3em;}
 .action #db-do{}
 #database-manager input{border:0;}
+#database-manager ul{width:50%;float:left;}

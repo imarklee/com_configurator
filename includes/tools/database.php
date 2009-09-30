@@ -23,4 +23,10 @@ $curr_themelet = $db->loadResult($query);
 	    	<a href="#" name="db-do" id="db-do">Submit</a>
 	    </li>
 	</ul>
+	<div class="note">
+	    <div class="note-inner">
+    	    <h3>Important: Please Read!</h3>
+    	    <p>This tool lets you export </p>
+        </div>
+    </div>
 </div>

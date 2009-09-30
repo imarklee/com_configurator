@@ -25,14 +25,17 @@
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</param>
-		<param name="shelf_position" default="1" type="list" label="Shelf position">
+		<param name="shelf_position" default="1" type="radio" label="Shelf position">
 			<option value="0">Off</option>
 			<option value="1">Top</option>
 			<option value="2">Bottom</option>
 		</param>
-		<param name="bottom_save" default="1" type="radio" label="Show bottom save bar">
-			<option value="1">Yes</option>
-			<option value="0">No</option>
+		<param name="bottom_save" default="1" type="list" label="Show bottom save bar">
+			<option value="1">Always show the save bar</option>
+			<option value="2">When there are unsaved changes</option>
+			<option value="3">When the top save button is not visible</option>
+			<option value="4">When there are unsaved change &amp; the top save button is not visible</option>
+			<option value="0">Do not show the save bar</option>			
 		</param>
 		<param name="settings_effect" default="accordion" type="list" label="Display option groups as" position="last">
 			<option value="toggle">Toggle Panels</option>

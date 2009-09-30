@@ -12,6 +12,16 @@ function get_os(){
         
 return $os;
 }
+function bs_class($bs_op){
+	$bs_class = '';
+	switch($bs_op){
+		case '1':$bs_class = ' class="always"';break;
+		case '2':$bs_class = ' class="unsaved"';break;
+		case '3':$bs_class = ' class="topsave"';break;
+		case '4':$bs_class = ' class="unsaved_topsave"';break;
+	}
+return $bs_class;
+}
 function whichKey($os){
 	if($os == 'mac') $key = '&#x2318;';
 	else $key = 'Ctrl';

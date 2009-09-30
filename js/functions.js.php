@@ -47,7 +47,7 @@ jQuery.noConflict();
 		$("#preferences-form .prefs li:last").addClass("last");
 		
 		<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>
-		//$('#loginpass').showPassword('.sp-check', { name: 'show-password' });
+		$('#loginpass').showPassword('.sp-check', { name: 'show-password' });
 
 		$('#login_user').focus(function(e){
 			$(this).parent().addClass('label-focus');
@@ -2247,7 +2247,7 @@ jQuery.noConflict();
 			
     	}
 
-		<?php include 'functions/scroll.js'; ?>
+		<?php include 'functions/bottom_save.js'; ?>
 		<?php include 'functions/dbmanager.js'; ?>
 		<?php include 'functions/reset.js'; ?>
 		

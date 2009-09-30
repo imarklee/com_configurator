@@ -7,4 +7,4 @@
 #preferences-screen li span{width:240px;float:left;display:block;}
 #preferences-screen input.btn-prefs{width:254px;height:40px;overflow:hidden;border:0;background:#666;padding:40px 0 0 0;text-indent:-7998px;margin:0;background:#eee url(../images/btn-save-prefs.png) no-repeat;cursor:pointer;}
 #preferences-screen input.btn-prefs:hover{background-position:bottom left;}
-#preferences-screen select { width: 150px; }
+#preferences-screen select{width:150px;}

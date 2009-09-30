@@ -16,6 +16,7 @@ return $pageURL;
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
+		
 		<?php include 'functions/common.js'; ?>
 		$.preloadCssImages();
 		
@@ -46,7 +47,13 @@ jQuery.noConflict();
 		$("#preferences-form .prefs li:last").addClass("last");
 		
 		<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>
-		$('#loginpass').showPassword('.sp-check', { name: 'show-password' });			
+		//$('#loginpass').showPassword('.sp-check', { name: 'show-password' });
+
+		$('#login_user').focus(function(e){
+			$(this).parent().addClass('label-focus');
+		});
+		$('#login_user').focus();
+		$(window).mouseup(function(){ return false; });
 		<?php } ?>
 		
 		$("#help").hover(function () {
@@ -2154,20 +2161,22 @@ jQuery.noConflict();
 	   			},
 	   			close: function(){
 	   				$.cookie('logout-toggle', null);
-	   				$(this).remove();
-					showScroll();
+	   				$.cookie('am_logged_in', null, { path: '/', expires: -1 });
+					$.cookie('am_logged_in_user', null, { path: '/', expires: -1 });
+					$.cookie('member_id', null, { path: '/', expires: -1 });
+					$.cookie('member_data', null, { path: '/', expires: -1 });
+					$.cookie('logout-toggle', null);
+					$(this).dialog('destroy');
+					ptOverlay('Logging out...')
+					window.location.reload(true);
 	   			},
 				buttons: {
 					'Logout': function(){
-						$.cookie('am_logged_in', null, { path: '/', expires: -1 });
-						$.cookie('am_logged_in_user', null, { path: '/', expires: -1 });
-						$.cookie('member_id', null, { path: '/', expires: -1 });
-						$.cookie('member_data', null, { path: '/', expires: -1 });
-						$.cookie('logout-toggle', null);
-						window.location.reload(true);
+						$(this).dialog('close');
 					},
 					'Stay logged in': function(){
-						$(this).dialog('close');
+						$.cookie('logout-toggle', null);
+						$(this).dialog('destroy');
 					}
 				}	
 			});

@@ -115,7 +115,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         }else{
 			setcookie('settings_effect', 'all');
 		}
-        
+		
         if (!$morph_installed){
 	        echo '<div id="nomorph">';
 	        echo '<h1>Morph needs to be installed in order to work.</h1>';	

@@ -9,11 +9,11 @@
 			<div id="alf-cont">
 				<div id="alf-inp-cont">
 				
-					<label for="am-username" class="label-username"><span>Username:</span>
-					<input type="text" class="alf-input" name="am-username" title="username" />
+					<label class="label-username"><span>Username:</span>
+					<input type="text" tabindex="10" class="alf-input" id="login_user" name="am-username" title="username" />
 					</label>
 					<label for="am-password" class="label-password"><span>Password:</span>
-					<input type="password" id="loginpass" class="alf-input" name="am-password" title="password" />
+					<input type="password" tabindex="20" id="loginpass" class="alf-input" name="am-password" title="password" />
 					</label>
 					
 					<p class="login-sub">

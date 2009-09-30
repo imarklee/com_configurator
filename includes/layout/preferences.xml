@@ -30,7 +30,7 @@
 			<option value="1">Top</option>
 			<option value="2">Bottom</option>
 		</param>
-		<param name="bottom_save" default="1" type="list" label="Show bottom save bar">
+		<param name="bottom_save" default="3" type="list" label="Show bottom save bar">
 			<option value="1">Always show the save bar</option>
 			<option value="2">When there are unsaved changes</option>
 			<option value="3">When the top save button is not visible</option>

@@ -1,4 +1,6 @@
 <div class="docs-wrap">
 	<h3>Memory Limit:</h3>
-	<p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p class="intro">For optimal performance, Configurator needs your servers php memory_limit to the be set to a minimum of 32mb.
+	We have checks in place to adjust this setting automatically, but not all server configurations allow this and in these cases, 
+	you will need to contact your hosting provider and ask them to increase it for you.</p>
 </div>

@@ -68,7 +68,7 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
 #bottom-save a{background:#fff;padding:.2em .5em;margin-right:1em;padding:5px 0 5px 30px;color:#fff;font:bold 1.5em arial;background:transparent url(../images/fullscreen-saved.png) no-repeat scroll 0% 90%;}
 /* status messages */
 #browser-wrap .cfg-message{padding:1em;}
-#browser-wrap .cfg-message p{width:auto;margin:0;padding:5px 5px 5px 30px;-moz-border-radius:15px;font-size:13px;position:relative;}
+#browser-wrap .cfg-message p{width:auto;margin:0;padding:5px 5px 5px 30px;font-size:13px;position:relative;}
 #browser-wrap .cfg-message p.notice{background:#FFB51B url(../images/splash-updates.png) no-repeat 8px 50%;color:#CC3300;}
 #browser-wrap .cfg-message p.error{background:#CC322A url(../images/error.png) no-repeat 8px 50%;color:#fff;}
 #browser-wrap .cfg-message p.info{background:#B6E7FF url(../images/info.png) no-repeat 8px 50%;color:#006699;}
@@ -80,5 +80,5 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
 #browser-wrap .cfg-message p.error a.close-msg:hover{background:#95221D;}
 #browser-wrap .cfg-message p.info a{color:#006699;}
 #browser-wrap .cfg-message p.info a.close-msg:hover{background:#006699;}
-#browser-wrap .cfg-message p a.close-msg{position:absolute;top:5px;right:5px;width:50px;background:#fff;-moz-border-radius:10px;display:block;text-align:center;text-decoration:none;}
+#browser-wrap .cfg-message p a.close-msg{position:absolute;top:5px;right:5px;width:50px;background:#fff;display:block;text-align:center;text-decoration:none;}
 #browser-wrap .cfg-message p a.close-msg:hover{color:#fff;}

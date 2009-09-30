@@ -78,8 +78,8 @@ jQuery.noConflict();
 				minHeight: 20,
 				stack: false,
 				modal: true, 
-				width: 700,
-				height: 700,
+				width: 400,
+				height: 280,
 				title: title,
 				overlay: {
 					'background-color': '#000', 

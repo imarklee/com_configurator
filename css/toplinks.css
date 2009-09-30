@@ -12,9 +12,11 @@
 #submenu-box div.m ul#submenu li.preferences{float:right;}
 #submenu-box div.m ul#submenu li.preferences a{border-right:0;}
 
+#toolbar-box #toolbar table.toolbar{margin-right:10px;}
 #toolbar-box #toolbar .toolbar td a{background:transparent url(../images/cfg-icons.jpg) no-repeat 50% 2%;padding-top:34px;}
 #toolbar .toolbar td a span{display:none;}
 #toolbar .toolbar td#toolbar-fullscreen a{background-position:50% 35%;}
 #toolbar .toolbar td#toolbar-preferences a{background-position:50% 72%;}
 #toolbar .toolbar td#toolbar-report-bug-email-link a,
 #toolbar .toolbar td#toolbar-report-bug-link a{background-position:50% 107%;}
+#toolbar .toolbar td#toolbar-apply a{padding: 34px 10px 0 10px;}

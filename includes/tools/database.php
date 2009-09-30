@@ -20,13 +20,14 @@ $curr_themelet = $db->loadResult($query);
 			</ul>
 	    </li>
 	    <li class="action">
-	    	<a href="#" name="db-do" id="db-do">Submit</a>
+	    	<a href="#" name="db-do" id="db-do" class="tools-btn">Submit</a>
 	    </li>
 	</ul>
 	<div class="note">
 	    <div class="note-inner">
-    	    <h3>Important: Please Read!</h3>
-    	    <p>This tool lets you export </p>
+    	    <h3>About this tool:</h3>
+    	    <p>This tool is aimed at making the process of importing and exporting your various Configurator or themelet settings easier.</p>
+    	    <p>You will be given the option to download a backup of your existing settings when importing.</p>
         </div>
     </div>
 </div>

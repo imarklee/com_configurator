@@ -10,7 +10,7 @@
     <authorUrl>http://www.joomlajunkie.com</authorUrl>
     <copyright>Copyright 2009 Web Monkeys</copyright>
     <license>Commercial</license>
-    <version>0.17</version>
+    <version>1.00 rc1</version>
 	<installfile>install.configurator.php</installfile>
 	<uninstallfile>uninstall.configurator.php</uninstallfile>
     <install>

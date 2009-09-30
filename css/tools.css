@@ -1,6 +1,10 @@
+#tools .tools-btn{padding:5px 10px;background:#fff;border-radius:10px;cursor:pointer;clear:both;border:1px solid #ccc;font:bold 13px arial;color:#555;}
+#tools .tools-btn:hover{background:#ddd;color:#666;}
+#tools h2{font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:0.4px;color:#303030;font-size:22px;margin:0 0 15px 0;padding:0;}
+#tabs #tools.ui-tabs-panel .subtabs .ui-tabs-nav{margin-bottom:1em;}
+
 #uploader{overflow:hidden;}
 #uploader .upload-tool{width:464px;float:left;background:#eee;}
-#uploader h3{font:bold 25px arial;}
 #uploader h4{font:bold 16px arial;margin:0;padding:10px 0 0 10px;color:#555;}
 #uploader h4 strong{color:#333;}
 #uploader #install-type{width:179px;height:220px;float:left;border-right:1px solid #999;background:#ccc;}
@@ -15,17 +19,19 @@
 #uploader .upload-tool{border:1px solid #999;}
 #uploader p{margin-bottom:1em;}
 #uploader p.install-desc{margin-bottom:.5em;}
-#uploader #uploader-button{padding:5px 10px;background:#fff;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;cursor:pointer;}
-#uploader #uploader-button:hover{background:#ddd;color:#666;}
 
 #database-manager{font-family:arial;}
-#database-manager ul{list-style:none;margin:0;padding:0;clear:both;display:block;float:none;width:50%;background:#eee;border:1px solid #ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
+#database-manager ul{list-style:none;margin:0;padding:0;clear:both;display:block;float:none;width:50%;background:#eee;border:1px solid #ccc;border-radius:5px;}
 #database-manager ul ul{margin:5px 0 0 5px;background:#fff;padding:1em;width:395px;}
-#database-manager li{font-weight:bold;margin:0;padding:1em 1em 1.5em 1em;border-bottom:1px solid #ccc;}
+#database-manager li{overflow:hidden;font-weight:bold;margin:0;padding:1em 1em 1.5em 1em;border-bottom:1px solid #ccc;}
 #database-manager li li{font-weight:normal;padding:0;border-bottom:0;}
-#database-manager .action{padding:1em 0 1em 1.2em;border-bottom:0;background:#ddd;}
-#database-manager .action a{margin: 8px 0 0 5px;padding:5px 8px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border:1px solid #aaa; display:block; background: #bbb; color: #2d2d2d; width: 100px;}
 #database-manager .action a{text-decoration:none;}
+
+#database-manager input{border:0;}
+#database-manager ul{width:50%;float:left;}
+#tools #backup-manager h2{margin:0!important;}
+#backup-manager p{font:normal 15px/20px arial;margin:0 0 15px 0;color:#666;}
+
 table.table{border:1px solid #ccc;width:100%;}
 table.table th{border:1px solid #ccc;background:#eee;}
 table.table td{border:1px solid #ccc;padding:2px 5px;text-align:center;}
@@ -34,16 +40,12 @@ table.table .filename{text-align:left;padding:2px 5px;}
 #reset-settings{font-family:arial;overflow:hidden;}
 #reset-settings ul{list-style:none;margin:0;padding:0;display:block;float:left;width:50%;background:#eee;border:1px solid #ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
 #reset-settings ul ul{margin:5px 0 0 5px;background:#fff;padding:1em;width:88%;float:none;clear:none;}
-#reset-settings li{font-weight:bold;margin:0;padding:1em 1em 1.5em 1em;border-bottom:1px solid #ccc;}
+#reset-settings li{font-weight:bold;margin:0;padding:.6em 1em .6em 1em;border-bottom:1px solid #ccc;font-size:1.2em;}
 #reset-settings li li{font-weight:normal;padding:0;border-bottom:0;}
-#reset-settings .action{padding:1em 0 1em 1.2em;border-bottom:0;background:#ddd;}
-#reset-settings .action a{margin: 8px 0 0 5px;padding:5px 8px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border:1px solid #aaa; display:block; background: #bbb; color: #2d2d2d; width: 100px;}
-#reset-settings .action a:hover{background: #ccc; border:1px solid #aaa; color: #6d6d6d6; width: 100px; text-decoration: none;}
-#reset-settings h3{margin:0 0 .6em 0;font-size:1.3em;}
+#tools .action{padding:1em 0 1em 1.2em;border-bottom:0;background:#ddd;}
+#reset-settings .action label{font-weight:normal;clear:both;margin:0 0 1em 0;display:block;font-size:0.9em;}
 
 #cfg div.note { margin-bottom:1.5em;border:5px solid #EF9700;width:46%;float:right; }
-#cfg div.note div.note-inner{margin:0;padding:1em;color:#AF3E00;font:normal 15px/20px arial;background:#FFDC9F;border:1px solid #AF3E00;}
-#cfg div.note h3{background: url('../images/splash-updates.png') no-repeat 0;padding-left:25px;margin-bottom:.3em;}
+#cfg div.note div.note-inner{margin:0;padding:1em 1em 0 1em;color:#AF3E00;font:normal 15px/20px arial;background:#FFDC9F;border:1px solid #AF3E00;}
+#cfg div.note h3{background: url('../images/splash-updates.png') no-repeat 0;padding-left:25px;margin-bottom:.3em;font:bold 25px arial;}
 .action #db-do{}
-#database-manager input{border:0;}
-#database-manager ul{width:50%;float:left;}

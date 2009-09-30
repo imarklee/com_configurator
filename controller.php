@@ -1107,7 +1107,7 @@ class ConfiguratorController extends JController {
 	}
 	
 	function cleanupThemeletInstall($package='', $resultdir=''){
-		$config =& JFactory::getConfig();
+		$config = JFactory::getConfig();
 		if (is_dir($resultdir)) { JFolder::delete($resultdir); }
 		if (is_file($package)) {
 			JFile::delete($package);

@@ -107,6 +107,8 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         	setcookie('noshortkey', '', time()-3600);
         }
 
+		echo $cfg_pref->bottom_save;
+
 		// toggle settings effect
         if($cfg_pref->settings_effect == 'toggle'){
         	setcookie('settings_effect', 'toggle');

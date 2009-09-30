@@ -637,9 +637,10 @@ jQuery.noConflict();
 		------------------------------- */
 		// info tooltip
 	    $('.tt-inline').each(function(){
+			$this = $(this);
 	    	var thetitle = $(this).attr("title").split('::'); 
 	   		var qtTitle = thetitle[1];
-	   		$(this).qtip({
+	   		$this.qtip({
    				content: qtTitle ,
 			   	show: 'mouseover',
 			   	hide: 'mouseout',

@@ -248,9 +248,8 @@
 				   					},
 				   					close: function(){
 				   						$(this).dialog('destroy');
+										showScroll();
 				   						loadcompleted(completed);
-				   						checkAll();
-				   						showScroll();				  
 				   					},
 									buttons: {
 										'OK': function(){

@@ -1,11 +1,19 @@
 #cfg #tabs ol.forms li.palette .color-preview{right:109px;top:7px;}
+#tabs ol.forms input{-webkit-border-radius:4px;}
 #tabs li.palette .picker{right:28px;}
+#tabs ol.forms li .tooltip{top:8px;}
 #preferences-form .to-label{width:210px;}
+#logo-options select,
+#logo-options input{margin-top:6px;}
+#cfg #tabs #logo-options ol.forms li.radio-item input{margin-top:7px;}
+#cfg #tabs #logo-options ol.forms li.radio-item{padding-bottom:0;}
+#cfg #tabs #logo-options ol.forms li .color-preview{top:8px;}
+
 #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{width:334px;}
 #conf-login #alf-cont label.label-username input.alf-input,
 #conf-login #alf-cont label.label-password input.alf-input{padding:0;background:none;}
 #select-file input{border:0;}
-#cfg #tabs ol.forms li{padding:5px 10px 0 10px;}
+#cfg #tabs ol.forms li{padding:0 10px 2px 10px;}
 #assets-tabs .thumb-view ul.buttons li a span,
 #assets-tabs .thumb-view ul.buttons li a,
 a.btn-link,
@@ -34,7 +42,6 @@ ul.assets-headers,
 #shelf.closed #utilities{-webkit-border-radius:7px;}
 #browser-wrap .cfg-message p{-webkit-border-radius:15px;}
 #browser-wrap .cfg-message p a.close-msg{-webkit-border-radius:10px;}
-#tabs ol.forms li .tooltip{top:11px;}
 #minwidth-body #content-box #element-box .m,
 #browser-wrap,#minwidth-body .m #templateform{-webkit-border-radius:7px;}
 #database-manager .action a,

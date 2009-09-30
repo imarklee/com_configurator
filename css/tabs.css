@@ -37,7 +37,10 @@ padding:15px 23px 14px;background:#444 url(../images/tabs-on.jpg) repeat-x botto
 #tabs .ui-tabs-panel .subtabs .ui-tabs-nav li.ui-tabs-selected.ui-state-active a{color:#fff;}
 #tabs .subtabs .ui-tabs-panel{background:#fff;padding:0;width:100%;float:left;}
 #tabs #assets-tabs.subtabs { position: relative; }
-#cfg #tabs .icon-backup{border-right:0 none;font-size:11px;position:absolute;right:9px;top:5px;text-decoration:underline;}
-#cfg #tabs .icon-backup a{text-decoration:underline;}
 #tabs .options-panel.disabled{border-color:#D33538;}
 #tabs .options-panel.disabled .options-inner{border-color:#670D11;}
+
+#assets-tabs{position:relative;}
+#assets-tabs .icon-backup{background:#6C8249 url(../images/download-bg.png) repeat-x;display:block;position:absolute;top:0;right:0;}
+#assets-tabs .icon-backup span{padding:0 30px 0 8px;background:transparent url(../images/download-icon.png) no-repeat 96% 60%;color:#fff;border:1px solid #6C8249;display:block;height:26px;line-height:26px;}
+#assets-tabs .icon-backup:hover{border:0;color:#fff;}

@@ -982,6 +982,7 @@ class ConfiguratorController extends JController {
 		
 		switch($_GET['reset_type']){
 			case 'prefs':
+				$this->create_db_backup('configurator-preferences');
 				$query = 'truncate table #__configurator_preferences';
 				$db->setQuery($query);
 				$db->query();
@@ -989,6 +990,7 @@ class ConfiguratorController extends JController {
 				return true;
 			break;
 			case 'cfg':
+				$this->create_db_backup('configurator-settings');
 				// get themelet name
 				$query = "select param_value from #__configurator where param_name = 'themelet';";
 				$db->setQuery($query);

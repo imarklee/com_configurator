@@ -639,7 +639,6 @@ jQuery.noConflict();
 	    $('.tt-inline').each(function(){
 	    	var thetitle = $(this).attr("title").split('::'); 
 	   		var qtTitle = thetitle[1];
-	   		
 	   		$(this).qtip({
    				content: qtTitle ,
 			   	show: 'mouseover',

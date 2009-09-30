@@ -66,7 +66,7 @@ jQuery.noConflict();
 			$('#system-message').fadeOut();
 		});
 		$('.cfg-message a.close-msg').click(function(){
-			$(this).parent().fadeOut();
+			$(this).parent().parent().fadeOut();
 			$.cookie('notice', 'memory', { expires: 730 });
 			return false;
 		})

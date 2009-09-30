@@ -5,7 +5,7 @@ include_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'includes' . DS . 'configurato
 if(file_exists(JPATH_ROOT . DS . 'templates/morph/core/browser.php')){
 include_once(JPATH_ROOT . DS . 'templates/morph/core/browser.php');
 }
-$document 	=& JFactory::getDocument();
+$document 	= JFactory::getDocument();
 $option 	= JRequest::getVar('option','com_configurator');
 $task 		= JRequest::getCmd('task');
 
@@ -106,9 +106,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         }else{
         	setcookie('noshortkey', '', time()-3600);
         }
-
-		echo $cfg_pref->bottom_save;
-
+        
 		// toggle settings effect
         if($cfg_pref->settings_effect == 'toggle'){
         	setcookie('settings_effect', 'toggle');

@@ -150,9 +150,9 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 				if(function_exists('ini_set')){ ini_set('memory_limit', '32M'); 
 				}else{
 					$mem_limit = ini_get('memory_limit');
-					if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit. 
-					Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance. 
-					<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice');
+					if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit.'.
+					'Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance.'.
+					'<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice', 'memory');
 				}
 				include 'includes/layout/manage.php';
 			} ?>

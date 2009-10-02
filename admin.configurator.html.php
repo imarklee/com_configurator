@@ -37,10 +37,10 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addScript($jspath . 'cookie.js');
 			$document->addScript($jspath . 'preload.js');
 			$document->addScript($jspath . 'browser.js');
-			if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+			//if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 			// login
 			$document->addScript($jspath . 'showpassword.js');
-			} else {
+			//} else {
 			// manage
 			$document->addScript($jspath . 'accordion.js');
 			$document->addScript($jspath . 'colorpicker.js');
@@ -50,7 +50,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addScript($jspath . 'qtip.js');
 			$document->addScript($jspath . 'getparams.js');
 			$document->addScript($jspath . 'jsoncookie.js');
-			}
+			//}
 			$document->addScript($jspath . 'functions.js.php');
 			/* unpacked css
 			*****************************************/
@@ -67,10 +67,10 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 					
 			// dashboard
 			// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
-			if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+			//if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 			// login
 			$document->addStyleSheet($csspath . 'login.css');
-			} else {
+			//} else {
 			// manage
 			$document->addStyleSheet($csspath . 'welcome.css');
 			$document->addStyleSheet($csspath . 'assets.css');
@@ -88,7 +88,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addStyleSheet($csspath . 'colorpicker.css');
 			$document->addStyleSheet($csspath . 'docs.css');
 			$document->addStyleSheet($csspath . 'fullscreen.css');
-			}
+			//}
 			
 			// browser stylesheets
 			switch($thebrowser){

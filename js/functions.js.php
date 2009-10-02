@@ -1102,11 +1102,11 @@ jQuery.noConflict();
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=themelet&asset='+setThemelet,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
-			   						if($('#customize-list').hasClass('thumb-view')){
-			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
-			   						}else{
-			   							$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow');
-			   						}
+									$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow').remove();
+									$("ul.assets-list").each(function(){
+										$(this).children().removeClass('alt');
+										$(this).children(':odd').addClass('alt');
+									});
 			   						$('#footer').after('<div id="assets-output"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Themelet deleted successfully</div>');
 			   						hideScroll();
@@ -1123,7 +1123,10 @@ jQuery.noConflict();
 							   				opacity: 0.8 
 							   			},
 										buttons: { 
-											'OK': function(){ $(this).dialog('destroy'); showScroll(); }
+											'OK': function(){ 
+												$(this).dialog('destroy'); 
+												showScroll();
+											}
 										}
 									});
 			   					}

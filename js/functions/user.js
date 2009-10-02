@@ -1,7 +1,9 @@
+updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', 'ul.themelet-summary');
 function getUpdates(checknow){
 	if(!$.cookie('noupdates') || checknow){
-		$.cookie('updates', null, { expires: 730 } );
+		if($.cookie('updates')) $.cookie('updates', null, { expires: 730 } );
 		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
+		//updateURL = 'http://localhost/versions.php?return=json&callback=?';
 		$.ajax({
 			method: 'get',
 			url: updateURL,
@@ -11,24 +13,17 @@ function getUpdates(checknow){
 			success: function(obj, status){
 				var updates = $.toJSON(obj);
 				$.cookie('updates', updates, { expires: 730 } );
+				showUpdates(updEl, function(){
+					$('#updates-summary dl').fadeTo('fast', 1);
+					$('#updates-summary #updates-msg').empty();
+				});
 			}
 		});
 	}
 	return false;
 };
-updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', 'ul.themelet-summary');
-function showUpdates(e, callback){
-	
-	if($.cookie('updates') == null){
-		getUpdates(true);
-		return setTimeout(function(){
-			return showUpdates(updEl, function(){
-				$('.updates-msg').css('display', 'none').remove();
-				$('#updates-summary dl').fadeTo('fast', 1);
-			})
-		}, 1000);
-	}
-	
+
+function showUpdates(e, callback){	
 	if($.cookie('updates')){
 		var json = $.secureEvalJSON($.cookie('updates'));
 		var x = $(e).length;
@@ -80,24 +75,14 @@ function showUpdates(e, callback){
 	}
 	return false;
 }
-showUpdates(updEl);
+if($.cookie('updates')) { showUpdates(updEl); }else{ getUpdates(true); }
 
 // refresh versions on click
 $('.updates-refresh-link').click(function(){
 	$('#updates-summary dl').fadeTo('fast', 0.1, function(){
-		$('<div class="updates-msg">Checking...</div>').appendTo($('#updates-summary'));
+		$('#updates-summary').append('<div id="updates-msg">Checking...</div>');
 	});
 	getUpdates(true);
-	setTimeout(
-		function(){
-			showUpdates(updEl, function(){
-				$('.updates-msg').remove();
-				$('#updates-summary dl').fadeTo('fast', 1);
-				return false;
-			});
-		return false;
-		}
-	, 2000);
 	return false;
 });
 

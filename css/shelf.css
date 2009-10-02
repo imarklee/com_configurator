@@ -41,7 +41,7 @@
 #current-themelet img{vertical-align:middle;}
 #current-themelet a,dd.latest a{color:#555;}
 #updates-summary p.updates-help{margin:0;padding:0;color:#999;position:absolute;top:22px;right:15px;}
-#updates-summary div.updates-msg {margin:0;padding:0;color:#000;position:absolute;top:68px; left:55px; font-size: 12px; font-weight:bold;}
+#updates-summary div#updates-msg {margin:0;padding:0;color:#000;position:absolute;top:68px; left:55px; font-size: 12px; font-weight:bold;}
 #updates-summary p.updates-help a{text-decoration:underline; display: block; height: 16px; width: 16px; text-indent: -9999px; float: left; margin: 0 8px 0 0;}
 #updates-summary p.updates-help a.updates-help-link { background: transparent url(../images/question.png) no-repeat;  }
 #updates-summary p.updates-help a.updates-refresh-link { background: transparent url(../images/arrow-circle-315.png) no-repeat; }

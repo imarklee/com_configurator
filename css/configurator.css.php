@@ -29,10 +29,10 @@ include('manage.css');
 include('toplinks.css');
 include('feedback.css');
 
-if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+//if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
 // login
 include('login.css');
-} else {
+//} else {
 // manage
 include('welcome.css');
 include('assets.css');
@@ -50,7 +50,7 @@ include('colorpicker.css');
 include('docs.css');
 include('fullscreen.css');
 include('tips.css');
-}
+//}
 
 // browser stylesheets
 switch($thebrowser){

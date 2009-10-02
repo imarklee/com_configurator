@@ -1,18 +1,28 @@
 <?php
-$template_dir = JPATH_SITE . DS . 'templates' . DS . 'morph/';
-$template_url = JURI::root() . 'templates/morph/';
-$themelet_url = JURI::root() . 'morph_assets/themelets/';
-$component_url = JURI::root() . 'administrator/components/com_configurator/'; 
-$template_xml = $template_url . 'templateDetails.xml';
-$themelet_xml = $themelet_url . $params->get('themelet') .'/themeletDetails.xml';
-$component_xml = $component_url . 'configurator.xml';
+$path = JPATH_SITE . DS;
+$urlpath = JURI::root();
+
+$template_path	= $path . 'templates/morph/';
+$themelet_path 	= $path . 'morph_assets/themelets/';
+$component_path = $path . 'administrator/components/com_configurator/';
+
+$template_urlpath 	= $urlpath . 'templates/morph/';
+$themelet_urlpath 	= $urlpath . 'morph_assets/themelets/';
+$component_urlpath 	= $urlpath . 'administrator/components/com_configurator/';
+
+$template_xml = $template_path . 'templateDetails.xml';
+$themelet_xml = $themelet_path . $params->get('themelet') .'/themeletDetails.xml';
+$component_xml = $component_path . 'configurator.xml';
+
 $template_details = xml2array($template_xml);
 $themelet_details = xml2array($themelet_xml);
 $component_details = xml2array($component_xml);
+
 $template_arr = $template_details['install'];
 $themelet_arr = $themelet_details['install'];
 $component_arr = $component_details['install'];
-setcookie('current_themelet', $themelet_arr['foldername']); ?>
+
+setcookie('current_themelet', $params->get('themelet')); ?>
 
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 	<div id="utilities">
@@ -31,18 +41,18 @@ setcookie('current_themelet', $themelet_arr['foldername']); ?>
 				<dl>
 					<dt name="com_configurator" type="shelf" id="us-configurator">Configurator</dt>
 					<dd class="current"><span title="Your installed version is <?php echo $component_arr['version']; ?>. Click on the help link above for more information."><?php echo $component_arr['version']; ?></span></dd>
-					<dd class="latest"></dd>
-					<dd class="icon"></dd>
+					<dd class="latest">&nbsp;</dd>
+					<dd class="icon">&nbsp;</dd>
 	
 					<dt name="morph" type="shelf" id="us-morph">Morph</dt>
 					<dd class="current"><span title="Your installed version is <?php echo $template_arr['version']; ?>. Click on the help link above for more information."><?php echo $template_arr['version']; ?></span></dd>
-					<dd class="latest"></dd>
-					<dd class="icon"></dd>
+					<dd class="latest">&nbsp;</dd>
+					<dd class="icon">&nbsp;</dd>
 				
 					<dt name="<?php echo $themelet_arr['foldername']; ?>" type="shelf" id="us-themelet"><?php echo $themelet_arr['name']; ?></dt>
 					<dd class="current"><span title="Your installed version is <?php echo $themelet_arr['version']; ?>. Click on the help link above for more information."><?php echo $themelet_arr['version']; ?></span></dd>
-					<dd class="latest"></dd>
-					<dd class="icon"></dd>						
+					<dd class="latest">&nbsp;</dd>
+					<dd class="icon">&nbsp;</dd>						
 				</dl>
 		</div>  
 		<div id="current-themelet">
@@ -51,7 +61,7 @@ setcookie('current_themelet', $themelet_arr['foldername']); ?>
 				<li class="ct-name"><span>Name: </span><?php echo $themelet_arr['name']; ?></li>
 				<li class="ct-author"><span>Author: </span><a href="<?php echo $themelet_arr['authorUrl']; ?>" target="_blank" title="View all themelets by this provider"><?php echo $themelet_arr['author']; ?></a></li>
 				<li class="ct-version"><span>Version: </span><?php echo $themelet_arr['version']; ?></li>
-				<li class="thumb ct-thumb"><span>&nbsp;</span><img src="<?php echo $themelet_url . $params->get('themelet'); ?>/themelet_thumb.png" width="108" height="72" align="middle" alt="<?php echo $themelet_arr['name']; ?>" /></li>
+				<li class="thumb ct-thumb"><span>&nbsp;</span><img src="<?php echo $themelet_urlpath . $params->get('themelet'); ?>/themelet_thumb.png" width="108" height="72" align="middle" alt="<?php echo $themelet_arr['name']; ?>" /></li>
 			</ul>
 		</div>
 		<div id="visual-refs">

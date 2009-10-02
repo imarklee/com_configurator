@@ -1924,7 +1924,7 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box a').click(function(){
+		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box #menu li ul li a').click(function(){
 			var $this = $(this);
 			var target;
 			if($.cookie('formChanges')){			
@@ -1979,12 +1979,14 @@ jQuery.noConflict();
 					}
 				});
 			}else{
-   				if($this.attr('target') == ''){ 
-   					window.location.href = $this.attr('href');
-   				}else{ 
-   					target = $this.attr('target');
-   					window.open($this.attr('href'), target);
-   				}
+				$(this).trigger('click');
+				return;
+   				//if($this.attr('target') == ''){ 
+   				//	window.location.href = $this.attr('href');
+   				//}else{ 
+   				//	target = $this.attr('target');
+   				//	window.open($this.attr('href'), target);
+   				//}
 			}
 			return false;
 		});

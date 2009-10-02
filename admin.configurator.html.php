@@ -17,7 +17,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         $document 	= JFactory::getDocument();
         $option 	= JRequest::getVar('option');
 		// google chromeframe support to CFG.
-		$document->setMetaData('X-UA-Compatible', 'chrome=1', true);
+		if($thebrowser == 'internet-explorer') $document->setMetaData('X-UA-Compatible', 'chrome=1', true);
 		
         $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
 		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';

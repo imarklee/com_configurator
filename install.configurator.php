@@ -64,7 +64,10 @@ $themelet_installed = $db->loadResult($query);
 if($themelet_installed == null) setcookie('is_themelet_installed', 'no');
 
 // create a full system backup
-$this->create_db_backup('full-database');
+include 'controller.php';
+$classname  = 'ConfiguratorController';
+$controller = new $classname( );
+$controller->create_db_backup('full-database');
 
 // set cookie for configurator installer
 setcookie('installed_cfg', 'true');

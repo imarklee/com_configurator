@@ -32,3 +32,5 @@ ul.assets-headers,
 #database-manager .action a,
 #database-manager ul{-webkit-border-radius:5px;}
 #cfg #tools .tools-btn{-webkit-border-radius:10px;}
+a.btn-primary{-webkit-border-radius: 20px;-webkit-box-shadow:0 0 5px #999;}
+a.btn-primary:hover{-webkit-box-shadow:0 0 5px #598C13;}

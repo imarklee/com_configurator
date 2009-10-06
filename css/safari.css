@@ -49,3 +49,5 @@ ul.assets-headers,
 #cfg #tools .tools-btn{-webkit-border-radius:10px;}
 #footerfooter_textcolor,
 #footerfooter_linkscolor{margin-top:5px;}
+a.btn-primary{-webkit-border-radius: 20px;-webkit-box-shadow:0 0 5px #999;}
+a.btn-primary:hover{-webkit-box-shadow:0 0 5px #598C13;}

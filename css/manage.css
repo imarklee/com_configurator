@@ -82,3 +82,10 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
 #browser-wrap .cfg-message p.info a.close-msg:hover{background:#006699;}
 #browser-wrap .cfg-message p a.close-msg{position:absolute;top:5px;right:5px;width:50px;background:#fff;display:block;text-align:center;text-decoration:none;}
 #browser-wrap .cfg-message p a.close-msg:hover{color:#fff;}
+
+/* buttons */
+a.btn-primary{padding:.6em 1em;background:url(images/btn-sprite.jpg) repeat-x;border-radius:20px;box-shadow:0 0 5px #999;text-decoration:none;color:#333;font-family:arial;}
+a.btn-primary span{padding:.5em 3em .5em 0;background:transparent url(images/btn-arrow.png) no-repeat center right;}
+a.btn-primary:hover{background-position:center left;box-shadow:0 0 5px #598C13;}
+a.btn-primary:hover strong{color:#598C13;}
+a.btn-primary:active{background-position:bottom left;color:#666;}

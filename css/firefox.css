@@ -34,3 +34,5 @@ div#element-box div.m,
 #database-manager ul{-moz-border-radius:5px;}
 #cfg #tools .tools-btn{-moz-border-radius:10px;}
 #preferences-screen select{width:135px;}
+a.btn-primary{-moz-border-radius: 20px;-moz-box-shadow:0 0 5px #999;}
+a.btn-primary:hover{-moz-box-shadow:0 0 5px #598C13;}

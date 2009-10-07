@@ -170,10 +170,13 @@ class HTML_configurator_admin {
         $document 	= JFactory::getDocument();
         $option 	= JRequest::getVar('option');
         $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
+		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
+        //$document->addScript($jspath . 'jquery.js');
+        //$document->addScript($jspath . 'autoheight.js');
 		
 		$document->addStyleSheet($csspath . 'help-docs.css');
 
-    	echo 'this is the help file';
+		include 'includes/layout/livedocs.php';
     }
 }
 ?>

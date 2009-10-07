@@ -7,7 +7,7 @@
 #uploader .upload-tool{width:464px;float:left;background:#eee;}
 #uploader h4{font:bold 16px arial;margin:0;padding:10px 0 0 10px;color:#555;}
 #uploader h4 strong{color:#333;}
-#uploader #install-type{width:179px;height:220px;float:left;border-right:1px solid #999;background:#ccc;}
+#uploader #install-type{width:179px;height:260px;float:left;border-right:1px solid #999;background:#ccc;}
 #install-type label{display:block;cursor:pointer;position:relative;font-size:12px;padding:3px 3px 3px 5px;border-bottom:1px solid #999;color:#444;}
 #install-type label:hover{background:#ddd;color:#333;cursor:pointer;}
 #install-type input{position:absolute;left:-7998px;}
@@ -19,6 +19,7 @@
 #uploader .upload-tool{border:1px solid #999;}
 #uploader p{margin-bottom:1em;}
 #uploader p.install-desc{margin-bottom:.5em;}
+#uploader-btn{margin:.5em 0 .5em 1.5em;float:left;}
 
 #database-manager{font-family:arial;}
 #database-manager ul{list-style:none;margin:0;padding:0;clear:both;display:block;float:none;width:50%;background:#eee;border:1px solid #ccc;border-radius:5px;}

@@ -186,6 +186,11 @@ class ConfiguratorController extends JController {
 			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).'/includes/layout/preferences.xml');
 	HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
 	}
+	
+	function help(){
+		HTML_configurator_admin::help();
+	}
+	
 
 	function assets_backup(){
 		$assets = JPATH_ROOT .DS.'morph_assets';

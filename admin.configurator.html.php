@@ -10,7 +10,7 @@ $option 	= JRequest::getVar('option','com_configurator');
 $task 		= JRequest::getCmd('task');
 
 class HTML_configurator_admin {
-function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
+	function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
         global $mainframe, $browser, $thebrowser, $browserver;
         include_once (JPATH_COMPONENT_ADMINISTRATOR . DS . "configuration.php");
         
@@ -104,7 +104,6 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			// gcf and webkit support
 			if(preg_match('/chromeframe/i', $_SERVER['HTTP_USER_AGENT'])) $document->addStyleSheet($csspath . 'safari.css');
 		}
-        JToolBarHelper::title( 'Configurator', 'configurator' );
         
         // keyboard shortcuts
         if($cfg_pref->short_keys == 0){
@@ -165,6 +164,16 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
     }
     function dashboard() {
         HTML_configuratorhelper_admin::showDash();
+    }
+	function help() {
+		include_once (JPATH_COMPONENT_ADMINISTRATOR . DS . "configuration.php");
+        $document 	= JFactory::getDocument();
+        $option 	= JRequest::getVar('option');
+        $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
+		
+		$document->addStyleSheet($csspath . 'help-docs.css');
+
+    	echo 'this is the help file';
     }
 }
 ?>

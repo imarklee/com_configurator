@@ -17,7 +17,7 @@
 				<h4><strong>Step 2:</strong> Then select a file &amp; install</h4>
 				<p class="file-input">
 				<input type="file" id="insfile" name="insfile" class="input-installer" /></p>
-				<p class="install-btn"><input id="uploader-button" type="button" value="Continue" class="tools-btn" /></p>
+				<a href="#" id="uploader-btn" class="btn-primary"><span><strong>Upload</strong> and install</span></a>
 			</fieldset>	
 		</div>
     	<div class="note">

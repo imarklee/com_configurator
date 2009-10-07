@@ -4,5 +4,5 @@
 	<ul class="prefs">
 	<?php echo renderParams($pref_xml->renderToArray('cfg', 'cfg_prefs')); ?>
 	</ul>
-	<input type="submit" value="save preferences" class="btn-prefs" />
+	<a href="#" class="btn-primary btn-prefs"><span><strong>Save</strong> Preferences</span></a>
 </form>

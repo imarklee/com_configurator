@@ -25,8 +25,10 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 		$thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 		$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
 		
+		($this->checkUser()) ? $uval = 1 : $uval = 0;
+		
 		if(!isset($_COOKIE['unpack'])){
-			$document->addScript($jspath . 'configurator.js.php');
+			$document->addScript($jspath . 'configurator.js.php?getul='.$uval);
 			$document->addStyleSheet($csspath . 'configurator.css.php');
 		} else {
 			/* unpacked js
@@ -51,7 +53,7 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 			$document->addScript($jspath . 'getparams.js');
 			$document->addScript($jspath . 'jsoncookie.js');
 			//}
-			$document->addScript($jspath . 'functions.js.php');
+			$document->addScript($jspath . 'functions.js.php?getul='.$uval);
 			/* unpacked css
 			*****************************************/
 			// global
@@ -137,9 +139,10 @@ function manage( &$params, &$lists, $morph_installed, $pref_xml, $cfg_pref ) {
 		  	
 			// Show a specific template in editable mode.
 	        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>			
-			<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
+			<?php if(!$this->checkUser()){
 				include 'includes/layout/login.php';
 	        } else {
+				$user = $this->getuserdetails();
 	        	// auto updates
 		        if($cfg_pref->check_updates == 0){
 		        	setcookie('noupdates', 'true', time()+60*60*24*365);

@@ -10,7 +10,7 @@ class TOOLBAR_morph
 		JToolBarHelper::title(  JText::_( 'Configurator' ), 'configurator' );
 		if($_REQUEST['task'] == 'manage'){
 			$bar = JToolBar::getInstance( 'toolbar' );
-			if(isset($_COOKIE['am_logged_in'])){
+			if(ConfiguratorController::checkUser()){
 				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Save').'</a>', 'apply' );
 				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Fullscreen').'</a>', 'fullscreen' );
 				$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Preferences ').'</a>', 'preferences' );

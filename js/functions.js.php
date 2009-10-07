@@ -1,4 +1,5 @@
-<?php 
+<?php
+$ul = $_GET['getul'];
 header('content-type: text/javascript; charset: UTF-8');
 function pageURL() {
 	error_reporting(E_ALL ^ E_NOTICE);
@@ -30,7 +31,7 @@ jQuery.noConflict();
 			$.cookie('save_msg', null);
 		}
 		
-		<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) include 'functions/user.js'; ?>
+		<?php if($ul==1) include 'functions/user.js'; ?>
 	   	
 		/* Generic ----------------------------
 	    ------------------------------------ */
@@ -46,7 +47,7 @@ jQuery.noConflict();
 		});
 		$("#preferences-form .prefs li:last").addClass("last");
 		
-		<?php if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){ ?>
+		<?php if($ul!==1){ ?>
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' });
 
 		$('#login_user').focus(function(e){
@@ -327,7 +328,7 @@ jQuery.noConflict();
 	});
 		
 
-	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) { ?> $('.text_area').simpleautogrow(); <?php } ?>
+	<?php if($ul==1) { ?> $('.text_area').simpleautogrow(); <?php } ?>
  		
  	   	/* Tabs -------------------------------
 	    ------------------------------------ */
@@ -524,54 +525,13 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		$('#feedbackform').submit(function(){ 
-			function validate(formData, jqForm, options) { 
-			    for (var i=0; i < formData.length; i++) { 
-			    	if (!formData[i].value) { 
-			            $('<div class="dialog-msg">All fields are required</div>').dialog({
-			            	bgiframe: true,
-							autoOpen: true,
-							stack: true,
-							title: 'Error',
-							buttons: {
-								'Ok': function(){
-									$(this).dialog('destroy');
-								}
-							},
-							modal: true,
-							overlay: {
-								'background-color': '#000',
-								opacity: 0.8
-							}
-						});
-			            return false; 
-			        } 
-			    }
-			    ptOverlay('Processing');
-			    return true; 
-			}
+		$('.ff-submit').click(function(){
 			
-			$(this).ajaxSubmit({
-				beforeSubmit: validate,
-				type: 'GET',
-				dataType: 'jsonp',
-				contentType: "application/json; charset=utf-8",
-				url: 'http://www.joomlajunkie.com/secure/configurator/bug-report.php?jsoncallback=?',
-				data: {
-					'do': 'send-feedback',
-					'ff-name': $('#feedbackform input[name="name"]').val(),
-					'ff-email': $('#feedbackform input[name="email"]').val(),
-					'ff-type': $('#feedbackform input[name="type"]').val(),
-					'ff-category': $('#feedbackform input[name="category"]').val(),
-					'ff-title': $('#feedbackform input[name="title"]').val(),
-					'ff-message': $('#feedbackform textarea[name="description"]').val(),
-					'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
-				},
-				success: function(data, status, error){
-					close_ptOverlay()
-					if(typeof(data.error) != 'undefined'){						
-						if(data.error != ''){
-							$('<div>'+data.error+'</div>').dialog({
+			$('#feedbackform').submit(function(){
+				function validate(formData, jqForm, options) { 
+				    for (var i=0; i < formData.length; i++) { 
+				    	if (!formData[i].value) { 
+				            $('<div class="dialog-msg">All fields are required</div>').dialog({
 				            	bgiframe: true,
 								autoOpen: true,
 								stack: true,
@@ -587,13 +547,78 @@ jQuery.noConflict();
 									opacity: 0.8
 								}
 							});
+				            return false; 
+				        } 
+				    }
+				    ptOverlay('Processing');
+				    return true; 
+				}
+			
+				$(this).ajaxSubmit({
+					beforeSubmit: validate,
+					type: 'GET',
+					dataType: 'jsonp',
+					contentType: "application/json; charset=utf-8",
+					url: 'http://www.joomlajunkie.com/secure/configurator/bug-report.php?jsoncallback=?',
+					data: {
+						'do': 'send-feedback',
+						'ff-name': $('#feedbackform input[name="name"]').val(),
+						'ff-email': $('#feedbackform input[name="email"]').val(),
+						'ff-type': $('#feedbackform input[name="type"]').val(),
+						'ff-category': $('#feedbackform input[name="category"]').val(),
+						'ff-title': $('#feedbackform input[name="title"]').val(),
+						'ff-message': $('#feedbackform textarea[name="description"]').val(),
+						'ff-specs': $('#feedbackform textarea[name="specs"]').val($('#ff-specs').text())
+					},
+					success: function(data, status, error){
+						close_ptOverlay()
+						if(typeof(data.error) != 'undefined'){						
+							if(data.error != ''){
+								$('<div>'+data.error+'</div>').dialog({
+					            	bgiframe: true,
+									autoOpen: true,
+									stack: true,
+									title: 'Error',
+									buttons: {
+										'Ok': function(){
+											$(this).dialog('destroy');
+										}
+									},
+									modal: true,
+									overlay: {
+										'background-color': '#000',
+										opacity: 0.8
+									}
+								});
+							}
+						}else{
+							$('<div class="dialog-msg">'+data.message+'</div>').dialog({
+				            	bgiframe: true,
+								autoOpen: true,
+								stack: true,
+								title: 'Success',
+								buttons: {
+									'Ok': function(){
+										$(this).dialog('destroy');
+									}
+								},
+								modal: true,
+								overlay: {
+									'background-color': '#000',
+									opacity: 0.8
+								}
+							});
+							$('#feedbackform').resetForm();
+							$('#report-bug').dialog('close');
+							if($.cookie('bug')){ $.cookie('bug', null); }
 						}
-					}else{
-						$('<div class="dialog-msg">'+data.message+'</div>').dialog({
+					},
+					error: function(data){
+						$('<div>'+data+'</div>').dialog({
 			            	bgiframe: true,
 							autoOpen: true,
 							stack: true,
-							title: 'Success',
+							title: 'Error',
 							buttons: {
 								'Ok': function(){
 									$(this).dialog('destroy');
@@ -605,30 +630,11 @@ jQuery.noConflict();
 								opacity: 0.8
 							}
 						});
-						$('#feedbackform').resetForm();
-						$('#report-bug').dialog('close');
-						if($.cookie('bug')){ $.cookie('bug', null); }
 					}
-				},
-				error: function(data){
-					$('<div>'+data+'</div>').dialog({
-		            	bgiframe: true,
-						autoOpen: true,
-						stack: true,
-						title: 'Error',
-						buttons: {
-							'Ok': function(){
-								$(this).dialog('destroy');
-							}
-						},
-						modal: true,
-						overlay: {
-							'background-color': '#000',
-							opacity: 0.8
-						}
-					});
-				}
+				});
+				return false;
 			});
+			$('#feedbackform').trigger('submit');
 			return false;
 		});
      	     	
@@ -1481,22 +1487,12 @@ jQuery.noConflict();
 										});
 									}else{
 										
-										var days;
 										var member_id = rdata.data.member_id;
 										var member_data = rdata.data.sdata;
 										var member_email = rdata.data.email;
 										var member_name = rdata.data.name_f;
 										var member_surname = rdata.data.name_l;
 										
-										if(setcookie == true){ days = 365; }else{ days = null; }
-										
-										$.cookie('am_logged_in', 'true', { path: '/', expires: days });
-										$.cookie('am_logged_in_user', username, { path: '/', expires: days });
-										$.cookie('member_id', member_id, { path: '/', expires: days });
-										$.cookie('member_email', member_email, { path: '/', expires: days });
-										$.cookie('member_name', member_name, { path: '/', expires: days });
-										$.cookie('member_surname', member_surname, { path: '/', expires: days });
-																		
 										// db
 										var mem_screen_res = screen.width+'x'+screen.height
 										var mem_browser = $.browser.name+' '+$.browser.version;
@@ -1517,12 +1513,30 @@ jQuery.noConflict();
 												'mem_os': mem_os,
 												'mem_jv': mem_jv,
 												'mem_ip': mem_ip,
-												'mem_name': $.cookie('am_logged_in_user'),
+												'mem_name': member_name,
 												'mem_domain': '<?php echo pageURL(); ?>'
 											},
 											contentType: "application/json; charset=utf-8",
 											success: function(){
-												window.location.reload(true);
+												return true;
+											}
+										});
+										
+										ret = $.ajax({
+											dataType: 'json',
+											url: '../administrator/index.php?option=com_configurator&task=loaduser&format=raw',
+											data: {
+												'login[user_name]': username,
+												'login[member_id]': member_id,
+												'login[member_name]': member_name,
+												'login[member_surname]': member_surname,
+												'login[member_email]': member_email
+											},
+											contentType: "application/json; charset=utf-8",
+											success: function(d){
+												if(d.error == '' || d.error == undefined){
+													window.location.reload(true);
+												}
 											}
 										});
 									}
@@ -1569,7 +1583,8 @@ jQuery.noConflict();
 		/* Uploader ------------------------
 		--------------------------------- */
 		
-		$('#uploader-button').click(function(){
+		$('#uploader-btn').click(function(){
+			
 			ptOverlay('Installing...');
 			var uploadType = $('input[type="radio"]:checked','#install-type').val();
 			$.ajaxFileUpload({
@@ -2081,7 +2096,7 @@ jQuery.noConflict();
 			
 			$('.btn-prefs').click(function(){
 				
-				$('#preferences-screen').dialog('option', 'title', 'Saving...');
+				$('#preferences-screen').dialog('close');
 				ptOverlay('Processing...');
 
 				$('#preferences-form').submit(function(){
@@ -2093,13 +2108,16 @@ jQuery.noConflict();
 		   					task: 'saveprefs'
 		   				},
 			   			success: function(data, textStatus){
-			   				$('#preferences-screen').dialog('close');
+			   				
 			    			window.location.reload(true);
 			   				return false;
 			   			}
 		   			});
 		   			return false;
 		   		});
+				$('#preferences-form').trigger('submit');
+		
+				return false;
 			});
 	    }
 	    
@@ -2165,15 +2183,15 @@ jQuery.noConflict();
 	   				opacity: 0.5 
 	   			},
 	   			close: function(){
-	   				$.cookie('logout-toggle', null);
-	   				$.cookie('am_logged_in', null, { path: '/', expires: -1 });
-					$.cookie('am_logged_in_user', null, { path: '/', expires: -1 });
-					$.cookie('member_id', null, { path: '/', expires: -1 });
-					$.cookie('member_data', null, { path: '/', expires: -1 });
-					$.cookie('logout-toggle', null);
-					$(this).dialog('destroy');
-					ptOverlay('Logging out...')
-					window.location.reload(true);
+	   				$.ajax({
+						url: '../administrator/index.php?option=com_configurator&task=luser&format=raw',
+						success: function(d){
+							$.cookie('logout-toggle', null);
+							$(this).dialog('destroy');
+							ptOverlay('Logging out...')
+							window.location.reload(true);
+						}
+					});
 	   			},
 				buttons: {
 					'Logout': function(){
@@ -2361,5 +2379,5 @@ jQuery.noConflict();
 			return false;
 		});
 	});
-	<?php if(isset($_COOKIE['am_logged_in']) && isset($_COOKIE['am_logged_in_user'])) include 'functions/loading.js'; ?>
+	<?php if($ul==1) include 'functions/loading.js'; ?>
 })(jQuery);

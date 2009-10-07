@@ -16,4 +16,14 @@ CREATE TABLE IF NOT EXISTS `#__configurator_preferences` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `#__configurator_usertable` (
+  `id` int(4) NOT NULL auto_increment,
+  `user_name` varchar(64) NOT NULL,
+  `member_id` varchar(64) NOT NULL,
+  `member_name` varchar(264) NOT NULL,
+  `member_surname` varchar(264) NOT NULL,
+  `member_email` varchar(264) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 UPDATE `#__components` SET `link` = '' WHERE `link` = 'option=com_configurator';

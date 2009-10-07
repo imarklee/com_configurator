@@ -17,10 +17,6 @@
 					</label>
 					
 					<p class="login-sub">
-						<label for="am-keep-login" class="login-checkbox">
-							<input class="alf-check" type="checkbox" name="am-keep-login" id="am-keep-login" value="true" /> Remember me
-						</label>
-						&nbsp;&nbsp;|&nbsp;
 						<label for="show-password" class="login-checkbox"><span class="sp-check"></span></label>
 						&nbsp;&nbsp;|&nbsp;&nbsp;
 						<a href="#" id="lost-pass" title="Forgot your club password? Click here to ">Forgot password?</a></p>

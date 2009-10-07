@@ -1,11 +1,19 @@
 <?php
-$template_url = JURI::root() . 'templates/morph/';
-$themelet_url = JURI::root() . 'morph_assets/themelets/';
-$component_url = JURI::root() . 'administrator/components/com_configurator/'; 
-							
-$template_xml = $template_url . 'templateDetails.xml';
-$themelet_xml = $themelet_url . $params->get('themelet') .'/themeletDetails.xml';
-$component_xml = $component_url . 'configurator.xml';
+
+$path = JPATH_SITE . DS;
+$urlpath = JURI::root();
+
+$template_path	= $path . 'templates/morph/';
+$themelet_path 	= $path . 'morph_assets/themelets/';
+$component_path = $path . 'administrator/components/com_configurator/';
+
+$template_urlpath 	= $urlpath . 'templates/morph/';
+$themelet_urlpath 	= $urlpath . 'morph_assets/themelets/';
+$component_urlpath 	= $urlpath . 'administrator/components/com_configurator/';
+
+$template_xml = $template_path . 'templateDetails.xml';
+$themelet_xml = $themelet_path . $params->get('themelet') .'/themeletDetails.xml';
+$component_xml = $component_path . 'configurator.xml';
 
 $template_details = xml2array($template_xml);
 $themelet_details = xml2array($themelet_xml);
@@ -15,22 +23,23 @@ $template_arr = $template_details['install'];
 $themelet_arr = $themelet_details['install'];
 $component_arr = $component_details['install'];
 ?>
+
 <div id="report-bug" title="Send us your feedback">
 	<p class="teaser">Your feedback and suggestions are important to us. If there is anything that could be done better, or improved on - even the terminology we use, we want to know! Fill in the form below, with as much detail as possible.</p>
 
 	<form id="feedbackform" method="post" action="">
 	<fieldset>
-		<?php if(isset($_COOKIE['am_logged_in'])){ ?>
+		<?php if($this->checkuser()){ ?>
 			<span style="display: none;">
 			<label for="ff-name">Your name</label>
-			<input type="text" name="name" id="ff-name" class="text ui-widget-content ui-corner-all" value="<?php echo $_COOKIE['member_name']; ?> <?php echo $_COOKIE['member_surname']; ?>" />
+			<input type="text" name="name" id="ff-name" class="text ui-widget-content ui-corner-all" value="<?php echo $user[0]['member_name']; ?> <?php echo $user[0]['member_surname']; ?>" />
 			
 			<label for="ff-email">Your email address</label>
-			<input type="text" name="email" id="ff-email" value="<?php echo $_COOKIE['member_email']; ?>" class="text ui-widget-content ui-corner-all" />
+			<input type="text" name="email" id="ff-email" value="<?php echo $user[0]['member_email']; ?>" class="text ui-widget-content ui-corner-all" />
 			</span>
 		<?php } ?>
 		<ul>
-			<?php if(!isset($_COOKIE['am_logged_in'])){ ?>
+			<?php if(!$this->checkuser()){ ?>
 				<li class="fb-name">
 					<label for="fb-name">Your name:</label>
 					<input type="text" name="name" id="fb-name" value="" class="text ui-widget-content ui-corner-all" />
@@ -58,14 +67,14 @@ $component_arr = $component_details['install'];
 
 			<li class="fb-subject">
 				<label for="ff-title">Subject:</label>
-				<input type="text" name="title" id="ff-title" value="<?php if(!isset($_COOKIE['am_logged_in'])){ ?>Unable to login<?php } ?>" class="text ui-widget-content ui-corner-all" />
+				<input type="text" name="title" id="ff-title" value="<?php if(!$this->checkuser()){ ?>Unable to login<?php } ?>" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-message">
 				<label for="ff-description">Message:</label>
 				<textarea name="description" id="ff-description" rows="4" cols="40" class="text ui-widget-content ui-corner-all"></textarea>
 			</li>
 			<li class="fb-buttons">
-				<input class="ff-button" type="submit" name="ff-submit" id="ff-submit" value="Send Feedback" />
+				<a href="#" class="btn-primary ff-submit"><span><strong>Send</strong> Feedback</span></a>
 				<a href="#" id="ff-reset">Cancel</a>
 			</li>
 		</ul>

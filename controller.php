@@ -457,6 +457,37 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
+	function loaduser(){
+		$db = JFactory::getDBO();
+		$query = "insert into #__configurator_usertable values ('','".$_REQUEST['login']['user_name']."','".$_REQUEST['login']['member_id']."','".$_REQUEST['login']['member_name']."','".$_REQUEST['login']['member_surname']."','".$_REQUEST['login']['member_email']."');";
+		$db->setQuery($query);
+		$db->query() or die('{ error: "'.$db->getErrorMsg().'" }');
+		echo '{ success: "login successfull" }';
+		exit();
+	}
+	
+	function checkuser(){
+		$db = JFactory::getDBO();
+		$db->setQuery('select count(*) from #__configurator_usertable');
+		$nums = $db->loadResult();
+		if($nums < 1) return false;
+		return true;
+	}
+	
+	function getuserdetails(){
+		$db = JFactory::getDBO();
+		$db->setQuery("select * from #__configurator_usertable;");
+		$res = $db->loadAssocList();
+		return $res;
+	}
+	
+	function luser(){
+		$db = JFactory::getDBO();
+		$db->setQuery('truncate table #__configurator_usertable');
+		$db->query();
+		echo 'success: "true"';
+	}
+	
 	function uni_installer(){
 		$return = '';		
 		if( JRequest::getVar('do') && JRequest::getVar('do') == 'upload' ){

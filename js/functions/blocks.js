@@ -97,7 +97,7 @@ function LogoOptions(){
 		if($('#taglinedisplay_slogan1').attr('checked')){ slogan('on'); }
 		$('#taglinedisplay_slogan1').click( function(){ slogan('on'); } );
 
-		if($('#display_ie_logo1').attr('checked')){ ieLogo('on'); }
+		if($('#logodisplay_ie_logo1').attr('checked')){ ieLogo('on'); }
 		$('#logodisplay_ie_logo1').click( function(){ ieLogo('on'); } );
 		
 		if($('#logodisplay_ie_logo0').attr('checked')){ ieLogo('off'); }
@@ -112,6 +112,26 @@ function LogoOptions(){
 	}	
 }
 $(function(){ LogoOptions(); });
+
+function backgroundsEnable(){
+	
+	function be(val){
+		var display;
+		if(val == 'on'){ display='block'; }else{ display='none'; }
+		$('#backgroundsbg_image').parent().css('display', display);
+		$('#backgroundsbg_repeat').parent().css('display', display);
+		$('#backgroundsbg_position').parent().css('display', display);
+		$('#backgroundsbg_attachment').parent().css('display', display);
+	}
+	
+	if($('#backgroundsuse_bg_image1').attr('checked')){ be('on'); }
+	$('#backgroundsuse_bg_image1').click( function(){ be('on'); } );
+	
+	if($('#backgroundsuse_bg_image0').attr('checked')){ be('off'); }
+	$('#backgroundsuse_bg_image0').click( function(){ be('off'); } )
+	
+}
+$(function(){ backgroundsEnable(); });
 
 function blockSettingsOptions(elid, hideid){
 	

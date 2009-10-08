@@ -3,7 +3,7 @@
  * @author: Byron Rode
  */
 $(window).keydown(function(e){
-	if($.cookie('am_logged_in') && !$.cookie('noshortkey')){
+	if(!$.cookie('noshortkey')){
 		var keycode = (e.keyCode || e.which);
 		var os = $.os.name;
 		

@@ -2006,8 +2006,8 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		<?php include('functions/blocks.js'); ?>
-		<?php include('functions/keyboard.js'); ?>
+		<?php if($ul==1) include('functions/blocks.js'); ?>
+		<?php if($ul==1) include('functions/keyboard.js'); ?>
 		
 		// ajax content for dialog
 	    // welcome screen

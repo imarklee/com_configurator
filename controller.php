@@ -191,7 +191,8 @@ class ConfiguratorController extends JController {
 		HTML_configurator_admin::help();
 	}
 	
-	function pt_proxy($url, $ih=1000, $iw=1000, $is='auto'){
+	function pt_proxy(){
+		$url = $_GET['url'];
 		$content = file_get_contents($url);
 		if(!$content){ ?>
 			<div id="proxy-warning">
@@ -201,7 +202,7 @@ class ConfiguratorController extends JController {
 			<iframe id="pt_iframe" name="pt_iframe" src="<?php echo $url; ?>" height="<?php echo $ih; ?>" width="<?php echo $iw; ?>" frameborder="0" scrolling="<?php echo $is; ?>"></iframe>
 		<?php 
 		}else{
-			return $content;
+			echo $content;
 		}
 	}
 	

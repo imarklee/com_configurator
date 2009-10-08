@@ -1,1 +1,1 @@
-$(function(){	jQuery.event.add( window, "load", function(){		$('#loading').fadeTo('normal', 0).remove();	});});
+$(function(){	jQuery.event.add( window, "load", function(){		$('#loading').fadeTo('normal', 0).remove();				alert($('#livedocs').content().find('a').length);		// .each({		// 			old = $(this).attr('href');		// 			new = $(this).attr('href', 'http://www.prothemer.com/joomla/morph/livedocs'+old);		// 		})	});});

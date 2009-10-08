@@ -1,6 +1,6 @@
 #tools .tools-btn{padding:5px 10px;background:#fff;border-radius:10px;cursor:pointer;clear:both;border:1px solid #ccc;font:bold 13px arial;color:#555;}
 #tools .tools-btn:hover{background:#ddd;color:#666;}
-#tools h2{font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:0.4px;color:#303030;font-size:22px;margin:0 0 15px 0;padding:0;}
+#tools .ui-tabs-panel h2{font-family:'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',sans-serif;font-weight:300;letter-spacing:0.4px;color:#303030;font-size:22px;margin:0 0 15px 0;padding:0;}
 #tabs #tools.ui-tabs-panel .subtabs .ui-tabs-nav{margin-bottom:1em;}
 
 #uploader{overflow:hidden;}

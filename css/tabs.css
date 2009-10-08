@@ -7,7 +7,9 @@
 #tabs .tab-desc{margin-bottom:1.5em;border:5px solid #EF9700;position:absolute;width:700px;height:auto;z-index:99;top:60px;left:100px;}
 #tabs #assets-desc{top:25px;}
 #tabs .desc-inner{margin:0;padding:1em;color:#AF3E00;font:normal 15px/20px arial;background:#FFDC9F;border:1px solid #AF3E00;position:relative;}
-#tabs .tab-desc p a{color:#fff;font:normal 12px/20px arial;background:#EF9700;text-decoration:underline;position:absolute;bottom:-1px;right:-1px;padding:2px 0 0 7px;border-top:1px solid #AF3E00;border-left:1px solid #AF3E00;}
+#tabs .tab-desc p.last{margin:0;}
+#tabs .tab-desc p a{color:#444;text-decoration:underline;}
+#tabs .tab-desc p a.close{color:#fff;font:normal 12px/20px arial;background:#EF9700;text-decoration:underline;position:absolute;bottom:-1px;right:-1px;padding:2px 0 0 7px;border-top:1px solid #AF3E00;border-left:1px solid #AF3E00;}
 #tabs .ui-widget-content{float:left;position:relative;width:920px;}
 #tabs.ui-tabs .ui-tabs-nav li{font:normal 17px Arial;color:#fff;margin:0 1px 0 0;}
 #tabs,#tabs .primary,#tabs .primary li,#tabs .primary li a,#tabs .primary .ui-tabs-panel{padding:0;margin:0;border:0;background:none;-moz-border-radius:0;}

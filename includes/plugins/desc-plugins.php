@@ -3,6 +3,6 @@
 	<div class="desc-inner">
 		<h2>About the plugins tab</h2>
 		<p class="last">The plugins tab will provide you with an interface to manage the various jQuery plugins that we have integrated with Morph. 
-		<a href="#">close</a></p>
+		<a href="#" class="close">close</a></p>
 	</div>
 </div>

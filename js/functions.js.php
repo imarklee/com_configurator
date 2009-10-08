@@ -261,42 +261,42 @@ jQuery.noConflict();
 	   		$('#preferences-form').trigger('submit');
 			return false; 
 		});		
-		$('#site-desc a').click(function(){
+		$('#site-desc a.close').click(function(){
 			$('#site-desc').hide('slow');
 			$('#site-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('site-desc', true,{path:'/',expires:30});
 			$.cookie('hideintros', true);
 			return false; 
 		});
-		$('#themelet-desc a').click(function(){
+		$('#themelet-desc a.close').click(function(){
 			$('#themelet-desc').hide('slow');
 			$('#customize-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('themelet-desc', true,{path:'/',expires:30});
 			$.cookie('hideintros', true);
 			return false; 
 		});
-		$('#plugins-desc a').click(function(){
+		$('#plugins-desc a.close').click(function(){
 			$('#plugins-desc').hide('slow');
 			$('#plugins-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('plugins-desc', true,{path:'/',expires:30});
 			$.cookie('hideintros', true);
 			return false; 
 		});
-		$('#tools-desc a').click(function(){
+		$('#tools-desc a.close').click(function(){
 			$('#tools-desc').hide('slow');
 			$('#tools-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('tools-desc', true,{path:'/',expires:30});
 			$.cookie('hideintros', true);
 			return false; 
 		});
-		$('#assets-desc a').click(function(){
+		$('#assets-desc a.close').click(function(){
 			$('#assets-desc').hide('slow');
 			$('#assets-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('assets-desc', true,{path:'/',expires:30});
 			$.cookie('hideintros', true);
 			return false; 
 		});
-		$('#blocks-desc a').click(function(){
+		$('#blocks-desc a.close').click(function(){
 			$('#blocks-desc').hide('slow');
 			$('#blocks-tabs .desc-overlay').fadeTo('fast',0).remove();
 			$.cookie('blocks-desc', true,{path:'/',expires:30});

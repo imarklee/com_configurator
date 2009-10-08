@@ -7,6 +7,6 @@
 		a new themelet. We have tried to make the options as easy to 
 		understand as possible, but if there is anything that you think 
 		could be improved, please be sure to let us know.
-		<a href="#">close</a></p>
+		<a href="#" class="close">close</a></p>
 	</div>
 </div>

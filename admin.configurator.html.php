@@ -171,8 +171,8 @@ class HTML_configurator_admin {
         $option 	= JRequest::getVar('option');
         $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
 		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
-        //$document->addScript($jspath . 'jquery.js');
-        //$document->addScript($jspath . 'autoheight.js');
+        $document->addScript($jspath . 'jquery.js');
+        $document->addScript($jspath . 'livedocs.js');
 		
 		$document->addStyleSheet($csspath . 'help-docs.css');
 

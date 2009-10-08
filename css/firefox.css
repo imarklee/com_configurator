@@ -1,4 +1,3 @@
-#cfg #tabs ol.forms li.palette .color-preview{top:7px;}
 #assets-tabs .thumb-view ul.buttons li a span,
 #assets-tabs .thumb-view ul.buttons li a,
 a.btn-link,
@@ -39,4 +38,5 @@ a.btn-primary{-moz-border-radius: 20px;-moz-box-shadow:0 0 5px #999;}
 a.btn-primary:hover{-moz-box-shadow:0 0 5px #598C13;}
 #assets-tabs .icon-backup span{padding:2px 30px 5px 8px;}
 #cfg #tabs ol.forms li.palette .color-preview{top:8px;}
+#cfg #tabs ol.forms li.palette .color-preview{top:7px;}
 #cfg #tabs ol.forms li.palette{height:32px;}

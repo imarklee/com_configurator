@@ -1467,6 +1467,19 @@ class ConfiguratorController extends JController {
 				return false;
 			}
 			break;
+			case 'iphone':
+			$assetsdir .= 'iphone';
+			$assetsfile = $assetsdir . DS . $asset;			
+			if (is_dir($assetsdir)) {
+				if(JFile::delete($assetsfile)){
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+			break;
 			case 'background':
 			$assetsdir .= 'backgrounds';
 			$assetsfile = $assetsdir . DS . $asset;			

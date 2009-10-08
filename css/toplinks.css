@@ -19,4 +19,5 @@
 #toolbar .toolbar td#toolbar-preferences a{background-position:50% 72%;}
 #toolbar .toolbar td#toolbar-report-bug-email-link a,
 #toolbar .toolbar td#toolbar-report-bug-link a{background-position:50% 107%;}
+#toolbar .toolbar td#toolbar-configurator a,
 #toolbar .toolbar td#toolbar-apply a{padding: 34px 10px 0 10px;}

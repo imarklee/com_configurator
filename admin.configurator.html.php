@@ -174,6 +174,7 @@ class HTML_configurator_admin {
         $document->addScript($jspath . 'jquery.js');
         $document->addScript($jspath . 'livedocs.js');
 		
+		$document->addStyleSheet($csspath . 'toplinks.css');
 		$document->addStyleSheet($csspath . 'help-docs.css');
 
 		include 'includes/layout/livedocs.php';

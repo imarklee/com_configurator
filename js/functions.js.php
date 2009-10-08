@@ -514,7 +514,7 @@ jQuery.noConflict();
 				opacity: 0.8
 			}
 		});
-		$('#toolbar-report-bug-link, #toolbar-report-bug-email-link a').click(function() {
+		$('.report-bug, #toolbar-report-bug-link, #toolbar-report-bug-email-link a').click(function() {
 			$('#report-bug').dialog('open');
 			return false;
 		});

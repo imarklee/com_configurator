@@ -1178,11 +1178,11 @@ jQuery.noConflict();
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=background&asset='+setBackground,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
-			   						if($('#backgrounds-list').hasClass('thumb-view')){
-			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
-			   						}else{
-			   							$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow');
-			   						}			   						
+			   						$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow').remove();
+									$("ul.assets-list").each(function(){
+										$(this).children().removeClass('alt');
+										$(this).children(':odd').addClass('alt');
+									});			   						
 			   						$('#footer').after('<div id="assets-output"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Background deleted successfully</div>');
 			   						hideScroll();
@@ -1245,11 +1245,11 @@ jQuery.noConflict();
 			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=logo&asset='+setLogo,
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
-			   						if($('#logos-list').hasClass('thumb-view')){
-			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().addClass('deleted').css({ opacity: 1 });
-			   						}else{
-			   							$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow');
-			   						}
+			   						$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow').remove();
+									$("ul.assets-list").each(function(){
+										$(this).children().removeClass('alt');
+										$(this).children(':odd').addClass('alt');
+									});
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Logo deleted successfully</div>');
 			   						hideScroll();
@@ -1282,6 +1282,73 @@ jQuery.noConflict();
 	   		
 	   		return false;
 	   	});
+		// iphones
+		$('li.iphone-item ul li.btn-delete a').click(function(){
+			var setiphone = $(this).attr('name');
+			var setiphoneName = $(this).attr('title').replace('Delete ', '').replace(' iphone media', '');
+			var alertMessage = 'Are you sure you want to delete the "'+setiphoneName+'" iphone media file?<br />This is irreversible!';
+
+			$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+			$('#assets-output').html('<div class="dialog-msg">'+alertMessage+'</div>');
+			hideScroll();
+			$('#assets-output').dialog({
+				bgiframe: true,
+				autoOpen: true,
+				resizable: false,
+				draggable: false,
+				minHeight: 20,
+				modal: true, 
+				title: 'Delete',
+				overlay: {
+					'background-color': '#000', 
+					opacity: 0.8 
+				},
+				buttons: { 
+					'Yes': function(){
+						$(this).dialog('destroy');
+						showScroll();
+						$.ajax({
+			   				type: 'GET',
+			   				url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=iphone&asset='+setiphone,
+			   				success: function(data, textStatus){
+			   					if(textStatus == 'success'){			   						
+			   						$('a[name="'+setiphone+'"]').parent().parent().parent().parent().hide('slow').remove();
+									$("ul.assets-list").each(function(){
+										$(this).children().removeClass('alt');
+										$(this).children(':odd').addClass('alt');
+									});
+			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+			   						$('#assets-output').html('<div class="dialog-msg">iphone media deleted successfully</div>');
+			   						hideScroll();
+						   			$('#assets-output').dialog({
+						   				bgiframe: true,
+							   			autoOpen: true,
+							   			resizable: false,
+							   			draggable: false,
+							   			minHeight: 20,
+							   			modal: true, 
+							   			title: 'Delete',
+							   			overlay: {
+							   				'background-color': '#000', 
+							   				opacity: 0.8 
+							   			},
+										buttons: { 
+											'OK': function(){ $(this).dialog('destroy'); showScroll(); }
+										}
+									});
+			   					}
+			   				}
+			   			});
+					},
+					'No': function(){
+						$(this).dialog('destroy');
+						showScroll();
+					}
+				}
+			});
+
+			return false;
+		});
 				
 		/* Logo Options -----------------------
 	    ------------------------------------ */

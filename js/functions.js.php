@@ -1586,6 +1586,7 @@ jQuery.noConflict();
 		$('#uploader-btn').click(function(){
 			
 			ptOverlay('Installing...');
+			
 			var uploadType = $('input[type="radio"]:checked','#install-type').val();
 			$.ajaxFileUpload({
 				url: '../administrator/index.php?option=com_configurator&task=uni_installer&format=raw&do=upload&itype='+uploadType,
@@ -1638,6 +1639,18 @@ jQuery.noConflict();
 			   				});
 			   				
 			   				if(uploadType == 'template'){
+								$('#upload-message').html(data.success);
+								$('#upload-message').dialog(
+									'option', 'buttons', { 
+										'Ok': function(){
+											$(this).dialog('destroy');
+	  									  	showScroll();
+										}
+									}
+								);
+								$('#upload-message').dialog('moveToTop').dialog('open');
+							}
+							if(uploadType == 'themelet_assets'){
 								$('#upload-message').html(data.success);
 								$('#upload-message').dialog(
 									'option', 'buttons', { 

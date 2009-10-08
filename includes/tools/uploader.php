@@ -10,6 +10,7 @@
 				<label for="upload_favicon"><input type="radio" name="upload_type" value="favicon" id="upload_favicon" />Upload a favicon</label>
 				<label for="upload_iphone"><input type="radio" name="upload_type" value="iphone" id="upload_iphone" />Upload iPhone images</label>
 				<label for="upload_sample"><input type="radio" name="upload_type" value="sample" id="upload_sample" />Install demo content</label>
+				<label for="upload_themelet_assets"><input type="radio" name="upload_type" value="themelet_assets" id="upload_themelet_assets" />Upload Themelet Assets</label>
 			</fieldset>
 			<fieldset id="select-file">
 			    <h4><strong>Step 1:</strong> Choose an install type</h4>

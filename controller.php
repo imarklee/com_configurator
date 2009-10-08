@@ -536,6 +536,9 @@ class ConfiguratorController extends JController {
 						case 'sample':
 						$return = $this->demo_upload();
 						break;
+						case 'themelet_assets':
+						$return = $this->assets_upload();
+						break;
 					}
 				}else{
 					$return = 'error: "No file has been selected. Please select a file in <strong>Step 2</strong> and try again."';
@@ -556,6 +559,50 @@ class ConfiguratorController extends JController {
 		$ret = '{'.$return.'}';
 		echo $ret;
 		die();
+	}
+	
+	function assets_upload(){
+		$assetsdir 	= JPATH_SITE . DS . 'morph_assets';
+		$logos 		= $assetsdir . DS . 'logos';
+		$bg			= $assetsdir . DS . 'backgrounds';
+		$iphone		= $assetsdir . DS . 'iphone';
+		$tempassets = $assetsdir . DS . 'temp_assets';
+		$message 	= array();
+		
+		$file 		= JRequest::getVar( 'insfile', '', 'files', 'array' );
+		
+		if(!is_dir($tempassets)){JFolder::create($tempassets);}
+		JPath::setPermissions($tempassets);
+		
+		if(!move_uploaded_file($file['tmp_name'], $tempassets . DS . strtolower(basename($file['name']))) ){
+			$error = 'error: "Could not move file to required location!"';
+			return $error;
+		}
+		 		
+		$result = JArchive::extract( $tempassets . DS . strtolower(basename($file['name'])), $tempassets);
+		
+		if ($h = opendir($tempassets)) {
+		    while (false !== ($f = readdir($h))) {
+		        if ($f !== "." && $f !== ".." && $f !== '.DS_Store' && $f !== '__MACOSX') {
+		            if(is_dir($tempassets . DS . $f)){
+						if ($h2 = opendir($tempassets . DS . $f)){
+							 while (false !== ($f2 = readdir($h2))) {
+								if ($f2 !== "." && $f2 !== ".." && $f2 !== '.DS_Store') {
+									if(!file_exists($assetsdir . DS . $f . DS . $f2)){
+										JFile::move($tempassets . DS . $f . DS . $f2, $assetsdir . DS . $f . DS . $f2);
+									}
+								}
+							}
+							closedir($h2);
+						}
+					}
+		        }
+		    }
+		    closedir($h);
+		}
+		
+		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempassets);
+		return 'success: "Assets uploaded successfully.", error: ""';
 	}
 	
 	function demo_upload(){

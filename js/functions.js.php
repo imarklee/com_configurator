@@ -1110,7 +1110,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
 									$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow').remove();
-									if($("#themelets-list ul.assets-list").length > 1){
+									if($("#themelets-list ul.assets-list li.themelet-item").length > 0){
 										$("ul.assets-list").each(function(){
 											$(this).children().removeClass('alt');
 											$(this).children(':odd').addClass('alt');
@@ -1184,7 +1184,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
 			   						$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow').remove();
-									if($("#backgrounds-list ul.assets-list").length > 1){
+									if($("#backgrounds-list ul.assets-list li.background-item").length > 0){
 										$("ul.assets-list").each(function(){
 											$(this).children().removeClass('alt');
 											$(this).children(':odd').addClass('alt');
@@ -1255,7 +1255,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
 			   						$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow').remove();
-									if($("#logos-list ul.assets-list").length > 1){
+									if($("#logos-list ul.assets-list li.logo-item").length > 0){
 										$("ul.assets-list").each(function(){
 											$(this).children().removeClass('alt');
 											$(this).children(':odd').addClass('alt');
@@ -1326,7 +1326,7 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
 			   						$('a[name="'+setiphone+'"]').parent().parent().parent().parent().hide('slow').remove();
-									if($("#iphone-list ul.assets-list").length > 1){
+									if($("#iphone-list ul.assets-list li.iphone-item").length > 0){
 										$("ul.assets-list").each(function(){
 											$(this).children().removeClass('alt');
 											$(this).children(':odd').addClass('alt');

@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 class toolbar_morph {
 	function manage_toolbar(){
-		JToolBarHelper::title(  JText::_( 'Configurator > Manage' ), 'configurator' );
+		JToolBarHelper::title(  JText::_( 'Configurator > <span>Manage</span>' ), 'configurator' );
 		$bar = JToolBar::getInstance( 'toolbar' );
 		if(ConfiguratorController::checkUser()){
 			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Save').'</a>', 'apply' );
@@ -15,7 +15,7 @@ class toolbar_morph {
 	}
 
 	function help_toolbar(){
-		JToolBarHelper::title(  JText::_( 'Configurator > Documentation' ), 'configurator-help' );
+		JToolBarHelper::title(  JText::_( 'Configurator > <span>Documentation</span>' ), 'configurator-help' );
 		
 		$bar = JToolBar::getInstance( 'toolbar' );
 		$bar->appendButton( 'Custom', '<a href="'.JURI::root().'administrator/index.php?option=com_configurator&task=manage" class="toolbar">'.JText::_('Done').'</a>', 'configurator' );

@@ -1078,6 +1078,7 @@ jQuery.noConflict();
 	   	/* Delete functions -------------------
 	    ------------------------------------ */
 	    // themelets
+		
 	   	$('li.themelet-item.tl-inactive ul li.btn-delete a').click(function(){
 			
 	   		var setThemelet = $(this).attr('name');
@@ -1109,10 +1110,14 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
 									$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().hide('slow').remove();
-									$("ul.assets-list").each(function(){
-										$(this).children().removeClass('alt');
-										$(this).children(':odd').addClass('alt');
-									});
+									if($("#themelets-list ul.assets-list").length >= 2){
+										$("ul.assets-list").each(function(){
+											$(this).children().removeClass('alt');
+											$(this).children(':odd').addClass('alt');
+										});
+									}else{
+										$('#themelets-list').empty().append('<div class="no-assets">There are currently no themelets in your assets folder. <a href="#" class="upload-themelet">Upload a themelet?</a></div>');
+									}
 			   						$('#footer').after('<div id="assets-output"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Themelet deleted successfully</div>');
 			   						hideScroll();
@@ -1179,10 +1184,14 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){
 			   						$('a[name="'+setBackground+'"]').parent().parent().parent().parent().hide('slow').remove();
-									$("ul.assets-list").each(function(){
-										$(this).children().removeClass('alt');
-										$(this).children(':odd').addClass('alt');
-									});			   						
+									if($("#backgrounds-list ul.assets-list").length >= 2){
+										$("ul.assets-list").each(function(){
+											$(this).children().removeClass('alt');
+											$(this).children(':odd').addClass('alt');
+										});
+									}else{
+										$('#backgrounds-list').empty().append('<div class="no-assets">There are currently no backgrounds in your assets folder. <a href="#" class="upload-background">Upload a background?</a></div>');
+									}		   						
 			   						$('#footer').after('<div id="assets-output"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Background deleted successfully</div>');
 			   						hideScroll();
@@ -1246,10 +1255,14 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
 			   						$('a[name="'+setLogo+'"]').parent().parent().parent().parent().hide('slow').remove();
-									$("ul.assets-list").each(function(){
-										$(this).children().removeClass('alt');
-										$(this).children(':odd').addClass('alt');
-									});
+									if($("#logos-list ul.assets-list").length >= 2){
+										$("ul.assets-list").each(function(){
+											$(this).children().removeClass('alt');
+											$(this).children(':odd').addClass('alt');
+										});
+									}else{
+										$('#logos-list').empty().append('<div class="no-assets">There are currently no logos in your assets folder. <a href="#" class="upload-logo">Upload a logo?</a></div>');
+									}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Logo deleted successfully</div>');
 			   						hideScroll();
@@ -1313,10 +1326,14 @@ jQuery.noConflict();
 			   				success: function(data, textStatus){
 			   					if(textStatus == 'success'){			   						
 			   						$('a[name="'+setiphone+'"]').parent().parent().parent().parent().hide('slow').remove();
-									$("ul.assets-list").each(function(){
-										$(this).children().removeClass('alt');
-										$(this).children(':odd').addClass('alt');
-									});
+									if($("#iphone-list ul.assets-list").length >= 2){
+										$("ul.assets-list").each(function(){
+											$(this).children().removeClass('alt');
+											$(this).children(':odd').addClass('alt');
+										});
+									}else{
+										$('#iphone-list').empty().append('<div class="no-assets">There is currently no iPhone media in your assets folder. <a href="#" class="upload-iphone">Upload iPhone media?</a></div>');
+									}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">iphone media deleted successfully</div>');
 			   						hideScroll();

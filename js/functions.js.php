@@ -1117,6 +1117,15 @@ jQuery.noConflict();
 										});
 									}else{
 										$('#themelets-list').empty().append('<div class="no-assets">There are currently no themelets in your assets folder. <a href="#" class="upload-themelet">Upload a themelet?</a></div>');
+										$(".upload-themelet").click(function(){
+										var maintabs = $("#tabs").tabs();
+										var subtabs = $("#tools-tabs").tabs();
+										maintabs.tabs("select",4);
+										subtabs.tabs("select",0);
+										$('#install-type label.label-selected').removeClass('label-selected');
+										$("#upload_themelet").attr("checked",true).parent().addClass('label-selected');
+										return false;
+										});
 									}
 			   						$('#footer').after('<div id="assets-output"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Themelet deleted successfully</div>');
@@ -1190,7 +1199,16 @@ jQuery.noConflict();
 											$(this).children(':odd').addClass('alt');
 										});
 									}else{
-										$('#backgrounds-list').empty().append('<div class="no-assets">There are currently no backgrounds in your assets folder. <a href="#" class="upload-background">Upload a background?</a></div>');
+										$('#backgrounds-list').empty().append('<div class="no-assets">There are currently no backgrounds in your assets folder. <a href="#" class="upload-bg">Upload a background?</a></div>');
+										$(".upload-bg").click(function(){
+										var maintabs = $("#tabs").tabs();
+										var subtabs = $("#tools-tabs").tabs();
+										maintabs.tabs("select",4);
+										subtabs.tabs("select",0);
+										$('#install-type label.label-selected').removeClass('label-selected');
+										$("#upload_background").attr("checked",true).parent().addClass('label-selected');
+										return false;
+										});
 									}		   						
 			   						$('#footer').after('<div id="assets-output"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Background deleted successfully</div>');
@@ -1262,6 +1280,15 @@ jQuery.noConflict();
 										});
 									}else{
 										$('#logos-list').empty().append('<div class="no-assets">There are currently no logos in your assets folder. <a href="#" class="upload-logo">Upload a logo?</a></div>');
+										$(".upload-logo").click(function(){
+										var maintabs = $("#tabs").tabs();
+										var subtabs = $("#tools-tabs").tabs();
+										maintabs.tabs("select",4);
+										subtabs.tabs("select",0);
+										$('#install-type label.label-selected').removeClass('label-selected');
+										$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
+										return false;
+										});
 									}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Logo deleted successfully</div>');
@@ -1333,6 +1360,15 @@ jQuery.noConflict();
 										});
 									}else{
 										$('#iphone-list').empty().append('<div class="no-assets">There is currently no iPhone media in your assets folder. <a href="#" class="upload-iphone">Upload iPhone media?</a></div>');
+										$(".upload-iphone").click(function(){
+										var maintabs = $("#tabs").tabs();
+										var subtabs = $("#tools-tabs").tabs();
+										maintabs.tabs("select",4);
+										subtabs.tabs("select",0);
+										$('#install-type label.label-selected').removeClass('label-selected');
+										$("#upload_iphone").attr("checked",true).parent().addClass('label-selected');
+										return false;
+										});
 									}
 			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">iphone media deleted successfully</div>');

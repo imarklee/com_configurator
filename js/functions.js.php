@@ -1656,7 +1656,12 @@ jQuery.noConflict();
 									'option', 'buttons', { 
 										'Ok': function(){
 											$(this).dialog('destroy');
-	  									  	showScroll();
+	  									  	ptOverlay('Reloading interface...');
+											var $tabs = $('#tabs').tabs();
+											var assetsTabs = $('#assets-tabs').tabs();
+											$tabs.tabs('select', 5);
+											assetsTabs.tabs('select', 0);
+											window.location.reload(true);
 										}
 									}
 								);

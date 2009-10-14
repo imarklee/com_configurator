@@ -1,1 +1,1 @@
-<iframe id="livedocs" name="livedocs" class="autoHeight" scrolling="auto" frameborder="0" width="100%" height="1500px" src="../administrator/index.php?option=com_configurator&task=pt_proxy&url=http://www.prothemer.com/joomla/morph/livedocs/&format=raw"></iframe>
+<iframe id="livedocs" name="livedocs" class="autoHeight" scrolling="auto" frameborder="0" width="100%" height="900px" src="http://www.prothemer.com/joomla/morph/livedocs/"></iframe>

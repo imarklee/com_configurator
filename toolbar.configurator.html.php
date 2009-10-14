@@ -9,6 +9,7 @@ class toolbar_morph {
 			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Fullscreen').'</a>', 'fullscreen' );
 			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Preferences ').'</a>', 'preferences' );
 			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Feedback').'</a>', 'report-bug-link' );
+			$bar->appendButton( 'Custom', '<a href="'.JURI::root().'administrator/index.php?option=com_configurator&task=help" class="toolbar">'.JText::_('Help').'</a>', 'help-link' );
 		}else{
 			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Report Bug').'</a>', 'report-bug-email-link' );
 		}

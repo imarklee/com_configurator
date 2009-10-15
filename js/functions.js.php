@@ -887,7 +887,7 @@ jQuery.noConflict();
 								   			close: function(){
 												$(this).dialog('destroy');
 												// change to assets tab
-												ptOverlay('Processing...');
+												ptOverlay('Reloading Management Interface...');
 												var mainTabs = $('#tabs').tabs();
 												var subTabs = $('#assets-tabs').tabs();
 												mainTabs.tabs('select', 5);
@@ -896,17 +896,19 @@ jQuery.noConflict();
 								   			},
 											buttons: { 
 												'Themelet Default': function(){
-													$(this).dialog('close');
+													var $this = $(this);
+													$this.dialog('close');
 									   			},
 									   			'Previous Settings': function(){
+													$this = $(this);
 									   				$.ajax({
 														url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
 														method: 'post',
 														success: function(data){
+															$this.dialog('close');
 															return true;
 														}
 													});
-									   				$(this).dialog('close');
 									   			}
 									   		}
 									   	});
@@ -2053,6 +2055,8 @@ jQuery.noConflict();
 								buttons: { 
 									'Themelet Defaults': function(){
 										$(this).dialog('close');
+										ptOverlay('Reloading Management Interface...')
+										window.location.reload(true);
 						   			},
 						   			'Previous Settings': function(){
 						   				$.ajax({
@@ -2062,7 +2066,9 @@ jQuery.noConflict();
 												return true;
 											}
 										});
-						   				$(this).dialog('close');
+										$(this).dialog('close');
+										ptOverlay('Reloading Management Interface...')
+										window.location.reload(true);
 						   			}
 						   		}
 						   	});

@@ -315,7 +315,7 @@ function menuOptionsOn(elid, hideid){
 	});
 }
 function menuOptionsOff(elid, hideid){
-	if($(elid).attr('checked') || $(elid).attr('checked') == false){
+	if($(elid).attr('checked')){
 		$(hideid).parent().css('display', 'none');
 	}
 	$(elid).click(function(){

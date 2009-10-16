@@ -2021,65 +2021,7 @@ jQuery.noConflict();
 		
 		$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(){
 			ptOverlay('Saving Settings...');
-			if($.cookie('change_themelet')){
-				$.ajax({
-					url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-					method: 'post',
-					success: function(ts, data){
-						return true;
-					}
-				});
-				$.ajax({
-					url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-					method: 'post',
-					dataType: 'json',
-					success: function(data, ts){
-						if(data.exists == 'true'){
-							close_ptOverlay();
-							$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
-					   			bgiframe: true,
-					   			autoOpen: true,
-					   			minHeight: 20,
-					   			width: 500,
-					   			stack: false,
-					   			modal: true, 
-					   			title: 'Activate',
-					   			overlay: {
-					   				'background-color': '#000', 
-					   				opacity: 0.8 
-					   			},
-					   			close: function(){
-									$(this).dialog('destroy');
-									setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-					   			},
-								buttons: { 
-									'Themelet Defaults': function(){
-										$(this).dialog('close');
-										ptOverlay('Reloading Management Interface...')
-										window.location.reload(true);
-						   			},
-						   			'Previous Settings': function(){
-						   				$.ajax({
-											url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-											method: 'post',
-											success: function(data){
-												return true;
-											}
-										});
-										$(this).dialog('close');
-										ptOverlay('Reloading Management Interface...')
-										window.location.reload(true);
-						   			}
-						   		}
-						   	});
-						}else{
-							setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-						}
-					}
-				});
-			}else{
-				setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-			}
+			setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
 			return false;
 		});
 		

@@ -1,7 +1,7 @@
 /**
  * Block Settings: Conditional Functions
  */
-	
+$('#generalthemelet').parent().css('display', 'none');
 function LogoOptions(){
 	switcher($('#logologo_type > option:selected').val());
 	

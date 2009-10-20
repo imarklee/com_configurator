@@ -74,19 +74,8 @@ $('#reset-settings ul li.action a').click(function(){
 		setTimeout(function(){
 			var msg;
 			close_ptOverlay();
-			if(successmsg.length == 1) msg = successmsg[0];
-			if(successmsg.length == 2) msg = 'Your Configurator preferences and settings have been reset successfully.';
-			
-			$('.dialog-msg').html(msg);
-			$('.dialog-msg').dialog('option', 'title', 'Success');
-			$('.dialog-msg').dialog('option', 'buttons', {
-				'OK': function(){
-					$(this).dialog('destroy');
-					ptOverlay('Reloading the management interface...');
-					window.location.reload(true);
-				}
-			});
-			$('.dialog-msg').dialog('open');
+			ptOverlay('Reloading the management interface...');
+			window.location.reload(true);
 			return false;
 		}, 3000);
 		return false;

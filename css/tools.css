@@ -50,3 +50,6 @@ table.table .filename{text-align:left;padding:2px 5px;}
 #cfg div.note div.note-inner{margin:0;padding:1em 1em 0 1em;color:#AF3E00;font:normal 15px/20px arial;background:#FFDC9F;border:1px solid #AF3E00;}
 #cfg div.note h3{background: url('../images/splash-updates.png') no-repeat 0;padding-left:25px;margin-bottom:.3em;font:bold 25px arial;}
 .action #db-do{}
+
+#tools label{cursor:pointer;}
+#tools label:hover{color:#777;}

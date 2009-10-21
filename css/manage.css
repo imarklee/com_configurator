@@ -82,6 +82,8 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
 #browser-wrap .cfg-message p.info a.close-msg:hover{background:#006699;}
 #browser-wrap .cfg-message p a.close-msg{position:absolute;top:5px;right:5px;width:50px;background:#fff;display:block;text-align:center;text-decoration:none;}
 #browser-wrap .cfg-message p a.close-msg:hover{color:#fff;}
+.notice-input{border:1px solid #CC3300;padding:2px;margin-right:5px;width:170px;}
+#browser-wrap .submit-live-site{font-weight:bold;}
 
 /* buttons */
 #minwidth-body a.btn-primary{padding:.6em 1em;background:url(../images/btn-sprite.jpg) repeat-x;border-radius:20px;box-shadow:0 0 5px #999;text-decoration:none;color:#333;font-family:arial;font-size:15px;}

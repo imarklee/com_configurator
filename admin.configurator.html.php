@@ -156,6 +156,15 @@ class HTML_configurator_admin {
 					'Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance.'.
 					'<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice', 'memory');
 				}
+				// set domain notification
+				if($this->get_live_site() == 'joomla'){ // no cfg live site joomla's live site is set, confirm
+					$conf = JFactory::getConfig();
+					echo $this->show_error('Please confirm your Joomla! Live Site URL. &nbsp; <input class="notice-input" type="text" value="'.$conf->getValue('config.live_site').'" />&nbsp;<a href="#" class="notice-link submit-live-site">Confirm</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="notice-link live-site">Why am I doing this?</a>', 'info', '');
+				}
+				if($this->get_live_site() == 'none'){ // no cfg live site or set, show input
+					echo $this->show_error('Please confirm your Joomla! Live Site URL. &nbsp; <input class="notice-input" type="text" value="" />&nbsp;<a href="#" class="notice-link submit-live-site">Confirm</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="notice-link live-site">Why am I doing this?</a>', 'info', '');
+				}
+				
 				include 'includes/layout/manage.php';
 			} ?>
 			</div>

@@ -191,6 +191,28 @@ class ConfiguratorController extends JController {
 		HTML_configurator_admin::help();
 	}
 	
+	function get_live_site(){
+		$conf = JFactory::getConfig();
+		$db   = JFactory::getDBO();
+		
+		$db->setQuery("SELECT `param_value` FROM #__configurator where param_name='live_site'");
+		$cfg_ls = $db->loadResult();
+		
+		// no live site set in cfg, check joomla's live_site
+		if($cfg_ls == NULL) { 
+			$j_ls = $conf->getValue('config.live_site');
+			// joomla live site not set, check configurator for manual live_site
+			if($j_ls == NULL) {	return 'none'; } else { return 'joomla'; }
+		}else{
+			return 'cfg';
+		}
+	}
+	
+	function set_live_site(){
+		if($this->get_live_site()) { return false; }
+		$new_ls = $_REQUEST['lsd'];
+	}
+	
 	function pt_proxy(){
 		$url = urldecode($_GET['url']);
 		$content = file_get_contents($url);

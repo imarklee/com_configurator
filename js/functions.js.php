@@ -1980,11 +1980,14 @@ jQuery.noConflict();
 			var uploaderid = (event.target.id);
 			if(!$.cookie('formChanges')){
 				if(uploaderid == 'insfile') { return false; event.preventDefault(); }
-				$.cookie('formChanges', true); 
+				$.cookie('formChanges', true);
+				var ih = $('#utilities li.logged-in').html();
+				$('#utilities li.logged-in').html(ih+'&nbsp;&nbsp;|&nbsp;&nbsp;<span class="shelf-notice">You have made some changes which are not saved.</span>');
 			}
 		});
 		
-		function checkChanges(action){
+		function checkChanges(action){	
+			return false;
 			var target;
 			var $this = $(this);
 			if($.cookie('formChanges')){			
@@ -2022,73 +2025,6 @@ jQuery.noConflict();
 		$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(){
 			ptOverlay('Saving Settings...');
 			setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-			return false;
-		});
-		
-		$('td#toolbar-Link a, ul#submenu li.dashboard a, #header-box #menu li ul li a').click(function(){
-			var $this = $(this);
-			var target;
-			if($.cookie('formChanges')){			
-				$('<div id="changesDialog">You have made changes to Configurator that will be lost if you navigate from this page. Are you sure you want to continue without saving?</div>').dialog({
-					autoOpen: true,
-					bgiframe: true,
-					modal: true,
-					title: 'Warning!',
-					buttons: {
-						'Save & continue': function(){
-							$.cookie('formChanges', null);
-							$(this).dialog('destroy');
-							ptOverlay('Saving Settings...');
-							$('#templateform').submit(function(){
-					   			$(this).ajaxSubmit({
-					   				type: 'POST',
-					   				url: '../administrator/index.php?format=raw',
-					   				data: {
-					   					option: 'com_configurator',
-					   					task: 'applytemplate',
-					   					isajax: 'true'
-					   				},
-					   				success: function(data, textStatus){
-						   				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');	
-										$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
-						   				hideScroll();
-						   				if($this.attr('target') == ''){ 
-   											window.location.href = $this.attr('href');
-						   				}else{ 
-						   					target = $this.attr('target');
-						   					window.open($this.attr('href'), target);
-						   				}
-						   				return false;		   			
-					   				}
-					   			});
-					   			return false;
-						   	});
-					   		$('#templateform').trigger("submit");
-							return false;
-						},
-						'Continue': function(){
-							$.cookie('formChanges', null);
-							$(this).dialog('destroy');
-							if($this.attr('target') == ''){ 
-			   					window.location.href = $this.attr('href');
-			   				}else{ 
-			   					target = $this.attr('target');
-			   					window.open($this.attr('href'), target);
-			   				}
-							return false;
-						}
-					}
-				});
-			}else{
-				$(this).trigger('click');
-				return;
-   				//if($this.attr('target') == ''){ 
-   				//	window.location.href = $this.attr('href');
-   				//}else{ 
-   				//	target = $this.attr('target');
-   				//	window.open($this.attr('href'), target);
-   				//}
-			}
 			return false;
 		});
 		

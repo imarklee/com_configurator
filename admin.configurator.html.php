@@ -159,10 +159,10 @@ class HTML_configurator_admin {
 				// set domain notification
 				if($this->get_live_site() == 'joomla'){ // no cfg live site joomla's live site is set, confirm
 					$conf = JFactory::getConfig();
-					echo $this->show_error('Please confirm your Joomla! Live Site URL. &nbsp; <input class="notice-input" type="text" value="'.$conf->getValue('config.live_site').'" />&nbsp;<a href="#" class="notice-link submit-live-site">Confirm</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="notice-link live-site">Why am I doing this?</a>', 'info', '');
+					echo $this->show_error('Please confirm your Joomla! Live Site URL. &nbsp; <input class="notice-input" type="text" value="'.$conf->getValue('config.live_site').'" />&nbsp;<a href="#" class="notice-link submit-live-site">Confirm</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="notice-link live-site">Why am I doing this?</a>', 'notice', '');
 				}
 				if($this->get_live_site() == 'none'){ // no cfg live site or set, show input
-					echo $this->show_error('Please confirm your Joomla! Live Site URL. &nbsp; <input class="notice-input" type="text" value="" />&nbsp;<a href="#" class="notice-link submit-live-site">Confirm</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="notice-link live-site">Why am I doing this?</a>', 'info', '');
+					echo $this->show_error('Please confirm your Joomla! Live Site URL. &nbsp; <input class="notice-input" type="text" value="" />&nbsp;<a href="#" class="notice-link submit-live-site">Confirm</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="notice-link live-site">Why am I doing this?</a>', 'notice', '');
 				}
 				
 				include 'includes/layout/manage.php';

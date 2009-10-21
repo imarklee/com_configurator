@@ -191,28 +191,6 @@ class ConfiguratorController extends JController {
 		HTML_configurator_admin::help();
 	}
 	
-	function get_live_site(){
-		$conf = JFactory::getConfig();
-		$db   = JFactory::getDBO();
-		
-		$db->setQuery("SELECT `param_value` FROM #__configurator where param_name='live_site'");
-		$cfg_ls = $db->loadResult();
-		
-		// no live site set in cfg, check joomla's live_site
-		if($cfg_ls == NULL) { 
-			$j_ls = $conf->getValue('config.live_site');
-			// joomla live site not set, check configurator for manual live_site
-			if($j_ls == NULL) {	return 'none'; } else { return 'joomla'; }
-		}else{
-			return 'cfg';
-		}
-	}
-	
-	function set_live_site(){
-		if($this->get_live_site()) { return false; }
-		$new_ls = $_REQUEST['lsd'];
-	}
-	
 	function pt_proxy(){
 		$url = urldecode($_GET['url']);
 		$content = file_get_contents($url);
@@ -227,7 +205,6 @@ class ConfiguratorController extends JController {
 			echo $content;
 		}
 	}
-	
 
 	function assets_backup(){
 		$assets = JPATH_ROOT .DS.'morph_assets';
@@ -396,81 +373,6 @@ class ConfiguratorController extends JController {
 		}
 		
 	}   
-	
-	function savetemplate() {
-		global $mainframe;
-		$database = JFactory::getDBO();
-		$template_name = JRequest::getVar('t');
-		$option = JRequest::getVar('option');
-
-		$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
-		$params[1] = JRequest::getVar( 'general', null, 'post', 'array' );
-		$params[2] = JRequest::getVar( 'logo', null, 'post', 'array' );
-		$params[3] = JRequest::getVar( 'tagline', null, 'post', 'array' );
-		$params[4] = JRequest::getVar( 'htmlbackgrounds', null, 'post', 'array' );
-		$params[5] = JRequest::getVar( 'bodybackgrounds', null, 'post', 'array' );
-		$params[6] = JRequest::getVar( 'color', null, 'post', 'array' );
-		$params[7] = JRequest::getVar( 'progressive', null, 'post', 'array' );
-		$params[8] = JRequest::getVar( 'menu', null, 'post', 'array' );
-		$params[9] = JRequest::getVar( 'iphone', null, 'post', 'array' );
-		$params[10] = JRequest::getVar( 'performance', null, 'post', 'array' );
-		$params[11] = JRequest::getVar( 'debugging', null, 'post', 'array' );
-		$params[12] = JRequest::getVar( 'toolbar', null, 'post', 'array' );
-		$params[13] = JRequest::getVar( 'masthead', null, 'post', 'array' );
-		$params[14] = JRequest::getVar( 'subhead', null, 'post', 'array' );
-		$params[15] = JRequest::getVar( 'topnav', null, 'post', 'array' );
-		$params[16] = JRequest::getVar( 'topshelf', null, 'post', 'array' );
-		$params[17] = JRequest::getVar( 'bottomshelf', null, 'post', 'array' );
-		$params[18] = JRequest::getVar( 'user1', null, 'post', 'array' );
-		$params[19] = JRequest::getVar( 'user2', null, 'post', 'array' );
-		$params[20] = JRequest::getVar( 'inset1', null, 'post', 'array' );
-		$params[21] = JRequest::getVar( 'inset2', null, 'post', 'array' );
-		$params[22] = JRequest::getVar( 'inset3', null, 'post', 'array' );
-		$params[23] = JRequest::getVar( 'inset4', null, 'post', 'array' );
-		$params[24] = JRequest::getVar( 'main', null, 'post', 'array' );
-		$params[25] = JRequest::getVar( 'innersidebar', null, 'post', 'array' );
-		$params[26] = JRequest::getVar( 'splitright', null, 'post', 'array' );
-		$params[27] = JRequest::getVar( 'topright', null, 'post', 'array' );
-		$params[28] = JRequest::getVar( 'right', null, 'post', 'array' );
-		$params[29] = JRequest::getVar( 'bottomright', null, 'post', 'array' );
-		$params[30] = JRequest::getVar( 'outersidebar', null, 'post', 'array' );
-		$params[31] = JRequest::getVar( 'splitleft', null, 'post', 'array' );
-		$params[32] = JRequest::getVar( 'topleft', null, 'post', 'array' );
-		$params[33] = JRequest::getVar( 'left', null, 'post', 'array' );
-		$params[34] = JRequest::getVar( 'bottomleft', null, 'post', 'array' );
-		$params[35] = JRequest::getVar( 'footer', null, 'post', 'array' );
-		$params[36] = JRequest::getVar( 'components_inner', null, 'post', 'array' );
-		$params[37] = JRequest::getVar( 'components_outer', null, 'post', 'array' );
-		
-		$preset_name = JRequest::getVar('preset_coice', '');
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
-		//$row = &JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				
-		foreach ($params as $currentblock){      		
-			foreach($currentblock as $param_key=>$param_value) {
-			
-				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				$setting->template_name = $template_name;
-				$setting->param_name = $param_key;
-				
-				$setting->loadByKey();
-				
-				$setting->param_value = $param_value;
-				$setting->published = 1;
-				
-				if (!$setting->store()) {
-					echo "<script> alert('" . $setting->getError() . "'); window.history.go(-1); </script>\n";
-					exit();
-				}
-			
-				unset($setting);
-				$setting = null;        	
-			}
-		}      
-		
-		$msg = JText::_('Successfully saved your settings!');
-		$mainframe->redirect("index2.php?option={$option}&task=dashboard",$msg);
-	} 
 	
 	function dashboard() {
 		global $mainframe;

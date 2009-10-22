@@ -2087,7 +2087,7 @@ jQuery.noConflict();
 			$('#credits-dialog').load('../administrator/components/com_configurator/tooltips/credits.html', function(){
 		    	hideScroll();
 			    $('#credits-dialog').dialog({
-		    		width: '450px',
+		    		width: '800px',
 		    		bgiframe: true,
 		   			autoOpen: true,
 		   			minHeight: 20,

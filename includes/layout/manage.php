@@ -1,3 +1,12 @@
+<?php
+/**
+* @package   Configurator Component
+* @author    Prothemer http://www.prothemer.com
+* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
+*/
+?>
 <form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
 <div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?>">
 	

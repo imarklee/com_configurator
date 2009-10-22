@@ -1,4 +1,12 @@
 <?php
+/**
+* @package   Configurator Component
+* @author    Prothemer http://www.prothemer.com
+* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
+*/
+
 defined('_JEXEC') or die('Restricted access');
 include_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'includes' . DS .'HTML_configuratorhelper_admin.php');
 include_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'includes' . DS . 'configurator.functions.php');

@@ -1,4 +1,12 @@
 <?php
+/**
+* @package   Configurator Component
+* @author    Prothemer http://www.prothemer.com
+* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
+*/
+
 $themelet_dir = JPATH_ROOT . DS . 'morph_assets' . DS . 'themelets';
 $themelet_url = JURI::root().'morph_assets' . DS . 'themelets' . DS;
 if(is_dir($themelet_dir)) {

@@ -1,3 +1,13 @@
+<?php
+/**
+* @package   Configurator Component
+* @author    Prothemer http://www.prothemer.com
+* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
+*/
+
+?>
 <div id="backup-manager">
     <h2>Database Backups</h2>
     <p>Below is a list of database backups that are automatically by Configurator. Please use this tool with caution.</p>

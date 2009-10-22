@@ -14,13 +14,17 @@
 #submenu-box div.m ul#submenu li.preferences a{border-right:0;}
 
 #toolbar-box #toolbar table.toolbar{margin-right:10px;}
-#toolbar-box #toolbar .toolbar td a{background:transparent url(../images/cfg-icons.jpg) no-repeat 50% -4px;padding-top:34px;}
+#toolbar-box #toolbar .toolbar td a{background:transparent url(../images/cfg-icons.png) no-repeat 50% -4px;padding-top:34px;}
 #toolbar .toolbar td a span{display:none;}
 #toolbar .toolbar td#toolbar-fullscreen a{background-position:50% -52px;}
 #toolbar .toolbar td#toolbar-preferences a{background-position:50% -106px;}
 #toolbar .toolbar td#toolbar-report-bug-email-link a,
 #toolbar .toolbar td#toolbar-report-bug-link a{background-position:50% -157px;}
+#toolbar .toolbar td#toolbar-configurator a,
+#toolbar .toolbar td#toolbar-help-link a,
 #toolbar .toolbar td#toolbar-apply a{padding-left:10px;padding-right:10px;}
-
+#toolbar .toolbar td#toolbar-help-link a{background-position:50% -251px;}
 #toolbar .toolbar td#toolbar-credits-link a{background-position:50% -206px;}
+#toolbar .toolbar td#toolbar-configurator a{background-position:50% -300px;}
+
 .header.icon-48-configurator {color:#999;font-size:2.2em;font-weight:normal;padding:3px 0 0 60px;}

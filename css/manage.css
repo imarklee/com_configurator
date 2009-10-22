@@ -91,3 +91,17 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
 #minwidth-body a.btn-primary:hover{background-position:center left;box-shadow:0 0 5px #598C13;}
 #minwidth-body a.btn-primary:hover strong{color:#598C13;}
 #minwidth-body a.btn-primary:active{background-position:bottom left;color:#666;}
+
+#credits{
+padding:20px 30px;
+}
+#credits h2{
+font-size:1.7em;
+}
+#credits h3{
+font-size:1.3em;
+margin:0 0 .5em 0;
+}
+#credits p{
+font-size:1.2em;
+}

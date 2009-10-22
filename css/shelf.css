@@ -14,11 +14,11 @@
 #visual-refs h3 span{color:#999;padding-left:90px;}
 #visual-refs h3 span a{font-size:12px;margin:0 2px;text-decoration:underline;}
 #visual-refs h3 span a:hover{text-decoration:none;}
-#shelf{margin:0 0 20px 0;position:relative;}
+#shelf{margin:0 0 20px 0;position:relative;-moz-box-shadow:0 0 10px #000;}
 #shelf #shelf-contents{border-top:0;background:#fff;overflow:hidden;border:0;}
 #shelf.closed #shelf-contents{display:none;}
 #shelf #utilities.ui-widget-header{border:0!important;}
-#shelf.open #shelf-contents{border-top:1px solid #ccc;}
+#shelf.open #shelf-contents{border-top:1px solid #111;}
 #updates-summary,#current-themelet{margin:0 15px 0 0;border-right:1px solid #ccc;}
 #updates-summary,#current-themelet,#visual-refs{height:125px;}
 #updates-summary{position:relative;margin-left:20px;width:240px;float:left;}

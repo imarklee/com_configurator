@@ -28,7 +28,7 @@ class toolbar_morph {
 		JToolBarHelper::title(  JText::_( 'Configurator > <span>Documentation</span>' ), 'configurator-help' );
 		
 		$bar = JToolBar::getInstance( 'toolbar' );
-		$bar->appendButton( 'Custom', '<a href="'.JURI::root().'administrator/index.php?option=com_configurator&task=manage" class="toolbar">'.JText::_('Done').'</a>', 'configurator' );
+		$bar->appendButton( 'Custom', '<a href="'.JURI::root().'administrator/index.php?option=com_configurator&task=manage" class="toolbar">'.JText::_('Back').'</a>', 'configurator' );
 	}
 }
 ?>

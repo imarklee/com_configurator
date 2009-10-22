@@ -2079,6 +2079,32 @@ jQuery.noConflict();
 		    });
 		    return false;
 		});
+		
+		$('#toolbar-credits-link').click(function(){
+			$('<div id="credits-dialog"></div>').appendTo('body');
+			$('#credits-dialog').load('../administrator/components/com_configurator/tooltips/credits.html', function(){
+		    	hideScroll();
+			    $('#credits-dialog').dialog({
+		    		width: '450px',
+		    		bgiframe: true,
+		   			autoOpen: true,
+		   			minHeight: 20,
+		   			stack: false,
+		   			modal: true,
+		   			dialogClass: 'credits', 
+		   			title: 'Credits',
+		   			overlay: {
+		   				'background-color': '#000', 
+		   				opacity: 0.8 
+		   			},
+		   			close: function(){
+		   				showScroll();
+		   				$(this).dialog('destroy');
+		   			}
+		    	});
+		    });
+		    return false;
+		});
 	    
 	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
 	    	$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){

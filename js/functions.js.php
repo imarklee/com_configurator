@@ -820,7 +820,7 @@ jQuery.noConflict();
 	    });
 	    
 	   	$('li.themelet-item.tl-inactive ul li.btn-activate a').click(function(e){
-	   		
+		
 	   		var setThemelet = $(this).attr('name');
 	   		var a = $(this);
 	   		
@@ -1987,7 +1987,9 @@ jQuery.noConflict();
 		});
 		
 		function checkChanges(action){	
+			action();
 			return false;
+
 			var target;
 			var $this = $(this);
 			if($.cookie('formChanges')){			

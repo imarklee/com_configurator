@@ -892,14 +892,14 @@ class ConfiguratorController extends JController {
 		$template_dir = JPATH_ROOT . DS .'templates'. DS . 'morph';
 		$themelet_dir = JPATH_ROOT . DS .'morph_assets'. DS . 'themelets';
 		
-		$query="SELECT * FROM #__configurator AS t WHERE t.template_name='morph'";
-		$db->setQuery( $query );
+		$query="SELECT * FROM `#__configurator` WHERE template_name='morph'";
+		$db->setQuery($query);
 		$template_params = $db->loadAssocList('param_name');
 				
 		// themelet
 		$curr_themelet = '';
-		if(isset($template_params['themelet'])) $curr_themelet = $template_params['themelet']['param_value'];
-		if(isset($_COOKIE['current_themelet'])) $curr_themelet = $_COOKIE['current_themelet'];
+		if(isset($template_params['themelet'])) { $curr_themelet = $template_params['themelet']['param_value']; }
+		if(isset($_COOKIE['current_themelet'])) { $curr_themelet = $_COOKIE['current_themelet']; }
 		
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');			
 			
@@ -909,7 +909,7 @@ class ConfiguratorController extends JController {
 		$result = $db->loadAssocList();
 		
 		$db_themelet = array();
-		
+
 		if(!empty($result)){
 			foreach($result as $t){
 				$db_themelet[$t['param_name']] = $t['param_value'];

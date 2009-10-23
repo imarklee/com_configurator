@@ -9,7 +9,7 @@ a:link,a:visited{text-decoration:underline;}
 #cfg.noshelf.nobranding #tabs{margin-top:1.5em;}
 #cfg.shelftop #shelf{padding-top:0;}
 #cfg.shelfbtm.nofooter.nobranding,
-#cfg.shelftop.nobranding #shelf{padding-top:1.5em;}
+#cfg.shelftop.nobranding #shelf{float:left;margin-top:1.5em;overflow:hidden;width:100%;}
 #cfg.shelfbtm #shelf{margin-top:1.5em;}
 #cfg.nofooter{margin-bottom:1.5em;}
 #cfg.footer{}

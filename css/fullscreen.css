@@ -27,3 +27,5 @@
 #minwidth-body.full-mode #border-top,
 #minwidth-body.full-mode #toolbar-box .t,
 #minwidth-body.full-mode #header-box{display:none;}
+#minwidth-body.full-mode #cfg.nofooter{margin-bottom:0;}
+#minwidth-body.full-mode{overflow:hidden;}

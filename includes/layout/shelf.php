@@ -35,7 +35,7 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 	<div id="utilities">
 		<ul>
-			<li class="logged-in">Logged in as: <strong><?php echo $user[0]['user_name']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a><?php if(isset($_COOKIE['formChanges'])){ ?>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="shelf-notice">You have made some changes which are not saved.</span><?php }?></li>
+			<li class="logged-in">Logged in as: <strong><?php echo $user[0]['user_name']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a><?php if(isset($_COOKIE['formChanges'])){ ?>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="shelf-notice">You have unsaved changes</span><?php }?></li>
 			<li class="toggle-shelf"><a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf"><?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Show Shelf'; } ?></a></li>
 		</ul>
 	</div>

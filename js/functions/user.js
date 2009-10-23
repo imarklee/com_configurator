@@ -42,7 +42,7 @@ function showUpdates(e, callback){
 				   		icon_placeholder = $(e[i]).next().next().next();
 				   		if(current_version < latest_version){
 				   			icon_placeholder.html('<span class="update-no" title="There is an update available">Update Available</span>');
-				   			$(e[i]).html('<a title="Click here to download the latest version of '+online[name].long_name+' now" href="'+online[name].download+'">'+name_html+'</a>');
+				   			$(e[i]).html('<a title="Click here to download the latest version of '+online[name].long_name+' now" target="_blank" href="'+online[name].download+'">'+name_html+'</a>');
 				   		}else{
 				   			icon_placeholder.html('<span class="update-yes" title="You are up to date">Up to date</span>');
 				   		}

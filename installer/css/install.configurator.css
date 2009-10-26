@@ -59,7 +59,7 @@
 #action li.next .continue-install{background:#DDDAD2 url(../images/btn-cont-with-install.png) no-repeat;width:299px;}
 #action li.next .finish-install{background:#DDDAD2 url(../images/btn-finish-install.png) no-repeat;width:270px;}
 #action li.next .btn-install:hover{background-position:center left;cursor:pointer;}
-#action li.next .btn-install:focus{background-position:bottom left;}
+#action li.next .btn-install:focus{background-position:bottom left;outline:0;}
 #install-body .success{text-align:center;color:green;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
 #install-body .error{text-align:center;color:red;font:bold 35px/70px arial;display:block;padding-top:2.5em;}
 #saving{position:absolute;top:0;left:0;display:none;z-index:50;background:#111;width:100%;height:500px;opacity:0.9;}

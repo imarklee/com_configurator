@@ -739,6 +739,16 @@ class ConfiguratorController extends JController {
 		return $error;
 	}
 	
+	function get_current_themelet(){
+		$db = JFactory::getDBO();
+		$query = "select param_value from #__configurator where param_name = 'themelet';";
+		$db->setQuery($query);
+		$c_themelet = $db->loadResult();
+		
+		echo $c_themelet;
+		return true;
+	}
+	
 	function themelet_check_existing($themelet = ''){
 		if($themelet == ''){
 			if(isset($_REQUEST['themelet_name'])){

@@ -128,17 +128,17 @@ function backgroundsEnable(){
 		$(suff+'_bg_attachment').parent().css('display', display);
 	}
 
-	if($('#htmlbackgrounduse_html_bg_image1').attr('checked')){ be('on', '#htmlbackgroundhtml'); }
-	$('#htmlbackgrounduse_html_bg_image1').click( function(){ be('on', '#htmlbackgroundhtml'); } );
+	if($('#htmlbackgroundsuse_html_bg_image1').attr('checked')){ be('on', '#htmlbackgroundshtml'); }
+	$('#htmlbackgroundsuse_html_bg_image1').click( function(){ be('on', '#htmlbackgroundshtml'); } );
 	
-	if($('#htmlbackgrounduse_html_bg_image0').attr('checked')){ be('off', '#htmlbackgroundhtml'); }
-	$('#htmlbackgrounduse_html_bg_image0').click( function(){ be('off', '#htmlbackgroundhtml'); } );
+	if($('#htmlbackgroundsuse_html_bg_image0').attr('checked')){ be('off', '#htmlbackgroundshtml'); }
+	$('#htmlbackgroundsuse_html_bg_image0').click( function(){ be('off', '#htmlbackgroundshtml'); } );
 
-	if($('#bodybackgrounduse_body_bg_image1').attr('checked')){ be('on', '#bodybackgroundbody'); }
-	$('#bodybackgrounduse_body_bg_image1').click( function(){ be('on', '#bodybackgroundbody'); } );
+	if($('#bodybackgroundsuse_body_bg_image1').attr('checked')){ be('on', '#bodybackgroundsbody'); }
+	$('#bodybackgroundsuse_body_bg_image1').click( function(){ be('on', '#bodybackgroundsbody'); } );
 	
-	if($('#bodybackgrounduse_body_bg_image0').attr('checked')){ be('off', '#bodybackgroundbody'); }
-	$('#bodybackgrounduse_body_bg_image0').click( function(){ be('off', '#bodybackgroundbody'); } );
+	if($('#bodybackgroundsuse_body_bg_image0').attr('checked')){ be('off', '#bodybackgroundsbody'); }
+	$('#bodybackgroundsuse_body_bg_image0').click( function(){ be('off', '#bodybackgroundsbody'); } );
 	
 }
 $(function(){ backgroundsEnable(); });

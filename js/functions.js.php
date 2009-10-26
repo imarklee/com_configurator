@@ -1798,22 +1798,92 @@ jQuery.noConflict();
 										'Activate Themelet': function(){
 											$(this).dialog('destroy');
 											function actThemelet(){
+												ptOverlay('Processing...');
 												var setThemelet = data.themelet;
 												var themeletOption = $('#generalthemelet option:last').after('<option selected="selected" value="'+setThemelet+'">'+setThemelet+'</option>');
-												$.ajax({
-													url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
-													method: 'post',
-													success: function(ts, data){
-														ptOverlay('Processing...');
-														submitbutton('applytemplate');
-												   		$(this).dialog('destroy');
-														var $tabs = $('#tabs').tabs();
-														var assetsTabs = $('#assets-tabs').tabs();
-														$tabs.tabs('select', 5);
-														assetsTabs.tabs('select', 0);
-														return true;
-													}
-												});
+												$('#templateform').submit(function(){
+										   			$(this).ajaxSubmit({
+										   				type: 'POST',
+										   				url: '../administrator/index.php?format=raw',
+										   				data: {
+										   					option: 'com_configurator',
+										   					task: 'applytemplate',
+										   					isajax: 'true'
+										   				},
+											   			success: function(data, textStatus){
+											   				$.ajax({
+																url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
+																method: 'post',
+																success: function(ts, data){
+																	return true;
+																}
+															});
+															$.ajax({
+																url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
+																method: 'post',
+																dataType: 'json',
+																success: function(data, ts){
+																	if(data.exists == 'true'){
+																		close_ptOverlay();
+																		hideScroll();
+																		$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
+																   			bgiframe: true,
+																   			autoOpen: true,
+																   			minHeight: 20,
+																   			width: 500,
+																   			stack: false,
+																   			modal: true, 
+																   			title: 'Activate',
+																   			overlay: {
+																   				'background-color': '#000', 
+																   				opacity: 0.8 
+																   			},
+																   			close: function(){
+																				$(this).dialog('destroy');
+																				// change to assets tab
+																				ptOverlay('Reloading Management Interface...');
+																				var mainTabs = $('#tabs').tabs();
+																				var subTabs = $('#assets-tabs').tabs();
+																				mainTabs.tabs('select', 5);
+																				subTabs.tabs('select', 0);
+																				window.location.reload(true);
+																   			},
+																			buttons: { 
+																				'Themelet Default': function(){
+																					var $this = $(this);
+																					$this.dialog('close');
+																	   			},
+																	   			'Previous Settings': function(){
+																					$this = $(this);
+																	   				$.ajax({
+																						url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
+																						method: 'post',
+																						success: function(data){
+																							$this.dialog('close');
+																							return true;
+																						}
+																					});
+																	   			}
+																	   		}
+																	   	});
+																	}else{
+																		// change to assets tab
+																		ptOverlay('Processing...');
+																		var mainTabs = $('#tabs').tabs();
+																		var subTabs = $('#assets-tabs').tabs();
+																		mainTabs.tabs('select', 5);
+																		subTabs.tabs('select', 0);
+																		window.location.reload(true);
+																	}
+																}
+															});
+															return false;
+														}
+										   			});
+
+										   			return false;
+										   		});
+										    	$('#templateform').trigger("submit");												
 										   	}
 										   	checkChanges(actThemelet);
 										},

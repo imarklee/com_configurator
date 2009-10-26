@@ -454,7 +454,7 @@ class ConfiguratorController extends JController {
 				if($the_files['name'] != ''){
 					switch($install_type){
 						case 'themelet':
-						$return = $this->themelet_upload($the_files);
+						$return = $this->themelet_upload();
 						break;
 						case 'template':
 						$return = $this->template_upload();

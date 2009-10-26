@@ -36,13 +36,13 @@ function LogoOptions(){
 		$('#logo-options li #logologo_height').parent().css('display', display);
 	}
 	
-	function logoConditionals(){
-		if($('#taglinedisplay_slogan0').attr('checked') == 'checked'){ slogan('off'); }
-		$('#taglinedisplay_slogan0').click( function(){ slogan('off'); } );
-	
-		if($('#taglinedisplay_slogan1').attr('checked')){ slogan('on'); }
-		$('#taglinedisplay_slogan1').click( function(){ slogan('on'); } );
+	if($('#taglinedisplay_slogan0').attr('checked') == 'checked'){ slogan('off'); }
+	$('#taglinedisplay_slogan0').click( function(){ slogan('off'); } );
 
+	if($('#taglinedisplay_slogan1').attr('checked')){ slogan('on'); }
+	$('#taglinedisplay_slogan1').click( function(){ slogan('on'); } );
+
+	function logoConditionals(){
 		if($('#logodisplay_ie_logo1').attr('checked')){ ieLogo('on'); }
 		$('#logodisplay_ie_logo1').click( function(){ ieLogo('on'); } );
 	
@@ -57,7 +57,6 @@ function LogoOptions(){
 	}
 			
 	function switcher(v){
-		
 		
 		$('#logo-options li').css('display', 'none');
 		

@@ -1087,7 +1087,7 @@ jQuery.noConflict();
 	   		var setThemeletName = $(this).attr('title').replace('Delete ', '').replace(' Themelet', '');	   		
 	   		var alertMessage = 'Are you sure you want to delete the "'+setThemeletName+'" themelet?<br />This is irreversible!';
 	   		
-	   		$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+	   		$('body').append('<div id="assets-output" style="display:none;"></div>');
 	   		$('#assets-output').html('<div class="dialog-msg">'+alertMessage+'</div>');
 	   		hideScroll();
 			$('#assets-output').dialog({
@@ -1250,7 +1250,7 @@ jQuery.noConflict();
 	   		var setLogoName = $(this).attr('title').replace('Delete ', '').replace(' background image', '');
 	   		var alertMessage = 'Are you sure you want to delete the "'+setLogoName+'" logo?<br />This is irreversible!';
 	   		
-	   		$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+	   		$('body').append('<div id="assets-output" style="display:none;"></div>');
 	   		$('#assets-output').html('<div class="dialog-msg">'+alertMessage+'</div>');
 	   		hideScroll();
 			$('#assets-output').dialog({
@@ -1292,7 +1292,7 @@ jQuery.noConflict();
 										return false;
 										});
 									}
-			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+			   						$('body').append('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">Logo deleted successfully</div>');
 			   						hideScroll();
 						   			$('#assets-output').dialog({
@@ -1330,7 +1330,7 @@ jQuery.noConflict();
 			var setiphoneName = $(this).attr('title').replace('Delete ', '').replace(' iphone media', '');
 			var alertMessage = 'Are you sure you want to delete the "'+setiphoneName+'" iphone media file?<br />This is irreversible!';
 
-			$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+			$('body').append('<div id="assets-output" style="display:none;"></div>');
 			$('#assets-output').html('<div class="dialog-msg">'+alertMessage+'</div>');
 			hideScroll();
 			$('#assets-output').dialog({
@@ -1372,7 +1372,7 @@ jQuery.noConflict();
 										return false;
 										});
 									}
-			   						$('#footer').after('<div id="assets-output" style="display:none;"></div>');
+			   						$('body').append('<div id="assets-output" style="display:none;"></div>');
 			   						$('#assets-output').html('<div class="dialog-msg">iphone media deleted successfully</div>');
 			   						hideScroll();
 						   			$('#assets-output').dialog({

@@ -216,35 +216,79 @@ class ConfiguratorController extends JController {
 
 	function assets_backup(){
 		$assets = JPATH_ROOT .DS.'morph_assets';
-		JArchive::create(JPATH_ROOT.DS.'morph_assets',$assets, 'gz', '', JPATH_ROOT, true);
+		
+		if(isset($_GET['type'])){ 
+			$type = $_GET['type'];
+		}else{
+			$type = 'gzip';
+		}
+		
+		switch($type){
+			case 'gzip':
+			JArchive::create(JPATH_ROOT.DS.'morph_assets',$assets, 'gz', '', JPATH_ROOT, true);
+			$filename = 'morph_assets.gz';
+			header('Content-Type: application/x-gzip');
+			break;
+			case 'zip':
+			$zip_array = array();
+			$zip = JArchive::getAdapter('zip');
+			$files = JFolder::files($assets, '', true, true, array('.DS_Store', 'Thumbs.db', '.git'));
+			foreach($files as $file){
+				$data = JFile::read($file);
+				$zip_array[] = array('name' => $file, 'data' => $data);
+			}
+			$zip->create(JPATH_ROOT.DS.'morph_assets',$zip_array);
+			$filename = 'morph_assets.zip';
+			header('Content-Type: application/zip');
+			break;
+		}
+		
+		
 		header('Pragma: public');
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 		header('Cache-Control: private',false);
-		header('Content-Type: application/x-gzip');
-		header('Content-Disposition: attachment; filename="'.basename(JPATH_ROOT .DS.'morph_assets.gz').'"');
+		header('Content-Disposition: attachment; filename="'.basename(JPATH_ROOT .DS.$filename).'"');
 		header('Content-Transfer-Encoding: binary');
-		header('Content-Length: '.filesize(JPATH_ROOT .DS.'morph_assets.gz')); 
-		readfile(JPATH_ROOT .DS.'morph_assets.gz');
-		JFile::delete(JPATH_ROOT .DS.'morph_assets.gz');
+		header('Content-Length: '.filesize(JPATH_ROOT .DS.$filename)); 
+		readfile(JPATH_ROOT .DS.$filename);
+		JFile::delete(JPATH_ROOT .DS.$filename);
 		exit();
 	}
 	
-	function handle_db_backup(){
+	function handle_backup(){
 		$action = $_REQUEST['action'];
 		$filename = $_REQUEST['filename'];
-		$db_folder = JPATH_ROOT .DS.'morph_assets'.DS.'backups'.DS.'db';
+		$type = $_REQUEST['type'];
+		$fp = '';
+		switch($type){
+			case 'db':
+			$fp = DS.'db';
+			break;
+			case 'file':
+			$fp = '';
+			break;
+		}
+		$db_folder = JPATH_ROOT .DS.'morph_assets'.DS.'backups'.$fp;
+		$recyclebin = JPATH_ROOT .DS.'morph_recycle_bin';
 		
 		if(file_exists($db_folder.DS.$filename)){
 			switch($action){
 				case 'delete':
-					JFile::delete($db_folder.DS.$filename);
+					JFile::move($db_folder.DS.$filename, $recyclebin . DS . $filename);
 					echo '<strong>'.$filename.'</strong> deleted successfully</div>';
 				break;
 				case 'download':
-					header('Content-disposition: attachment; filename='.$filename.'');
-					header('Content-type: application/x-gzip');
-					readfile($db_folder.DS.$filename);
+				header('Content-Type: application/x-gzip');
+				header('Pragma: public');
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+				header('Cache-Control: private',false);
+				header('Content-Disposition: attachment; filename="'.basename($db_folder.DS.$filename).'"');
+				header('Content-Transfer-Encoding: binary');
+				header('Content-Length: '.filesize($db_folder.DS.$filename)); 
+				readfile($db_folder.DS.$filename);
+				exit();
 				break;
 				case 'restore':
 					echo $this->restore_db_backup();
@@ -647,7 +691,7 @@ class ConfiguratorController extends JController {
 		$newtemplatefile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$templatesdir = JPATH_SITE . DS . 'templates';
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
-		$backupfile = $backupdir . DS . 'morph_files_' . date("His_dmY");
+		$backupfile = $backupdir . DS . 'file_template_morph' . time();
 		if(!@Jarchive::create($backupfile, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
 			// error creating archive
 			$error = 'error: "There was an error creating a backup archive. Upload failed"'; 
@@ -720,7 +764,7 @@ class ConfiguratorController extends JController {
 			$themelet_name = str_replace(strstr($themelet_name, '_'), '', $themelet_name);
 			if(is_dir($themelet_dir . DS . $themelet_name)){
 				$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
-				$backupfile = $backupdir . DS . $themelet_name . '_files_' . date("His_dmY");
+				$backupfile = $backupdir . DS . 'file_themelet_'.$themelet_name . '_' . time();
 				if(!@Jarchive::create($backupfile, $themelet_dir . DS . $themelet_name, 'gz', '', $themelet_dir, true)){
 					$error = 'error: "Could not backup themelet!"';
 					return $error;
@@ -1381,21 +1425,71 @@ class ConfiguratorController extends JController {
 			return $error;
 		}
 	}
-	
+	function handle_recycle(){
+		$action = $_GET['action'];
+		$file = $_GET['file'];
+		$type = $_GET['type'];
+		$rb_root = JPATH_SITE.DS.'morph_recycle_bin';
+		
+		if($action){
+			switch($action){
+				case 'delete':
+				if($type !== 'themelet'){
+					JFile::delete($rb_root.DS.$file);
+					return true;
+				}else{
+					$files = JFolder::files($rb_root.DS.$file, '', true, true, array('.git', '.idx', '.DS_Store'));
+					$folders = JFolder::folders($rb_root.DS.$file, '', true, true);
+					
+					foreach($files as $file){
+						JPath::setPermissions($file, '0777');
+						JFile::delete($file);
+					}
+					
+					foreach($folders as $folder){
+						JPath::setPermissions($folder, '', '0777' );
+						JFolder::delete($folder);
+					}
+					JFolder::delete($rb_root.DS.$file);
+					return true;
+				}
+				break;
+				case 'restore':
+				// do restore
+				echo 'restore';
+				break;
+				case 'empty':
+				// do empty;
+				echo 'empty';
+				break;
+			}
+		}
+	}
 	function deleteAsset(){
 		$type = $_GET['deltype'];
 		$asset = $_GET['asset'];
-		$assetsdir = JPATH_SITE . DS . 'morph_assets' . DS;
+		$assetsdir = JPATH_SITE . DS . 'morph_assets';
+		$recyclebin = JPATH_SITE . DS . 'morph_recycle_bin';
 		
 		switch($type){
 		
 			case 'themelet':
-			$assetsdir .= 'themelets';
+			$assetsdir .= DS.'themelets';
 			$assetsfile = $assetsdir . DS . $asset;
 			if (is_dir($assetsdir)) {
-				if(JFolder::delete($assetsfile)){
+				if(JFolder::copy($assetsfile, $recyclebin . DS . $asset)){
+					foreach(JFolder::files($assetsfile, '', true, true, array('.git', '.idx', '.DS_Store')) as $file){
+						JPath::setPermissions($file, '0777');
+						JFile::delete($file);
+					}
+					foreach(JFolder::folders($assetsfile, '', true, true) as $folder){
+						JPath::setPermissions($folder, '', '0777' );
+						JFolder::delete($folder);
+					}
+					JFolder::delete($assetsfile);
 					return true;
 				} else {
+					echo 'fail';
 					return false;
 				}
 			} else {
@@ -1403,10 +1497,10 @@ class ConfiguratorController extends JController {
 			}
 			break;
 			case 'logo':
-			$assetsdir .= 'logos';
+			$assetsdir .= DS.'logos';
 			$assetsfile = $assetsdir . DS . $asset;			
 			if (is_dir($assetsdir)) {
-				if(JFile::delete($assetsfile)){
+				if(JFile::move($assetsfile,$recyclebin . DS . 'logo_'.$asset)){
 					return true;
 				} else {
 					return false;
@@ -1416,10 +1510,10 @@ class ConfiguratorController extends JController {
 			}
 			break;
 			case 'iphone':
-			$assetsdir .= 'iphone';
+			$assetsdir .= DS.'iphone';
 			$assetsfile = $assetsdir . DS . $asset;			
 			if (is_dir($assetsdir)) {
-				if(JFile::delete($assetsfile)){
+				if(JFile::move($assetsfile,$recyclebin . DS . 'iphone_'.$asset)){
 					return true;
 				} else {
 					return false;
@@ -1429,10 +1523,11 @@ class ConfiguratorController extends JController {
 			}
 			break;
 			case 'background':
-			$assetsdir .= 'backgrounds';
-			$assetsfile = $assetsdir . DS . $asset;			
+			$assetsdir .= DS.'backgrounds';
+			$assetsfile = $assetsdir . DS . $asset;
+			echo $assetsdir;		
 			if (is_dir($assetsdir)) {
-				if(JFile::delete($assetsfile)){
+				if(JFile::move($assetsfile,$recyclebin . DS . 'bg_'.$asset)){
 					return true;
 				} else {
 					return false;
@@ -1499,6 +1594,10 @@ class ConfiguratorController extends JController {
 		// create assets folders
 		if(!is_dir(JPATH_SITE . DS . 'morph_assets')) : 
 		(!@mkdir(JPATH_SITE . DS . 'morph_assets')) ? $error = 'error: "There was an error creating the assets folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE . DS . 'morph_assets'); 
+		endif;
+		
+		if(!is_dir(JPATH_SITE . DS . 'morph_recycle_bin')) : 
+		(!@mkdir(JPATH_SITE . DS . 'morph_recycle_bin')) ? $error = 'error: "There was an error creating the Morph Recycle Bin folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE . DS . 'morph_recycle_bin'); 
 		endif;
 		
 		if(!is_dir($backupdir)) :
@@ -1608,7 +1707,7 @@ class ConfiguratorController extends JController {
 			if($_REQUEST['backup'] == 'true'){
 				setcookie('installed_bkpmorph', 'true');
 				// backup existing
-				$backupfile = $backupdir . DS . 'morph_files_' . date("His_dmY");
+				$backupfile = $backupdir . DS . 'file_template_morph_' . time();
 				if(!@Jarchive::create($backupfile, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
 					// error creating archive
 					$error = 'There was an error creating the archive. Install failed'; 

@@ -40,6 +40,6 @@ padding:15px 23px 14px;background:#444 url(../images/tabs-on.jpg) repeat-x botto
 #tabs .options-panel.disabled{border-color:#D33538;}
 #tabs .options-panel.disabled .options-inner{border-color:#670D11;}
 #assets-tabs{position:relative;}
-#assets-tabs .icon-backup:link,#assets-tabs .icon-backup:visited{border:1px solid #6C8249;background:#6C8249 url(../images/download-bg.png) repeat-x;display:block;position:absolute;top:0;right:0;font-size:13px;text-decoration:underline;color:#fff;}
-#assets-tabs .icon-backup span{padding:3px 30px 4px 8px;background:transparent url(../images/download-icon.png) no-repeat 96% 60%;color:#fff;display:block;}
-#assets-tabs .icon-backup:hover{color:#fff;}
+#assets-tabs .icon-backup {padding:3px 0px 4px 8px;border:1px solid #6C8249;background:#6C8249 url(../images/download-bg.png) repeat-x;display:block;position:absolute;top:0;right:0;font-size:13px;color:#000;}
+#assets-tabs .icon-backup span {padding:4px 10px 4px 26px;background:transparent url(../images/download-icon.png) no-repeat 0 60%;color:#fff;}
+#assets-tabs .icon-backup a {color:#fff;}

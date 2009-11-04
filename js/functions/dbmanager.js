@@ -157,7 +157,8 @@ $('#backup-list a').click(function(){
 	var act;
 	var action = $(this).attr('action');
 	var filename = $(this).attr('name');
-	var url = '../administrator/index.php?option=com_configurator&format=raw&task=handle_db_backup&action='+action+'&filename='+filename;
+	var btype = $(this).attr('bu_type');
+	var burl = '../administrator/index.php?option=com_configurator&format=raw&task=handle_backup&action='+action+'&filename='+filename+'&type='+btype;
 	
 	$('<div class="dialog-msg"></div>').dialog({
 		bgiframe: true,
@@ -189,7 +190,7 @@ $('#backup-list a').click(function(){
 					ptOverlay('Processing...')
 					$.ajax({
 						type: 'POST',
-						url: '../administrator/index.php?option=com_configurator&format=raw&url&task=handle_db_backup&action='+action+'&filename='+filename,
+						url: burl,
 						success: function(data){
 							close_ptOverlay();
 							hideScroll();
@@ -212,7 +213,7 @@ $('#backup-list a').click(function(){
 					ptOverlay('Processing...')
 					$.ajax({
 						type: 'POST',
-						url: '../administrator/index.php?option=com_configurator&format=raw&url&task=handle_db_backup&action='+action+'&filename='+filename,
+						url: burl,
 						success: function(data){
 							close_ptOverlay();
 							hideScroll();
@@ -236,7 +237,7 @@ $('#backup-list a').click(function(){
 		}else{
 			$.ajax({
 				type: 'POST',
-				url: url,
+				url: burl,
 				success: function(data, status){
 					close_ptOverlay();
 					hideScroll();
@@ -249,7 +250,7 @@ $('#backup-list a').click(function(){
 			});
 		}
 	}else{
-		window.location.href = url;
+		window.location.href = burl;
 	}
 	return false;
 });

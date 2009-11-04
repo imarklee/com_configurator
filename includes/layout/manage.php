@@ -108,7 +108,7 @@
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
 					<li class="icon-reset"><a href="#reset-settings">Reset Settings</a></li>
-					<li class="icon-backupmgr"><a href="#backup-manager">Database Backups</a></li>
+					<li class="icon-backupmgr"><a href="#backup-manager">Backup Manager</a></li>
 				</ul>
 				<?php include dirname(__FILE__) . '/../tools/uploader.php'; ?>
 				<?php include dirname(__FILE__) . '/../tools/database.php'; ?>
@@ -125,14 +125,17 @@
 					<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
 					<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
 					<li class="icon-iphone"><a href="#assets-iphone">iPhone</a></li>
+					<li class="icon-recycle"><a href="#assets-recycle">Recycle Bin</a></li>
 
 				</ul>
-				<a class="icon-backup" href="../administrator/index.php?option=com_configurator&amp;task=assets_backup&amp;format=raw" 
-					title="click here to download a full backup of your assets folder"><span>Download a Backup</span></a>					
+				<div class="icon-backup"> 
+					<span><a href="../administrator/index.php?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball">Download a Backup</a></span>				
+				</div>
 				<?php include dirname(__FILE__) . '/../assets/themelets.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/logos.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/backgrounds.php'; ?>
 				<?php include dirname(__FILE__) . '/../assets/iphone.php'; ?>
+				<?php include dirname(__FILE__) . '/../assets/recycle.php'; ?>
 			</div>
 		</div>
 			

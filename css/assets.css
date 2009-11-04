@@ -61,7 +61,7 @@
 #cfg .list-view li img,
 #cfg .list-view li h4{display:none;}
 #cfg .list-view .image-container{display:none;}
-
+#recycle-list ul.buttons li { width: 110px;  left: 100px; }
 #cfg .list-view li.tl-active{background:#E3E3E3 url(../images/assets-active-bg.png) repeat-x top;}
 #cfg .thumb-view li.themelet-item .update-link,
 #cfg .list-view li.themelet-item .update-link{display:none;}

@@ -2412,6 +2412,7 @@ jQuery.noConflict();
 		<?php include 'functions/bottom_save.js'; ?>
 		<?php include 'functions/dbmanager.js'; ?>
 		<?php include 'functions/reset.js'; ?>
+		<?php include 'functions/recycle.js'; ?>
 		
 		/* Lost Password ------------------
 		-------------------------------- */

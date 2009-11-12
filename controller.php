@@ -48,10 +48,10 @@ class ConfiguratorController extends JController {
 			$templateBaseDir = JPath::clean( JPATH_ROOT . DS .'templates' ) . DS . $template;
 			if(!empty($preset_choice)) {
 				// Load select preset values from the XML file.
-				$preset_values = getPresetParamList( $templateBaseDir . DS . 'core/morphDetails.xml', $preset_choice );
+				$preset_values = getPresetParamList( $templateBaseDir . DS . 'core'.DS.'morphDetails.xml', $preset_choice );
 		}
 
-		$paramList = getTemplateParamList( $templateBaseDir . DS . 'core/morphDetails.xml' );
+		$paramList = getTemplateParamList( $templateBaseDir . DS . 'core'.DS.'morphDetails.xml' );
 		for($i=0;$i<count($paramList);$i++) $paramList[$i] .= '=';
 
 			if ( $template ) {
@@ -191,7 +191,7 @@ class ConfiguratorController extends JController {
 				$current_prefs = implode( "\n", $prefs_settings );
 			}
 			
-			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).'/includes/layout/preferences.xml');
+			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).DS.'includes'.DS.'layout'.DS.'preferences.xml');
 	HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
 	}
 	
@@ -1661,7 +1661,7 @@ class ConfiguratorController extends JController {
 		function db_update(){
 			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
 				$templatesdir = JPATH_SITE . DS . 'templates';
-				$xml_param_loader = new morphXMLLoader($templatesdir.DS.'morph/core'.DS.'morphDetails.xml');
+				$xml_param_loader = new morphXMLLoader($templatesdir.DS.'morph'.DS.'core'.DS.'morphDetails.xml');
 				$main_xml_params = $xml_param_loader->getParamDefaults();
 				
 				$removeParams = array(

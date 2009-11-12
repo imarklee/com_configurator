@@ -15,7 +15,7 @@
 			$db = JFactory::getDBO();
 			$query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");
 			$curr_themelet = $db->loadResult($query);
-			$files = JFolder::files(JPATH_ROOT.'/morph_assets/backups', '', true, false);
+			$files = JFolder::files(JPATH_ROOT.DS.'morph_assets'.DS.'backups', '', true, false);
 			if(!empty($files)){ ?>
 				<table cellpadding="0" cellspacing="0" border="0" id="backup-list" class="table">
 			        <tr>

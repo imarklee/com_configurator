@@ -5,16 +5,16 @@ header("cache-control: must-revalidate");
 $offset = 60 * 60;
 $expire = "expires: " . gmdate ("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($expire);
-include '../../js/jquery.js';
-include '../../js/ui.js';
-include '../../js/fileupload.js';
-include '../../js/cookie.js';
+include '..'.DS.'..'.DS.'js'.DS.'jquery.js';
+include '..'.DS.'..'.DS.'js'.DS.'ui.js';
+include '..'.DS.'..'.DS.'js'.DS.'fileupload.js';
+include '..'.DS.'..'.DS.'js'.DS.'cookie.js';
 ?>
 jQuery.noConflict();
 (function($){
 	$(document).ready(function(){
 	<?php
-	include '../../js/functions/common.js';
+	include '..'.DS.'..'.DS.'js'.DS.'functions'.DS.'common.js';
 	include 'install.configurator.js';
 	?>
 	})

@@ -10,16 +10,16 @@
 $path = JPATH_SITE . DS;
 $urlpath = JURI::root();
 
-$template_path	= $path . 'templates/morph/';
-$themelet_path 	= $path . 'morph_assets/themelets/';
-$component_path = $path . 'administrator/components/com_configurator/';
+$template_path	= $path . 'templates'.DS.'morph'.DS;
+$themelet_path 	= $path . 'morph_assets'.DS.'themelets'.DS;
+$component_path = $path . 'administrator'.DS.'components'.DS.'com_configurator'.DS;
 
-$template_urlpath 	= $urlpath . 'templates/morph/';
-$themelet_urlpath 	= $urlpath . 'morph_assets/themelets/';
-$component_urlpath 	= $urlpath . 'administrator/components/com_configurator/';
+$template_urlpath 	= $urlpath . 'templates'.DS.'morph'.DS;
+$themelet_urlpath 	= $urlpath . 'morph_assets'.DS.'themelets'.DS;
+$component_urlpath 	= $urlpath . 'administrator'.DS.'components'.DS.'com_configurator'.DS;
 
 $template_xml = $template_path . 'templateDetails.xml';
-$themelet_xml = $themelet_path . $params->get('themelet') .'/themeletDetails.xml';
+$themelet_xml = $themelet_path . $params->get('themelet').DS.'themeletDetails.xml';
 $component_xml = $component_path . 'configurator.xml';
 
 $template_details = xml2array($template_xml);

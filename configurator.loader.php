@@ -8,7 +8,7 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-$morph_component_path = dirname(__FILE__) . DS . '../../../components/com_configurator';
+$morph_component_path = dirname(__FILE__) . DS . '..'.DS.'..'.DS.'..'.DS.'components'.DS.'com_configurator';
 if( file_exists( $morph_component_path . DS . "morph.common.php" ) ) include_once ($morph_component_path . DS . "morph.common.php");
 if( file_exists( $morph_component_path . DS . "morph.class.php" ) ) include_once ($morph_component_path . DS . "morph.class.php");
 

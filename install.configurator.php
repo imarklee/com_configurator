@@ -37,8 +37,8 @@ if(!is_dir($iphonedir))
 
 
 $document = JFactory::getDocument();
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/installer/js/install.js.php');
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/installer/css/install.css.php');
+$document->addScript(JURI::root() . 'administrator'.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'js'.DS.'install.js.php');
+$document->addStyleSheet(JURI::root() . 'administrator'.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'css'.DS.'install.css.php');
 $db = JFactory::getDBO();
 
 // count number of param values stored in the db for upgrade purposes
@@ -100,16 +100,16 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 	if(!isset($_REQUEST['install'])){
 		if($count_rows > 0) :
 			setcookie('upgrade_cfg', 'true');
-			include 'installer/step1_upgrade.php';
+			include 'installer'.DS.'step1_upgrade.php';
 		else :
-			include 'installer/step1.php';
+			include 'installer'.DS.'step1.php';
 		endif;
 	}else{
 		if($_REQUEST['install'] == 'step2'){
-			include 'installer/step2.php';
+			include 'installer'.DS.'step2.php';
 		}
 		elseif($_REQUEST['install'] == 'completed'){
-			include 'installer/complete.php';
+			include 'installer'.DS.'complete.php';
 		}
 	}
 	?>
@@ -117,5 +117,5 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 </div>
 <div id="dialog" style="display:none;"></div>
 <div id="help-dialog" style="display:none;"></div>
-<?php if(isset($error) && $error){ include 'installer/error.php'; } ?>
+<?php if(isset($error) && $error){ include 'installer'.DS.'error.php'; } ?>
 <?php ob_end_flush(); ?>

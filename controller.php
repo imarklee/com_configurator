@@ -1427,40 +1427,54 @@ class ConfiguratorController extends JController {
 	}
 	function handle_recycle(){
 		$action = $_GET['action'];
-		$file = $_GET['file'];
-		$type = $_GET['type'];
+		if(isset($_GET['file'])) $file = $_GET['file'];
+		if(isset($_GET['type'])) $type = $_GET['type'];
 		$rb_root = JPATH_SITE.DS.'morph_recycle_bin';
 		
 		if($action){
 			switch($action){
 				case 'delete':
-				if($type !== 'themelet'){
-					JFile::delete($rb_root.DS.$file);
-					return true;
-				}else{
-					$files = JFolder::files($rb_root.DS.$file, '', true, true, array('.git', '.idx', '.DS_Store'));
-					$folders = JFolder::folders($rb_root.DS.$file, '', true, true);
+					if($type !== 'themelet'){
+						JFile::delete($rb_root.DS.$file);
+						return true;
+					}else{
+						$files = JFolder::files($rb_root.DS.$file, '', true, true, array('.git', '.idx', '.DS_Store'));
+						$folders = JFolder::folders($rb_root.DS.$file, '', true, true);
 					
-					foreach($files as $file){
-						JPath::setPermissions($file, '0777');
-						JFile::delete($file);
-					}
+						foreach($files as $file){
+							JPath::setPermissions($file, '0777');
+							JFile::delete($file);
+						}
 					
-					foreach($folders as $folder){
-						JPath::setPermissions($folder, '', '0777' );
-						JFolder::delete($folder);
+						foreach($folders as $folder){
+							JPath::setPermissions($folder, '', '0777' );
+							JFolder::delete($folder);
+						}
+						JFolder::delete($rb_root.DS.$file);
+						return true;
 					}
-					JFolder::delete($rb_root.DS.$file);
-					return true;
-				}
 				break;
 				case 'restore':
 				// do restore
 				echo 'restore';
 				break;
 				case 'empty':
-				// do empty;
-				echo 'empty';
+					$files = JFolder::files($rb_root, '', true, true, array('.git', '.idx', '.DS_Store'));
+					$folders = JFolder::folders($rb_root, '', true, true, array('.git'));
+					
+					if(!empty($files)){				
+						foreach($files as $file){
+							JPath::setPermissions($file, '0777');
+							JFile::delete($file);
+						}
+					}
+					if(!empty($folders)){
+						foreach($folders as $folder){
+							JPath::setPermissions($folder, '', '0777' );
+							JFolder::delete($folder);
+						}
+					}
+					return true;
 				break;
 			}
 		}

@@ -15,7 +15,7 @@ jimport('joomla.filesystem.archive');
 jimport('joomla.filesystem.path');
 
 class ConfiguratorController extends JController {
-
+	
 	function manage() {
 		global $mainframe;
 		$database = JFactory::getDBO();
@@ -212,6 +212,17 @@ class ConfiguratorController extends JController {
 		}else{
 			echo $content;
 		}
+	}
+	
+	function show_assets(){
+		if(isset($_GET['a'])) $a = $_GET['a'];
+		switch($a){
+			case 'recycle': include('includes'.DS.'assets'.DS.'recycle.php'); break;
+			case 'themelets': include('includes'.DS.'assets'.DS.'themelets.php'); break;
+			case 'backgrounds': include('includes'.DS.'assets'.DS.'backgrounds.php'); break;
+			case 'logos': include('includes'.DS.'assets'.DS.'logos.php'); break;
+			case 'iphone': include('includes'.DS.'assets'.DS.'iphone.php'); break;
+		}	
 	}
 
 	function assets_backup(){
@@ -1437,26 +1448,51 @@ class ConfiguratorController extends JController {
 					if($type !== 'themelet'){
 						JFile::delete($rb_root.DS.$file);
 						return true;
-					}else{
-						$files = JFolder::files($rb_root.DS.$file, '', true, true, array('.git', '.idx', '.DS_Store'));
-						$folders = JFolder::folders($rb_root.DS.$file, '', true, true);
-					
-						foreach($files as $file){
-							JPath::setPermissions($file, '0777');
-							JFile::delete($file);
-						}
-					
-						foreach($folders as $folder){
-							JPath::setPermissions($folder, '', '0777' );
-							JFolder::delete($folder);
-						}
+					}else{				
 						JFolder::delete($rb_root.DS.$file);
 						return true;
 					}
 				break;
 				case 'restore':
-				// do restore
-				echo 'restore';
+					$recycle_dir = $rb_root = JPATH_SITE.DS.'morph_recycle_bin';
+					$restore_dir = $rb_root = JPATH_SITE.DS.'morph_assets';
+					
+					function move_asset($f, $t, $r, $rc){
+						
+						echo $rc.DS.$f;
+						echo '<br >'.$r.DS.str_replace($t.'_', '', $f);
+						if(is_dir($rc.DS.$f)){
+							if(JFolder::move($rc.DS.$f, $r.DS.$f)){
+								JFolder::delete($rc.DS.$f);
+								return true;
+							}
+						}else{
+							if(JFile::move($rc.DS.$f, $r.DS.str_replace($t.'_', '', $f))){
+								JFile::delete($rc.DS.$f);
+								return true;
+							}
+						}
+					}
+					
+					switch($type){
+						case 'bg': 
+						$restore_dir .= DS.'backgrounds'; 
+						move_asset($file, $type, $restore_dir, $recycle_dir);
+						break;
+						case 'iphone': 
+						$restore_dir .= DS.'iphone'; 
+						move_asset($file, $type, $restore_dir, $recycle_dir); 
+						break;
+						case 'logo': 
+						$restore_dir .= DS.'logos'; 
+						move_asset($file, $type, $restore_dir, $recycle_dir);
+						break;
+						case 'themelet': 
+						$restore_dir .= DS.'themelets'; 
+						move_asset($file, $type, $restore_dir, $recycle_dir);
+						break;
+					}
+					return true;
 				break;
 				case 'empty':
 					$files = JFolder::files($rb_root, '', true, true, array('.git', '.idx', '.DS_Store'));

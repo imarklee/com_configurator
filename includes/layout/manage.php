@@ -121,21 +121,16 @@
 			<div id="assets-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['assets-desc'])) { include dirname(__FILE__).DS.'..'.DS.'assets'.DS.'desc-assets.php'; } ?>
 				<ul class="ui-helper-clearfix">
-					<li class="icon-themelets"><a href="#assets-themelets">Themelets</a></li>
-					<li class="icon-logos"><a href="#assets-logos">Logos</a></li>
-					<li class="icon-backgrounds"><a href="#assets-backgrounds">Backgrounds</a></li>
-					<li class="icon-iphone"><a href="#assets-iphone">iPhone</a></li>
-					<li class="icon-recycle"><a href="#assets-recycle">Recycle Bin</a></li>
+					<li class="icon-themelets"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=themelets&amp;format=raw" title="assets tab themelets">Themelets</a></li>
+					<li class="icon-logos"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=logos&amp;format=raw" title="assets tab logos">Logos</a></li>
+					<li class="icon-backgrounds"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=backgrounds&amp;format=raw" title="assets tab backgrounds">Backgrounds</a></li>
+					<li class="icon-iphone"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=iphone&amp;format=raw" title="assets tab iphone">iPhone</a></li>
+					<li class="icon-recycle"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=recycle&amp;format=raw" title="assets tab recycle bin">Recycle Bin</a></li>
 
 				</ul>
 				<div class="icon-backup"> 
 					<span><a href="../administrator/index.php?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball">Download a Backup</a></span>				
 				</div>
-				<?php include dirname(__FILE__).DS.'..'.DS.'assets'.DS.'themelets.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'assets'.DS.'logos.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'assets'.DS.'backgrounds.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'assets'.DS.'iphone.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'assets'.DS.'recycle.php'; ?>
 			</div>
 		</div>
 			

@@ -5,6 +5,7 @@ header("cache-control: must-revalidate");
 $offset = 60 * 60;
 $expire = "expires: " . gmdate ("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($expire);
+define('DS', DIRECTORY_SEPARATOR);
 include '..'.DS.'..'.DS.'js'.DS.'jquery.js';
 include '..'.DS.'..'.DS.'js'.DS.'ui.js';
 include '..'.DS.'..'.DS.'js'.DS.'fileupload.js';

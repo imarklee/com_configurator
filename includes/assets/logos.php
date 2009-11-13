@@ -20,7 +20,7 @@ $query = "SELECT param_value FROM `#__configurator` WHERE `param_name` = 'logo_i
 $db->setQuery( $query );
 $activelogo = $db->loadResult();
 ?>
-<div id="assets-logos" class="ui-tabs-hide">
+<div id="assets-logos">
 	<div id="logos-switch" class="switch">
 		<h2>Manage your assets: <strong>Logos</strong></h2>
 		<p><a href="#" class="logo-tab btn-link">Customize logo settings</a>&nbsp;&nbsp;<a href="#" class="upload-logo btn-link">Upload a new logo</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>

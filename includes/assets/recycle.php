@@ -54,7 +54,6 @@ if(is_dir($recycle_dir)) {
 				$recycle_size = formatBytes(filesize($recycle_dir.DS.$recycle));
 				$recycle_file = str_replace(array('logo_', 'bg_', 'iphone_'), '', $recycle);
 				
-				if( $recycle !== $activebg ) { $bg_class = 'tl-inactive'; } else { $bg_class = 'tl-active'; }
 			?>	
 			<li class="recycle-item <?php echo $bg_class; ?>">
 				<div class="assets-inner">

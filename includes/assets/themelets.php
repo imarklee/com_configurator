@@ -14,8 +14,11 @@ if(is_dir($themelet_dir)) {
 } else {
 	$lists['themelets'] = 'test';
 }
+$db = JFactory::getDBO();
+$db->setQuery("select param_value from #__configurator where param_name='themelet'");
+$ct = $db->loadResult();
 ?>
-<div id="assets-themelets" class="ui-tabs-hide">
+<div id="assets-themelets">
 	<div id="themelet-switch" class="switch">
 		<h2>Manage your assets: <strong>Themelets</strong></h2>
 		<p><a href="#" class="themelet-tab btn-link">Customize themelet</a>&nbsp;&nbsp;<a href="#" class="upload-themelet btn-link">Upload a new themelet</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>
@@ -48,7 +51,7 @@ if(is_dir($themelet_dir)) {
 					$us_version = '';
 					$us_updated = '';
 				}
-				if( $themelet !== $params->get('themelet') ) { $themelet_class = 'tl-inactive'; } else { $themelet_class = 'tl-active'; }
+				if( $themelet !== $ct ) { $themelet_class = 'tl-inactive'; } else { $themelet_class = 'tl-active'; }
 			?>	
 				
 			<li class="themelet-item <?php echo $themelet_class; ?>">

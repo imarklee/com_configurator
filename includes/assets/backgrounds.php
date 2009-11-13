@@ -19,7 +19,7 @@ $query = "SELECT param_value FROM `#__configurator` WHERE `param_name` = 'bg_ima
 $db->setQuery( $query );
 $activebg = $db->loadResult();
 ?>
-<div id="assets-backgrounds" class="ui-tabs-hide">
+<div id="assets-backgrounds">
 	<div id="backgrounds-switch" class="switch">
 		<h2>Manage your assets: <strong>Backgrounds</strong></h2>
 		<p><a href="#" class="backgrounds-tab btn-link">Customize background settings</a>&nbsp;&nbsp;<a href="#" class="upload-bg btn-link">Upload a new background</a>&nbsp;&nbsp;<a href="#" class="switch-view">Switch View</a></p>

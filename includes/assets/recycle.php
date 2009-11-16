@@ -25,15 +25,18 @@ if(is_dir($recycle_dir)) {
 		<p><a action="empty" href="#" class="empty-recycle btn-link">Empty Recycle Bin</a></p>
 	</div>
 	
-	<div id="recycle-list" class="assets-layout <?php if(isset($_COOKIE['recycle-view']) && $_COOKIE['recycle-view'] == 'list') { echo 'thumb-view'; } else { echo 'list-view'; } ?>">
+	<table id="recycle-list" border="0" cellpadding="0" cellspacing="0">
 	    <?php if(!empty($lists['recycle'])){ ?>
-		<ul id="recycle-headers" class="assets-headers">
-			<li class="th-name">File name</li>
-			<li class="th-installed">Size</li>
-			<li class="th-restore">Restore</li>
-			<li class="th-delete">Delete</li>
-		</ul>
-		<ul class="assets-list">
+		<thead>
+		    <tr>
+    			<th class="th-name">File name</th>
+    			<th class="th-type">Type</th>
+    			<th class="th-installed">Size</th>
+    			<th class="th-restore">Restore</th>
+    			<th class="th-delete">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
 			<?php
 			foreach ($lists['recycle'] as $recycle){
 				if(is_dir($recycle_dir.DS.$recycle)){
@@ -55,24 +58,26 @@ if(is_dir($recycle_dir)) {
 				$recycle_file = str_replace(array('logo_', 'bg_', 'iphone_'), '', $recycle);
 				
 			?>	
-			<li class="recycle-item">
-				<div class="assets-inner">
-				<h3><?php echo $recycle_file; ?></h3>
-				<div class="image-container">
-					<div style="background-image: url('<?php echo $recycle_src; ?>');">&nbsp;</div>
-				</div>
-				<ul class="recycle-summary assets-summary">
-					<li class="tl-installed"><strong>File size: </strong><?php echo $recycle_size; ?></li>
-				</ul>
-				<h4>Options for this file:</h4>
-				<ul class="buttons">
-					<li class="btn-restore"><a action="restore" name="<?php echo $recycle; ?>" ftype="<?php echo $ftype; ?>" href="#" title="Restore <?php echo $recycle; ?>"><span>Restore</span></a></li>
-					<li class="btn-delete"><a action="delete" name="<?php echo $recycle; ?>" ftype="<?php echo $ftype; ?>" href="#" title="Delete <?php echo $recycle; ?>"><span>Delete</span></a></li>
-				</ul>
-				</div>
-			</li>
+			<tr>
+				<td class="item-name">
+				    <?php echo $recycle_file; ?>
+				</td>
+				<td class="item-type">
+				    <?php echo $ftype; ?>
+				</td>
+				<td class="item-size">
+				    <?php echo $recycle_size; ?>
+				</td>
+				<td class="item-restore">
+				    <a action="restore" name="<?php echo $recycle; ?>" ftype="<?php echo $ftype; ?>" href="#" title="Restore <?php echo $recycle; ?>"><span>Restore</span></a>
+				</td>
+				<td class="item-delete">
+				    <a action="delete" name="<?php echo $recycle; ?>" ftype="<?php echo $ftype; ?>" href="#" title="Delete <?php echo $recycle; ?>"><span>Delete</span></a>
+				</td>
+			</tr>
 		<?php } ?>
-		</ul>
+		</tbody>
+		</table>
 		<?php }else{ ?>
 			<div class="no-assets">
 				The Recycle Bin is empty.

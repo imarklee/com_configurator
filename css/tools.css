@@ -64,3 +64,14 @@ table.table .filename{text-align:left;padding:2px 5px;}
 #backup-list td{overflow:hidden;vertical-align:center;padding-bottom:5px;}
 #backup-list td.backup-filename{text-align:left;}
 #backup-list td.backup-action{width:70px;}
+
+
+#recycle-list{margin-top:10px;width:100%;border-left:1px solid #ccc;border-top:1px solid #ccc;}
+#recycle-list th,
+#recycle-list td{text-align:center;padding:2px 5px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;}
+#recycle-list th{background:#eee;}
+#recycle-list .th-name,
+#recycle-list .item-name{text-align:left;}
+#recycle-list {}
+#recycle-list{}
+#recycle-list{}

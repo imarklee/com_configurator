@@ -222,6 +222,7 @@ class ConfiguratorController extends JController {
 			case 'backgrounds': include('includes'.DS.'assets'.DS.'backgrounds.php'); break;
 			case 'logos': include('includes'.DS.'assets'.DS.'logos.php'); break;
 			case 'iphone': include('includes'.DS.'assets'.DS.'iphone.php'); break;
+			case 'backup': include('includes'.DS.'assets'.DS.'backup.php'); break;
 		}	
 	}
 
@@ -1458,16 +1459,19 @@ class ConfiguratorController extends JController {
 					$restore_dir = $rb_root = JPATH_SITE.DS.'morph_assets';
 					
 					function move_asset($f, $t, $r, $rc){
-						
-						echo $rc.DS.$f;
-						echo '<br >'.$r.DS.str_replace($t.'_', '', $f);
 						if(is_dir($rc.DS.$f)){
 							if(JFolder::move($rc.DS.$f, $r.DS.$f)){
 								JFolder::delete($rc.DS.$f);
 								return true;
 							}
 						}else{
-							if(JFile::move($rc.DS.$f, $r.DS.str_replace($t.'_', '', $f))){
+							echo $f;
+							if($t == 'file' || $t == 'db'){
+								$mf = $r.DS.$f;
+							}else{
+								$mf = $r.DS.str_replace($t.'_', '', $f);
+							}
+							if(JFile::move($rc.DS.$f, $mf)){
 								JFile::delete($rc.DS.$f);
 								return true;
 							}
@@ -1489,6 +1493,14 @@ class ConfiguratorController extends JController {
 						break;
 						case 'themelet': 
 						$restore_dir .= DS.'themelets'; 
+						move_asset($file, $type, $restore_dir, $recycle_dir);
+						break;
+						case 'file': 
+						$restore_dir .= DS.'backups'; 
+						move_asset($file, $type, $restore_dir, $recycle_dir);
+						break;
+						case 'db': 
+						$restore_dir .= DS.'backups'.DS.'db'; 
 						move_asset($file, $type, $restore_dir, $recycle_dir);
 						break;
 					}

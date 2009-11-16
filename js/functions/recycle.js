@@ -1,5 +1,5 @@
 $('#assets-tabs').bind('tabsload', function(event, ui) { 
-	$('#assets_tab_recycle_bin #assets-recycle #recycle-list ul li ul li a, a.empty-recycle').click(function(){
+	$('#recycle-list tbody tr a, a.empty-recycle').click(function(){
 		var r_action = $(this).attr('action');
 		var r_type = $(this).attr('ftype');
 		var r_file = $(this).attr('name');
@@ -55,9 +55,9 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 						$.ajax({
 							url: '../administrator/index.php?option=com_configurator&task=handle_recycle&format=raw&action=delete&type='+r_type+'&file='+r_file,
 							success: function(d){
-								$this.parent().parent().parent().parent().remove();
-								if($("#recycle-list ul.assets-list li.recycle-item").length > 0){
-									$("ul.assets-list").each(function(){
+								$this.parent().parent().remove();
+								if($("#recycle-list tbody tr").length > 0){
+									$("#recycle-list tbody").each(function(){
 										$(this).children().removeClass('alt');
 										$(this).children(':odd').addClass('alt');
 									});
@@ -80,7 +80,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 				$.ajax({
 					url: '../administrator/index.php?option=com_configurator&task=handle_recycle&format=raw&action=restore&type='+r_type+'&file='+r_file,
 					success: function(d){
-						$this.parent().parent().parent().parent().fadeOut('slow', function(){
+						$this.parent().parent().fadeOut('slow', function(){
 							$(this).remove();
 						});
 						return;

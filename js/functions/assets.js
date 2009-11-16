@@ -507,7 +507,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		return false;
 	});
 	
-	$("ul.assets-list, #backup-list tbody").each(function(){
+	$("ul.assets-list, #backup-list tbody, #recycle-list tbody").each(function(){
 		$(this).children(':odd').addClass('alt');
 	});
 	
@@ -639,18 +639,15 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 					type: 'POST',
 					url: burl,
 					success: function(data, status){
-						hideScroll();
 						$('.dialog-msg').html(data);
 						if(action == 'delete'){
 							$this.parent().parent().fadeOut('slow', function(){
 								$(this).remove();
-								if($("#backup-list tr").length > 1){
-									$("#backup-list tr").each(function(){
+								if($("#backup-list tbody tr").length > 1){
+									$("#backup-list tbody tr").each(function(){
+										alert($(this).attr('class'));
 										$(this).removeClass('alt');
 									});
-									// $("#backup-list tbody").each(function(){
-									// 										$(this).children(':odd').addClass('alt');
-									// 									});
 								}else{
 									$('#backup-list').empty().remove();
 									$('#backup-manager').append('<div class="no-assets">There are currently no database backups.</div>');

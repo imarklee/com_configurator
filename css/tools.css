@@ -54,24 +54,13 @@ table.table .filename{text-align:left;padding:2px 5px;}
 #tools label{cursor:pointer;}
 #tools label:hover{color:#777;}
 
-#backup-list .icon{
-width:18px;
-height:18px;
-display:block;
-text-indent:-7998px;
-background:url(../images/backup-icons.png) no-repeat;
-float:left;
-position:relative;
-top:5px;
-}
+#backup-list .icon{width:18px;height:18px;display:block;text-indent:-7998px;background:url(../images/backup-icons.png) no-repeat;float:left;position:relative;top:5px;}
 #backup-list .download{background-position: top left;margin-left:2px;}
 #backup-list .delete{background-position: bottom left;margin:0 6px;}
 #backup-list .restore{background-position: center left;}
-
 #backup-list .download:hover{background-position:top right;}
 #backup-list .restore:hover{background-position:center right;}
 #backup-list .delete:hover{background-position:bottom right;}
 #backup-list td{overflow:hidden;vertical-align:center;padding-bottom:5px;}
-
 #backup-list td.backup-filename{text-align:left;}
 #backup-list td.backup-action{width:70px;}

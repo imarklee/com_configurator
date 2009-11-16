@@ -74,5 +74,5 @@ table.table .filename{text-align:left;padding:2px 5px;}
 #recycle-list .th-name,
 #recycle-list .item-name{text-align:left;}
 #recycle-list h2{with:100%;clear:both;overflow:hidden;}
-#recycle-list{}
-#recycle-list{}
+#recycle-list .alt{background:#FFFFF4;}
+#recycle-list tr:hover{background:#FFFFA5;}

@@ -30,6 +30,7 @@ if(is_dir($recycle_dir)) {
 		<thead>
 		    <tr>
     			<th class="th-name">File name</th>
+    			<th class="th-type">Type</th>
     			<th class="th-installed">Size</th>
     			<th class="th-restore">Restore</th>
     			<th class="th-delete">Delete</th>
@@ -60,6 +61,9 @@ if(is_dir($recycle_dir)) {
 			<tr>
 				<td class="item-name">
 				    <?php echo $recycle_file; ?>
+				</td>
+				<td class="item-type">
+				    <?php echo $ftype; ?>
 				</td>
 				<td class="item-size">
 				    <?php echo $recycle_size; ?>

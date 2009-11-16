@@ -108,12 +108,10 @@
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
 					<li class="icon-reset"><a href="#reset-settings">Reset Settings</a></li>
-					<li class="icon-backupmgr"><a href="#backup-manager">Backup Manager</a></li>
 				</ul>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'uploader.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'database.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'reset.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'backup.php'; ?>
 			</div>
 		</div>
 
@@ -125,8 +123,8 @@
 					<li class="icon-logos"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=logos&amp;format=raw" title="assets tab logos">Logos</a></li>
 					<li class="icon-backgrounds"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=backgrounds&amp;format=raw" title="assets tab backgrounds">Backgrounds</a></li>
 					<li class="icon-iphone"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=iphone&amp;format=raw" title="assets tab iphone">iPhone</a></li>
+					<li class="icon-backupmgr"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=backup&amp;format=raw" title="assets tab backups">Backups</a></li>
 					<li class="icon-recycle"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=recycle&amp;format=raw" title="assets tab recycle bin">Recycle Bin</a></li>
-
 				</ul>
 				<div class="icon-backup"> 
 					<span><a href="../administrator/index.php?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball">Download a Backup</a></span>				

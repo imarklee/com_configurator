@@ -551,4 +551,108 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	return false;
 	});
 	
+	// backup manager
+	$('#backup-list a').click(function(){
+		var $this = $(this);
+		var act;
+		var action = $(this).attr('action');
+		var filename = $(this).attr('name');
+		var btype = $(this).attr('bu_type');
+		var burl = '../administrator/index.php?option=com_configurator&format=raw&task=handle_backup&action='+action+'&filename='+filename+'&type='+btype;
+
+		$('<div class="dialog-msg"></div>').dialog({
+			bgiframe: true,
+			autoOpen: false,
+			minHeight: 20,
+			stack: false,
+			modal: true, 
+			overlay: {
+				'background-color': '#000', 
+				opacity: 0.8 
+			},
+			buttons: { 
+				'OK': function(){
+					close_ptOverlay();
+					$('.dialog-msg').dialog('destroy').remove();
+	   			}
+	   		}
+	   	});
+
+		if(action != 'download'){
+			if(action == 'restore'){
+				ptOverlay('Processing...');
+				$('.dialog-msg').html('<p><strong>You are about to restore a database backup!</strong></p>Would you like to download a temporary database backup before restoring?');
+				$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
+				$('.dialog-msg').dialog('option', 'buttons', {
+					'Yes': function(){
+						window.location.href = '../administrator/index.php?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
+						$(this).dialog('close');
+						ptOverlay('Processing...')
+						$.ajax({
+							type: 'POST',
+							url: burl,
+							success: function(data){
+								close_ptOverlay();
+								hideScroll();
+								$('.dialog-msg').html(data);
+								$('.dialog-msg').dialog('option', 'buttons', {
+									'OK': function(){
+										close_ptOverlay();
+										$('.dialog-msg').dialog('destroy').remove();
+										ptOverlay('Reloading');
+										window.location.reload(true);
+									}
+								});
+								$('.dialog-msg').dialog('option', 'title', 'Restore');
+								$('.dialog-msg').dialog('open');
+							}
+						});
+					},
+					'No':function(){
+						$(this).dialog('close');
+						ptOverlay('Processing...')
+						$.ajax({
+							type: 'POST',
+							url: burl,
+							success: function(data){
+								close_ptOverlay();
+								hideScroll();
+								$('.dialog-msg').html(data);
+								$('.dialog-msg').dialog('option', 'buttons', {
+									'OK': function(){
+										close_ptOverlay();
+										$('.dialog-msg').dialog('destroy').remove();
+										ptOverlay('Reloading');
+										window.location.reload(true);
+									}
+								});
+								$('.dialog-msg').dialog('option', 'title', 'Restore');
+								$('.dialog-msg').dialog('open');
+							}
+						});
+					}
+				});
+				close_ptOverlay();
+				$('.dialog-msg').dialog('open');
+			}else{
+				$.ajax({
+					type: 'POST',
+					url: burl,
+					success: function(data, status){
+						hideScroll();
+						$('.dialog-msg').html(data);
+						if(action == 'delete'){
+							$this.parent().parent().fadeOut('slow', function(){
+								$(this).remove();
+							});
+						}
+					}
+				});
+			}
+		}else{
+			window.location.href = burl;
+		}
+		return false;
+	});
+	
 });

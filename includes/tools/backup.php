@@ -6,11 +6,11 @@
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
-
 ?>
 <div id="backup-manager">
     <h2>Backup Manager</h2>
-    <p>Below is a list of backups that are automatically created by Configurator. Please use this tool with caution when restoring Database backups.</p>
+    <p>Below is a list of backups that are automatically created by Configurator. Please use this tool with caution 
+    when restoring Database backups. All backups are saved to your <code>/morph_assets/backups/</code> folder.</p>
 		<?php 
 			$db = JFactory::getDBO();
 			$query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");
@@ -75,12 +75,12 @@
 							
 					?>
 						<tr class="<?php echo $splitfile[0] . ' ' . $splitfile[1]; ?>">
-						    <td class="filename"><?php echo $file; ?></td>
-						    <td><?php echo formatBytes(filesize(JPATH_ROOT.DS.'morph_assets'.DS.'backups'.DS.$folder.$file)); ?></td>
-						    <td><?php echo $date; ?></td>
-							<td><?php echo $time; ?></td>
-						    <td><?php echo $type; ?></td>
-						    <td>
+						    <td class="backup-filename"><?php echo $file; ?></td>
+						    <td class="backup-size"><?php echo formatBytes(filesize(JPATH_ROOT.DS.'morph_assets'.DS.'backups'.DS.$folder.$file)); ?></td>
+						    <td class="backup-date"><?php echo $date; ?></td>
+							<td class="backup-time"><?php echo $time; ?></td>
+						    <td class="backup-type"><?php echo $type; ?></td>
+						    <td class="backup-action">
 								<a class="icon download" action="download" bu_type="<?php echo $splitfile[0]; ?>" name="<?php echo $file; ?>" href="#" title="Download <?php echo $file; ?>"><span>Download</span></a>
 								<a class="icon delete" action="delete" bu_type="<?php echo $splitfile[0]; ?>" name="<?php echo $file; ?>" href="#" title="Delete <?php echo $file; ?>"><span>Delete</span></a>
 						    	<?php if($splitfile[0] !== 'file' && $splitfile[1] == 'themelet-settings' && $name == $curr_themelet || $splitfile[0] !== 'file' && $splitfile[1] !== 'themelet-settings'){ ?>

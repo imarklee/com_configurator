@@ -13,6 +13,7 @@
 #cfg #assets-logos .image-container div{background-color:#fff;background-repeat:no-repeat;}
 
 #cfg .switch{overflow:hidden;margin:0;}
+#backup-manager h2,
 #cfg .switch h2{color:#666;float:left;font:bold 22px/30px arial;height:30px;width:40%;margin:0;padding:0;}
 #cfg .switch h2 strong{color:#999;}
 #cfg .switch p{display:block;float:right;text-align:right;width:60%;height:30px;line-height:30px;margin:0;padding:0;}

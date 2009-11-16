@@ -14,8 +14,20 @@ $themeletsdir = ROOT . DS . 'morph_assets' . DS . 'themelets';
 $iphonedir = ROOT . DS . 'morph_assets' . DS . 'iphone';
 
 // create assets folders
-if(!is_dir(ROOT . DS . 'morph_assets')) 
-(!@mkdir(ROOT . DS . 'morph_assets')) ? $error = true : JPath::setPermissions(ROOT . DS . 'morph_assets'); 
+if(!is_dir(ROOT . DS . 'morph_assets')){
+	if(!@mkdir(ROOT . DS . 'morph_assets')){
+		$error = true 
+	}else{
+		JPath::setPermissions(ROOT . DS . 'morph_assets'); 
+	}
+}
+if(!is_dir(JPATH_SITE . DS . 'morph_recycle_bin')){
+	if(!@mkdir(JPATH_SITE . DS . 'morph_recycle_bin')){
+		$error = 'error: "There was an error creating the Morph Recycle Bin folder. Please check your permissions."';
+	}else{
+		JPath::setPermissions(JPATH_SITE . DS . 'morph_recycle_bin');
+	}
+}
 
 if(!is_dir($backupdir))
 (!@mkdir($backupdir)) ? $error = true : JPath::setPermissions($backupdir);

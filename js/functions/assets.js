@@ -507,7 +507,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		return false;
 	});
 	
-	$("ul.assets-list").each(function(){
+	$("ul.assets-list, #backup-list tbody").each(function(){
 		$(this).children(':odd').addClass('alt');
 	});
 	
@@ -645,10 +645,12 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 							$this.parent().parent().fadeOut('slow', function(){
 								$(this).remove();
 								if($("#backup-list tr").length > 1){
-									$("ul.assets-list").each(function(){
-										$(this).children().removeClass('alt');
-										$(this).children(':odd').addClass('alt');
+									$("#backup-list tr").each(function(){
+										$(this).removeClass('alt');
 									});
+									// $("#backup-list tbody").each(function(){
+									// 										$(this).children(':odd').addClass('alt');
+									// 									});
 								}else{
 									$('#backup-list').empty().remove();
 									$('#backup-manager').append('<div class="no-assets">There are currently no database backups.</div>');

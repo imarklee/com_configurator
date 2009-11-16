@@ -55,7 +55,7 @@ if(is_dir($recycle_dir)) {
 				$recycle_file = str_replace(array('logo_', 'bg_', 'iphone_'), '', $recycle);
 				
 			?>	
-			<li class="recycle-item <?php echo $bg_class; ?>">
+			<li class="recycle-item">
 				<div class="assets-inner">
 				<h3><?php echo $recycle_file; ?></h3>
 				<div class="image-container">

@@ -644,6 +644,16 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 						if(action == 'delete'){
 							$this.parent().parent().fadeOut('slow', function(){
 								$(this).remove();
+								if($("#backup-list tr").length > 1){
+									$("ul.assets-list").each(function(){
+										$(this).children().removeClass('alt');
+										$(this).children(':odd').addClass('alt');
+									});
+								}else{
+									$('#backup-list').empty().remove();
+									$('#backup-manager').append('<div class="no-assets">There are currently no database backups.</div>');
+									return false;
+								}
 							});
 						}
 					}

@@ -11,7 +11,7 @@ if(is_dir(JROOT . '/morph_assets')){ echo '<div id="assets_folder_exists" style=
 ?>
 <form id="install-template" class="step1" method="post" action="index.php?option=com_configurator&task=installTemplate&format=raw&backup=false" enctype="multipart/form-data">
 	<div id="install-head">
-		<img src="<?php echo JURL; ?>/installer/images/install-logo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
+		<img src="<?php echo JURL; ?>/installer/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
 		<p class="steps"><strong>Step 1 of 2: </strong>Install &amp; publish Morph</p>
 	</div>
 		

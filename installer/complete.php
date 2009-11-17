@@ -25,7 +25,7 @@ function iType($cookie){
 }
 ?>
 <div id="install-head">
-	<img src="<?php echo JURL; ?>/installer/images/install-logo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
+	<img src="<?php echo JURL; ?>/installer/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
 	<p class="steps"><strong>Installation Complete </strong>Everything installed successfully</p>
 </div>
 <div id="install-shadow">

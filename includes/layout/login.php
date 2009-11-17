@@ -1,6 +1,6 @@
 <div id="conf-login">
 	<div id="cl-top">
-	<img src="../administrator/components/com_configurator/images/morph-logo.png" alt="morph logo" width="173" height="60" border="0" />
+		<img src="../administrator/components/com_configurator/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
 	</div>
 	<div id="cl-inner">
 		<h2>Configurator for Morph</h2>

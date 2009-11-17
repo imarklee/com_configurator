@@ -1,8 +1,8 @@
-#install-wrap{background:#111 url(../images/install-bg.jpg) no-repeat 50% 50%;padding:0 0 30px 0;width:100%;float:left; position: relative; }
+#install-wrap{background:#000000 url(../images/bg.jpg) no-repeat 50% 0;padding:0 0 30px 0;width:100%;float:left; position: relative; }
 #installer{width:800px;margin:2em auto;font:normal 76%/160% arial;position:relative;}
 #installer a:link,#installer a:focus{outline:0;}
 #install-head{height:75px;}
-#install-head img{margin:14px 0 0 9px;float:left;z-index:998;position:relative;}
+#install-head img{margin:6px 0 0 5px;float:left;z-index:998;position:relative;}
 #install-head img.tagline{margin:30px 0 0 15px;}
 #install-head .steps strong{font:bold 28px/37px arial;color:#333;display:block;text-transform:none;text-shadow:0 1px 0 #000;}
 #install-head .steps{font:bold 12px arial;text-transform:uppercase;color:#999;width:350px;float:right;margin:9px 10px 0 0;text-align:right;}

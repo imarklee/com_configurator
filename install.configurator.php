@@ -16,14 +16,14 @@ $iphonedir = ROOT . DS . 'morph_assets' . DS . 'iphone';
 // create assets folders
 if(!is_dir(ROOT . DS . 'morph_assets')){
 	if(!@mkdir(ROOT . DS . 'morph_assets')){
-		$error = true 
+		$error = true;
 	}else{
 		JPath::setPermissions(ROOT . DS . 'morph_assets'); 
 	}
 }
 if(!is_dir(JPATH_SITE . DS . 'morph_recycle_bin')){
 	if(!@mkdir(JPATH_SITE . DS . 'morph_recycle_bin')){
-		$error = 'error: "There was an error creating the Morph Recycle Bin folder. Please check your permissions."';
+		$error = true;
 	}else{
 		JPath::setPermissions(JPATH_SITE . DS . 'morph_recycle_bin');
 	}

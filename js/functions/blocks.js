@@ -339,14 +339,14 @@ $(function(){
 });
 
 function textarea(action, ta_el){
-		var display;
-		if(action == 'on'){ 
-			if($(ta_el+'_show1').attr('checked')){ $(ta_el).parent().css('display', 'block'); }
-			$(ta_el+'_show1').click(function(){ $(ta_el).parent().css('display', 'block'); });
-		}else{ 
-			if($(ta_el+'_show0').attr('checked')){ $(ta_el).parent().css('display', 'none'); }
-			$(ta_el+'_show0').click(function(){ $(ta_el).parent().css('display', 'none'); });
-		}
+	var display;
+	if(action == 'on'){ 
+		if($(ta_el+'_show1').attr('checked')){ $(ta_el).parent().css('display', 'block'); }
+		$(ta_el+'_show1').click(function(){ $(ta_el).parent().css('display', 'block'); });
+	}else{ 
+		if($(ta_el+'_show0').attr('checked')){ $(ta_el).parent().css('display', 'none'); }
+		$(ta_el+'_show0').click(function(){ $(ta_el).parent().css('display', 'none'); });
+	}
 }
 textarea('on', '#footerfooter_copyright');
 textarea('off', '#footerfooter_copyright');

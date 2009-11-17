@@ -35,12 +35,13 @@ function showUpdates(e, callback){
 		   			if(typeof online[name] != 'undefined'){
 			   			name_html = $(e[i]).html();
 				   		current_version = $(e[i]).next().children().html();
-				   		latest_version = online[name].version;
-				   		latest_placeholder = $(e[i]).next().next();
-				   		latest_titletext = 'The latest available version is '+latest_version+'. Click on the help link above for more information.';
-				   		latest_placeholder.html('<span title="'+latest_titletext+'">'+latest_version+'</span>');
+				   		online_version = online[name].version;
+				   		online_placeholder = $(e[i]).next().next();
+				   		online_titletext = 'The latest available version is '+online_version+'. Click on the help link above for more information.';
+				   		online_placeholder.html('<span title="'+online_titletext+'">'+online_version+'</span>');
 				   		icon_placeholder = $(e[i]).next().next().next();
-				   		if(current_version < latest_version){
+				   		if(parseFloat(current_version) < parseFloat(online_version)){
+					
 				   			icon_placeholder.html('<span class="update-no" title="There is an update available">Update Available</span>');
 				   			$(e[i]).html('<a title="Click here to download the latest version of '+online[name].long_name+' now" target="_blank" href="'+online[name].download+'">'+name_html+'</a>');
 				   		}else{
@@ -54,13 +55,13 @@ function showUpdates(e, callback){
 			   			if(typeof online[name] != 'undefined'){
 					   		name_html = $(this).prev().prev().html();
 					   		current_version = $($(this).children().children()[0]).next().html();
-					   		latest_version = online[name].version;
-					   		latest_placeholder = $($(this).children().children()[2]).next();
-					   		latest_placeholder.html(online[name].version);
-					   		latest_date_placeholder = $($(this).children().children()[4]).next();
-					   		latest_date_placeholder.html(online[name].updated);
+					   		online_version = online[name].version;
+					   		online_placeholder = $($(this).children().children()[2]).next();
+					   		online_placeholder.html(online[name].version);
+					   		online_date_placeholder = $($(this).children().children()[4]).next();
+					   		online_date_placeholder.html(online[name].updated);
 			
-					   		if(current_version < latest_version){
+					   		if(current_version < online_version){
 					   			$(this).prev().prev().children().children().attr('href', online[name].download);
 					   			$(this).parent().parent().addClass('update');
 					   			$(this).next().next().children('li.btn-update').children().attr('href', online[name].download);

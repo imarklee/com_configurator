@@ -34,4 +34,4 @@ ul.assets-headers,
 #cfg #tools .tools-btn{-webkit-border-radius:10px;}
 a.btn-primary{-webkit-border-radius: 20px;-webkit-box-shadow:0 0 5px #999;}
 a.btn-primary:hover{-webkit-box-shadow:0 0 5px #598C13;}
-#shelf #utilities ul li.logged-in span.shelf-notice{-webkit-border-radius:7px;}
+#shelf #utilities ul span.shelf-notice{-webkit-border-radius:7px;}

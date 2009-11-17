@@ -35,8 +35,19 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 	<div id="utilities">
 		<ul>
-			<li class="logged-in">Logged in as: <strong><?php echo $user[0]['user_name']; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="logout-configurator">Logout</a><?php if(isset($_COOKIE['formChanges'])){ ?>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="shelf-notice">You have unsaved changes</span><?php }?></li>
-			<li class="toggle-shelf"><a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf"><?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Show Shelf'; } ?></a></li>
+			<li class="user">
+			    Logged in as: <strong><?php echo $user[0]['user_name']; ?></strong>
+            </li>
+			<li class="logout">
+			    <a href="#" class="logout-configurator">Logout</a>
+			</li>
+			<li class="changes">
+			    <?php if(isset($_COOKIE['formChanges'])){ ?><span class="shelf-notice">You have unsaved changes</span><?php }?></li>
+			</li>
+			<li class="toggle-shelf">
+			    <a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf">
+			    <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Show Shelf'; } ?></a>
+			</li>
 		</ul>
 	</div>
 	<div id="shelf-contents">
@@ -48,17 +59,20 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 			</p>
 				<dl>
 					<dt name="com_configurator" type="shelf" id="us-configurator">Configurator</dt>
-					<dd class="current"><span title="Your installed version is <?php echo $component_arr['version']; ?>. Click on the help link above for more information."><?php echo $component_arr['version']; ?></span></dd>
+					<dd class="current"><span title="Your installed version is <?php echo $component_arr['version']; ?>. Click on the help link above for more information.">
+					<?php echo $component_arr['version']; ?></span></dd>
 					<dd class="latest">&nbsp;</dd>
 					<dd class="icon">&nbsp;</dd>
 	
 					<dt name="morph" type="shelf" id="us-morph">Morph</dt>
-					<dd class="current"><span title="Your installed version is <?php echo $template_arr['version']; ?>. Click on the help link above for more information."><?php echo $template_arr['version']; ?></span></dd>
+					<dd class="current"><span title="Your installed version is <?php echo $template_arr['version']; ?>. Click on the help link above for more information.">
+					<?php echo $template_arr['version']; ?></span></dd>
 					<dd class="latest">&nbsp;</dd>
 					<dd class="icon">&nbsp;</dd>
 				
 					<dt name="<?php echo $themelet_arr['foldername']; ?>" type="shelf" id="us-themelet"><?php echo $themelet_arr['name']; ?></dt>
-					<dd class="current"><span title="Your installed version is <?php echo $themelet_arr['version']; ?>. Click on the help link above for more information."><?php echo $themelet_arr['version']; ?></span></dd>
+					<dd class="current"><span title="Your installed version is <?php echo $themelet_arr['version']; ?>. Click on the help link above for more information.">
+					<?php echo $themelet_arr['version']; ?></span></dd>
 					<dd class="latest">&nbsp;</dd>
 					<dd class="icon">&nbsp;</dd>						
 				</dl>
@@ -67,9 +81,12 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 			<h3>Current themelet</h3>
 			<ul>
 				<li class="ct-name"><span>Name: </span><?php echo $themelet_arr['name']; ?></li>
-				<li class="ct-author"><span>Author: </span><a href="<?php echo $themelet_arr['authorUrl']; ?>" target="_blank" title="View all themelets by this provider"><?php echo $themelet_arr['author']; ?></a></li>
+				<li class="ct-author"><span>Author: </span><a href="<?php echo $themelet_arr['authorUrl']; ?>" target="_blank" title="View all themelets by this provider">
+				<?php echo $themelet_arr['author']; ?></a></li>
 				<li class="ct-version"><span>Version: </span><?php echo $themelet_arr['version']; ?></li>
-				<li class="thumb ct-thumb"><span>&nbsp;</span><img src="<?php echo $themelet_urlpath . $params->get('themelet'); ?>/themelet_thumb.png" width="108" height="72" align="middle" alt="<?php echo $themelet_arr['name']; ?>" /></li>
+				<li class="thumb ct-thumb"><span>&nbsp;</span>
+				<img src="<?php echo $themelet_urlpath . $params->get('themelet'); ?>/themelet_thumb.png" width="108" height="72" align="middle" alt="<?php echo $themelet_arr['name']; ?>" />
+				</li>
 			</ul>
 		</div>
 		<div id="visual-refs">

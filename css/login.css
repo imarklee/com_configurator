@@ -1,5 +1,5 @@
 .m{padding:0;margin:0;}
-#conf-login{position:relative;background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;color:#313131;width:100%;padding:50px 0;display:block;text-align:left;}
+#conf-login{position:relative;background:#000 url(../installer/images/bg.jpg) no-repeat 50% 0%;color:#313131;width:100%;padding:50px 0;display:block;text-align:left;}
 #conf-login h2{font:bold 32px Arial;margin:0 0 10px 0;padding:0;}
 #conf-login p{margin:0 0 15px 0;padding:0;font:normal 13px/17px Arial;width:360px;}
 #cl-top{padding:0;margin:0 auto;width:590px;}

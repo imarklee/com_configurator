@@ -703,7 +703,7 @@ class ConfiguratorController extends JController {
 		$newtemplatefile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$templatesdir = JPATH_SITE . DS . 'templates';
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';
-		$backupfile = $backupdir . DS . 'file_template_morph' . time();
+		$backupfile = $backupdir . DS . 'file_template_morph_' . time();
 		if(!@Jarchive::create($backupfile, $templatesdir . DS . 'morph', 'gz', '', $templatesdir, true)){
 			// error creating archive
 			$error = 'error: "There was an error creating a backup archive. Upload failed"'; 

@@ -63,7 +63,7 @@ function outerLayouts($id){
 	return $select;
 }
 // do not show these options
-$restricted = array('com_wrapper', 'com_weblinks');
+$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_jupdateman');
 ?>
 
 <div id="components-tab" class="ui-tabs-hide ui-tabs-panel">

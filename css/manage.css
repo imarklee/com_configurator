@@ -16,13 +16,13 @@ a:link,a:visited{text-decoration:underline;}
 #cfg.nobranding{}
 #cfg.branding{}
 #element-box .t,#element-box .b{display:none;}
-#element-box .m{background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;padding:15px 0;border:0;}
+#element-box .m{background:#000 url(../images/bg.jpg) no-repeat scroll 40% -2%;padding:15px 0;border:0;}
 button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}
-.icon-48-configurator{background:transparent url(../images/icon-48-configurator.png) repeat scroll 5px 8px;}
+.icon-48-configurator{background:transparent url(../images/icon-48-configurator.png) repeat 5px 8px;}
 #logologo_image{width:175px;}
-#top{height:90px;position:relative;}
+#top{height:90px;position:relative;background:transparent url(../images/slogan.png) no-repeat 99% 65%}
 #branding{width:200px;float:left;height:90px;}
-#branding img{margin-top:15px;}
+#branding img{margin-top:18px;}
 #minwidth-body .ui-widget-overlay{background:#000000 none repeat scroll 0 0;opacity:0.9;}
 .logo-preview{display:block;width:16px;height:16px;background:transparent url(../images/eye.png) no-repeat 0 0;position:absolute;top:9px;right:100px;}
 .logo-preview span{display:none;}

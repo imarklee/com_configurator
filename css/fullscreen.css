@@ -1,8 +1,8 @@
 #minwidth-body .m{padding:0!important;}
-#minwidth-body .m #templateform{background:#111111 url(../images/install-bg.jpg) no-repeat 50% 0;}
-#minwidth-body.full-mode{position:relative;background:#111 url(../installer/images/install-bg.jpg) no-repeat 50% 50%;margin:0;}
+#minwidth-body .m #templateform{background:#000 url(../images/bg.jpg) no-repeat scroll 60% -10px;}
+#minwidth-body.full-mode{position:relative;background:#000 url(../installer/images/bg.jpg) no-repeat 50% 0%;margin:0;}
 #minwidth-body.full-mode #toolbar {background:#000;height:32px;left:0;position:absolute;top:0;width:100%;z-index:999;border-bottom:1px solid #333;}
-#minwidth-body.full-mode .m #templateform{background:none;}
+#minwidth-body.full-mode .m #templateform{background:#000 url(../images/bg.jpg) no-repeat scroll 60% -10px;}
 #minwidth-body.full-mode #border-top,#minwidth-body.full-mode #header-box,#minwidth-body.full-mode #content-box,#minwidth-body.full-mode .padding,#minwidth-body.full-mode .m,#minwidth-body.full-mode .t{background:#000;border:0!important;margin:0;padding:0;}
 #minwidth-body.full-mode #content-box .padding #element-box{position:absolute;top:33px;left:0;width:100%;z-index:999;background:#111;}
 #minwidth-body.full-mode #content-box .padding #element-box .m{background:none;padding:0;margin:0;}

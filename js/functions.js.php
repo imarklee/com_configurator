@@ -1098,12 +1098,19 @@ jQuery.noConflict();
 									success: function(d){
 										if(data.themelet == d){
 											close_ptOverlay();
-											ptOverlay('Processing...');
-											var $tabs = $('#tabs').tabs();
-											var assetsTabs = $('#assets-tabs').tabs();
-											$tabs.tabs('select', 5);
-											assetsTabs.tabs('select', 0);									
-											window.location.reload();
+											$('#upload-message').html('<div class="dialog-msg">Themelet upgraded successfully.</div>');
+											$('#upload-message').dialog(
+												'option', 'buttons', { 
+													'Ok': function(){
+														$(this).dialog('destroy');
+														var $tabs = $('#tabs').tabs();
+														var assetsTabs = $('#assets-tabs').tabs();
+														$tabs.tabs('select', 5);
+														assetsTabs.tabs('select', 0);
+													}
+												}
+											);
+											$('#upload-message').dialog('open');											
 										}else{
 											if(data.backuploc != '') { backupmsg = '<p><br /><strong>Your existing themelet files were backed up to: </strong><small>'+data.backuploc+'</small></p>'; }else{ backupmsg = ''; }
 											$('#upload-message').html('<div class="dialog-msg">'+data.success+backupmsg+'</div>');

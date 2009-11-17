@@ -1905,7 +1905,7 @@ class ConfiguratorController extends JController {
 				}
 			}
 			
-			$success = 'msg: "Template Successfully Installed", success: "Template Successfully Installed", error: ""';
+			$success = 'msg: "Morph Upgraded Successfully", success: "Morph upgraded successfully", error: ""';
 			return $success;
 		}
 		

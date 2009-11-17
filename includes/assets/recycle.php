@@ -25,8 +25,8 @@ if(is_dir($recycle_dir)) {
 		<p><a action="empty" href="#" class="empty-recycle btn-link">Empty Recycle Bin</a></p>
 	</div>
 	
+	<?php if(!empty($lists['recycle'])){ ?>
 	<table id="recycle-list" border="0" cellpadding="0" cellspacing="0">
-	    <?php if(!empty($lists['recycle'])){ ?>
 		<thead>
 		    <tr>
     			<th class="th-name">File name</th>

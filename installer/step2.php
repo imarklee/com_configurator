@@ -9,8 +9,7 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 ?>
 <form id="install-themelet" class="step2" method="post" action="#">
 	<div id="install-head">
-		<img src="<?php echo JURL; ?>/installer/images/install-logo.png" alt="morph logo" width="160" height="60" border="0" class="logo" />
-		<img src="<?php echo JURL; ?>/installer/images/tagline.png" alt="morph tagline" width="195" height="24" border="0" class="tagline" />
+		<img src="<?php echo JURL; ?>/installer/images/install-logo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
 		<p class="steps"><strong>Step 2 of 2: </strong>Install your themelet</p>
 	</div>
 	<div id="install-shadow">

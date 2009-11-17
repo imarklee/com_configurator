@@ -1,11 +1,11 @@
 <div id="logos-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="logo-options" class="options-panel">
 	    <h3>Logo Settings</h3>
-		<ol class="forms">
+		<ol class="forms" id="logo-panel">
 			<?php echo renderParams($params->renderToArray('logo', 'logodata')); ?>
 		</ol>
 	    <h3>Tagline Settings</h3>
-		<ol class="forms">
+		<ol class="forms" id="tagline-panel">
 			<?php echo renderParams($params->renderToArray('tagline', 'taglinedata')); ?>
 		</ol>
 	</div>
@@ -19,11 +19,6 @@
 		<p>We highly recommended that you click on the help icon next to the "<strong>Logo type</strong>" 
 		option and take a minute to read over the different the different ways you can output your sites 
 		logo. </p>		
-<!--	<h4>Why the ie6 logo option?</h4>
-		<p>The ie6 alternate logo option is a way that you can use a transparent png for all modern 
-		browsers that support transparency properly and then use a transparent gif, which isnt as 
-		smooth, but works.</p>
--->
 		<p><a href="#" class="upload-logo btn-link">Upload a new logo</a>&nbsp;&nbsp;<a href="#" 
 		class="masthead-tab btn-link">Configure your main header tab</a></p>
 	</div>

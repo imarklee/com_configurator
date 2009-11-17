@@ -33,7 +33,13 @@
 .newColorpicker{z-index:9999;}
 #cfg #tabs ol.forms li.palette .color-preview{width:16px;height:16px;display:block;position:absolute;top:8px;right:102px;background:#ccc;-moz-border-radius:3px;-webkit-border-radius:3px;}
 .colorpicker {position:relative;bottom:33px;right:-22px}
+
 .full-mode #tabs li.palette .color-preview,
+#cfg #tabs #captify-options ol.forms li.palette .color-preview,
+#cfg #tabs #footer-options ol.forms li.palette .color-preview,
+#cfg #tabs #background-options ol#html-panel.forms li.palette .color-preview,
+#cfg #tabs #logo-options ol#logo-panel.forms li.palette .color-preview,
 #cfg #tabs #color-options ol.forms li.palette .color-preview{top:8px;}
-#cfg #tabs #logo-options ol.forms li.palette .color-preview,
-#cfg #tabs #footer-options ol.forms li.palette .color-preview{top:7px;}
+
+#cfg #tabs #background-options ol#body-panel.forms li.palette .color-preview,
+#cfg #tabs #logo-options ol#tagline-panel.forms li.palette .color-preview{top:7px;}

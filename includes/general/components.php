@@ -62,6 +62,8 @@ function outerLayouts($id){
 	$select .= '</select>';
 	return $select;
 }
+// do not show these options
+$restricted = array('com_wrapper', 'com_weblinks');
 ?>
 
 <div id="components-tab" class="ui-tabs-hide ui-tabs-panel">
@@ -76,13 +78,15 @@ function outerLayouts($id){
 							' ORDER BY c.name');
 			$res = $db->loadAssocList($query);
 			foreach($res as $r){
-				$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>
-				<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab; ?>">	
-				<?php echo $r['name']; ?></label>
-				<?php echo innerLayouts($r['option']);?>
-				<?php echo outerLayouts($r['option']);?>
-				</li>
-			<?php } ?>
+				if(!in_array($r['option'], $restricted)){
+					$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>
+					<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab; ?>">	
+					<?php echo $r['name']; ?></label>
+					<?php echo innerLayouts($r['option']);?>
+					<?php echo outerLayouts($r['option']);?>
+					</li>
+			<?php }
+			} ?>
 		</ol>
 	</div>
 	<div id="components-info" class="info-panel">

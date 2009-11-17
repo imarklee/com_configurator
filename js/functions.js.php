@@ -1375,8 +1375,7 @@ jQuery.noConflict();
 			if(!$.cookie('formChanges')){
 				if(uploaderid == 'insfile') { return false; event.preventDefault(); }
 				$.cookie('formChanges', true);
-				var ih = $('#utilities li.logged-in').html();
-				$('#utilities li.logged-in').html(ih+'&nbsp;&nbsp;|&nbsp;&nbsp;<span class="shelf-notice">You have unsaved changes</span>');
+				$('#utilities li.changes').html('<span class="shelf-notice">You have unsaved changes</span>');
 			}
 		});
 		

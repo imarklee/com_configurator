@@ -645,7 +645,6 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 								$(this).remove();
 								if($("#backup-list tbody tr").length > 1){
 									$("#backup-list tbody tr").each(function(){
-										alert($(this).attr('class'));
 										$(this).removeClass('alt');
 									});
 								}else{

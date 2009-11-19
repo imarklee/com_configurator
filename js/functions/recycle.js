@@ -62,7 +62,8 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 										$(this).children(':odd').addClass('alt');
 									});
 								}else{
-									$('#recycle-list').empty().append('<div class="no-assets">The Recycle Bin is empty.</div>');
+								    $('#recycle-list').empty().remove();
+								    $('#assets-recycle').append('<div class="no-assets">The Recycle Bin is empty.</div>');
 								}
 								$('#recycle-message').dialog('close');
 							}
@@ -81,14 +82,14 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 					success: function(d){
 						$this.parent().parent().fadeOut('slow', function(){
 							$(this).remove();
-							alert($("#recycle-list tbody tr").length);
 							if($("#recycle-list tbody tr").length > 0){
 								$("#recycle-list tbody tr").each(function(){
 									$(this).children().removeClass('alt');
 									$(this).children(':odd').addClass('alt');
 								});
 							}else{
-								$('#recycle-list').empty().append('<div class="no-assets">The Recycle Bin is empty.</div>');
+								$('#recycle-list').empty().remove();
+								$('#assets-recycle').append('<div class="no-assets">The Recycle Bin is empty.</div>');
 							}
 						});
 						return;

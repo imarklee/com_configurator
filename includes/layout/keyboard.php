@@ -1,4 +1,7 @@
-<?php include '..'.DS.'configurator.functions.php'; ?>
+<?php 
+define('DS', DIRECTORY_SEPARATOR);
+include '..'.DS.'configurator.functions.php'; 
+?>
 <h2>Configurator's Keyboard Shortcuts:</h2>
 <p>All of the below shortcuts can be used to toggle between the 
 on &amp; off state of the shortcut. For example, pressing the <?php echo whichKey(get_os()); ?>+p 

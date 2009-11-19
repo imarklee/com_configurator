@@ -1913,7 +1913,7 @@ class ConfiguratorController extends JController {
 	
 	function clean($array) {
 		// this steps through the array and escapes all unescaped characters
-		return array_map('mysql_real_escape_string', $array);
+		return array_map('addslashes', $array);
 	}
 	
 	function get_structure($table='', $where='', $structure='', $delete='') {

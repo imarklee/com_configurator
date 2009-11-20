@@ -1,7 +1,8 @@
 <?php 
 ob_start();
 (strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false) ? $base = './components/com_configurator' : $base = '.';
-ini_set('memory_limit', '32M');
+$mem_limit = ini_get('memory_limit');
+if(str_replace('M', '', $mem_limit) < 64){ ini_set('memory_limit', '64M'); }
 define('JINDEXURL', $base);
 
 define('ROOT', str_replace(array('/administrator/components/com_configurator','\administrator\components\com_configurator'), '', dirname(__FILE__)));

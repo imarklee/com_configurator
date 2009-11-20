@@ -1604,7 +1604,9 @@ class ConfiguratorController extends JController {
 	
 	function install_themelet(){
 		
-		ini_set('memory_limit', '32M');
+		$mem_limit = ini_get('memory_limit');
+		if(str_replace('M', '', $mem_limit) < 64){ ini_set('memory_limit', '64M'); }
+		
 		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$activation = $_REQUEST['act_themelet'];
 		$return = $this->themelet_upload($newthemeletfile);

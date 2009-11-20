@@ -11,9 +11,6 @@ function loadColourPicker(elid, cpid) {
 			$(elid).ColorPicker({
 				flat: true,
 				livePreview: true,
-				onShow: function(){
-					alert('showing');
-				},
 				onSubmit: function(hsb, hex, rgb){
 					cp = $(elid).children().attr('id');
 					$(elid).prev().val('#'+hex);
@@ -27,7 +24,7 @@ function loadColourPicker(elid, cpid) {
 					$('#color-options').removeAttr('colorpicker_loaded');
 				}
 			})
-			.bind('keydown', function(){
+			.bind('keyup', function(){
 				$(this).ColorPickerSetColor(this.value);
 			});
 			cp = $(elid).children().attr('id');

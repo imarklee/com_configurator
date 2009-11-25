@@ -1755,7 +1755,6 @@ class ConfiguratorController extends JController {
 			}
 		}
 		
-		ini_set('memory_limit', '32M');
 		$newtemplatefile = @JRequest::getVar( 'template-file', null, 'files', 'array' );
 		$templatesdir = JPATH_SITE . DS . 'templates';
 		$backupdir = JPATH_SITE . DS . 'morph_assets' . DS . 'backups';

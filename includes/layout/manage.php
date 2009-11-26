@@ -108,10 +108,12 @@
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
 					<li class="icon-reset"><a href="#reset-settings">Reset Settings</a></li>
+					<li class="icon-reset"><a href="#file-editor">File Editor</a></li>
 				</ul>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'uploader.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'database.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'reset.php'; ?>
+				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'editor.php'; ?>
 			</div>
 		</div>
 

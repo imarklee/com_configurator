@@ -1717,6 +1717,7 @@ jQuery.noConflict();
 		<?php include 'functions'.DS.'dbmanager.js'; ?>
 		<?php include 'functions'.DS.'reset.js'; ?>
 		<?php include 'functions'.DS.'recycle.js'; ?>
+		<?php include 'functions'.DS.'editor.js'; ?>
 		
 		/* Lost Password ------------------
 		-------------------------------- */

@@ -2030,5 +2030,18 @@ class ConfiguratorController extends JController {
 	        }
 	    }
 	}
+	
+	function load_editor_file(){
+		$filename = $_GET['file'];
+		$type = $_GET['type'];
+		$parent = $_GET['parent'];
+		
+		$db = JFactory::getDBO();
+		$db->setQuery("select contents from #__configurator_customfiles where type='".$type."' and parent_name='".$parent."' and filename='".$filename."'");
+		
+		$res = $db->loadResult();
+		echo $res;
+		return;
+	}
 }
 ?>

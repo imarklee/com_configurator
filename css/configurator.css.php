@@ -51,6 +51,7 @@ include('colorpicker.css');
 include('docs.css');
 include('fullscreen.css');
 include('tips.css');
+include('editor.css');
 //}
 
 // browser stylesheets

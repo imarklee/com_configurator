@@ -3,5 +3,6 @@
 #file-editor-window #editor-toolbar { display: block; height: 50px; }
 #file-editor-window #editor-toolbar #editor-controls { float: left; padding: 13px 0 0 10px; }
 #file-editor-window #editor-toolbar #editor-controls a { margin: 0 5px 0 0; }
-#file-editor-window #editor-notification { float: right; margin: 10px 15px 0 0; font-size: 14px; }
-#file-editor-window #editor-notification span { margin: 5px 10px 0 0; display: block; float: left; }
+#file-editor-window #editor-notification { float: right; margin: 10px 15px 0 0; font-size: 14px; display: none; }
+#file-editor-window #editor-notification span { margin: 5px 10px 0 0; display: block; float: left; text-transform: lowercase; }
+#file-editor-window #editor-notification span.error { color: #750303; }

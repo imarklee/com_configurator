@@ -2040,7 +2040,21 @@ class ConfiguratorController extends JController {
 		$db->setQuery("select contents from #__configurator_customfiles where type='".$type."' and parent_name='".$parent."' and filename='".$filename."'");
 		
 		$res = $db->loadResult();
-		echo $res;
+		echo stripslashes($res);
+		return;
+	}
+	
+	function save_editor_file(){
+		$filename = $_GET['file'];
+		$type = $_GET['type'];
+		$parent = $_GET['parent'];
+		$contents = $_POST['contents'];
+		$contents = addslashes($contents);		
+		
+		$db = JFactory::getDBO();
+		$db->setQuery("update #__configurator_customfiles set contents='".$contents."' where type='".$type."' and parent_name='".$parent."' and filename='".$filename."'");
+		$db->query() or die('Unable to save');
+
 		return;
 	}
 }

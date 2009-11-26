@@ -28,10 +28,10 @@ button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="butto
 .logo-preview span{display:none;}
 .logo-preview:hover span{display:block;}
 img.logo-preview-image{margin:-10px;}
-.docs-wrap .btn-link,#cfg a.switch-view,
+.docs-wrap .btn-link,#cfg a.switch-view,#editor-controls a.btn-link,
 #cfg a.btn-link{background:#fff url(../images/btn-link-bg.jpg) repeat-x;font:bold 11px/25px arial;border:1px solid #ccc;text-decoration:none;color:#444;padding:4px 8px;}
 #cfg #shelf a.btn-link{padding:3px 7px;}
-.docs-wrap a:hover.btn-link,#cfg .thumb-view ul.buttons li a:hover,#cfg a.btn-link:hover{background:#fff url(../images/btn-link-bg-over.jpg) repeat-x;color:#666;}
+.docs-wrap a:hover.btn-link,#editor-controls a:hover.btn-link,#cfg .thumb-view ul.buttons li a:hover,#cfg a.btn-link:hover{background:#fff url(../images/btn-link-bg-over.jpg) repeat-x;color:#666;}
 ul.morph-resources,ul.morph-resources li{margin:0;padding:0;}
 ul.morph-resources li{display:inline;list-style:none;padding-right:5px;}
 a.disabled{opacity:0.5;cursor:default;}

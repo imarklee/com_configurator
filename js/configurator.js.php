@@ -28,6 +28,7 @@ include('autoresize.js');
 include('qtip.js');
 include('getparams.js');
 include('jsoncookie.js');
+include('codemirror/codemirror.js');
 //}
 include('functions.js.php');
 ob_end_flush();

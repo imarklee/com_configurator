@@ -1,1 +1,7 @@
-#file-editor-window textarea { width: 700px; height: 500px;}
+#file-editor-window textarea { width: 700px; height: 500px; background: #fff; color: #000; border: none; padding: 0 0 0 10px; }
+#file-editor-window .CodeMirror-wrapping { clear: both; border: 1px solid #ccc; width: 780px; margin: 0 auto; }
+#file-editor-window #editor-toolbar { display: block; height: 50px; }
+#file-editor-window #editor-toolbar #editor-controls { float: left; padding: 13px 0 0 10px; }
+#file-editor-window #editor-toolbar #editor-controls a { margin: 0 5px 0 0; }
+#file-editor-window #editor-notification { float: right; margin: 10px 15px 0 0; font-size: 14px; }
+#file-editor-window #editor-notification span { margin: 5px 10px 0 0; display: block; float: left; }

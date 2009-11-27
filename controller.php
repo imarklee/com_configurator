@@ -2052,7 +2052,7 @@ class ConfiguratorController extends JController {
 		$contents = addslashes($contents);		
 		
 		$db = JFactory::getDBO();
-		$db->setQuery("update #__configurator_customfiles set contents='".$contents."' where type='".$type."' and parent_name='".$parent."' and filename='".$filename."'");
+		$db->setQuery("update #__configurator_customfiles set contents='".$contents."', last_edited=FROM_UNIXTIME(".time().") where type='".$type."' and parent_name='".$parent."' and filename='".$filename."'");
 		$db->query() or die('Unable to save');
 
 		return;

@@ -11,11 +11,11 @@ function get_os(){
 	$agent = $_SERVER['HTTP_USER_AGENT'];
 	$os = "unknown";
 	
-	if (eregi("win", $agent)) $os = "windows";
-    elseif (eregi("mac", $agent)) $os = "mac";
-    elseif (eregi("linux", $agent)) $os = "linux";
-    elseif (eregi("OS/2", $agent)) $os = "OS/2";
-    elseif (eregi("BeOS", $agent)) $os = "beos";
+	if (preg_match("/win/i", $agent)) $os = "windows";
+    elseif (preg_match("/mac/i", $agent)) $os = "mac";
+    elseif (preg_match("/linux/i", $agent)) $os = "linux";
+    elseif (preg_match("/OS\/2/i", $agent)) $os = "OS/2";
+    elseif (preg_match("/BeOS/i", $agent)) $os = "beos";
         
 return $os;
 }
@@ -73,7 +73,7 @@ function renderParams($array){
 	
 		$heading = $params[$i][5];
 	
-		if(!eregi('heading', $heading)){
+		if(!preg_match('/heading/i', $heading)){
 			$class = ( ($i % 2) ? 'class="row alt"' : 'class="row"');
 		}else{
 			$class = 'class="row-heading"';

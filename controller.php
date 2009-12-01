@@ -791,6 +791,27 @@ class ConfiguratorController extends JController {
 			JPath::setPermissions($themelet_dir . DS . strtolower(basename($themelet_details['name'])));
 			$msg = $this->unpackThemelet($themelet_dir . DS . strtolower(basename($themelet_details['name'])), $backupfile);
 			
+			$db = JFactory::getDBO();
+			// db queries to add custom CSS/PHP/JS to the database table for the themelet.
+			// custom PHP
+			$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'custom.php' AND `parent_name` = '".$themelet_name."';");
+			if($db->loadResult() == 0) {
+				$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES ( NULL, 'themelet', '".$themelet_name."', 'custom.php', '', FROM_UNIXTIME(".time().") );");
+				$db->query();
+			}
+			// custom CSS
+			$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'custom.css.php' AND `parent_name` = '".$themelet_name."';");
+			if($db->loadResult() == 0) {
+				$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES ( NULL, 'themelet', '".$themelet_name."', 'custom.css.php', '', FROM_UNIXTIME(".time().") );");
+				$db->query();
+			}
+			// custom JS
+			$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'custom.js.php' AND `parent_name` = '".$themelet_name."';");
+			if($db->loadResult() == 0) {
+				$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES ( NULL, 'themelet', '".$themelet_name."', 'custom.js.php', '', FROM_UNIXTIME(".time().") );");
+				$db->query();
+			}
+			
 			return $msg;
 		}
 		$error = 'error: "There was an error uploading the file. Please try again."';
@@ -1602,6 +1623,19 @@ class ConfiguratorController extends JController {
 			break;
 		
 		}		
+	}
+	
+	function test_db(){
+		$db = JFactory::getDBO();
+		$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'custom.php' AND `parent_name` = 'vanilla'");
+		if($db->loadResult() == 0) {
+			echo 'nothing';
+			$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES (NULL, 'themelet', 'vanilla', 'custom.php', '', FROM_UNIXTIME(".time()."));");
+			$db->query();
+		}else{
+			echo 'something';
+		}
+		
 	}
 	
 	function install_themelet(){

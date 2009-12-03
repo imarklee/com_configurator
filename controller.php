@@ -2093,5 +2093,18 @@ class ConfiguratorController extends JController {
 
 		return;
 	}
+	
+	function check_admin_session(){
+		// Register the needed session variables
+	    $session = JFactory::getSession();
+		if($session->_state == 'active'){
+			echo "active";
+			return true;
+		}else{
+			echo "expired";
+			return false;
+		}
+		
+	}
 }
 ?>

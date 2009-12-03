@@ -117,7 +117,8 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    		var a = $(this);
    		
    		function activateThemelet(){
-	   		ptOverlay('Processing...');
+			
+	   		check_admin_session(ptOverlay('Processing...'));
 		   	
 	   		$('#generalthemelet option[value="'+setThemelet+'"]').attr('selected', true);
 	   		$('#templateform input[name="task"]').remove();
@@ -179,7 +180,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 							   			close: function(){
 											$(this).dialog('destroy');
 											// change to assets tab
-											ptOverlay('Reloading Management Interface...');
+											check_admin_session(ptOverlay('Reloading Management Interface...'));
 											var mainTabs = $('#tabs').tabs();
 											var subTabs = $('#assets-tabs').tabs();
 											mainTabs.tabs('select', 5);
@@ -206,7 +207,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 								   	});
 								}else{
 									// change to assets tab
-									ptOverlay('Processing...');
+									check_admin_session(ptOverlay('Processing...'));
 									var mainTabs = $('#tabs').tabs();
 									var subTabs = $('#assets-tabs').tabs();
 									mainTabs.tabs('select', 5);
@@ -580,14 +581,14 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 
 		if(action != 'download'){
 			if(action == 'restore'){
-				ptOverlay('Processing...');
+				check_admin_session(ptOverlay('Processing...'));
 				$('.dialog-msg').html('<p><strong>You are about to restore a database backup!</strong></p>Would you like to download a temporary database backup before restoring?');
 				$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
 				$('.dialog-msg').dialog('option', 'buttons', {
 					'Yes': function(){
 						window.location.href = '../administrator/index.php?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
 						$(this).dialog('close');
-						ptOverlay('Processing...')
+						check_admin_session(ptOverlay('Processing...'));
 						$.ajax({
 							type: 'POST',
 							url: burl,

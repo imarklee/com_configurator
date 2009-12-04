@@ -112,14 +112,16 @@
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
 					<li class="icon-reset"><a href="#reset-settings">Reset Settings</a></li>
-					<li class="icon-reset"><a href="#file-editor">File Editor</a></li>
-					<li class="icon-reset"><a href="#editor-wrap">Code Editor</a></li>
+					<li class="icon-editor"><a href="#file-editor">File Editor</a></li>
+					<li class="icon-editor"><a href="#editor-wrap">Code Editor</a></li>
+					<li class="icon-modules"><a href="#module-migrator">Sidebar Modules</a></li>
 				</ul>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'uploader.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'database.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'reset.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'editor.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'editor-static.php'; ?>
+				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'modules.php'; ?>
 			</div>
 		</div>
 

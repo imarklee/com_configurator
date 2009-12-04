@@ -30,13 +30,13 @@
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['site-desc'])) { include dirname(__FILE__).DS.'..'.DS.'general'.DS.'desc-site.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
-					<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
+					<!--<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>-->
 					<li class="icon-performance"><a href="#performance-tab">Performance</a></li>
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
 				</ul>
 				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'general.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'progressive.php' ?>
+				<?php //include dirname(__FILE__).DS.'..'.DS.'general'.DS.'progressive.php' ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'performance.php' ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'debugging.php' ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'components.php'?>

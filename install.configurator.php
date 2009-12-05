@@ -70,6 +70,7 @@ if(isset($_COOKIE['upgrade-type'])) setcookie('upgrade-type', '', time()-3600);
 if(isset($_COOKIE['upgrade_cfg'])) setcookie('upgrade_cfg', '', time()-3600);
 if(isset($_COOKIE['upgrade_morph'])) setcookie('upgrade_morph', '', time()-3600);
 if(isset($_COOKIE['upgrade_themelet'])) setcookie('upgrade_themelet', '', time()-3600);
+if(isset($_COOKIE['updates'])) setcookie('updates', '', time()-3600);
 
 // check if a themelet is installed and if not set a cookie to hide the activation checkbox
 $query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");

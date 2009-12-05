@@ -814,6 +814,13 @@ class ConfiguratorController extends JController {
 				$db->query();
 			}
 			
+			// custom footer code
+			$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'script.php' AND `parent_name` = '".$themelet_name."';");
+			if($db->loadResult() == 0) {
+				$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES ( NULL, 'themelet', '".$themelet_name."', 'script.php', '', FROM_UNIXTIME(".time().") );");
+				$db->query();
+			}
+			
 			return $msg;
 		}
 		$error = 'error: "There was an error uploading the file. Please try again."';
@@ -1627,19 +1634,6 @@ class ConfiguratorController extends JController {
 		}		
 	}
 	
-	function test_db(){
-		$db = JFactory::getDBO();
-		$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'custom.php' AND `parent_name` = 'vanilla'");
-		if($db->loadResult() == 0) {
-			echo 'nothing';
-			$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES (NULL, 'themelet', 'vanilla', 'custom.php', '', FROM_UNIXTIME(".time()."));");
-			$db->query();
-		}else{
-			echo 'something';
-		}
-		
-	}
-	
 	function install_themelet(){
 		
 		$mem_limit = ini_get('memory_limit');
@@ -2036,7 +2030,6 @@ class ConfiguratorController extends JController {
 	}
 	
 	function create_sql_file($filename, $str){
-		ini_set('memory_limit', '32M');
 		$h = fopen($filename, 'w'); 
     	$gzdata = gzencode($str, 9); 
    		fwrite($h, $gzdata);
@@ -2094,6 +2087,19 @@ class ConfiguratorController extends JController {
 		$db->query() or die('Unable to save');
 
 		return;
+	}
+	
+	function check_admin_session(){
+		// Register the needed session variables
+	    $session = JFactory::getSession();
+		if($session->_state == 'active'){
+			echo "active";
+			return true;
+		}else{
+			echo "expired";
+			return false;
+		}
+		
 	}
 }
 ?>

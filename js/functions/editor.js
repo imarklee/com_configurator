@@ -1,5 +1,5 @@
 $('#editor-list').change(function(ev){
-	if(xhr) { xhr.abort(); }
+	// kill duplication of the editor when switching files
 	editor = undefined;
 	
 	$this = $(this);
@@ -9,8 +9,6 @@ $('#editor-list').change(function(ev){
 	var file_type = file_info[0];
 	var parent_name = file_info[1];
 	var filename = file_info[2];
-	
-	$.cookie('editor', filename);
 	
 	var xhr = $.ajax({
 		url: '../administrator/index.php?option=com_configurator&format=raw&task=load_editor_file&file='+filename+'&type='+file_type+'&parent='+parent_name,
@@ -56,11 +54,10 @@ $('#editor-list').change(function(ev){
 			}
 		}
 	});
-	
-	$('.editor-controls a').click(function(){
-		if(xhr) { xhr.abort(); }
-		if(filename !== $.cookie('editor')) { return false; }
-
+	// unbind click event to prevent onchange event duplicating the click when choosing the same file.
+	$('.editor-controls a').unbind("click");
+	$('.editor-controls a').bind("click", function(){
+		
 		$t = $(this);		
 		switch($(this).attr('action')){
 			case 'save':
@@ -76,7 +73,7 @@ $('#editor-list').change(function(ev){
 				data: {
 					'contents': editor.getCode()
 				},
-				success: function(data){
+				success: function(data){					
 					if(data == ''){
 						$('#editor-notification img').attr('src', '../administrator/components/com_configurator/images/icon_success.gif')
 						$('#editor-notification span').removeClass('error').html('saved successfully');
@@ -104,6 +101,5 @@ $('#editor-list').change(function(ev){
 		}
 		return false;
 	});
-	ev.preventDefault();
 	return false;
 });

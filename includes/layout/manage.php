@@ -30,13 +30,13 @@
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['site-desc'])) { include dirname(__FILE__).DS.'..'.DS.'general'.DS.'desc-site.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
-					<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>
+					<!--<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>-->
 					<li class="icon-performance"><a href="#performance-tab">Performance</a></li>
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
 				</ul>
 				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'general.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'progressive.php' ?>
+				<?php //include dirname(__FILE__).DS.'..'.DS.'general'.DS.'progressive.php' ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'performance.php' ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'debugging.php' ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'components.php'?>
@@ -112,12 +112,16 @@
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
 					<li class="icon-reset"><a href="#reset-settings">Reset Settings</a></li>
-					<li class="icon-reset"><a href="#editor-wrap">Code Editor</a></li>
+					<li class="icon-editor"><a href="#file-editor">File Editor</a></li>
+					<li class="icon-editor"><a href="#editor-wrap">Code Editor</a></li>
+					<li class="icon-modules"><a href="#module-migrator">Sidebar Modules</a></li>
 				</ul>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'uploader.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'database.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'reset.php'; ?>
 				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'editor.php'; ?>
+				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'editor-static.php'; ?>
+				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'modules.php'; ?>
 			</div>
 		</div>
 

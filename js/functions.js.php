@@ -44,7 +44,7 @@ jQuery.noConflict();
 		$("#tabs ol.forms li:last-child").addClass("last");		
 		$("#tabs ol.forms li:odd").addClass("alt");	
 		$("#preferences-form .prefs li:last").addClass("last");
-		$('#editor textarea.resizable:not(.processed)').TextAreaResizer();
+		//$('#editor textarea.resizable:not(.processed)').TextAreaResizer();
 		<?php if($ul!==1){ ?>
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' });
 

@@ -5,21 +5,24 @@
 #editor-wrap li{float:right;padding-left:5px;}
 #editor-wrap li.file-list{float:left;padding-left:0;}
 
-#editor-wrap span{border:3px solid #eee;display:inline-block;-moz-border-radius:5px;}
-#editor-wrap select{-moz-border-radius:2px;}
+#editor-wrap .CodeMirror-wrapping{border:3px solid #eee;display:inline-block;-moz-border-radius:5px;-webkit-border-radius:5px;width:916px;}
+#editor-wrap select{-moz-border-radius:2px;-webkit-border-radius:2px;}
 #editor-wrap optgroup{background:#eee;}
 #editor-wrap option{background:#fff;}
 
 #editor .grippie {background:#eee url(../images/grippie.png) no-repeat scroll center 2px;border-color:1px solid #ccc;cursor:s-resize;height:9px;overflow:hidden;}
 #editor textarea {display:block;width:920px;}
 
+#editor-notification {position: absolute; top: 5px; right: 2px; display: none; }
+#editor-notification span { margin: 5px 10px 0 0; display: block; float: left; text-transform: lowercase; }
+#editor-notification span.error { color: #750303; }
+
+#select-info p { text-align:center; color: #ccc; font-weight:bold;font-size: 24px;line-height:60px; padding: 15px 0 0 0;}
 
 /*#file-editor-window textarea { width: 700px; height: 500px; background: #fff; color: #000; border: none; padding: 0 0 0 10px; }
 #file-editor-window .CodeMirror-wrapping { clear: both; border: 1px solid #ccc; width: 780px; margin: 0 auto; }
 #file-editor-window #editor-toolbar { display: block; height: 50px; }
 #file-editor-window #editor-toolbar #editor-controls { float: left; padding: 13px 0 0 10px; }
 #file-editor-window #editor-toolbar #editor-controls a { margin: 0 5px 0 0; }
-#file-editor-window #editor-notification { float: right; margin: 10px 15px 0 0; font-size: 14px; display: none; }
-#file-editor-window #editor-notification span { margin: 5px 10px 0 0; display: block; float: left; text-transform: lowercase; }
-#file-editor-window #editor-notification span.error { color: #750303; }*/
+*/
 

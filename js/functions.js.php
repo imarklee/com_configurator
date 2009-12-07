@@ -1718,6 +1718,7 @@ jQuery.noConflict();
 		<?php include 'functions'.DS.'reset.js'; ?>
 		<?php include 'functions'.DS.'recycle.js'; ?>
 		<?php include 'functions'.DS.'editor.js'; ?>
+		<?php include 'functions'.DS.'migrator.js'; ?>
 		
 		/* Lost Password ------------------
 		-------------------------------- */

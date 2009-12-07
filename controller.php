@@ -2101,5 +2101,29 @@ class ConfiguratorController extends JController {
 		}
 		
 	}
+	
+	function get_modules_by_position(){
+		$ret = '';
+		$position = $_GET['position'];
+		if($position == ''){ return false; }
+		
+		$db = JFactory::getDBO();
+		$db->setQuery("SELECT `title` FROM `#__modules` WHERE `position`='".$position."';");
+		$res = $db->loadResultArray();
+		$count = 0;
+		
+		foreach($res as $title){
+			$count++;
+			$title = str_replace(' | ', ' ', $title);
+			$split = ',';
+			if($count == count($res)) {
+				$split = '';
+			}
+			if($title !== ''){
+				$ret .= $title . $split;
+			}
+		}
+		echo $ret;
+	}
 }
 ?>

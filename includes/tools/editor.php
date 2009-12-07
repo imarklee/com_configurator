@@ -53,5 +53,6 @@ $themelet_is_editable = array('custom.php', 'custom.js.php', 'custom.css.php', '
         <textarea name="editor" id="custom-code" rows="20" cols="113" style="display:none;"></textarea>
 		<div id="select-info">
 			<p>To begin editing a file, select a file from the menu above.</p>
+		</div>
     </div>
 </div>

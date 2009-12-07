@@ -62,12 +62,12 @@ function show_positions(selector, list, act){
 		
 		function reset_boxes(list){
 			$(list).empty();
-			$(list).next().remove();
+			$(list).next().empty();
 		}
 		
 		function add_remove(list, act){
 			$(list).hide();
-			$(list).after('<ul id="new-'+act+'-multiselect"></ul><ul id="new-'+act+'-all"><li><a href="#" class="ms-'+act+'-all">'+act+" all</a></li></ul>");
+			//$(list).after('<ul id="new-'+act+'-multiselect"></ul><ul id="new-'+act+'-all"><li><a href="#" class="ms-'+act+'-all">'+act+" all</a></li></ul>");
 			var link = '';
 			switch(act){
 				case 'add':
@@ -90,6 +90,11 @@ function show_positions(selector, list, act){
 			});
 			
 			$('#new-'+act+'-multiselect li a.ms-'+act).live("click", function(){
+				
+				if($('#mp-source #old-positions').val()=="" || $('#mp-dest #new-positions').val()==""){
+					error_dialog(act);
+					return false;
+				};
 				
 				if(!$.cookie('ms-changes')){
 					$.cookie('ms-changes', 'true');

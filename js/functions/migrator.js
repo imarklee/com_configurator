@@ -248,3 +248,29 @@ $('#migrate-submit a').live('click', function(){
 	});
 	return false;
 });
+function migrate_reset(link_el){
+	
+	$(link_el).live(function(){
+		switch($(this).attr('action')){
+			case 'inner':
+				$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully saved your settings</li></ul></dd></dl>');	
+				$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
+				// $.ajax({
+				// 	url: '../administrator/index.php?option=com_configurator&format=raw&task=reset_modules&position=right',
+				// 	success: function(){
+				// 		
+				// 	}
+				// });
+			break;
+			case 'outer':
+				$.ajax({
+					url: '../administrator/index.php?option=com_configurator&format=raw&task=reset_modules&position=right',
+					success: function(){
+						
+					}
+				});
+			break;
+		}
+		return false;
+	});
+}

@@ -97,9 +97,3 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
 #credits p{font-size:1em;}
 #credits-block1{width:49%;float:left;}
 #credits-block2{width:49%;float:right;}
-/* module migrator */
-#module-migrator .select-cont {float:left;width:270px;margin:0 10px 20px 0;}
-#module-migrator .select-cont .heading {background:#ccc;line-height:10px;padding:1em;}
-#module-migrator .contents { width: 270px; margin: -2px 0 0 0px; }
-#module-migrator .contents .multiselect { width: 100%; display:none; }
-#module-migrator #migrate-submit { clear: both; }

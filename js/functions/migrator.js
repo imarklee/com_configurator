@@ -3,6 +3,8 @@ function show_positions(selector, list, act){
 	$('body').append('<div id="mod-dialog" class="dialog-msg"></div>');
 	
 	$(selector).change(function(){
+		
+		$('#mp-dest #new-positions').removeAttr('disabled');
 	
 		$this = $(this);
 		if( $(this).val() == '' || typeof $(this).val() == undefined){ return false; }
@@ -63,8 +65,7 @@ function show_positions(selector, list, act){
 					}
 				}
 			
-				add_remove(list, act);
-			
+				add_remove(list, act);			
 			}
 		});
 		
@@ -89,14 +90,7 @@ function show_positions(selector, list, act){
 				$('#new-'+act+'-multiselect').append('<li modid="'+$(this).attr('class')+'" mod="'+$(this).val()+'">'+$(this).text()+link+'</li>');
 			});
 			
-			$('#new-'+act+'-all li a.ms-'+act+'-all').live("click", function(){
-				$('#new-'+act+'-multiselect li a.ms-'+act).each(function(){
-					$(this).trigger('click');
-				});
-				return false;
-			});
-			
-			$('#new-'+act+'-multiselect li a.ms-'+act).live("click", function(){
+			$('#new-'+act+'-multiselect li a.ms-'+act).live('click', function(){
 				
 				if($('#mp-source #old-positions').val()=="" || $('#mp-dest #new-positions').val()==""){
 					error_dialog(act);
@@ -123,7 +117,14 @@ function show_positions(selector, list, act){
 						$('#mp-source #old-modules').append('<option class="'+$(this).parent().parent().attr('modid')+'" value="'+$(this).parent().parent().attr('mod')+'">'+$(this).parent().parent().text().replace(act, '')+'</option>')
 					break;
 				}
-								
+				
+				return false;
+			});
+			
+			$('#new-'+act+'-all li a.ms-'+act+'-all').live('click',function(){
+				$('#new-'+act+'-multiselect li a.ms-'+act).each(function(){
+					$(this).trigger('click');
+				});
 				return false;
 			});
 			

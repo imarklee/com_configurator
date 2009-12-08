@@ -40,7 +40,7 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 	<div id="mp-dest" class="select-cont">
 		<div class="heading">
 			<label for="new-positions">Destination:</label>
-			<select name="new-positions" id="new-positions">
+			<select name="new-positions" id="new-positions" disabled="disabled">
 				<option value="">Select a position</option>
 				<?php
 				foreach($new_module_positions as $nmp){

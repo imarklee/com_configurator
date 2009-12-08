@@ -83,14 +83,14 @@ table.table .filename{text-align:left;padding:2px 5px;}
 
 #module-migrator .heading,
 #module-migrator li{
-background:url(http://localhost/testing/migrator/administrator/components/com_configurator/images/migrator-gradients.jpg) repeat-x;
+background:url(../images/migrator-gradients.jpg) repeat-x;
 }
 #module-migrator ul,
 #module-migrator li{margin:0;padding:0;list-style:none;}
 #module-migrator ul{}
 #module-migrator li{background-position:0 -35px;padding:2px 5px;border-bottom:1px solid #ccc;position:relative;}
 #module-migrator li:hover{background-image:none;background:#eee;}
-#module-migrator li a{width:14px;height:14px;display:block;text-indent:-7998px;position:absolute;top:5px;right:5px;background:url(http://localhost/testing/migrator/administrator/components/com_configurator/images/migrator-icons.png) no-repeat;}
+#module-migrator li a{width:14px;height:14px;display:block;text-indent:-7998px;position:absolute;top:5px;right:5px;background:url(../images/migrator-icons.png) no-repeat;}
 #module-migrator li a:hover{migrator-icons.png}
 
 #module-migrator .select-cont {float:left;width:270px;margin:0 10px 20px 0;}

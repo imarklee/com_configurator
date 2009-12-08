@@ -2,7 +2,7 @@
 // set this to the number of inner and outer positions
 $new_count = 5;
 // define old positions
-$old_module_positions = array('splitleft', 'topleft', 'left', 'bottomleft', 'splitright', 'topright', 'right', 'bottom', 'right');
+$old_module_positions = array('splitleft', 'topleft', 'left', 'bottomleft', 'splitright', 'topright', 'right', 'bottomright');
 $new_module_positions = array();
 
 for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'inner'.$i; }

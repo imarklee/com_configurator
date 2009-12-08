@@ -2169,5 +2169,20 @@ class ConfiguratorController extends JController {
 		return false;
 	}
 	
+	function reset_modules(){
+		$db = JFactory::getDBO();
+		$position = $_GET['position'];
+		if($position == ''){ return false; }
+		if($position == 'left'){
+			$db->setQuery("UPDATE `#__modules` SET `position` = 'left' WHERE `position` = 'outer1' OR `position` = 'outer2' OR `position` = 'outer3' OR `position` = 'outer4' OR `position` = 'outer5'; ");
+			$db->query();
+		}
+		if($position == 'right'){
+			$db->setQuery("UPDATE `#__modules` SET `position` = 'right' WHERE `position` = 'inner1' OR `position` = 'inner2' OR `position` = 'inner3' OR `position` = 'inner4' OR `position` = 'inner5'; ");
+			$db->query() or die($db->mysqlError());
+		}
+		return true;
+	}
+	
 }
 ?>

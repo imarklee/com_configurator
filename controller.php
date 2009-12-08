@@ -2108,22 +2108,66 @@ class ConfiguratorController extends JController {
 		if($position == ''){ return false; }
 		
 		$db = JFactory::getDBO();
-		$db->setQuery("SELECT `title` FROM `#__modules` WHERE `position`='".$position."';");
-		$res = $db->loadResultArray();
+		$db->setQuery("SELECT `id`, `title`, `module` FROM `#__modules` WHERE `position`='".$position."';");
+		$res = $db->loadAssocList();
 		$count = 0;
 		
 		foreach($res as $title){
 			$count++;
-			$title = str_replace(' | ', ' ', $title);
+			$module = $title['module'];
+			$id = $title['id'];
+			$title = str_replace(' | ', ' ', $title['title']);
 			$split = ',';
 			if($count == count($res)) {
 				$split = '';
 			}
 			if($title !== ''){
-				$ret .= $title . $split;
+				$ret .= $title.':'.$module.'#'.$id.$split;
 			}
 		}
 		echo $ret;
 	}
+	
+	function migrate_modules(){
+		$position = $_REQUEST['position'];
+		$old_position = $_REQUEST['old_pos'];
+		$modules = $_REQUEST['modules'];
+		$modid = $_REQUEST['id'];
+		
+		$db = JFactory::getDBO();
+		
+		if($modules == ''){ 
+			echo "There were no modules migrated to ".$position.".";
+			return false;
+		}
+		
+		if($position == ''){ 
+			echo "You never selected a new module position.";
+			return false;
+		}
+		
+		if(preg_match('/,/i', $modules)){
+			$modules = explode(',', $modules);
+			$mod_id = explode(',', $modid);
+			$count = count($modules);
+			
+			for($i=0;$i<$count;$i++){
+				$query = "UPDATE `#__modules` SET `position` = '".$position."' WHERE `id` = '".$mod_id[$i]."' AND `position` = '".$old_position."' AND `module` = '".$modules[$i]."';";
+				$db->setQuery($query);
+				$db->query() or die('There was an error migrating the modules.');
+			}
+			echo 'Successfully migrated <strong>'.$count.'</strong> modules to the <strong>'.$position.'</strong> position.';
+			return true;
+		}else{
+			$query = "UPDATE `#__modules` SET `position` = '".$position."' WHERE `id` = '".$modid."' AND `position` = '".$old_position."' AND `module` = '".$modules."';";
+			$db->setQuery($query);
+			$db->query() or die('There was an error migrating the modules.');
+			echo 'Successfully migrated <strong>1</strong> module to the <strong>'.$position.'</strong> position.';
+			return true;
+		}
+		
+		return false;
+	}
+	
 }
 ?>

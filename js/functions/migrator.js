@@ -46,12 +46,20 @@ function show_positions(selector, list, act){
 		$.ajax({
 			url: '../administrator/index.php?option=com_configurator&task=get_modules_by_position&format=raw&position='+$(this).val(),
 			success: function(data){
+				if(data == ''){
+					return false;
+				}
+				
 				res = data.split(',');
+				
 				$(list).fadeIn('normal')
 
 				for(i=0;i<res.length;i++){
+					newsplit = res[i].split(':');
+					mod_db = newsplit[1].split('#');
+				
 					if(res[i] != ''){ 
-						$(list).append('<option value="'+res[i]+'">'+res[i]+'</option>'); 
+						$(list).append('<option class="'+mod_db[1]+'" value="'+mod_db[0]+'">'+newsplit[0]+'</option>'); 
 					}
 				}
 			
@@ -67,7 +75,6 @@ function show_positions(selector, list, act){
 		
 		function add_remove(list, act){
 			$(list).hide();
-			//$(list).after('<ul id="new-'+act+'-multiselect"></ul><ul id="new-'+act+'-all"><li><a href="#" class="ms-'+act+'-all">'+act+" all</a></li></ul>");
 			var link = '';
 			switch(act){
 				case 'add':
@@ -79,7 +86,7 @@ function show_positions(selector, list, act){
 			}
 			$(list).children().each(function(){
 				val = $(this).text();
-				$('#new-'+act+'-multiselect').append('<li>'+$(this).text()+link+'</li>');
+				$('#new-'+act+'-multiselect').append('<li modid="'+$(this).attr('class')+'" mod="'+$(this).val()+'">'+$(this).text()+link+'</li>');
 			});
 			
 			$('#new-'+act+'-all li a.ms-'+act+'-all').live("click", function(){
@@ -103,24 +110,20 @@ function show_positions(selector, list, act){
 				switch(act){
 					case 'add':
 						var old_selectlist = $(this).parent().parent().parent().prev().attr('id');
-						// remove
-						$('#'+old_selectlist+' option[value="'+$(this).parent().parent().text().replace(act, '')+'"]').remove();
+						$('#'+old_selectlist+' option[value="'+$(this).parent().parent().attr('mod')+'"]').remove();
 						$(this).parent().parent().remove();
-						// add
-						$('#new-remove-multiselect').append('<li>'+$(this).parent().parent().text().replace(act, '')+'<span><a class="ms-remove" href="#">remove</a></span>'+'</li>');
-						$('#mp-dest #new-modules').append('<option value="'+$(this).parent().parent().text().replace(act, '')+'">'+$(this).parent().parent().text().replace(act, '')+'</option>');
+						$('#new-remove-multiselect').append('<li modid="'+$(this).parent().parent().attr('modid')+'" mod="'+$(this).parent().parent().attr('mod')+'">'+$(this).parent().parent().text().replace(act, '')+'<span><a class="ms-remove" href="#">remove</a></span>'+'</li>');
+						$('#mp-dest #new-modules').append('<option class="'+$(this).parent().parent().attr('modid')+'" value="'+$(this).parent().parent().attr('mod')+'">'+$(this).parent().parent().text().replace(act, '')+'</option>');
 					break;
 					case 'remove':
 						var old_selectlist = $(this).parent().parent().parent().prev().attr('id');
-						// remove
-						$('#'+old_selectlist+' option[value="'+$(this).parent().parent().text().replace(act, '')+'"]').remove();
+						$('#'+old_selectlist+' option[value="'+$(this).parent().parent().attr('mod')+'"]').remove();
 						$(this).parent().parent().remove();
-						// add
-						$('#new-add-multiselect').append('<li>'+$(this).parent().parent().text().replace(act, '')+'<span><a class="ms-add" href="#">add</a></span>'+'</li>');
-						$('#mp-source #old-modules').append('<option value="'+$(this).parent().parent().text().replace(act, '')+'">'+$(this).parent().parent().text().replace(act, '')+'</option>')
+						$('#new-add-multiselect').append('<li modid="'+$(this).parent().parent().attr('modid')+'" mod="'+$(this).parent().parent().attr('mod')+'">'+$(this).parent().parent().text().replace(act, '')+'<span><a class="ms-add" href="#">add</a></span>'+'</li>');
+						$('#mp-source #old-modules').append('<option class="'+$(this).parent().parent().attr('modid')+'" value="'+$(this).parent().parent().attr('mod')+'">'+$(this).parent().parent().text().replace(act, '')+'</option>')
 					break;
 				}
-				
+								
 				return false;
 			});
 			
@@ -156,8 +159,12 @@ function error_dialog(act){
 			},
 			close: function(){
 				$.cookie('ms-changes', null);
-				showScroll();
+				$('#mp-source #old-positions option[value=""]').attr('selected', 'selected');
+				$('#mp-source #old-positions').trigger("change");
+				$('#mp-dest #new-positions option[value=""]').attr('selected', 'selected');
+				$('#mp-dest #new-positions').trigger("change");
 				$(this).dialog('destroy');
+				showScroll();
 				return false;
 			},
 			buttons: {
@@ -183,6 +190,60 @@ $('#migrate-submit a').live('click', function(){
 		error_dialog('add');
 		return false;
 	}
-	alert('modules migrated');
+	
+	var position = $('#mp-dest #new-positions').val();
+	var old_position = $('#mp-source #old-positions').val();
+	var modules = $('#mp-dest #new-modules option');
+	
+	var mods = '';
+	var count = 0;
+	var mod_id = '';
+	
+	modules.each(function(){
+		count++;
+		if(count < modules.length){
+			split = ',';
+		}else{
+			split = '';
+		}
+		
+		mods += $(this).val()+split;
+		mod_id += $(this).attr('class')+split;
+	});
+	
+	$.ajax({
+		url: '../administrator/index.php?option=com_configurator&format=raw&task=migrate_modules',
+		type: 'post',
+		data: {
+			position: position,
+			old_pos: old_position,
+			id: mod_id,
+			modules: mods
+		},
+		success: function(data){
+			
+			$('#mod-dialog').dialog('destroy');
+			$('#mod-dialog').html(data);
+			$('#mod-dialog').dialog({
+				title: 'Success',
+				autoOpen: true,
+				modal: true,
+				open: function(){
+					hideScroll();
+				},
+				close: function(){
+					$.cookie('ms-changes', null);
+					showScroll();
+					$(this).dialog('destroy');
+					return false;
+				},
+				buttons: {
+					'OK': function(){
+						$(this).dialog('close');
+					}
+				}
+			});
+		}
+	});
 	return false;
 });

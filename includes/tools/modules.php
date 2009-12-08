@@ -26,7 +26,7 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 			</select>
 		</div>
 		<div class="contents">
-			<select name="old-modules" id="old-modules" multiple="multiple" class="multiselect">
+			<select name="old-modules[]" id="old-modules" multiple="multiple" class="multiselect">
 			</select>
 			<ul id="new-add-multiselect">
 				
@@ -50,7 +50,7 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 			</select>
 		</div>
 		<div class="contents">
-			<select name="new-modules" id="new-modules" multiple="multiple" class="multiselect">
+			<select name="new-modules[]" id="new-modules" multiple="multiple" class="multiselect">
 			</select>
 			<ul id="new-remove-multiselect">
 				

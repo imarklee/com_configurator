@@ -121,7 +121,7 @@ function show_positions(selector, list, act){
 				return false;
 			});
 			
-			$('#new-'+act+'-all li a.ms-'+act+'-all').live('click',function(){
+			$('#new-'+act+'-all a.ms-'+act+'-all').live('click',function(){
 				$('#new-'+act+'-multiselect li a.ms-'+act).each(function(){
 					$(this).trigger('click');
 				});

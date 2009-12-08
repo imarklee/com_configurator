@@ -31,9 +31,7 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 			<ul id="new-add-multiselect">
 				
 			</ul>
-			<ul id="new-add-all">
-				<li><a href="#" class="ms-add-all">Add all</a></li>
-			</ul>
+			<p id="new-add-all"><a href="#" class="ms-add-all">Add all</a></p
 		</div>
 	</div>
 	
@@ -55,9 +53,7 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 			<ul id="new-remove-multiselect">
 				
 			</ul>
-			<ul id="new-remove-all">
-				<li><a href="#" class="ms-remove-all">Remove all</a></li>
-			</ul>
+			<p id="new-remove-all"><a href="#" class="ms-remove-all">Remove all</a></p>
 		</div>
 	</div>
 	

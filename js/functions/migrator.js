@@ -159,12 +159,12 @@ function error_dialog(act){
 			},
 			close: function(){
 				$.cookie('ms-changes', null);
-				$('#mp-source #old-positions option[value=""]').attr('selected', 'selected');
+				$('#mp-source #old-positions').val($('#mp-source #old-positions').val());
 				$('#mp-source #old-positions').trigger("change");
-				$('#mp-dest #new-positions option[value=""]').attr('selected', 'selected');
+				$('#mp-dest #new-positions').val($('#mp-dest #new-positions').val());
 				$('#mp-dest #new-positions').trigger("change");
-				$(this).dialog('destroy');
 				showScroll();
+				$(this).dialog('destroy');
 				return false;
 			},
 			buttons: {

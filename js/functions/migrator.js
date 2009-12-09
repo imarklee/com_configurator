@@ -52,6 +52,7 @@ function show_positions(selector, list, act){
 					return false;
 				}
 				
+				$this.parent().next().children('p').show();
 				res = data.split(',');
 				
 				$(list).fadeIn('normal')
@@ -92,6 +93,9 @@ function show_positions(selector, list, act){
 			
 			$('#new-'+act+'-multiselect li a.ms-'+act).live('click', function(){
 				
+				if($('p#new-add-all').css('display') == 'none' && $('#mp-source #old-positions').val()!=""){ $('p#new-add-all').show(); }
+				if($('p#new-remove-all').css('display') == 'none' && $('#mp-dest #new-positions').val()!= ""){ $('p#new-remove-all').show(); }
+				
 				if($('#mp-source #old-positions').val()=="" || $('#mp-dest #new-positions').val()==""){
 					error_dialog(act);
 					return false;
@@ -122,6 +126,8 @@ function show_positions(selector, list, act){
 			});
 			
 			$('#new-'+act+'-all a.ms-'+act+'-all').live('click',function(){
+				if(act == 'add' && $('#mp-dest #new-positions').val()!= ""){ $('p#new-add-all').hide(); }
+				if(act == 'remove' && $('#mp-source #old-positions').val()!=""){ $('p#new-remove-all').hide(); }
 				$('#new-'+act+'-multiselect li a.ms-'+act).each(function(){
 					$(this).trigger('click');
 				});

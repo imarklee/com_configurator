@@ -95,9 +95,9 @@ table.table .filename{text-align:left;padding:2px 5px;}
 #module-migrator .contents .multiselect { width: 100%; display:none; }
 #module-migrator #migrate-submit { clear: both; }#submenu-box div.m ul#submenu li{padding:0;}
 #module-migrator .contents{position:relative;min-height:300px;}
-#module-migrator .contents p{position:absolute;bottom:0;margin:0;padding:0;background:#ddd;border-top:1px solid #ccc;width:265px;text-align:right;padding-right:5px;font-size:11px;}
+#module-migrator .contents p{display:none;position:absolute;bottom:0;margin:0;padding:0;background:#ddd;border-top:1px solid #ccc;width:265px;text-align:right;padding-right:5px;font-size:11px;}
 #module-migrator .contents .tooltip {display:none;width: 210px;position:absolute;top:30px;left:30px;padding:20px 0 0 0;background:#2d2d2d;height:120px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px;}
-#module-migrator .contents .tooltip p { background:transparent url(../images/tooltip-arrow.png) no-repeat 130px 4px;margin:-35px 0px;border:none;position:relative;width:170px;padding:45px 20px 20px 20px;text-align:center;color:#fff;font-size:16px;line-height:18px;}
+#module-migrator .contents .tooltip p {display:block;background:transparent url(../images/tooltip-arrow.png) no-repeat 130px 4px;margin:-35px 0px;border:none;position:relative;width:170px;padding:45px 20px 20px 20px;text-align:center;color:#fff;font-size:16px;line-height:18px;}
 #migrate-reset ul,
 #migrate-reset li,
 #migrate-reset h3,

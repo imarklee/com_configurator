@@ -142,38 +142,12 @@ function show_positions(selector, list, act){
 }
 
 function error_dialog(act){
-	if($('#mp-dest #new-positions').val()=="" || $('#mp-source #old-positions').val()==""){
-		if(typeof act == 'undefined'){
-			act = 'remove';
-		}
-		var target = 'source';
+	if($('#mp-dest #new-positions').val()==""){
 		
-		if(act == "add"){ target = 'destination'; }
-		$('#mod-dialog').dialog('destroy');
-		$('#mod-dialog').html('You have not selected a '+target+'. Please select a '+target+' before trying to migrate a module.');
-		$('#mod-dialog').dialog({
-			title: 'Warning',
-			autoOpen: true,
-			modal: true,
-			open: function(){
-				hideScroll();
-			},
-			close: function(){
-				$.cookie('ms-changes', null);
-				$('#mp-source #old-positions').val($('#mp-source #old-positions').val());
-				$('#mp-source #old-positions').trigger("change");
-				$('#mp-dest #new-positions').val($('#mp-dest #new-positions').val());
-				$('#mp-dest #new-positions').trigger("change");
-				showScroll();
-				$(this).dialog('destroy');
-				return false;
-			},
-			buttons: {
-				'OK': function(){
-					$(this).dialog('close');
-				}
-			}
-		});
+		$('.contents .tooltip').fadeIn(500);
+		setTimeout(function(){
+			$('.contents .tooltip').fadeOut(500);
+		}, 2000);
 		return false;
 	}
 	return false;

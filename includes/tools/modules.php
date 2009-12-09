@@ -12,7 +12,15 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 
 <div id="module-migrator">
 	<h2>Sidebar Module Migrator</h2>
-	
+	<div class="note">
+	    <div class="note-inner">
+    	    <h3>About this tool:</h3>
+	        <p>Morph has taken a bold step in moving away from the default module position names for it’s sidebars. 
+	        We feel that the new names are more appropriate considering all of different layout combination’s that 
+	        are possible.</p>            <p>This tool helps you move your modules to the new positions. It works both ways, so whether you are moving 
+            to the new positions or moving back, we have you covered ;)</p>
+	    </div>
+	</div>	
 	<div id="mp-source" class="select-cont">
 		<div class="heading">
 			<label for="old-positions">Source:</label>

@@ -48,6 +48,9 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 			</select>
 		</div>
 		<div class="contents">
+			<div class="tooltip">
+				<p>Please select a <strong>destination</strong> module position from the dropdown above :)</p>
+			</div>
 			<select name="new-modules[]" id="new-modules" multiple="multiple" class="multiselect">
 			</select>
 			<ul id="new-remove-multiselect">

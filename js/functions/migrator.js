@@ -147,7 +147,7 @@ function error_dialog(act){
 		$('.contents .tooltip').fadeIn(500);
 		setTimeout(function(){
 			$('.contents .tooltip').fadeOut(500);
-		}, 2000);
+		}, 4000);
 		return false;
 	}
 	return false;

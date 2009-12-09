@@ -68,12 +68,14 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 		<h2>Reset Module Positions</h2>
 		<ul>
 			<li class="migrate-outer">
-				<a href="#" class="btn-link" action="outer">Reset all Outer Positions to Left Position</a>
-				<p>This will reset all the Outer Positions (Outer 1 - Outer 5) back to the Left position</p>
+			    <h3>Reset all <strong>outer</strong> modules</h3>
+				<p>This will reset all the modules in your <strong>outer</strong> positions back to the default "<strong>left</strong>" position.</p>
+				<p class="last"><a href="#" class="btn-link" action="outer">Reset to left</a></p>
 			</li>
 			<li class="migrate-inner">
-				<a href="#" class="btn-link" action="inner">Reset all Inner Positions to Right Position</a>
-				<p>This will reset all the Inner Positions (Inner 1 - Inner 5) back to the Right position</p>
+			    <h3>Reset all <strong>inner</strong> modules</h3>
+				<p>This will reset all the modules in your <strong>inner</strong> positions back to the default "<strong>right</strong>" position.</p>
+				<p class="last"><a href="#" class="btn-link" action="inner">Reset to Right</a></p>
 			</li>
 		</ul>
 	</div>

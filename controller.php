@@ -2165,7 +2165,6 @@ class ConfiguratorController extends JController {
 			echo 'Successfully migrated <strong>1</strong> module to the <strong>'.$position.'</strong> position.';
 			return true;
 		}
-		
 		return false;
 	}
 	

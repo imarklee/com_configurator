@@ -36,7 +36,7 @@ class HTML_configurator_admin {
 		($this->checkUser()) ? $uval = 1 : $uval = 0;
 		
 		if(!isset($_COOKIE['unpack'])){
-			$document->addScript($jspath . 'configurator.js.php?getul='.$uval);
+			$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting);
 			$document->addStyleSheet($csspath . 'configurator.css.php');
 		} else {
 			/* unpacked js
@@ -61,7 +61,7 @@ class HTML_configurator_admin {
 			$document->addScript($jspath . 'getparams.js');
 			$document->addScript($jspath . 'jsoncookie.js');
 			//}
-			$document->addScript($jspath . 'functions.js.php?getul='.$uval);
+			$document->addScript($jspath . 'functions.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting);
 			/* unpacked css
 			*****************************************/
 			// global

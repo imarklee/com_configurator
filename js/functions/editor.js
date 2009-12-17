@@ -109,7 +109,10 @@ $('#editor-list').change(function(ev){
 			break;
 			case 'cancel':
 			$('#editor-list option[value=""]').attr('selected', true);
-			$('.CodeMirror-wrapping').remove();
+			$('.CodeMirror-wrapping').fadeOut('500', function(){
+				$(this).remove();
+			});
+			$('#custom-code').fadeOut();
 			$('#select-info').show(); 
 			break;
 		}

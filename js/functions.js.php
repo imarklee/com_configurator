@@ -1,5 +1,6 @@
 <?php
 $ul = $_GET['getul'];
+$eh = $_GET['eh']; // editor highlighting
 define('DS', DIRECTORY_SEPARATOR);
 header('content-type: text/javascript; charset: UTF-8');
 function pageURL() {
@@ -1717,6 +1718,7 @@ jQuery.noConflict();
 		<?php include 'functions'.DS.'dbmanager.js'; ?>
 		<?php include 'functions'.DS.'reset.js'; ?>
 		<?php include 'functions'.DS.'recycle.js'; ?>
+		var editor_highlighting = <?php echo $eh . "\n"; ?>
 		<?php include 'functions'.DS.'editor.js'; ?>
 		<?php include 'functions'.DS.'migrator.js'; ?>
 		

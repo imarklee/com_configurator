@@ -14,43 +14,48 @@ $('#editor-list').change(function(ev){
 		url: '../administrator/index.php?option=com_configurator&format=raw&task=load_editor_file&file='+filename+'&type='+file_type+'&parent='+parent_name,
 		success: function(data){
 			$('#editor textarea').text(data);
-			switch(filename){
-				case 'custom.js.php':
-					setTimeout(function(){
-						$('#select-info').hide();
-						$('#editor .CodeMirror-wrapping').remove();
-						editor = CodeMirror.fromTextArea('custom-code', { 
-							content: textarea.value,
-							parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
-							stylesheet: "../administrator/components/com_configurator/css/codemirror/jscolors.css", 
-							path: "../administrator/components/com_configurator/js/codemirror/" 
-						});
-					}, 1000);
-				break;
-				case 'custom.css.php':
-					setTimeout(function(){
-						$('#select-info').hide();
-						$('#editor .CodeMirror-wrapping').remove();
-						editor = CodeMirror.fromTextArea('custom-code', { 
-							content: textarea.value,
-							parserfile: "parsecss.js", 
-							stylesheet: "../administrator/components/com_configurator/css/codemirror/csscolors.css", 
-							path: "../administrator/components/com_configurator/js/codemirror/" 
-						});
-					}, 1000);
-				break;
-				default:
-					setTimeout(function(){
-						$('#select-info').hide();
-						$('#editor .CodeMirror-wrapping').remove();
-						editor = CodeMirror.fromTextArea('custom-code', { 
-							content: textarea.value,
-							parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "tokenizephp.js", "parsephp.js", "parsephphtmlmixed.js"],
-					        stylesheet: ["../administrator/components/com_configurator/css/codemirror/xmlcolors.css", "../administrator/components/com_configurator/css/codemirror/jscolors.css", "../administrator/components/com_configurator/css/codemirror/csscolors.css", "../administrator/components/com_configurator/css/codemirror/phpcolors.css"],
-							path: "../administrator/components/com_configurator/js/codemirror/"
-						});
-					}, 1000);
-				break;
+			if(editor_highlighting == 0){
+				$('#custom-code').fadeIn();
+			}
+			if(editor_highlighting == 1){
+				switch(filename){
+					case 'custom.js.php':
+						setTimeout(function(){
+							$('#select-info').hide();
+							$('#editor .CodeMirror-wrapping').remove();
+							editor = CodeMirror.fromTextArea('custom-code', { 
+								content: textarea.value,
+								parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
+								stylesheet: "../administrator/components/com_configurator/css/codemirror/jscolors.css", 
+								path: "../administrator/components/com_configurator/js/codemirror/" 
+							});
+						}, 1000);
+					break;
+					case 'custom.css.php':
+						setTimeout(function(){
+							$('#select-info').hide();
+							$('#editor .CodeMirror-wrapping').remove();
+							editor = CodeMirror.fromTextArea('custom-code', { 
+								content: textarea.value,
+								parserfile: "parsecss.js", 
+								stylesheet: "../administrator/components/com_configurator/css/codemirror/csscolors.css", 
+								path: "../administrator/components/com_configurator/js/codemirror/" 
+							});
+						}, 1000);
+					break;
+					default:
+						setTimeout(function(){
+							$('#select-info').hide();
+							$('#editor .CodeMirror-wrapping').remove();
+							editor = CodeMirror.fromTextArea('custom-code', { 
+								content: textarea.value,
+								parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "tokenizephp.js", "parsephp.js", "parsephphtmlmixed.js"],
+						        stylesheet: ["../administrator/components/com_configurator/css/codemirror/xmlcolors.css", "../administrator/components/com_configurator/css/codemirror/jscolors.css", "../administrator/components/com_configurator/css/codemirror/csscolors.css", "../administrator/components/com_configurator/css/codemirror/phpcolors.css"],
+								path: "../administrator/components/com_configurator/js/codemirror/"
+							});
+						}, 1000);
+					break;
+				}
 			}
 		}
 	});
@@ -67,11 +72,17 @@ $('#editor-list').change(function(ev){
 			$('#editor-notification span').removeClass('error').html('saving');
 			$('#editor-notification').fadeIn('fast');
 
+			if(editor_highlighting == 1){
+				var editor_contents = editor.getCode();
+			}else{
+				var editor_contents = $('#custom-code').val();
+			}
+
 			var xhr = $.ajax({
 				url: '../administrator/index.php?option=com_configurator&task=save_editor_file&format=raw&file='+filename+'&type='+file_type+'&parent='+parent_name,
 				type: 'POST',
 				data: {
-					'contents': editor.getCode()
+					'contents': editor_contents
 				},
 				success: function(data){					
 					if(data == ''){
@@ -81,7 +92,10 @@ $('#editor-list').change(function(ev){
 							$('#editor-notification').fadeOut('fast');
 							if($t.attr('action') == 'apply'){
 								$('#editor-list option[value=""]').attr('selected', true);
-								$('.CodeMirror-wrapping').remove();
+								$('.CodeMirror-wrapping').fadeOut('500', function(){
+									$(this).remove();
+								});
+								$('#custom-code').fadeOut();
 								$('#select-info').show();
 							}
 						}, 1000);

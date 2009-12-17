@@ -43,5 +43,9 @@
 			<option value="15">15 Mb</option>
 			<option value="20">20 Mb</option>
 		</param>
+		<param name="syntax_highlighting" default="1" type="radio" label="Code Editor Highlighting">
+			<option value="1">On</option>
+			<option value="0">Off</option>
+		</param>
 	</params>
 </preferences>

@@ -61,7 +61,7 @@ function check_admin_session(action){
 				});
 				
 			}else{
-				return action();
+				return action;
 			}
 		}
 	});

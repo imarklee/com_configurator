@@ -131,3 +131,5 @@
 #cfg .thumb-view .deleted div,
 #cfg .thumb-view .deleted ul,
 #cfg .thumb-view .deleted h3{visibility:hidden;}
+
+#cfg #recycle-list .summary {text-align:left;vertical-align:middle;font-size:18px;font-weight:bold;background:#ccc;}

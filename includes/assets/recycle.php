@@ -18,7 +18,25 @@ if(is_dir($recycle_dir)) {
 } else {
 	$lists['recycle'] = '';
 }
-?>
+
+$size = '';
+$db = JFactory::getDBO();
+$query = "SELECT `pref_value` FROM `#__configurator_preferences` WHERE `pref_name` = 'recycle_threshold';";
+$db->setQuery($query);
+$limit = ($db->loadResult() * 1024) * 1024;
+
+// threshold warning
+foreach ($lists['recycle'] as $recycle){
+	$recycle_size = filesize($recycle_dir.DS.$recycle);
+	$size += $recycle_size;
+}
+$total_remaining = round(($limit - $size) * 100 / $limit, 0);
+if($total_remaining <= 10){ ?>
+<div id="threshold-warning">
+	Warning: Your Recycle Bin threshold is about to be reached. Please delete individual items or empty the Recycle Bin.
+</div>
+<?php } ?>
+
 <div id="assets-recycle">
 	<div id="recycle-switch" class="switch">
 		<h2>Recycle Bin</h2>
@@ -56,7 +74,6 @@ if(is_dir($recycle_dir)) {
 				$recycle_src = $recycle_url.DS.$recycle;
 				$recycle_size = formatBytes(filesize($recycle_dir.DS.$recycle));
 				$recycle_file = str_replace(array('logo_', 'bg_', 'iphone_'), '', $recycle);
-				
 			?>	
 			<tr>
 				<td class="item-name">
@@ -76,6 +93,15 @@ if(is_dir($recycle_dir)) {
 				</td>
 			</tr>
 		<?php } ?>
+		<tr>
+			<td class="summary" rowspan="2" colspan="3">Summary</td>
+			<td><strong>Total Usage</strong></td>
+			<td><strong>Remaining</strong></td>
+		</tr>
+		<tr>
+			<td><?php echo formatBytes($size); ?> / <?php echo round($size * 100 / $limit, 0); ?>%</td>
+			<td><?php echo formatBytes(($limit - $size)); ?> / <?php echo round(($limit - $size) * 100 / $limit, 0); ?>%</td>
+		</tr>
 		</tbody>
 		</table>
 		<?php }else{ ?>

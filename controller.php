@@ -223,7 +223,7 @@ class ConfiguratorController extends JController {
 			case 'logos': include('includes'.DS.'assets'.DS.'logos.php'); break;
 			case 'iphone': include('includes'.DS.'assets'.DS.'iphone.php'); break;
 			case 'backup': include('includes'.DS.'assets'.DS.'backup.php'); break;
-		}	
+		}
 	}
 
 	function assets_backup(){
@@ -1945,7 +1945,6 @@ class ConfiguratorController extends JController {
 	}
 	
 	function clean($array) {
-		// this steps through the array and escapes all unescaped characters
 		return array_map('addslashes', $array);
 	}
 	
@@ -2086,7 +2085,7 @@ class ConfiguratorController extends JController {
 		$db->setQuery("update #__configurator_customfiles set contents='".$contents."', last_edited=FROM_UNIXTIME(".time().") where type='".$type."' and parent_name='".$parent."' and filename='".$filename."'");
 		$db->query() or die('Unable to save');
 
-		return;
+		return true;
 	}
 	
 	function check_admin_session(){

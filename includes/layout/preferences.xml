@@ -32,10 +32,16 @@
 			<option value="4">When there are unsaved change &amp; the top save button is not visible</option>
 			<option value="0">Do not show the save bar</option>			
 		</param>
-		<param name="settings_effect" default="accordion" type="list" label="Display option groups as" position="last">
+		<param name="settings_effect" default="accordion" type="list" label="Display option groups as">
 			<option value="toggle">Toggle Panels</option>
 			<option value="accordion">Accordion Panels</option>
 			<option value="all">Always Show</option>
+		</param>
+		<param name="recycle_threshold" default="5" type="list" label="Recycle Bin Threshold" position="last">
+			<option value="5">5 Mb</option>
+			<option value="10">10 Mb</option>
+			<option value="15">15 Mb</option>
+			<option value="20">20 Mb</option>
 		</param>
 	</params>
 </preferences>

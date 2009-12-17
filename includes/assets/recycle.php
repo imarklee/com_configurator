@@ -33,7 +33,7 @@ foreach ($lists['recycle'] as $recycle){
 $total_remaining = round(($limit - $size) * 100 / $limit, 0);
 if($total_remaining <= 10){ ?>
 <div id="threshold-warning">
-	Warning: Your Recycle Bin threshold is about to be reached. Please delete individual items or empty the Recycle Bin.
+	<p>Warning: Your Recycle Bin threshold is about to be reached. Please delete individual items or empty the Recycle Bin.</p>
 </div>
 <?php } ?>
 

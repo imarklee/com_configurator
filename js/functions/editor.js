@@ -120,7 +120,7 @@ $('#editor-list').change(function(ev){
 							$('#editor-notification span').removeClass('error').html('saved successfully');
 							setTimeout(function(){
 								$('#editor-notification').fadeOut('fast');
-								if($t.attr('action') == 'apply'){
+								if($t.attr('action') == 'save'){
 									$('#editor-list option[value=""]').attr('selected', true);
 									if(editor_highlighting == 1){
 										$('.CodeMirror-wrapping').fadeOut('500', function(){

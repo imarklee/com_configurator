@@ -45,8 +45,8 @@ $themelet_is_editable = array('custom.php', 'custom.js.php', 'custom.css.php', '
 	        </span>
 	    </li>
 		<li class="editor-controls"><a action="cancel" href="#" class="btn-link">Cancel</a></li>
-	    <li class="editor-controls"><a action="apply" href="#" class="btn-link">Apply</a></li>
-	    <li class="editor-controls"><a action="save" href="#" class="btn-link">Save</a></li>
+		<li class="editor-controls"><a action="save" href="#" class="btn-link">Save</a></li>    
+		<li class="editor-controls"><a action="apply" href="#" class="btn-link">Apply</a></li>
 		<li><div id="editor-notification"><span>saving</span><img src="../administrator/components/com_configurator/images/ajax-loader.gif" height="31" width="31" /></div></li>
 	</ul>
     <div id="editor">

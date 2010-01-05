@@ -216,7 +216,7 @@ class plgSystemMorphCache extends JPlugin
 		
 		
 		//Let's try and use session variables instead of repeated db queries
-		$counts = array('tabscount', 'accordionscount', 'roundedcount', 'topdrop', 'topfish', 'subtext_top', 'animate_top', 'sidefish', 'sidenav_count', 'topnav_count', 'simpleticker', 'simpletweet', 'simplecontact', 'simplesocial');
+		$counts = array('tabscount', 'accordionscount', 'roundedcount', 'topdrop', 'topfish', 'subtext', 'animate_top', 'sidefish', 'sidenav_count', 'topnav_count', 'simpleticker', 'simpletweet', 'simplecontact', 'simplesocial');
 		foreach($counts as $count)
 		{
 			$data->$count = $_SESSION[$count];

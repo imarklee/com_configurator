@@ -109,10 +109,13 @@ $('#editor-list').change(function(ev){
 				}
 
 				var xhr = $.ajax({
-					url: '../administrator/index.php?option=com_configurator&task=save_editor_file&format=raw&file='+filename+'&type='+file_type+'&parent='+parent_name,
+					url: '?option=com_configurator&task=save_editor_file&format=raw',
 					type: 'POST',
 					data: {
-						'contents': editor_contents
+						contents: editor_contents,
+						parent:	  parent_name,
+						type:	  file_type,
+						file:	  filename
 					},
 					success: function(data){					
 						if(data == ''){

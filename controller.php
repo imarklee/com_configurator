@@ -2079,16 +2079,27 @@ class ConfiguratorController extends JController {
 	}
 	
 	function save_editor_file(){
-		$filename = $_GET['file'];
-		$type = $_GET['type'];
-		$parent = $_GET['parent'];
-		$contents = $_POST['contents'];
-		$contents = addslashes($contents);		
-		
 		$db = JFactory::getDBO();
-		$db->setQuery("update #__configurator_customfiles set contents='".$contents."', last_edited=FROM_UNIXTIME(".time().") where type='".$type."' and parent_name='".$parent."' and filename='".$filename."'");
-		$db->query() or die('Unable to save');
-
+		$type	  = $db->Quote(JRequest::getCmd('type'));
+		$parent	  = $db->Quote(JRequest::getCmd('parent'));
+		$contents = $db->Quote(JRequest::getString('contents'));
+		$filename = $db->Quote(JRequest::getCmd('file'));
+		
+		$query = "DELETE FROM `#__configurator_customfiles` ".
+				 "WHERE `type` = $type AND `parent_name` = $parent AND `filename` = $filename";
+		$db->setQuery($query);
+		$db->query() or die('Unable to save the following query: '.$query);
+		
+		$query = "INSERT INTO `#__configurator_customfiles` ".
+				 "(`type`, `parent_name`, `filename`, `last_edited`, `contents`) ".
+				 "VALUES ($type,$parent,$filename,NOW(),$contents)";
+		$db->setQuery($query);
+		$db->query() or die('Unable to save the following query: '.$query);
+		
+		jimport('joomla.filesystem.folder');
+		$path = JPATH_ROOT.'/cache/morph';
+		if(JFolder::exists($path)) JFolder::delete($path);
+		
 		return true;
 	}
 	

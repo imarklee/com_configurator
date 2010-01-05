@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<!DOCTYPE install SYSTEM "http://www.joomla.org/xml/dtd/1.5/component-install.dtd">
 <install type="component" version="1.5.0" method="upgrade">
     <name>Configurator</name>
     <shortname>configurator</shortname>
@@ -22,9 +22,10 @@
         <sql>
             <file charset="utf8" driver="mysql">uninstall.sql</file>
         </sql>
-    </uninstall>    
+    </uninstall>
+    
     <administration>
-        <menu link="option=com_configurator&amp;task=manage" img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
+        <menu img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
         <!-- <submenu>
 			<menu link="option=com_configurator&amp;task=dashboard" img="js/ThemeOffice/cpanel.png">Dashboard</menu>
             <menu link="option=com_configurator&amp;task=manage" img="js/ThemeOffice/config.png">Manage</menu>
@@ -52,6 +53,7 @@
             <filename>toolbar.configurator.php</filename>             
             <folder>tooltips</folder>
             <filename>uninstall.sql</filename>
-        </files>  
+            <folder>morphcache</folder>
+        </files>
     </administration>
 </install>

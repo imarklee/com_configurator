@@ -345,6 +345,7 @@ class ConfiguratorController extends JController {
 			unset($setting);
 			$setting = null;
 		}
+		
 		return true;
 	}
 	
@@ -401,6 +402,10 @@ class ConfiguratorController extends JController {
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_configurator'.DS.'tables');
 				
+		jimport('joomla.filesystem.folder');
+		$path = JPATH_ROOT.'/cache/morph';
+		if(JFolder::exists($path)) JFolder::delete($path);
+				
 		foreach ($params as $currentblock){	
 			foreach($currentblock as $param_key => $param_value){
 		
@@ -439,7 +444,6 @@ class ConfiguratorController extends JController {
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
 			return true;
 		}
-		
 	}   
 	
 	function dashboard() {
@@ -506,6 +510,9 @@ class ConfiguratorController extends JController {
 	}
 	
 	function uni_installer(){
+	$mem_limit = ini_get('memory_limit');
+	if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
+	
 		$return = '';		
 		if( JRequest::getVar('do') && JRequest::getVar('do') == 'upload' ){
 			$install_type =  JRequest::getVar('itype');
@@ -1265,23 +1272,20 @@ class ConfiguratorController extends JController {
 			return false;
 		}
 		
-		$xml = JApplicationHelper::parseXMLInstallFile($themeletDir.DS.'themeletDetails.xml');
+		$xml = simplexml_load_file($themeletDir.DS.'themeletDetails.xml');
 		
-		if ($xml['type'] != 'themelet') {
+		if ((string)$xml['type'] != 'themelet') {
 			return false;
 		}
 		
-		$data = new StdClass();
-		$data->directory = $themeletDir;
+		$data = (array) clone $xml;
+		$data['type']		 = (string)$xml['type'];
+		$data['directory'] = $themeletDir;
 		
-		foreach($xml as $key => $value) {
-			$data->$key = $value;
-		}
-		
-		$data->checked_out = 0;
-		$data->mosname = JString::strtolower(str_replace(' ', '_', $data->name));
-		
-		return $data;
+		$data['checked_out'] = 0;
+		$data['mosname'] = JString::strtolower(str_replace(' ', '_', $data['name']));
+
+		return (object) $data;
 	}
 	
 	function logo_upload() {

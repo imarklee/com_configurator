@@ -2,24 +2,54 @@
 ob_start();
 (strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false) ? $base = './components/com_configurator' : $base = '.';
 $mem_limit = ini_get('memory_limit');
-if(str_replace('M', '', $mem_limit) < 64){ ini_set('memory_limit', '64M'); }
+if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
 define('JINDEXURL', $base);
 
-define('ROOT', str_replace(array('/administrator/components/com_configurator','\administrator\components\com_configurator'), '', dirname(__FILE__)));
+jimport('joomla.filesystem.folder');
+jimport('joomla.filesystem.file');
 
-$backupdir = ROOT . DS . 'morph_assets' . DS . 'backups';
-$dbdir = ROOT . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
-$logosdir = ROOT . DS . 'morph_assets' . DS . 'logos';
-$backgroundsdir = ROOT . DS . 'morph_assets' . DS . 'backgrounds';
-$themeletsdir = ROOT . DS . 'morph_assets' . DS . 'themelets';
-$iphonedir = ROOT . DS . 'morph_assets' . DS . 'iphone';
+// Move the search plugin
+$admin_path = 'administrator/components/com_configurator/morphcache';
+$plugins_path = 'plugins'.DS.'system';
+if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
+{
+	
+	JFile::move($admin_path.'/morphcache.xml',  $plugins_path.'/morphcache.xml', JPATH_ROOT);
+	JFile::move($admin_path.'/morphcache.php',  $plugins_path.'/morphcache.php', JPATH_ROOT);
+	
+	$status = new JObject();
+	
+	// Insert in database
+	$row = JTable::getInstance('plugin');
+	$row->name = 'System - Morph Cache';
+	$row->ordering = 1;
+	$row->folder = 'system';
+	$row->iscore = 0;
+	$row->access = 0;
+	$row->client_id = 0;
+	$row->element = 'morphcache';
+	$row->published = 1;
+	$row->params = '';
+	if (!$row->store()) {
+		// Install failed, roll back changes
+		$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
+		return false;
+	}
+}
+
+$backupdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'backups';
+$dbdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
+$logosdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'logos';
+$backgroundsdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'backgrounds';
+$themeletsdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'themelets';
+$iphonedir = JPATH_ROOT . DS . 'morph_assets' . DS . 'iphone';
 
 // create assets folders
-if(!is_dir(ROOT . DS . 'morph_assets')){
-	if(!@mkdir(ROOT . DS . 'morph_assets')){
+if(!is_dir(JPATH_ROOT . DS . 'morph_assets')){
+	if(!@mkdir(JPATH_ROOT . DS . 'morph_assets')){
 		$error = true;
 	}else{
-		JPath::setPermissions(ROOT . DS . 'morph_assets'); 
+		JPath::setPermissions(JPATH_ROOT . DS . 'morph_assets'); 
 	}
 }
 if(!is_dir(JPATH_SITE . DS . 'morph_recycle_bin')){

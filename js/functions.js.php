@@ -1644,6 +1644,7 @@ jQuery.noConflict();
 					'Stay logged in': function(){
 						$.cookie('logout-toggle', null);
 						$(this).dialog('destroy');
+						showScroll();
 					}
 				}	
 			});

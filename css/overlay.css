@@ -5,3 +5,4 @@
 #processing div{position:absolute;width:250px;height:16px;font:bold 15px arial;color:#fff;}
 #processing div span{position: absolute; top: -1px; left: 20px;}
 .ui-dialog{box-shadow:0 0 20px #000!important;-webkit-box-shadow:0 0 20px #000!important;-moz-box-shadow: 0 0 20px #000!important;}
+html.hide-scroll {overflow: hidden; padding-right: 15px;}

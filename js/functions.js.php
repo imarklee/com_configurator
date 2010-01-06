@@ -110,7 +110,7 @@ jQuery.noConflict();
 			function(){ $(this).fadeTo("slow", 0.3); }  // mouseout
 		);
 
-		$(".upload-themelet").click(function(){
+		$(".upload-themelet").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
 		maintabs.tabs("select",4);
@@ -120,7 +120,7 @@ jQuery.noConflict();
 		return false;
 		});
 				
-		$(".upload-logo").click(function(){
+		$(".upload-logo").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
 		maintabs.tabs("select",4);
@@ -130,7 +130,7 @@ jQuery.noConflict();
 		return false;
 		});
 
-		$(".upload-bg").click(function(){
+		$(".upload-bg").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
 		maintabs.tabs("select",4);
@@ -140,7 +140,7 @@ jQuery.noConflict();
 		return false;
 		});
 		
-		$(".upload-iphone").click(function(){
+		$(".upload-iphone").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#tools-tabs").tabs();
 		maintabs.tabs("select",4);
@@ -150,7 +150,7 @@ jQuery.noConflict();
 		return false;
 		});
 
-		$(".logo-tab").click(function(){
+		$(".logo-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#customize-tabs").tabs();
 		maintabs.tabs("select",1);
@@ -158,7 +158,7 @@ jQuery.noConflict();
 		return false;
 		});
 		
-		$(".masthead-tab").click(function(){
+		$(".masthead-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#blocks-tabs").tabs();
 		maintabs.tabs("select",2);
@@ -166,15 +166,15 @@ jQuery.noConflict();
 		return false;
 		});		
 
-		$(".backgrounds-tab").click(function(){
+		$(".backgrounds-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#customize-tabs").tabs();
 		maintabs.tabs("select",1);
 		subtabs.tabs("select",2);
 		return false;
 		});
-		
-		$(".themelet-tab").click(function(){
+
+		$(".themelet-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#customize-tabs").tabs();
 		maintabs.tabs("select",1);
@@ -182,7 +182,7 @@ jQuery.noConflict();
 		return false;
 		});
 		
-		$(".topnav-tab").click(function(){
+		$(".topnav-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#blocks-tabs").tabs();
 		maintabs.tabs("select",2);
@@ -190,7 +190,7 @@ jQuery.noConflict();
 		return false;
 		});		
 
-		$(".menu-tab").click(function(){
+		$(".menu-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#customize-tabs").tabs();
 		maintabs.tabs("select",1);
@@ -198,7 +198,7 @@ jQuery.noConflict();
 		return false;
 		});	
 
-		$(".sidebar-tab").click(function(){
+		$(".sidebar-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();
 		var subtabs = $("#blocks-tabs").tabs();
 		maintabs.tabs("select",2);

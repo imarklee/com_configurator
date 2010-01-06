@@ -30,7 +30,7 @@
 			<menu link="option=com_configurator&amp;task=dashboard" img="js/ThemeOffice/cpanel.png">Dashboard</menu>
             <menu link="option=com_configurator&amp;task=manage" img="js/ThemeOffice/config.png">Manage</menu>
         </submenu> -->
-        <files folder="admin">
+        <files>
             <filename>admin.configurator.html.php</filename>
             <filename>admin.configurator.php</filename>
             <filename>configuration.php</filename>    

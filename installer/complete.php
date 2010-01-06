@@ -38,7 +38,7 @@ function iType($cookie){
 		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	
 		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
-			<li<?php echo summaryclass('installed_cfg'); ?>><?php echo iType('upgrade_cfg'); ?> the Configurator component.</li>
+			<li class="tick-on"><?php echo iType('upgrade_cfg'); ?> the Configurator component.</li>
 			<?php if(isset($_COOKIE['installed_morph']) && isset($_COOKIE['installed_bkpmorph'])){ ?>
 			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created a backup of the Morph template.</li>
 			<?php } ?>

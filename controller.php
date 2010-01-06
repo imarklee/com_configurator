@@ -1891,6 +1891,9 @@ class ConfiguratorController extends JController {
 	}
 	
 	function unpackTemplate($p_filename, $publish = ''){
+		$type = 'upgraded';
+		$exists = JPATH_THEMES.'/morph/templateDetails.xml';
+		if(!file_exists($exists)) $type = 'installed';
 		$archivename = $p_filename;
 		$dirname = uniqid('tempins_');
 		$extractdir = JPath::clean(dirname($p_filename).DS.$dirname);
@@ -1942,7 +1945,7 @@ class ConfiguratorController extends JController {
 				}
 			}
 			
-			$success = 'msg: "Morph Upgraded Successfully", success: "Morph upgraded successfully", error: ""';
+			$success = 'msg: "Morph '.$type.' Successfully", success: "Morph '.$type.' successfully", error: ""';
 			return $success;
 		}
 		

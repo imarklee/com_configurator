@@ -16,7 +16,7 @@
 			ptOverlay('Processing...')
 			
 			$.get(
-				'../administrator/index.php?option=com_configurator&task=assets_create&format=raw', '',
+				'?option=com_configurator&task=assets_create&format=raw', '',
 				function(data, status){
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){
@@ -96,7 +96,7 @@
 			if($('#template-file').val() != ''){
 				ptOverlay('Processing...');				
 				$.ajaxFileUpload({
-					url: '../administrator/index.php?option=com_configurator&task=install_template&format=raw&backup=true&publish='+publish,
+					url: '?option=com_configurator&task=install_template&format=raw&backup=true&publish='+publish,
 					fileElementId:'template-file',
 					dataType: 'json',
 					success: function (data, status)
@@ -198,7 +198,7 @@
 				ptOverlay('Processing...');
 				
 				$.ajaxFileUpload({
-					url: '../administrator/index.php?option=com_configurator&task=install_themelet&format=raw&act_themelet='+actval,
+					url: '?option=com_configurator&task=install_themelet&format=raw&act_themelet='+actval,
 					fileElementId:'insfile',
 					dataType: 'json',
 					success: function (data, status)

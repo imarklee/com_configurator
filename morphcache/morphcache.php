@@ -259,6 +259,7 @@ class plgSystemMorphCache extends JPlugin
 			if ( $data->captions_enabled )  $before[] = $data->jspath.'/captify.js';
 			if ( $data->lightbox_enabled )  $before[] = $data->jspath.'/colorbox.js';
 			$before[] = $data->jspath.'/fontsizer.js';
+			$before[] = $data->path.'/custom.js';
 
 			foreach($before as $js)
 			{
@@ -274,6 +275,7 @@ class plgSystemMorphCache extends JPlugin
 			$before = array();
 			$before['yui'] = $data->csspath.'/yui.css';
 			$cssfiles = array(
+				'custom',
 				'topnav-default',
 				'topnav-topfish',
 				'topnav-topdrop',

@@ -275,7 +275,6 @@ class plgSystemMorphCache extends JPlugin
 			$before = array();
 			$before['yui'] = $data->csspath.'/yui.css';
 			$cssfiles = array(
-				'custom',
 				'topnav-default',
 				'topnav-topfish',
 				'topnav-topdrop',
@@ -291,7 +290,8 @@ class plgSystemMorphCache extends JPlugin
 				'simpleticker',
 				'simpletweet',
 				'simplecontact',
-				'simplesocial'
+				'simplesocial',
+				'custom'
 			);
 			foreach($cssfiles as $css)
 			{
@@ -341,12 +341,15 @@ class plgSystemMorphCache extends JPlugin
 		
 		if($data->pack_css)
 		{	
+			// Uncomment for testing RTL
+			// $data->direction = 'rtl';
+			
 			$after	= array();
 			if($data->developer_toolbar == 1) $after[] = $data->csspath.'/devbar.css';
-			if($data->direction == 'rtl') $after[] = $data->css_rtl;
+			if($data->direction == 'rtl' && file_exists($data->css_rtl)) $after[] = $data->css_rtl;
 			elseif ($data->direction == 'rtl') $after[] = $data->csspath.'/rtl.css';
 			$after[] = $data->csspath.'/browsers.css';
-			
+
 			if(preg_match('/MSIE 6/i', $_SERVER['HTTP_USER_AGENT'])) $after[] = $data->csspath.'/ie6.css';
 			
 			// browser specific

@@ -331,6 +331,8 @@ class plgSystemMorphCache extends JPlugin
 			{
 				if(file_exists($js)) $data->scripts->after[] = $js;
 			}
+		} else {
+			 $data->scripts->after = array();
 		}
 		
 		$cssfiles = array('rtl','browsers','safari','opera','firefox','chrome','webkit','ie','ie8','ie7','ie6');
@@ -369,6 +371,8 @@ class plgSystemMorphCache extends JPlugin
 			{
 				if(file_exists($css)) $data->stylesheets->after[] = $css;
 			}
+		} else {
+			 $data->stylesheets->after = array();
 		}
 		
 		return $data;

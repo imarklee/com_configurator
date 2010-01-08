@@ -185,11 +185,18 @@ class plgSystemMorphCache extends JPlugin
 		
 		$data->count_left = count(JModuleHelper::getModules('left'));
 	
+		$rootpath		= JPATH_THEMES.'/morph/core';
+		$assetspath		= JURI::root(1).'/morph_assets';
+		$assetsroot		= JPATH_ROOT.'/morph_assets';
+		$data->csspath		= $rootpath.'/css';
+		$data->jspath			= $rootpath.'/js';
+		$data->path = JPATH_ROOT.'/morph_assets/themelets/'.$data->themelet;
+	
 		if ( $data->logo_type == 1 or $data->logo_type == 2 ) {
 			if( preg_match('/MSIE 6/i', $_SERVER['HTTP_USER_AGENT']) && $data->logo_image_ie !== ''){ 
-				$data->logo = $assetspath.DS.'logos'.DS.$data->logo_image_ie; 
+				$data->logo = $assetspath.'/logos/'.$data->logo_image_ie; 
 				if($data->logo_autodimensions == 1) {
-					$data->logo_size = getimagesize($assetsroot.DS.'logos'.DS.$data->logo_image_ie);
+					$data->logo_size = getimagesize($assetsroot.'/logos/'.$data->logo_image_ie);
 				}else{
 					$data->logo_size[0] = $data->logo_width;
 					$data->logo_size[1] = $data->logo_height;
@@ -197,7 +204,7 @@ class plgSystemMorphCache extends JPlugin
 			} else{ 
 				$data->logo = $assetspath.'/logos/'.$data->logo_image; 
 				if($data->logo_autodimensions == 1) {
-					$data->logo_size = getimagesize($assetsroot.DS.'logos'.DS.$data->logo_image);
+					$data->logo_size = getimagesize($assetsroot.'/logos/'.$data->logo_image);
 				}else{
 					$data->logo_size[0] = $data->logo_width;
 					$data->logo_size[1] = $data->logo_height;
@@ -228,10 +235,7 @@ class plgSystemMorphCache extends JPlugin
 		$query = "SELECT contents FROM `#__configurator_customfiles` WHERE `type` = 'themelet' AND `parent_name` = '".$data->themelet."' AND `filename` = 'custom.css.php'";
 		$db->setQuery( $query ); $data->custom_css = stripslashes($db->loadResult());
 
-		$rootpath		= JPATH_THEMES.'/morph/core';
-		$data->csspath		= $rootpath.'/css';
-		$data->jspath			= $rootpath.'/js';
-		$data->path = JPATH_ROOT.'/morph_assets/themelets/'.$data->themelet;
+	
 
 		$data->js_jquery = array($data->jquery_core, $data->tabscount, $data->accordionscount, $data->lazyload_enabled, $data->captions_enabled, $data->lightbox_enabled);
 		$data->js_jqueryui = array($data->tabscount, $data->accordionscount);

@@ -186,7 +186,7 @@ class plgSystemMorphCache extends JPlugin
 		$data->count_left = count(JModuleHelper::getModules('left'));
 	
 		if ( $data->logo_type == 1 or $data->logo_type == 2 ) {
-			if( isIE6() && $data->logo_image_ie !== ''){ 
+			if( preg_match('/MSIE 6/i', $_SERVER['HTTP_USER_AGENT']) && $data->logo_image_ie !== ''){ 
 				$data->logo = $assetspath.DS.'logos'.DS.$data->logo_image_ie; 
 				if($data->logo_autodimensions == 1) {
 					$data->logo_size = getimagesize($assetsroot.DS.'logos'.DS.$data->logo_image_ie);

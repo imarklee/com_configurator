@@ -10,13 +10,12 @@
 $recycle_dir = JPATH_ROOT.'/morph_recycle_bin';
 $recycle_url = JURI::root().'morph_recycle_bin';
 $ftype = '';
+$lists['recycle'] = array();
 if(is_dir($recycle_dir)) {
 	$lists['recycle'] = JFolder::files($recycle_dir, '', false, false, array('DS_Store') );
 	foreach(JFolder::folders($recycle_dir, '') as $folder){
 		$lists['recycle'][] = $folder;
 	}
-} else {
-	$lists['recycle'] = '';
 }
 
 $size = '';
@@ -30,7 +29,7 @@ foreach ($lists['recycle'] as $recycle){
 	$recycle_size = filesize($recycle_dir.'/'.$recycle);
 	$size += $recycle_size;
 }
-$total_remaining = round(($limit - $size) * 100 / $limit, 0);
+$total_remaining = round(($limit - $size) * 100 / max($limit, 1), 0);
 if($total_remaining <= 10){ ?>
 <div id="threshold-warning">
 	<p>Warning: Your Recycle Bin threshold is about to be reached. Please delete individual items or empty the Recycle Bin.</p>

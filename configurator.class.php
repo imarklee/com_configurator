@@ -304,12 +304,12 @@ form.preset.options[0].selected = true;
         $mainframe->addCustomHeadTag( $goto_javascript );
         // Load custom JS file (morph.js) and CSS (morph.css) from template folder.
         $template         = $this->_xmlElem->name;
-        $d = JPATH_SITE.DS.'templates'.DS.$template.DS.'morph.css';
-        if(file_exists(JPATH_SITE.DS.'templates'.DS.$template.DS.'morph.css')) {
+        $d = JPATH_SITE.'/'.'templates'.'/'.$template.'/'.'morph.css';
+        if(file_exists(JPATH_SITE.'/'.'templates'.'/'.$template.'/'.'morph.css')) {
             $tag = '<link href="'.JURI::root().'templates/'.$template.'/morph.css" rel="stylesheet" type="text/css" />';
             $mainframe->addCustomHeadTag( $tag );
         }
-        if(file_exists(JPATH_SITE.DS.'templates'.DS.$template.DS.'morph.js')) {
+        if(file_exists(JPATH_SITE.'/'.'templates'.'/'.$template.'/'.'morph.js')) {
             $tag = '<script type="text/javascript" language="javascript" src="'.JURI::root().'templates/'.$template.'/morph.js"></script>';
             $mainframe->addCustomHeadTag( $tag );
         }

@@ -7,11 +7,11 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$recycle_dir = JPATH_ROOT.DS.'morph_recycle_bin';
+$recycle_dir = JPATH_ROOT.'/'.'morph_recycle_bin';
 $recycle_url = JURI::root().'morph_recycle_bin';
 $ftype = '';
 if(is_dir($recycle_dir)) {
-	$lists['recycle'] = JFolder::files($recycle_dir, '', false, false, array('.DS_Store') );
+	$lists['recycle'] = JFolder::files($recycle_dir, '', false, false, array('DS_Store') );
 	foreach(JFolder::folders($recycle_dir, '') as $folder){
 		$lists['recycle'][] = $folder;
 	}
@@ -27,7 +27,7 @@ $limit = ($db->loadResult() * 1024) * 1024;
 
 // threshold warning
 foreach ($lists['recycle'] as $recycle){
-	$recycle_size = filesize($recycle_dir.DS.$recycle);
+	$recycle_size = filesize($recycle_dir.'/'.$recycle);
 	$size += $recycle_size;
 }
 $total_remaining = round(($limit - $size) * 100 / $limit, 0);
@@ -57,7 +57,7 @@ if($total_remaining <= 10){ ?>
 		<tbody>
 			<?php
 			foreach ($lists['recycle'] as $recycle){
-				if(is_dir($recycle_dir.DS.$recycle)){
+				if(is_dir($recycle_dir.'/'.$recycle)){
 					$ftype = 'themelet';
 				}else{
 					if(preg_match('/db_/i', $recycle)){
@@ -71,8 +71,8 @@ if($total_remaining <= 10){ ?>
 						$ftype = $split[0];
 					}
 				}
-				$recycle_src = $recycle_url.DS.$recycle;
-				$recycle_size = formatBytes(filesize($recycle_dir.DS.$recycle));
+				$recycle_src = $recycle_url.'/'.$recycle;
+				$recycle_size = formatBytes(filesize($recycle_dir.'/'.$recycle));
 				$recycle_file = str_replace(array('logo_', 'bg_', 'iphone_'), '', $recycle);
 			?>	
 			<tr>

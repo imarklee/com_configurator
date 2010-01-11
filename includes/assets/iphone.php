@@ -7,8 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$iphone_dir = JPATH_ROOT.DS.'morph_assets'.DS.'iphone';
-$iphone_url = JURI::root().'morph_assets'.DS.'iphone';
+$iphone_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'iphone';
+$iphone_url = JURI::root().'morph_assets'.'/'.'iphone';
 if(is_dir($iphone_dir)) {
 	$lists['iphone'] = JFolder::files( $iphone_dir );
 } else {
@@ -36,11 +36,11 @@ if(is_dir($iphone_dir)) {
 			<?php
 			foreach ($lists['iphone'] as $iphone){
 				//if( $iphone !== $params->get('iphone') ) { $iphone_class = 'tl-inactive'; } else { $iphone_class = 'tl-active'; }
-				$iphone_src = $iphone_url.DS.$iphone;
-				$iphone_size = getimagesize($iphone_dir.DS.$iphone);
+				$iphone_src = $iphone_url.'/'.$iphone;
+				$iphone_size = getimagesize($iphone_dir.'/'.$iphone);
 				$iphone_width =  $iphone_size[0];
 				$iphone_height =  $iphone_size[1];
-				$iphone_size = formatBytes(filesize($iphone_dir.DS.$iphone));
+				$iphone_size = formatBytes(filesize($iphone_dir.'/'.$iphone));
 				
 				if( $iphone !== $activebg ) { $bg_class = 'tl-inactive'; } else { $bg_class = 'tl-active'; }
 			?>	

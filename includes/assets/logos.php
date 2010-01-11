@@ -7,8 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$logo_dir = JPATH_ROOT.DS.'morph_assets'.DS.'logos';
-$logo_url = JURI::root().DS.'morph_assets'.DS.'logos';
+$logo_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'logos';
+$logo_url = JURI::root().'/'.'morph_assets'.'/'.'logos';
 if(is_dir($logo_dir)) {
 	$lists['logos'] = JFolder::files( $logo_dir );
 } else {
@@ -39,11 +39,11 @@ $activelogo = $db->loadResult();
 		<ul class="assets-list">
 			<?php 
 				foreach ($lists['logos'] as $logo){
-				$logo_src = $logo_url.DS.$logo;
-				$logo_size = getimagesize($logo_dir.DS.$logo);
+				$logo_src = $logo_url.'/'.$logo;
+				$logo_size = getimagesize($logo_dir.'/'.$logo);
 				$logo_width =  $logo_size[0];
 				$logo_height =  $logo_size[1];
-				$logo_size = formatBytes(filesize($logo_dir.DS.$logo));
+				$logo_size = formatBytes(filesize($logo_dir.'/'.$logo));
 				
 				if( $logo !== $activelogo ) { $logo_class = 'tl-inactive'; } else { $logo_class = 'tl-active'; }
 			?>	

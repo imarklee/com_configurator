@@ -7,8 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$background_dir = JPATH_ROOT.DS.'morph_assets'.DS.'backgrounds';
-$background_url = JURI::root() . 'morph_assets'.DS.'backgrounds';
+$background_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'backgrounds';
+$background_url = JURI::root() . 'morph_assets'.'/'.'backgrounds';
 if(is_dir($background_dir)) {
 	$lists['backgrounds'] = JFolder::files( $background_dir );
 } else {
@@ -40,11 +40,11 @@ $activebg = $db->loadResult();
 			<?php
 			foreach ($lists['backgrounds'] as $background){
 				//if( $themelet !== $params->get('themelet') ) { $themelet_class = 'tl-inactive'; } else { $themelet_class = 'tl-active'; }
-				$background_src = $background_url.DS.$background;
-				$background_size = getimagesize($background_dir.DS.$background);
+				$background_src = $background_url.'/'.$background;
+				$background_size = getimagesize($background_dir.'/'.$background);
 				$background_width =  $background_size[0];
 				$background_height =  $background_size[1];
-				$background_size = formatBytes(filesize($background_dir.DS.$background));
+				$background_size = formatBytes(filesize($background_dir.'/'.$background));
 				
 				if( $background !== $activebg ) { $bg_class = 'tl-inactive'; } else { $bg_class = 'tl-active'; }
 			?>	

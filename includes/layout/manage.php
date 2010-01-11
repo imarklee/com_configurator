@@ -10,8 +10,8 @@
 <form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
 <div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?>">
 	
-	<?php if($cfg_pref->show_branding == 1){include dirname(__FILE__) . ''.DS.'top.php'; } ?>
-	<?php if($cfg_pref->shelf_position == 1){include dirname(__FILE__) . ''.DS.'shelf.php'; } ?>
+	<?php if($cfg_pref->show_branding == 1){include dirname(__FILE__) . ''.'/'.'top.php'; } ?>
+	<?php if($cfg_pref->shelf_position == 1){include dirname(__FILE__) . ''.'/'.'shelf.php'; } ?>
 
 	<div class="clear spacer">&nbsp;</div>
 
@@ -27,7 +27,7 @@
 		</ul>
 		<div id="site" class="ui-tabs-panel">
 			<div id="site-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['site-desc'])) { include dirname(__FILE__).DS.'..'.DS.'general'.DS.'desc-site.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['site-desc'])) { include dirname(__FILE__).'/'.'..'.'/'.'general'.'/'.'desc-site.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
 					<!--<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>-->
@@ -35,17 +35,17 @@
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
 				</ul>
-				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'general.php' ?>
-				<?php //include dirname(__FILE__).DS.'..'.DS.'general'.DS.'progressive.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'performance.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'debugging.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'general'.DS.'components.php'?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'general'.'/'.'general.php' ?>
+				<?php //include dirname(__FILE__).'/'.'..'.'/'.'general'.'/'.'progressive.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'general'.'/'.'performance.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'general'.'/'.'debugging.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'general'.'/'.'components.php'?>
 			</div>
 		</div>
 
 		<div id="customize" class="ui-tabs-panel ui-tabs-hide">
 			<div id="customize-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['themelet-desc'])) { include dirname(__FILE__).DS.'..'.DS.'customize'.DS.'desc-customize.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['themelet-desc'])) { include dirname(__FILE__).'/'.'..'.'/'.'customize'.'/'.'desc-customize.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
 					<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
@@ -53,17 +53,17 @@
 					<li class="icon-menus"><a href="#menus-tab">Menu Settings</a></li>
 					<li class="icon-iphone"><a href="#iphone-tab">iPhone Compatibility</a></li>
 				</ul>
-				<?php include dirname(__FILE__).DS.'..'.DS.'customize'.DS.'colors.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'customize'.DS.'logos.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'customize'.DS.'backgrounds.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'customize'.DS.'menus.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'customize'.DS.'iphone.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'customize'.'/'.'colors.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'customize'.'/'.'logos.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'customize'.'/'.'backgrounds.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'customize'.'/'.'menus.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'customize'.'/'.'iphone.php' ?>
 			</div>
 		</div>
 
 		<div id="blocks" class="ui-tabs-panel ui-tabs-hide">
 			<div id="blocks-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['blocks-desc'])) { include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'desc-blocks.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['blocks-desc'])) { include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'desc-blocks.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab">Toolbar</a></li>
 					<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
@@ -77,37 +77,37 @@
 					<li class="icon-insets"><a href="#insets-tab">Insets</a></li>
 					<li class="icon-footer"><a href="#footer-tab">Footer</a></li>
 				</ul>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'toolbar.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'mainhead.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'subhead.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'topnav.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'outer-shelves.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'inner-shelves.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'inset.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'main.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'outer-sidebar.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'inner-sidebar.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'blocks'.DS.'footer.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'toolbar.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'mainhead.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'subhead.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'topnav.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'outer-shelves.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'inner-shelves.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'inset.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'main.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'outer-sidebar.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'inner-sidebar.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'blocks'.'/'.'footer.php' ?>
 			</div>
 		</div>
 
 		<div id="plugins" class="ui-tabs-panel ui-tabs-hide">
 			<div id="plugins-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['plugins-desc'])) { include dirname(__FILE__).DS.'..'.DS.'plugins'.DS.'desc-plugins.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['plugins-desc'])) { include dirname(__FILE__).'/'.'..'.'/'.'plugins'.'/'.'desc-plugins.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab">Fancy Captions</a></li>
 					<li class="icon-lazyload"><a href="#lazyload-tab">Lazyload Images</a></li>
 					<li class="icon-lightbox"><a href="#lightbox-tab">Lightbox</a></li>
 				</ul>
-				<?php include dirname(__FILE__).DS.'..'.DS.'plugins'.DS.'captify.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'plugins'.DS.'lazyload.php' ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'plugins'.DS.'lightbox.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'plugins'.'/'.'captify.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'plugins'.'/'.'lazyload.php' ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'plugins'.'/'.'lightbox.php' ?>
 			</div>
 		</div>
 
 		<div id="tools" class="ui-tabs-panel ui-tabs-hide">
 			<div id="tools-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['tools-desc'])) { include dirname(__FILE__).DS.'../tools/desc-tools.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['tools-desc'])) { include dirname(__FILE__).'/'.'../tools/desc-tools.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
@@ -115,17 +115,17 @@
 					<li class="icon-editor"><a href="#editor-wrap">Code Editor</a></li>
 					<li class="icon-modules"><a href="#module-migrator">Module Migrator</a></li>
 				</ul>
-				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'uploader.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'database.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'reset.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'editor.php'; ?>
-				<?php include dirname(__FILE__).DS.'..'.DS.'tools'.DS.'modules.php'; ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'tools'.'/'.'uploader.php'; ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'tools'.'/'.'database.php'; ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'tools'.'/'.'reset.php'; ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'tools'.'/'.'editor.php'; ?>
+				<?php include dirname(__FILE__).'/'.'..'.'/'.'tools'.'/'.'modules.php'; ?>
 			</div>
 		</div>
 
 		<div id="assets" class="ui-tabs-panel ui-tabs-hide">
 			<div id="assets-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['assets-desc'])) { include dirname(__FILE__).DS.'..'.DS.'assets'.DS.'desc-assets.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['assets-desc'])) { include dirname(__FILE__).'/'.'..'.'/'.'assets'.'/'.'desc-assets.php'; } ?>
 				<ul class="ui-helper-clearfix">
 					<li class="icon-themelets"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=themelets&amp;format=raw" title="assets tab themelets">Themelets</a></li>
 					<li class="icon-logos"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=logos&amp;format=raw" title="assets tab logos">Logos</a></li>
@@ -141,13 +141,13 @@
 		</div>
 			
 		<div id="help" class="ui-tabs-panel ui-tabs-hide off">
-			<?php include dirname(__FILE__).DS.'..'.DS.'help'.DS.'help.php'; ?>
+			<?php include dirname(__FILE__).'/'.'..'.'/'.'help'.'/'.'help.php'; ?>
 		</div>
 	</div>
 
 	<div class="clear">&nbsp;</div>
-	<?php if($cfg_pref->shelf_position == 2){ include dirname(__FILE__).DS.'shelf.php'; } ?>
-	<?php if($cfg_pref->show_footer == 1){ include dirname(__FILE__).DS.'footer.php'; } ?>					
+	<?php if($cfg_pref->shelf_position == 2){ include dirname(__FILE__).'/'.'shelf.php'; } ?>
+	<?php if($cfg_pref->show_footer == 1){ include dirname(__FILE__).'/'.'footer.php'; } ?>					
 						
 </div>
 <?php
@@ -160,6 +160,6 @@ if($cfg_pref->bottom_save >= 1){ ?>
 </form>
 
 <div id="getting-started" style="display:none;"></div>
-<div id="preferences-screen" style="display:none;"><?php include dirname(__FILE__).DS.'preferences.php'; ?></div>
+<div id="preferences-screen" style="display:none;"><?php include dirname(__FILE__).'/'.'preferences.php'; ?></div>
 <div id="keyboard-screen" style="display:none;"></div>
 <div class="toolguides" style="display:none;"></div>

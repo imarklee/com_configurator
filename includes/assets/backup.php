@@ -15,7 +15,7 @@
 			$db = JFactory::getDBO();
 			$query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");
 			$curr_themelet = $db->loadResult($query);
-			$files = JFolder::files(JPATH_ROOT.DS.'morph_assets'.DS.'backups', '', true, false, array('.DS_Store', '.DS_Store'));
+			$files = JFolder::files(JPATH_ROOT.'/'.'morph_assets'.'/'.'backups', '', true, false, array('.DS_Store', '.DS_Store'));
 			if(!empty($files)){ ?>
 				<table cellpadding="0" cellspacing="0" border="0" id="backup-list" class="table">
 			        <tr>
@@ -33,7 +33,7 @@
 						$splitfile = explode('_', $file);
 						switch($splitfile[0]){
 							case 'db':
-							$folder = 'db'.DS;
+							$folder = 'db'.'/';
 							break;
 							case 'file':
 							$folder = '';
@@ -76,7 +76,7 @@
 					?>
 						<tr class="<?php echo $splitfile[0] . ' ' . $splitfile[1]; ?>">
 						    <td class="backup-filename"><?php echo $file; ?></td>
-						    <td class="backup-size"><?php echo formatBytes(filesize(JPATH_ROOT.DS.'morph_assets'.DS.'backups'.DS.$folder.$file)); ?></td>
+						    <td class="backup-size"><?php echo formatBytes(filesize(JPATH_ROOT.'/'.'morph_assets'.'/'.'backups'.'/'.$folder.$file)); ?></td>
 						    <td class="backup-date"><?php echo $date; ?></td>
 							<td class="backup-time"><?php echo $time; ?></td>
 						    <td class="backup-type"><?php echo $type; ?></td>

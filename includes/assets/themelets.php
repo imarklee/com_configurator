@@ -7,8 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$themelet_dir = JPATH_ROOT.DS.'morph_assets'.DS.'themelets';
-$themelet_url = JURI::root().'morph_assets'.DS.'themelets'.DS;
+$themelet_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'themelets';
+$themelet_url = JURI::root().'morph_assets'.'/'.'themelets'.'/';
 if(is_dir($themelet_dir)) {
 	$lists['themelets'] = JFolder::folders( $themelet_dir );
 } else {
@@ -40,7 +40,7 @@ $ct = $db->loadResult();
 			<?php
 	    	foreach ($lists['themelets'] as $themelet){
 	    		$themelet_uc = ucwords(str_replace('-', ' ', $themelet));
-				$themelet_xml = $themelet_dir.DS.$themelet.DS.'themeletDetails.xml';
+				$themelet_xml = $themelet_dir.'/'.$themelet.'/'.'themeletDetails.xml';
 				$themelet_params = xml2array($themelet_xml);
 				$themelet_arr = $themelet_params['install'];
 				if(isset($_COOKIE['us_'.$themelet_arr['foldername']])){ 
@@ -57,7 +57,7 @@ $ct = $db->loadResult();
 			<li class="themelet-item <?php echo $themelet_class; ?>">
 				<div class="assets-inner">
 					<h3><?php echo $themelet_uc; ?><span class="update-link"> (<a href="#">Download Update</a>)</span></h3>
-					<img src="<?php echo $themelet_url . $themelet.DS.'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail" />
+					<img src="<?php echo $themelet_url . $themelet.'/'.'themelet_thumb.png'; ?>" width="197" height="133" border="0" alt="themelet thumbnail" />
 					<ul name="<?php echo $themelet_arr['foldername']; ?>" type="assets" class="themelet-summary assets-summary">
 						<li type="current" class="tl-installed"><strong>Installed version: </strong><span><?php echo $themelet_arr['version']; ?></span></li>
 						<li type="latest" class="tl-current"><strong>Current version: </strong><span></span></li>
@@ -67,7 +67,7 @@ $ct = $db->loadResult();
 					<ul class="buttons">
 						<li class="btn-activate"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Activate <?php echo $themelet_uc; ?>"><span>Activate</span></a></li>
 						<li class="btn-delete"><a name="<?php echo $themelet_arr['foldername']; ?>" href="#" title="Delete <?php echo $themelet_uc; ?>"><span>Delete</span></a></li>
-						<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet.DS.'themelet_thumb.png'; ?>" title="Preview <?php echo $themelet_uc; ?>"><span>Preview</span></a></li>
+						<li class="btn-preview"><a href="<?php echo $themelet_url . $themelet.'/'.'themelet_thumb.png'; ?>" title="Preview <?php echo $themelet_uc; ?>"><span>Preview</span></a></li>
 						<li class="btn-update"><a href="#" target="_blank" title="Download update"><span>Update</span></a></li>
 					</ul>
 				</div>

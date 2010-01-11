@@ -8,9 +8,9 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-$morph_component_path = dirname(__FILE__).DS.'..'.DS.'..'.DS.'..'.DS.'components'.DS.'com_configurator';
-if( file_exists( $morph_component_path.DS."morph.common.php" ) ) include_once ($morph_component_path.DS."morph.common.php");
-if( file_exists( $morph_component_path.DS."morph.class.php" ) ) include_once ($morph_component_path.DS."morph.class.php");
+$morph_component_path = dirname(__FILE__).'/'.'..'.'/'.'..'.'/'.'..'.'/'.'components'.'/'.'com_configurator';
+if( file_exists( $morph_component_path.'/'."morph.common.php" ) ) include_once ($morph_component_path.'/'."morph.common.php");
+if( file_exists( $morph_component_path.'/'."morph.class.php" ) ) include_once ($morph_component_path.'/'."morph.class.php");
 
 class configuratorLoader {
   
@@ -34,9 +34,9 @@ class configuratorLoader {
       
       // Get the parameters and their default values from the XML file.
       
-      //$xml_params = getTemplateParamList( dirname(__FILE__).DS.'morphDetails.xml', TRUE );
+      //$xml_params = getTemplateParamList( dirname(__FILE__).'/'.'morphDetails.xml', TRUE );
       if( isset($morph_installed) ) {
-          $xml_params = getTemplateParamList( dirname(__FILE__).DS.'morphDetails.xml', TRUE );
+          $xml_params = getTemplateParamList( dirname(__FILE__).'/'.'morphDetails.xml', TRUE );
           // Convert to a associative array.
           foreach ($xml_params as $param) {
               $param = explode( '=', $param );
@@ -44,7 +44,7 @@ class configuratorLoader {
           }
       } else {
           // Morph not installed.
-          $temp_params = new morphXMLParams(dirname(__FILE__).DS.'morphDetails.xml');
+          $temp_params = new morphXMLParams(dirname(__FILE__).'/'.'morphDetails.xml');
           $xml_params = $temp_params->getTemplateParamList(TRUE);
           foreach ($xml_params as $param) {
               $param = explode( '=', $param );
@@ -69,10 +69,10 @@ class configuratorLoader {
   
 }
 
-if(function_exists('getTemplateName') && false) $TATAMI = new configuratorLoader( getTemplateName( dirname(__FILE__).DS.'morphDetails.xml' ) );
+if(function_exists('getTemplateName') && false) $TATAMI = new configuratorLoader( getTemplateName( dirname(__FILE__).'/'.'morphDetails.xml' ) );
 else {
     $temp_xml = JFactory::getXMLParser('Simple');
-    $temp_xml->loadFile( dirname(__FILE__).DS.'morphDetails.xml' );
+    $temp_xml->loadFile( dirname(__FILE__).'/'.'morphDetails.xml' );
     $temp_doc = &$temp_xml->document;
     $temp_name = &$temp_doc->getElementByPath('name');
     $TATAMI = new morphLoader( $temp_name->data() );

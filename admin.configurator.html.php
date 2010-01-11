@@ -8,10 +8,10 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-include_once(JPATH_COMPONENT_ADMINISTRATOR .DS. 'includes' .DS.'HTML_configuratorhelper_admin.php');
-include_once(JPATH_COMPONENT_ADMINISTRATOR .DS. 'includes' .DS. 'configurator.functions.php');
-if(file_exists(JPATH_ROOT .DS. 'templates'.DS.'morph'.DS.'core'.DS.'browser.php')){
-include_once(JPATH_ROOT .DS. 'templates'.DS.'morph'.DS.'core'.DS.'browser.php');
+include_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'includes'.DS.'HTML_configuratorhelper_admin.php');
+include_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'includes'.DS.'configurator.functions.php');
+if(file_exists(JPATH_ROOT.DS.'templates'.DS.'morph'.DS.'core'.DS.'browser.php')){
+include_once(JPATH_ROOT.DS.'templates'.DS.'morph'.DS.'core'.DS.'browser.php');
 }
 $document 	= JFactory::getDocument();
 $option 	= JRequest::getVar('option','com_configurator');
@@ -20,7 +20,7 @@ $task 		= JRequest::getCmd('task');
 class HTML_configurator_admin {
 	function manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref ) {
         global $mainframe, $browser, $thebrowser, $browserver;
-        include_once (JPATH_COMPONENT_ADMINISTRATOR .DS. "configuration.php");
+        include_once (JPATH_COMPONENT_ADMINISTRATOR.DS."configuration.php");
         
         $document 	= JFactory::getDocument();
         $option 	= JRequest::getVar('option');
@@ -138,7 +138,7 @@ class HTML_configurator_admin {
 	        echo '</div>';	
 	        //if found morph	
         } else {	
-	        $template_dir = JPATH_SITE .DS. 'templates' .DS. 'morph';
+	        $template_dir = JPATH_SITE.DS.'templates'.DS.'morph';
 	        $jVer 		= new JVersion();
 			$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
 	        ?>			
@@ -176,7 +176,7 @@ class HTML_configurator_admin {
         HTML_configuratorhelper_admin::showDash();
     }
 	function help() {
-		include_once (JPATH_COMPONENT_ADMINISTRATOR .DS. "configuration.php");
+		include_once (JPATH_COMPONENT_ADMINISTRATOR.DS."configuration.php");
         $document 	= JFactory::getDocument();
         $option 	= JRequest::getVar('option');
         $csspath 	= JURI::root() . 'administrator'.DS.'components'.DS.'com_configurator'.DS.'css'.DS;

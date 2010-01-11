@@ -1,6 +1,6 @@
 <?php
 
-$path = JPATH_SITE .DS;
+$path = JPATH_SITE.DS;
 $urlpath = JURI::root();
 
 $template_path	= $path . 'templates'.DS.'morph'.DS.'';

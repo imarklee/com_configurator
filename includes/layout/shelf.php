@@ -92,14 +92,14 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 		<div id="visual-refs">
 			<h3>Quick reference guides <span>(<a href="#" title="" id="keyboard-toggle">Keyboard Shortcuts</a>)</span></h3>
 			<ul class="buttons">
-				<li><a class="info-link btn-link" href="gettingstarted.html" title="Configurator quick start guide">Quick Start</a></li>
+				<li><a class="info-link btn-link" href="gettingstarted.html" title="Morph Quick Start Guide">Quick Start</a></li>
 				<li><a class="modal-link-img btn-link" href="visual-blocks.html" title="Visual Reference: Building Blocks">Blocks Reference</a></li>
 				<li><a class="modal-link-img btn-link" href="visual-positions.html" title="Visual Reference: Module Positions">Module Positions</a></li>
-				<li><a class="modal-link btn-link" href="modfx.html" title="Getting started with ModuleFX">ModuleFX</a></li>
-				<li><a class="modal-link btn-link" href="pagefx.html" title="Getting started with PageFX">PageFX</a></li>
-				<li><a class="modal-link btn-link" href="menufx.html" title="Getting started with MenuFX">MenuFX</a></li>
-				<li><a class="modal-link btn-link" href="contentfx.html" title="Getting started with ContentFX">ContentFX</a></li>
-				<li><a class="modal-link btn-link" href="chromefx.html" title="Getting started with ContentFX">ChromeFX</a></li>
+				<li><a class="modal-link btn-link" href="modfx.html" title="Introduction to ModuleFX">ModuleFX</a></li>
+				<li><a class="modal-link btn-link" href="pagefx.html" title="Introduction to PageFX">PageFX</a></li>
+				<li><a class="modal-link btn-link" href="menufx.html" title="Introduction to MenuFX">MenuFX</a></li>
+				<li><a class="modal-link btn-link" href="contentfx.html" title="Introduction to ContentFX">ContentFX</a></li>
+				<li><a class="modal-link btn-link" href="chromefx.html" title="Introduction to ChromeFX">ChromeFX</a></li>
 			</ul>
 		</div>
 	</div>

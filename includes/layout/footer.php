@@ -13,8 +13,8 @@
 			<h4>Help &amp; Support</h4>
 			<ul>
 				<li><a href="http://www.joomlajunkie.com/contact/index.php?act=kb&amp;code=cat&amp;id=7" target="_blank">Frequently asked questions</a></li>
-				<li><a href="http://www.joomlajunkie.com/member/#morph" target="_blank">Morph beta support forum</a></li>
-				<li><a href="http://www.joomlajunkie.com/member/downloads/morph-beta-21/" target="_blank">Download latest versions</a></li>
+				<li><a href="http://www.joomlajunkie.com/member/#morph" target="_blank">Morph support forum</a></li>
+				<li><a href="http://www.joomlajunkie.com/morph/livedocs" target="_blank">Morph documentation</a></li>
 			</ul>
 		</li>
 		<li class="fc">
@@ -22,7 +22,7 @@
 			<ul>
 				<li><a href="http://www.prothemer.com/morph" target="_blank">Learn more about Morph</a></li>
 				<li><a href="http://www.prothemer.com/demo/joomla/morph/blocks" target="_blank">Try out the interactive demo</a></li>
-				<li><a href="http://www.joomlajunkie.com/themelets" target="_blank">Vote for your favorite themelets</a></li>
+				<li><a href="http://www.joomlajunkie.com/member/downloads" target="_blank">Download latest versions</a></li>
 			</ul>
 		</li>
 		<li class="fd">

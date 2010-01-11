@@ -3,7 +3,7 @@ $('#custom-code').change(function(){
 		$.cookie('editor_changes', 'true');
 	}
 });
-$('#editor-list').change(function(ev){
+$('#editor-list').live('change', function(ev){
 	
 	$this = $(this);
 	if($this.val() == '' || $this.val() == 'undefined'){ return false; }

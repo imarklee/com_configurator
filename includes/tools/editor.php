@@ -7,6 +7,7 @@ $themelets = JFolder::folders($themelet_dir);
 
 $template_is_editable = array('component.php', 'error.php', 'offline.php');
 $themelet_is_editable = array('custom.php', 'custom.js.php', 'custom.css.php', 'script.php');
+$files = array('custom.php' => 'custom php', 'custom.js.php' => 'custom js', 'custom.css.php' => 'custom css', 'script.php' => 'custom footer code');
 ?>
 <div id="editor-wrap">
 	<h2>Code Editor</h2>
@@ -25,18 +26,20 @@ $themelet_is_editable = array('custom.php', 'custom.js.php', 'custom.css.php', '
 						}
 						?>
     	            </optgroup>
+    	            <optgroup label="<?php echo ucwords(str_replace('-', ' ', $params->get('themelet'))) ?> files" class="active-themelet">
+    	            	<?php 
+    	            	foreach($files as $file => $title){
+    	            		echo '<option value="themelet/'.$params->get('themelet').'/'.$file.'" class="active-themelet">'.$title.'</option>';
+    	            	}
+    	            	?>
+    	            </optgroup>
 					<?php 
 					foreach($themelets as $themelet){
-						$themelet_files = JFolder::files($themelet_dir.DS.$themelet, '', true, false, array('.git'));
+						if($params->get('themelet') == $themelet) continue;
 						$themelet_proper = ucwords(str_replace('-', ' ', $themelet));
 						echo '<optgroup label="'.$themelet_proper.' files">';
-						if(!empty($themelet_files)){
-							foreach($themelet_files as $file){
-								if(in_array($file, $themelet_is_editable)){
-									$file_name = str_replace(array('.js.php', '.css.php', 'script.php', '.php'), array(' javascript', ' css','custom footer code' , ' php'), $file);
-									echo '<option value="themelet/'.$themelet.'/'.$file.'">'.$file_name.'</option>';
-								}
-							}
+						foreach($files as $file => $title){
+							echo '<option value="themelet/'.$themelet.'/'.$file.'">'.$title.'</option>';
 						}
 						echo '</optgroup>';
 					}

@@ -63,9 +63,11 @@ class ConfiguratorController extends JController {
 				$template_settings = array();
 				
 				// themelet
-				$themelet = $template_params['themelet']['param_value'];
+				
+				$themelet = isset($template_params['themelet']) ? $template_params['themelet']['param_value'] : false;
 				$themelet_xml_params = array();
-				$xml_param_loader = new morphXMLLoader(JPATH_ROOT.'/morph_assets/themelets/'.$themelet.'/themeletDetails.xml');
+				$themelet_path	= JPATH_ROOT.'/morph_assets/themelets/'.$themelet.'/themeletDetails.xml';
+				if(file_exists($themelet_path)) $xml_param_loader = new morphXMLLoader($themelet_path);
 				if(!empty($xml_param_loader)) {
 					$themelet_xml_params = $xml_param_loader->getParamDefaults();	
 					foreach($themelet_xml_params as $param_name => $param_value){
@@ -1860,7 +1862,7 @@ class ConfiguratorController extends JController {
         if (!is_dir($dir)) return unlink($dir);
         foreach (scandir($dir) as $item) {
             if ($item == '.' || $item == '..') continue;
-            if (!$this->deleteDirectory($dir.DIRECTORY_SEPARATOR.$item)) return false;
+            if (!$this->deleteDirectory($dir.'/'.$item)) return false;
         }
         return rmdir($dir);
     }

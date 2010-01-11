@@ -1,5 +1,4 @@
 <?php
-define(''/'', DIRECTORY_SEPARATOR);
 header("content-type: text/css; charset: UTF-8");
 if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
 if(!ob_start("ob_gzhandler")) ob_start();

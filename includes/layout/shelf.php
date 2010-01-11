@@ -27,7 +27,7 @@ $themelet_details = xml2array($themelet_xml);
 $component_details = xml2array($component_xml);
 
 $template_arr = $template_details['install'];
-$themelet_arr = $themelet_details['install'];
+$themelet_arr = isset($themelet_details['install']) ? $themelet_details['install'] : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
 $component_arr = $component_details['install'];
 
 setcookie('current_themelet', $params->get('themelet')); ?>

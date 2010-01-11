@@ -10,7 +10,7 @@ jimport('joomla.filesystem.file');
 
 // Move the search plugin
 $admin_path = 'administrator/components/com_configurator/morphcache';
-$plugins_path = 'plugins'.DS.'system';
+$plugins_path = 'plugins/system';
 if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
 {
 	
@@ -37,26 +37,26 @@ if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
 	}
 }
 
-$backupdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'backups';
-$dbdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'backups' . DS . 'db';
-$logosdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'logos';
-$backgroundsdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'backgrounds';
-$themeletsdir = JPATH_ROOT . DS . 'morph_assets' . DS . 'themelets';
-$iphonedir = JPATH_ROOT . DS . 'morph_assets' . DS . 'iphone';
+$backupdir = JPATH_ROOT . '/morph_assets/backups';
+$dbdir = JPATH_ROOT . '/morph_assets/backups/db';
+$logosdir = JPATH_ROOT . '/morph_assets/logos';
+$backgroundsdir = JPATH_ROOT . '/morph_assets/backgrounds';
+$themeletsdir = JPATH_ROOT . '/morph_assets/themelets';
+$iphonedir = JPATH_ROOT . '/morph_assets/iphone';
 
 // create assets folders
-if(!is_dir(JPATH_ROOT . DS . 'morph_assets')){
-	if(!@mkdir(JPATH_ROOT . DS . 'morph_assets')){
+if(!is_dir(JPATH_ROOT . '/morph_assets')){
+	if(!@mkdir(JPATH_ROOT . '/morph_assets')){
 		$error = true;
 	}else{
-		JPath::setPermissions(JPATH_ROOT . DS . 'morph_assets'); 
+		JPath::setPermissions(JPATH_ROOT . '/morph_assets'); 
 	}
 }
-if(!is_dir(JPATH_SITE . DS . 'morph_recycle_bin')){
-	if(!@mkdir(JPATH_SITE . DS . 'morph_recycle_bin')){
+if(!is_dir(JPATH_SITE . '/morph_recycle_bin')){
+	if(!@mkdir(JPATH_SITE . '/morph_recycle_bin')){
 		$error = true;
 	}else{
-		JPath::setPermissions(JPATH_SITE . DS . 'morph_recycle_bin');
+		JPath::setPermissions(JPATH_SITE . '/morph_recycle_bin');
 	}
 }
 
@@ -80,8 +80,8 @@ if(!is_dir($iphonedir))
 
 
 $document = JFactory::getDocument();
-$document->addScript(JURI::root() . 'administrator'.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'js'.DS.'install.js.php');
-$document->addStyleSheet(JURI::root() . 'administrator'.DS.'components'.DS.'com_configurator'.DS.'installer'.DS.'css'.DS.'install.css.php');
+$document->addScript(JURI::root() . 'administrator/components/com_configurator/installer/js/install.js.php');
+$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/installer/css/install.css.php');
 $db = JFactory::getDBO();
 
 // count number of param values stored in the db for upgrade purposes
@@ -117,14 +117,14 @@ $controller->create_db_backup('full-database');
 setcookie('installed_cfg', 'true');
 
 // set permissions on templates, assets and components folder.
-JPath::setPermissions(JPATH_ROOT.DS.'templates');
-JPath::setPermissions(JPATH_ROOT.DS.'administrator'.DS.'components');
+JPath::setPermissions(JPATH_ROOT.'/templates');
+JPath::setPermissions(JPATH_ROOT.'/administrator/components');
 
 // set gzip on/off based on browser
 $conf = JFactory::getConfig();
 if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 	if($conf->getValue('config.gzip') !== '1'){
-		$path = JPATH_CONFIGURATION.DS.'configuration.php';
+		$path = JPATH_CONFIGURATION.'/configuration.php';
 		JPath::setPermissions($path, '0777');
 		if(file_exists($path) && is_writable($path)){			
 			$str = file_get_contents($path);
@@ -144,16 +144,16 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 	if(!isset($_REQUEST['install'])){
 		if($count_rows > 0) :
 			setcookie('upgrade_cfg', 'true');
-			include 'installer'.DS.'step1_upgrade.php';
+			include 'installer/step1_upgrade.php';
 		else :
-			include 'installer'.DS.'step1.php';
+			include 'installer/step1.php';
 		endif;
 	}else{
 		if($_REQUEST['install'] == 'step2'){
-			include 'installer'.DS.'step2.php';
+			include 'installer/step2.php';
 		}
 		elseif($_REQUEST['install'] == 'completed'){
-			include 'installer'.DS.'complete.php';
+			include 'installer/complete.php';
 		}
 	}
 	?>
@@ -161,5 +161,5 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 </div>
 <div id="dialog" style="display:none;"></div>
 <div id="help-dialog" style="display:none;"></div>
-<?php if(isset($error) && $error){ include 'installer'.DS.'error.php'; } ?>
+<?php if(isset($error) && $error){ include 'installer/error.php'; } ?>
 <?php ob_end_flush(); ?>

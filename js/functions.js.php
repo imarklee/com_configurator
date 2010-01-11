@@ -1,7 +1,6 @@
 <?php
 $ul = $_GET['getul'];
 $eh = $_GET['eh']; // editor highlighting
-define('DS', DIRECTORY_SEPARATOR);
 header('content-type: text/javascript; charset: UTF-8');
 function pageURL() {
 	error_reporting(E_ALL ^ E_NOTICE);
@@ -20,7 +19,7 @@ jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
 		
-		<?php include 'functions'.DS.'common.js'; ?>
+		<?php include 'functions/common.js'; ?>
 		$.preloadCssImages();
 		
 		$("input[type=text], textarea").focus(function(){
@@ -33,7 +32,7 @@ jQuery.noConflict();
 			$.cookie('save_msg', null);
 		}
 		
-		<?php if($ul==1) include 'functions'.DS.'user.js'; ?>
+		<?php if($ul==1) include 'functions/user.js'; ?>
 	   	
 		/* Generic ----------------------------
 	    ------------------------------------ */
@@ -385,7 +384,7 @@ jQuery.noConflict();
 		$("#customize").removeClass("ui-widget-content");			
 		$("#assets-tabs li.icon-backup").removeClass("ui-state-disabled");	
 
-		<?php include 'functions'.DS.'colorpicker.js'; ?>
+		<?php include 'functions/colorpicker.js'; ?>
      	
      	//all hover and click logic for buttons
 		$(".fg-button:not(.ui-state-disabled)")
@@ -431,7 +430,7 @@ jQuery.noConflict();
 			return false;
 		}
 		
-		<?php include 'functions'.DS.'assets.js'; ?> 
+		<?php include 'functions/assets.js'; ?> 
 
 		$("#report-bug").dialog({
 			bgiframe: true,
@@ -1424,8 +1423,8 @@ jQuery.noConflict();
 			return false;
 		});
 		
-		<?php if($ul==1) include('functions'.DS.'blocks.js'); ?>
-		<?php if($ul==1) include('functions'.DS.'keyboard.js'); ?>
+		<?php if($ul==1) include('functions/blocks.js'); ?>
+		<?php if($ul==1) include('functions/keyboard.js'); ?>
 		
 		// ajax content for dialog
 	    // welcome screen
@@ -1715,13 +1714,13 @@ jQuery.noConflict();
 			
     	}
 
-		<?php include 'functions'.DS.'bottom_save.js'; ?>
-		<?php include 'functions'.DS.'dbmanager.js'; ?>
-		<?php include 'functions'.DS.'reset.js'; ?>
-		<?php include 'functions'.DS.'recycle.js'; ?>
+		<?php include 'functions/bottom_save.js'; ?>
+		<?php include 'functions/dbmanager.js'; ?>
+		<?php include 'functions/reset.js'; ?>
+		<?php include 'functions/recycle.js'; ?>
 		var editor_highlighting = <?php echo $eh . "\n"; ?>
-		<?php include 'functions'.DS.'editor.js'; ?>
-		<?php include 'functions'.DS.'migrator.js'; ?>
+		<?php include 'functions/editor.js'; ?>
+		<?php include 'functions/migrator.js'; ?>
 		
 		/* Lost Password ------------------
 		-------------------------------- */
@@ -1828,5 +1827,5 @@ jQuery.noConflict();
 			return false;
 		});
 	});
-	<?php if($ul==1) include 'functions'.DS.'loading.js'; ?>
+	<?php if($ul==1) include 'functions/loading.js'; ?>
 })(jQuery);

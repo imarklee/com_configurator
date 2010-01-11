@@ -93,9 +93,8 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 			<h3>Quick reference guides <span>(<a href="#" title="" id="keyboard-toggle">Keyboard Shortcuts</a>)</span></h3>
 			<ul class="buttons">
 				<li><a class="info-link btn-link" href="gettingstarted.html" title="Configurator quick start guide">Quick Start</a></li>
-				<li><a class="modal-link-img btn-link" href="visual-blocks.html" title="Visual Reference: By Block">Block Map</a></li>
-				<li><a class="modal-link-img btn-link" href="visual-positions.html" title="Visual Reference: By Block">Position Map</a></li>
-				<li class="last"><a class="modal-link btn-link" href="troubleshooting.html" title="Morph troubleshooting guide">Troubleshooting</a></li>
+				<li><a class="modal-link-img btn-link" href="visual-blocks.html" title="Visual Reference: Building Blocks">Blocks Reference</a></li>
+				<li><a class="modal-link-img btn-link" href="visual-positions.html" title="Visual Reference: Module Positions">Module Positions</a></li>
 				<li><a class="modal-link btn-link" href="modfx.html" title="Getting started with ModuleFX">ModuleFX</a></li>
 				<li><a class="modal-link btn-link" href="pagefx.html" title="Getting started with PageFX">PageFX</a></li>
 				<li><a class="modal-link btn-link" href="menufx.html" title="Getting started with MenuFX">MenuFX</a></li>

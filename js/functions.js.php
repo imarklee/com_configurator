@@ -691,8 +691,8 @@ jQuery.noConflict();
 				autoOpen: true,
 				bgiframe: true,
 				modal: true,
-				width: 610,
-				height: 660,
+				width: 810,
+				height: 734,
 				title: $(this).attr('title'),
 				zIndex: 5001,
 				close: function(){

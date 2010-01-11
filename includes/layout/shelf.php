@@ -7,7 +7,7 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$path = JPATH_SITE . DS;
+$path = JPATH_SITE .DS;
 $urlpath = JURI::root();
 
 $template_path	= $path . 'templates'.DS.'morph'.DS;

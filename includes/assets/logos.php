@@ -7,8 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$logo_dir = JPATH_ROOT . DS . 'morph_assets' . DS . 'logos';
-$logo_url = JURI::root() . DS . 'morph_assets' . DS . 'logos';
+$logo_dir = JPATH_ROOT .DS . 'morph_assets' .DS . 'logos';
+$logo_url = JURI::root() .DS . 'morph_assets' .DS . 'logos';
 if(is_dir($logo_dir)) {
 	$lists['logos'] = JFolder::files( $logo_dir );
 } else {

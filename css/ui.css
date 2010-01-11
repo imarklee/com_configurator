@@ -51,15 +51,14 @@
 /* Dialog
 ----------------------------------*/
 .ui-dialog{position:relative;padding:0;background:none;}
-.ui-dialog .ui-dialog-titlebar{position:relative;-moz-border-radius-topleft:7px;-webkit-border-top-left-radius:7px;-moz-border-radius-topright:7px;-webkit-border-top-right-radius:7px;background-color:#ccc;;height:38px;line-height:37px;}
-.ui-dialog .ui-dialog-title{float:left;margin:0;padding:0 0 0 15px;font:bold 14px/37px arial;border:0 solid #aaa;color:#5D656E;text-shadow:0 1px 0 #F1F7F9;}
+.ui-dialog .ui-dialog-titlebar{position:relative;background:#444 url(../images/shelf-top.jpg) repeat-x;height:31px;border-bottom:1px solid #000;overflow:hidden;}
+.ui-dialog .ui-dialog-title{float:left;margin:0;padding:0 0 0 9px;font:bold 14px/33px arial;border:0;color:#000;text-shadow:0 1px 0 #666;}
 .ui-dialog .ui-dialog-title .ui-icon{display:none;}
 .ui-dialog .ui-dialog-titlebar-close{position:absolute;right:.8em;top:50%;width:16px;height:17px;margin:-8px 0 0 0;padding:0;border:0;background:transparent url(../images/dialog-close.png) no-repeat;}
 .ui-dialog .ui-dialog-titlebar-close:hover{background-position:bottom;}
 .ui-dialog .ui-dialog-titlebar-close span{display:none;margin:1px;}
 .ui-dialog .ui-dialog-titlebar-close:hover,.ui-dialog .ui-dialog-titlebar-close:focus{padding:0;}
-.ui-dialog .ui-dialog-content{border:0;background:none;overflow:auto;zoom:1;font-family:arial;-moz-border-radius-bottomleft:7px;-webkit-border-bottom-left-radius:7px;-moz-border-radius-bottomright:7px;-webkit-border-bottom-right-radius:7px;/*background:#fff url(../images/dialog-contents.jpg) repeat-x 0 -1px;*/
-background:#fff;}
+.ui-dialog .ui-dialog-content{border:0;background:none;overflow:auto;zoom:1;font-family:arial;-moz-border-radius-bottomleft:7px;-webkit-border-bottom-left-radius:7px;-moz-border-radius-bottomright:7px;-webkit-border-bottom-right-radius:7px;background:#fff url(../images/shelf-bg.jpg) repeat-x scroll 0 0;}
 .ui-dialog .ui-dialog-content h2{font-size:27px;margin:0 0 10px 0;}
 #minwidth-body .ui-dialog .ui-dialog-buttonpane{border:0;text-align:left;background-image:none;margin:-20px 0 0 0;padding:20px 20px 15px 40px;background:#fff;-moz-border-radius-bottomleft:7px;-webkit-border-bottom-left-radius:7px;-moz-border-radius-bottomright:7px;-webkit-border-bottom-right-radius:7px;}
 #alf-warning,

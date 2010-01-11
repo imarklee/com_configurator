@@ -98,6 +98,7 @@ class HTML_configurator_admin {
 			$document->addStyleSheet($csspath . 'colorpicker.css');
 			$document->addStyleSheet($csspath . 'docs.css');
 			$document->addStyleSheet($csspath . 'fullscreen.css');
+			$document->addStyleSheet($csspath . 'editor.css');
 			//}
 			
 			// browser stylesheets

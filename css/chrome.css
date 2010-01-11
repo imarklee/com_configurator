@@ -35,3 +35,4 @@ ul.assets-headers,
 a.btn-primary{-webkit-border-radius: 20px;-webkit-box-shadow:0 0 5px #999;}
 a.btn-primary:hover{-webkit-box-shadow:0 0 5px #598C13;}
 #shelf #utilities ul span.shelf-notice{-webkit-border-radius:7px;}
+.ui-dialog .ui-dialog-titlebar{-webkit-border-top-left-radius:7px;-webkit-border-top-right-radius:7px;}

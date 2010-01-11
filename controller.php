@@ -39,19 +39,19 @@ class ConfiguratorController extends JController {
 
 		$mainframe->addCustomHeadTag( $goto_javascript );
 
-		$morph_installed = JFolder::exists(JPath::clean( JPATH_ROOT.'/'.'templates' ).'/'.$template);
+		$morph_installed = JFolder::exists(JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template);
 		if ($morph_installed){
 			include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."configurator.common.php");
 			$preset_choice = JRequest::getVar('preset',null);
 			$preset_values = null;
 
-			$templateBaseDir = JPath::clean( JPATH_ROOT.'/'.'templates' ).'/'.$template;
+			$templateBaseDir = JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template;
 			if(!empty($preset_choice)) {
 				// Load select preset values from the XML file.
-				$preset_values = getPresetParamList( $templateBaseDir.'/'.'core'.'/'.'morphDetails.xml', $preset_choice );
+				$preset_values = getPresetParamList( $templateBaseDir.'/core/morphDetails.xml', $preset_choice );
 		}
 
-		$paramList = getTemplateParamList( $templateBaseDir.'/'.'core'.'/'.'morphDetails.xml' );
+		$paramList = getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
 		for($i=0;$i<count($paramList);$i++) $paramList[$i] .= '=';
 
 			if ( $template ) {
@@ -65,7 +65,7 @@ class ConfiguratorController extends JController {
 				// themelet
 				$themelet = $template_params['themelet']['param_value'];
 				$themelet_xml_params = array();
-				$xml_param_loader = new morphXMLLoader(JPATH_ROOT.'/'.'morph_assets'.'/'.'themelets'.'/'.$themelet.'/'.'themeletDetails.xml');
+				$xml_param_loader = new morphXMLLoader(JPATH_ROOT.'/morph_assets/themelets/'.$themelet.'/themeletDetails.xml');
 				if(!empty($xml_param_loader)) {
 					$themelet_xml_params = $xml_param_loader->getParamDefaults();	
 					foreach($themelet_xml_params as $param_name => $param_value){
@@ -96,14 +96,14 @@ class ConfiguratorController extends JController {
 			}
 			
 			// Create the morph params
-			$params = new JParameter($current_params, $templateBaseDir.'/'.'core'.'/'.'morphDetails.xml');        
+			$params = new JParameter($current_params, $templateBaseDir.'/core/morphDetails.xml');        
 			$params->name = $template;
 			//$params->merge($themelet_params);
 			
 			$lists = array();
 			
 			// Load presets from XML file.
-			$xml_param_loader = new morphXMLLoader($templateBaseDir.'/'.'core'.'/'.'morphDetails.xml');
+			$xml_param_loader = new morphXMLLoader($templateBaseDir.'/core/morphDetails.xml');
 			$main_xml_params = $xml_param_loader->getParamDefaults();
 						
 			$params->use_favicons = $xml_param_loader->use_favicons;
@@ -126,7 +126,7 @@ class ConfiguratorController extends JController {
 			}
 			
 			// Load list of themelets (if they exist).
-			$themelet_dir = JPATH_SITE.'/'.'morph_assets'.'/'.'themelets';          
+			$themelet_dir = JPATH_SITE.'/morph_assets/themelets';          
 
 			if(is_dir($themelet_dir)) $lists['themelets'] = JFolder::folders( $themelet_dir );
 			else $lists['themelets'] = null;
@@ -139,13 +139,13 @@ class ConfiguratorController extends JController {
 			$lists['themelets_dir'] = $themelet_dir;
 			
 			// Load list of logos (if they exist).
-			$logo_dir = JPATH_SITE.'/'.'morph_assets'.'/'.'logos';
+			$logo_dir = JPATH_SITE.'/morph_assets/logos';
 			if(is_dir($logo_dir)) $lists['logos'] = JFolder::files( $logo_dir, '.jpg|.png|.gif' );
 			else $lists['logos'] = null;
 			$lists['logo_dir'] = $logo_dir;
 			
 			// Load list of backgrounds (if they exist).
-			$bg_dir = JPATH_SITE.'/'.'morph_assets'.'/'.'backgrounds';
+			$bg_dir = JPATH_SITE.'/morph_assets/backgrounds';
 			if(is_dir($bg_dir)) $lists['backgrounds'] = JFolder::files( $bg_dir, '.jpg|.png|.gif' );
 			else $lists['backgrounds'] = null;
 			$lists['bg_dir'] = $bg_dir;
@@ -191,7 +191,7 @@ class ConfiguratorController extends JController {
 				$current_prefs = implode( "\n", $prefs_settings );
 			}
 			
-			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).'/'.'includes'.'/'.'layout'.'/'.'preferences.xml');
+			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).'/includes/layout/preferences.xml');
 	HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
 	}
 	
@@ -217,17 +217,17 @@ class ConfiguratorController extends JController {
 	function show_assets(){
 		if(isset($_GET['a'])) $a = $_GET['a'];
 		switch($a){
-			case 'recycle': include('includes'.'/'.'assets'.'/'.'recycle.php'); break;
-			case 'themelets': include('includes'.'/'.'assets'.'/'.'themelets.php'); break;
-			case 'backgrounds': include('includes'.'/'.'assets'.'/'.'backgrounds.php'); break;
-			case 'logos': include('includes'.'/'.'assets'.'/'.'logos.php'); break;
-			case 'iphone': include('includes'.'/'.'assets'.'/'.'iphone.php'); break;
-			case 'backup': include('includes'.'/'.'assets'.'/'.'backup.php'); break;
+			case 'recycle': include('includes/assets/recycle.php'); break;
+			case 'themelets': include('includes/assets/themelets.php'); break;
+			case 'backgrounds': include('includes/assets/backgrounds.php'); break;
+			case 'logos': include('includes/assets/logos.php'); break;
+			case 'iphone': include('includes/assets/iphone.php'); break;
+			case 'backup': include('includes/assets/backup.php'); break;
 		}
 	}
 
 	function assets_backup(){
-		$assets = JPATH_ROOT.'/'.'morph_assets';
+		$assets = JPATH_ROOT.'/morph_assets';
 		
 		if(isset($_GET['type'])){ 
 			$type = $_GET['type'];
@@ -237,7 +237,7 @@ class ConfiguratorController extends JController {
 		
 		switch($type){
 			case 'gzip':
-			JArchive::create(JPATH_ROOT.'/'.'morph_assets',$assets, 'gz', '', JPATH_ROOT, true);
+			JArchive::create(JPATH_ROOT.'/morph_assets',$assets, 'gz', '', JPATH_ROOT, true);
 			$filename = 'morph_assets.gz';
 			header('Content-Type: application/x-gzip');
 			break;
@@ -249,7 +249,7 @@ class ConfiguratorController extends JController {
 				$data = JFile::read($file);
 				$zip_array[] = array('name' => $file, 'data' => $data);
 			}
-			$zip->create(JPATH_ROOT.'/'.'morph_assets',$zip_array);
+			$zip->create(JPATH_ROOT.'/morph_assets',$zip_array);
 			$filename = 'morph_assets.zip';
 			header('Content-Type: application/zip');
 			break;
@@ -275,14 +275,14 @@ class ConfiguratorController extends JController {
 		$fp = '';
 		switch($type){
 			case 'db':
-			$fp ='/'.'db';
+			$fp ='/db';
 			break;
 			case 'file':
 			$fp = '';
 			break;
 		}
-		$db_folder = JPATH_ROOT.'/'.'morph_assets'.'/'.'backups'.$fp;
-		$recyclebin = JPATH_ROOT.'/'.'morph_recycle_bin';
+		$db_folder = JPATH_ROOT.'/morph_assets/backups'.$fp;
+		$recyclebin = JPATH_ROOT.'/morph_recycle_bin';
 		
 		if(file_exists($db_folder.'/'.$filename)){
 			switch($action){
@@ -318,7 +318,7 @@ class ConfiguratorController extends JController {
 		$icon_file = JRequest::getVar('f',null);
 		
 		if( is_null($template) || is_null($icon_file) ) $mainframe->redirect("index2.php?option={$option}&task=dashboard");
-		$full_filename = JPATH_ROOT.'/'.'templates'.'/'.$template.'/'.'favicons'.'/'.$icon_file;
+		$full_filename = JPATH_ROOT.'/templates/'.$template.'/favicons/'.$icon_file;
 		
 		if( file_exists( $full_filename ) ) @unlink( $full_filename );
 		$mainframe->redirect("index2.php?option={$option}&task=manage", "Favicon ({$icon_file}) removed." );
@@ -329,7 +329,7 @@ class ConfiguratorController extends JController {
 		$db = JFactory::getDBO();
 		
 		$prefs = JRequest::getVar('cfg', null, 'post', 'array');
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'tables');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 		
 		foreach($prefs as $pref_key => $pref_value){
 			$setting = JTable::getInstance('ConfiguratorPreferences','Table');
@@ -400,7 +400,7 @@ class ConfiguratorController extends JController {
 		$params[42] = JRequest::getVar( 'lightbox', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'tables');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				
 		jimport('joomla.filesystem.folder');
 		$path = JPATH_ROOT.'/cache/morph';
@@ -567,11 +567,11 @@ class ConfiguratorController extends JController {
 	}
 	
 	function assets_upload(){
-		$assetsdir 	= JPATH_SITE.'/'.'morph_assets';
-		$logos 		= $assetsdir.'/'.'logos';
-		$bg			= $assetsdir.'/'.'backgrounds';
-		$iphone		= $assetsdir.'/'.'iphone';
-		$tempassets = $assetsdir.'/'.'temp_assets';
+		$assetsdir 	= JPATH_SITE.'/morph_assets';
+		$logos 		= $assetsdir.'/logos';
+		$bg			= $assetsdir.'/backgrounds';
+		$iphone		= $assetsdir.'/iphone';
+		$tempassets = $assetsdir.'/temp_assets';
 		$message 	= array();
 		
 		$file 		= JRequest::getVar( 'insfile', '', 'files', 'array' );
@@ -612,8 +612,8 @@ class ConfiguratorController extends JController {
 	
 	function demo_upload(){
 	
-		$backupdir 	= JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db';
-		$tempdir 	= JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db'.'/'.'temp';
+		$backupdir 	= JPATH_SITE.'/morph_assets/backups/db';
+		$tempdir 	= JPATH_SITE.'/morph_assets/backups/db/temp';
 		$message 	= array();
 		$file 		= JRequest::getVar( 'insfile', '', 'files', 'array' );
 
@@ -643,8 +643,8 @@ class ConfiguratorController extends JController {
 	function restore_db_backup(){
 	
 		$filename = $_REQUEST['filename'];
-		$backupdir 	= JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db';
-		$tempdir 	= JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db'.'/'.'temp';
+		$backupdir 	= JPATH_SITE.'/morph_assets/backups/db';
+		$tempdir 	= JPATH_SITE.'/morph_assets/backups/db/temp';
 
 		if(!is_dir($tempdir)){JFolder::create($tempdir);}
 		JPath::setPermissions($tempdir);
@@ -668,7 +668,7 @@ class ConfiguratorController extends JController {
 		// if there is no file error then continue
 		if($file['error'] !== 4) {
 			
-			$iphone_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'iphone';
+			$iphone_dir = JPATH_ROOT.'/morph_assets/iphone';
 			// errors
 			if( $file['error'] ){
 				$error = 'error: "Upload error ('.$file['error'].')"';
@@ -712,17 +712,17 @@ class ConfiguratorController extends JController {
 	
 	function template_upload(){
 		$newtemplatefile = JRequest::getVar( 'insfile', null, 'files', 'array' );
-		$templatesdir = JPATH_SITE.'/'.'templates';
-		$backupdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backups';
-		$backupfile = $backupdir.'/'.'file_template_morph_' . time();
-		if(!@Jarchive::create($backupfile, $templatesdir.'/'.'morph', 'gz', '', $templatesdir, true)){
+		$templatesdir = JPATH_SITE.'/templates';
+		$backupdir = JPATH_SITE.'/morph_assets/backups';
+		$backupfile = $backupdir.'/file_template_morph_' . time();
+		if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
 			// error creating archive
 			$error = 'error: "There was an error creating a backup archive. Upload failed"'; 
 			return $error;
 		}else{
 			// remove existing
-			@JPath::setPermissions($templatesdir.'/'.'morph');
-			if(!$this->deleteDirectory($templatesdir.'/'.'morph')){
+			@JPath::setPermissions($templatesdir.'/morph');
+			if(!$this->deleteDirectory($templatesdir.'/morph')){
 				// fail: error removing existing folder
 				$error = 'error: "There was an error removing the old install. Upload failed"';	
 				return $error;
@@ -752,7 +752,7 @@ class ConfiguratorController extends JController {
 		$themelet_type = $themelet_details['type'];
 		// if there is no file error then continue
 		if($themelet_details['error'] != 4) {
-			$themelet_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'themelets';
+			$themelet_dir = JPATH_ROOT.'/morph_assets/themelets';
 			
 			// errors
 			if( $themelet_details['error'] ){
@@ -786,8 +786,8 @@ class ConfiguratorController extends JController {
 			$themelet_name = str_replace('themelet_', '', strtolower(basename($themelet_details['name'])));
 			$themelet_name = str_replace(strstr($themelet_name, '_'), '', $themelet_name);
 			if(is_dir($themelet_dir.'/'.$themelet_name)){
-				$backupdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backups';
-				$backupfile = $backupdir.'/'.'file_themelet_'.$themelet_name . '_' . time();
+				$backupdir = JPATH_SITE.'/morph_assets/backups';
+				$backupfile = $backupdir.'/file_themelet_'.$themelet_name . '_' . time();
 				if(!@Jarchive::create($backupfile, $themelet_dir.'/'.$themelet_name, 'gz', '', $themelet_dir, true)){
 					$error = 'error: "Could not backup themelet!"';
 					return $error;
@@ -852,7 +852,7 @@ class ConfiguratorController extends JController {
 				return false;
 			}
 		}
-		$backupdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db';
+		$backupdir = JPATH_SITE.'/morph_assets/backups/db';
 		$files = JFolder::files($backupdir);
 		foreach($files as $f){
 			if(preg_match('/'.$themelet.'/i', $f)){
@@ -883,7 +883,7 @@ class ConfiguratorController extends JController {
 			}
 		}
 
-		$backupdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db';		
+		$backupdir = JPATH_SITE.'/morph_assets/backups/db';		
 		$files = JFolder::files($backupdir);
 		foreach($files as $f){
 			if(preg_match('/'.$themelet.'/i', $f)){
@@ -912,8 +912,8 @@ class ConfiguratorController extends JController {
 	}
 	
 	function import_db(){
-		$backupdir 	= JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db';
-		$tempdir 	= JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db'.'/'.'temp';
+		$backupdir 	= JPATH_SITE.'/morph_assets/backups/db';
+		$tempdir 	= JPATH_SITE.'/morph_assets/backups/db/temp';
 		$file 		= JRequest::getVar( 'import_file', '', 'files', 'array' );
 		
 		if(!is_dir($tempdir)){JFolder::create($tempdir);}
@@ -945,7 +945,7 @@ class ConfiguratorController extends JController {
 			if(isset($_REQUEST['download'])) $download = $_REQUEST['download'];
 		}
 		
-		$backupdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db';
+		$backupdir = JPATH_SITE.'/morph_assets/backups/db';
 		if(!is_dir($backupdir)) mkdir($backupdir);
 		JPath::setPermissions($backupdir);
 		if($name !== '') $n = $name.'_';
@@ -994,8 +994,8 @@ class ConfiguratorController extends JController {
 			}
 		}
 		
-		$template_dir = JPATH_ROOT.'/'.'templates'.'/'.'morph';
-		$themelet_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'themelets';
+		$template_dir = JPATH_ROOT.'/templates/morph';
+		$themelet_dir = JPATH_ROOT.'/morph_assets/themelets';
 		
 		$query="SELECT * FROM `#__configurator` WHERE template_name='morph'";
 		$db->setQuery($query);
@@ -1006,7 +1006,7 @@ class ConfiguratorController extends JController {
 		if(isset($template_params['themelet'])) { $curr_themelet = $template_params['themelet']['param_value']; }
 		if(isset($_COOKIE['current_themelet'])) { $curr_themelet = $_COOKIE['current_themelet']; }
 		
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'tables');			
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');			
 			
 		// get existing themelet values
 		$query = "select * from #__configurator where source = 'themelet';";
@@ -1023,7 +1023,7 @@ class ConfiguratorController extends JController {
 
 		if(!empty($db_themelet)){
 
-			$template_xml = $template_dir.'/'.'core'.'/'.'morphDetails.xml';
+			$template_xml = $template_dir.'/core/morphDetails.xml';
 			
 			$xml_param_loader = new morphXMLLoader($template_xml);
 			$template_xml_params = $xml_param_loader->getParamDefaults();
@@ -1079,8 +1079,8 @@ class ConfiguratorController extends JController {
 		}
 		
 		$themelet = $themelet_dir.'/'.$themelet;
-		if(is_file($themelet.'/'.'themeletDetails.xml')){
-			$xml_param_loader = new morphXMLLoader($themelet.'/'.'themeletDetails.xml');
+		if(is_file($themelet.'/themeletDetails.xml')){
+			$xml_param_loader = new morphXMLLoader($themelet.'/themeletDetails.xml');
 			$themelet_xml_params = $xml_param_loader->getParamDefaults();
 			
 			foreach($themelet_xml_params as $param_name => $param_value){
@@ -1111,9 +1111,9 @@ class ConfiguratorController extends JController {
 	
 	function reset_database(){
 		$db = JFactory::getDBO();
-		$template_dir = JPATH_ROOT.'/'.'templates'.'/'.'morph';
-		$themelet_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'themelets';
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'tables');
+		$template_dir = JPATH_ROOT.'/templates/morph';
+		$themelet_dir = JPATH_ROOT.'/morph_assets/themelets';
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 		
 		if(!isset($_GET['reset_type']) or $_GET['reset_type'] == '') {
 			echo 'error: "No reset type detected. Reset failed.", success: ""';
@@ -1142,7 +1142,7 @@ class ConfiguratorController extends JController {
 				$db->query();
 				
 				// add morphDetails.xml defaults
-				$template_xml = $template_dir.'/'.'core'.'/'.'morphDetails.xml';
+				$template_xml = $template_dir.'/core/morphDetails.xml';
 				$xml_param_loader = new morphXMLLoader($template_xml);
 				$template_xml_params = $xml_param_loader->getParamDefaults();
 
@@ -1173,8 +1173,8 @@ class ConfiguratorController extends JController {
 				
 				// add themeletDetails.xml to the database
 				$themelet = $themelet_dir.'/'.$c_themelet;
-				if(is_file($themelet.'/'.'themeletDetails.xml')){
-					$xml_param_loader = new morphXMLLoader($themelet.'/'.'themeletDetails.xml');
+				if(is_file($themelet.'/themeletDetails.xml')){
+					$xml_param_loader = new morphXMLLoader($themelet.'/themeletDetails.xml');
 					$themelet_xml_params = $xml_param_loader->getParamDefaults();
 
 					foreach($themelet_xml_params as $param_name => $param_value){
@@ -1223,7 +1223,7 @@ class ConfiguratorController extends JController {
 		$retval['extractdir'] = $extractdir;
 		$retval['packagefile'] = $archivename;
 		
-		if (JFile::exists($extractdir.'/'.'themeletDetails.xml')){
+		if (JFile::exists($extractdir.'/themeletDetails.xml')){
 			$themelet_params = $this->parsexml_themelet_file($extractdir);
 		}else{
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
@@ -1268,11 +1268,11 @@ class ConfiguratorController extends JController {
 	
 	function parsexml_themelet_file($themeletDir){
 		// Check if the xml file exists
-		if(!is_file($themeletDir.'/'.'themeletDetails.xml')) {
+		if(!is_file($themeletDir.'/themeletDetails.xml')) {
 			return false;
 		}
 		
-		$xml = simplexml_load_file($themeletDir.'/'.'themeletDetails.xml');
+		$xml = simplexml_load_file($themeletDir.'/themeletDetails.xml');
 		
 		if ((string)$xml['type'] != 'themelet') {
 			return false;
@@ -1302,7 +1302,7 @@ class ConfiguratorController extends JController {
 		}else{
 			// if there is no file error then continue
 			if($logo_details['error'] != 4) {
-				$logo_dir = JPATH_SITE.'/'.'morph_assets'.'/'.'logos';
+				$logo_dir = JPATH_SITE.'/morph_assets/logos';
 				
 				// errors
 				if( $logo_details['error'] ){
@@ -1336,7 +1336,7 @@ class ConfiguratorController extends JController {
 				}
 			
 				JPath::setPermissions($logo_dir.'/'.strtolower( basename( $logo_details['name'] ) ) );
-				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'tables');
+				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template;
 				$setting->param_name = 'templatelogo';
@@ -1366,7 +1366,7 @@ class ConfiguratorController extends JController {
 		}else{
 			// if there is no file error then continue
 			if($background_details['error'] != 4) {
-				$background_dir = JPATH_SITE.'/'.'morph_assets'.'/'.'backgrounds';
+				$background_dir = JPATH_SITE.'/morph_assets/backgrounds';
 				
 				// errors
 				if( $background_details['error'] ){
@@ -1400,7 +1400,7 @@ class ConfiguratorController extends JController {
 				}
 			
 				JPath::setPermissions($background_dir.'/'.strtolower( basename( $background_details['name'] ) ) );
-				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'tables');
+				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template;
 				$setting->param_name = 'templatebackground';
@@ -1431,7 +1431,7 @@ class ConfiguratorController extends JController {
 		}else{
 			// if there is no file error then continue
 			if($favicon_details['error'] != 4) {
-				$favicon_dir = JPATH_ROOT.'/'.'templates'.'/'.$template;
+				$favicon_dir = JPATH_ROOT.'/templates/'.$template;
 				
 				// errors
 				if( $favicon_details['error'] ){
@@ -1477,7 +1477,7 @@ class ConfiguratorController extends JController {
 		$action = $_GET['action'];
 		if(isset($_GET['file'])) $file = $_GET['file'];
 		if(isset($_GET['type'])) $type = $_GET['type'];
-		$rb_root = JPATH_SITE.'/'.'morph_recycle_bin';
+		$rb_root = JPATH_SITE.'/morph_recycle_bin';
 		
 		if($action){
 			switch($action){
@@ -1491,8 +1491,8 @@ class ConfiguratorController extends JController {
 					}
 				break;
 				case 'restore':
-					$recycle_dir = $rb_root = JPATH_SITE.'/'.'morph_recycle_bin';
-					$restore_dir = $rb_root = JPATH_SITE.'/'.'morph_assets';
+					$recycle_dir = $rb_root = JPATH_SITE.'/morph_recycle_bin';
+					$restore_dir = $rb_root = JPATH_SITE.'/morph_assets';
 					
 					function move_asset($f, $t, $r, $rc){
 						if(is_dir($rc.'/'.$f)){
@@ -1516,27 +1516,27 @@ class ConfiguratorController extends JController {
 					
 					switch($type){
 						case 'bg': 
-						$restore_dir .='/'.'backgrounds'; 
+						$restore_dir .='/backgrounds'; 
 						move_asset($file, $type, $restore_dir, $recycle_dir);
 						break;
 						case 'iphone': 
-						$restore_dir .='/'.'iphone'; 
+						$restore_dir .='/iphone'; 
 						move_asset($file, $type, $restore_dir, $recycle_dir); 
 						break;
 						case 'logo': 
-						$restore_dir .='/'.'logos'; 
+						$restore_dir .='/logos'; 
 						move_asset($file, $type, $restore_dir, $recycle_dir);
 						break;
 						case 'themelet': 
-						$restore_dir .='/'.'themelets'; 
+						$restore_dir .='/themelets'; 
 						move_asset($file, $type, $restore_dir, $recycle_dir);
 						break;
 						case 'file': 
-						$restore_dir .='/'.'backups'; 
+						$restore_dir .='/backups'; 
 						move_asset($file, $type, $restore_dir, $recycle_dir);
 						break;
 						case 'db': 
-						$restore_dir .='/'.'backups'.'/'.'db'; 
+						$restore_dir .='/backups/db'; 
 						move_asset($file, $type, $restore_dir, $recycle_dir);
 						break;
 					}
@@ -1566,13 +1566,13 @@ class ConfiguratorController extends JController {
 	function deleteAsset(){
 		$type = $_GET['deltype'];
 		$asset = $_GET['asset'];
-		$assetsdir = JPATH_SITE.'/'.'morph_assets';
-		$recyclebin = JPATH_SITE.'/'.'morph_recycle_bin';
+		$assetsdir = JPATH_SITE.'/morph_assets';
+		$recyclebin = JPATH_SITE.'/morph_recycle_bin';
 		
 		switch($type){
 		
 			case 'themelet':
-			$assetsdir .='/'.'themelets';
+			$assetsdir .='/themelets';
 			$assetsfile = $assetsdir.'/'.$asset;
 			if (is_dir($assetsdir)) {
 				if(JFolder::copy($assetsfile, $recyclebin.'/'.$asset)){
@@ -1595,10 +1595,10 @@ class ConfiguratorController extends JController {
 			}
 			break;
 			case 'logo':
-			$assetsdir .='/'.'logos';
+			$assetsdir .='/logos';
 			$assetsfile = $assetsdir.'/'.$asset;			
 			if (is_dir($assetsdir)) {
-				if(JFile::move($assetsfile,$recyclebin.'/'.'logo_'.$asset)){
+				if(JFile::move($assetsfile,$recyclebin.'/logo_'.$asset)){
 					return true;
 				} else {
 					return false;
@@ -1608,10 +1608,10 @@ class ConfiguratorController extends JController {
 			}
 			break;
 			case 'iphone':
-			$assetsdir .='/'.'iphone';
+			$assetsdir .='/iphone';
 			$assetsfile = $assetsdir.'/'.$asset;			
 			if (is_dir($assetsdir)) {
-				if(JFile::move($assetsfile,$recyclebin.'/'.'iphone_'.$asset)){
+				if(JFile::move($assetsfile,$recyclebin.'/iphone_'.$asset)){
 					return true;
 				} else {
 					return false;
@@ -1621,11 +1621,11 @@ class ConfiguratorController extends JController {
 			}
 			break;
 			case 'background':
-			$assetsdir .='/'.'backgrounds';
+			$assetsdir .='/backgrounds';
 			$assetsfile = $assetsdir.'/'.$asset;
 			echo $assetsdir;		
 			if (is_dir($assetsdir)) {
-				if(JFile::move($assetsfile,$recyclebin.'/'.'bg_'.$asset)){
+				if(JFile::move($assetsfile,$recyclebin.'/bg_'.$asset)){
 					return true;
 				} else {
 					return false;
@@ -1684,20 +1684,20 @@ class ConfiguratorController extends JController {
 	
 		JPath::setPermissions(JPATH_SITE);
 	
-		$backupdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backups';
-		$dbdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backups'.'/'.'db';
-		$logosdir = JPATH_SITE.'/'.'morph_assets'.'/'.'logos';
-		$backgroundsdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backgrounds';
-		$themeletsdir = JPATH_SITE.'/'.'morph_assets'.'/'.'themelets';
-		$iphonedir = JPATH_SITE.'/'.'morph_assets'.'/'.'iphone';
+		$backupdir = JPATH_SITE.'/morph_assets/backups';
+		$dbdir = JPATH_SITE.'/morph_assets/backups/db';
+		$logosdir = JPATH_SITE.'/morph_assets/logos';
+		$backgroundsdir = JPATH_SITE.'/morph_assets/backgrounds';
+		$themeletsdir = JPATH_SITE.'/morph_assets/themelets';
+		$iphonedir = JPATH_SITE.'/morph_assets/iphone';
 		
 		// create assets folders
-		if(!is_dir(JPATH_SITE.'/'.'morph_assets')) : 
-		(!@mkdir(JPATH_SITE.'/'.'morph_assets')) ? $error = 'error: "There was an error creating the assets folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE.'/'.'morph_assets'); 
+		if(!is_dir(JPATH_SITE.'/morph_assets')) : 
+		(!@mkdir(JPATH_SITE.'/morph_assets')) ? $error = 'error: "There was an error creating the assets folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE.'/morph_assets'); 
 		endif;
 		
-		if(!is_dir(JPATH_SITE.'/'.'morph_recycle_bin')) : 
-		(!@mkdir(JPATH_SITE.'/'.'morph_recycle_bin')) ? $error = 'error: "There was an error creating the Morph Recycle Bin folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE.'/'.'morph_recycle_bin'); 
+		if(!is_dir(JPATH_SITE.'/morph_recycle_bin')) : 
+		(!@mkdir(JPATH_SITE.'/morph_recycle_bin')) ? $error = 'error: "There was an error creating the Morph Recycle Bin folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE.'/morph_recycle_bin'); 
 		endif;
 		
 		if(!is_dir($backupdir)) :
@@ -1741,13 +1741,13 @@ class ConfiguratorController extends JController {
 			$db->query($query);
 			$query = $db->setQuery('DROP TABLE #__configurator_preferences');
 			$db->query($query);
-			$this->parse_mysql_dump(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'install.sql');
+			$this->parse_mysql_dump(JPATH_ADMINISTRATOR.'/components/com_configurator/install.sql');
 		}
 		
 		function db_update(){
 			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
-				$templatesdir = JPATH_SITE.'/'.'templates';
-				$xml_param_loader = new morphXMLLoader($templatesdir.'/'.'morph'.'/'.'core'.'/'.'morphDetails.xml');
+				$templatesdir = JPATH_SITE.'/templates';
+				$xml_param_loader = new morphXMLLoader($templatesdir.'/morph/core/morphDetails.xml');
 				$main_xml_params = $xml_param_loader->getParamDefaults();
 				
 				$removeParams = array(
@@ -1767,7 +1767,7 @@ class ConfiguratorController extends JController {
 					unset($main_xml_params[$r]);
 				}
 				
-				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'tables');
+				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				
 				foreach($main_xml_params as $param_name => $param_value){
 					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
@@ -1792,30 +1792,30 @@ class ConfiguratorController extends JController {
 		}
 		
 		$newtemplatefile = @JRequest::getVar( 'template-file', null, 'files', 'array' );
-		$templatesdir = JPATH_SITE.'/'.'templates';
-		$backupdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backups';
-		$logosdir = JPATH_SITE.'/'.'morph_assets'.'/'.'logos';
-		$backgroundsdir = JPATH_SITE.'/'.'morph_assets'.'/'.'backgrounds';
-		$themeletsdir = JPATH_SITE.'/'.'morph_assets'.'/'.'themelets';
+		$templatesdir = JPATH_SITE.'/templates';
+		$backupdir = JPATH_SITE.'/morph_assets/backups';
+		$logosdir = JPATH_SITE.'/morph_assets/logos';
+		$backgroundsdir = JPATH_SITE.'/morph_assets/backgrounds';
+		$themeletsdir = JPATH_SITE.'/morph_assets/themelets';
 		$ret = '';
 				
 		
-		if(is_dir($templatesdir.'/'.'morph')){
+		if(is_dir($templatesdir.'/morph')){
 			setcookie('upgrade_morph', 'true');
 			// template folder
 			if($_REQUEST['backup'] == 'true'){
 				setcookie('installed_bkpmorph', 'true');
 				// backup existing
-				$backupfile = $backupdir.'/'.'file_template_morph_' . time();
-				if(!@Jarchive::create($backupfile, $templatesdir.'/'.'morph', 'gz', '', $templatesdir, true)){
+				$backupfile = $backupdir.'/file_template_morph_' . time();
+				if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
 					// error creating archive
 					$error = 'There was an error creating the archive. Install failed'; 
 					$ret = '{'.$error.'}';
 					echo $ret;
 				}else{
 					// remove existing
-					@JPath::setPermissions($templatesdir.'/'.'morph');
-					if(!$this->deleteDirectory($templatesdir.'/'.'morph')){
+					@JPath::setPermissions($templatesdir.'/morph');
+					if(!$this->deleteDirectory($templatesdir.'/morph')){
 						// fail: error removing existing folder
 						$error = 'There was an error removing the old install. Install failed';	
 						$ret = '{'.$error.'}';
@@ -1867,11 +1867,11 @@ class ConfiguratorController extends JController {
 	
 	function parsexml_template_file($templateDir){
 		// Check if the xml file exists
-		if(!is_file($templateDir.'/'.'templateDetails.xml')) {
+		if(!is_file($templateDir.'/templateDetails.xml')) {
 			return false;
 		}
 		
-		$xml = JApplicationHelper::parseXMLInstallFile($templateDir.'/'.'templateDetails.xml');
+		$xml = JApplicationHelper::parseXMLInstallFile($templateDir.'/templateDetails.xml');
 		
 		if ($xml['type'] != 'template') {
 			return false;
@@ -1908,7 +1908,7 @@ class ConfiguratorController extends JController {
 		$retval['extractdir'] = $extractdir;
 		$retval['packagefile'] = $archivename;
 		
-		if (JFile::exists($extractdir.'/'.'templateDetails.xml')){
+		if (JFile::exists($extractdir.'/templateDetails.xml')){
 			$template_params = $this->parsexml_template_file($extractdir);
 		}else{
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
@@ -1937,8 +1937,8 @@ class ConfiguratorController extends JController {
 			
 			if($publish !== 'false'){
 				setcookie('installed_pubmorph', 'true');
-				if(file_exists(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'installer'.'/'.'sql'.'/'.'set-template-as-default.sql')){
-					$this->parse_mysql_dump(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_configurator'.'/'.'installer'.'/'.'sql'.'/'.'set-template-as-default.sql');
+				if(file_exists(JPATH_ADMINISTRATOR.'/components/com_configurator/installer/sql/set-template-as-default.sql')){
+					$this->parse_mysql_dump(JPATH_ADMINISTRATOR.'/components/com_configurator/installer/sql/set-template-as-default.sql');
 				}else{
 					$error = 'error: "SQL file doesn\'t exist"';
 					return $error;

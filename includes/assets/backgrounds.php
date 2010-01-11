@@ -7,8 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$background_dir = JPATH_ROOT.'/'.'morph_assets'.'/'.'backgrounds';
-$background_url = JURI::root() . 'morph_assets'.'/'.'backgrounds';
+$background_dir = JPATH_ROOT.'/morph_assets/backgrounds';
+$background_url = JURI::root() . 'morph_assets/backgrounds';
 if(is_dir($background_dir)) {
 	$lists['backgrounds'] = JFolder::files( $background_dir );
 } else {

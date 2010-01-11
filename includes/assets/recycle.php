@@ -7,7 +7,7 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$recycle_dir = JPATH_ROOT.'/'.'morph_recycle_bin';
+$recycle_dir = JPATH_ROOT.'/morph_recycle_bin';
 $recycle_url = JURI::root().'morph_recycle_bin';
 $ftype = '';
 if(is_dir($recycle_dir)) {

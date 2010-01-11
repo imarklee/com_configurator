@@ -35,7 +35,7 @@ function whichKey($os){
 	return $key;
 }
 function showTips(){
-	$f = ('..'.'/'.'administrator'.'/'.'components'.'/'.'com_configurator'.'/'.'includes'.'/'.'help'.'/'.'tips.txt');
+	$f = ('../administrator/components/com_configurator/includes/help/tips.txt');
 	$fo = fopen($f, 'r');
 	while($tips = fgets($fo)){
 		$tips_array[] = $tips;

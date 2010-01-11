@@ -3,16 +3,16 @@
 $path = JPATH_SITE.'/';
 $urlpath = JURI::root();
 
-$template_path	= $path . 'templates'.'/'.'morph'.'/'.'';
-$themelet_path 	= $path . 'morph_assets'.'/'.'themelets'.'/'.'';
-$component_path = $path . 'administrator'.'/'.'components'.'/'.'com_configurator'.'/'.'';
+$template_path	= $path . 'templates/morph/';
+$themelet_path 	= $path . 'morph_assets/themelets/';
+$component_path = $path . 'administrator/components/com_configurator/';
 
-$template_urlpath 	= $urlpath . 'templates'.'/'.'morph'.'/'.'';
-$themelet_urlpath 	= $urlpath . 'morph_assets'.'/'.'themelets'.'/'.'';
-$component_urlpath 	= $urlpath . 'administrator'.'/'.'components'.'/'.'com_configurator'.'/'.'';
+$template_urlpath 	= $urlpath . 'templates/morph/';
+$themelet_urlpath 	= $urlpath . 'morph_assets/themelets/';
+$component_urlpath 	= $urlpath . 'administrator/components/com_configurator/';
 
 $template_xml = $template_path . 'templateDetails.xml';
-$themelet_xml = $themelet_path . $params->get('themelet') .''.'/'.'themeletDetails.xml';
+$themelet_xml = $themelet_path . $params->get('themelet') .'/themeletDetails.xml';
 $component_xml = $component_path . 'configurator.xml';
 
 $template_details = xml2array($template_xml);

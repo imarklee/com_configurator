@@ -8,7 +8,7 @@
 */
 
 function innerLayouts($id){
-	include JPATH_ROOT.''.'/'.'templates'.'/'.'morph'.'/'.'core'.'/'.'InnerLayout.php';
+	include JPATH_ROOT.'/templates/morph/core/InnerLayout.php';
 	$select_option = array('default' => 'Inner Default',
 		'None',
 		'50% Right',
@@ -34,7 +34,7 @@ function innerLayouts($id){
 	return $select;
 }
 function outerLayouts($id){
-	include JPATH_ROOT.''.'/'.'templates'.'/'.'morph'.'/'.'core'.'/'.'OuterLayout.php';
+	include JPATH_ROOT.'/templates/morph/core/OuterLayout.php';
 	$select_option = array(
 		'None',
 		'160px Left',

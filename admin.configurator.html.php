@@ -8,10 +8,10 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-include_once(JPATH_COMPONENT_ADMINISTRATOR.'/'.'includes'.'/'.'HTML_configuratorhelper_admin.php');
-include_once(JPATH_COMPONENT_ADMINISTRATOR.'/'.'includes'.'/'.'configurator.functions.php');
-if(file_exists(JPATH_ROOT.'/'.'templates'.'/'.'morph'.'/'.'core'.'/'.'browser.php')){
-include_once(JPATH_ROOT.'/'.'templates'.'/'.'morph'.'/'.'core'.'/'.'browser.php');
+include_once(JPATH_COMPONENT_ADMINISTRATOR.'/includes/HTML_configuratorhelper_admin.php');
+include_once(JPATH_COMPONENT_ADMINISTRATOR.'/includes/configurator.functions.php');
+if(file_exists(JPATH_ROOT.'/templates/morph/core/browser.php')){
+include_once(JPATH_ROOT.'/templates/morph/core/browser.php');
 }
 $document 	= JFactory::getDocument();
 $option 	= JRequest::getVar('option','com_configurator');
@@ -27,8 +27,8 @@ class HTML_configurator_admin {
 		// google chromeframe support to CFG.
 		if($thebrowser == 'internet-explorer') $document->setMetaData('X-UA-Compatible', 'chrome=1', true);
 		
-        $csspath 	= JURI::root() . 'administrator'.'/'.'components'.'/'.'com_configurator'.'/'.'css'.'/';
-		$jspath 	= JURI::root() . 'administrator'.'/'.'components'.'/'.'com_configurator'.'/'.'js'.'/';
+        $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
+		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
 		$browser 	= new Browser();
 		$thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 		$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
@@ -138,7 +138,7 @@ class HTML_configurator_admin {
 	        echo '</div>';	
 	        //if found morph	
         } else {	
-	        $template_dir = JPATH_SITE.'/'.'templates'.'/'.'morph';
+	        $template_dir = JPATH_SITE.'/templates/morph';
 	        $jVer 		= new JVersion();
 			$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
 	        ?>			
@@ -148,7 +148,7 @@ class HTML_configurator_admin {
 			// Show a specific template in editable mode.
 	        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>			
 			<?php if(!$this->checkUser()){
-				include 'includes'.'/'.'layout'.'/'.'login.php';
+				include 'includes/layout/login.php';
 	        } else {
 				$user = $this->getuserdetails();
 	        	// auto updates
@@ -166,10 +166,10 @@ class HTML_configurator_admin {
 					'<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice', 'memory');
 				}
 				
-				include 'includes'.'/'.'layout'.'/'.'manage.php';
+				include 'includes/layout/manage.php';
 			} ?>
 			</div>
-			<?php include 'includes'.'/'.'layout'.'/'.'report-bug.php';
+			<?php include 'includes/layout/report-bug.php';
 	 	}      
     }
     function dashboard() {
@@ -179,15 +179,15 @@ class HTML_configurator_admin {
 		include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."configuration.php");
         $document 	= JFactory::getDocument();
         $option 	= JRequest::getVar('option');
-        $csspath 	= JURI::root() . 'administrator'.'/'.'components'.'/'.'com_configurator'.'/'.'css'.'/';
-		$jspath 	= JURI::root() . 'administrator'.'/'.'components'.'/'.'com_configurator'.'/'.'js'.'/';
+        $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
+		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
         //$document->addScript($jspath . 'jquery.js');
         //$document->addScript($jspath . 'livedocs.js');
 		
 		$document->addStyleSheet($csspath . 'toplinks.css');
 		$document->addStyleSheet($csspath . 'help-docs.css');
 
-		include 'includes'.'/'.'layout'.'/'.'livedocs.php';
+		include 'includes/layout/livedocs.php';
     }
 }
 ?>

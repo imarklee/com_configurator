@@ -11,7 +11,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Require the base controller
-require_once (JPATH_COMPONENT_ADMINISTRATOR.'/'.'controller.php');
+require_once (JPATH_COMPONENT_ADMINISTRATOR.'/controller.php');
 require_once (JApplicationHelper::getPath('admin_html'));
 require_once (JApplicationHelper::getPath('class'));
 

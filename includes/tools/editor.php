@@ -1,6 +1,6 @@
 <?php
-$template_dir = JPATH_SITE.'/'.'templates'.'/'.'morph';
-$themelet_dir = JPATH_SITE.'/'.'morph_assets'.'/'.'themelets';
+$template_dir = JPATH_SITE.'/templates/morph';
+$themelet_dir = JPATH_SITE.'/morph_assets/themelets';
 
 $template_files = JFolder::files($template_dir);
 $themelets = JFolder::folders($themelet_dir);

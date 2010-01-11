@@ -7,8 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-$iphone_dir = JPATH_ROOT .DS . 'morph_assets' .DS . 'iphone';
-$iphone_url = JURI::root().'morph_assets' .DS . 'iphone';
+$iphone_dir = JPATH_ROOT .DS. 'morph_assets' .DS. 'iphone';
+$iphone_url = JURI::root().'morph_assets' .DS. 'iphone';
 if(is_dir($iphone_dir)) {
 	$lists['iphone'] = JFolder::files( $iphone_dir );
 } else {

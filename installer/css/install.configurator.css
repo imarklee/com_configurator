@@ -84,3 +84,4 @@
 #error-assets ul li { padding: 0 0 0 15px }
 #error-assets ul li:before { content: "\0020 \0020 \0020 \21E2 \0020"; }
 .ui-dialog .ui-dialog-titlebar {-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;-webkit-border-top-left-radius:7px;-webkit-border-top-right-radius:7px;background:#444 url(../../images/shelf-top.jpg) repeat-x;}
+.ui-dialog .ui-dialog-content{background:#fff url(../../images/shelf-bg.jpg) repeat-x;}

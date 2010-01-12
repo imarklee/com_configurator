@@ -175,7 +175,7 @@ class plgSystemMorphCache extends JPlugin
 		JLoader::import('templates.morph.core.browser', JPATH_ROOT);
 		
 		$data = (object) $this->loadMorph();
-		
+
 		$browser 					= new Browser();
 		$data->browser 				= strtolower(preg_replace("/[^A-Za-z]/i", "", $browser->getBrowser()));
 		
@@ -214,9 +214,6 @@ class plgSystemMorphCache extends JPlugin
 			$data->logo_size[1] = 'null';
 			$data->logo = 'null';
 		}
-		
-		// css and js packing variables
-		(isset($_COOKIE['unpackcss'])) ? $data->pack_css = 0 : $data->pack_css = $data->pack_css;
 		
 		$db=& JFactory::getDBO();
 		

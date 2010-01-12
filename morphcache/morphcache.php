@@ -150,7 +150,7 @@ class plgSystemMorphCache extends JPlugin
 		foreach($this->css->stylesheets->before as $css)
 		{
 			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
-			echo str_replace('../../../../', JURI::root(1).'/', file_get_contents($css));
+			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents($css));
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;
 		}
 		include JPATH_THEMES.'/morph/core/css/template.css.php';
@@ -164,7 +164,7 @@ class plgSystemMorphCache extends JPlugin
 		foreach($this->css->stylesheets->after as $css)
 		{
 			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
-			echo str_replace('../../../../', JURI::root(1).'/', file_get_contents($css));
+			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents($css));
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;
 		}
 	}
@@ -175,7 +175,6 @@ class plgSystemMorphCache extends JPlugin
 		JLoader::import('templates.morph.core.browser', JPATH_ROOT);
 		
 		$data = (object) $this->loadMorph();
-		
 		
 		$browser 					= new Browser();
 		$data->browser 				= strtolower(preg_replace("/[^A-Za-z]/i", "", $browser->getBrowser()));

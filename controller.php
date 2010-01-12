@@ -1663,9 +1663,9 @@ class ConfiguratorController extends JController {
 			$query = $db->query($query);
 			$themelet_num = $db->getNumRows($query);
 			if($themelet_num == '0'){
-				$new_query = "INSERT INTO #__configurator VALUES ('' , 'morph', 'themelet', '".mysql_real_escape_string($themelet)."', '1', 'themelet');";
+				$new_query = "INSERT INTO #__configurator VALUES ('' , 'morph', 'themelet', '".$db->getEscaped($themelet)."', '1', 'themelet');";
 			}else{
-				$new_query = "UPDATE #__configurator SET param_value = '".mysql_real_escape_string($themelet)."' where param_name = 'themelet';";
+				$new_query = "UPDATE #__configurator SET param_value = '".$db->getEscaped($themelet)."' where param_name = 'themelet';";
 			}
 			$query = $db->setQuery( $new_query );
 			$db->query($query) or die($db->getErrorMsg());

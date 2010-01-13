@@ -1,6 +1,8 @@
 <?php
 $ul = $_GET['getul'];
 $eh = $_GET['eh']; // editor highlighting
+$sk = $_GET['sk']; // Session keepalive
+$lt = (int) $_GET['slt']; // Session time
 header('content-type: text/javascript; charset: UTF-8');
 function pageURL() {
 	error_reporting(E_ALL ^ E_NOTICE);
@@ -31,6 +33,84 @@ jQuery.noConflict();
 			$('#system-message').delay(3000, function(){ $('#system-message').fadeOut().remove(); });
 			$.cookie('save_msg', null);
 		}
+		
+		<?php if($sk == 'warn' && $lt > 5) : ?>
+			<? $timeout = ($lt - 5) * 60000 ?>
+			function endsession()
+			{
+				$.ajax({
+					method: 'get', 
+					data:{
+						option: 'com_login', 
+						task: 'logout'
+					}, 
+					complete: function(){ 
+						window.location.reload(true); 
+					}
+				});
+			};
+			$('#content-box').after('<div id="session-message" class="dialog-msg" style="display:none;"><p>If your session ends, you\'re automatically logged out of the admin. And will see a login form after the page is refreshed. </p>'
+									+'<p><strong>Your session ends in<br /><span id="keepalive-minute"><span id="keepalive-minutes" class="keepalive-countdown">05</span> minutes and </span><span id="keepalive-seconds" class="keepalive-countdown">00</span> seconds.</strong></p></div>');
+			var keepalive = function()
+			{
+				var minutes = 5,
+					seconds = 60,
+					countdown = setTimeout(function(){ endsession(); }, 300000);
+				
+				hideScroll();
+				$('#session-message').dialog({
+						autoOpen: true, 
+						bgiframe: true, 
+						resizable: false,
+						draggable: false,
+						minHeight: 20,
+						width: 350,
+						modal: true, 
+						title: 'Your session is about to timeout',
+						overlay: {
+							backgroundColor: '#000', 
+							opacity: 0.5 
+						},
+						close: function(){
+							showScroll();
+						},
+					buttons: {
+						'End Session': function(){
+							endsession();
+						},
+						'Renew Session': function(){
+							$(this).dialog('destroy');
+							$.ajax({method: 'get'});
+							minutes = 5;
+							seconds = 60;
+							
+							$('#keepalive-minutes').text('05');
+							$('#keepalive-seconds').text('00');
+							
+							$('#keepalive-minute').show();
+							clearInterval(sectimer);
+							clearTimeout(countdown);
+							var sessiontimer = setTimeout(keepalive, <?php echo $timeout ?>);
+						}
+					}	
+				});
+				var sectimer = setInterval(function(){
+					if(seconds == 0) seconds = 60;
+					if(seconds == 60 && minutes > 0) $('#keepalive-minutes').text('0'+(--minutes));
+					if(minutes === 0) $('#keepalive-minute').hide();
+					--seconds;
+					text = new String(seconds).length > 1 ? seconds : '0' + seconds;
+					$('#keepalive-seconds').text(text);
+				}, 1000);
+			};
+			var sessiontimer = setTimeout(keepalive, <?php echo $timeout ?>);
+		<?php endif ?>
+		
+		<?php if($sk == 'keepalive' || $sk == 'warn' && $lt <= 5) : ?>
+			var keepalive = function(){ $.ajax({method: 'get'}); };
+			var sessiontimer = setInterval(keepalive, <?php echo (int) max(($lt * 60000) / 2, 30000) ?>);
+		<?php endif ?>
+		
 		
 		<?php if($ul==1) include 'functions/user.js'; ?>
 	   	

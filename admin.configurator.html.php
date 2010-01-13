@@ -27,6 +27,9 @@ class HTML_configurator_admin {
 		// google chromeframe support to CFG.
 		if($thebrowser == 'internet-explorer') $document->setMetaData('X-UA-Compatible', 'chrome=1', true);
 		
+		$conf = JFactory::getConfig();
+		$lifetime = $conf->getValue('lifetime');
+
         $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
 		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
 		$browser 	= new Browser();
@@ -34,9 +37,8 @@ class HTML_configurator_admin {
 		$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
 		
 		($this->checkUser()) ? $uval = 1 : $uval = 0;
-		
 		if(!isset($_COOKIE['unpack'])){
-			$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting);
+			$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
 			$document->addStyleSheet($csspath . 'configurator.css.php');
 		} else {
 			/* unpacked js
@@ -61,7 +63,7 @@ class HTML_configurator_admin {
 			$document->addScript($jspath . 'getparams.js');
 			$document->addScript($jspath . 'jsoncookie.js');
 			//}
-			$document->addScript($jspath . 'functions.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting);
+			$document->addScript($jspath . 'functions.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
 			/* unpacked css
 			*****************************************/
 			// global

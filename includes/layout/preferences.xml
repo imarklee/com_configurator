@@ -45,7 +45,7 @@
 		</param>
 		<param name="session_keepalive" default="keepalive" type="list" label="Session Keepalive" position="last">
 			<option value="warn">Warn me 5 min before my session ends</option>
-			<option value="keepalive">Keepalive my session in the background</option>
+			<option value="keepalive">Keep my session alive in the background</option>
 			<option value="ignore">Don't do anything. The session ends when it ends</option>
 		</param>
 		<param name="syntax_highlighting" default="1" type="radio" label="Code Editor Highlighting">

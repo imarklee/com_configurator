@@ -347,10 +347,6 @@ $(function(){
 });
 
 
-
-
-
-
 function globalWrapOn(elid, hideid){
 	if($(elid).attr('checked')){
 		$(hideid).parent().css('display', 'block');
@@ -373,15 +369,50 @@ $(function(){
 	globalWrapOff('#generalglobal_wrap0','#generalglobal_wrap_start,  #generalglobal_wrap_end');
 });
 
+function cacheOn(elid, hideid){
+	if($(elid).attr('checked')){
+		$(hideid).parent().css('display', 'block');
+	}
+	$(elid).click(function(){
+		$(hideid).parent().css('display', 'block');
+	});
+}
+function cacheOff(elid, hideid){
+	if($(elid).attr('checked')){
+		$(hideid).parent().css('display', 'none');
+	}
+	$(elid).click(function(){
+		$(hideid).parent().css('display', 'none');
+	});
+}
+
+$(function(){
+	cacheOn('#performancecache1','#performancecachetime');
+	cacheOff('#performancecache0','#performancecachetime');
+});
 
 
+function iphoneOn(elid, hideid){
+	if($(elid).attr('checked')){
+		$(hideid).parent().css('display', 'block');
+	}
+	$(elid).click(function(){
+		$(hideid).parent().css('display', 'block');
+	});
+}
+function iphoneOff(elid, hideid){
+	if($(elid).attr('checked')){
+		$(hideid).parent().css('display', 'none');
+	}
+	$(elid).click(function(){
+		$(hideid).parent().css('display', 'none');
+	});
+}
 
-
-
-
-
-
-
+$(function(){
+    iphoneOn('#iphoneiphone_mode1','#iphoneiphone_header, #iphoneiphone_webclip');
+    iphoneOff('#iphoneiphone_mode0','#iphoneiphone_header,  #iphoneiphone_webclip');
+});
 
 function textarea(action, ta_el){
 	var display;

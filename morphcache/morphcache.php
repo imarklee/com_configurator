@@ -56,7 +56,8 @@ class plgSystemMorphCache extends JPlugin
 			jimport('joomla.filesystem.file');
 			
 			$uri = JFactory::getURI();
-			$path = JPATH_CACHE.'/morph/'.$uri->getHost().str_replace(array('/', 'index.php', '.php'), array('-', '', ''), $uri->getPath()).'.'.$format;
+			$itemid = isset($_SESSION['menuid']) ? $_SESSION['menuid'] : 0;
+			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath())).'.'.(int)$itemid.'.'.$format;
 			if(file_exists($path))
 			{
 				$created	= time()-date('U', filemtime($path));
@@ -233,11 +234,11 @@ class plgSystemMorphCache extends JPlugin
 
 	
 
-		$data->js_jquery = array($data->jquery_core, $data->tabscount, $data->accordionscount, $data->lazyload_enabled, $data->captions_enabled, $data->lightbox_enabled);
-		$data->js_jqueryui = array($data->tabscount, $data->accordionscount);
-		$data->js_cookie = array($data->tabscount, $data->accordionscount, $data->toolbar_slider, $data->topshelf_slider, $data->bottomshelf_slider, $data->developer_toolbar);
+		$data->js_jquery = array($data->jquery_core, (bool)$data->tabscount, (bool)$data->accordionscount, $data->lazyload_enabled, $data->captions_enabled, $data->lightbox_enabled);
+		$data->js_jqueryui = array((bool)$data->tabscount, (bool)$data->accordionscount);
+		$data->js_cookie = array((bool)$data->tabscount, (bool)$data->accordionscount, $data->toolbar_slider, $data->topshelf_slider, $data->bottomshelf_slider, $data->developer_toolbar);
 		$data->js_slider = array($data->toolbar_slider, $data->topshelf_slider, $data->bottomshelf_slider);
-		$data->js_equalize = array($data->topshelf_equalize, $data->bottomshelf_equalize, $data->user1_equalize, $data->user2_equalize, $data->outer1_equalize, $data->outer2_equalize, $data->outer3_equalize, $data->outer4_equalize, $data->outer5_equalize, $data->inner1_equalize, $data->inner2_equalize, $data->inner3_equalize, $data->inner4_equalize, $data->inner5_equalize);
+		$data->js_equalize = array($data->toolbar_equalize, $data->masthead_equalize, $data->subhead_equalize, $data->topnav_equalize, $data->topshelf_equalize, $data->bottomshelf_equalize, $data->user1_equalize, $data->user2_equalize, $data->inset1_equalize, $data->inset2_equalize, $data->inset3_equalize, $data->inset4_equalize, $data->outer1_equalize, $data->outer2_equalize, $data->outer3_equalize, $data->outer4_equalize, $data->outer5_equalize, $data->inner1_equalize, $data->inner2_equalize, $data->inner3_equalize, $data->inner4_equalize, $data->inner5_equalize, $data->footer_equalize);
 		
 		if( $data->pack_js == 1 ){
 			$before = array();

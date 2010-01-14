@@ -35,7 +35,7 @@ jQuery.noConflict();
 		}
 		
 		<?php if($sk == 'warn' && $lt > 5) : ?>
-			<? $timeout = ($lt - 5) * 60000 ?>
+			<?php $timeout = ($lt - 5) * 60000 ?>
 			function endsession()
 			{
 				$.ajax({

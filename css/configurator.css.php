@@ -15,7 +15,7 @@ if(file_exists('../../../../templates/morph/core/browser.php')){
 include_once('../../../../templates/morph/core/browser.php');
 }
 
-$browser 	= new Browser();
+$browser 	= new MBrowser();
 $thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 
 // global

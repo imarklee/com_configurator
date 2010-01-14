@@ -177,7 +177,7 @@ class plgSystemMorphCache extends JPlugin
 		
 		$data = (object) $this->loadMorph();
 
-		$browser 					= new Browser();
+		$browser 					= new MBrowser();
 		$data->browser 				= strtolower(preg_replace("/[^A-Za-z]/i", "", $browser->getBrowser()));
 		
 		$document = JFactory::getDocument();

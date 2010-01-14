@@ -32,7 +32,7 @@ class HTML_configurator_admin {
 
         $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
 		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
-		$browser 	= new Browser();
+		$browser 	= new MBrowser();
 		$thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 		$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
 		

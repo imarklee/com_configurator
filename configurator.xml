@@ -8,7 +8,7 @@
     <author>JoomlaJunkie</author>
     <authorEmail>norepy@joomlajunkie.com</authorEmail>
     <authorUrl>http://www.joomlajunkie.com</authorUrl>
-    <copyright>Copyright 2009 Web Monkeys</copyright>
+    <copyright>Copyright 2009 - 2010 Web Monkeys</copyright>
     <license>Commercial</license>
     <version>1.07</version>
 	<installfile>install.configurator.php</installfile>
@@ -26,10 +26,6 @@
     
     <administration>
         <menu img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
-        <!-- <submenu>
-			<menu link="option=com_configurator&amp;task=dashboard" img="js/ThemeOffice/cpanel.png">Dashboard</menu>
-            <menu link="option=com_configurator&amp;task=manage" img="js/ThemeOffice/config.png">Manage</menu>
-        </submenu> -->
         <files>
             <filename>admin.configurator.html.php</filename>
             <filename>admin.configurator.php</filename>

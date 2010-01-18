@@ -8,6 +8,14 @@ define('JINDEXURL', $base);
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.file');
 
+// The following is to avoid configurator from showing up in the frontend menu manager
+$com = JTable::getInstance('component');
+if($com->loadByOption('com_configurator'))
+{
+	$com->link = null;
+	$com->store(true);
+}
+
 // Move the search plugin
 $admin_path = 'administrator/components/com_configurator/morphcache';
 $plugins_path = 'plugins/system';

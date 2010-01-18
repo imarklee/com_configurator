@@ -39,6 +39,7 @@ function iType($cookie){
 		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
 			<li class="tick-on"><?php echo iType('upgrade_cfg'); ?> the Configurator component.</li>
+			<li<?php echo summaryclass('installed_morphcache'); ?>><?php echo iType('upgrade_morphcache'); ?> the Morph Cache system plugin.</li>
 			<?php if(isset($_COOKIE['installed_morph']) && isset($_COOKIE['installed_bkpmorph'])){ ?>
 			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created a backup of the Morph template.</li>
 			<?php } ?>

@@ -13,28 +13,34 @@ $admin_path = 'administrator/components/com_configurator/morphcache';
 $plugins_path = 'plugins/system';
 if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
 {
-	
+	$plugin_exists = JFile::exists(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
+	if($plugin_exists) setcookie('upgrade_morphcache', 'true');
 	JFile::move($admin_path.'/morphcache.xml',  $plugins_path.'/morphcache.xml', JPATH_ROOT);
 	JFile::move($admin_path.'/morphcache.php',  $plugins_path.'/morphcache.php', JPATH_ROOT);
 	
 	$status = new JObject();
 	
-	// Insert in database
-	$row = JTable::getInstance('plugin');
-	$row->name = 'System - Morph Cache';
-	$row->ordering = 1;
-	$row->folder = 'system';
-	$row->iscore = 0;
-	$row->access = 0;
-	$row->client_id = 0;
-	$row->element = 'morphcache';
-	$row->published = 1;
-	$row->params = '';
-	if (!$row->store()) {
-		// Install failed, roll back changes
-		$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
-		return false;
+	if(!$plugin_exists)
+	{
+		// Insert in database
+		$row = JTable::getInstance('plugin');
+		$row->name = 'System - Morph Cache';
+		$row->ordering = 1;
+		$row->folder = 'system';
+		$row->iscore = 0;
+		$row->access = 0;
+		$row->client_id = 0;
+		$row->element = 'morphcache';
+		$row->published = 1;
+		$row->params = '';
+		if (!$row->store()) {
+			// Install failed, roll back changes
+			$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
+			return false;
+		}
 	}
+	
+	setcookie('installed_morphcache', 'true');
 }
 
 $backupdir = JPATH_ROOT . '/morph_assets/backups';
@@ -99,6 +105,7 @@ if(isset($_COOKIE['is_themelet_installed'])) setcookie('is_themelet_installed', 
 if(isset($_COOKIE['upgrade-type'])) setcookie('upgrade-type', '', time()-3600);
 if(isset($_COOKIE['upgrade_cfg'])) setcookie('upgrade_cfg', '', time()-3600);
 if(isset($_COOKIE['upgrade_morph'])) setcookie('upgrade_morph', '', time()-3600);
+if(isset($_COOKIE['upgrade_morphcache'])) setcookie('upgrade_morphcache', '', time()-3600);
 if(isset($_COOKIE['upgrade_themelet'])) setcookie('upgrade_themelet', '', time()-3600);
 if(isset($_COOKIE['updates'])) setcookie('updates', '', time()-3600);
 

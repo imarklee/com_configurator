@@ -42,7 +42,7 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 			    <a href="#" class="logout-configurator">Logout</a>
 			</li>
 			<li class="changes">
-			    <?php if(isset($_COOKIE['formChanges'])){ ?><span class="shelf-notice">You have unsaved changes</span><?php }?></li>
+			    <?php if(isset($_COOKIE['formChanges'])){ ?><span class="shelf-notice">You have unsaved changes</span><?php }?>
 			</li>
 			<li class="toggle-shelf">
 			    <a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf">

@@ -96,12 +96,16 @@
 				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['plugins-desc'])) { include dirname(__FILE__).'/../plugins/desc-plugins.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab">Fancy Captions</a></li>
+					<li class="icon-fontsizer"><a href="#fontsizer-tab">Fontsizer</a></li>
 					<li class="icon-lazyload"><a href="#lazyload-tab">Lazyload Images</a></li>
 					<li class="icon-lightbox"><a href="#lightbox-tab">Lightbox</a></li>
+					<li class="icon-shareit"><a href="#shareit-tab">Shareit</a></li>
 				</ul>
 				<?php include dirname(__FILE__).'/../plugins/captify.php' ?>
+				<?php include dirname(__FILE__).'/../plugins/fontsizer.php' ?>
 				<?php include dirname(__FILE__).'/../plugins/lazyload.php' ?>
 				<?php include dirname(__FILE__).'/../plugins/lightbox.php' ?>
+				<?php include dirname(__FILE__).'/../plugins/shareit.php' ?>
 			</div>
 		</div>
 

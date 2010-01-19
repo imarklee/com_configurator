@@ -234,7 +234,7 @@ class plgSystemMorphCache extends JPlugin
 
 	
 
-		$data->js_jquery = array($data->jquery_core, (bool)$data->tabscount, (bool)$data->accordionscount, $data->lazyload_enabled, $data->captions_enabled, $data->lightbox_enabled);
+		$data->js_jquery = array($data->jquery_core, (bool)$data->tabscount, (bool)$data->accordionscount, $data->lazyload_enabled, $data->captions_enabled, $data->lightbox_enabled, $data->fontsizer_enabled, $data->shareit_enabled);
 		$data->js_jqueryui = array((bool)$data->tabscount, (bool)$data->accordionscount);
 		$data->js_cookie = array((bool)$data->tabscount, (bool)$data->accordionscount, $data->toolbar_slider, $data->topshelf_slider, $data->bottomshelf_slider, $data->developer_toolbar);
 		$data->js_slider = array($data->toolbar_slider, $data->topshelf_slider, $data->bottomshelf_slider);
@@ -259,7 +259,7 @@ class plgSystemMorphCache extends JPlugin
 			if ( $data->lazyload_enabled )  $before[] = $data->jspath.'/lazyload.js';
 			if ( $data->captions_enabled )  $before[] = $data->jspath.'/captify.js';
 			if ( $data->lightbox_enabled )  $before[] = $data->jspath.'/colorbox.js';
-			$before[] = $data->jspath.'/fontsizer.js';
+			if ( $data->fontsizer_enabled )  $before[] = $data->jspath.'/fontsizer.js';
 			
 
 			foreach($before as $js)

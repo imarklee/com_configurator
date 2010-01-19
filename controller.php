@@ -782,6 +782,7 @@ class ConfiguratorController extends JController {
 				$error = 'error: "Could not save file, permission error!"';
 				return $error;
 			}
+			
 			if( !move_uploaded_file($themelet_details['tmp_name'], $themelet_dir.'/'.strtolower(basename($themelet_details['name']))) ){
 				$error = 'error: "Could not move file to required location!"';
 				return $error;
@@ -802,23 +803,34 @@ class ConfiguratorController extends JController {
 			}
 		
 			JPath::setPermissions($themelet_dir.'/'.strtolower(basename($themelet_details['name'])));
+			
+			// Backup custom files
+			//$unpack_dir = $themelet_dir.'/'.strtolower(basename($themelet_details['name']));
+			//$backups = array('/css/custom.css','/js/custom.js');
+			//foreach($backups as $backup)
+			//{
+			//	if(JFile::exists($unpack_dir.$backup)) JFile::move($backup, dirname($backup).'/backup.'.basename($backup), $unpack_dir);
+			//}
 			$msg = $this->unpackThemelet($themelet_dir.'/'.strtolower(basename($themelet_details['name'])), $backupfile);
 			
 			$db = JFactory::getDBO();
 			// db queries to add custom CSS/PHP/JS to the database table for the themelet.
 			// custom PHP
+			// @TODO add check for preventing loss of custom code
 			$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'custom.php' AND `parent_name` = '".$themelet_name."';");
 			if($db->loadResult() == 0) {
 				$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES ( NULL, 'themelet', '".$themelet_name."', 'custom.php', '', FROM_UNIXTIME(".time().") );");
 				$db->query();
 			}
 			// custom CSS
+			// @TODO add check for preventing loss of custom code
 			$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'custom.css.php' AND `parent_name` = '".$themelet_name."';");
 			if($db->loadResult() == 0) {
 				$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES ( NULL, 'themelet', '".$themelet_name."', 'custom.css.php', '', FROM_UNIXTIME(".time().") );");
 				$db->query();
 			}
 			// custom JS
+			// @TODO add check for preventing loss of custom code
 			$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'custom.js.php' AND `parent_name` = '".$themelet_name."';");
 			if($db->loadResult() == 0) {
 				$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES ( NULL, 'themelet', '".$themelet_name."', 'custom.js.php', '', FROM_UNIXTIME(".time().") );");
@@ -826,6 +838,7 @@ class ConfiguratorController extends JController {
 			}
 			
 			// custom footer code
+			// @TODO add check for preventing loss of custom code
 			$db->setQuery("SELECT COUNT(*) from `#__configurator_customfiles` WHERE `filename` = 'script.php' AND `parent_name` = '".$themelet_name."';");
 			if($db->loadResult() == 0) {
 				$db->setQuery("INSERT INTO `#__configurator_customfiles` VALUES ( NULL, 'themelet', '".$themelet_name."', 'script.php', '', FROM_UNIXTIME(".time().") );");

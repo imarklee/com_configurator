@@ -2089,7 +2089,7 @@ class ConfiguratorController extends JController {
 		$db = JFactory::getDBO();
 		$type	  = $db->Quote(JRequest::getCmd('type'));
 		$parent	  = $db->Quote(JRequest::getCmd('parent'));
-		$contents = $db->Quote(addslashes($_POST['contents']));
+		$contents = $db->Quote($_POST['contents']);
 		$filename = $db->Quote(JRequest::getCmd('file'));
 		
 		$query = "DELETE FROM `#__configurator_customfiles` ".

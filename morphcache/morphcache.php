@@ -91,7 +91,6 @@ class plgSystemMorphCache extends JPlugin
 		} else {
 			$this->$format = $this->setConfigurations();
 			$this->$view();
-			
 			$this->debug();
 			
 			ob_end_flush();
@@ -137,6 +136,7 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function renderJs()
 	{
+		if($minify = $this->js->pack_js && $this->js->minify_js) ob_start();
 		foreach($this->js->scripts->before as $js)
 		{
 			//echo PHP_EOL.' /* @group '.basename($js).' */ '.PHP_EOL;
@@ -144,10 +144,18 @@ class plgSystemMorphCache extends JPlugin
 			//echo PHP_EOL.' /* @end '.basename($js).' */ '.PHP_EOL;
 		}
 		include JPATH_THEMES.'/morph/core/js/template.js.php';
+		if($minify) echo $this->minifyJs(ob_get_clean());
+	}
+	
+	protected function minifyJs($js)
+	{
+		include_once JPATH_THEMES.'/morph/core/JSMin.php';
+		return JSMin::minify($js);
 	}
 	
 	public function renderCss()
 	{
+		if($minify = $this->css->pack_css && $this->css->minify_css) ob_start();
 		foreach($this->css->stylesheets->before as $css)
 		{
 			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
@@ -168,6 +176,13 @@ class plgSystemMorphCache extends JPlugin
 			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents($css));
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;
 		}
+		if($minify) echo $this->minifyCss(ob_get_clean());
+	}
+	
+	protected function minifyCss($css)
+	{
+		include_once JPATH_THEMES.'/morph/core/Compressor.php';
+		return Minify_CSS_Compressor::process($css);
 	}
 	
 	public function setConfigurations()

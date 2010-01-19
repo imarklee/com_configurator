@@ -391,6 +391,30 @@ $(function(){
 	cacheOff('#performancecache0','#performancecachetime');
 });
 
+function minifyOn(elid, hideid){
+	if($(elid).attr('checked')){
+		$(hideid).parent().css('display', 'block');
+	}
+	$(elid).click(function(){
+		$(hideid).parent().css('display', 'block');
+	});
+}
+function minifyOff(elid, hideid){
+	if($(elid).attr('checked')){
+		$(hideid).parent().css('display', 'none');
+	}
+	$(elid).click(function(){
+		$(hideid).parent().css('display', 'none');
+	});
+}
+
+$(function(){
+	minifyOn('#performancepack_css1','#performanceminify_css1');
+	minifyOn('#performancepack_js1','#performanceminify_js1');
+	minifyOff('#performancepack_css0','#performanceminify_css1');
+	minifyOff('#performancepack_js0','#performanceminify_js1');
+});
+
 
 function iphoneOn(elid, hideid){
 	if($(elid).attr('checked')){

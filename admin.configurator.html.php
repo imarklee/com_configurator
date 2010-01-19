@@ -101,6 +101,7 @@ class HTML_configurator_admin {
 			$document->addStyleSheet($csspath . 'docs.css');
 			$document->addStyleSheet($csspath . 'fullscreen.css');
 			$document->addStyleSheet($csspath . 'editor.css');
+			$document->addStyleSheet($csspath . 'itoggle.css');
 			//}
 			
 			// browser stylesheets

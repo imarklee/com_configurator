@@ -111,6 +111,14 @@ jQuery.noConflict();
 			var sessiontimer = setInterval(keepalive, <?php echo (int) max(($lt * 60000) / 2, 30000) ?>);
 		<?php endif ?>
 		
+		$('.itoggle-ready').iToggle({
+			easing:'easeOutExpo',
+			type:'toggle',
+			keepLabel:false,
+			easing:'easeInExpo',
+			speed:300
+		});
+
 		
 		<?php if($ul==1) include 'functions/user.js'; ?>
 	   	

@@ -1,0 +1,63 @@
+/* ---------------------------------------------
+	TOGGLE.CSS
+-----------------------------------------------*/
+
+input.iT_checkbox_on{
+	display:block !important;
+	float:left;
+	position:relative !important;
+	top:-43px !important;
+	left:100px !important;
+	margin-bottom:-43px;
+	}
+
+/* -----------------------------
+	This is the important bit
+-------------------------------*/
+
+#tabs ol.forms li.radio-item label.ilabel{
+	display:block;
+	font-size:12px;
+	
+	cursor:pointer;
+	}
+#tabs ol.forms li.radio-item label.itoggle {
+	position: relative;
+	margin: 5px 0;
+	float: left;
+}
+
+#tabs ol.forms li.radio-item label.itoggle,
+#tabs ol.forms li.radio-item label.itoggle span{
+	display: inline-block;
+	width: 65px;
+	height: 20px;
+	background: url(../images/itoggle.png) left bottom no-repeat;
+	cursor:pointer;
+	text-indent:-5000px;
+	}
+#tabs ol.forms li.radio-item label.itoggle.iToff{
+	background-position:right bottom;
+	}
+#tabs ol.forms li.radio-item label.itoggle span{
+	background-position: left top;
+	margin: 0;
+	}
+input.iT_checkbox{
+	/*position:absolute;
+	top:-9999px;
+	left:-9999px;*/
+	display: none;
+	}
+
+/*	
+	If you want the corners to be
+	transparent, add these two lines
+	to the main block above. Only
+	works on webkit and mozilla browsers
+	For more reliable results, make your
+	own png using the supplied .psd
+	
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+*/

@@ -2089,7 +2089,7 @@ class ConfiguratorController extends JController {
 		$db = JFactory::getDBO();
 		$type	  = $db->Quote(JRequest::getCmd('type'));
 		$parent	  = $db->Quote(JRequest::getCmd('parent'));
-		$contents = $db->Quote(JRequest::getString('contents'));
+		$contents = $db->Quote(addslashes($_POST['contents']));
 		$filename = $db->Quote(JRequest::getCmd('file'));
 		
 		$query = "DELETE FROM `#__configurator_customfiles` ".
@@ -2106,7 +2106,6 @@ class ConfiguratorController extends JController {
 		jimport('joomla.filesystem.folder');
 		$path = JPATH_ROOT.'/cache/morph';
 		if(JFolder::exists($path)) JFolder::delete($path);
-		
 		return true;
 	}
 	

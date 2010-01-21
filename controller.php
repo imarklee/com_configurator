@@ -2053,16 +2053,16 @@ class ConfiguratorController extends JController {
 	}
 	
 	function create_sql_file($filename, $str){
-		$h = fopen($filename, 'w'); 
+		$h = JFile::read($filename); 
     	$gzdata = gzencode($str, 9); 
-   		fwrite($h, $gzdata);
+   		JFile::write($gzdata);
 		fclose($h);
 		
 		return true;
 	}
 	
 	function parse_mysql_dump($url, $json = 'false') {
-	    $handle = fopen($url, "r");
+		$handle = JFile::read($url); 
 	    $query = "";
 	    $db = JFactory::getDBO();
 	    while(!feof($handle)) {

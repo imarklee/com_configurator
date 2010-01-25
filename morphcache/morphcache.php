@@ -25,6 +25,10 @@ class plgSystemMorphCache extends JPlugin
 		parent::__construct($subject, $config);
 		
 		define('MORPH_JQUERY', 1);
+
+		$this->option = JRequest::getCmd('option');
+		$isConfigurator = $this->option  == 'com_configurator' && $render = JRequest::getCmd('render', false);
+		if($isConfigurator) return $this->configurator($render);
 		
 		$this->format = $format = JRequest::getCmd('render', false);
 		$gzip   = JRequest::getBool('gzip', false);
@@ -105,6 +109,13 @@ class plgSystemMorphCache extends JPlugin
 		
 		
 		return $this;
+	}
+	
+	protected function configurator($render)
+	{
+		$file = JPATH_ADMINISTRATOR.'/components/'.$this->option.'/'.$render.'/configurator.'.$render.'.php';
+		if(file_exists($file)) include $file;
+		$this->close();
 	}
 	
 	protected function close()

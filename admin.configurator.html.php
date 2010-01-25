@@ -38,8 +38,12 @@ class HTML_configurator_admin {
 		
 		($this->checkUser()) ? $uval = 1 : $uval = 0;
 		if(!isset($_COOKIE['unpack'])){
-			$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
-			$document->addStyleSheet($csspath . 'configurator.css.php');
+			//$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
+			$js = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=js&getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
+			$document->addScript($js);
+			$css = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=css');
+			$document->addStyleSheet($css);
+			//$document->addStyleSheet($csspath . 'configurator.css.php');
 		} else {
 			/* unpacked js
 			*****************************************/

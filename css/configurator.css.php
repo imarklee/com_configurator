@@ -11,12 +11,16 @@ $expire = "expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($expire);
 
 // browser specific
-if(file_exists('../../../../templates/morph/core/browser.php')){
-include_once('../../../../templates/morph/core/browser.php');
+$browser = JPATH_ROOT.'/templates/morph/core/browser.php';
+if(file_exists($browser)){
+include_once($browser);
 }
 
 $browser 	= new MBrowser();
 $thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
+
+//Create an additional buffer, so we can search replace paths later.
+ob_start();
 
 // global
 include('reset.css');
@@ -62,5 +66,11 @@ switch($thebrowser){
 	case 'opera': include('opera.css'); break;
 	case 'firefox': include('firefox.css'); break;
 }
+$buffer = ob_get_clean();
+$path = JURI::base(1).'/components/'.$this->option.'/';
+$search = array('<,', '../');
+$replace = array('', $path);
+
+echo str_replace($search, $replace, $buffer);
+
 ob_end_flush();
-?>

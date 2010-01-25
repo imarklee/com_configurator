@@ -24,7 +24,7 @@ class plgSystemMorphCache extends JPlugin
 	{
 		parent::__construct($subject, $config);
 		
-		//define('MORPH_JQUERY', 1);
+		define('MORPH_JQUERY', 1);
 		
 		$this->format = $format = JRequest::getCmd('render', false);
 		$gzip   = JRequest::getBool('gzip', false);

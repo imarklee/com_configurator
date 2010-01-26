@@ -22,13 +22,9 @@ $template_xml = $template_path . 'templateDetails.xml';
 $themelet_xml = $themelet_path . $params->get('themelet').'/themeletDetails.xml';
 $component_xml = $component_path . 'configurator.xml';
 
-$template_details = xml2array($template_xml);
-$themelet_details = xml2array($themelet_xml);
-$component_details = xml2array($component_xml);
-
-$template_arr = $template_details['install'];
-$themelet_arr = isset($themelet_details['install']) ? $themelet_details['install'] : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
-$component_arr = $component_details['install'];
+$template_arr = xml2array($template_xml);
+$themelet_arr = xml2array($themelet_xml) ? xml2array($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
+$component_arr = xml2array($component_xml);
 
 setcookie('current_themelet', $params->get('themelet')); ?>
 

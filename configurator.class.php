@@ -402,146 +402,6 @@ class configuratorParameters extends JParameter {
         }
     }
     
-    
-    
-    // new Render
-    function render( $name='params' ) {
-        global $mainframe;
-        $old_er = error_reporting(E_ALL & ~ E_NOTICE);
-        jimport('joomla.html.pane');
-        JHTML::_('behavior.tooltip');
-        if ($this->_path) {
-            $this->_xmlElem = new morphXMLLoader($this->_path);
-            $this->_data = $this->_xmlElem->getParamDefaults();
-            
-            if (isset($this->_xmlElem->name)) {
-                $isParamsFile = $this->_xmlElem->is_morph;
-                if ($isParamsFile) {
-                    // TODO: Inject custom params.
-                    
-                    $this->_useTabs = $this->_xmlElem->use_tabs;
-                }
-            }
-            
-        }
-
-        
-        $goto_javascript = '<script language="JavaScript" type="text/javascript">
-<!-- 
-function makeCustom(form) {
-form.preset.options[0].selected = true;
-}
-//-->
-</script>';
-        $mainframe->addCustomHeadTag( $goto_javascript );
-        // Load custom JS file (morph.js) and CSS (morph.css) from template folder.
-        $template         = $this->_xmlElem->name;
-        $d = JPATH_SITE.'/templates/'.$template.'/morph.css';
-        if(file_exists(JPATH_SITE.'/templates/'.$template.'/morph.css')) {
-            $tag = '<link href="'.JURI::root().'templates/'.$template.'/morph.css" rel="stylesheet" type="text/css" />';
-            $mainframe->addCustomHeadTag( $tag );
-        }
-        if(file_exists(JPATH_SITE.'/templates/'.$template.'/morph.js')) {
-            $tag = '<script type="text/javascript" language="javascript" src="'.JURI::root().'templates/'.$template.'/morph.js"></script>';
-            $mainframe->addCustomHeadTag( $tag );
-        }
-        $this->_html = array();
-        $this->_html[] = '<table width="100%" id="morphParams" cellpadding="0" cellspacing="0">';
-
-        $element =& $this->_xmlElem;
-
-        if (!empty($element->description)) {
-            // add the params description to the display
-            $this->_html[] = '<tr><td colspan="2" class="paramTitle">' . $element->description . '</td></tr>';
-        }
-
-        //$params = mosParseParams( $row->params );
-        $this->_methods = get_class_methods( get_class( $this ) );
-        if($this->_useTabs) {
-            $this->_html[] = '<tr><td>';
-            //ob_start();
-            //$this->_tabs = & JPane::getInstance('tabs');
-            $this->_tabs = & JPane::getInstance($element->tab_type);
-            $this->_html[] = $this->_tabs->startPane('morph');
-            //$this->_html[] = ob_get_clean();
-            $this->_tabOpen = false;
-            
-            $this->_param_count = 0;
-            $xml_parser = xml_parser_create();
-            xml_set_object( $xml_parser, $this );
-            xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
-            xml_set_element_handler($xml_parser, 'startElementHandler','endElementHandler');
-            xml_set_character_data_handler($xml_parser, 'characterDataHandler');
-            if(!($fp = fopen($this->_path,'r'))) return null;
-            while( $data = fread($fp, 4096) ) {
-                if(!xml_parse($xml_parser, $data, feof($fp))) die("xml error: " . xml_error_string(xml_get_error_code($xml_parser)) . " LINE:" . xml_get_current_line_number($xml_parser));
-            }
-            
-            xml_parser_free($xml_parser);
-            
-            if(!empty($this->_custom_nodes)) { 
-                $xml_parser = xml_parser_create();
-                xml_set_object( $xml_parser, $this );
-                xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
-                xml_set_element_handler($xml_parser, 'startElementHandler','endElementHandler');
-                xml_set_character_data_handler($xml_parser, 'characterDataHandler');
-                if(!xml_parse($xml_parser, $this->_custom_nodes, TRUE)) die("custom xml error: " . xml_error_string(xml_get_error_code($xml_parser)) . " LINE:" . xml_get_current_line_number($xml_parser) . " COL:" . xml_get_current_column_number($xml_parser) . "<br />" . implode(',',$this->_html));
-                xml_parser_free($xml_parser);
-            }
-            
-            if($this->_tabOpen) {
-                $this->_html[] = '</table><!-- END OF TAB LIST -->';
-                //ob_start();
-                $this->_html[] = $this->_tabs->endPanel();
-                $this->_html[] = $this->_tabs->endPane();
-                //$this->_html[] = ob_get_clean();
-                $this->_tabOpen = false;
-            }
-            $this->_html[] = '</td></tr>';
-            $this->_html[] = '</table>';
-        } else {
-            $this->_html[] = '<tr><td>';
-            
-            $this->_param_count = 0;
-            $xml_parser = xml_parser_create();
-            xml_set_object( $xml_parser, $this );
-            xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
-            xml_set_element_handler($xml_parser, 'startElementHandler','endElementHandler');
-            xml_set_character_data_handler($xml_parser, 'characterDataHandler');
-            if(!($fp = fopen($this->_path,'r'))) return null;
-            while( $data = fread($fp, 4096) ) {
-                if(!xml_parse($xml_parser, $data, feof($fp))) die("xml error: " . xml_error_string(xml_get_error_code($xml_parser)) . " LINE:" . xml_get_current_line_number($xml_parser));
-            }
-            
-            xml_parser_free($xml_parser);
-            
-            if(!empty($this->_custom_nodes)) { 
-                $xml_parser = xml_parser_create();
-                xml_set_object( $xml_parser, $this );
-                xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
-                xml_set_element_handler($xml_parser, 'startElementHandler','endElementHandler');
-                xml_set_character_data_handler($xml_parser, 'characterDataHandler');
-                if(!xml_parse($xml_parser, $this->_custom_nodes, TRUE)) die("custom xml error: " . xml_error_string(xml_get_error_code($xml_parser)) . " LINE:" . xml_get_current_line_number($xml_parser) . " COL:" . xml_get_current_column_number($xml_parser) . "<br />" . implode(',',$this->_html));
-                xml_parser_free($xml_parser);
-            }
-            
-            $this->_html[] = '</td></tr>';
-            $this->_html[] = '</table>';
-        }
-        if($this->_cp_count > 0) {
-            //array_unshift($html,'<script language="JavaScript">cp1.writeDiv()</script>');
-            array_unshift($this->_html,'<div id="colorPickerDiv" style="position:absolute;visibility:hidden;"> </div>');
-        }
-        if (count( $this->_param_count ) < 1) {
-            $this->_html[] = "<tr><td colspan=\"2\"><i>" . _NO_PARAMS . "</i></td></tr>";
-        }
-        error_reporting( $old_er );
-        return implode( "\n", $this->_html );
-        
-    }
-
-    // END new Render
-    
 /**
 * @param object A param tag node
 * @param string The control name
@@ -830,37 +690,19 @@ class morphXMLLoader {
         if( $this->_section == 'description' ) $this->description = trim($cdata);
     }
     
-    function getParamDefaults() {
+    function getParamDefaults()
+    {
         if(!isset($this->_xml_file)) return null;
         $xml_parser = xml_parser_create();
         xml_set_object( $xml_parser, $this );
         xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
         xml_set_element_handler($xml_parser, 'startElementHandler','endElementHandler');
         xml_set_character_data_handler($xml_parser, 'characterDataHandler');
-        if(!($fp = fopen($this->_xml_file,'r'))) return null;
-        while( $data = fread($fp, 4096) ) {
-            if(!xml_parse($xml_parser, $data, feof($fp))) die("xml error: " . xml_error_string(xml_get_error_code($xml_parser)));
-        }
+        jimport('joomla.filesystem.file');
+        $data = JFile::read($this->_xml_file);
+        if(!xml_parse($xml_parser, $data)) die("xml error: " . xml_error_string(xml_get_error_code($xml_parser)));
         xml_parser_free($xml_parser);
         return $this->_data;
-    }
-    
-    function getPresetCount() {
-        if(!isset($this->_xml_file)) return null;
-        $this->is_counter = true;
-        $this->total = 0;
-        $this->_section = 'preset';
-        $xml_parser = xml_parser_create();
-        xml_set_object( $xml_parser, $this );
-        xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
-        xml_set_element_handler($xml_parser, 'startElementHandler','endElementHandler');
-        xml_set_character_data_handler($xml_parser, 'characterDataHandler');
-        if(!($fp = fopen($this->_xml_file,'r'))) return null;
-        while( $data = fread($fp, 4096) ) {
-            if(!xml_parse($xml_parser, $data, feof($fp))) die("xml error: " . xml_error_string(xml_get_error_code($xml_parser)));
-        }
-        xml_parser_free($xml_parser);
-        return $this->total;
     }
 }
 

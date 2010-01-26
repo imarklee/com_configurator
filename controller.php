@@ -25,7 +25,7 @@ class ConfiguratorController extends JController {
 		if(is_array($cid)) {
 			$template = $cid[0];
 		}
-
+		
 		$goto_link = 'index2.php?option='.$option.'&task=manage&t='.$template.'&preset=';
 		$goto_javascript = '<script language="JavaScript" type="text/javascript">'."\n".
 		'  <!--'."\n".
@@ -2059,36 +2059,24 @@ class ConfiguratorController extends JController {
 	}
 	
 	function create_sql_file($filename, $str){
-		$h = fopen($filename, 'w'); 
-    	$gzdata = gzencode($str, 9); 
-   		fwrite($h, $gzdata);
-		fclose($h);
-		
+		JFile::write($filename, $str);
 		return true;
 	}
 	
-	function parse_mysql_dump($url, $json = 'false') {
-	    $handle = fopen($url, "r");
-	    $query = "";
-	    $db = JFactory::getDBO();
-	    while(!feof($handle)) {
-	        $sql_line = fgets($handle);
-	        if (trim($sql_line) != "" && strpos($sql_line, "--") === false) {
-	            $query .= $sql_line;
-	            if (preg_match("/;[\040]*\$/", $sql_line)) {
-		            if(!$json){
-		            	
-						$query = $db->setQuery( $query );
-						$result = $db->query($query) or die($db->getErrorMsg());
-		               	$query = "";
-		            }else{
-		            	$query = $db->setQuery( $query );
-						$result = $db->query($query) or die(json_encode(array('error' => 'MySQL error!<br />Line: <small>'.$sql_line.'</small><br />File: '.$url.'<br />Error: '.$db->getErrorMsg())));
-		            	$query = "";
-		            }
-	            }
-	        }
-	    }
+	function parse_mysql_dump($url, $json = 'false')
+	{
+        jimport('joomla.installer.helper');
+        $db = JFactory::getDBO();
+        $queries = JInstallerHelper::splitSql(JFile::read($url));
+        foreach ($queries as $query)
+        {
+        	$query = trim($query);
+        	if ($query != '' && $query{0} != '#')
+        	{
+        		$db->setQuery($query);
+				$result = $db->query() or die($json ? json_encode(array('error' => 'MySQL error!<br />Line: <small>'.$sql_line.'</small><br />File: '.$url.'<br />Error: '.$db->getErrorMsg())) : $db->getErrorMsg());
+			}
+		}
 	}
 	
 	function load_editor_file(){

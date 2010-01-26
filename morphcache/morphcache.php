@@ -24,7 +24,8 @@ class plgSystemMorphCache extends JPlugin
 	{
 		parent::__construct($subject, $config);
 		
-		define('MORPH_JQUERY', 1);
+		$app = JFactory::getApplication();
+		if($app->getTemplate() == 'morph') define('MORPH_JQUERY', 1);
 
 		$this->option = JRequest::getCmd('option');
 		$isConfigurator = $this->option  == 'com_configurator' && $render = JRequest::getCmd('render', false);

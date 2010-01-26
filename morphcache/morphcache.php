@@ -111,6 +111,26 @@ class plgSystemMorphCache extends JPlugin
 		return $this;
 	}
 	
+	public function onAfterInitialise()
+	{
+		// Prepare Morph if needed
+		// @TODO make Morph able to load anywhere
+		//$this->morph();
+	}
+	
+	public function morph()
+	{
+		$app = JFactory::getApplication();
+		if($app->getTemplate() != 'morph') return;
+		
+		$document			= JFactory::getDocument();
+		$document->template	= $app->getTemplate();
+		$document->baseurl	= JURI::base(1);
+		
+		
+		include_once(JPATH_ROOT.'/templates/'.$document->template.'/core/morphFunctions.php');
+	}
+	
 	protected function configurator($render)
 	{
 		$file = JPATH_ADMINISTRATOR.'/components/'.$this->option.'/'.$render.'/configurator.'.$render.'.php';

@@ -8,6 +8,138 @@
 */
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
+
+abstract class abstractXMLParams {
+    
+    /**
+     * Path to xml file
+     *
+     * @var string
+     */
+    protected $_path = null;
+    
+    /**
+     * The complete xml document
+     *
+     * @var SimpleXMLElement
+     */
+    protected $_xml;
+    
+    /**
+     * An key/value array over the configuration values
+     *
+     * @var Array
+     */
+    protected $_data = array();
+    
+    /**
+     * Initialise morphXMLParams, and if a path is passed with it, prepare the data list
+     *
+     * @param $path
+     */
+	public function __construct($path = false)
+	{
+		$this->_path = $path;
+		
+		if($this->_path && file_exists($this->_path))
+		{
+			$this->loadFile();
+		}
+	}
+	
+	/**
+	 * Load the xml file, and create the list
+	 *
+	 * @param $path
+	 * @return Array
+	 */
+	public function loadFile()
+	{
+        $path = $this->_path;
+        $this->_xml  = file_exists($path) ? simplexml_load_file($path) : new SimpleXMLElement;
+        
+        // If the xml don't have the <params> tag, escape
+        if(!$this->_xml->params) return;
+        
+        foreach($this->_xml->params as $params)
+        {
+	        foreach($params->children() as $param)
+	        {
+	        	if(isset($param['name'])) $this->_data[(string)$param['name']] = (string)$param['default'];
+	        }
+        }
+        
+        return $this->getData();
+    }
+    
+    /**
+     * Sets the data
+     *
+     * @param $data
+     * @return $this
+     */
+    public function setData($data)
+    {
+    	$this->_data = (array)$data;
+    	return $this;
+    }
+    
+    /**
+     * Gets the data
+     *
+     * @return array
+     */
+    public function getData()
+    {
+    	return $this->_data;
+    }
+    
+    /**
+     * Set the SimpleXMLElement
+     *
+     * @param $xml
+     * @return $this
+     */
+    public function setXml(SimpleXMLElement $xml)
+    {
+    	$this->_xml = $xml;
+    	return $this;
+    }
+    
+    /**
+     * Gets the SimpleXMLElement object
+     *
+     * @return SimpleXMLElement
+     */
+    public function getXml()
+    {
+    	return $this->_xml;
+    }
+    
+    /**
+     * Sets the path
+     *
+     * @param $path
+     * @return $this
+     */
+    public function setPath($path)
+    {
+    	if($path && file_exists($path)) $this->_path = $path;
+    	return $this;
+    }
+    
+    /**
+     * Gets the path to the xml, returns false if the file does not exist
+     *
+     * @return string|false
+     */
+    public function getPath()
+    {
+    	if($this->_path && file_exists($this->_path)) return $this->_path;
+    	return false;
+    }   
+}
+
 /**
 * Configurator parameters handler
 * @package Configurator
@@ -732,97 +864,19 @@ class morphXMLLoader {
     }
 }
 
-class morphXMLParams {
-    
-    var $_xml_file = null;
-    var $_return_val = null;
-    var $_in_params_section = null;
-    var $_include_values = null;
-    
-    function morphXMLParams( $xml_file=null ) {
-        $this->_xml_file = $xml_file;
-        $this->_return_val = array();
-        $this->_in_params_section = false;
-    }
-    
-    function startElementHandler($parser, $name, $attribs) {
-        if($this->_in_params_section && $name == 'param') $this->_return_val[] = ( $this->_include_values ) ? $attribs['name'].'=' . ( isset($attribs['default'])?$attribs['default']:'' ) : $attribs['name'];
-        if( $name == 'params' ) $this->_in_params_section = true;
-    }
-    
-    function endElementHandler($parser, $name) {
-        if( $name == 'params' ) $this->_in_params_section = false;
-    }
-    
-    function characterDataHandler($parser, $cdata) {
-    }
-    
-    function getTemplateParamList( $include_values=FALSE ) {
-        if( !isset( $this->_xml_file ) || ( strlen( $this->_xml_file ) < 1 ) ) return NULL;
-        $this->_include_values = $include_values;
-        $xml_parser = xml_parser_create();
-        xml_set_object( $xml_parser, $this );
-        xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
-        xml_set_element_handler($xml_parser, 'startElementHandler','endElementHandler');
-        xml_set_character_data_handler($xml_parser, 'characterDataHandler');
-        if(!($fp = fopen($this->_xml_file,'r'))) return null;
-        while( $data = fread($fp, 4096) ) {
-            if(!xml_parse($xml_parser, $data, feof($fp))) die("xml error: " . xml_error_string(xml_get_error_code($xml_parser)));
-        }
-        xml_parser_free($xml_parser);
-        
-        return $this->_return_val;
-    }
-    
-    
-}
+class morphXMLParams extends abstractXMLParams {}
 
-class morphXMLPresets {
-    var $_xml_file = null;
-    var $_return_val = null;
-    var $_in_presets_section = null;
-    var $_in_preset = null;
-    var $_preset_name = null;
+class morphXMLPresets extends abstractXMLParams {
     
-    function morphXMLPresets( $xml_file=null ) {
-        $this->_xml_file = $xml_file;
-        $this->_return_val = array();
-        $this->_in_presets_section = false;
-        $this->_in_preset = false;
+    /**
+     * Get the presets, if it's the right preset
+     *
+     * @param $name
+     * @return return type
+     */
+    public function getData($name)
+    {
+    	if($this->_xml->params->name == $name) return parent::getData();
+    	return array();
     }
-    
-    function startElementHandler($parser, $name, $attribs) {
-        if( $this->_in_presets_section && $name == 'preset' && $attribs['name'] == $this->_preset_name) {
-            $this->_in_preset = true;
-        }
-        if($this->_in_presets_section && $name == 'param' && $this->_in_preset) $this->_return_val[] = $attribs['name'].'='.$attribs['default'];
-        if( $name = 'presets' ) $this->_in_presets_section = true;
-    }
-    
-    function endElementHandler($parser, $name) {
-        if( $name == 'presets' ) $this->_in_presets_section = false;
-        if( $name == 'preset' && $this->_in_preset ) $this->_in_preset = false;
-    }
-    
-    function characterDataHandler($parser, $cdata) {
-    }
-    
-    function getPresetParamList( $preset_name ) {
-        if( !isset( $this->_xml_file ) || ( strlen( $this->_xml_file ) < 1 ) || (!isset($preset_name)) || (strlen($preset_name) < 1) ) return NULL;
-        $this->_preset_name = $preset_name;
-        $xml_parser = xml_parser_create();
-        xml_set_object( $xml_parser, $this );
-        xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
-        xml_set_element_handler($xml_parser, 'startElementHandler','endElementHandler');
-        xml_set_character_data_handler($xml_parser, 'characterDataHandler');
-        if(!($fp = fopen($this->_xml_file,'r'))) return null;
-        while( $data = fread($fp, 4096) ) {
-            if(!xml_parse($xml_parser, $data, feof($fp))) die("xml error: " . xml_error_string(xml_get_error_code($xml_parser)));
-        }
-        xml_parser_free($xml_parser);
-        return $this->_return_val;
-    
-    }
-
 }
-?>

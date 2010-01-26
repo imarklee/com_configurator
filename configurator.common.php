@@ -9,16 +9,16 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-function getTemplateParamList( $xmlfile, $include_values=FALSE ) {
-    
-    if( !isset( $xmlfile ) || ( strlen( $xmlfile ) < 1 ) ) return NULL;
-    $xml_data = new morphXMLParams( $xmlfile );
-    return $xml_data->getTemplateParamList($include_values);
+function getTemplateParamList( $file = false )
+{
+    if( !$file ) return array();
+    $xml = new morphXMLParams( $file );
+    return $xml->getData();
 }
 
-function getPresetParamList( $xmlfile, $preset_name ) {
-    $xml_presets = new morphXMLPresets( $xmlfile );
-    return $xml_presets->getPresetParamList( $preset_name );
+function getPresetParamList( $file, $name ) {
+    $xml = new morphXMLPresets( $file );
+    return $xml->getData( $name );
 }
 
 function getTemplateName( $xml_file=NULL ) {

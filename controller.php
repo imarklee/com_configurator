@@ -48,11 +48,18 @@ class ConfiguratorController extends JController {
 			$templateBaseDir = JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template;
 			if(!empty($preset_choice)) {
 				// Load select preset values from the XML file.
-				$preset_values = getPresetParamList( $templateBaseDir.'/core/morphDetails.xml', $preset_choice );
+				$values = getPresetParamList( $templateBaseDir.'/core/morphDetails.xml', $preset_choice );
+				foreach($values as $name => $default)
+				{
+					$preset_values[] = $name.'='.$default;
+				}
 		}
 
 		$paramList = getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
-		for($i=0;$i<count($paramList);$i++) $paramList[$i] .= '=';
+		foreach($paramList as $name => $default)
+		{
+			$paramList[] = $name.'='.$default;
+		}
 
 			if ( $template ) {
 				// do stuff for existing records
@@ -96,7 +103,7 @@ class ConfiguratorController extends JController {
 				// Default empty.
 				$current_params = implode( "\n", $paramList );
 			}
-			
+	
 			// Create the morph params
 			$params = new JParameter($current_params, $templateBaseDir.'/core/morphDetails.xml');        
 			$params->name = $template;
@@ -162,9 +169,8 @@ class ConfiguratorController extends JController {
 			$pref_params = $database->loadObjectList();
 						
 			$pref_list = getTemplateParamList( dirname(__FILE__) . '/includes/layout/preferences.xml', TRUE );
-			foreach ($pref_list as $pref) {
-				$pref = explode( '=', $pref );
-				$defpref_params[$pref[0]] = $pref[1];
+			foreach ($pref_list as $pref => $val) {
+				$defpref_params[$pref] = $val;
 			}
 			
 			// Replace default settings with any settings found in the DB.
@@ -410,8 +416,8 @@ class ConfiguratorController extends JController {
 		$path = JPATH_ROOT.'/cache/morph';
 		if(JFolder::exists($path)) JFolder::delete($path);
 				
-		foreach ($params as $currentblock){	
-			foreach($currentblock as $param_key => $param_value){
+		foreach ($params as $currentblock){
+			foreach((array)$currentblock as $param_key => $param_value){
 		
 				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template_name;

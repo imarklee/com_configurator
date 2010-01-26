@@ -38,17 +38,15 @@ class configuratorLoader {
       if( isset($morph_installed) ) {
           $xml_params = getTemplateParamList( dirname(__FILE__).'/morphDetails.xml', TRUE );
           // Convert to a associative array.
-          foreach ($xml_params as $param) {
-              $param = explode( '=', $param );
-              $default_params[$param[0]] = $param[1];
+          foreach ($xml_params as $key => $value) {
+              $default_params[$key] = $balue;
           }
       } else {
           // Morph not installed.
           $temp_params = new morphXMLParams(dirname(__FILE__).'/morphDetails.xml');
           $xml_params = $temp_params->getTemplateParamList(TRUE);
-          foreach ($xml_params as $param) {
-              $param = explode( '=', $param );
-              $default_params[$param[0]] = $param[1];
+          foreach ($xml_params as $key => $value) {
+              $default_params[$key] = $value;
           }
       }
       

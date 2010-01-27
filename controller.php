@@ -412,9 +412,7 @@ class ConfiguratorController extends JController {
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				
-		jimport('joomla.filesystem.folder');
-		$path = JPATH_ROOT.'/cache/morph';
-		if(JFolder::exists($path)) JFolder::delete($path);
+		$this->clear_cache();
 				
 		foreach ($params as $currentblock){
 			foreach((array)$currentblock as $param_key => $param_value){
@@ -589,7 +587,7 @@ class ConfiguratorController extends JController {
 		if(!is_dir($tempassets)){JFolder::create($tempassets);}
 		JPath::setPermissions($tempassets);
 		
-		if(!move_uploaded_file($file['tmp_name'], $tempassets.'/'.strtolower(basename($file['name']))) ){
+		if(!JFile::upload($file['tmp_name'], $tempassets.'/'.strtolower(basename($file['name']))) ){
 			$error = 'error: "Could not move file to required location!"';
 			return $error;
 		}
@@ -617,6 +615,7 @@ class ConfiguratorController extends JController {
 		}
 		
 		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempassets);
+		$this->clear_cache();
 		return 'success: "Assets uploaded successfully.", error: ""';
 	}
 	
@@ -635,7 +634,7 @@ class ConfiguratorController extends JController {
 		
 		$this->create_db_backup('full-database');
 		
-		if( !move_uploaded_file($file['tmp_name'], $tempdir.'/'.strtolower(basename($file['name']))) ){
+		if( !JFile::upload($file['tmp_name'], $tempdir.'/'.strtolower(basename($file['name']))) ){
 			$error = 'error: "Could not move file to required location!"';
 			return $error;
 		}
@@ -707,7 +706,7 @@ class ConfiguratorController extends JController {
 				$error = 'error: "Could not save file, permission error!"';
 				return $error;
 			}
-			if( !move_uploaded_file($file['tmp_name'], $iphone_dir.'/'.strtolower(basename($file['name']))) ){
+			if( !JFile::upload($file['tmp_name'], $iphone_dir.'/'.strtolower(basename($file['name']))) ){
 				$error = 'error: "Could not move file to required location!"';
 				return $error;
 			}
@@ -737,7 +736,7 @@ class ConfiguratorController extends JController {
 				$error = 'error: "There was an error removing the old install. Upload failed"';	
 				return $error;
 			}else{
-				if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
+				if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
 					$error = 'error: "Could not move file to required location!"';
 					return $error;
 				}
@@ -789,7 +788,7 @@ class ConfiguratorController extends JController {
 				return $error;
 			}
 			
-			if( !move_uploaded_file($themelet_details['tmp_name'], $themelet_dir.'/'.strtolower(basename($themelet_details['name']))) ){
+			if( !JFile::upload($themelet_details['tmp_name'], $themelet_dir.'/'.strtolower(basename($themelet_details['name']))) ){
 				$error = 'error: "Could not move file to required location!"';
 				return $error;
 			}
@@ -918,6 +917,8 @@ class ConfiguratorController extends JController {
 				}
 			}
 		}
+		
+		$this->clear_cache();
 	}
 	
 	function export_db(){
@@ -942,7 +943,7 @@ class ConfiguratorController extends JController {
 		if(!is_dir($tempdir)){JFolder::create($tempdir);}
 		JPath::setPermissions($tempdir);
 		
-		if( !move_uploaded_file($file['tmp_name'], $tempdir.'/'.strtolower(basename($file['name']))) ){
+		if( !JFile::upload($file['tmp_name'], $tempdir.'/'.strtolower(basename($file['name']))) ){
 			$error = 'error: "Could not move file to required location!"';
 			return $error;
 		}
@@ -1124,6 +1125,8 @@ class ConfiguratorController extends JController {
 				$setting = null;
 			}
 		}
+		
+		$this->clear_cache();
 	}
 	
 	function show_error($err, $type, $cookie){
@@ -1353,7 +1356,7 @@ class ConfiguratorController extends JController {
 					$error = 'error: "Could not save file, permission error!"';
 					return $error;
 				}
-				if( !move_uploaded_file($logo_details['tmp_name'], $logo_dir.'/'.strtolower(basename($logo_details['name']))) ){
+				if( !JFile::upload($logo_details['tmp_name'], $logo_dir.'/'.strtolower(basename($logo_details['name']))) ){
 					$error = 'error: "Could not move file to required location!"';
 					return $error;
 				}
@@ -1417,7 +1420,7 @@ class ConfiguratorController extends JController {
 					$error = 'error: "Could not save file, permission error!"';
 					return $error;
 				}
-				if( !move_uploaded_file($background_details['tmp_name'], $background_dir.'/'.strtolower(basename($background_details['name']))) ){
+				if( !JFile::upload($background_details['tmp_name'], $background_dir.'/'.strtolower(basename($background_details['name']))) ){
 					$error = 'error: "Could not move file to required location!"';
 					return $error;
 				}
@@ -1482,7 +1485,7 @@ class ConfiguratorController extends JController {
 					$error = 'error: "Could not save file, permission error!"';
 					return $error;
 				}
-				if( !move_uploaded_file($favicon_details['tmp_name'], $favicon_dir.'/'.strtolower(basename('favicon.ico'))) ){
+				if( !JFile::upload($favicon_details['tmp_name'], $favicon_dir.'/'.strtolower(basename('favicon.ico'))) ){
 					$error = 'error: "Could not move file to required location!"';
 					return $error;
 				}
@@ -1844,7 +1847,7 @@ class ConfiguratorController extends JController {
 						$ret = '{'.$error.'}';
 						echo $ret;
 					}else{
-						if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
+						if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
 							$error = 'error: "Could not move file to required location!"';
 							$ret = '{'.$error.'}';
 							echo $ret;
@@ -1863,7 +1866,7 @@ class ConfiguratorController extends JController {
 				}
 			}
 		}else{
-			if( !move_uploaded_file($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
+			if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
 				$error = 'error: "Could not move file to required location!"';
 				$ret = '{'.$error.'}';
 				echo $ret;
@@ -2110,9 +2113,7 @@ class ConfiguratorController extends JController {
 		$db->setQuery($query);
 		$db->query() or die('Unable to save the following query: '.$query);
 		
-		jimport('joomla.filesystem.folder');
-		$path = JPATH_ROOT.'/cache/morph';
-		if(JFolder::exists($path)) JFolder::delete($path);
+		$this->clear_cache();
 		return true;
 	}
 	
@@ -2210,5 +2211,11 @@ class ConfiguratorController extends JController {
 		return true;
 	}
 	
+	function clear_cache()
+	{
+		jimport('joomla.filesystem.folder');
+		$path = JPATH_ROOT.'/cache/morph';
+		if(JFolder::exists($path)) JFolder::delete($path);
+	}
+	
 }
-?>

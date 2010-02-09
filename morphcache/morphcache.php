@@ -310,6 +310,16 @@ class plgSystemMorphCache extends JPlugin
 			if ( $data->lightbox_enabled )  $before[] = $data->jspath.'/colorbox.js';
 			if ( $data->fontsizer_enabled )  $before[] = $data->jspath.'/fontsizer.js';
 			
+			//add JS to Morph for WP for Joomla
+			// first if there is no wordpress component loading we still need the supporting files if the module is being used
+			if(JRequest::getVar('option') != 'com_wordpress') {
+			//Check 1 : must add check IF module "mod_wordpress_utility" is active on the page
+			$before[] = 'images/wordpress/themes/morph/js/jquery-tools.js'; // always load
+			$before[] = 'images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
+			} else if(JRequest::getVar('option') == 'com_wordpress'){ 
+			$before[] = 'images/wordpress/themes/morph/js/jquery-tools.js'; //always load
+			$before[] = 'images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
+			$before[] = 'images/wordpress/themes/morph/js/theme.js'; // only load if its the wordpress component/wptheme			
 
 			foreach($before as $js)
 			{
@@ -361,6 +371,21 @@ class plgSystemMorphCache extends JPlugin
 		    if( !$data->simpletweet )		unset($before['simpletweet']);
 		    if( !$data->simplecontact )		unset($before['simplecontact']);
 		    if( !$data->simplesocial )		unset($before['simplesocial']);
+		    
+		    // add CSS to Morph for WP for Joomla
+		    // first if there is no wordpress component loading we still need the supporting files if the module is being used
+		    if(JRequest::getVar('option') != 'com_wordpress') {
+		    //Check 1 : must add check IF module "mod_wordpress_utility" is active on the page
+		    $before[] = 'images/wordpress/themes/morph/css/images.css'; // load if module or wordpress component
+		    $before[] = 'images/wordpress/themes/morph/css/modules.css'; // load if module
+		    //Check 2 : must add check IF module "mod_wordpress_widgetmod" is active on the page
+		    $before[] = 'images/wordpress/themes/morph/css/widgets.css';// load if widget module is used
+		    // now if WP is loading, then make sure the theme.css is also loaded as well as the above css files
+		    } else if(JRequest::getVar('option') == 'com_wordpress'){ 
+		    $before[] = 'images/wordpress/themes/morph/css/theme.css'; // only load if its the wordpress component/wptheme
+		    $before[] = 'images/wordpress/themes/morph/css/images.css'; // load if module or wordpress component
+		    $before[] = 'images/wordpress/themes/morph/css/modules.css'; // load if module is loaded
+		    }
 		    
 		    foreach($before as $css)
 		    {

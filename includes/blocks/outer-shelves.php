@@ -4,9 +4,17 @@
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('topshelf', 'topshelfdata')); ?>
 		</ol>
-   	    <h3>Bottom Shelf Settings</h3>
+   	    <h3>Bottom Shelf 1 Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('bottomshelf', 'bottomshelfdata')); ?>
+		</ol>
+		<h3>Bottom Shelf 2 Settings</h3>
+		<ol class="forms">
+			<?php echo renderParams($params->renderToArray('bottomshelf2', 'bottomshelf2data')); ?>
+		</ol>
+		<h3>Bottom Shelf 3 Settings</h3>
+		<ol class="forms">
+			<?php echo renderParams($params->renderToArray('bottomshelf3', 'bottomshelf3data')); ?>
 		</ol>
 	</div>
 	<div id="shelves-info" class="info-panel">

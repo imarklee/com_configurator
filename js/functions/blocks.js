@@ -199,6 +199,8 @@ $(function(){
 	blockSettingsOptions('#topnavtopnav_chrome','#topnavtopnav');
 	blockSettingsOptions('#topshelftopshelf_chrome','#topshelftopshelf');
 	blockSettingsOptions('#bottomshelfbottomshelf_chrome','#bottomshelfbottomshelf');
+	blockSettingsOptions('#bottomshelf2bottomshelf2_chrome','#bottomshelf2bottomshelf2');
+	blockSettingsOptions('#bottomshelf3bottomshelf3_chrome','#bottomshelf3bottomshelf3');
 	blockSettingsOptions('#user1user1_chrome','#user1user1');
 	blockSettingsOptions('#user2user2_chrome','#user2user2');
 	blockSettingsOptions('#outer1outer1_chrome','#outer1outer1');
@@ -249,6 +251,8 @@ blockDisable('#subheadsubhead');
 blockDisable('#topnavtopnav');
 blockDisable('#topshelftopshelf');
 blockDisable('#bottomshelfbottomshelf');
+blockDisable('#bottomshelf2bottomshelf2');
+blockDisable('#bottomshelf3bottomshelf3');
 blockDisable('#user1user1');
 blockDisable('#user2user2');
 blockDisable('#footerfooter');
@@ -318,6 +322,10 @@ $(function(){
 	sliderOptionsOff('#toolbartoolbar_slider0','#toolbartoolbar_slider_text');
 	sliderOptionsOn('#bottomshelfbottomshelf_slider1','#bottomshelfbottomshelf_slider_text');
 	sliderOptionsOff('#bottomshelfbottomshelf_slider0','#bottomshelfbottomshelf_slider_text');
+	sliderOptionsOn('#bottomshelf2bottomshelf2_slider1','#bottomshelf2bottomshelf2_slider_text');
+	sliderOptionsOff('#bottomshelf2bottomshelf2_slider0','#bottomshelf2bottomshelf2_slider_text');
+	sliderOptionsOn('#bottomshelf3bottomshelf3_slider1','#bottomshelf3bottomshelf3_slider_text');
+	sliderOptionsOff('#bottomshelf3bottomshelf3_slider0','#bottomshelf3bottomshelf3_slider_text');
 	sliderOptionsOn('#topshelftopshelf_slider1','#topshelftopshelf_slider_text');
 	sliderOptionsOff('#topshelftopshelf_slider0','#topshelftopshelf_slider_text');
 	sliderOptionsOn('#progressiverounded_corners1', '#progressiverounded_amount');

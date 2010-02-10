@@ -178,14 +178,21 @@ class plgSystemMorphCache extends JPlugin
 			//echo PHP_EOL.' /* @end '.basename($js).' */ '.PHP_EOL;
 		}
 		include JPATH_THEMES.'/morph/core/js/template.js.php';
-		//add JS to Morph for WP for Joomla
-		// first if there is no wordpress component loading we still need the supporting files if the module is being used
-		if(JRequest::getVar('option') != 'com_wordpress') {
-		//Check 1 : must add check IF module "mod_wordpress_utility" is active on the page
-			include JPATH_ROOT. '/images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
-		} else if(JRequest::getVar('option') == 'com_wordpress'){ 
-			include JPATH_ROOT. '/images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
-			include JPATH_ROOT. '/images/wordpress/themes/morph/js/theme.js'; // only load if its the wordpress component/wptheme
+		$wpload == '';
+		$db=& JFactory::getDBO();
+		$query = "SELECT COUNT(*) FROM `#__components` WHERE `name` = 'WordPress' ";
+		$db->setQuery( $query ); $wploaded = $db->loadResult();
+		// first check to see whether wp4joomla is installed
+		if ( $wploaded == 1) {	
+			// add js to Morph for wp4joomla
+			// first if there is no wordpress component loading we still need the supporting files if the module is being used
+			if(JRequest::getVar('option') != 'com_wordpress') {
+			//Check 1 : must add check IF module "mod_wordpress_utility" is active on the page
+				include JPATH_ROOT. '/images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
+			} else if(JRequest::getVar('option') == 'com_wordpress'){ 
+				include JPATH_ROOT. '/images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
+				include JPATH_ROOT. '/images/wordpress/themes/morph/js/theme.js'; // only load if its the wordpress component/wptheme
+			}
 		}
 		if($minify) echo $this->minifyJs(ob_get_clean());
 	}

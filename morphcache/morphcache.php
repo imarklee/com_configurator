@@ -171,29 +171,14 @@ class plgSystemMorphCache extends JPlugin
 	public function renderJs()
 	{
 		if($minify = $this->js->pack_js && $this->js->minify_js) ob_start();
-		foreach($this->js->scripts->before as $js)
+		
+		foreach($this->js->scripts as $js => $type)
 		{
-			//echo PHP_EOL.' /* @group '.basename($js).' */ '.PHP_EOL;
-			echo file_get_contents($js);
-			//echo PHP_EOL.' /* @end '.basename($js).' */ '.PHP_EOL;
+			echo file_get_contents(JPATH_ROOT.$js);
 		}
+		
 		include JPATH_THEMES.'/morph/core/js/template.js.php';
-		$wpload == '';
-		$db=& JFactory::getDBO();
-		$query = "SELECT COUNT(*) FROM `#__components` WHERE `name` = 'WordPress' ";
-		$db->setQuery( $query ); $wploaded = $db->loadResult();
-		// first check to see whether wp4joomla is installed
-		if ( $wploaded == 1) {	
-			// add js to Morph for wp4joomla
-			// first if there is no wordpress component loading we still need the supporting files if the module is being used
-			if(JRequest::getVar('option') != 'com_wordpress') {
-			//Check 1 : must add check IF module "mod_wordpress_utility" is active on the page
-				include JPATH_ROOT. '/images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
-			} else if(JRequest::getVar('option') == 'com_wordpress'){ 
-				include JPATH_ROOT. '/images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
-				include JPATH_ROOT. '/images/wordpress/themes/morph/js/theme.js'; // only load if its the wordpress component/wptheme
-			}
-		}
+
 		if($minify) echo $this->minifyJs(ob_get_clean());
 	}
 	
@@ -206,10 +191,10 @@ class plgSystemMorphCache extends JPlugin
 	public function renderCss()
 	{
 		if($minify = $this->css->pack_css && $this->css->minify_css) ob_start();
-		foreach($this->css->stylesheets->before as $css)
+		foreach($this->css->styleSheets as $css => $type)
 		{
 			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
-			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents($css));
+			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;
 		}
 		include JPATH_THEMES.'/morph/core/css/template.css.php';
@@ -220,10 +205,10 @@ class plgSystemMorphCache extends JPlugin
 			echo $this->css->custom_css;
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;
 		}
-		foreach($this->css->stylesheets->after as $css)
+		foreach($this->css->styleSheetsAfter as $css => $type)
 		{
 			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
-			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents($css));
+			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;
 		}
 		if($minify) echo $this->minifyCss(ob_get_clean());
@@ -305,50 +290,7 @@ class plgSystemMorphCache extends JPlugin
 		$data->js_slider = array($data->toolbar_slider, $data->topshelf_slider, $data->bottomshelf_slider, $data->bottomshelf2_slider, $data->bottomshelf3_slider);
 		$data->js_equalize = array($data->toolbar_equalize, $data->masthead_equalize, $data->subhead_equalize, $data->topnav_equalize, $data->topshelf_equalize, $data->bottomshelf_equalize, $data->bottomshelf2_equalize, $data->bottomshelf3_equalize, $data->user1_equalize, $data->user2_equalize, $data->inset1_equalize, $data->inset2_equalize, $data->inset3_equalize, $data->inset4_equalize, $data->outer1_equalize, $data->outer2_equalize, $data->outer3_equalize, $data->outer4_equalize, $data->outer5_equalize, $data->inner1_equalize, $data->inner2_equalize, $data->inner3_equalize, $data->inner4_equalize, $data->inner5_equalize, $data->footer_equalize);
 		
-		if( $data->pack_js == 1 ){
-			$before = array();
-			if(in_array('1', $data->js_jquery)) $before[] = $data->jspath.'/jquery.js';
-			if(in_array('1', $data->js_jqueryui)) $before[] = $data->jspath.'/ui.js';
-			if(in_array('1', $data->js_cookie)) $before[] = $data->jspath.'/cookie.js';
-			if(in_array('1', $data->js_equalize)) $before[] = $data->jspath.'/equalheights.js';
-			if(in_array('1', $data->js_slider)) $before[] = $data->jspath.'/slider.js';
-			if ( $data->tabscount >= 1 )  $before[] = $data->jspath.'/tabs.js';
-			if ( $data->accordionscount >= 1 )  $before[] = $data->jspath.'/accordion.js';
-			if ( $data->topfish >= 1 && $data->topnav_hoverintent == 1 )  $before[] = $data->jspath."/hoverintent.js";
-			if ( $data->sidefish >= 1 or $data->topfish >= 1 or $data->topdrop >= 1  )  $before[] = $data->jspath.'/superfish.js';
-			if ( $data->topfish >= 1 && $data->topnav_supersubs == 1 )  $before[] = $data->jspath."/supersubs.js";
-			if ( $data->plugin_scrollto )  $before[] = $data->jspath.'/scrollto.js';
-			if ( $data->simpleticker )  $before[] = $data->jspath.'/innerfade.js';
-			if ( $data->simpletweet )  $before[] = JPATH_ROOT.'/modules/mod_simpletweet/js/simpletweet.js';
-			if ( $data->google_analytics !== '' )  $before[] = $data->jspath.'/googleanalytics.js';
-			if ( $data->lazyload_enabled )  $before[] = $data->jspath.'/lazyload.js';
-			if ( $data->captions_enabled )  $before[] = $data->jspath.'/captify.js';
-			if ( $data->lightbox_enabled )  $before[] = $data->jspath.'/colorbox.js';
-			if ( $data->fontsizer_enabled )  $before[] = $data->jspath.'/fontsizer.js';
-			
-			//add JS to Morph for WP for Joomla
-			// first if there is no wordpress component loading we still need the supporting files if the module is being used
-			if(JRequest::getVar('option') != 'com_wordpress') {
-			//Check 1 : must add check IF module "mod_wordpress_utility" is active on the page
-			$before[] = 'images/wordpress/themes/morph/js/jquery-tools.js'; // always load
-			//$before[] = 'images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
-			} else if(JRequest::getVar('option') == 'com_wordpress'){ 
-			$before[] = 'images/wordpress/themes/morph/js/jquery-tools.js'; //always load
-			//$before[] = 'images/wordpress/themes/morph/js/images.js';// load if module or wordpress component
-			//$before[] = 'images/wordpress/themes/morph/js/theme.js'; // only load if its the wordpress component/wptheme
-			}	
-
-			foreach($before as $js)
-			{
-				if(file_exists($js)) $data->scripts->before[] = $js;
-			}
-			
-		} else {
-			$data->scripts->before = array();
-		}
-		
-		
-		if( $data->pack_css ){
+		/*if( $data->pack_css ){
 			$before = array();
 			$before['yui'] = $data->csspath.'/yui.css';
 			$cssfiles = array(
@@ -410,10 +352,10 @@ class plgSystemMorphCache extends JPlugin
 		    }
 		} else {
 			$data->stylesheets->before = array();
-		}
+		}*/
 
 
-		if($data->pack_js)
+		/*if($data->pack_js)
 		{	
 			$after	= array();
 			$after[] = $data->path.'/js/themelet.js';
@@ -425,9 +367,9 @@ class plgSystemMorphCache extends JPlugin
 			}
 		} else {
 			 $data->scripts->after = array();
-		}
+		}*/
 		
-		$cssfiles = array('rtl','browsers','safari','opera','firefox','chrome','webkit','ie','ie8','ie7','ie6');
+		/*$cssfiles = array('rtl','browsers','safari','opera','firefox','chrome','webkit','ie','ie8','ie7','ie6');
 		foreach($cssfiles as $css)
 		{
 			$data->{'css_'.$css} = $data->path.'/css/'.$css.'.css';
@@ -465,7 +407,7 @@ class plgSystemMorphCache extends JPlugin
 			}
 		} else {
 			 $data->stylesheets->after = array();
-		}
+		}*/
 		
 		return $data;
 	}

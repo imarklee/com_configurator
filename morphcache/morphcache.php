@@ -174,6 +174,7 @@ class plgSystemMorphCache extends JPlugin
 		
 		foreach($this->js->scripts as $js => $type)
 		{
+			if(!file_exists(JPATH_ROOT.$js)) continue;
 			echo file_get_contents(JPATH_ROOT.$js);
 		}
 		
@@ -193,6 +194,7 @@ class plgSystemMorphCache extends JPlugin
 		if($minify = $this->css->pack_css && $this->css->minify_css) ob_start();
 		foreach($this->css->styleSheets as $css => $type)
 		{
+			if(!file_exists(JPATH_ROOT.$css)) continue;
 			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
 			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;
@@ -207,6 +209,7 @@ class plgSystemMorphCache extends JPlugin
 		}
 		foreach($this->css->styleSheetsAfter as $css => $type)
 		{
+			if(!file_exists(JPATH_ROOT.$css)) continue;
 			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
 			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;

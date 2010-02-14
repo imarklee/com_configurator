@@ -27,7 +27,7 @@
 		</ul>
 		<div id="site" class="ui-tabs-panel">
 			<div id="site-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['site-desc'])) { include dirname(__FILE__).'/../general/desc-site.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['site-desc'])) { include dirname(__FILE__).'/../general/desc-site.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
 					<!--<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>-->
@@ -45,7 +45,7 @@
 
 		<div id="customize" class="ui-tabs-panel ui-tabs-hide">
 			<div id="customize-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['themelet-desc'])) { include dirname(__FILE__).'/../customize/desc-customize.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['themelet-desc'])) { include dirname(__FILE__).'/../customize/desc-customize.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
 					<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
@@ -63,7 +63,7 @@
 
 		<div id="blocks" class="ui-tabs-panel ui-tabs-hide">
 			<div id="blocks-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['blocks-desc'])) { include dirname(__FILE__).'/../blocks/desc-blocks.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['blocks-desc'])) { include dirname(__FILE__).'/../blocks/desc-blocks.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab">Toolbar</a></li>
 					<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
@@ -93,7 +93,7 @@
 
 		<div id="plugins" class="ui-tabs-panel ui-tabs-hide">
 			<div id="plugins-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['plugins-desc'])) { include dirname(__FILE__).'/../plugins/desc-plugins.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['plugins-desc'])) { include dirname(__FILE__).'/../plugins/desc-plugins.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab">Fancy Captions</a></li>
 					<li class="icon-fontsizer"><a href="#fontsizer-tab">Fontsizer</a></li>
@@ -111,7 +111,7 @@
 
 		<div id="tools" class="ui-tabs-panel ui-tabs-hide">
 			<div id="tools-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['tools-desc'])) { include dirname(__FILE__).'/../tools/desc-tools.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['tools-desc'])) { include dirname(__FILE__).'/../tools/desc-tools.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
@@ -129,7 +129,7 @@
 
 		<div id="assets" class="ui-tabs-panel ui-tabs-hide">
 			<div id="assets-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 || isset($_COOKIE['assets-desc'])) { include dirname(__FILE__).'/../assets/desc-assets.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['assets-desc'])) { include dirname(__FILE__).'/../assets/desc-assets.php'; } ?>
 				<ul class="ui-helper-clearfix">
 					<li class="icon-themelets"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=themelets&amp;format=raw" title="assets tab themelets">Themelets</a></li>
 					<li class="icon-logos"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=logos&amp;format=raw" title="assets tab logos">Logos</a></li>

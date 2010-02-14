@@ -131,7 +131,7 @@
 			<div id="assets-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['assets-desc'])) { include dirname(__FILE__).'/../assets/desc-assets.php'; } ?>
 				<ul class="ui-helper-clearfix">
-					<li class="icon-themelets"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=themelets&amp;format=raw" title="assets tab themelets">Themelets</a></li>
+					<li class="icon-themelets"><a href="<?php echo JRoute::_('&option=com_configurator&amp;task=show_assets&amp;a=themelets&amp;format=raw') ?>" title="assets tab themelets">Themelets</a></li>
 					<li class="icon-logos"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=logos&amp;format=raw" title="assets tab logos">Logos</a></li>
 					<li class="icon-backgrounds"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=backgrounds&amp;format=raw" title="assets tab backgrounds">Backgrounds</a></li>
 					<li class="icon-iphone"><a href="../administrator/index.php?option=com_configurator&amp;task=show_assets&amp;a=iphone&amp;format=raw" title="assets tab iphone">iPhone</a></li>

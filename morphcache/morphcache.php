@@ -172,10 +172,13 @@ class plgSystemMorphCache extends JPlugin
 	{
 		if($minify = $this->js->pack_js && $this->js->minify_js) ob_start();
 		
-		foreach($this->js->scripts as $js => $type)
+		if($minify = $this->js->pack_js)
 		{
-			if(!file_exists(JPATH_ROOT.$js)) continue;
-			echo file_get_contents(JPATH_ROOT.$js);
+			foreach($this->js->scripts as $js => $type)
+			{
+				if(!file_exists(JPATH_ROOT.$js)) continue;
+				echo file_get_contents(JPATH_ROOT.$js);
+			}
 		}
 		
 		include JPATH_THEMES.'/morph/core/js/template.js.php';
@@ -192,12 +195,15 @@ class plgSystemMorphCache extends JPlugin
 	public function renderCss()
 	{
 		if($minify = $this->css->pack_css && $this->css->minify_css) ob_start();
-		foreach($this->css->styleSheets as $css => $type)
+		if($this->css->pack_css)
 		{
-			if(!file_exists(JPATH_ROOT.$css)) continue;
-			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
-			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
-			echo PHP_EOL.' /* @end */ '.PHP_EOL;
+			foreach($this->css->styleSheets as $css => $type)
+			{
+				if(!file_exists(JPATH_ROOT.$css)) continue;
+				echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
+				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
+				echo PHP_EOL.' /* @end */ '.PHP_EOL;
+			}
 		}
 		include JPATH_THEMES.'/morph/core/css/template.css.php';
 
@@ -207,12 +213,15 @@ class plgSystemMorphCache extends JPlugin
 			echo $this->css->custom_css;
 			echo PHP_EOL.' /* @end */ '.PHP_EOL;
 		}
-		foreach($this->css->styleSheetsAfter as $css => $type)
+		if($this->css->pack_css)
 		{
-			if(!file_exists(JPATH_ROOT.$css)) continue;
-			echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
-			echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
-			echo PHP_EOL.' /* @end */ '.PHP_EOL;
+			foreach($this->css->styleSheetsAfter as $css => $type)
+			{
+				if(!file_exists(JPATH_ROOT.$css)) continue;
+				echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
+				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
+				echo PHP_EOL.' /* @end */ '.PHP_EOL;
+			}
 		}
 		if($minify) echo $this->minifyCss(ob_get_clean());
 	}

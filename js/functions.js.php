@@ -20,7 +20,7 @@ return $pageURL;
 jQuery.noConflict();
 (function($) {
 	$(document).ready(function(){
-		
+
 		<?php include 'functions/common.js'; ?>
 		$.preloadCssImages();
 		
@@ -468,6 +468,7 @@ jQuery.noConflict();
 				path: '/'
 		 	} 
 		});
+
 		$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom");
 		$("#customize").removeClass("ui-widget-content");			
 		$("#assets-tabs li.icon-backup").removeClass("ui-state-disabled");	

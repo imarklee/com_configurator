@@ -22,7 +22,13 @@ $plugins_path = 'plugins/system';
 if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
 {
 	$plugin_exists = JFile::exists(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
-	if($plugin_exists) setcookie('upgrade_morphcache', 'true');
+	if($plugin_exists)
+	{
+		setcookie('upgrade_morphcache', 'true');
+		JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
+		JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.php');
+	}
+	
 	JFile::move($admin_path.'/morphcache.xml',  $plugins_path.'/morphcache.xml', JPATH_ROOT);
 	JFile::move($admin_path.'/morphcache.php',  $plugins_path.'/morphcache.php', JPATH_ROOT);
 	

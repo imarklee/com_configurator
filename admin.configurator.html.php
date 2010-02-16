@@ -66,6 +66,7 @@ class HTML_configurator_admin {
 			$document->addScript($jspath . 'qtip.js');
 			$document->addScript($jspath . 'getparams.js');
 			$document->addScript($jspath . 'jsoncookie.js');
+			$document->addScript($jspath . 'itoggle.js');
 			//}
 			$document->addScript($jspath . 'functions.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
 			/* unpacked css

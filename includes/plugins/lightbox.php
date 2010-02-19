@@ -1,6 +1,6 @@
 <div id="lightbox-tab" class="ui-tabs-hide">
 	<div id="lightbox-options" class="options-panel">
-	    <h3>TopUp Lightbox Settings</h3>
+	    <h3>Colorbox Lightbox Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('lightbox', 'lightboxdata')); ?>
 		</ol>

@@ -1,0 +1,15 @@
+<div id="docs-pagefx" class="docs-wrap">
+<h2>Customizing which pages the preloader is enabled on:</h2>
+<p class="intro">You may not want the preloader to be displayed on all pages, so this brief tutorial will show you how to customize which pages it is enabled on.</p>
+
+<h3>Step 1: Disable loading on all pages.</h3>
+<p>The first thing you need to do is set the "Enable on all pages" option to "no". Once that is done, you can proceed to the built in code editor and select the "custom footer script" option from the drop down list.</p>
+
+<h2>Step 2: Add your custom footer script code</h2>
+<p>Below is an example of the code you need to enter. It i</p>
+<script>
+ $ = jQuery.noConflict();   
+ QueryLoader.selectorPreload = "div#subhead";
+ QueryLoader.init();
+</script>
+ </div>

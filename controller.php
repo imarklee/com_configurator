@@ -410,6 +410,7 @@ class ConfiguratorController extends JController {
 		$params[44] = JRequest::getVar( 'lightbox', null, 'post', 'array' );
 		$params[45] = JRequest::getVar( 'fontsizer', null, 'post', 'array' );
 		$params[46] = JRequest::getVar( 'shareit', null, 'post', 'array' );
+		$params[47] = JRequest::getVar( 'preloader', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');

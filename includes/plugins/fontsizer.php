@@ -7,7 +7,7 @@
 	</div>
 	<div id="fontsizer-info" class="info-panel">
 		<h3>Fontsizer</h3>
-		<p class="teaser">Lorem ipsum dolor sit amet, laoreet pede pharetra libero hac et vivamus, in fermentum turpis leo lacus et, rutrum blandit sit risus in ante, mauris vitae odio integer libero eros, netus dignissim suscipit.</p>
-		<p>Euismod sed et mauris ullamcorper pellentesque eros, amet vivamus sodales id porta fusce, sed wisi cras, massa eu suspendisse proin ante vel facilisi, faucibus vulputate vivamus luctus dui hymenaeos orci.</p>
+		<p class="teaser">This will enable a text resizer on your Joomla article page, allowing your readers to increase or descrease the size of the article body text.</p>
+		<p> </p>
 	</div>
 </div>

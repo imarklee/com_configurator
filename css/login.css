@@ -30,3 +30,5 @@
 #alf-warning p{margin:5px 0 0 0;font:normal 12px/17px arial;}
 #alf-warning p strong{margin:0;font:bold 15px arial;}
 #cl-inner{box-shadow:0 0 15px #000;-webkit-box-shadow:0 0 15px #000;-moz-box-shadow: 0 0 15px #000;}
+.mac.firefox3 #conf-login #alf-cont label.label-username input.alf-input, 
+.mac.firefox3 #conf-login #alf-cont label.label-password input.alf-input{top:0;padding:4px 0 0;}

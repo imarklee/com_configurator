@@ -1590,7 +1590,7 @@ jQuery.noConflict();
 		    return false;
 		});
 	    
-	    if(!$.cookie('welcome_screen') && $.cookie('am_logged_in')){
+	    if(!$.cookie('welcome_screen')){
 	    	$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 		    	return welcomeScreen();
 		    });

@@ -173,7 +173,7 @@ class plgSystemMorphCache extends JPlugin
 	{
 		if($minify = $this->js->pack_js && $this->js->minify_js) ob_start();
 		
-		if($minify = $this->js->pack_js)
+		if($this->js->pack_js)
 		{
 			foreach($this->js->scripts as $js => $type)
 			{

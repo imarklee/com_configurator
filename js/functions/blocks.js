@@ -494,3 +494,67 @@ function captionsCondOn(elid){
 }
 captionsCondOff('#captifycaptions_enabled0', '#captify-options');
 captionsCondOn('#captifycaptions_enabled1', '#captify-options');
+
+function lightboxCondOff(elid){
+	function hide(){
+		$(elid).parent().nextAll('li').css('display','none');
+	}
+	if($(elid).attr('checked')){ hide(); }
+	$(elid).click(function(){ hide(); });
+}
+function lightboxCondOn(elid){
+	function hideSub(){
+		$('#lightboxlightbox_speedover,#lightboxlightbox_speedout,#lightboxlightbox_delay').parent().css('display', 'none');
+	}
+	function showSub(){
+		$('#lightboxlightbox_speedover,#lightboxlightbox_speedout,#lightboxlightbox_delay').parent().css('display', 'block');
+	}
+	function show(){
+		$(elid).parent().nextAll('li').css('display','block');
+		if($('#lightboxlightbox_animationalways-on').attr('checked')){
+			hideSub();
+		}
+		$('#lightboxlightbox_animationalways-on').click(function(){ hideSub(); });
+		
+		if($('#lightboxlightbox_animationslide').attr('checked')){
+			showSub();
+		}
+		$('#lightboxlightbox_animationslide').click(function(){ showSub(); });
+	}
+	if($(elid).attr('checked')){ show(); }
+	$(elid).click(function(){ show(); });
+}
+lightboxCondOff('#lightboxlightbox_enabled0', '#lightbox-options');
+lightboxCondOn('#lightboxlightbox_enabled1', '#lightbox-options');
+
+function preloaderCondOff(elid){
+	function hide(){
+		$(elid).parent().nextAll('li').css('display','none');
+	}
+	if($(elid).attr('checked')){ hide(); }
+	$(elid).click(function(){ hide(); });
+}
+function preloaderCondOn(elid){
+	function hideSub(){
+		$('#preloaderpreloader_speedover,#preloaderpreloader_speedout,#preloaderpreloader_delay').parent().css('display', 'none');
+	}
+	function showSub(){
+		$('#preloaderpreloader_speedover,#preloaderpreloader_speedout,#preloaderpreloader_delay').parent().css('display', 'block');
+	}
+	function show(){
+		$(elid).parent().nextAll('li').css('display','block');
+		if($('#preloaderpreloader_animationalways-on').attr('checked')){
+			hideSub();
+		}
+		$('#preloaderpreloader_animationalways-on').click(function(){ hideSub(); });
+		
+		if($('#preloaderpreloader_animationslide').attr('checked')){
+			showSub();
+		}
+		$('#preloaderpreloader_animationslide').click(function(){ showSub(); });
+	}
+	if($(elid).attr('checked')){ show(); }
+	$(elid).click(function(){ show(); });
+}
+preloaderCondOff('#preloaderpreloader_enabled0', '#preloader-options');
+preloaderCondOn('#preloaderpreloader_enabled1', '#preloader-options');

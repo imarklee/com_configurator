@@ -39,7 +39,7 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 			<ul id="new-add-multiselect">
 				
 			</ul>
-			<p id="new-add-all"><a href="#" class="ms-add-all">Add all</a></p
+			<p id="new-add-all"><a href="#" class="ms-add-all">Add all</a></p>
 		</div>
 	</div>
 	

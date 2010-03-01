@@ -5,6 +5,9 @@
 #editor-wrap li{float:right;padding-left:5px;}
 #editor-wrap li.file-list{float:left;padding-left:0;}
 
+#editor-desc{margin:-0.5em 0 1em;}
+#editor-desc p{color:#666;font:15px/20px arial;margin:0 0 15px;}
+
 #editor-wrap .CodeMirror-wrapping{border:3px solid #eee;display:inline-block;-moz-border-radius:5px;-webkit-border-radius:5px;width:916px;}
 #editor-wrap select{-moz-border-radius:2px;-webkit-border-radius:2px;font-family:arial;}
 #editor-wrap optgroup{background:#eee;}

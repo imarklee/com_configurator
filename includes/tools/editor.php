@@ -11,6 +11,9 @@ $files = array('custom.php' => 'custom php', 'custom.js.php' => 'custom js', 'cu
 ?>
 <div id="editor-wrap">
 	<h2>Code Editor</h2>
+	<div id="editor-desc">
+		<p>The code editor is used to add your own custom css, javascript or php and will save your custom code in the database, protecting your changes from upgrades. If you find the editor sluggish, try disabling the syntax highlighting in the Configurator preferences.</p>
+	</div>
 	<ul>
 		
 	    <li class="file-list">

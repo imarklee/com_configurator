@@ -100,7 +100,7 @@ class plgSystemMorphCache extends JPlugin
 			$this->$view();
 			$this->debug();
 			
-			ob_end_flush();
+			//ob_end_flush();
 			return $this->close();	
 			
 		}
@@ -155,13 +155,13 @@ class plgSystemMorphCache extends JPlugin
 		{
 			global $_PROFILER;
 			$profiler	= $_PROFILER;
-			$html[] = PHP_EOL.'/* @group '.JText::_( $format.' Profile Information' ).PHP_EOL;
+			$html[] = PHP_EOL.'/* @group '.JText::_( $this->format.' Profile Information' ).PHP_EOL;
 			foreach ( $profiler->getBuffer() as $mark ) {
 				$html[] = PHP_EOL.$mark.PHP_EOL;
 			}
 			$html[] = PHP_EOL.' @end */'.PHP_EOL;
 	
-			$html[] = PHP_EOL.'/* @group '.JText::_( $format.' Memory Usage' ).PHP_EOL;
+			$html[] = PHP_EOL.'/* @group '.JText::_( $this->format.' Memory Usage' ).PHP_EOL;
 			$html[] = $profiler->getMemory();
 			$html[] = PHP_EOL.' @end */'.PHP_EOL;
 		}

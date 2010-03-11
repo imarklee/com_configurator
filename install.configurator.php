@@ -34,24 +34,21 @@ if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
 	
 	$status = new JObject();
 	
-	if(!$plugin_exists)
-	{
-		// Insert in database
-		$row = JTable::getInstance('plugin');
-		$row->name = 'System - Morph Cache';
-		$row->ordering = 1;
-		$row->folder = 'system';
-		$row->iscore = 0;
-		$row->access = 0;
-		$row->client_id = 0;
-		$row->element = 'morphcache';
-		$row->published = 1;
-		$row->params = '';
-		if (!$row->store()) {
-			// Install failed, roll back changes
-			$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
-			return false;
-		}
+	$db = JFactory::getDBO();
+	// Check to see if a plugin by the same name is already installed
+	$query = "DELETE FROM `#__plugins` WHERE element = 'morphcache'";
+	$db->setQuery($query);
+	$db->Query();
+	// Insert in database
+	$row = JTable::getInstance('plugin');
+	$row->name = 'System - Morph Cache';
+	$row->folder = 'system';
+	$row->element = 'morphcache';
+	$row->published = 1;
+	if (!$row->store()) {
+		// Install failed, roll back changes
+		$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
+		return false;
 	}
 	
 	setcookie('installed_morphcache', 'true');

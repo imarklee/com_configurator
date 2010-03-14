@@ -117,7 +117,7 @@ class plgSystemMorphCache extends JPlugin
 	{
 		// Prepare Morph if needed
 		// @TODO make Morph able to load anywhere
-		//$this->morph();
+		$this->morph();
 	}
 	
 	public function morph()
@@ -129,8 +129,8 @@ class plgSystemMorphCache extends JPlugin
 		$document->template	= $app->getTemplate();
 		$document->baseurl	= JURI::base(1);
 		
-		
-		include_once(JPATH_ROOT.'/templates/'.$document->template.'/core/morphFunctions.php');
+		$loader = JPATH_ROOT . '/templates/morph/core/morphLoader.php';
+		if(file_exists($loader)) require_once $loader;
 	}
 	
 	protected function configurator($render)

@@ -23,9 +23,6 @@ class plgSystemMorphCache extends JPlugin
 	public function __construct(& $subject, $config)
 	{
 		parent::__construct($subject, $config);
-		
-		$app = JFactory::getApplication();
-		if($app->getTemplate() == 'morph') define('MORPH_JQUERY', 1);
 
 		$this->option = JRequest::getCmd('option');
 		$isConfigurator = $this->option  == 'com_configurator' && $render = JRequest::getCmd('render', false);
@@ -115,8 +112,10 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function onAfterInitialise()
 	{
+		$app = JFactory::getApplication();
+		if($app->getTemplate() == 'morph') define('MORPH_JQUERY', 1);
+	
 		// Prepare Morph if needed
-		// @TODO make Morph able to load anywhere
 		$this->morph();
 	}
 	

@@ -122,7 +122,7 @@ class plgSystemMorphCache extends JPlugin
 	public function morph()
 	{
 		$app = JFactory::getApplication();
-		if($app->getTemplate() != 'morph') return;
+		if($app->getTemplate() != 'morph' && $app->isSite()) return;
 		
 		$document			= JFactory::getDocument();
 		$document->template	= $app->getTemplate();
@@ -130,6 +130,10 @@ class plgSystemMorphCache extends JPlugin
 		
 		$loader = JPATH_ROOT . '/templates/morph/core/morphLoader.php';
 		if(file_exists($loader)) require_once $loader;
+		
+		// If we are in configurator, make sure to update the overrides.
+		// @TODO we might not want to run this on every pageload in configurator.
+		if(JRequest::getCmd('option') == 'com_configurator' || JRequest::getBool('create_overrides')) Morph::createOverrides();
 	}
 	
 	protected function configurator($render)

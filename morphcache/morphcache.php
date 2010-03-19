@@ -130,7 +130,7 @@ class plgSystemMorphCache extends JPlugin
 		
 		$loader = JPATH_ROOT . '/templates/morph/core/morphLoader.php';
 		if(file_exists($loader)) require_once $loader;
-		
+		else return;
 		// If we are in configurator, make sure to update the overrides.
 		// @TODO we might not want to run this on every pageload in configurator.
 		if(JRequest::getCmd('option') == 'com_configurator' || JRequest::getBool('create_overrides')) Morph::createOverrides();

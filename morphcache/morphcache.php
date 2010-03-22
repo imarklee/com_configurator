@@ -111,30 +111,44 @@ class plgSystemMorphCache extends JPlugin
 	}
 	
 	public function onAfterInitialise()
-	{
-		$app = JFactory::getApplication();
-		if($app->getTemplate() == 'morph') define('MORPH_JQUERY', 1);
-	
-		// Prepare Morph if needed
+	{	
 		$this->morph();
 	}
 	
 	public function morph()
 	{
-		$app = JFactory::getApplication();
-		if($app->getTemplate() != 'morph' && $app->isSite()) return;
+		$app 	= JFactory::getApplication();
+		$ready	= array_filter(array($app->isSite(), JRequest::getCmd('option') == 'com_configurator'));
 		
-		$document			= JFactory::getDocument();
-		$document->template	= $app->getTemplate();
-		$document->baseurl	= JURI::base(1);
+		if(!$ready) return;
+		
+		// Get the id of the active menu item
+		$id = (int)JRequest::getInt('Itemid');
+
+		// Load template entries for the active menuid and the default template
+		$db =& JFactory::getDBO();
+		$query = 'SELECT template'
+			. ' FROM #__templates_menu'
+			. ' WHERE client_id = 0 AND (menuid = 0 OR menuid = '.(int) $id.')'
+			. ' ORDER BY menuid DESC'
+			;
+		$db->setQuery($query, 0, 1);
+		$template = $db->loadResult();
+
+		// Allows for overriding the active template from the request
+		$template = JRequest::getCmd('template', JFilterInput::clean($template, 'cmd'));
+
+		if($template != 'morph') return;
 		
 		$loader = JPATH_ROOT . '/templates/morph/core/morphLoader.php';
 		if(file_exists($loader)) require_once $loader;
-		else return;
+		
+		define('MORPH_JQUERY', 1);
 		// If we are in configurator, make sure to update the overrides.
 		// @TODO we might not want to run this on every pageload in configurator.
 		if(!class_exists('Morph')) return;
 		if(JRequest::getCmd('option') == 'com_configurator' || JRequest::getBool('create_overrides')) Morph::createOverrides();
+		
 	}
 	
 	protected function configurator($render)

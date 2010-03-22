@@ -33,5 +33,9 @@
 #tabs #components-options ol.forms label{padding-right:0;width:180px;}
 #tabs #components-options ol.forms li.alt,
 #tabs #components-options ol.forms li{background-position:-59px 0;width:}
+
+#tabs #comperformance-options ol.forms label.to-label{padding-right:0;width:180px;}
+#tabs #comperformance-options ol.forms li.alt,
+#tabs #comperformance-options ol.forms li{background-position:-59px 0;}
 #cfg #tabs ol.forms.disabled li.last{border-top:1px solid #ccc;background: #CB0D0D;}
 #cfg #tabs ol.forms.disabled li.last label{color:#fff;}

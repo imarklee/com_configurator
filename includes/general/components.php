@@ -74,7 +74,7 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 			$db = JFactory::getDBO();
 			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
-							' WHERE c.link <> "" AND parent = 0' .
+							' WHERE c.link <> "" AND parent = 0 AND enabled = 1' .
 							' ORDER BY c.name');
 			$res = $db->loadAssocList($query);
 			foreach($res as $r){

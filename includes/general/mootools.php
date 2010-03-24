@@ -27,7 +27,7 @@ function mootools($extension, $index, $app)
 	echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, &$node, 'mootoolscompat');
 }
 // do not show these options
-$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_jupdateman');
+$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
 ?>
 
 <div id="mootools-tab" class="ui-tabs-hide ui-tabs-panel">

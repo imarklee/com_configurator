@@ -12,7 +12,7 @@ function mootools($extension, $index, $app)
 	extract($extension);
 	
 	$db = JFactory::getDBO();
-	$query = $db->setQuery("select param_value from #__configurator where param_name = 'load_mootools_$option';");
+	$query = $db->setQuery("SELECT param_value FROM #__configurator WHERE param_name = 'load_mootools_$option';");
 	$value = $db->loadResult($query);
 	
 //	$xml = & JFactory::getXMLParser('Simple');
@@ -35,10 +35,11 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 		<h3>Toggle which of your installed components to load Mootools on</h3>
 		<ol class="forms">
 			<?php
+			foreach($restricted as &$option) $option = "'".$option."'";
 			$db = JFactory::getDBO();
 			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
-							' WHERE c.link <> "" AND parent = 0 AND enabled = 1' .
+							' WHERE c.link <> "" AND parent = 0 AND enabled = 1 AND c.option NOT IN ('.implode(', ', $restricted).')' .
 							' ORDER BY c.name');
 			array_walk($db->loadAssocList($query), 'mootools', JFactory::getApplication()); ?>
 		</ol>

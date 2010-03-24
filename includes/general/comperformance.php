@@ -32,7 +32,7 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 
 <div id="comperformance-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="comperformance-options" class="options-panel">
-		<h3>Customize the sidebar layouts for your installed components</h3>
+		<h3>Toggle which of your installed components to load Mootools on</h3>
 		<ol class="forms">
 			<?php
 			$db = JFactory::getDBO();
@@ -44,13 +44,10 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 		</ol>
 	</div>
 	<div id="comperformance-info" class="info-panel">
-		<h3>Setting component default layouts</h3>
-		<p class="teaser">These options allow you to set the default inner and outer layouts for each of your installed components.</p>
-		
-		<p>The term "inner &amp; outer layouts" refers to the widths and positions (left or right) of the templates two sidebars.</p>
-		<p>The outer layout comes second (after the main content) in the templates source order and houses the <strong>splitleft</strong>, 
-		<strong>topleft</strong>, <strong>left</strong> &amp; <strong>bottomleft</strong> module positions.</p>
-		<p>The inner layout, or right sidebar, houses the <strong>splitright</strong>, 
-		<strong>topright</strong>, <strong>right</strong> &amp; <strong>bottomright</strong> module positions.</p>
+		<h3>Selective loading of Mootools</h3>
+		<p class="teaser">Some Joomla extensions are built using the Mootools javascript library, which is included with Joomla by default. Due to the size of the library (75kb) 
+		and the fact that Morph is built using jQuery, we prevent the Mootools file from loading to make your site as fast loading as possible. This feature lets you enable Mootools 
+		for specific components that require it.</p>
+		<p>This means that you no longer need to load Mootools globally through out your site and individual cache files will be created to ensure that only what is needed is ever loaded.</p>
 	</div>
 </div>

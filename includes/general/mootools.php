@@ -30,8 +30,8 @@ function mootools($extension, $index, $app)
 $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_jupdateman');
 ?>
 
-<div id="comperformance-tab" class="ui-tabs-hide ui-tabs-panel">
-	<div id="comperformance-options" class="options-panel">
+<div id="mootools-tab" class="ui-tabs-hide ui-tabs-panel">
+	<div id="mootools-options" class="options-panel">
 		<h3>Toggle which of your installed components to load Mootools on</h3>
 		<ol class="forms">
 			<?php
@@ -43,7 +43,7 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 			array_walk($db->loadAssocList($query), 'mootools', JFactory::getApplication()); ?>
 		</ol>
 	</div>
-	<div id="comperformance-info" class="info-panel">
+	<div id="mootools-info" class="info-panel">
 		<h3>Selective loading of Mootools</h3>
 		<p class="teaser">Some Joomla extensions are built using the Mootools javascript library, which is included with Joomla by default. Due to the size of the library (75kb) 
 		and the fact that Morph is built using jQuery, we prevent the Mootools file from loading to make your site as fast loading as possible. This feature lets you enable Mootools 

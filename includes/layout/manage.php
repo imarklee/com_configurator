@@ -30,18 +30,16 @@
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['site-desc'])) { include dirname(__FILE__).'/../general/desc-site.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
-					<!--<li class="icon-progressive"><a href="#progressive-tab">Progressive Enhancements</a></li>-->
 					<li class="icon-performance"><a href="#performance-tab">Performance</a></li>
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
-                    <li class="icon-comperformance"><a href="#comperformance-tab">Component Performance</a></li>
+                    <li class="icon-comperformance"><a href="#mootools-tab">Mootools Compatibility</a></li>
 				</ul>
 				<?php include dirname(__FILE__).'/../general/general.php' ?>
-				<?php //include dirname(__FILE__).'/../general/progressive.php' ?>
 				<?php include dirname(__FILE__).'/../general/performance.php' ?>
 				<?php include dirname(__FILE__).'/../general/debugging.php' ?>
 				<?php include dirname(__FILE__).'/../general/components.php'?>
-				<?php include dirname(__FILE__).'/../general/comperformance.php'?>
+				<?php include dirname(__FILE__).'/../general/mootools.php'?>
 			</div>
 		</div>
 

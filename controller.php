@@ -405,7 +405,7 @@ class ConfiguratorController extends JController {
 		$params[] = JRequest::getVar( 'footer', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'components_inner', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'components_outer', null, 'post', 'array' );
-		$params[] = JRequest::getVar( 'mootools', null, 'post', 'array' );
+		$params[] = JRequest::getVar( 'mootoolscompat', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'captify', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'lazyload', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'lightbox', null, 'post', 'array' );

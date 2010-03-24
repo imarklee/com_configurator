@@ -23,8 +23,8 @@ function mootools($extension, $index, $app)
 	$node->addChild('option', array('value' => 1))->setData('Yes');
 	$node->addChild('option', array('value' => 0))->setData('No');
 
-	echo JElementItoggle::fetchTooltip($name, null /*htmlspecialchars($xml->description)*/, &$node, 'comperformance', 'load_mootools_'.$option);
-	echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, &$node, 'comperformance');
+	echo JElementItoggle::fetchTooltip($name, null /*htmlspecialchars($xml->description)*/, &$node, 'mootoolscompat', 'load_mootools_'.$option);
+	echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, &$node, 'mootoolscompat');
 }
 // do not show these options
 $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_jupdateman');

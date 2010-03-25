@@ -220,7 +220,19 @@ class plgSystemMorphCache extends JPlugin
 			{
 				if(!file_exists(JPATH_ROOT.$css)) continue;
 				echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
-				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
+
+				if(JFile::getExt($css) == 'php')
+				{
+					ob_start();
+					include JPATH_ROOT.$css;
+					$contents = ob_get_clean();
+				}
+				else
+				{
+					$contents = file_get_contents(JPATH_ROOT.$css);
+				}
+
+				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), $contents);
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}
@@ -238,7 +250,19 @@ class plgSystemMorphCache extends JPlugin
 			{
 				if(!file_exists(JPATH_ROOT.$css)) continue;
 				echo PHP_EOL.' /* @group '.basename($css).' */ '.PHP_EOL;
-				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), file_get_contents(JPATH_ROOT.$css));
+				
+				if(JFile::getExt($css) == 'php')
+				{
+					ob_start();
+					include JPATH_ROOT.$css;
+					$contents = ob_get_clean();
+				}
+				else
+				{
+					$contents = file_get_contents(JPATH_ROOT.$css);
+				}
+				
+				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), $contents);
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}

@@ -6,6 +6,9 @@
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
+$db=& JFactory::getDBO();
+$query = "SELECT COUNT(*) FROM `#__components` WHERE `name` = 'Jom Social' AND `enabled` = '1'";
+$db->setQuery( $query ); $jomsocial_installed = $db->loadResult();
 ?>
 <form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
 <div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?>">
@@ -34,14 +37,14 @@
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
                     <li class="icon-comperformance"><a href="#mootools-tab">Mootools Compatibility</a></li>
-                    <li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li>
+                    <?php if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li><?php } ?>
 				</ul>
 				<?php include dirname(__FILE__).'/../general/general.php' ?>
 				<?php include dirname(__FILE__).'/../general/performance.php' ?>
 				<?php include dirname(__FILE__).'/../general/debugging.php' ?>
-				<?php include dirname(__FILE__).'/../general/components.php'?>
-				<?php include dirname(__FILE__).'/../general/mootools.php'?>
-				<?php include dirname(__FILE__).'/../general/jomsocial.php'?>
+				<?php include dirname(__FILE__).'/../general/components.php' ?>
+				<?php include dirname(__FILE__).'/../general/mootools.php' ?>
+				<?php if($jomsocial_installed == 1) { include dirname(__FILE__).'/../general/jomsocial.php'; } ?>
 			</div>
 		</div>
 

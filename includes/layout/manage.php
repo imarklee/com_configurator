@@ -8,7 +8,19 @@
 */
 $db=& JFactory::getDBO();
 $query = "SELECT COUNT(*) FROM `#__components` WHERE `name` = 'Jom Social' AND `enabled` = '1'";
-$db->setQuery( $query ); $jomsocial_installed = $db->loadResult();
+$db->setQuery( $query ); 
+$jomsocial_installed = false;
+if($db->loadResult())
+{
+	$query = "SELECT `params` FROM `#__community_config` WHERE `name` = 'config'";
+	$db->setQuery( $query );
+	if($jomsocial = $db->loadResult())
+	{
+		$jomsocial = new JParameter($jomsocial);
+		$jomsocial_installed = 'morph' == $jomsocial->getValue('template');
+	}
+}
+
 ?>
 <form action="index.php" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
 <div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?>">

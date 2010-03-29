@@ -170,6 +170,8 @@ showSettings('#progressive-options', $.cookie('settings_effect'));
 showSettings('#performance-options', $.cookie('settings_effect'));
 showSettings('#debugging-options', $.cookie('settings_effect'));
 showSettings('#components-options', $.cookie('settings_effect'));
+showSettings('#mootools-options', $.cookie('settings_effect'));
+showSettings('#jomsocial-options', $.cookie('settings_effect'));
 showSettings('#color-options', $.cookie('settings_effect'));
 showSettings('#logo-options', $.cookie('settings_effect'));
 showSettings('#background-options', $.cookie('settings_effect'));

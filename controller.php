@@ -412,6 +412,8 @@ class ConfiguratorController extends JController {
 		$params[] = JRequest::getVar( 'fontsizer', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'shareit', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'preloader', null, 'post', 'array' );
+		$params[] = JRequest::getVar( 'jomsocial', null, 'post', 'array' );
+		$params[] = JRequest::getVar( 'jomsocialboxes', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');

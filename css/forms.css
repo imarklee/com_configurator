@@ -38,3 +38,4 @@
 #tabs #mootools-options ol.forms li{background-position:-59px 0;}
 #cfg #tabs ol.forms.disabled li.last{border-top:1px solid #ccc;background: #CB0D0D;}
 #cfg #tabs ol.forms.disabled li.last label{color:#fff;}
+#menuitems-options h3 select {position: absolute;right: 1px;top: 1px;bottom: 1px;}

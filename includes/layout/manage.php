@@ -42,7 +42,7 @@ if($db->loadResult())
 		</ul>
 		<div id="site" class="ui-tabs-panel">
 			<div id="site-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['site-desc'])) { include dirname(__FILE__).'/../general/desc-site.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['site-desc'])) include dirname(__FILE__).'/../general/desc-site.php' ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
 					<li class="icon-performance"><a href="#performance-tab">Performance</a></li>
@@ -50,13 +50,15 @@ if($db->loadResult())
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
                     <li class="icon-comperformance"><a href="#mootools-tab">Mootools Compatibility</a></li>
                     <?php if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li><?php } ?>
+                    <!--<li class="icon-menuitems"><a href="#menuitems-tab">Menu Items</a></li>-->
 				</ul>
 				<?php include dirname(__FILE__).'/../general/general.php' ?>
 				<?php include dirname(__FILE__).'/../general/performance.php' ?>
 				<?php include dirname(__FILE__).'/../general/debugging.php' ?>
 				<?php include dirname(__FILE__).'/../general/components.php' ?>
 				<?php include dirname(__FILE__).'/../general/mootools.php' ?>
-				<?php if($jomsocial_installed == 1) { include dirname(__FILE__).'/../general/jomsocial.php'; } ?>
+				<?php if($jomsocial_installed == 1) include dirname(__FILE__).'/../general/jomsocial.php' ?>
+				<?php /*include dirname(__FILE__).'/../general/menuitems.php'*/ ?>
 			</div>
 		</div>
 

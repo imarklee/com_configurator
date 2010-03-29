@@ -2066,15 +2066,16 @@ class ConfiguratorController extends JController {
 	}
 	
 	function create_sql_file($filename, $str){
-		JFile::write($filename, $str);
+		jimport('joomla.filesystem.archive');
+		JFile::write($filename, gzcompress($str, 9));
 		return true;
 	}
 	
-	function parse_mysql_dump($url, $json = 'false')
+	function parse_mysql_dump($url, $json = false)
 	{
         jimport('joomla.installer.helper');
         $db = JFactory::getDBO();
-        $queries = JInstallerHelper::splitSql(JFile::read($url));
+        $queries = JInstallerHelper::splitSql(gzuncompress(JFile::read($url)));
         foreach ($queries as $query)
         {
         	$query = trim($query);

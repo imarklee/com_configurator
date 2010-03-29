@@ -664,8 +664,7 @@ class ConfiguratorController extends JController {
 		if(!is_dir($tempdir)){JFolder::create($tempdir);}
 		JPath::setPermissions($tempdir);
 		
-		$result = JArchive::extract( $backupdir.'/'.strtolower($filename), $tempdir);
-		$this->parse_mysql_dump($tempdir.'/'.str_replace('.gz', '', strtolower($filename)) );
+		$this->parse_mysql_dump($backupdir . '/' .$filename );
 		
 		$this->cleanupThemeletInstall(strtolower($filename), $tempdir);
 		
@@ -2009,8 +2008,9 @@ class ConfiguratorController extends JController {
 		
 		$db = JFactory::getDBO();
 		if($table == '' || empty($table)) { $td = $db->getTableList(); } else { $td = $table; }
-		$r = $db->getTableCreate($td);
-		
+		$r = str_replace('CREATE TABLE `', 'CREATE TABLE IF NOT EXISTS `', $db->getTableCreate($td));
+		$r = array_filter($r, array($this, 'filter_table_views'));
+
 		if($r){
 			foreach($r as $k => $v){
 				$sql_structure .= 'DROP TABLE IF EXISTS `'. $k . "`;\n" . $v . ";\n\n";
@@ -2031,7 +2031,7 @@ class ConfiguratorController extends JController {
 					foreach ($data as $v){
 						if($where !== '') $v['id'] = '';
 						$v = $this->clean($v);
-						$sql_data .= "INSERT INTO `$t` VALUES(";
+						$sql_data .= "INSERT IGNORE INTO `$t` VALUES(";
 					    $sql_data .= "'".implode("','",$v)."'";
 						$sql_data .= ");\n";	
 					}
@@ -2052,7 +2052,7 @@ class ConfiguratorController extends JController {
 				foreach ($data as $v){
 					if($where !== '') $v['id'] = '';
 					$v = $this->clean($v);
-					$sql_data .= "INSERT INTO `$table` VALUES(";
+					$sql_data .= "INSERT IGNORE INTO `$table` VALUES(";
 				    $sql_data .= "'".implode("','",$v)."'";
 					$sql_data .= ");\n";	
 				}
@@ -2067,6 +2067,11 @@ class ConfiguratorController extends JController {
 		return $sql; 
 	}
 	
+	protected function filter_table_views($create_table_syntax)
+	{
+		return strstr($create_table_syntax, 'CREATE TABLE');
+	}
+	
 	function create_sql_file($filename, $str){
 		jimport('joomla.filesystem.archive');
 		JFile::write($filename, gzcompress($str, 9));
@@ -2077,6 +2082,7 @@ class ConfiguratorController extends JController {
 	{
         jimport('joomla.installer.helper');
         $db = JFactory::getDBO();
+        
         $queries = JInstallerHelper::splitSql(gzuncompress(JFile::read($url)));
         foreach ($queries as $query)
         {

@@ -66,14 +66,13 @@ function menu_items_list()
 
 	// assemble menu items to the array
 	$options 	= array();
-	$options[]	= JHTML::_('select.option', '', '- '.JText::_('Select Item').' -');
-	$options[]	= JHTML::_('select.option', 'null', '- '.JText::_('Defaults').' -');
+	$options[]	= JHTML::_('select.option', '0', '- '.JText::_('Select Item').' -');
 
 	foreach ($menuTypes as $type)
 	{
 		if ($menuType == '')
 		{
-			$options[]	= JHTML::_('select.option',  '0', '&nbsp;', 'value', 'text', true);
+			$options[]	= JHTML::_('select.option',  '-', '&nbsp;', 'value', 'text', true);
 			$options[]	= JHTML::_('select.option',  $type->menutype, $type->title . ' - ' . JText::_( 'Top' ), 'value', 'text', true );
 		}
 		if (isset( $groupedList[$type->menutype] ))

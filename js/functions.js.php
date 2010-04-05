@@ -1516,6 +1516,12 @@ jQuery.noConflict();
 			event.preventDefault();
 		});
 		
+		$('#menuitems-options .save-and-reload').click(function(event){
+			ptOverlay('Saving current settings and changing the menu item&hellip;');
+			submitbutton('applytemplate');
+			event.preventDefault();
+		});
+		
 		<?php if($ul==1) include('functions/blocks.js'); ?>
 		<?php if($ul==1) include('functions/keyboard.js'); ?>
 		

@@ -57,9 +57,7 @@ class ConfiguratorController extends JController {
 				if ( $template ) {
 					// do stuff for existing records
 					// load existing settings for this template.
-					$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
-					$database->setQuery( $query );
-					$template_params = $database->loadAssocList('param_name');
+					$template_params = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->template($template)->getParams();
 					$template_settings = array();
 					
 					// themelet
@@ -393,7 +391,7 @@ class ConfiguratorController extends JController {
 		$params[] = JRequest::getVar( 'jomsocialboxes', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
-				
+
 		$this->clear_cache();
 				
 		foreach ($params as $currentblock){
@@ -423,6 +421,11 @@ class ConfiguratorController extends JController {
 			setcookie('change_themelet', '', time()-3600);
 			setcookie('ct_themelet_name', '', time()-3600);
 		}
+		
+		// Set the current active menu item
+		$app         = JFactory::getApplication();
+		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
+		$app->setUserState('configurator', $menu_item);
 		
 		if(!JRequest::getVar('isajax', null, 'post')){
 			$msg = JText::_('Successfully saved your settings');

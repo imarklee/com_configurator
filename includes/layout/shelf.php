@@ -40,6 +40,12 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 			<li class="changes">
 			    <?php if(isset($_COOKIE['formChanges'])){ ?><span class="shelf-notice">You have unsaved changes</span><?php }?>
 			</li>
+			<li class="menuitem">
+				<?php if (true) : ?>
+					<?php $app = JFactory::getApplication() ?>
+					<?php echo $app->getUserState('configurator') ?>
+				<?php endif ?>
+			</li>
 			<li class="toggle-shelf">
 			    <a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf">
 			    <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Show Shelf'; } ?></a>

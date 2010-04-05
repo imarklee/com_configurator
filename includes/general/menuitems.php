@@ -100,7 +100,8 @@ function menu_items_list()
 		}
 	}
 
-	return JHTML::_('select.genericlist',  $options, ''.$control_name.'['.$name.']', 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
+	$menuitem = JFactory::getApplication()->getUserState('configurator');
+	return JHTML::_('select.genericlist',  $options, $name, 'class="inputbox"', 'value', 'text', $menuitem, $control_name.$name);
 }
 ?>
 

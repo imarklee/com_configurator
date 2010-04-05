@@ -67,7 +67,7 @@ function menu_items_list()
 	// assemble menu items to the array
 	$options 	= array();
 	$options[]	= JHTML::_('select.option', '', '- '.JText::_('Select Item').' -');
-	$options[]	= JHTML::_('select.option', '', '- '.JText::_('Defaults').' -');
+	$options[]	= JHTML::_('select.option', 'null', '- '.JText::_('Defaults').' -');
 
 	foreach ($menuTypes as $type)
 	{
@@ -107,7 +107,9 @@ function menu_items_list()
 <div id="menuitems-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="menuitems-options" class="options-panel">
 		<h3>Menu Items <?php echo menu_items_list() ?></h3>
+		<a href="#" class="save-and-reload btn-link">Save &amp; reload</a>
 	</div>
+	
 	<div id="menuitems-info" class="info-panel">
 		<h3>Set options per menu item.</h3>
 		<p class="teaser"></p>

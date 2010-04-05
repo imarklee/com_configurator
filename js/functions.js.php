@@ -1594,7 +1594,7 @@ jQuery.noConflict();
 	    	$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 		    	return welcomeScreen();
 		    });
-	    	$.cookie('welcome_screen', 'hide', { expires: 365 });			
+	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 360 });			
 	    }
 	    
 	    // prefs

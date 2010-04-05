@@ -23,4 +23,3 @@ class TableConfiguratorPreferences extends JTable {
     }
         
 }
-?>

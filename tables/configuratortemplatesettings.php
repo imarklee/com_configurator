@@ -26,4 +26,3 @@ class TableConfiguratorTemplateSettings extends JTable {
     }
         
 }
-?>

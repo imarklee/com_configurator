@@ -12,9 +12,7 @@
     <p>Below is a list of backups that are automatically created by Configurator. Please use this tool with caution 
     when restoring Database backups. All backups are saved to your <code>/morph_assets/backups/</code> folder.</p>
 		<?php 
-			$db = JFactory::getDBO();
-			$query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");
-			$curr_themelet = $db->loadResult($query);
+			$curr_themelet = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->param('themelet')->getItem()->value;
 			$files = JFolder::files(JPATH_ROOT.'/morph_assets/backups', '', true, false, array('.DS_Store', '.DS_Store'));
 			if(!empty($files)){ ?>
 				<table cellpadding="0" cellspacing="0" border="0" id="backup-list" class="table">

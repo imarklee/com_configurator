@@ -10,6 +10,9 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+// Prepare the tables
+JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
+
 // Require the base controller
 require_once (JPATH_COMPONENT_ADMINISTRATOR.'/controller.php');
 require_once (JApplicationHelper::getPath('admin_html'));

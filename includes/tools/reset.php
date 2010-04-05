@@ -1,8 +1,3 @@
-<?php
-$db = JFactory::getDBO();
-$query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");
-$curr_themelet = $db->loadResult($query);
-?>
 <div id="reset-settings">
 	<h2>Reset Configurator's Settings</h2>
 	<div class="note">

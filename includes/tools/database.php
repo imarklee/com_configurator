@@ -1,8 +1,4 @@
-<?php
-$db = JFactory::getDBO();
-$query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");
-$curr_themelet = $db->loadResult($query);
-?>
+<?php $curr_themelet = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->param('themelet')->getItem()->value ?>
 <div id="database-manager">
 	<h2>Export / Import Manager</h2>
 	<ul>

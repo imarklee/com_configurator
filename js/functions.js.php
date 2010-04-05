@@ -19,10 +19,14 @@ return $pageURL;
 ?>
 jQuery.noConflict();
 (function($) {
+	//Preload spinner gif
+	$(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
+
 	$(document).ready(function(){
 
 		<?php include 'functions/common.js'; ?>
 		$.preloadCssImages();
+		
 		
 		$("input[type=text], textarea").focus(function(){
 		    this.select();
@@ -1506,10 +1510,10 @@ jQuery.noConflict();
 			}
 		}
 		
-		$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(){
+		$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(event){
 			ptOverlay('Saving Settings...');
-			setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
-			return false;
+			submitbutton('applytemplate');
+			event.preventDefault();
 		});
 		
 		<?php if($ul==1) include('functions/blocks.js'); ?>

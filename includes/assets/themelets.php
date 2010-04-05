@@ -14,9 +14,7 @@ if(is_dir($themelet_dir)) {
 } else {
 	$lists['themelets'] = 'test';
 }
-$db = JFactory::getDBO();
-$db->setQuery("select param_value from #__configurator where param_name='themelet'");
-$ct = $db->loadResult();
+$ct = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->param('themelet')->getItem()->value;
 ?>
 <div id="assets-themelets">
 	<div id="themelet-switch" class="switch">

@@ -11,9 +11,9 @@ function mootools($extension, $index, $app)
 {
 	extract($extension);
 	
-	$db = JFactory::getDBO();
-	$query = $db->setQuery("SELECT param_value FROM #__configurator WHERE param_name = 'load_mootools_$option';");
-	$value = $db->loadResult($query);
+	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+	
+	$value = $table->param('load_mootools_'.$option)->getItem()->value;
 	
 //	$xml = & JFactory::getXMLParser('Simple');
 //	$xml->loadFile($app->getPath('com_xml', $option));

@@ -631,8 +631,6 @@ class morphXMLLoader {
     
     var $is_counter = null;
     
-    var $preset_list = null;
-    
     function morphXMLLoader( $xml_file=null ) {
         $this->_xml_file = $xml_file;
         $this->_data = array();
@@ -641,7 +639,6 @@ class morphXMLLoader {
         $this->use_tabs = false;
         $this->tab_type = 'Tabs';
         $this->is_counter = false;
-        $this->preset_list = array();
     }
     
     function startElementHandler($parser, $name, $attribs) {
@@ -661,17 +658,9 @@ class morphXMLLoader {
             $this->_section = 'params';
             return;
         }
-        if($name == 'presets') {
-            $this->_section = 'presets';
-            return;
-        }
         
         if($name == 'param' && $this->_section == 'params') {
             $this->_data[$attribs['name']] = isset($attribs['default'])?$attribs['default']:'';
-        }
-        
-        if($name == 'preset' && $this->_section == 'presets') {
-            $this->preset_list[] = $attribs['name'];
         }
         
         if($name == 'description') $this->_section = 'description';

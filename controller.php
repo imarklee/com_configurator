@@ -40,127 +40,105 @@ class ConfiguratorController extends JController {
 		$mainframe->addCustomHeadTag( $goto_javascript );
 
 		$morph_installed = JFolder::exists(JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template);
-		if ($morph_installed){
-			include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."configurator.common.php");
+		if ($morph_installed)
+		{
+			require_once JPATH_COMPONENT_ADMINISTRATOR.'/configurator.common.php';
 			$preset_choice = JRequest::getVar('preset',null);
 			$preset_values = null;
 
 			$templateBaseDir = JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template;
-			if(!empty($preset_choice)) {
-				// Load select preset values from the XML file.
-				$values = getPresetParamList( $templateBaseDir.'/core/morphDetails.xml', $preset_choice );
-				foreach($values as $name => $default)
-				{
-					$preset_values[] = $name.'='.$default;
-				}
-		}
-
-		$paramList = getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
-		foreach($paramList as $name => $default)
-		{
-			$paramList[] = $name.'='.$default;
-		}
-
-			if ( $template ) {
-				// do stuff for existing records
-				// load existing settings for this template.
-				$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
-				$database->setQuery( $query );
-				$template_params = $database->loadAssocList('param_name');
-				$template_settings = array();
-				
-				// themelet
-				
-				$themelet = isset($template_params['themelet']) ? $template_params['themelet']['param_value'] : false;
-				$themelet_xml_params = array();
-				$themelet_path	= JPATH_ROOT.'/morph_assets/themelets/'.$themelet.'/themeletDetails.xml';
-				if(file_exists($themelet_path)) $xml_param_loader = new morphXMLLoader($themelet_path);
-				if(!empty($xml_param_loader)) {
-					$themelet_xml_params = $xml_param_loader->getParamDefaults();	
-					foreach($themelet_xml_params as $param_name => $param_value){
-						if(!array_key_exists($param_name,$template_params)) $template_params[$param_name] = array('param_name' => $param_name, 'param_value' => $param_value);
-					}
-				} 
-			
-				foreach ( (array) $template_params as $template_param ) {
-					$template_settings[] = $template_param['param_name'] . '=' . $template_param['param_value'] . "\n";
-				}
-			} else {
-				// do stuff for new records
-				$row->published     =1;
-				$row->date_submitted=date('Y-m-d H:i:s');
-				$row->id            =0;
-				$pics               =null;
-			}
-			
-			if( count( $template_settings ) && empty($preset_choice) ) {
-				// Got settings from the DB.
-				$current_params = implode( "\n", $template_settings );
-			} elseif( isset($preset_values) ) {
-				// Got settings from the preset.
-				$current_params = implode( "\n", $preset_values );
-			} else {
-				// Default empty.
-				$current_params = implode( "\n", $paramList );
+	
+			$paramList = getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
+			foreach($paramList as $name => $default)
+			{
+				$paramList[] = $name.'='.$default;
 			}
 	
-			// Create the morph params
-			$params = new JParameter($current_params, $templateBaseDir.'/core/morphDetails.xml');        
-			$params->name = $template;
-			//$params->merge($themelet_params);
-			
-			$lists = array();
-			
-			// Load presets from XML file.
-			$xml_param_loader = new morphXMLLoader($templateBaseDir.'/core/morphDetails.xml');
-			$main_xml_params = $xml_param_loader->getParamDefaults();
-						
-			$params->use_favicons = $xml_param_loader->use_favicons;
-			
-			$presets = $xml_param_loader->preset_list;
-			
-			if(isset($presets)) {
-				$preset_options = array();
-				$preset_options[] = JHTML::_('select.option','Custom/None');
-			
-				foreach($presets as $preset) {
-					$preset_options[] = JHTML::_('select.option',$preset, $preset);
+				if ( $template ) {
+					// do stuff for existing records
+					// load existing settings for this template.
+					$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
+					$database->setQuery( $query );
+					$template_params = $database->loadAssocList('param_name');
+					$template_settings = array();
+					
+					// themelet
+					
+					$themelet = isset($template_params['themelet']) ? $template_params['themelet']['param_value'] : false;
+					$themelet_xml_params = array();
+					$themelet_path	= JPATH_ROOT.'/morph_assets/themelets/'.$themelet.'/themeletDetails.xml';
+					if(file_exists($themelet_path)) $xml_param_loader = new morphXMLLoader($themelet_path);
+					if(!empty($xml_param_loader)) {
+						$themelet_xml_params = $xml_param_loader->getParamDefaults();	
+						foreach($themelet_xml_params as $param_name => $param_value){
+							if(!array_key_exists($param_name,$template_params)) $template_params[$param_name] = array('param_name' => $param_name, 'param_value' => $param_value);
+						}
+					} 
+				
+					foreach ( (array) $template_params as $template_param ) {
+						$template_settings[] = $template_param['param_name'] . '=' . $template_param['param_value'] . "\n";
+					}
+				} else {
+					// do stuff for new records
+					$row->published     =1;
+					$row->date_submitted=date('Y-m-d H:i:s');
+					$row->id            =0;
+					$pics               =null;
 				}
-			
-				$selected_option = isset($preset_choice)? $preset_choice : null;
-				if(!isset($selected_option)) isset($template_params['preset']['param_value'])?$template_params['preset']['param_value']:null;
-				$lists['preset_list'] = JHTML::_( 'select.genericlist', $preset_options, 'params[preset]','id="preset" onchange="gotoPreset(this)"', 'value','text',$selected_option);
-			} else {
-				$lists['preset_list'] = ' No presets defined.';
-			}
-			
-			// Load list of themelets (if they exist).
-			$themelet_dir = JPATH_SITE.'/morph_assets/themelets';          
-
-			if(is_dir($themelet_dir)) $lists['themelets'] = JFolder::folders( $themelet_dir );
-			else $lists['themelets'] = null;
-			foreach ($lists['themelets'] as $themelet){
+				
+				if( count( $template_settings ) && empty($preset_choice) ) {
+					// Got settings from the DB.
+					$current_params = implode( "\n", $template_settings );
+				
+				//@TODO check if we can get rid of the $preset_values leftovers from possibly tatami
+				//} elseif( isset($preset_values) ) {
+					// Got settings from the preset.
+				//	$current_params = implode( "\n", $preset_values );
+				} else {
+					// Default empty.
+					$current_params = implode( "\n", $paramList );
+				}
+		
 				// Create the morph params
-				$themelet_params = $this->parsexml_themelet_file($themelet_dir.'/'.$themelet);
-				$lists[$themelet] = $themelet_params;
-			}
+				$params = new JParameter($current_params, $templateBaseDir.'/core/morphDetails.xml');        
+				$params->name = $template;
+				//$params->merge($themelet_params);
+				
+				$lists = array();
+				
+				// Load presets from XML file.
+				$xml_param_loader = new morphXMLLoader($templateBaseDir.'/core/morphDetails.xml');
+				$main_xml_params = $xml_param_loader->getParamDefaults();
+							
+				$params->use_favicons = $xml_param_loader->use_favicons;
 
-			$lists['themelets_dir'] = $themelet_dir;
-			
-			// Load list of logos (if they exist).
-			$logo_dir = JPATH_SITE.'/morph_assets/logos';
-			if(is_dir($logo_dir)) $lists['logos'] = JFolder::files( $logo_dir, '.jpg|.png|.gif' );
-			else $lists['logos'] = null;
-			$lists['logo_dir'] = $logo_dir;
-			
-			// Load list of backgrounds (if they exist).
-			$bg_dir = JPATH_SITE.'/morph_assets/backgrounds';
-			if(is_dir($bg_dir)) $lists['backgrounds'] = JFolder::files( $bg_dir, '.jpg|.png|.gif' );
-			else $lists['backgrounds'] = null;
-			$lists['bg_dir'] = $bg_dir;
-			
-			unset($xmlDoc);
-		}
+				// Load list of themelets (if they exist).
+				$themelet_dir = JPATH_SITE.'/morph_assets/themelets';          
+	
+				if(is_dir($themelet_dir)) $lists['themelets'] = JFolder::folders( $themelet_dir );
+				else $lists['themelets'] = null;
+				foreach ($lists['themelets'] as $themelet){
+					// Create the morph params
+					$themelet_params = $this->parsexml_themelet_file($themelet_dir.'/'.$themelet);
+					$lists[$themelet] = $themelet_params;
+				}
+	
+				$lists['themelets_dir'] = $themelet_dir;
+				
+				// Load list of logos (if they exist).
+				$logo_dir = JPATH_SITE.'/morph_assets/logos';
+				if(is_dir($logo_dir)) $lists['logos'] = JFolder::files( $logo_dir, '.jpg|.png|.gif' );
+				else $lists['logos'] = null;
+				$lists['logo_dir'] = $logo_dir;
+				
+				// Load list of backgrounds (if they exist).
+				$bg_dir = JPATH_SITE.'/morph_assets/backgrounds';
+				if(is_dir($bg_dir)) $lists['backgrounds'] = JFolder::files( $bg_dir, '.jpg|.png|.gif' );
+				else $lists['backgrounds'] = null;
+				$lists['bg_dir'] = $bg_dir;
+				
+				unset($xmlDoc);
+			}
 		// preferences variables
 			$cfg_pref='';
 			$pref_xml='';
@@ -199,8 +177,8 @@ class ConfiguratorController extends JController {
 				$current_prefs = implode( "\n", $prefs_settings );
 			}
 			
-			$pref_xml = new Jparameter($current_prefs, dirname(__FILE__).'/includes/layout/preferences.xml');
-	HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
+			$pref_xml = new JParameter($current_prefs, dirname(__FILE__).'/includes/layout/preferences.xml');
+			HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
 	}
 	
 	function help(){
@@ -337,7 +315,6 @@ class ConfiguratorController extends JController {
 		$db = JFactory::getDBO();
 		
 		$prefs = JRequest::getVar('cfg', null, 'post', 'array');
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 		
 		foreach($prefs as $pref_key => $pref_value){
 			$setting = JTable::getInstance('ConfiguratorPreferences','Table');
@@ -416,7 +393,6 @@ class ConfiguratorController extends JController {
 		$params[] = JRequest::getVar( 'jomsocialboxes', null, 'post', 'array' );
 		
 		$preset_name = JRequest::getVar('preset_coice', '');
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				
 		$this->clear_cache();
 				
@@ -862,10 +838,8 @@ class ConfiguratorController extends JController {
 	}
 	
 	function get_current_themelet(){
-		$db = JFactory::getDBO();
-		$query = "select param_value from #__configurator where param_name = 'themelet';";
-		$db->setQuery($query);
-		$c_themelet = $db->loadResult();
+		$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+		$c_themelet = $table->param('themelet')->getItem()->value;
 		
 		echo $c_themelet;
 		return true;
@@ -1034,8 +1008,6 @@ class ConfiguratorController extends JController {
 		$curr_themelet = '';
 		if(isset($template_params['themelet'])) { $curr_themelet = $template_params['themelet']['param_value']; }
 		if(isset($_COOKIE['current_themelet'])) { $curr_themelet = $_COOKIE['current_themelet']; }
-		
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');			
 			
 		// get existing themelet values
 		$query = "select * from #__configurator where source = 'themelet';";
@@ -1144,7 +1116,6 @@ class ConfiguratorController extends JController {
 		$db = JFactory::getDBO();
 		$template_dir = JPATH_ROOT.'/templates/morph';
 		$themelet_dir = JPATH_ROOT.'/morph_assets/themelets';
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 		
 		if(!isset($_GET['reset_type']) or $_GET['reset_type'] == '') {
 			echo 'error: "No reset type detected. Reset failed.", success: ""';
@@ -1367,7 +1338,6 @@ class ConfiguratorController extends JController {
 				}
 			
 				JPath::setPermissions($logo_dir.'/'.strtolower( basename( $logo_details['name'] ) ) );
-				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template;
 				$setting->param_name = 'templatelogo';
@@ -1431,7 +1401,6 @@ class ConfiguratorController extends JController {
 				}
 			
 				JPath::setPermissions($background_dir.'/'.strtolower( basename( $background_details['name'] ) ) );
-				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
 				$setting->template_name = $template;
 				$setting->param_name = 'templatebackground';
@@ -1797,8 +1766,6 @@ class ConfiguratorController extends JController {
 				foreach($removeParams as $r){
 					unset($main_xml_params[$r]);
 				}
-				
-				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 				
 				foreach($main_xml_params as $param_name => $param_value){
 					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');

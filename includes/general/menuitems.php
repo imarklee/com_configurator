@@ -3,7 +3,7 @@ function menu_items_list()
 {
 	$name = 'menuitem';
 	$value = null;
-	$node = new JSimpleXMLElement;
+	$node = new JSimpleXMLElement('params');
 	$control_name = 'params';
 	$db =& JFactory::getDBO();
 

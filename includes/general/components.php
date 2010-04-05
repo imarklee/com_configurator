@@ -7,7 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-function innerLayouts($id){
+function innerLayouts($id)
+{
 	include JPATH_ROOT.'/templates/morph/core/InnerLayout.php';
 	$select_option = array('default' => 'Inner Default',
 		'None',
@@ -17,10 +18,10 @@ function innerLayouts($id){
 		'200px Left',
 		'200px Right'
 	);
+
+	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
 	
-	$db = JFactory::getDBO();
-	$query = $db->setQuery("select param_value from #__configurator where param_name = 'id_".$id."';");
-	$res = $db->loadResult($query);
+	$res = $table->param('id_'.$id)->getItem()->value;
 	
 	$select = '<select id="id_'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
 		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Inner Default</option>'; } 
@@ -47,9 +48,9 @@ function outerLayouts($id){
 		'200px Right'
 	);
 	
-	$db = JFactory::getDBO();
-	$query = $db->setQuery("select param_value from #__configurator where param_name = 'od_".$id."';");
-	$res = $db->loadResult($query);
+	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+	
+	$res = $table->param('od_'.$id)->getItem()->value;
 	
 	$select = '<select id="od_'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
 		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Outer Default</option>'; }
@@ -80,10 +81,10 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 			foreach($res as $r){
 				if(!in_array($r['option'], $restricted)){
 					$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>
-					<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab; ?>">	
-					<?php echo $r['name']; ?></label>
-					<?php echo innerLayouts($r['option']);?>
-					<?php echo outerLayouts($r['option']);?>
+					<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab ?>">	
+					<?php echo $r['name'] ?></label>
+					<?php echo innerLayouts($r['option']) ?>
+					<?php echo outerLayouts($r['option']) ?>
 					</li>
 			<?php }
 			} ?>

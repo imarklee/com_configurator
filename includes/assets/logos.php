@@ -15,10 +15,7 @@ if(is_dir($logo_dir)) {
 	$lists['logos'] = null;
 }
 
-$db=& JFactory::getDBO();
-$query = "SELECT param_value FROM `#__configurator` WHERE `param_name` = 'logo_image' ";
-$db->setQuery( $query );
-$activelogo = $db->loadResult();
+$activelogo = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->param('logo_image')->getItem()->value;
 ?>
 <div id="assets-logos">
 	<div id="logos-switch" class="switch">

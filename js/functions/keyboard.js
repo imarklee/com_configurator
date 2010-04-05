@@ -115,14 +115,14 @@ $(window).keydown(function(e){
 		}
 
 		function info(){
-			if(!$.cookie('info')){
+			if(!$.cookie('welcome_screen')){
 				$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 			    	return welcomeScreen();
 			    });
-			    $.cookie('info', 'open');
+			    $.cookie('welcome_screen', 'hide');
 			}else{
 				$('#getting-started').dialog("destroy");
-				$.cookie('info', null);
+				//$.cookie('welcome_screen', null);
 			}
 			e.preventDefault();
 			return false;

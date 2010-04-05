@@ -2,8 +2,7 @@ updEl = new Array('dt#us-configurator', 'dt#us-morph', 'dt#us-themelet', 'ul.the
 function getUpdates(checknow){
 	if(!$.cookie('noupdates') || checknow){
 		if($.cookie('updates')) $.cookie('updates', null, { expires: 730 } );
-		updateURL = 'http://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
-		//updateURL = 'http://localhost/versions.php?return=json&callback=?';
+		updateURL = 'https://www.joomlajunkie.com/versions/versions.php?return=json&callback=?';
 		$.ajax({
 			method: 'get',
 			url: updateURL,

@@ -1589,12 +1589,12 @@ jQuery.noConflict();
 		    });
 		    return false;
 		});
-	    
+
 	    if(!$.cookie('welcome_screen')){
 	    	$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 		    	return welcomeScreen();
 		    });
-	    	$.cookie('welcome_screen', 'hide', { path: '/', expires: 366 });			
+	    	$.cookie('welcome_screen', 'hide', { expires: 365 });			
 	    }
 	    
 	    // prefs

@@ -68,6 +68,15 @@ class TableConfiguratorTemplateSettings extends JTable
     	return $this;
     }
     
+    public function getMenuItems()
+    {
+		//$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		$this->_db->setQuery("SELECT DISTINCT CAST(`template_name` AS SIGNED) AS itemid FROM #__configurator WHERE `template_name` LIKE '%.%'");
+		$items = $this->_db->loadResultArray();
+
+    	return $items;
+    }
+    
     public function getParams()
     {
 		if(!isset($this->template_name) ) return array();

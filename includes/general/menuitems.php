@@ -99,8 +99,22 @@ function menu_items_list()
 		}
 	}
 
-	$menuitem = JFactory::getApplication()->getUserState('configurator');
-	return JHTML::_('select.genericlist',  $options, $name, 'class="inputbox"', 'value', 'text', $menuitem, $control_name.$name);
+	$value = JFactory::getApplication()->getUserState('configurator');
+	
+	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+	
+	$menuitems = $table->getMenuItems();
+	$search    = array();
+	$replace   = array();
+	foreach ($menuitems as $menuitem)
+	{
+		$search[]  = 'value="' . $menuitem . '"';
+		$replace[] = 'value="' . $menuitem . '" class="have-configs"';
+	}
+	
+	$subject = JHTML::_('select.genericlist',  $options, $name, 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
+	
+	return str_replace($search, $replace, $subject);
 }
 ?>
 
@@ -108,6 +122,7 @@ function menu_items_list()
 	<div id="menuitems-options" class="options-panel">
 		<h3>Menu Items <?php echo menu_items_list() ?></h3>
 		<a href="#" class="save-and-reload btn-link">Save &amp; reload</a>
+		<a href="#" class="reset-menuitems btn-link">Save &amp; reload</a>
 	</div>
 	
 	<div id="menuitems-info" class="info-panel">

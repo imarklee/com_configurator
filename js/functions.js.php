@@ -288,6 +288,14 @@ jQuery.noConflict();
 		subtabs.tabs("select",3);
 		return false;
 		});	
+		
+		$("#utilities .menuitem").bind("click", function(){
+		var maintabs = $("#tabs").tabs();
+		var subtabs = $("#site-tabs").tabs();
+		maintabs.tabs("select",0);
+		subtabs.tabs('select','menuitems-tab');
+		return false;
+		});	
 
 		$(".sidebar-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();

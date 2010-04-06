@@ -23,8 +23,8 @@ function mootools($extension, $index, $app)
 	$node->addChild('option', array('value' => 1))->setData('Yes');
 	$node->addChild('option', array('value' => 0))->setData('No');
 
-	echo JElementItoggle::fetchTooltip($name, null /*htmlspecialchars($xml->description)*/, &$node, 'mootoolscompat', 'load_mootools_'.$option);
-	echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, &$node, 'mootoolscompat');
+	echo JElementItoggle::fetchTooltip($name, null /*htmlspecialchars($xml->description)*/, $node, 'mootoolscompat', 'load_mootools_'.$option);
+	echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, $node, 'mootoolscompat');
 }
 // do not show these options
 $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
@@ -35,7 +35,8 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 		<h3>Toggle which of your installed components to load Mootools on</h3>
 		<ol class="forms">
 			<?php
-			foreach($restricted as &$option) $option = "'".$option."'";
+			$options = null;
+			foreach($restricted as $r) $options .= "'".$r."'";
 			$db = JFactory::getDBO();
 			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .

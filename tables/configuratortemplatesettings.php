@@ -54,6 +54,7 @@ class TableConfiguratorTemplateSettings extends JTable
     {
         if( !isset($this->template_name) || !isset($this->param_name) ) return null;
         $template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+        $template = strtolower($template);
         $this->_db->setQuery("SELECT id FROM #__configurator WHERE `template_name` = '{$template}' AND `param_name` = '{$this->param_name}' LIMIT 1");
         $this->load( $this->_db->loadResult() );
     }
@@ -62,6 +63,7 @@ class TableConfiguratorTemplateSettings extends JTable
     {
 		if(!isset($this->param_name) ) return (object) array();
 		$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		$template = strtolower($template);
 		$this->_db->setQuery("SELECT * FROM #__configurator WHERE `template_name` = '{$template}' AND `param_name` = '{$this->param_name}'");
 		$this->setProperties($this->_db->loadAssoc());
 
@@ -77,10 +79,22 @@ class TableConfiguratorTemplateSettings extends JTable
     	return $items;
     }
     
+    public function resetMenuItems()
+    {
+		//$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		$this->_db->setQuery("SELECT DISTINCT CAST(`template_name` AS SIGNED) AS itemid FROM #__configurator WHERE `template_name` LIKE '%.%'");
+		$count = count($this->_db->loadResultArray());
+
+		$this->_db->execute("DELETE FROM #__configurator WHERE `template_name` LIKE '%.%'");
+
+    	return $count;
+    }
+    
     public function getParams()
     {
 		if(!isset($this->template_name) ) return array();
 		$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		$template = strtolower($template);
 		$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
 		$this->_db->setQuery( $query );
 		return $this->_db->loadAssocList('param_name');
@@ -90,13 +104,15 @@ class TableConfiguratorTemplateSettings extends JTable
     {
     	if(!isset($this->template_name) ) return array();
     	$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+    	$template = strtolower($template);
     	$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
     	$this->_db->setQuery( $query );
     	$override = (array) $this->_db->loadObjectList('param_name');
     	$query="SELECT * FROM #__configurator AS t WHERE t.template_name='morph'";
     	$this->_db->setQuery( $query );
-    	$fallback = (array)$this->_db->loadObjectList('param_name');
-    	return array_merge($fallback, $override);
+    	//$fallback = $this->_db->loadObjectList('param_name');
+    	//die('<pre>'.print_r($override, true).'</pre>');
+    	return $override ? $override : $this->_db->loadObjectList('param_name');
     }
     
     public function store()

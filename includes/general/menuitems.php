@@ -121,8 +121,9 @@ function menu_items_list()
 <div id="menuitems-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="menuitems-options" class="options-panel">
 		<h3>Menu Items <?php echo menu_items_list() ?></h3>
-		<a href="#" class="save-and-reload btn-link">Save &amp; reload</a>
-		<a href="#" class="reset-menuitems btn-link">Save &amp; reload</a>
+		<!--<a href="#" class="save-and-reload btn-link">Save &amp; reload</a>-->
+		<a href="#" class="save-and-reload btn-link">Change &amp; refresh</a>
+		<a href="#" class="reset-menuitems btn-link">Reset</a>
 	</div>
 	
 	<div id="menuitems-info" class="info-panel">

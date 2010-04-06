@@ -1524,9 +1524,15 @@ jQuery.noConflict();
 			event.preventDefault();
 		});
 		
+		/* @TODO make this fully ajax later */
 		$('#menuitems-options .save-and-reload').click(function(event){
-			ptOverlay('Saving current settings and changing the menu item&hellip;');
-			submitbutton('applytemplate');
+			ptOverlay('Changing current menu item&hellip;');
+			submitbutton('setMenuItem');
+			event.preventDefault();
+		});
+		$('#menuitems-options .reset-menuitems').click(function(event){
+			ptOverlay('Resetting menu item settings&hellip;');
+			submitbutton('resetMenuItems');
 			event.preventDefault();
 		});
 		

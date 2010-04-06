@@ -422,11 +422,6 @@ class ConfiguratorController extends JController {
 			setcookie('ct_themelet_name', '', time()-3600);
 		}
 		
-		// Set the current active menu item
-		$app         = JFactory::getApplication();
-		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
-		$app->setUserState('configurator', $menu_item);
-		
 		if(!JRequest::getVar('isajax', null, 'post')){
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
@@ -437,7 +432,34 @@ class ConfiguratorController extends JController {
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
 			return true;
 		}
-	}   
+	}
+	
+	function setMenuItem()
+	{
+		// Set the current active menu item
+		$app         = JFactory::getApplication();
+		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
+		$app->setUserState('configurator', $menu_item);
+		if(!$this->isAjax()) $app->redirect('index.php?option=com_configurator&task=manage', JText::_('Current menu item changed'));
+		return true;
+	}
+	
+	function resetMenuItems()
+	{
+		// Set the current active menu item
+		$app         = JFactory::getApplication();
+		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
+		$app->setUserState('configurator', 0);
+		$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+		$reset = $table->resetMenuItems();
+		$msg   = !$reset ? JText::_('There were no menu item settings to reset.') : sprintf(JText::_('%s menu items settings reset'), $reset);
+		if(!$this->isAjax()) $app->redirect('index.php?option=com_configurator&task=manage', $msg);
+		return true;
+	}
+	
+	function isAjax() {
+		return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
+	}
 	
 	function dashboard() {
 		global $mainframe;

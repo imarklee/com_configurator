@@ -40,12 +40,21 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 			<li class="changes">
 			    <?php if(isset($_COOKIE['formChanges'])){ ?><span class="shelf-notice">You have unsaved changes</span><?php }?>
 			</li>
+			<?php $app = JFactory::getApplication() ?>
+			<?php if ($app->getUserState('configurator') > 0) : ?>
 			<li class="menuitem">
-				<?php if (true) : ?>
-					<?php $app = JFactory::getApplication() ?>
-					<?php echo $app->getUserState('configurator') ?>
-				<?php endif ?>
+					<?php $menu = JTable::getInstance('Menu') ?>
+					<?php $menu->id = $app->getUserState('configurator') ?>
+					<?php $menu->load() ?>
+					<?php $menutype = JTable::getInstance('Menutypes') ?>
+					<?php $menutype->menutype = $menu->menutype ?>
+					<?php $menutype->_tbl_key = 'menutype' ?>
+					<?php $menutype->load() ?>
+					<?php echo $menutype->title ?>
+					&#10095;
+					<?php echo $menu->name ?>				
 			</li>
+			<?php endif ?>
 			<li class="toggle-shelf">
 			    <a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf">
 			    <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Show Shelf'; } ?></a>

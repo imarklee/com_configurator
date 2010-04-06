@@ -37,9 +37,16 @@ class TableConfiguratorTemplateSettings extends JTable
     public function __construct($db)
     {
     	$app		  = JFactory::getApplication();
-    	$itemid		  = $app->getUserState('configurator');
-		$this->__itemid = $itemid > 0 ? $itemid : false;
-
+		if($app->isAdmin())
+		{
+			$itemid		  = $app->getUserState('configurator');
+			$this->__itemid = $itemid > 0 ? $itemid : false;
+		}
+		else
+		{
+			$this->__itemid = JRequest::getInt('Itemid');
+		}
+		
     	return parent::__construct('#__configurator', 'id', $db);
     }
     
@@ -68,6 +75,19 @@ class TableConfiguratorTemplateSettings extends JTable
 		$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
 		$this->_db->setQuery( $query );
 		return $this->_db->loadAssocList('param_name');
+    }
+    
+    public function getConfigs()
+    {
+    	if(!isset($this->template_name) ) return array();
+    	$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+    	$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
+    	$this->_db->setQuery( $query );
+    	$override = (array) $this->_db->loadObjectList('param_name');
+    	$query="SELECT * FROM #__configurator AS t WHERE t.template_name='morph'";
+    	$this->_db->setQuery( $query );
+    	$fallback = (array)$this->_db->loadObjectList('param_name');
+    	return array_merge($fallback, $override);
     }
     
     public function store()

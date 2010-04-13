@@ -119,6 +119,15 @@ class TableConfiguratorTemplateSettings extends JTable
     {
     	$template = end(explode('.', $this->template_name));
     	$this->template = $this->__itemid ? $this->__itemid . '.' . $template : $template;
+    	
+		// Avoid duplicates
+		$this->_db->setQuery("SELECT COUNT(*) FROM #__configurator WHERE `template_name` = '{$this->template}' AND `param_name` = '{$this->param_name}'");
+		$count = (int)$this->_db->loadResult();
+		if($count > 1)
+		{
+			$this->_db->execute("DELETE FROM #__configurator WHERE `template_name` = '{$this->template}' AND `param_name` = '{$this->param_name}' AND `id` != '{$this->id}'");
+		}
+
     	return parent::store();
     }
     

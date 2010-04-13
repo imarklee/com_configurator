@@ -59,7 +59,7 @@ class plgSystemMorphCache extends JPlugin
 
 			jimport('joomla.filesystem.file');
 			
-			$uri = JFactory::getURI();
+			$uri = clone JFactory::getURI();
 			$itemid = isset($_SESSION['menuid']) ? $_SESSION['menuid'] : 0;
 			$user   = JFactory::getUser();
 			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath())).'.'.(int)$itemid.'.'.$user->gid.'.'.$format;

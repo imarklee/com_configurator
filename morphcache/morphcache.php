@@ -144,6 +144,10 @@ class plgSystemMorphCache extends JPlugin
 		if(file_exists($loader)) require_once $loader;
 		
 		define('MORPH_JQUERY', 1);
+		
+		//This is purely because we love CB so much
+		define( 'J_JQUERY_LOADED', 1 );
+		
 		// If we are in configurator, make sure to update the overrides.
 		// @TODO we might not want to run this on every pageload in configurator.
 		if(!class_exists('Morph')) return;

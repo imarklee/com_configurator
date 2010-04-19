@@ -45,7 +45,7 @@
 					if(settings.type == 'toggle' && $(this).attr('value') == 0) {
 						$(this).addClass('iT_checkbox iT_checkbox_off');
 						label(settings.keepLabel, id);
-						return;
+						return this;
 					}
 					label(settings.keepLabel, id);
 					$(this).addClass('iT_checkbox').before('<label class="itoggle" for="'+id+'"><span></span></label>');
@@ -56,7 +56,7 @@
 					}
 					if(settings.type == 'radio'){
 						$(this).prev('label').addClass('iT_radio');
-					}
+					}					
 				});
 			}
 		});
@@ -86,6 +86,7 @@
 					slide($(this));
 				}
 			}
+			console.log('itoggle',$('#'+$(this).attr('for')).change())
 			return false;
 		});
 		$('label.ilabel').click(function(){

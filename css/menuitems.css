@@ -1,0 +1,17 @@
+.menuitem_active_toggle {
+	position: absolute;
+	margin-top: -8px;
+	top: 50%;
+	right: 10px;
+	height: 16px;
+	width: 16px;
+	
+	background: transparent url(../images/lock-unlock.png) no-repeat center;
+}
+.menuitem_active_toggle.active {
+	background-image: url(../images/lock.png);
+}
+
+.menuitem_active_toggle input {
+	display: none;
+}

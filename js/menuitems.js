@@ -12,7 +12,7 @@ var listitems = $('.forms li', '#cfg.menuitem_active'),
 			event.data.row.toggleClass('unlocked');
 		}
 	};
-console.warn(active_listitems)
+
 //listitems.css('-webkit-transform', 'rotate(1deg)');
 
 listitems.each(function(i, item){
@@ -33,10 +33,9 @@ listitems.each(function(i, item){
 
 // For the themelets assets tab
 var themelet_active = $.inArray('themelet', active_listitems);
-console.log(themelet_active)
+
 $('#cfg.menuitem_active #assets-tabs').bind('tabsload', function(event, ui){
 	if(ui.index > 0) return this;
 	var state   = ' active';
 	$('#themelet-switch p').prepend('<div class="menuitem_active_toggle'+state+'"></div>');
-	console.log($A(arguments));
 });

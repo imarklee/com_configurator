@@ -121,8 +121,8 @@ class TableConfiguratorTemplateSettings extends JTable
     	$query="SELECT * FROM #__configurator AS t WHERE t.template_name='morph'";
     	$this->_db->setQuery( $query );
     	//$fallback = $this->_db->loadObjectList('param_name');
-    	//die('<pre>'.print_r($override, true).'</pre>');
-    	return $override ? $override : $this->_db->loadObjectList('param_name');
+    	//return $override ? $override : $this->_db->loadObjectList('param_name');
+    	return array_merge($this->_db->loadObjectList('param_name'), $override);
     }
     
     public function store()
@@ -130,14 +130,18 @@ class TableConfiguratorTemplateSettings extends JTable
     	$template = end(explode('.', $this->template_name));
     	$this->template = $this->__itemid ? $this->__itemid . '.' . $template : $template;
     	
-    	return false;
+    	// Avoid duplicates
+    	$this->_db->setQuery("SELECT COUNT(*) FROM #__configurator WHERE `template_name` = '{$this->template}' AND `param_name` = '{$this->param_name}'");
+    	$count = (int)$this->_db->loadResult();
+    	if($count > 1)
+    	{
+    		$this->_db->execute("DELETE FROM #__configurator WHERE `template_name` = '{$this->template}' AND `param_name` = '{$this->param_name}' AND `id` != '{$this->id}'");
+    	}
     	
-		// Avoid duplicates
-		$this->_db->setQuery("SELECT COUNT(*) FROM #__configurator WHERE `template_name` = '{$this->template}' AND `param_name` = '{$this->param_name}'");
-		$count = (int)$this->_db->loadResult();
-		if($count > 1)
-		{
-			$this->_db->execute("DELETE FROM #__configurator WHERE `template_name` = '{$this->template}' AND `param_name` = '{$this->param_name}' AND `id` != '{$this->id}'");
+    	if($this->__itemid)
+    	{
+    		$active_items = JRequest::getVar( 'menuitem_active', null, 'post', 'array' );
+			if(!array_key_exists($this->param_name, $active_items)) return parent::delete();
 		}
 
     	return parent::store();

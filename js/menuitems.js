@@ -4,12 +4,12 @@ var listitems = $('.forms li', '#cfg.menuitem_active'),
 		if($(this).is(':input')) {
 			event.data.toggle.addClass('active');
 			$('input', event.data.toggle).attr('checked', 'checked');
-			event.data.row.removeClass('unlocked');
+			event.data.row.removeClass('locked');
 		} else {
 			var toggle = $(':input', event.data.toggle);
 			toggle.is('[checked]') ? toggle.removeAttr('checked') : toggle.attr('checked', 'checked');
 			event.data.toggle.toggleClass('active');
-			event.data.row.toggleClass('unlocked');
+			event.data.row.toggleClass('locked');
 		}
 	};
 
@@ -21,10 +21,10 @@ listitems.each(function(i, item){
 	if(checked >= 0) {
 		checked = 'checked="checked"';
 		state   = ' active';
-		item.removeClass('unlocked');
+		item.removeClass('locked');
 	} else {
 		checked = '';
-		item.addClass('unlocked');
+		item.addClass('locked');
 	}
 	var toggle = $('<div class="menuitem_active_toggle'+state+'"><input type="checkbox" name="'+name+'" id="'+id+'"'+checked+' value="1" /></div>').appendTo(item), data = {toggle: toggle, row: item};
 	toggle.bind('click', data, changeState);
@@ -36,6 +36,11 @@ var themelet_active = $.inArray('themelet', active_listitems);
 
 $('#cfg.menuitem_active #assets-tabs').bind('tabsload', function(event, ui){
 	if(ui.index > 0) return this;
-	var state   = ' active';
-	$('#themelet-switch p').prepend('<div class="menuitem_active_toggle'+state+'"></div>');
+	var toggle = $('#menuitem_active_themelet'), state   = ' active';
+	if(!toggle.is('[checked]')) state = '';
+	console.log(toggle);
+	$('<div class="menuitem_active_toggle'+state+'"></div>').prependTo($('#themelet-switch p')).click(function(){
+		this.toggleClass('active');
+		toggle.click();
+	});
 });

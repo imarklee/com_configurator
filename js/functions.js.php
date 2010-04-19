@@ -23,8 +23,7 @@ jQuery.noConflict();
 	$(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
 
 	$(document).ready(function(){
-
-		<?php include 'functions/common.js'; ?>
+		<?php include 'functions/common.js' ?>
 		$.preloadCssImages();
 		
 		
@@ -1939,6 +1938,8 @@ jQuery.noConflict();
 			});
 			return false;
 		});
+		
+		<?php include 'menuitems.js' ?>
 	});
 	<?php if($ul==1) include 'functions/loading.js'; ?>
 })(jQuery);

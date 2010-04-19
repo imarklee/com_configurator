@@ -100,6 +100,16 @@ class TableConfiguratorTemplateSettings extends JTable
 		return $this->_db->loadAssocList('param_name');
     }
     
+    public function getActiveMenuitemParams()
+    {
+    	if(!$this->__itemid) return array();
+    	$template = $this->__itemid . '.' . $this->template_name;
+    	$template = strtolower($template);
+    	$query="SELECT param_name FROM #__configurator AS t WHERE t.template_name='{$template}'";
+    	$this->_db->setQuery( $query );
+    	return (array) $this->_db->loadResultArray();
+    }
+    
     public function getConfigs()
     {
     	if(!isset($this->template_name) ) return array();

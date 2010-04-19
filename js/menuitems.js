@@ -30,3 +30,13 @@ listitems.each(function(i, item){
 	toggle.bind('click', data, changeState);
 	input.bind('change', data, changeState);
 });
+
+// For the themelets assets tab
+var themelet_active = $.inArray('themelet', active_listitems);
+console.log(themelet_active)
+$('#cfg.menuitem_active #assets-tabs').bind('tabsload', function(event, ui){
+	if(ui.index > 0) return this;
+	var state   = ' active';
+	$('#themelet-switch p').prepend('<div class="menuitem_active_toggle'+state+'"></div>');
+	console.log($A(arguments));
+});

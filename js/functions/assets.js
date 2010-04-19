@@ -108,7 +108,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
     $('#generalthemelet').change(function(){
     	$.cookie('change_themelet', 'true');
     	$.cookie('ct_themelet_name', $(this).val());
-    	return false;
+    	//return this;
     });
     
    	$('li.themelet-item.tl-inactive ul li.btn-activate a').click(function(e){
@@ -120,7 +120,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 			
 	   		check_admin_session(ptOverlay('Processing...'));
 		   	
-	   		$('#generalthemelet option[value="'+setThemelet+'"]').attr('selected', true);
+	   		$('#generalthemelet option[value="'+setThemelet+'"]').attr('selected', true).trigger('change');
 	   		$('#templateform input[name="task"]').remove();
 	   		$('#templateform').submit(function(){
 	   			$(this).ajaxSubmit({

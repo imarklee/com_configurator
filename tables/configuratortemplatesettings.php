@@ -97,6 +97,16 @@ class TableConfiguratorTemplateSettings extends JTable
 		$template = strtolower($template);
 		$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
 		$this->_db->setQuery( $query );
+		
+		if($this->__itemid)
+		{
+			$override = $this->_db->loadAssocList('param_name');
+			$query="SELECT * FROM #__configurator AS t WHERE t.template_name='morph'";
+			$this->_db->setQuery( $query );
+			return array_merge($this->_db->loadAssocList('param_name'), $override);
+			die('<pre>'.print_r($return, true).'</pre>');
+		}
+		
 		return $this->_db->loadAssocList('param_name');
     }
     

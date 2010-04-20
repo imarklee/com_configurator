@@ -9,6 +9,8 @@
 
 function mootools($extension, $index, $app)
 {
+	$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
+	if(in_array($extension->option, $restricted)) return;
 	extract($extension);
 	
 	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
@@ -26,8 +28,6 @@ function mootools($extension, $index, $app)
 	echo JElementItoggle::fetchTooltip($name, null /*htmlspecialchars($xml->description)*/, $node, 'mootoolscompat', 'load_mootools_'.$option);
 	echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, $node, 'mootoolscompat');
 }
-// do not show these options
-$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
 ?>
 
 <div id="mootools-tab" class="ui-tabs-hide ui-tabs-panel">
@@ -35,14 +35,16 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 		<h3>Toggle which of your installed components to load Mootools on</h3>
 		<ol class="forms">
 			<?php
-			$options = null;
-			foreach($restricted as $r) $options .= "'".$r."'";
+			$options = array();
 			$db = JFactory::getDBO();
+			//foreach($restricted as $r) $options[] = "'".$r."'";
 			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
-							' WHERE c.link <> "" AND parent = 0 AND enabled = 1 AND c.option NOT IN ('.implode(', ', $restricted).')' .
+							' WHERE c.link <> "" AND parent = 0 AND enabled = 1' .
 							' ORDER BY c.name');
-			array_walk($db->loadAssocList($query), 'mootools', JFactory::getApplication()); ?>
+			$res = $db->loadAssocList($query);
+//			die('<pre>'.print_r($query, true).'</pre>');
+			array_walk($res, 'mootools', JFactory::getApplication()); ?>
 		</ol>
 	</div>
 	<div id="mootools-info" class="info-panel">

@@ -10,7 +10,7 @@
 function mootools($extension, $index, $app)
 {
 	$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
-	if(in_array($extension->option, $restricted)) return;
+	if(in_array($extension['option'], $restricted)) return;
 	extract($extension);
 	
 	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');

@@ -44,3 +44,4 @@ a.btn-primary:hover{-moz-box-shadow:0 0 5px #598C13;}
 #tabs .ui-tabs-panel{-moz-box-shadow:0 0 15px #000;}
 #tabs .ui-tabs-panel .subtabs .ui-tabs-panel{-moz-box-shadow:0 0 0 #fff;}
 .ui-dialog .ui-dialog-titlebar{-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
+#utilities ul .menuitem{-moz-border-radius:4px;}

@@ -37,24 +37,27 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 			<li class="logout">
 			    <a href="#" class="logout-configurator">Logout</a>
 			</li>
-			<li class="changes">
-			    <?php if(isset($_COOKIE['formChanges'])){ ?><span class="shelf-notice">You have unsaved changes</span><?php }?>
-			</li>
 			<?php $app = JFactory::getApplication() ?>
 			<?php if ($app->getUserState('configurator') > 0) : ?>
-			<li class="menuitem">
-					<?php $menu = JTable::getInstance('Menu') ?>
-					<?php $menu->id = $app->getUserState('configurator') ?>
-					<?php $menu->load() ?>
-					<?php $menutype = JTable::getInstance('Menutypes') ?>
-					<?php $menutype->menutype = $menu->menutype ?>
-					<?php $menutype->_tbl_key = 'menutype' ?>
-					<?php $menutype->load() ?>
+			<?php $menu = JTable::getInstance('Menu') ?>
+			<?php $menu->id = $app->getUserState('configurator') ?>
+			<?php $menu->load() ?>
+			<?php $menutype = JTable::getInstance('Menutypes') ?>
+			<?php $menutype->menutype = $menu->menutype ?>
+			<?php $menutype->_tbl_key = 'menutype' ?>
+			<?php $menutype->load() ?>
+			<li class="menuitem" title="You are currently editing the '<?php echo $menu->name ?>' menu item, which is located in the <?php echo $menutype->title ?>.">
+
 					<?php echo $menutype->title ?>
 					&#10095;
 					<?php echo $menu->name ?>				
 			</li>
 			<?php endif ?>
+			<?php if(isset($_COOKIE['formChanges'])){ ?>
+			<li class="changes">
+			    <span class="shelf-notice">You have unsaved changes</span>
+			</li>
+			<?php } ?>
 			<li class="toggle-shelf">
 			    <a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf">
 			    <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Show Shelf'; } ?></a>

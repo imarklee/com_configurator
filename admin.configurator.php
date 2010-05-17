@@ -10,6 +10,9 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+// Register depencies
+require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
+
 // Prepare the tables
 JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 

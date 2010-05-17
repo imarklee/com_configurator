@@ -33,7 +33,6 @@ class plgSystemMorphCache extends JPlugin
 					
 		$view = 'render'.ucfirst($format);
 		if(!method_exists($this, $view)) return;
-		JFile::read();
 		
 		
 		if ($gzip) {

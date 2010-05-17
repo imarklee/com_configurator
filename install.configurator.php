@@ -1,12 +1,12 @@
 <?php
 require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
+ob_start();
 (strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false) ? $base = './components/com_configurator' : $base = '.';
 $mem_limit = ini_get('memory_limit');
 if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
 define('JINDEXURL', $base);
 
 jimport('joomla.filesystem.folder');
-jimport('joomla.filesystem.file');
 
 // The following is to avoid configurator from showing up in the frontend menu manager
 $com = JTable::getInstance('component');
@@ -137,6 +137,24 @@ setcookie('installed_cfg', 'true');
 // set permissions on templates, assets and components folder.
 JPath::setPermissions(JPATH_ROOT.'/templates');
 JPath::setPermissions(JPATH_ROOT.'/administrator/components');
+
+// set gzip on/off based on browser
+$conf = JFactory::getConfig();
+if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
+	if($conf->getValue('config.gzip') !== '1'){
+		$path = JPATH_CONFIGURATION.'/configuration.php';
+		JPath::setPermissions($path, '0777');
+		if(file_exists($path) && is_writable($path)){			
+			$str = file_get_contents($path);
+			$line = str_replace('var $gzip = \'0\';', 'var $gzip = \'1\';', $str);
+			file_put_contents($path, $line);
+		}		
+		JPath::setPermissions($path, '0644');
+		setcookie('installed_gzip', 'true');
+	}
+}else{
+	setcookie('installed_no_gzip', 'true');
+}
 ?>
 <div id="install-wrap">
 	<div id="installer">
@@ -162,3 +180,4 @@ JPath::setPermissions(JPATH_ROOT.'/administrator/components');
 <div id="dialog" style="display:none;"></div>
 <div id="help-dialog" style="display:none;"></div>
 <?php if(isset($error) && $error){ include 'installer/error.php'; } ?>
+<?php ob_end_flush(); ?>

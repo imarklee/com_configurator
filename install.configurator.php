@@ -137,24 +137,6 @@ setcookie('installed_cfg', 'true');
 // set permissions on templates, assets and components folder.
 JPath::setPermissions(JPATH_ROOT.'/templates');
 JPath::setPermissions(JPATH_ROOT.'/administrator/components');
-
-// set gzip on/off based on browser
-$conf = JFactory::getConfig();
-if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
-	if($conf->getValue('config.gzip') !== '1'){
-		$path = JPATH_CONFIGURATION.'/configuration.php';
-		JPath::setPermissions($path, '0777');
-		if(file_exists($path) && is_writable($path)){			
-			$str = file_get_contents($path);
-			$line = str_replace('var $gzip = \'0\';', 'var $gzip = \'1\';', $str);
-			file_put_contents($path, $line);
-		}		
-		JPath::setPermissions($path, '0644');
-		setcookie('installed_gzip', 'true');
-	}
-}else{
-	setcookie('installed_no_gzip', 'true');
-}
 ?>
 <div id="install-wrap">
 	<div id="installer">

@@ -11,7 +11,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.plugin.plugin' );
-jimport('joomla.filesystem.file');
+JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
 
 /**
  */
@@ -33,7 +33,7 @@ class plgSystemMorphCache extends JPlugin
 					
 		$view = 'render'.ucfirst($format);
 		if(!method_exists($this, $view)) return;
-		
+		JFile::read();
 		
 		
 		if ($gzip) {
@@ -56,8 +56,6 @@ class plgSystemMorphCache extends JPlugin
 		$cache = JRequest::getInt('cache', false);
 		if ($cache)
 		{	
-
-			jimport('joomla.filesystem.file');
 			
 			$uri = clone JFactory::getURI();
 			$itemid = isset($_SESSION['menuid']) ? $_SESSION['menuid'] : 0;

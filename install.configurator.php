@@ -1,5 +1,5 @@
-<?php 
-ob_start();
+<?php
+require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
 (strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false) ? $base = './components/com_configurator' : $base = '.';
 $mem_limit = ini_get('memory_limit');
 if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
@@ -180,4 +180,3 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 <div id="dialog" style="display:none;"></div>
 <div id="help-dialog" style="display:none;"></div>
 <?php if(isset($error) && $error){ include 'installer/error.php'; } ?>
-<?php ob_end_flush(); ?>

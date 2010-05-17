@@ -9,10 +9,6 @@
 
 defined ('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controller');
-jimport('joomla.filesystem.file');
-jimport('joomla.filesystem.folder');
-jimport('joomla.filesystem.archive');
-jimport('joomla.filesystem.path');
 
 class ConfiguratorController extends JController {
 	
@@ -2065,7 +2061,6 @@ class ConfiguratorController extends JController {
 	}
 	
 	function create_sql_file($filename, $str){
-		jimport('joomla.filesystem.archive');
 		JFile::write($filename, gzcompress($str, 9));
 		return true;
 	}
@@ -2218,7 +2213,6 @@ class ConfiguratorController extends JController {
 	
 	function clear_cache()
 	{
-		jimport('joomla.filesystem.folder');
 		$path = JPATH_ROOT.'/cache/morph';
 		if(JFolder::exists($path)) JFolder::delete($path);
 	}

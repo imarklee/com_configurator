@@ -6,8 +6,6 @@ $mem_limit = ini_get('memory_limit');
 if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
 define('JINDEXURL', $base);
 
-jimport('joomla.filesystem.folder');
-
 // The following is to avoid configurator from showing up in the frontend menu manager
 $com = JTable::getInstance('component');
 if($com->loadByOption('com_configurator'))

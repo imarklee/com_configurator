@@ -8,10 +8,21 @@
 */
 
 defined ('_JEXEC') or die('Restricted access');
-jimport('joomla.application.component.controller');
 
-class ConfiguratorController extends JController {
-	
+class ConfiguratorController extends JController
+{
+	public function __construct($options = array())
+	{
+		parent::__construct($options);
+		$cache = JPATH_CACHE . '/com_configurator/install_cleanup.txt';
+
+		if(JFile::exists($cache)) return;
+		
+		ComConfiguratorHelperUtilities::installCleanup();
+		die('<pre>'.var_export($cache, true).'</pre>');
+		
+	}
+
 	function manage() {
 		global $mainframe;
 		$database = JFactory::getDBO();
@@ -194,7 +205,10 @@ class ConfiguratorController extends JController {
 		}
 	}
 	
-	function show_assets(){
+	/**
+	 * Used for the ajax in the assets tab
+	 */
+	public function show_assets(){
 		if(isset($_GET['a'])) $a = $_GET['a'];
 		switch($a){
 			case 'recycle': include('includes/assets/recycle.php'); break;

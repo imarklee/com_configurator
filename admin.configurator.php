@@ -16,8 +16,6 @@ require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
 // Prepare the tables
 JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 
-// Require the base controller
-require_once (JPATH_COMPONENT_ADMINISTRATOR.'/controller.php');
 require_once (JApplicationHelper::getPath('admin_html'));
 require_once (JApplicationHelper::getPath('class'));
 
@@ -31,9 +29,8 @@ include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."configuration.php");
 
 // Create the controller
 $classname  = 'ConfiguratorController';
-$controller = new $classname( );
+$controller = new $classname();
 // Perform the Request task
 $controller->execute( JRequest::getVar('task') );
 // Redirect if set by the controller
 $controller->redirect();
-?>

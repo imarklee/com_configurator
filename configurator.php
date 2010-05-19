@@ -27,4 +27,3 @@ $task=mosGetParam($_REQUEST, 'task');
 
 switch ($task) { default: break; }
 switch ($page) { default: break; }
-?>

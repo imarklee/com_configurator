@@ -177,5 +177,5 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 </div>
 <div id="dialog" style="display:none;"></div>
 <div id="help-dialog" style="display:none;"></div>
-<?php if(isset($error) && $error){ include 'installer/error.php'; } ?>
+<?php if(isset($error) && $error) include 'installer/error.php' ?>
 <?php ob_end_flush(); ?>

@@ -37,6 +37,7 @@
 			<folder>language</folder>
 			<folder>morphcache</folder>
 			<folder>tables</folder>
+			<folder>helpers</folder>
 			<folder>tooltips</folder>
 			<file>admin.configurator.html.php</file>
 			<file>admin.configurator.php</file>
@@ -47,6 +48,7 @@
 			<file>configurator.loader.php</file>
 			<file>configurator.php</file>
 			<file>controller.php</file>
+			<file>defines.php</file>
 			<file>depencies.php</file>
 			<file>index.html</file>
 			<file>install.sql</file>
@@ -55,4 +57,9 @@
 			<file>uninstall.sql</file>
 		</files>
 	</administration>
+	
+	<!-- Deprecated files -->
+	<deleted>
+		<file>configuration.php</file>
+	</deleted>
 </install>

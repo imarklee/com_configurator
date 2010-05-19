@@ -198,4 +198,3 @@ class HTML_configurator_admin {
 		include 'includes/layout/livedocs.php';
     }
 }
-?>

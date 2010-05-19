@@ -25,6 +25,14 @@ class ComConfiguratorHelperUtilities extends JObject
 	{
 		$xml = simplexml_load_file(ComConfiguratorDefines::getManifestPath());
 
-		//die('<pre>'.print_r($xml, true).'</pre>');
+		foreach($xml->deleted->children() as $type => $asset)
+		{
+			$class  = 'J' . $type;
+			$exists = array($class, 'exists');
+			$delete = array($class, 'delete');
+			$asset  = array(JPATH_ADMINISTRATOR.'/components/com_configurator/'.(string)$asset);
+			$result = call_user_func_array($exists, $asset);
+			if(call_user_func_array($exists, $asset)) call_user_func_array($delete, $asset);
+		}
 	}
 }

@@ -19,8 +19,7 @@ class ConfiguratorController extends JController
 		if(JFile::exists($cache)) return;
 		
 		ComConfiguratorHelperUtilities::installCleanup();
-		die('<pre>'.var_export($cache, true).'</pre>');
-		
+		JFile::write($cache, 'Cleanup executed: ' . gmdate(JText::_('DATE_FORMAT_LC')));
 	}
 
 	function manage() {

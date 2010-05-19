@@ -16,18 +16,17 @@ require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
 // Prepare the tables
 JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
 
-require_once (JApplicationHelper::getPath('admin_html'));
-require_once (JApplicationHelper::getPath('class'));
+require_once JApplicationHelper::getPath('admin_html');
+require_once JApplicationHelper::getPath('class');
 
-if (file_exists(JPATH_COMPONENT_ADMINISTRATOR.'/'."language".'/'.$mainframe->get('language') . ".php" ) ) {
-    include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."language".'/'.$mainframe->get('language') . ".php");
-} else {
-    include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."language".'/'."english.php");
-}
+$language = JFactory::getLanguage();
+$language = JPATH_COMPONENT_ADMINISTRATOR.'/language/'.$language->getBackwardLang().'.php';
+
+if(file_exists($language))	include_once $language;
+else 						include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
 
 // Create the controller
-$classname  = 'ConfiguratorController';
-$controller = new $classname();
+$controller = new ConfiguratorController();
 // Perform the Request task
 $controller->execute( JRequest::getVar('task') );
 // Redirect if set by the controller

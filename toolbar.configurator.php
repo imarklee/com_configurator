@@ -14,4 +14,3 @@ switch ($task){
 	case 'help'		: toolbar_morph::help_toolbar(); break;
 	default			: toolbar_morph::manage_toolbar(); break;
 }
-?>

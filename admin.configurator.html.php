@@ -183,7 +183,6 @@ class HTML_configurator_admin {
         HTML_configuratorhelper_admin::showDash();
     }
 	function help() {
-		include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."configuration.php");
         $document 	= JFactory::getDocument();
         $option 	= JRequest::getVar('option');
         $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';

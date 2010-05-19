@@ -31,4 +31,3 @@ class toolbar_morph {
 		$bar->appendButton( 'Custom', '<a href="'.JURI::root().'administrator/index.php?option=com_configurator&task=manage" class="toolbar">'.JText::_('Back').'</a>', 'configurator' );
 	}
 }
-?>

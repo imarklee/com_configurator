@@ -60,5 +60,6 @@
 	<!-- Deprecated files -->
 	<deleted>
 		<file>configuration.php</file>
+		<file>configurator.php</file>
 	</deleted>
 </install>

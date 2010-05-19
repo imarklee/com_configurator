@@ -20,7 +20,6 @@ $task 		= JRequest::getCmd('task');
 class HTML_configurator_admin {
 	function manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref ) {
         global $mainframe, $browser, $thebrowser, $browserver;
-        include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."configuration.php");
         
         $document 	= JFactory::getDocument();
         $option 	= JRequest::getVar('option');

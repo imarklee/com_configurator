@@ -25,8 +25,6 @@ if (file_exists(JPATH_COMPONENT_ADMINISTRATOR.'/'."language".'/'.$mainframe->get
     include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."language".'/'."english.php");
 }
 
-include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."configuration.php");
-
 // Create the controller
 $classname  = 'ConfiguratorController';
 $controller = new $classname();

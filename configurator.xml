@@ -41,7 +41,6 @@
 			<folder>tooltips</folder>
 			<file>admin.configurator.html.php</file>
 			<file>admin.configurator.php</file>
-			<file>configuration.php</file>    
 			<file>configurator.class.php</file>
 			<file>configurator.common.php</file>
 			<file>configurator.html.php</file>

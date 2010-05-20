@@ -69,4 +69,3 @@ class HTML_configuratorhelper_admin {
 		}
 	}	
 }
-?>

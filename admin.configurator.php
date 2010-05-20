@@ -11,10 +11,10 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Register depencies
-require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
+require_once JPATH_COMPONENT_ADMINISTRATOR . '/depencies.php';
 
 // Prepare the tables
-JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
+JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 
 require_once JApplicationHelper::getPath('admin_html');
 require_once JApplicationHelper::getPath('class');

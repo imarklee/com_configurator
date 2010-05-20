@@ -29,16 +29,19 @@
 	<administration>
 		<menu img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
 		<files>
+			<folder>controllers</folder>
 			<folder>css</folder>
+			<folder>helpers</folder>
 			<folder>images</folder>
 			<folder>includes</folder>
 			<folder>installer</folder>
 			<folder>js</folder>
 			<folder>language</folder>
+			<folder>models</folder>
 			<folder>morphcache</folder>
 			<folder>tables</folder>
-			<folder>helpers</folder>
 			<folder>tooltips</folder>
+			<folder>views</folder>
 			<file>admin.configurator.html.php</file>
 			<file>admin.configurator.php</file>
 			<file>configurator.class.php</file>
@@ -50,7 +53,7 @@
 			<file>index.html</file>
 			<file>install.sql</file>
 			<file>toolbar.configurator.html.php</file>
-			<file>toolbar.configurator.php</file>             
+			<file>toolbar.configurator.php</file>
 			<file>uninstall.sql</file>
 		</files>
 	</administration>

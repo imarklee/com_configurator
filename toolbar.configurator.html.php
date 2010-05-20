@@ -2,32 +2,110 @@
 /**
 * @package   Configurator Component
 * @author    Prothemer http://www.prothemer.com
-* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @copyright Copyright (C) 2008 - 2010 Web Monkeys Design Studio CC.
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-class toolbar_morph {
-	function manage_toolbar(){
-		JToolBarHelper::title(  JText::_( 'Configurator > <span>Manage</span>' ), 'configurator' );
-		$bar = JToolBar::getInstance( 'toolbar' );
-		if(ConfiguratorController::checkUser()){
-			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Save').'</a>', 'apply' );
-			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Fullscreen').'</a>', 'fullscreen' );
-			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Preferences ').'</a>', 'preferences' );
-			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Feedback').'</a>', 'report-bug-link' );
-			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Credits').'</a>', 'credits-link' );
-			$bar->appendButton( 'Custom', '<a href="'.JURI::root().'administrator/index.php?option=com_configurator&task=help" class="toolbar">'.JText::_('Help').'</a>', 'help-link' );
-		}else{
-			$bar->appendButton( 'Custom', '<a href="#" class="toolbar">'.JText::_('Report Bug').'</a>', 'report-bug-email-link' );
+
+/**
+ * ComConfiguratorToolbarHtml
+ *
+ * Toolbar html class, for rendering the help toolbar, and manage toolbar
+ * 
+ * @author Stian Didriksen <stian@prothemer.com>
+ */
+class ComConfiguratorToolbarHtml extends JToolBar
+{
+	/**
+	 * Toolbar instance
+	 *
+	 * @var JToolBar
+	 */
+	protected $_toolbar;
+
+	/**
+	 * Constructs the toolbar, and if an value is passed, render the toolbar
+	 *
+	 * @param  string $toolbar 				The toolbar to render
+	 * @return ComConfiguratorToolbarHtml	The toolbar instance
+	 */
+	public function __construct($toolbar = false)
+	{
+
+		$this->_toolbar = parent::getInstance();
+
+		if($toolbar)
+		{
+			$render = 'render' . $toolbar . 'Toolbar';
+			if(method_exists($this, $render)) return $this->$render();
 		}
+
+		return parent::__construct($toolbar);
 	}
 
-	function help_toolbar(){
-		JToolBarHelper::title(  JText::_( 'Configurator > <span>LiveDocs</span>' ), 'configurator-help' );
-		
-		$bar = JToolBar::getInstance( 'toolbar' );
-		$bar->appendButton( 'Custom', '<a href="'.JURI::root().'administrator/index.php?option=com_configurator&task=manage" class="toolbar">'.JText::_('Back').'</a>', 'configurator' );
+	/**
+	 * Renders the main toolbar
+	 *
+	 * Toolbar buttons changes based on the user status
+	 *
+	 * @see    ConfiguratorController::checkUser()
+	 * @return void
+	 */
+	public function renderManageToolbar()
+	{
+		JToolBarHelper::title( JText::_( 'Configurator > <span>Manage</span>' ), 'configurator' );
+
+		if(ConfiguratorController::checkUser())
+		{
+			$this
+					->appendButton('apply', 'Save')
+					->appendButton('fullscreen', 'Fullscreen')
+					->appendButton('preferences', 'Preferences ')
+					->appendButton('report-bug-link', 'Feedback')
+					->appendButton('credits-link', 'Credits')
+					->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&task=help'));
+		} 
+		else $this->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&task=help'));
+	}
+
+	/**
+	 * Renders the help toolbar
+	 *
+	 * Renders just a back button atm
+	 *
+	 * @return void
+	 */
+	public function renderHelpToolbar()
+	{
+		JToolBarHelper::title( JText::_( 'Configurator > <span>LiveDocs</span>' ), 'configurator-help' );
+
+		$this->appendButton('configurator', 'Back', JRoute::_('?option=com_configurator&task=manage'));
+	}
+
+	/**
+	 * Appends a toolbar button
+	 *
+	 * @param  $action	string	The button action
+	 * @param  $title	string	The button title, will be optional in the future
+	 * @param  $link	string	Button link, optional
+	 * @return ComConfiguratorToolbarHtml
+	 */
+	public function appendButton($action, $title, $link = '#')
+	{
+		$this->getToolbar()->appendButton('Custom', '<a href="'.$link.'" class="toolbar">'.JText::_($title).'</a>', $action);
+
+		return $this;
+	}
+
+	/**
+	 * Gets the toolbar instance
+	 *
+	 * @return JToolBar
+	 */
+	public function getToolbar()
+	{
+		return $this->_toolbar;
 	}
 }

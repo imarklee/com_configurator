@@ -14,3 +14,4 @@ JLoader::register('ConfiguratorController', JPATH_ADMINISTRATOR.'/components/com
 //JLoader::register('HTML_configurator_admin', JApplicationHelper::getPath('admin_html'));
 JLoader::register('ComConfiguratorDefines', JPATH_ADMINISTRATOR.'/components/com_configurator/defines.php');
 JLoader::register('ComConfiguratorHelperUtilities', JPATH_ADMINISTRATOR.'/components/com_configurator/helpers/utilities.php');
+JLoader::register('ComConfiguratorToolbarHtml', JApplicationHelper::getPath('toolbar_html'));

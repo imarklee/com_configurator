@@ -7,8 +7,6 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-defined( '_JEXEC' ) or die( 'Restricted access' );
-
 /**
  * ComConfiguratorToolbarHtml
  *

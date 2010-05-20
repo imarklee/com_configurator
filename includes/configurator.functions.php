@@ -80,11 +80,6 @@ function decode_data($data){
 	return (array)unserialize(str_replace('\\', '', urldecode($data)));
 }
 
-function xml2array($url)
-{
-    return (array) simplexml_load_file($url);
-}
-
 function pageURL() {
 	$pageURL = 'http';
 	if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}

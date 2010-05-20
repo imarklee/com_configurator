@@ -22,9 +22,9 @@ $template_xml = $template_path . 'templateDetails.xml';
 $themelet_xml = $themelet_path . $params->get('themelet').'/themeletDetails.xml';
 $component_xml = $component_path . 'configurator.xml';
 
-$template_arr = xml2array($template_xml);
-$themelet_arr = xml2array($themelet_xml) ? xml2array($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
-$component_arr = xml2array($component_xml);
+$template_arr = (array) simplexml_load_file($template_xml);
+$themelet_arr = (array) simplexml_load_file($themelet_xml) ? (array) simplexml_load_file($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
+$component_arr = (array) simplexml_load_file($component_xml);
 
 setcookie('current_themelet', $params->get('themelet')); ?>
 

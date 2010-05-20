@@ -39,7 +39,7 @@ $ct = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->param('theme
 	    	foreach ($lists['themelets'] as $themelet){
 	    		$themelet_uc = ucwords(str_replace('-', ' ', $themelet));
 				$themelet_xml = $themelet_dir.'/'.$themelet.'/themeletDetails.xml';
-				$themelet_arr = xml2array($themelet_xml);
+				$themelet_arr = (array) simplexml_load_file($themelet_xml);
 				if(isset($_COOKIE['us_'.$themelet_arr['foldername']])){ 
 					$cookie_val = split('##', $_COOKIE['us_'.$themelet_arr['foldername']]); 
 					$us_version = $cookie_val[0];

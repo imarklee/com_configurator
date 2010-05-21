@@ -25,6 +25,8 @@ class ComConfiguratorHelperUtilities extends JObject
 	{
 		$xml = simplexml_load_file(ComConfiguratorDefines::getManifestPath());
 
+		if(!isset($xml->deleted)) return;
+
 		foreach($xml->deleted->children() as $type => $asset)
 		{
 			$class  = 'J' . $type;

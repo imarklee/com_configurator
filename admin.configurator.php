@@ -25,12 +25,7 @@ $language = JPATH_COMPONENT_ADMINISTRATOR.'/language/'.$language->getBackwardLan
 if(file_exists($language))	include_once $language;
 else 						include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
 
-if(!JRequest::getVar('task'))
-{
-	$uri = JURI::getInstance();
-	$uri->setVar('task', 'manage');
-	JApplication::redirect($uri->toString());
-}
+if(JRequest::getCmd('view') == 'help') JRequest::setVar('task', 'help');
 
 // Dispatch Configurator
-new ComConfiguratorControllerDispatch(JRequest::getVar('task'));
+new ComConfiguratorControllerDispatch(JRequest::getCmd('task', 'default'));

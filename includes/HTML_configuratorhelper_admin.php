@@ -50,7 +50,7 @@ class HTML_configuratorhelper_admin {
 	<div id="dashboard">
 	<h1>Configurators Dashboard is under construction ;)</h1>
 	<p>We plan on updating configurator to have a really slick dashboard, but this is on the backburner until both Morph &amp; Configurator are 100% stable.</p>
-	<p class="config-morph"><a href="index.php?option=com_configurator&task=manage" title="Configure Morph">Configure Morph</a></p>
+	<p class="config-morph"><a href="index.php?option=com_configurator&view=configuration" title="Configure Morph">Configure Morph</a></p>
 	</div>
 	<?php   
 	}

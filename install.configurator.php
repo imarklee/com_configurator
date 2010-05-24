@@ -123,9 +123,10 @@ $query = $db->setQuery("select param_value from #__configurator where param_name
 $themelet_installed = $db->loadResult($query);
 if($themelet_installed == null) setcookie('is_themelet_installed', 'no');
 
+
+//@TODO upgrade to the Model asap
 // create a full system backup
-include 'controller.php';
-$classname  = 'ConfiguratorController';
+$classname  = 'ComConfiguratorControllerDefault';
 $controller = new $classname( );
 $controller->create_db_backup('full-database');
 

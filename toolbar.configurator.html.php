@@ -48,14 +48,14 @@ class ComConfiguratorToolbarHtml extends JToolBar
 	 *
 	 * Toolbar buttons changes based on the user status
 	 *
-	 * @see    ConfiguratorController::checkUser()
+	 * @see    ComConfiguratorControllerDefault::checkUser()
 	 * @return void
 	 */
 	public function renderManageToolbar()
 	{
 		JToolBarHelper::title( JText::_( 'Configurator > <span>Manage</span>' ), 'configurator' );
 
-		if(ConfiguratorController::checkUser())
+		if(ComConfiguratorControllerDefault::checkUser())
 		{
 			$this
 					->appendButton('apply', 'Save')
@@ -63,9 +63,9 @@ class ComConfiguratorToolbarHtml extends JToolBar
 					->appendButton('preferences', 'Preferences ')
 					->appendButton('report-bug-link', 'Feedback')
 					->appendButton('credits-link', 'Credits')
-					->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&task=help'));
+					->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&view=help'));
 		} 
-		else $this->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&task=help'));
+		else $this->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&view=help'));
 	}
 
 	/**
@@ -79,7 +79,7 @@ class ComConfiguratorToolbarHtml extends JToolBar
 	{
 		JToolBarHelper::title( JText::_( 'Configurator > <span>LiveDocs</span>' ), 'configurator-help' );
 
-		$this->appendButton('configurator', 'Back', JRoute::_('?option=com_configurator&task=manage'));
+		$this->appendButton('configurator', 'Back', JRoute::_('?option=com_configurator&view=configuration'));
 	}
 
 	/**

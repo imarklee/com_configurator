@@ -47,7 +47,6 @@
 			<file>configurator.class.php</file>
 			<file>configurator.common.php</file>
 			<file>configurator.loader.php</file>
-			<file>controller.php</file>
 			<file>defines.php</file>
 			<file>depencies.php</file>
 			<file>index.html</file>
@@ -63,5 +62,6 @@
 		<file>configuration.php</file>
 		<file>configurator.php</file>
 		<file>configurator.html.php</file>
+		<file>controller.php</file>
 	</deleted>
 </install>

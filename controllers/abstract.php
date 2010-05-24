@@ -16,9 +16,9 @@
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
- class ComConfiguratorControllerAbstract extends JController
- {
- 	public function __construct($options = array())
+class ComConfiguratorControllerAbstract extends JController
+{
+	public function __construct($options = array())
 	{
 		parent::__construct($options);
 		$cache = JPATH_CACHE . '/com_configurator/install_cleanup.txt';
@@ -29,7 +29,8 @@
 		JFile::write($cache, 'Cleanup executed: ' . gmdate('Y-m-d h:m:s'));
 	}
 
-	function manage() {
+	public function display()
+	{
 		global $mainframe;
 		$database = JFactory::getDBO();
 		$option = JRequest::getVar('option');
@@ -442,7 +443,7 @@
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
-			$mainframe->redirect("index.php?option={$option}&task=manage",$msg);
+			$mainframe->redirect("index.php?option={$option}&view=configuration",$msg);
 		}else{
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
@@ -456,7 +457,7 @@
 		$app         = JFactory::getApplication();
 		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
 		$app->setUserState('configurator', $menu_item);
-		if(!$this->isAjax()) $app->redirect('index.php?option=com_configurator&task=manage', JText::_('Current menu item changed'));
+		if(!$this->isAjax()) $app->redirect('index.php?option=com_configurator&view=configuration', JText::_('Current menu item changed'));
 		return true;
 	}
 	
@@ -476,20 +477,7 @@
 	function isAjax() {
 		return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
 	}
-	
-	function dashboard() {
-		global $mainframe;
-		$mainframe->redirect('index.php?option=com_configurator&task=manage');
-		parent::display();
-		//HTML_configurator_admin::dashboard();
-	}
-	
-	function display(){
-		global $mainframe;
-		$mainframe->redirect('index.php?option=com_configurator&task=manage');
-		parent::display();
-	}
-	
+
 	function findLine($filename, $str){
 		$file = file($filename);
 		$file = array_map('trim', $file);

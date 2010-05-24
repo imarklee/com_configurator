@@ -87,7 +87,7 @@ $(window).keydown(function(e){
 		}
 
 		function fullscreen(){
-			$('#minwidth-body').toggleClass("full-mode");
+			$('#minwidth-body').toggleClass("fullscreen");
 			$('#fullscreen').toggleClass("normal-mode");
 			if($('#fullscreen a').text() == 'Fullscreen'){ 
 				$('#fullscreen a').text('Normal'); 

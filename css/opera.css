@@ -1,7 +1,7 @@
 #cl-inner{height:auto;}
 #conf-login #am-login-form .alf-login{padding-top:39px;text-indent:-7998px;}
-#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{width:434px;}
-.win #minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{width:600px;}
+#minwidth-body.fullscreen #toolbar-box #toolbar table.toolbar{width:434px;}
+.win #minwidth-body.fullscreen #toolbar-box #toolbar table.toolbar{width:600px;}
 #conf-login label.login-checkbox{background:none;}
 #database-manager label input,
 .radio-item input{border:0;}
@@ -13,6 +13,6 @@
 .win #cfg #tabs ol.forms li.palette .color-preview{right:119px;}
 #tabs li.palette .picker{right:39px;}
 #preferences-form .to-label{width:210px;}
-#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{width:334px;}
+#minwidth-body.fullscreen #toolbar-box #toolbar table.toolbar{width:334px;}
 #tabs ol.forms li .tooltip{top:11px;}
 #utilities ul .menuitem{border-radius:4px;}

@@ -91,28 +91,3 @@ function pageURL() {
 	}
 return $pageURL;
 }
-
-// CSS and JS Packing
-if(isset($_GET['unpack'])){
-	setcookie('unpack', 'true', 0);
-	header('Location: ../administrator/index.php?option=com_configurator&view=configuration');
-}elseif(isset($_GET['pack'])){
-	setcookie('unpack', 'true', time()-3600);
-	header('Location: ../administrator/index.php?option=com_configurator&view=configuration');
-}
-
-if(isset($_GET['noshortkey'])){
-	setcookie('noshortkey', 'true', 0);
-	header('Location: ../administrator/index.php?option=com_configurator&view=configuration');
-}elseif(isset($_GET['shortkey'])){
-	setcookie('noshortkey', 'true', time()-3600);
-	header('Location: ../administrator/index.php?option=com_configurator&view=configuration');
-}
-
-if(isset($_GET['noupdates'])){
-	setcookie('noupdates', 'true', 0);
-	header('Location: ../administrator/index.php?option=com_configurator&view=configuration');
-}elseif(isset($_GET['updates'])){
-	setcookie('noupdates', 'true', time()-3600);
-	header('Location: ../administrator/index.php?option=com_configurator&view=configuration');
-}

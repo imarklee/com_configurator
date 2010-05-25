@@ -21,6 +21,25 @@ class ComConfiguratorControllerAbstract extends JController
 	public function __construct($options = array())
 	{
 		parent::__construct($options);
+
+		$uri = clone JFactory::getURI();		
+		$shortcuts = array('unpack' => 'pack', 'noshortkey' => 'shortkey', 'noupdates' => 'updates');
+		foreach($shortcuts as $cookie => $shortcut)
+		{
+			$isset = array('cookie' => isset($_GET[$cookie]), 'shortcut' => isset($_GET[$shortcut]));
+
+			if($isset['cookie'])		setcookie($cookie, 'true', 0);
+			elseif($isset['shortcut'])	setcookie($cookie, 'true', time()-3600);
+
+			$uri->delVar($shortcut);
+			$uri->delVar($cookie);
+			$redirect = array(
+				'url' => $uri->toString(),
+				'msg' => JText::_($shortcut . ' is ' . ( $isset['shortcut'] ? 'on' : 'off' ) )
+			);
+			if($isset['cookie'] || $isset['shortcut']) JFactory::getApplication()->redirect($redirect['url'], $redirect['msg']);
+		}
+		
 		$cache = JPATH_CACHE . '/com_configurator/install_cleanup.txt';
 
 		if(JFile::exists($cache)) return;

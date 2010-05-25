@@ -14,4 +14,4 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-new ComConfiguratorToolbarHtml(JRequest::getCmd('task') == 'help' ? 'Help' : 'Manage');
+new ComConfiguratorToolbarHtml(JRequest::getCmd('view') == 'help' ? 'Help' : 'Manage');

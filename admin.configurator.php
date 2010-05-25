@@ -25,7 +25,5 @@ $language = JPATH_COMPONENT_ADMINISTRATOR.'/language/'.$language->getBackwardLan
 if(file_exists($language))	include_once $language;
 else 						include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
 
-if(JRequest::getCmd('view') == 'help') JRequest::setVar('task', 'help');
-
 // Dispatch Configurator
 new ComConfiguratorControllerDispatch(JRequest::getCmd('task', 'default'));

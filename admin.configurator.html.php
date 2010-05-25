@@ -8,7 +8,6 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-include_once(JPATH_COMPONENT_ADMINISTRATOR.'/includes/HTML_configuratorhelper_admin.php');
 include_once(JPATH_COMPONENT_ADMINISTRATOR.'/includes/configurator.functions.php');
 if(file_exists(JPATH_ROOT.'/templates/morph/core/browser.php')){
 include_once(JPATH_ROOT.'/templates/morph/core/browser.php');
@@ -178,21 +177,5 @@ class HTML_configurator_admin {
 			</div>
 			<?php include 'includes/layout/report-bug.php';
 	 	}      
-    }
-    function dashboard() {
-        HTML_configuratorhelper_admin::showDash();
-    }
-	function help() {
-        $document 	= JFactory::getDocument();
-        $option 	= JRequest::getVar('option');
-        $csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
-		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
-        //$document->addScript($jspath . 'jquery.js');
-        //$document->addScript($jspath . 'livedocs.js');
-		
-		$document->addStyleSheet($csspath . 'toplinks.css');
-		$document->addStyleSheet($csspath . 'help-docs.css');
-
-		include 'includes/layout/livedocs.php';
     }
 }

@@ -50,6 +50,8 @@ class ComConfiguratorControllerAbstract extends JController
 
 	public function display()
 	{
+		if(JRequest::getCmd('view') == 'help') return parent::display();
+	
 		global $mainframe;
 		$database = JFactory::getDBO();
 		$option = JRequest::getVar('option');

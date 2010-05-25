@@ -63,5 +63,7 @@
 		<file>configurator.php</file>
 		<file>configurator.html.php</file>
 		<file>controller.php</file>
+		<file>includes/HTML_configuratorhelper_admin.php</file>
+		<file>includes/layout/livedocs.php</file>
 	</deleted>
 </install>

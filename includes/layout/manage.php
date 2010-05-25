@@ -153,14 +153,14 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 		<div id="assets" class="ui-tabs-panel ui-tabs-hide">
 			<div id="assets-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['assets-desc'])) { include dirname(__FILE__).'/../assets/desc-assets.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['assets-desc'])) include JPATH_COMPONENT_ADMINISTRATOR.'/views/help/tmpl/desc_assets.php' ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-themelets"><a href="<?php echo JRoute::_('?option=com_configurator&amp;task=show_assets&amp;a=themelets&amp;format=raw') ?>">Themelets</a></li>
-					<li class="icon-logos"><a href="?option=com_configurator&amp;task=show_assets&amp;a=logos&amp;format=raw">Logos</a></li>
-					<li class="icon-backgrounds"><a href="?option=com_configurator&amp;task=show_assets&amp;a=backgrounds&amp;format=raw">Backgrounds</a></li>
-					<li class="icon-iphone"><a href="?option=com_configurator&amp;task=show_assets&amp;a=iphone&amp;format=raw">iPhone</a></li>
-					<li class="icon-backupmgr"><a href="?option=com_configurator&amp;task=show_assets&amp;a=backup&amp;format=raw">Backups</a></li>
-					<li class="icon-recycle"><a href="?option=com_configurator&amp;task=show_assets&amp;a=recycle&amp;format=raw">Recycle Bin</a></li>
+					<li class="icon-themelets"><a href="<?php echo JRoute::_('?option=com_configurator&amp;view=themelets&amp;format=raw') ?>">Themelets</a></li>
+					<li class="icon-logos"><a href="?option=com_configurator&amp;view=logos&amp;format=raw">Logos</a></li>
+					<li class="icon-backgrounds"><a href="?option=com_configurator&amp;view=backgrounds&amp;format=raw">Backgrounds</a></li>
+					<li class="icon-iphone"><a href="?option=com_configurator&amp;view=iphone&amp;format=raw">iPhone</a></li>
+					<li class="icon-backupmgr"><a href="?option=com_configurator&amp;view=backups&amp;format=raw">Backups</a></li>
+					<li class="icon-recycle"><a href="?option=com_configurator&amp;view=recycle&amp;format=raw">Recycle Bin</a></li>
 				</ul>
 				<div class="icon-backup"> 
 					<span><a href="../administrator/index.php?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball">Download a Backup</a></span>				

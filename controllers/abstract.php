@@ -50,7 +50,7 @@ class ComConfiguratorControllerAbstract extends JController
 
 	public function display()
 	{
-		if(JRequest::getCmd('view') == 'help') return parent::display();
+		if(in_array(JRequest::getCmd('view'), array('help', 'recycle', 'themelets', 'backgrounds', 'logos', 'iphone', 'backups'))) return parent::display();
 	
 		global $mainframe;
 		$database = JFactory::getDBO();
@@ -214,10 +214,6 @@ class ComConfiguratorControllerAbstract extends JController
 			HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
 	}
 	
-	function help(){
-		HTML_configurator_admin::help();
-	}
-	
 	function pt_proxy(){
 		$url = urldecode($_GET['url']);
 		$content = file_get_contents($url);
@@ -230,21 +226,6 @@ class ComConfiguratorControllerAbstract extends JController
 		<?php 
 		}else{
 			echo $content;
-		}
-	}
-	
-	/**
-	 * Used for the ajax in the assets tab
-	 */
-	public function show_assets(){
-		if(isset($_GET['a'])) $a = $_GET['a'];
-		switch($a){
-			case 'recycle': include JPATH_COMPONENT_ADMINISTRATOR . '/includes/assets/recycle.php'; break;
-			case 'themelets': include JPATH_COMPONENT_ADMINISTRATOR . '/includes/assets/themelets.php'; break;
-			case 'backgrounds': include JPATH_COMPONENT_ADMINISTRATOR . '/includes/assets/backgrounds.php'; break;
-			case 'logos': include JPATH_COMPONENT_ADMINISTRATOR . '/includes/assets/logos.php'; break;
-			case 'iphone': include JPATH_COMPONENT_ADMINISTRATOR . '/includes/assets/iphone.php'; break;
-			case 'backup': include JPATH_COMPONENT_ADMINISTRATOR . '/includes/assets/backup.php'; break;
 		}
 	}
 

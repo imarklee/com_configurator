@@ -60,6 +60,7 @@
 	<!-- Deprecated files -->
 	<deleted>
 		<folder>includes/assets</folder>
+		<file>admin.configurator.html.php</file>
 		<file>configuration.php</file>
 		<file>configurator.php</file>
 		<file>configurator.html.php</file>

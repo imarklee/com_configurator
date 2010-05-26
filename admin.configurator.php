@@ -16,7 +16,6 @@ require_once JPATH_COMPONENT_ADMINISTRATOR . '/depencies.php';
 // Prepare the tables
 JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 
-require_once JApplicationHelper::getPath('admin_html');
 require_once JApplicationHelper::getPath('class');
 
 $language = JFactory::getLanguage();

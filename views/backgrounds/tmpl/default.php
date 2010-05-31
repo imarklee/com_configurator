@@ -1,24 +1,7 @@
-<?php
-/**
-* @package   Configurator Component
-* @author    Prothemer http://www.prothemer.com
-* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
-* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
-*/
+<?php defined( '_JEXEC' ) or die( 'Restricted access' ) ?>
+<?php /* Turn stuff we set as $this->foo in our view, into $foo in the layout */ ?>
+<?php extract($this->getPublicProperties(), EXTR_SKIP) ?>
 
-$background_dir = JPATH_ROOT.'/morph_assets/backgrounds';
-$background_url = JURI::root() . 'morph_assets/backgrounds';
-if(is_dir($background_dir)) {
-	$lists['backgrounds'] = JFolder::files( $background_dir );
-} else {
-	$lists['backgrounds'] = null;
-}
-$db=& JFactory::getDBO();
-$query = "SELECT param_value FROM `#__configurator` WHERE `param_name` = 'bg_image' ";
-$db->setQuery( $query );
-$activebg = $db->loadResult();
-?>
 <div id="assets-backgrounds">
 	<div id="backgrounds-switch" class="switch">
 		<h2>Manage your assets: <strong>Backgrounds</strong></h2>

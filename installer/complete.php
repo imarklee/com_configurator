@@ -57,7 +57,7 @@ function iType($cookie){
 		<ul id="action">
 			<li class="previous"><a href="#" class="btn-skip back-step2"><span>&raquo; </span>Previous step</a></li>
 			<li class="skip">Skip this step<span> &raquo;</span></li>
-			<li class="next"><a href="index.php?option=com_configurator&task=manage" class="launch-cfg btn-install" title="click here to get started with configurator">Launch Configurator</a></li>
+			<li class="next"><a href="index.php?option=com_configurator&view=configuration" class="launch-cfg btn-install" title="click here to get started with configurator">Launch Configurator</a></li>
 		</ul>
 	</div>
 </div>	

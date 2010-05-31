@@ -1,31 +1,32 @@
 #minwidth-body .m{padding:0!important;}
 #minwidth-body .m #templateform{background:#000 url(../images/bg.jpg) no-repeat scroll 60% -10px;}
-#minwidth-body.full-mode{position:relative;background:#000 url(../installer/images/bg.jpg) no-repeat 50% 0%;margin:0;}
-#minwidth-body.full-mode #toolbar {background:#000;height:32px;left:0;position:absolute;top:0;width:100%;z-index:999;border-bottom:1px solid #333;}
-#minwidth-body.full-mode .m #templateform{background:#000 url(../images/bg.jpg) no-repeat scroll 60% -10px;}
-#minwidth-body.full-mode #border-top,#minwidth-body.full-mode #header-box,#minwidth-body.full-mode #content-box,#minwidth-body.full-mode .padding,#minwidth-body.full-mode .m,#minwidth-body.full-mode .t{background:#000;border:0!important;margin:0;padding:0;}
-#minwidth-body.full-mode #content-box .padding #element-box{position:absolute;top:33px;left:0;width:100%;z-index:999;background:#111;}
-#minwidth-body.full-mode #content-box .padding #element-box .m{background:none;padding:0;margin:0;}
-#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar{position:absolute;top:4px;right:-2px;z-index:99999;width:600px;height:5px;float:none;}
-#minwidth-body.full-mode #toolbar-box #toolbar table.toolbar td{margin:0 5px 0 0;padding:0;width:auto;float:right;display:block;}
-#minwidth-body.full-mode #toolbar-box #toolbar .toolbar a{padding:2px 5px;border:1px solid #222;background:#111;color:#fff;}
-#minwidth-body.full-mode #toolbar-box #toolbar .toolbar a:hover{border:1px solid #789F3A;background:#5A772B;}
-#minwidth-body.full-mode #toolbar-box #toolbar .toolbar span,
-#minwidth-body.full-mode #toolbar-box #toolbar .toolbar #toolbar-Link{display:none;}
-#minwidth-body.full-mode #toolbar-box #toolbar .toolbar #preferences a{padding:2px 10px;}
-#minwidth-body.full-mode #toolbar-box #toolbar .toolbar #fullscreen a{padding:2px 13px;}
-#minwidth-body.full-mode #system-message{position:relative;z-index:999900;top:-200px;margin:0!important;padding:0!important;display:block;border:0!important;background:#539312;}
-#minwidth-body.full-mode #system-message dd.message{margin:0!important;padding:0!important;display:block!important;border:0!important;background:none;}
-#minwidth-body.full-mode #system-message dd.message ul{color:#fff;margin:14px 0 0 0;padding:0;font:bold 20px arial;border:0!important;background:none;text-align:center;}
-#minwidth-body.full-mode #system-message dd.message li{padding-left:39px;padding:1px 0 1px 27px;display:inline;background:transparent url(../images/fullscreen-saved.png) no-repeat scroll 0% 90%;}
+#minwidth-body.fullscreen{position:relative;background:#000 url(../installer/images/bg.jpg) no-repeat 50% 0%;margin:0;}
+#minwidth-body.fullscreen #toolbar {background:#000;height:32px;left:0;position:absolute;top:0;width:100%;z-index:999;border-bottom:1px solid #333;}
+#minwidth-body.fullscreen .m #templateform{background:#000 url(../images/bg.jpg) no-repeat scroll 60% -10px;}
+#minwidth-body.fullscreen #border-top,#minwidth-body.fullscreen #header-box,#minwidth-body.fullscreen #content-box,#minwidth-body.fullscreen .padding,#minwidth-body.fullscreen .m,#minwidth-body.fullscreen .t{background:#000;border:0!important;margin:0;padding:0;}
+#minwidth-body.fullscreen #content-box .padding #element-box{position:absolute;top:33px;left:0;width:100%;z-index:999;background:#111;}
+#minwidth-body.fullscreen #content-box .padding #element-box .m{background:none;padding:0;margin:0;}
+#minwidth-body.fullscreen #toolbar-box #toolbar table.toolbar{position:absolute;top:4px;right:-2px;z-index:99999;width:600px;height:5px;float:none;}
+#minwidth-body.fullscreen #toolbar-box #toolbar table.toolbar td{margin:0 5px 0 0;padding:0;width:auto;float:right;display:block;}
+#minwidth-body.fullscreen #toolbar-box #toolbar .toolbar a{padding:2px 5px;border:1px solid #222;background:#111;color:#fff;}
+#minwidth-body.fullscreen #toolbar-box #toolbar .toolbar a:hover{border:1px solid #789F3A;background:#5A772B;}
+#minwidth-body.fullscreen #toolbar-box #toolbar .toolbar span,
+#minwidth-body.fullscreen #toolbar-box #toolbar .toolbar #toolbar-Link{display:none;}
+#minwidth-body.fullscreen #toolbar-box #toolbar .toolbar #preferences a{padding:2px 10px;}
+#minwidth-body.fullscreen #toolbar-box #toolbar .toolbar #fullscreen a{padding:2px 13px;}
+#minwidth-body.fullscreen #system-message{position:relative;z-index:999900;top:-200px;margin:0!important;padding:0!important;display:block;border:0!important;background:#539312;}
+#minwidth-body.fullscreen #system-message dd.message{margin:0!important;padding:0!important;display:block!important;border:0!important;background:none;}
+#minwidth-body.fullscreen #system-message dd.message ul{color:#fff;margin:14px 0 0 0;padding:0;font:bold 20px arial;border:0!important;background:none;text-align:center;}
+#minwidth-body.fullscreen #system-message dd.message li{padding-left:39px;padding:1px 0 1px 27px;display:inline;background:transparent url(../images/fullscreen-saved.png) no-repeat scroll 0% 90%;}
 #minwidth-body #system-message dd.message{background:#648A3F url(../images/message-bg.jpg) repeat-x;margin:0;padding:0;border:1px solid #6C9435;}
 #minwidth-body #system-message dd.message ul{background:transparent url(../images/success.png) no-repeat 10px;color:#fff;margin:0;padding:7px 0 7px 0;font:bold 20px arial;border:1px solid #C0DA4E;}
 #minwidth-body #system-message dd.message li{margin-left:15px;}
-#minwidth-body.full-mode #submenu-box div.m ul#submenu li.preferences a{border-right:1px solid #81B34F;}
-#minwidth-body.full-mode #submenu-box div.m ul#submenu{margin-right:80px;}
-#minwidth-body.full-mode #submenu-box div.m ul#submenu li a:hover{color:#ACEF69;}
-#minwidth-body.full-mode #border-top,
-#minwidth-body.full-mode #toolbar-box .t,
-#minwidth-body.full-mode #header-box{display:none;}
-#minwidth-body.full-mode #cfg.nofooter{margin-bottom:0;}
-#minwidth-body.full-mode{overflow:hidden;}
+#minwidth-body.fullscreen #submenu-box div.m ul#submenu li.preferences a{border-right:1px solid #81B34F;}
+#minwidth-body.fullscreen #submenu-box div.m ul#submenu{margin-right:80px;}
+#minwidth-body.fullscreen #submenu-box div.m ul#submenu li a:hover{color:#ACEF69;}
+#minwidth-body.fullscreen #border-top,
+#minwidth-body.fullscreen #toolbar-box .t,
+#minwidth-body.fullscreen #header-box{display:none;}
+#minwidth-body.fullscreen #cfg.nofooter{margin-bottom:0;}
+/*@TODO figure out why the scrollbar was removed, and if we can delete this line */
+/*#minwidth-body.fullscreen{overflow:hidden;}*/

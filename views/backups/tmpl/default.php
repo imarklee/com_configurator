@@ -1,12 +1,4 @@
-<?php
-/**
-* @package   Configurator Component
-* @author    Prothemer http://www.prothemer.com
-* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
-* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
-*/
-?>
+<?php defined( '_JEXEC' ) or die( 'Restricted access' ) ?>
 <div id="backup-manager">
     <h2>Backup Manager</h2>
     <p>Below is a list of backups that are automatically created by Configurator. Please use this tool with caution 

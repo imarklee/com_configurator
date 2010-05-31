@@ -2,185 +2,50 @@
 /**
 * @package   Configurator Component
 * @author    Prothemer http://www.prothemer.com
-* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @copyright Copyright (C) 2008 - 2010 Web Monkeys Design Studio CC.
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-defined ('_JEXEC') or die('Restricted access');
-jimport('joomla.application.component.controller');
-jimport('joomla.filesystem.file');
-jimport('joomla.filesystem.folder');
-jimport('joomla.filesystem.archive');
-jimport('joomla.filesystem.path');
+/**
+ * ComConfiguratorControllerAbstract
+ *
+ * Abstract base controller for Configurator
+ *
+ * @TODO desparatly needs a cleanup
+ * 
+ * @author Stian Didriksen <stian@prothemer.com>
+ */
+class ComConfiguratorControllerAbstract extends JController
+{
+	public function __construct($options = array())
+	{
+		parent::__construct($options);
 
-class ConfiguratorController extends JController {
-	
-	function manage() {
-		global $mainframe;
-		$database = JFactory::getDBO();
-		$option = JRequest::getVar('option');
-		$template = 'morph';
-		$cid = JRequest::getVar('cid',null,'request','array');
-		if(is_array($cid)) {
-			$template = $cid[0];
+		$uri = clone JFactory::getURI();		
+		$shortcuts = array('unpack' => 'pack', 'noshortkey' => 'shortkey', 'noupdates' => 'updates');
+		foreach($shortcuts as $cookie => $shortcut)
+		{
+			$isset = array('cookie' => isset($_GET[$cookie]), 'shortcut' => isset($_GET[$shortcut]));
+
+			if($isset['cookie'])		setcookie($cookie, 'true', 0);
+			elseif($isset['shortcut'])	setcookie($cookie, 'true', time()-3600);
+
+			$uri->delVar($shortcut);
+			$uri->delVar($cookie);
+			$redirect = array(
+				'url' => $uri->toString(),
+				'msg' => JText::_($shortcut . ' is ' . ( $isset['shortcut'] ? 'on' : 'off' ) )
+			);
+			if($isset['cookie'] || $isset['shortcut']) JFactory::getApplication()->redirect($redirect['url'], $redirect['msg']);
 		}
 		
-		$goto_link = 'index2.php?option='.$option.'&task=manage&t='.$template.'&preset=';
-		$goto_javascript = '<script language="JavaScript" type="text/javascript">'."\n".
-		'  <!--'."\n".
-		'  function gotoPreset(choice) {'."\n".
-		'	var index=choice.selectedIndex'."\n".
-		'	if (choice.options[index].value != "") {'."\n".
-		'	location="'.$goto_link.'"+choice.options[index].value;}'."\n".
-		'  }'."\n".
-		'  //-->'."\n".
-		'  </script>';
+		$cache = JPATH_CACHE . '/com_configurator/install_cleanup.txt';
 
-		$mainframe->addCustomHeadTag( $goto_javascript );
+		if(JFile::exists($cache)) return;
 
-		$morph_installed = JFolder::exists(JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template);
-		if ($morph_installed)
-		{
-			require_once JPATH_COMPONENT_ADMINISTRATOR.'/configurator.common.php';
-			$preset_choice = JRequest::getVar('preset',null);
-			$preset_values = null;
-
-			$templateBaseDir = JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template;
-	
-			$paramList = getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
-			foreach($paramList as $name => $default)
-			{
-				$paramList[] = $name.'='.$default;
-			}
-	
-				if ( $template ) {
-					// do stuff for existing records
-					// load existing settings for this template.
-					$template_params = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->template($template)->getParams();
-					$template_settings = array();
-					
-					// themelet
-					
-					$themelet = isset($template_params['themelet']) ? $template_params['themelet']['param_value'] : false;
-					$themelet_xml_params = array();
-					$themelet_path	= JPATH_ROOT.'/morph_assets/themelets/'.$themelet.'/themeletDetails.xml';
-					if(file_exists($themelet_path)) $xml_param_loader = new morphXMLLoader($themelet_path);
-					if(!empty($xml_param_loader)) {
-						$themelet_xml_params = $xml_param_loader->getParamDefaults();	
-						foreach($themelet_xml_params as $param_name => $param_value){
-							if(!array_key_exists($param_name,$template_params)) $template_params[$param_name] = array('param_name' => $param_name, 'param_value' => $param_value);
-						}
-					} 
-				
-					foreach ( (array) $template_params as $template_param ) {
-						$template_settings[] = $template_param['param_name'] . '=' . $template_param['param_value'] . "\n";
-					}
-				} else {
-					// do stuff for new records
-					$row->published     =1;
-					$row->date_submitted=date('Y-m-d H:i:s');
-					$row->id            =0;
-					$pics               =null;
-				}
-				
-				if( count( $template_settings ) && empty($preset_choice) ) {
-					// Got settings from the DB.
-					$current_params = implode( "\n", $template_settings );
-				
-				//@TODO check if we can get rid of the $preset_values leftovers from possibly tatami
-				//} elseif( isset($preset_values) ) {
-					// Got settings from the preset.
-				//	$current_params = implode( "\n", $preset_values );
-				} else {
-					// Default empty.
-					$current_params = implode( "\n", $paramList );
-				}
-		
-				// Create the morph params
-				$params = new JParameter($current_params, $templateBaseDir.'/core/morphDetails.xml');        
-				$params->name = $template;
-				//$params->merge($themelet_params);
-				
-				$lists = array();
-				
-				// Load presets from XML file.
-				$xml_param_loader = new morphXMLLoader($templateBaseDir.'/core/morphDetails.xml');
-				$main_xml_params = $xml_param_loader->getParamDefaults();
-							
-				$params->use_favicons = $xml_param_loader->use_favicons;
-
-				// Load list of themelets (if they exist).
-				$themelet_dir = JPATH_SITE.'/morph_assets/themelets';          
-	
-				if(is_dir($themelet_dir)) $lists['themelets'] = JFolder::folders( $themelet_dir );
-				else $lists['themelets'] = null;
-				foreach ($lists['themelets'] as $themelet){
-					// Create the morph params
-					$themelet_params = $this->parsexml_themelet_file($themelet_dir.'/'.$themelet);
-					$lists[$themelet] = $themelet_params;
-				}
-	
-				$lists['themelets_dir'] = $themelet_dir;
-				
-				// Load list of logos (if they exist).
-				$logo_dir = JPATH_SITE.'/morph_assets/logos';
-				if(is_dir($logo_dir)) $lists['logos'] = JFolder::files( $logo_dir, '.jpg|.png|.gif' );
-				else $lists['logos'] = null;
-				$lists['logo_dir'] = $logo_dir;
-				
-				// Load list of backgrounds (if they exist).
-				$bg_dir = JPATH_SITE.'/morph_assets/backgrounds';
-				if(is_dir($bg_dir)) $lists['backgrounds'] = JFolder::files( $bg_dir, '.jpg|.png|.gif' );
-				else $lists['backgrounds'] = null;
-				$lists['bg_dir'] = $bg_dir;
-				
-				unset($xmlDoc);
-			}
-		// preferences variables
-			$cfg_pref='';
-			$pref_xml='';
-			$query="SELECT * FROM #__configurator_preferences;";
-			$database->setQuery( $query );
-			$pref_params = $database->loadObjectList();
-						
-			$pref_list = getTemplateParamList( dirname(__FILE__) . '/includes/layout/preferences.xml', TRUE );
-			foreach ($pref_list as $pref => $val) {
-				$defpref_params[$pref] = $val;
-			}
-			
-			// Replace default settings with any settings found in the DB.
-			if($pref_params !== null) {
-				foreach( (array) $pref_params as $param ) {
-					$defpref_params[$param->pref_name] = $param->pref_value;
-				}
-			}
-			// Create class members dynamically to be used by template.
-			foreach( $defpref_params as $key => $value ) {
-				$cfg_pref->$key = $value;
-			}
-			
-			// preferences form
-			$query="SELECT * FROM #__configurator_preferences";
-			$database->setQuery( $query );
-			$prefs_params = $database->loadAssocList('pref_name');
-			$prefs_settings = array();
-			$current_prefs = '';
-			
-			foreach ( (array) $prefs_params as $prefs_param ) {
-				$prefs_settings[] = $prefs_param['pref_name'] . '=' . $prefs_param['pref_value'] . "\n";
-			}
-			if( count( $prefs_settings ) ) {
-				 //Got settings from the DB.
-				$current_prefs = implode( "\n", $prefs_settings );
-			}
-			
-			$pref_xml = new JParameter($current_prefs, dirname(__FILE__).'/includes/layout/preferences.xml');
-			HTML_configurator_admin::manage( $params, $lists, $morph_installed, $pref_xml, $cfg_pref );
-	}
-	
-	function help(){
-		HTML_configurator_admin::help();
+		ComConfiguratorHelperUtilities::installCleanup();
+		JFile::write($cache, 'Cleanup executed: ' . gmdate('Y-m-d h:m:s'));
 	}
 	
 	function pt_proxy(){
@@ -195,18 +60,6 @@ class ConfiguratorController extends JController {
 		<?php 
 		}else{
 			echo $content;
-		}
-	}
-	
-	function show_assets(){
-		if(isset($_GET['a'])) $a = $_GET['a'];
-		switch($a){
-			case 'recycle': include('includes/assets/recycle.php'); break;
-			case 'themelets': include('includes/assets/themelets.php'); break;
-			case 'backgrounds': include('includes/assets/backgrounds.php'); break;
-			case 'logos': include('includes/assets/logos.php'); break;
-			case 'iphone': include('includes/assets/iphone.php'); break;
-			case 'backup': include('includes/assets/backup.php'); break;
 		}
 	}
 
@@ -427,7 +280,7 @@ class ConfiguratorController extends JController {
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
-			$mainframe->redirect("index.php?option={$option}&task=manage",$msg);
+			$mainframe->redirect("index.php?option={$option}&view=configuration",$msg);
 		}else{
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
@@ -441,7 +294,7 @@ class ConfiguratorController extends JController {
 		$app         = JFactory::getApplication();
 		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
 		$app->setUserState('configurator', $menu_item);
-		if(!$this->isAjax()) $app->redirect('index.php?option=com_configurator&task=manage', JText::_('Current menu item changed'));
+		if(!$this->isAjax()) $app->redirect('index.php?option=com_configurator&view=configuration', JText::_('Current menu item changed'));
 		return true;
 	}
 	
@@ -461,20 +314,7 @@ class ConfiguratorController extends JController {
 	function isAjax() {
 		return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
 	}
-	
-	function dashboard() {
-		global $mainframe;
-		$mainframe->redirect('index.php?option=com_configurator&task=manage');
-		parent::display();
-		//HTML_configurator_admin::dashboard();
-	}
-	
-	function display(){
-		global $mainframe;
-		$mainframe->redirect('index.php?option=com_configurator&task=manage');
-		parent::display();
-	}
-	
+
 	function findLine($filename, $str){
 		$file = file($filename);
 		$file = array_map('trim', $file);
@@ -2066,7 +1906,6 @@ class ConfiguratorController extends JController {
 	}
 	
 	function create_sql_file($filename, $str){
-		jimport('joomla.filesystem.archive');
 		JFile::write($filename, gzcompress($str, 9));
 		return true;
 	}
@@ -2219,9 +2058,7 @@ class ConfiguratorController extends JController {
 	
 	function clear_cache()
 	{
-		jimport('joomla.filesystem.folder');
 		$path = JPATH_ROOT.'/cache/morph';
 		if(JFolder::exists($path)) JFolder::delete($path);
 	}
-	
-}
+ }

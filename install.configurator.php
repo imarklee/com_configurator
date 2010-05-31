@@ -1,12 +1,10 @@
-<?php 
+<?php
+require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
 ob_start();
 (strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false) ? $base = './components/com_configurator' : $base = '.';
 $mem_limit = ini_get('memory_limit');
 if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
 define('JINDEXURL', $base);
-
-jimport('joomla.filesystem.folder');
-jimport('joomla.filesystem.file');
 
 // The following is to avoid configurator from showing up in the frontend menu manager
 $com = JTable::getInstance('component');
@@ -125,9 +123,10 @@ $query = $db->setQuery("select param_value from #__configurator where param_name
 $themelet_installed = $db->loadResult($query);
 if($themelet_installed == null) setcookie('is_themelet_installed', 'no');
 
+
+//@TODO upgrade to the Model asap
 // create a full system backup
-include 'controller.php';
-$classname  = 'ConfiguratorController';
+$classname  = 'ComConfiguratorControllerDefault';
 $controller = new $classname( );
 $controller->create_db_backup('full-database');
 
@@ -179,5 +178,5 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 </div>
 <div id="dialog" style="display:none;"></div>
 <div id="help-dialog" style="display:none;"></div>
-<?php if(isset($error) && $error){ include 'installer/error.php'; } ?>
+<?php if(isset($error) && $error) include 'installer/error.php' ?>
 <?php ob_end_flush(); ?>

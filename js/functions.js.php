@@ -304,20 +304,20 @@ jQuery.noConflict();
 		return false;
 		});	
 		
-		if($.cookie('fullscreen') == 'true'){
-			$('#minwidth-body').addClass('full-mode');
+		if($.cookie('fullscreen') == 'yes'){
+			$('#minwidth-body').addClass('fullscreen');
 			$('#toolbar-fullscreen a').text('Normal Mode');
 		}
 		
 		$('#toolbar-fullscreen a').click(function(){
-			$('#minwidth-body').toggleClass("full-mode");
+			$('#minwidth-body').toggleClass("fullscreen");
 			$('#toolbar-fullscreen').toggleClass("normal-mode");
 			if($('#toolbar-fullscreen a').text() == 'Fullscreen'){ 
 				$('#toolbar-fullscreen a').text('Normal Mode'); 
-				$.cookie('fullscreen', 'true', { path: '/', expires: 30 });
+				$.cookie('fullscreen', 'yes', { path: '/', expires: 30 });
 			}else{ 
 				$('#toolbar-fullscreen a').text('Fullscreen'); 
-				$.cookie('fullscreen', 'false', { path: '/', expires: 30 });
+				$.cookie('fullscreen', 'no', { path: '/', expires: 30 });
 			}
 			return false; 
 		});

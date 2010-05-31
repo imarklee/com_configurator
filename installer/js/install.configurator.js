@@ -298,7 +298,7 @@
 		function loadstep1(callback){ $('#installer').load(base+'/installer/step1.php', callback); }
 		function loadstep2(callback){ $('#installer').load(base+'/installer/step2.php', callback); }
 		function loadcompleted(callback){ $('#installer').load(''+base+'/installer/complete.php', callback); }
-		function gotomanage() { window.location = '../administration/index.php?option=com_configurator&task=manage'; }
+		function gotomanage() { window.location = '../administration/index.php?option=com_configurator&view=configuration'; }
 		
 		function helpstep1(){
 			$('#help-dialog').load(base+'/installer/help/step1.php');

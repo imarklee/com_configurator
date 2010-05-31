@@ -3,7 +3,7 @@
 * @package   Morph Template
 * @category  Morph Cache
 * @author    Prothemer http://www.prothemer.com
-* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @copyright Copyright (C) 2008 - 2010 Web Monkeys Design Studio CC.
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
@@ -11,7 +11,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.plugin.plugin' );
-jimport('joomla.filesystem.file');
+JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
 
 /**
  */
@@ -35,7 +35,6 @@ class plgSystemMorphCache extends JPlugin
 		if(!method_exists($this, $view)) return;
 		
 		
-		
 		if ($gzip) {
 			if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
 				if(!ob_start("ob_gzhandler")) ob_start();
@@ -56,8 +55,6 @@ class plgSystemMorphCache extends JPlugin
 		$cache = JRequest::getInt('cache', false);
 		if ($cache)
 		{	
-
-			jimport('joomla.filesystem.file');
 			
 			$uri = clone JFactory::getURI();
 			$itemid = isset($_SESSION['menuid']) ? $_SESSION['menuid'] : 0;

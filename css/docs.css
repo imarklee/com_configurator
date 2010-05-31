@@ -10,11 +10,38 @@ p.intro{font:normal 17px/20px Arial;color:#666;}
 .docs-wrap dl.options-list dt,
 .docs-wrap dl.options-list dd{float:left;margin-bottom:15px;line-height:17px;}
 .docs-wrap dl.options-list dt{font-weight:bold;width:75px;}
-.docs-wrap dl.options-list dt span{display:block;color:#0088DB;text-decoration:underline;font-size:11px;font-weight:normal;padding-left:12px;background:#fff url(../images/bullet3.png) no-repeat 0;}
+.docs-wrap dl.options-list dt span{
+	display:block;
+	color:#0088DB;
+	text-decoration:underline;
+	font-size:11px;
+	font-weight:normal;
+	padding-left:12px;
+	/*This is causing a 404, as bullet3.pn don't exist*/
+	/*background:#fff url(../images/bullet3.png) no-repeat 0;*/
+}
 .docs-wrap dl.options-list dd{font-weight:normal;width:550px;color:#444;}
 .docs-wrap .docs-class{background:#FFFFAF;border:1px solid #FFD07F;color:#E3702B;padding:0 2px;}
-.docs-wrap p .btn{height:26px;float:right;display:inline-block;text-transform:uppercase;text-decoration:none;color:#333;padding-right:15px;font:normal 9px/26px arial;background:url(../images/btn-right.jpg) no-repeat top right;}
-.docs-wrap p .btn span{background:url(../images/btn-left.jpg) no-repeat top left;padding-left:15px;height:26px;font:normal 9px/26px arial;display:inline-block;}
+.docs-wrap p .btn{
+	height:26px;
+	float:right;
+	display:inline-block;
+	text-transform:uppercase;
+	text-decoration:none;
+	color:#333;
+	padding-right:15px;
+	font:normal 9px/26px arial;
+	/*This is causing a 404, as btn-right.jpg don't exist*/
+	/*background:url(../images/btn-right.jpg) no-repeat top right;*/
+}
+.docs-wrap p .btn span{
+	/*This is causing a 404, as btn-left.jpg don't exist*/
+	/*background:url(../images/btn-left.jpg) no-repeat top left;*/
+	padding-left:15px;
+	height:26px;
+	font:normal 9px/26px arial;
+	display:inline-block;
+}
 .docs-wrap p .btn:hover{background-position:bottom right;}
 .docs-wrap p .btn:hover span{background-position:bottom left;}
 .colorpicker{z-index:9999;}

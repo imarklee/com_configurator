@@ -2,7 +2,7 @@
 /**
 * @package   Configurator Component
 * @author    Prothemer http://www.prothemer.com
-* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @copyright Copyright (C) 2008 - 2010 Web Monkeys Design Studio CC.
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
@@ -10,27 +10,19 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+// Register depencies
+require_once JPATH_COMPONENT_ADMINISTRATOR . '/depencies.php';
+
 // Prepare the tables
-JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_configurator/tables');
+JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 
-// Require the base controller
-require_once (JPATH_COMPONENT_ADMINISTRATOR.'/controller.php');
-require_once (JApplicationHelper::getPath('admin_html'));
-require_once (JApplicationHelper::getPath('class'));
+require_once JApplicationHelper::getPath('class');
 
-if (file_exists(JPATH_COMPONENT_ADMINISTRATOR.'/'."language".'/'.$mainframe->get('language') . ".php" ) ) {
-    include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."language".'/'.$mainframe->get('language') . ".php");
-} else {
-    include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."language".'/'."english.php");
-}
+$language = JFactory::getLanguage();
+$language = JPATH_COMPONENT_ADMINISTRATOR.'/language/'.$language->getBackwardLang().'.php';
 
-include_once (JPATH_COMPONENT_ADMINISTRATOR.'/'."configuration.php");
+if(file_exists($language))	include_once $language;
+else 						include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
 
-// Create the controller
-$classname  = 'ConfiguratorController';
-$controller = new $classname( );
-// Perform the Request task
-$controller->execute( JRequest::getVar('task') );
-// Redirect if set by the controller
-$controller->redirect();
-?>
+// Dispatch Configurator
+new ComConfiguratorControllerDispatch(JRequest::getCmd('task', 'default'));

@@ -20,38 +20,52 @@
             <file charset="utf8" driver="mysql">install.sql</file>
         </sql>
     </install>
-    <uninstall>
-        <sql>
-            <file charset="utf8" driver="mysql">uninstall.sql</file>
-        </sql>
-    </uninstall>
-    
-    <administration>
-        <menu img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
-        <files>
-            <filename>admin.configurator.html.php</filename>
-            <filename>admin.configurator.php</filename>
-            <filename>configuration.php</filename>    
-        	<filename>configurator.class.php</filename>
-        	<filename>configurator.common.php</filename>
-        	<filename>configurator.html.php</filename>
-        	<filename>configurator.loader.php</filename>
-        	<filename>configurator.php</filename>
-            <filename>controller.php</filename>
-            <folder>css</folder>
-            <folder>images</folder>
-            <folder>includes</folder>
-            <filename>index.html</filename>
-            <filename>install.sql</filename>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">uninstall.sql</file>
+		</sql>
+	</uninstall>
+
+	<administration>
+		<menu img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
+		<files>
+			<folder>controllers</folder>
+			<folder>css</folder>
+			<folder>helpers</folder>
+			<folder>images</folder>
+			<folder>includes</folder>
 			<folder>installer</folder>
-            <folder>js</folder>
-            <folder>language</folder>
-            <folder>tables</folder>
-            <filename>toolbar.configurator.html.php</filename>
-            <filename>toolbar.configurator.php</filename>             
-            <folder>tooltips</folder>
-            <filename>uninstall.sql</filename>
-            <folder>morphcache</folder>
-        </files>
-    </administration>
+			<folder>js</folder>
+			<folder>language</folder>
+			<folder>models</folder>
+			<folder>morphcache</folder>
+			<folder>tables</folder>
+			<folder>tooltips</folder>
+			<folder>views</folder>
+			<file>admin.configurator.html.php</file>
+			<file>admin.configurator.php</file>
+			<file>configurator.class.php</file>
+			<file>configurator.common.php</file>
+			<file>configurator.loader.php</file>
+			<file>defines.php</file>
+			<file>depencies.php</file>
+			<file>index.html</file>
+			<file>install.sql</file>
+			<file>toolbar.configurator.html.php</file>
+			<file>toolbar.configurator.php</file>
+			<file>uninstall.sql</file>
+		</files>
+	</administration>
+	
+	<!-- Deprecated files -->
+	<deleted>
+		<folder>includes/assets</folder>
+		<file>admin.configurator.html.php</file>
+		<file>configuration.php</file>
+		<file>configurator.php</file>
+		<file>configurator.html.php</file>
+		<file>controller.php</file>
+		<file>includes/HTML_configuratorhelper_admin.php</file>
+		<file>includes/layout/livedocs.php</file>
+	</deleted>
 </install>

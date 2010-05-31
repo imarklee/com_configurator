@@ -2,7 +2,7 @@
 /**
 * @package   Configurator Component
 * @author    Prothemer http://www.prothemer.com
-* @copyright Copyright (C) 2008 - 2009 Web Monkeys Design Studio CC.
+* @copyright Copyright (C) 2008 - 2010 Web Monkeys Design Studio CC.
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
@@ -80,11 +80,6 @@ function decode_data($data){
 	return (array)unserialize(str_replace('\\', '', urldecode($data)));
 }
 
-function xml2array($url)
-{
-    return (array) simplexml_load_file($url);
-}
-
 function pageURL() {
 	$pageURL = 'http';
 	if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
@@ -95,29 +90,4 @@ function pageURL() {
 		$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 	}
 return $pageURL;
-}
-
-// CSS and JS Packing
-if(isset($_GET['unpack'])){
-	setcookie('unpack', 'true', 0);
-	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
-}elseif(isset($_GET['pack'])){
-	setcookie('unpack', 'true', time()-3600);
-	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
-}
-
-if(isset($_GET['noshortkey'])){
-	setcookie('noshortkey', 'true', 0);
-	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
-}elseif(isset($_GET['shortkey'])){
-	setcookie('noshortkey', 'true', time()-3600);
-	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
-}
-
-if(isset($_GET['noupdates'])){
-	setcookie('noupdates', 'true', 0);
-	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
-}elseif(isset($_GET['updates'])){
-	setcookie('noupdates', 'true', time()-3600);
-	header('Location: ../administrator/index.php?option=com_configurator&task=manage');
 }

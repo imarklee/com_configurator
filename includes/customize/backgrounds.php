@@ -1,12 +1,12 @@
 <div id="backgrounds-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="background-options" class="options-panel">
-		<h3>Html Background Settings</h3>
-		<ol class="forms" id="html-panel">
-			<?php echo renderParams($params->renderToArray('htmlbackgrounds', 'htmlbackgroundsdata')); ?>
-		</ol>
 		<h3>Body Background Settings</h3>
 		<ol class="forms" id="body-panel">
 			<?php echo renderParams($params->renderToArray('bodybackgrounds', 'bodybackgroundsdata')); ?>
+		</ol>
+		<h3>Html Background Settings</h3>
+		<ol class="forms" id="html-panel">
+			<?php echo renderParams($params->renderToArray('htmlbackgrounds', 'htmlbackgroundsdata')); ?>
 		</ol>
 	</div>
 	<div id="background-info" class="info-panel">

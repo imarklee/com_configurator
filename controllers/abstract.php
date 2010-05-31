@@ -235,10 +235,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$params[] = JRequest::getVar( 'components_outer', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'mootoolscompat', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'captify', null, 'post', 'array' );
-		$params[] = JRequest::getVar( 'lazyload', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'lightbox', null, 'post', 'array' );
-		$params[] = JRequest::getVar( 'fontsizer', null, 'post', 'array' );
-		$params[] = JRequest::getVar( 'shareit', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'preloader', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'jomsocial', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'jomsocialboxes', null, 'post', 'array' );

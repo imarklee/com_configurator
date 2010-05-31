@@ -444,7 +444,10 @@ function iphoneOff(elid, hideid){
 $(function(){
     iphoneOn('#iphoneiphone_mode1','#iphoneiphone_header, #iphoneiphone_webclip');
     iphoneOff('#iphoneiphone_mode0','#iphoneiphone_header,  #iphoneiphone_webclip');
+    iphoneOn('#iphoneiphone_viewport1','#iphoneiphone_scalable-lbl, #iphoneiphone_width, #iphoneiphone_height, #iphoneiphone_scale');
+    iphoneOff('#iphoneiphone_viewport0','#iphoneiphone_scalable-lbl, #iphoneiphone_width, #iphoneiphone_height, #iphoneiphone_scale');
 });
+
 
 function textarea(action, ta_el){
 	var display;

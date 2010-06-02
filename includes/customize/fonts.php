@@ -10,6 +10,9 @@
 		<p class="teaser">Description goes here.</p>
 	
 		<p>Basic help info goes here.</p>
-	
+		<p><a href="http://code.google.com/webfonts" class="btn-link">Browse Fonts</a>&nbsp;&nbsp;
+		<a href="http://code.google.com/apis/webfonts/" class="btn-link">Learn More</a></p>
+		
+		
 	</div>
 </div>

@@ -2,11 +2,11 @@
 	<div id="enhancements-options" class="options-panel">
 		<h3>Article view enhancements</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('article_enhancements', 'article_enhancementsdata')); ?>
+			<?php echo renderParams($params->renderToArray('articleenhancements', 'articleenhancementsdata')); ?>
 		</ol>
 		<h3>Blog view enhancements</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('blog_enhancements', 'blog_enhancementsdata')); ?>
+			<?php echo renderParams($params->renderToArray('blogenhancements', 'blogenhancementsdata')); ?>
 		</ol>
 	</div>
 	<div id="enhancements-info" class="info-panel">

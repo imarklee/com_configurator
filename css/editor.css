@@ -1,4 +1,4 @@
-#editor-wrap{height:400px;}
+#editor-wrap{min-height:400px;height:auto;}
 #editor-wrap ul,
 #editor-wrap li{margin:0;padding:0;list-style:none;}
 #editor-wrap ul{overflow:hidden;margin-bottom:.5em;}

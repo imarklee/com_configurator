@@ -66,7 +66,7 @@
 					?>
 						<tr class="<?php echo $splitfile[0] . ' ' . $splitfile[1]; ?>">
 						    <td class="backup-filename"><?php echo $file; ?></td>
-						    <td class="backup-size"><?php echo formatBytes(filesize(JPATH_ROOT.'/morph_assets/backups/'.$folder.$file)); ?></td>
+						    <td class="backup-size"><?php echo ComConfiguratorHelperUtilities::formatBytes(filesize(JPATH_ROOT.'/morph_assets/backups/'.$folder.$file)); ?></td>
 						    <td class="backup-date"><?php echo $date; ?></td>
 							<td class="backup-time"><?php echo $time; ?></td>
 						    <td class="backup-type"><?php echo $type; ?></td>

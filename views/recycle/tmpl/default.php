@@ -71,7 +71,7 @@ if($total_remaining <= 10){ ?>
 					}
 				}
 				$recycle_src = $recycle_url.'/'.$recycle;
-				$recycle_size = formatBytes(filesize($recycle_dir.'/'.$recycle));
+				$recycle_size = ComConfiguratorHelperUtilities::formatBytes(filesize($recycle_dir.'/'.$recycle));
 				$recycle_file = str_replace(array('logo_', 'bg_', 'iphone_'), '', $recycle);
 			?>	
 			<tr>
@@ -98,8 +98,8 @@ if($total_remaining <= 10){ ?>
 			<td><strong>Remaining</strong></td>
 		</tr>
 		<tr>
-			<td><?php echo formatBytes($size); ?> / <?php echo round($size * 100 / $limit, 0); ?>%</td>
-			<td><?php echo formatBytes(($limit - $size)); ?> / <?php echo round(($limit - $size) * 100 / $limit, 0); ?>%</td>
+			<td><?php echo ComConfiguratorHelperUtilities::formatBytes($size); ?> / <?php echo round($size * 100 / $limit, 0); ?>%</td>
+			<td><?php echo ComConfiguratorHelperUtilities::formatBytes(($limit - $size)); ?> / <?php echo round(($limit - $size) * 100 / $limit, 0); ?>%</td>
 		</tr>
 		</tbody>
 		</table>

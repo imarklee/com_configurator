@@ -40,7 +40,7 @@ if(is_dir($iphone_dir)) {
 				$iphone_size = getimagesize($iphone_dir.'/'.$iphone);
 				$iphone_width =  $iphone_size[0];
 				$iphone_height =  $iphone_size[1];
-				$iphone_size = formatBytes(filesize($iphone_dir.'/'.$iphone));
+				$iphone_size = ComConfiguratorHelperUtilities::formatBytes(filesize($iphone_dir.'/'.$iphone));
 				
 				if( $iphone !== $activebg ) { $bg_class = 'tl-inactive'; } else { $bg_class = 'tl-active'; }
 			?>	

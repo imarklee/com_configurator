@@ -24,5 +24,16 @@ $language = JPATH_COMPONENT_ADMINISTRATOR.'/language/'.$language->getBackwardLan
 if(file_exists($language))	include_once $language;
 else 						include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
 
+//If missing a view var, redirect to one.
+//Koowa does this automatically, so we can remove this code later
+if(!JRequest::getCmd('view'))
+{
+	$app = JFactory::getApplication();
+	$uri = JFactory::getURI();
+	$uri->setVar('view', 'configuration');
+	$app->redirect($uri->toString());
+	
+}
+
 // Dispatch Configurator
 new ComConfiguratorControllerDispatch(JRequest::getCmd('task', 'default'));

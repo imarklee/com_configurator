@@ -27,6 +27,7 @@
 
  		// Create the controller
  		$controller = new ComConfiguratorControllerDefault();
+ 		
  		// Perform the Request task
  		$controller->execute($task);
  		// Redirect if set by the controller

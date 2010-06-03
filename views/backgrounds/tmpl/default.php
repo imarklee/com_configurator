@@ -27,7 +27,7 @@
 				$background_size = getimagesize($background_dir.'/'.$background);
 				$background_width =  $background_size[0];
 				$background_height =  $background_size[1];
-				$background_size = formatBytes(filesize($background_dir.'/'.$background));
+				$background_size = ComConfiguratorHelperUtilities::formatBytes(filesize($background_dir.'/'.$background));
 				
 				if( $background !== $activebg ) { $bg_class = 'tl-inactive'; } else { $bg_class = 'tl-active'; }
 			?>	

@@ -11,7 +11,7 @@
 <div class="help-block2">
     <h3>Morph Documentation Site:</h3>
     <p>Extensive documentation is only a click away! You can access Morph's documentation right from within Configurator (via the top right 
-    <a href="index.php?option=com_configurator&task=help" target="_blank">Help</a> link, or via the direct url below.</p>
+    <a href="index.php?option=com_configurator&view=help" target="_blank">Help</a> link, or via the direct url below.</p>
     <p class="help-links"><a href="http://www.prothemer.com/morph/livedocs" target="_blank" class="btn-link" title="click here to launch the online documentation site">Visit the 
     documentation site</a></p>
     <h3>Twitter Updates:</h3>

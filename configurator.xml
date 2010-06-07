@@ -42,7 +42,6 @@
 			<folder>tables</folder>
 			<folder>tooltips</folder>
 			<folder>views</folder>
-			<file>admin.configurator.html.php</file>
 			<file>admin.configurator.php</file>
 			<file>configurator.class.php</file>
 			<file>configurator.common.php</file>

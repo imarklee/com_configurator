@@ -45,7 +45,8 @@ class ComConfiguratorControllerAbstract extends JController
 		if(JFile::exists($cache)) return;
 
 		ComConfiguratorHelperUtilities::installCleanup();
-		JFile::write($cache, 'Cleanup executed: ' . gmdate('Y-m-d h:m:s'));
+		$content = 'Cleanup executed: ' . gmdate('Y-m-d h:m:s');
+		JFile::write($cache, $content);
 	}
 	
 	function pt_proxy(){

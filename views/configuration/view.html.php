@@ -26,19 +26,6 @@ class ComConfiguratorViewConfiguration extends JView
 		if(is_array($cid)) {
 			$template = $cid[0];
 		}
-		
-		$goto_link = 'index2.php?option='.$option.'&task=manage&t='.$template.'&preset=';
-		$goto_javascript = '<script language="JavaScript" type="text/javascript">'."\n".
-		'  <!--'."\n".
-		'  function gotoPreset(choice) {'."\n".
-		'	var index=choice.selectedIndex'."\n".
-		'	if (choice.options[index].value != "") {'."\n".
-		'	location="'.$goto_link.'"+choice.options[index].value;}'."\n".
-		'  }'."\n".
-		'  //-->'."\n".
-		'  </script>';
-
-		$mainframe->addCustomHeadTag( $goto_javascript );
 
 		$morph_installed = JFolder::exists(JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template);
 		if ($morph_installed)
@@ -49,7 +36,7 @@ class ComConfiguratorViewConfiguration extends JView
 
 			$templateBaseDir = JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template;
 	
-			$paramList = getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
+			$paramList = ComConfiguratorHelperUtilities::getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
 			foreach($paramList as $name => $default)
 			{
 				$paramList[] = $name.'='.$default;
@@ -145,7 +132,7 @@ class ComConfiguratorViewConfiguration extends JView
 			$database->setQuery( $query );
 			$pref_params = $database->loadObjectList();
 						
-			$pref_list = getTemplateParamList( JPATH_COMPONENT_ADMINISTRATOR . '/includes/layout/preferences.xml', TRUE );
+			$pref_list = ComConfiguratorHelperUtilities::getTemplateParamList( JPATH_COMPONENT_ADMINISTRATOR . '/includes/layout/preferences.xml', TRUE );
 			foreach ($pref_list as $pref => $val) {
 				$defpref_params[$pref] = $val;
 			}

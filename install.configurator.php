@@ -1,55 +1,75 @@
 <?php
-require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
+//@TODO this doesn't work on 1.6, so only run on 1.5 and previous
+$version = new JVersion;
+if(version_compare('1.6', $version->RELEASE, '>'))
+{
+	require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
+} else {
+	require_once 'defines.php';
+	require_once 'helpers/utilities.php';
+	require_once 'toolbar.configurator.html.php';
+	
+	
+	require_once 'controllers/abstract.php';
+	require_once 'controllers/dispatch.php';
+	require_once 'controllers/default.php';
+}
 ob_start();
 (strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false) ? $base = './components/com_configurator' : $base = '.';
 $mem_limit = ini_get('memory_limit');
 if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
 define('JINDEXURL', $base);
 
-// The following is to avoid configurator from showing up in the frontend menu manager
-$com = JTable::getInstance('component');
-if($com->loadByOption('com_configurator'))
+//@TODO this doesn't work on 1.6, so only run on 1.5 and previous
+$version = new JVersion;
+if(version_compare('1.6', $version->RELEASE, '>'))
 {
-	$com->link = null;
-	$com->store(true);
-}
-
-// Move the search plugin
-$admin_path = 'administrator/components/com_configurator/morphcache';
-$plugins_path = 'plugins/system';
-if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
-{
-	$plugin_exists = JFile::exists(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
-	if($plugin_exists)
+	// The following is to avoid configurator from showing up in the frontend menu manager
+	$com = JTable::getInstance('component');
+	if($com->loadByOption('com_configurator'))
 	{
-		setcookie('upgrade_morphcache', 'true');
-		JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
-		JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.php');
+		$com->link = null;
+		$com->store(true);
 	}
+
 	
-	JFile::move($admin_path.'/morphcache.xml',  $plugins_path.'/morphcache.xml', JPATH_ROOT);
-	JFile::move($admin_path.'/morphcache.php',  $plugins_path.'/morphcache.php', JPATH_ROOT);
-	
-	$status = new JObject();
-	
-	$db = JFactory::getDBO();
-	// Check to see if a plugin by the same name is already installed
-	$query = "DELETE FROM `#__plugins` WHERE element = 'morphcache'";
-	$db->setQuery($query);
-	$db->Query();
-	// Insert in database
-	$row = JTable::getInstance('plugin');
-	$row->name = 'System - Morph Cache';
-	$row->folder = 'system';
-	$row->element = 'morphcache';
-	$row->published = 1;
-	if (!$row->store()) {
-		// Install failed, roll back changes
-		$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
-		return false;
+	// Move the search plugin
+	$admin_path = 'administrator/components/com_configurator/morphcache';
+	$plugins_path = 'plugins/system';
+	if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
+	{
+		$plugin_exists = JFile::exists(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
+		if($plugin_exists)
+		{
+			setcookie('upgrade_morphcache', 'true');
+			JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
+			JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.php');
+		}
+		
+		JFile::move($admin_path.'/morphcache.xml',  $plugins_path.'/morphcache.xml', JPATH_ROOT);
+		JFile::move($admin_path.'/morphcache.php',  $plugins_path.'/morphcache.php', JPATH_ROOT);
+		
+		$status = new JObject();
+		
+		$db = JFactory::getDBO();
+		// Check to see if a plugin by the same name is already installed
+		$query = "DELETE FROM `#__plugins` WHERE element = 'morphcache'";
+		$db->setQuery($query);
+		$db->Query();
+		// Insert in database
+		$row = JTable::getInstance('plugin');
+		$row->name = 'System - Morph Cache';
+		$row->folder = 'system';
+		$row->element = 'morphcache';
+		$row->published = 1;
+		if (!$row->store()) {
+			// Install failed, roll back changes
+			$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
+			return false;
+		}
+		
+		setcookie('installed_morphcache', 'true');
 	}
-	
-	setcookie('installed_morphcache', 'true');
 }
 
 $backupdir = JPATH_ROOT . '/morph_assets/backups';
@@ -67,11 +87,11 @@ if(!is_dir(JPATH_ROOT . '/morph_assets')){
 		JPath::setPermissions(JPATH_ROOT . '/morph_assets'); 
 	}
 }
-if(!is_dir(JPATH_SITE . '/morph_recycle_bin')){
-	if(!@mkdir(JPATH_SITE . '/morph_recycle_bin')){
+if(!is_dir(JPATH_ROOT . '/morph_recycle_bin')){
+	if(!@mkdir(JPATH_ROOT . '/morph_recycle_bin')){
 		$error = true;
 	}else{
-		JPath::setPermissions(JPATH_SITE . '/morph_recycle_bin');
+		JPath::setPermissions(JPATH_ROOT . '/morph_recycle_bin');
 	}
 }
 

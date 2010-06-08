@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install SYSTEM "http://www.joomla.org/xml/dtd/1.5/component-install.dtd">
-<install type="component" version="1.5.0" method="upgrade">
+<install type="component" version="1.5.0" method="upgrade" overwrite="true" client="administrator">
     <name>Configurator</name>
     <shortname>configurator</shortname>
     <foldername>com_configurator</foldername>
@@ -13,6 +13,8 @@
     <version>1.09</version>
     
 	<installfile>install.configurator.php</installfile>
+	<!-- For j1.6 -->
+	<scriptfile>install.configurator.php</scriptfile>
 	<uninstallfile>uninstall.configurator.php</uninstallfile>
 	
     <install>
@@ -54,10 +56,12 @@
 			<file>toolbar.configurator.php</file>
 			<file>uninstall.sql</file>
 		</files>
+		
+		<languages />
 	</administration>
 	
 	<!-- Deprecated files -->
-	<deleted>
+	<deprecated>
 		<folder>includes/assets</folder>
 		<file>admin.configurator.html.php</file>
 		<file>configuration.php</file>
@@ -66,5 +70,9 @@
 		<file>controller.php</file>
 		<file>includes/HTML_configuratorhelper_admin.php</file>
 		<file>includes/layout/livedocs.php</file>
-	</deleted>
+	</deprecated>
+	
+	<media />
+	
+	<languages />
 </install>

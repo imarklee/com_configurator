@@ -25,9 +25,9 @@ class ComConfiguratorHelperUtilities extends JObject
 	{
 		$xml = simplexml_load_file(ComConfiguratorDefines::getManifestPath());
 
-		if(!isset($xml->deleted)) return;
+		if(!isset($xml->deprecated)) return;
 
-		foreach($xml->deleted->children() as $type => $asset)
+		foreach($xml->deprecated->children() as $type => $asset)
 		{
 			$class  = 'J' . $type;
 			$exists = array($class, 'exists');
@@ -56,5 +56,19 @@ class ComConfiguratorHelperUtilities extends JObject
 		$bytes /= pow(1024, $pow);
 
 		return round($bytes, $precision) . $units[$pow];
+	}
+	
+	/**
+	 * Gets a list over template parameters
+	 *
+	 * @author Stian Didriksen <stian@prothemer.com>
+	 * @param $file	  path to morph or themelet xml file
+	 * @return array  xml data
+	 */
+	public static function getTemplateParamList( $file = false )
+	{
+		if( !$file ) return array();
+		$xml = new morphXMLParams( $file );
+		return $xml->getData();
 	}
 }

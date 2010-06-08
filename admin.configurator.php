@@ -18,11 +18,8 @@ JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 
 require_once JApplicationHelper::getPath('class');
 
-$language = JFactory::getLanguage();
-$language = JPATH_COMPONENT_ADMINISTRATOR.'/language/'.$language->getBackwardLang().'.php';
-
-if(file_exists($language))	include_once $language;
-else 						include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
+//@TODO upgrade to the native INI format asap!
+include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
 
 //If missing a view var, redirect to one.
 //Koowa does this automatically, so we can remove this code later

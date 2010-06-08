@@ -53,7 +53,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
                     <li class="icon-comperformance"><a href="#mootools-tab">Mootools Compatibility</a></li>
                     <?php if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li><?php } ?>
-                    <li class="icon-menuitems"><a href="#menuitems-tab">Menu Items</a></li>
+                    <!--<li class="icon-menuitems"><a href="#menuitems-tab">Menu Items</a></li>-->
                     <li class="icon-enhancements"><a href="#enhancements-tab">Core Enhancements</a></li>
 				</ul>
 				<?php include dirname(__FILE__).'/../general/general.php' ?>

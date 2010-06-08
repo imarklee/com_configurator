@@ -306,7 +306,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
 		$reset = $table->resetMenuItems();
 		$msg   = !$reset ? JText::_('There were no menu item settings to reset.') : sprintf(JText::_('%s menu items settings reset'), $reset);
-		if(!$this->isAjax()) $app->redirect('index.php?option=com_configurator&view=configuration&task=manage', $msg);
+		if(!$this->isAjax()) $app->redirect('?option=com_configurator&view=configuration&task=manage', $msg);
 		return true;
 	}
 	

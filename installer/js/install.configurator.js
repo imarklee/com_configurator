@@ -16,7 +16,7 @@
 			ptOverlay('Processing...')
 			
 			$.get(
-				'?option=com_configurator&task=assets_create&format=raw', '',
+				'?option=com_configurator&view=configuration&task=assets_create&format=raw', '',
 				function(data, status){
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){
@@ -298,7 +298,7 @@
 		function loadstep1(callback){ $('#installer').load(base+'/installer/step1.php', callback); }
 		function loadstep2(callback){ $('#installer').load(base+'/installer/step2.php', callback); }
 		function loadcompleted(callback){ $('#installer').load(''+base+'/installer/complete.php', callback); }
-		function gotomanage() { window.location = '../administration/index.php?option=com_configurator&view=configuration'; }
+		function gotomanage() { window.location = '?option=com_configurator&view=configuration'; }
 		
 		function helpstep1(){
 			$('#help-dialog').load(base+'/installer/help/step1.php');

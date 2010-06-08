@@ -58,7 +58,7 @@ $('#reset-settings ul li.action a').click(function(){
 				$.ajax({
 					type: 'GET',
 					dataType: 'json',
-					url: '../administrator/index.php?option=com_configurator&task=reset_database&format=raw&reset_type='+checkVal[i],
+					url: '?option=com_configurator&task=reset_database&format=raw&reset_type='+checkVal[i],
 					success: function(data){
 						if(data.error == ''){
 							successmsg.push(data.success);

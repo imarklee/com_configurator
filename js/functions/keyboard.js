@@ -11,14 +11,14 @@ $(window).keydown(function(e){
 			ptOverlay('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({
-					url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+					url: '?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
 					method: 'post',
 					success: function(ts, data){
 						return true;
 					}
 				});
 				$.ajax({
-					url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+					url: '?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
 					method: 'post',
 					dataType: 'json',
 					success: function(data, ts){
@@ -55,7 +55,7 @@ $(window).keydown(function(e){
 						   			},
 						   			'Previous Settings': function(){
 						   				$.ajax({
-											url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
+											url: '?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
 											method: 'post',
 											success: function(data){
 												return true;

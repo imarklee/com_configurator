@@ -6,7 +6,7 @@
 // 	function fixremote(){
 // 		$('#livedocs').contents().find('a').each(function(){
 // 			var oldhref = $.URLEncode($(this).attr('href'));
-// 			$(this).attr('href', '../administrator/index.php?option=com_configurator&task=pt_proxy&format=raw&url='+oldhref);
+// 			$(this).attr('href', '?option=com_configurator&task=pt_proxy&format=raw&url='+oldhref);
 // 			
 // 			$(this).click(function(){
 // 				window.frames.livedocs.location.href = $(this).attr('href');

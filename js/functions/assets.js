@@ -125,7 +125,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	   		$('#templateform').submit(function(){
 	   			$(this).ajaxSubmit({
 	   				type: 'POST',
-	   				url: '../administrator/index.php?format=raw',
+	   				url: '?isajax=true&format=raw',
 	   				data: {
 	   					option: 'com_configurator',
 	   					task: 'applytemplate',
@@ -150,7 +150,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		   				a.parent().next().children().click(function(e){ e.preventDefault(); return false; });
 		   				
 		   				$.ajax({
-							url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
+							url: '?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
 							method: 'post',
 							success: function(ts, data){
 								return true;
@@ -158,7 +158,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 						});
 						
 						$.ajax({
-							url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
+							url: '?option=com_configurator&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
 							method: 'post',
 							dataType: 'json',
 							success: function(data, ts){
@@ -195,7 +195,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 								   			'Previous Settings': function(){
 												$this = $(this);
 								   				$.ajax({
-													url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
+													url: '?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
 													method: 'post',
 													success: function(data){
 														$this.dialog('close');
@@ -270,7 +270,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	   		$('#templateform').submit(function(){
 	   			$(this).ajaxSubmit({
 	   				type: 'POST',
-	   				url: '../administrator/index.php?format=raw',
+	   				url: '?format=raw',
 	   				data: {
 	   					option: 'com_configurator',
 	   					task: 'applytemplate',
@@ -343,7 +343,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	   		$('#templateform').submit(function(){
 	   			$(this).ajaxSubmit({
 	   				type: 'POST',
-	   				url: '../administrator/index.php?format=raw',
+	   				url: '?format=raw',
 	   				data: {
 	   					option: 'com_configurator',
 	   					task: 'applytemplate',
@@ -377,7 +377,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    		var setThemelet = $(this).attr('name');
    		$.ajax({
 			type: 'GET',
-			url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=themelet&asset='+setThemelet,
+			url: '?option=com_configurator&format=raw&task=deleteAsset&deltype=themelet&asset='+setThemelet,
 			success: function(data, textStatus){
 				if(textStatus == 'success'){
 					$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().fadeOut('slow', function(){
@@ -411,7 +411,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    		var setBackground = $(this).attr('name');
 		$.ajax({
 			type: 'GET',
-			url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=background&asset='+setBackground,
+			url: '?option=com_configurator&format=raw&task=deleteAsset&deltype=background&asset='+setBackground,
 			success: function(data, textStatus){
 				if(textStatus == 'success'){
 					$('a[name="'+setBackground+'"]').parent().parent().parent().parent().fadeOut('slow', function(){
@@ -445,7 +445,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    		var setLogo = $(this).attr('name');
 		$.ajax({
 			type: 'GET',
-			url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=logo&asset='+setLogo,
+			url: '?option=com_configurator&format=raw&task=deleteAsset&deltype=logo&asset='+setLogo,
 			success: function(data, textStatus){
 				if(textStatus == 'success'){			   						
 					$('a[name="'+setLogo+'"]').parent().parent().parent().parent().fadeOut('slow', function(){
@@ -479,7 +479,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		var setiphone = $(this).attr('name');
 		$.ajax({
 			type: 'GET',
-			url: '../administrator/index.php?option=com_configurator&format=raw&task=deleteAsset&deltype=iphone&asset='+setiphone,
+			url: '?option=com_configurator&format=raw&task=deleteAsset&deltype=iphone&asset='+setiphone,
 			success: function(data, textStatus){
 				if(textStatus == 'success'){			   						
 					$('a[name="'+setiphone+'"]').parent().parent().parent().parent().fadeOut('slow', function(){
@@ -559,7 +559,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		var action = $(this).attr('action');
 		var filename = $(this).attr('name');
 		var btype = $(this).attr('bu_type');
-		var burl = '../administrator/index.php?option=com_configurator&format=raw&task=handle_backup&action='+action+'&filename='+filename+'&type='+btype;
+		var burl = '?option=com_configurator&format=raw&task=handle_backup&action='+action+'&filename='+filename+'&type='+btype;
 
 		$('<div class="dialog-msg"></div>').dialog({
 			bgiframe: true,
@@ -586,7 +586,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 				$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
 				$('.dialog-msg').dialog('option', 'buttons', {
 					'Yes': function(){
-						window.location.href = '../administrator/index.php?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
+						window.location.href = '?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
 						$(this).dialog('close');
 						check_admin_session(ptOverlay('Processing...'));
 						$.ajax({

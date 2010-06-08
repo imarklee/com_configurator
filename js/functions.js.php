@@ -344,7 +344,7 @@ jQuery.noConflict();
 			$('#preferences-form').submit(function(){
 	   			$(this).ajaxSubmit({
 	   				type: 'POST',
-	   				url: '../administrator/index.php?format=raw',
+	   				url: '?format=raw',
 	   				data: {
 	   					option: 'com_configurator',
 	   					task: 'saveprefs'
@@ -955,7 +955,7 @@ jQuery.noConflict();
 	    	
 		    	$.ajax({
 		    		type: 'POST',
-		    		url: '../administrator/index.php?option=com_configurator&task=makehash&format=raw',
+		    		url: '?option=com_configurator&task=makehash&format=raw',
 		    		data: {
 		    			'tempuserpass': password
 		    		},
@@ -1044,7 +1044,7 @@ jQuery.noConflict();
 										
 										ret = $.ajax({
 											dataType: 'json',
-											url: '../administrator/index.php?option=com_configurator&task=loaduser&format=raw',
+											url: '?option=com_configurator&task=loaduser&format=raw',
 											data: {
 												'login[user_name]': username,
 												'login[member_id]': member_id,
@@ -1109,7 +1109,7 @@ jQuery.noConflict();
 			
 			var uploadType = $('input[type="radio"]:checked','#install-type').val();
 			$.ajaxFileUpload({
-				url: '../administrator/index.php?option=com_configurator&task=uni_installer&format=raw&do=upload&itype='+uploadType,
+				url: '?option=com_configurator&view=configuration&task=uni_installer&format=raw&do=upload&itype='+uploadType,
 				fileElementId:'insfile',
 				dataType: 'json',
 				success: function (data, status){
@@ -1193,7 +1193,7 @@ jQuery.noConflict();
 								var backupmsg;
 								// check if uploaded themelet is the same as the active themelet.
 								$.ajax({
-									url: '../administrator/index.php?option=com_configurator&task=get_current_themelet&format=raw',
+									url: '?option=com_configurator&task=get_current_themelet&format=raw',
 									method: 'get',
 									success: function(d){
 										if(data.themelet == d){
@@ -1225,7 +1225,7 @@ jQuery.noConflict();
 															$('#templateform').submit(function(){
 													   			$(this).ajaxSubmit({
 													   				type: 'POST',
-													   				url: '../administrator/index.php?format=raw',
+													   				url: '?format=raw',
 													   				data: {
 													   					option: 'com_configurator',
 													   					task: 'applytemplate',
@@ -1233,14 +1233,14 @@ jQuery.noConflict();
 													   				},
 														   			success: function(data, textStatus){
 														   				$.ajax({
-																			url: '../administrator/index.php?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
+																			url: '?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
 																			method: 'post',
 																			success: function(ts, data){
 																				return true;
 																			}
 																		});
 																		$.ajax({
-																			url: '../administrator/index.php?option=com_configurator&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
+																			url: '?option=com_configurator&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
 																			method: 'post',
 																			dataType: 'json',
 																			success: function(data, ts){
@@ -1277,7 +1277,7 @@ jQuery.noConflict();
 																				   			'Previous Settings': function(){
 																								$this = $(this);
 																				   				$.ajax({
-																									url: '../administrator/index.php?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
+																									url: '?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
 																									method: 'post',
 																									success: function(data){
 																										$this.dialog('close');
@@ -1447,7 +1447,6 @@ jQuery.noConflict();
 					}
 				}
 			});
-			return false;
 		});	
 		
 		/* Tips ----------------------------
@@ -1657,7 +1656,7 @@ jQuery.noConflict();
 				$('#preferences-form').submit(function(){
 		   			$(this).ajaxSubmit({
 		   				type: 'POST',
-		   				url: '../administrator/index.php?format=raw',
+		   				url: '?format=raw',
 		   				data: {
 		   					option: 'com_configurator',
 		   					task: 'saveprefs'
@@ -1739,7 +1738,7 @@ jQuery.noConflict();
 	   			},
 	   			close: function(){
 	   				$.ajax({
-						url: '../administrator/index.php?option=com_configurator&task=luser&format=raw',
+						url: '?option=com_configurator&task=luser&format=raw',
 						success: function(d){
 							$.cookie('logout-toggle', null);
 							$(this).dialog('destroy');

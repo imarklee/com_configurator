@@ -161,7 +161,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="icon-recycle"><a href="?option=com_configurator&amp;view=recycle&amp;format=raw">Recycle Bin</a></li>
 				</ul>
 				<div class="icon-backup"> 
-					<span><a href="../administrator/index.php?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball">Download a Backup</a></span>				
+					<span><a href="?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball">Download a Backup</a></span>				
 				</div>
 			</div>
 		</div>

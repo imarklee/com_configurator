@@ -46,7 +46,7 @@ function show_positions(selector, list, act){
 		}
 
 		$.ajax({
-			url: '../administrator/index.php?option=com_configurator&task=get_modules_by_position&format=raw&position='+$(this).val(),
+			url: '?option=com_configurator&task=get_modules_by_position&format=raw&position='+$(this).val(),
 			success: function(data){
 				if(data == ''){
 					return false;
@@ -193,7 +193,7 @@ $('#migrate-submit a').live('click', function(){
 	});
 	
 	$.ajax({
-		url: '../administrator/index.php?option=com_configurator&format=raw&task=migrate_modules',
+		url: '?option=com_configurator&format=raw&task=migrate_modules',
 		type: 'post',
 		data: {
 			position: position,
@@ -235,7 +235,7 @@ function migrate_reset(link_el){
 		switch($(this).attr('action')){
 			case 'outer':
 				$.ajax({
-					url: '../administrator/index.php?option=com_configurator&format=raw&task=reset_modules&position=left',
+					url: '?option=com_configurator&format=raw&task=reset_modules&position=left',
 					success: function(){
 						close_ptOverlay();
 						$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully reset your modules.</li></ul></dd></dl>');	
@@ -245,7 +245,7 @@ function migrate_reset(link_el){
 			break;
 			case 'inner':
 				$.ajax({
-					url: '../administrator/index.php?option=com_configurator&format=raw&task=reset_modules&position=right',
+					url: '?option=com_configurator&format=raw&task=reset_modules&position=right',
 					success: function(){
 						close_ptOverlay();
 						$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully reset your modules.</li></ul></dd></dl>');	

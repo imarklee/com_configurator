@@ -26,7 +26,7 @@ var thisHeight = function(){
 function check_admin_session(action){
 	$.ajax({
 		type: 'post',
-		url: '../administrator/index.php?option=com_configurator&task=check_admin_session&format=raw',
+		url: '?option=com_configurator&task=check_admin_session&format=raw',
 		success: function(data){
 			if(data != 'active'){
 				$('body').append('<div id="session-error" class="dialog-msg"><strong>Your administration session has expired.</strong><br />You will need to login again to perform this action. Press OK to be redirected to the login page.</div>')

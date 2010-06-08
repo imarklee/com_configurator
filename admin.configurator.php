@@ -26,7 +26,7 @@ else 						include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
 
 //If missing a view var, redirect to one.
 //Koowa does this automatically, so we can remove this code later
-if(!JRequest::getCmd('view') && !ComConfiguratorControllerAbstract::isAjax())
+if(!JRequest::getCmd('view') && !JRequest::getCmd('task') && !ComConfiguratorControllerAbstract::isAjax())
 {
 	$app = JFactory::getApplication();
 	$uri = JFactory::getURI();

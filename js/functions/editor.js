@@ -25,7 +25,7 @@ $('#editor-list').live('change', function(ev){
 		var filename = file_info[2];
 	
 		var xhr = $.ajax({
-			url: '../administrator/index.php?option=com_configurator&format=raw&task=load_editor_file&file='+filename+'&type='+file_type+'&parent='+parent_name,
+			url: '?option=com_configurator&format=raw&task=load_editor_file&file='+filename+'&type='+file_type+'&parent='+parent_name,
 			success: function(data){
 				$('#editor textarea').text(data);
 				if(editor_highlighting == 0){

@@ -39,7 +39,7 @@ $('#database-manager ul li.action a').click(function(){
 		});
 
 		if(checkVal.length > 0){	
-			$.post('../administrator/index.php?option=com_configurator&task=export_db&format=raw', { 'export_data[]': checkVal },
+			$.post('?option=com_configurator&task=export_db&format=raw', { 'export_data[]': checkVal },
 				function(data, status){
 					close_ptOverlay();
 					hideScroll();
@@ -81,11 +81,11 @@ $('#database-manager ul li.action a').click(function(){
 			$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
 			$('.dialog-msg').dialog('option', 'buttons', {
 				'Yes': function(){
-					window.location.href = '../administrator/index.php?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
+					window.location.href = '../?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
 					$(this).dialog('close');
 					ptOverlay('Processing...');
 					$.ajaxFileUpload({
-						url: '../administrator/index.php?option=com_configurator&format=raw&task=import_db',
+						url: '../?option=com_configurator&format=raw&task=import_db',
 						dataType: 'json',
 						fileElementId:'import_file',
 						success: function (data, status){
@@ -108,7 +108,7 @@ $('#database-manager ul li.action a').click(function(){
 					$(this).dialog('close');
 					ptOverlay('Processing...');
 					$.ajaxFileUpload({
-						url: '../administrator/index.php?option=com_configurator&format=raw&task=import_db',
+						url: '?option=com_configurator&format=raw&task=import_db',
 						dataType: 'json',
 						fileElementId:'import_file',
 						success: function (data, status){

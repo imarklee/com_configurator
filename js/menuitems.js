@@ -1,4 +1,5 @@
-var listitems = $('.forms li', '#cfg.menuitem_active'),
+/* @TODO Menu Items is disabled atm */
+/*var listitems = $('.forms li', '#cfg.menuitem_active'),
 	active_listitems = $('#cfg').attr('data-active-menuitems').split(','), 
 	changeState = function(event){
 		if($(this).is(':input')) {
@@ -44,3 +45,4 @@ $('#cfg.menuitem_active #assets-tabs').bind('tabsload', function(event, ui){
 		toggle.click();
 	});
 });
+*/

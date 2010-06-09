@@ -52,7 +52,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
                     <li class="icon-comperformance"><a href="#mootools-tab">Mootools Compatibility</a></li>
-                    <?php if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li><?php } ?>
+                    <?php //if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li><?php } ?>
                     <!--<li class="icon-menuitems"><a href="#menuitems-tab">Menu Items</a></li>-->
                     <li class="icon-enhancements"><a href="#enhancements-tab">Core Enhancements</a></li>
 				</ul>
@@ -61,7 +61,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 				<?php include dirname(__FILE__).'/../general/debugging.php' ?>
 				<?php include dirname(__FILE__).'/../general/components.php' ?>
 				<?php include dirname(__FILE__).'/../general/mootools.php' ?>
-				<?php if($jomsocial_installed == 1) include dirname(__FILE__).'/../general/jomsocial.php' ?>
+				<?php //if($jomsocial_installed == 1) include dirname(__FILE__).'/../general/jomsocial.php' ?>
 				<?php include dirname(__FILE__).'/../general/menuitems.php' ?>
 				<?php include dirname(__FILE__).'/../general/enhancements.php' ?>
 			</div>
@@ -72,14 +72,14 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['themelet-desc'])) { include dirname(__FILE__).'/../customize/desc-customize.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
-					<li class="ui-tabs-selected icon-fonts"><a href="#fonts-tab">Custom Fonts</a></li>
+					<!--<li class="ui-tabs-selected icon-fonts"><a href="#fonts-tab">Custom Fonts</a></li>-->
 					<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
 					<li class="icon-backgrounds"><a href="#backgrounds-tab">Background Settings</a></li>
 					<li class="icon-menus"><a href="#menus-tab">Menu Settings</a></li>
 					<li class="icon-iphone"><a href="#iphone-tab">iPhone Compatibility</a></li>
 				</ul>
 				<?php include dirname(__FILE__).'/../customize/colors.php' ?>
-				<?php include dirname(__FILE__).'/../customize/fonts.php' ?>
+				<?php //include dirname(__FILE__).'/../customize/fonts.php' ?>
 				<?php include dirname(__FILE__).'/../customize/logos.php' ?>
 				<?php include dirname(__FILE__).'/../customize/backgrounds.php' ?>
 				<?php include dirname(__FILE__).'/../customize/menus.php' ?>

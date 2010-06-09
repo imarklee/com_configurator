@@ -71,4 +71,46 @@ class ComConfiguratorHelperUtilities extends JObject
 		$xml = new morphXMLParams( $file );
 		return $xml->getData();
 	}
+	
+	/**
+	 * Resets installer state
+	 *
+	 * @author Stian Didriksen <stian@prothemer.com>
+	 */
+	public static function resetInstallState()
+	{
+		$app = JFactory::getApplication();
+		
+		$app->setUserState('configurator.install', false);
+	}
+	
+	/**
+	 * Sets installer state
+	 *
+	 * @author Stian Didriksen <stian@prothemer.com>
+	 * @param  $key		the key
+	 * @param  $val		the state value
+	 */
+	public static function setInstallState($key, $val)
+	{
+		$app = JFactory::getApplication();
+		
+		$state = $app->getUserState('configurator.install');
+		$state[$key] = $val;
+		$app->setUserState('configurator.install', $state);
+	}
+	
+	/**
+	 * Gets installer state
+	 *
+	 * @author Stian Didriksen <stian@prothemer.com>
+	 * @param  $key		the key
+	 */
+	public static function getInstallState($key)
+	{
+		$app = JFactory::getApplication();
+		
+		$state = $app->getUserState('configurator.install');
+		return isset($state[$key]) ? $state[$key] : false;
+	}
 }

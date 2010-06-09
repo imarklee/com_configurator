@@ -1,4 +1,5 @@
 <?php 
+//@TODO this file shouldn't be requested by ajax outside of the mvc flow
 if(strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false){
 $base = './components/com_configurator';
 }else{
@@ -6,6 +7,9 @@ $base = '.';
 }
 define('JURL', $base);
 define('JROOT', str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__)));
+
+//@TODO we can't use this yet until this part is mvc, so we use a dirtier temporary workaround
+$themelet_installed = ComConfiguratorHelperUtilities::getInstallState('themelet_installed');
 ?>
 <form id="install-themelet" class="step2" method="post" action="#">
 	<div id="install-head">
@@ -24,10 +28,10 @@ define('JROOT', str_replace(array('administrator/components/com_configurator/ins
 			
 			<label class="upload"><h4>Select your themelet install file:</h4>
 			<input type="file" name="insfile" id="insfile" /></label>
-			<?php if(isset($_COOKIE['is_themelet_installed'])) { ?><span style="display:none;"><?php } ?>
+			<?php if($themelet_installed) : ?><span style="display:none;"><?php endif ?>
 			<label class="backup"><input type="checkbox" name="activate_themelet" id="activate_themelet" checked="checked" value="true" />
 			Activate themelet (recommended for first time installs)</label>
-			<?php if(isset($_COOKIE['is_themelet_installed'])) { ?></span><?php } ?>
+			<?php if($themelet_installed) : ?></span><?php endif ?>
 		</div>	
 		<div id="install-foot">
 			<ul id="action">

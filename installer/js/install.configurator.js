@@ -295,13 +295,19 @@
 			}
 		}
 
-		function loadstep1(callback){ $('#installer').load(base+'/installer/step1.php', callback); }
-		function loadstep2(callback){ $('#installer').load(base+'/installer/step2.php', callback); }
-		function loadcompleted(callback){ $('#installer').load(''+base+'/installer/complete.php', callback); }
+		function loadstep1(callback){ 
+			$('#installer').load('?option=com_configurator&view=install&format=raw&layout=step1', callback);
+		}
+		function loadstep2(callback){
+			$('#installer').load('?option=com_configurator&view=install&format=raw&layout=step2', callback);
+		}
+		function loadcompleted(callback){
+			$('#installer').load('?option=com_configurator&view=install&format=raw&layout=complete', callback);
+		}
 		function gotomanage() { window.location = '?option=com_configurator&view=configuration'; }
 		
 		function helpstep1(){
-			$('#help-dialog').load(base+'/installer/help/step1.php');
+			$('#help-dialog').load('?option=com_configurator&view=help&format=raw&layout=step1');
 			$('.help-step1').click(function(){	
 				$('#help-dialog').dialog({
 					autoOpen: true,
@@ -331,7 +337,7 @@
 		helpstep1();
 		
 		function helpstep2(){ 
-			$('#help-dialog').load(base+'/installer/help/step2.php');
+			$('#help-dialog').load('?option=com_configurator&view=help&format=raw&layout=step2');
 			$('.help-step2').click(function(){
 				$('#help-dialog').dialog({
 					autoOpen: true,

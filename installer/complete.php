@@ -23,6 +23,22 @@ function iType($cookie){
 	}
 	return $iType;
 }
+/*$conditions = array(
+	'cfg'	=> 	array(
+					'installed' => true,
+					'text'		=> ' the Configurator component.'
+				)
+);
+foreach($conditions as $name => $condition)
+{
+		foreach((array) $condition['conditions'] as $check)
+		{
+			die('<pre>'.var_export($check, true).'</pre>');
+		}
+	
+	if(!isset($condition['method'])) $condition['method'] = iType('upgrade_'.$name);
+	$summary['tick-'.($condition['installed'] ? 'on' : 'off')] = 
+}*/
 ?>
 <div id="install-head">
 	<img src="<?php echo JURL; ?>/installer/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
@@ -38,6 +54,9 @@ function iType($cookie){
 		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	
 		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
+		<?php /*foreach($summary as $class => $text) : ?>
+			<li class="<?php echo $class ?>"><?php echo JText::_($text) ?></li>	
+		<?php endforeach*/ ?>
 			<li class="tick-on"><?php echo iType('upgrade_cfg'); ?> the Configurator component.</li>
 			<li<?php echo summaryclass('installed_morphcache'); ?>><?php echo iType('upgrade_morphcache'); ?> the Morph Cache system plugin.</li>
 			<?php if(isset($_COOKIE['installed_morph']) && isset($_COOKIE['installed_bkpmorph'])){ ?>

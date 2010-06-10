@@ -52,7 +52,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
                     <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
                     <li class="icon-comperformance"><a href="#mootools-tab">Mootools Compatibility</a></li>
-                    <?php //if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li><?php } ?>
+                    <!--<?php if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li><?php } ?>-->
                     <!--<li class="icon-menuitems"><a href="#menuitems-tab">Menu Items</a></li>-->
                     <li class="icon-enhancements"><a href="#enhancements-tab">Core Enhancements</a></li>
 				</ul>
@@ -61,7 +61,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 				<?php include dirname(__FILE__).'/../general/debugging.php' ?>
 				<?php include dirname(__FILE__).'/../general/components.php' ?>
 				<?php include dirname(__FILE__).'/../general/mootools.php' ?>
-				<?php //if($jomsocial_installed == 1) include dirname(__FILE__).'/../general/jomsocial.php' ?>
+				<!--<?php //if($jomsocial_installed == 1) include dirname(__FILE__).'/../general/jomsocial.php' ?>-->
 				<?php include dirname(__FILE__).'/../general/menuitems.php' ?>
 				<?php include dirname(__FILE__).'/../general/enhancements.php' ?>
 			</div>

@@ -39,7 +39,6 @@ $('#cfg.menuitem_active #assets-tabs').bind('tabsload', function(event, ui){
 	if(ui.index > 0) return this;
 	var toggle = $('#menuitem_active_themelet'), state   = ' active';
 	if(!toggle.is('[checked]')) state = '';
-	console.log(toggle);
 	$('<div class="menuitem_active_toggle'+state+'"></div>').prependTo($('#themelet-switch p')).click(function(){
 		this.toggleClass('active');
 		toggle.click();

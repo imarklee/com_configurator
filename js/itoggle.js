@@ -86,7 +86,7 @@
 					slide($(this));
 				}
 			}
-			console.log('itoggle',$('#'+$(this).attr('for')).change())
+			//console.log('itoggle',$('#'+$(this).attr('for')).change())
 			return false;
 		});
 		$('label.ilabel').click(function(){

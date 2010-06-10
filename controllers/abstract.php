@@ -1504,25 +1504,25 @@ class ComConfiguratorControllerAbstract extends JController
 		}		
 	}
 	
-	function install_themelet(){
-		
+	public function install_themelet()
+	{
 		$mem_limit = ini_get('memory_limit');
 		if(str_replace('M', '', $mem_limit) < 64){ ini_set('memory_limit', '64M'); }
 		
 		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$activation = $_REQUEST['act_themelet'];
 		$return = $this->themelet_upload($newthemeletfile);
-		setcookie('installed_themelet', 'true');
+		ComConfiguratorHelperUtilities::setInstallState('installed_themelet', true);
 		$themelet = explode(',', $return);
 		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
 		$themelet_name = str_replace('-',  ' ', $themelet);
-		setcookie('ins_themelet_name', $themelet_name);
+		ComConfiguratorHelperUtilities::setInstallState('ins_themelet_name', $themelet_name);
 		$db = JFactory::getDBO();
 		
 		if(isset($activation) && $activation == 'true'){
 		
 			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install' || !isset($_COOKIE['upgrade-type']))	{ $this->themelet_activate($themelet); }
-			setcookie('installed_actthemelet', 'true');
+			ComConfiguratorHelperUtilities::setInstallState('installed_actthemelet', true);
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
 			$query = $db->query($query);
 			$themelet_num = $db->getNumRows($query);
@@ -1546,60 +1546,69 @@ class ComConfiguratorControllerAbstract extends JController
 		echo $ret;
 	}
 	
-	function assets_create(){
+	public function assets_create()
+	{
+		$recycle = JPATH_ROOT . '/morph_recycle_bin';
+		if(!JFolder::exists($recycle)) JFolder::create($recycle);
+		foreach(array('backups/db', 'logos', 'backgrounds', 'themelets', 'iphone') as $folder)
+		{
+			$dir = JPATH_ROOT . '/morph_assets/' . $folder;
+			if(!JFolder::exists($dir)) JFolder::create($dir);
+		}
+		
+		if(self::isAjax()) echo json_encode(array(
+			'error'   => '',
+			'success' => JText::_('Assets folder structure successfully created. You may continue with the installation.')
+		));
+	}
 	
-		JPath::setPermissions(JPATH_SITE);
-	
-		$backupdir = JPATH_SITE.'/morph_assets/backups';
-		$dbdir = JPATH_SITE.'/morph_assets/backups/db';
-		$logosdir = JPATH_SITE.'/morph_assets/logos';
-		$backgroundsdir = JPATH_SITE.'/morph_assets/backgrounds';
-		$themeletsdir = JPATH_SITE.'/morph_assets/themelets';
-		$iphonedir = JPATH_SITE.'/morph_assets/iphone';
-		
-		// create assets folders
-		if(!is_dir(JPATH_SITE.'/morph_assets')) : 
-		(!@mkdir(JPATH_SITE.'/morph_assets')) ? $error = 'error: "There was an error creating the assets folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE.'/morph_assets'); 
-		endif;
-		
-		if(!is_dir(JPATH_SITE.'/morph_recycle_bin')) : 
-		(!@mkdir(JPATH_SITE.'/morph_recycle_bin')) ? $error = 'error: "There was an error creating the Morph Recycle Bin folder. Please check your permissions."' : JPath::setPermissions(JPATH_SITE.'/morph_recycle_bin'); 
-		endif;
-		
-		if(!is_dir($backupdir)) :
-		(!@mkdir($backupdir)) ? $error = 'error: "There was an error creating the backup folder. Please check your permissions on the assets folder"' : JPath::setPermissions($backupdir);
-		endif;
-		
-		if(!is_dir($dbdir)) :
-		(!@mkdir($dbdir)) ? $error = 'error: "There was an error creating the database backup folder. Please check your permissions on the assets folder"' : JPath::setPermissions($dbdir);
-		endif;
-		
-		if(!is_dir($logosdir)) :
-		(!@mkdir($logosdir)) ? $error = 'error: "There was an error creating the logos folder. Please check your permissions on the assets folder"' : JPath::setPermissions($logosdir);
-		endif;
+	private function _dbUpdate(){
+		if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
+			$templatesdir = JPATH_SITE.'/templates';
+			$xml_param_loader = new morphXMLLoader($templatesdir.'/morph/core/morphDetails.xml');
+			$main_xml_params = $xml_param_loader->getParamDefaults();
 			
-		if(!is_dir($backgroundsdir)) :
-		(!@mkdir($backgroundsdir)) ? $error = 'error: "There was an error creating the backgrounds folder. Please check your permissions on the assets folder"' : JPath::setPermissions($backgroundsdir);
-		endif;
-		
-		if(!is_dir($themeletsdir)) :
-		(!@mkdir($themeletsdir)) ? $error = 'error: "There was an error creating the themelets folder. Please check your permissions on the assets folder"' : JPath::setPermissions($themeletsdir);
-		endif;
-		
-		if(!is_dir($iphonedir)) :
-		(!@mkdir($iphonedir)) ? $error = 'error: "There was an error creating the iphone folder. Please check your permissions on the assets folder"' : JPath::setPermissions($iphonedir);
-		endif;
+			$removeParams = array(
+				'Color Picker Param',
+				'Filelist Param',
+				'Folderlist Param',
+				'Heading Param',
+				'Imagelist Param',
+				'List Param',
+				'Radio Param',
+				'Spacer Param',
+				'Text Param',
+				'Textarea Param',
+				'Themelet Param',
+			);
+			foreach($removeParams as $r){
+				unset($main_xml_params[$r]);
+			}
+			
+			foreach($main_xml_params as $param_name => $param_value){
+				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
+				$setting->source = 'template';
+				$setting->template_name = 'morph';
+				$setting->published = '1';
+				$setting->param_name = $param_name;
+				$setting->loadByKey();
+				$setting->param_value = $param_value;
 				
-		if(isset($error)){
-			$ret = '{'.$error.'}';
-			echo $ret;
+				if (!$setting->store(TRUE)) {
+					echo $setting->getError();
+					die();
+				}
+	
+				unset($setting);
+				$setting = null;
+			}
 		}else{
-			echo '{ error: "", success: "Assets folder structure successfully created. You may continue with the installation." }';
+			return true;
 		}
 	}
 	
-	function install_template(){
-	
+	public function install_template()
+	{
 		$db = JFactory::getDBO();
 	
 		if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
@@ -1608,51 +1617,6 @@ class ComConfiguratorControllerAbstract extends JController
 			$query = $db->setQuery('DROP TABLE #__configurator_preferences');
 			$db->query($query);
 			$this->parse_mysql_dump(JPATH_ADMINISTRATOR.'/components/com_configurator/install.sql');
-		}
-		
-		function db_update(){
-			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
-				$templatesdir = JPATH_SITE.'/templates';
-				$xml_param_loader = new morphXMLLoader($templatesdir.'/morph/core/morphDetails.xml');
-				$main_xml_params = $xml_param_loader->getParamDefaults();
-				
-				$removeParams = array(
-					'Color Picker Param',
-					'Filelist Param',
-					'Folderlist Param',
-					'Heading Param',
-					'Imagelist Param',
-					'List Param',
-					'Radio Param',
-					'Spacer Param',
-					'Text Param',
-					'Textarea Param',
-					'Themelet Param',
-				);
-				foreach($removeParams as $r){
-					unset($main_xml_params[$r]);
-				}
-				
-				foreach($main_xml_params as $param_name => $param_value){
-					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-					$setting->source = 'template';
-					$setting->template_name = 'morph';
-					$setting->published = '1';
-					$setting->param_name = $param_name;
-					$setting->loadByKey();
-					$setting->param_value = $param_value;
-					
-					if (!$setting->store(TRUE)) {
-						echo $setting->getError();
-						die();
-					}
-		
-					unset($setting);
-					$setting = null;
-				}
-			}else{
-				return true;
-			}
 		}
 		
 		$newtemplatefile = @JRequest::getVar( 'template-file', null, 'files', 'array' );
@@ -1665,10 +1629,10 @@ class ComConfiguratorControllerAbstract extends JController
 				
 		
 		if(is_dir($templatesdir.'/morph')){
-			setcookie('upgrade_morph', 'true');
+			ComConfiguratorHelperUtilities::setInstallState('upgrade_morph', true);
 			// template folder
 			if($_REQUEST['backup'] == 'true'){
-				setcookie('installed_bkpmorph', 'true');
+				ComConfiguratorHelperUtilities::setInstallState('installed_bkpmorph', true);
 				// backup existing
 				$backupfile = $backupdir.'/file_template_morph_' . time();
 				if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
@@ -1695,9 +1659,9 @@ class ComConfiguratorControllerAbstract extends JController
 						$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
 						$msg .= ', backuploc: "'.$backupfile.'.gz"';
 						
-						db_update();
+						$this->_dbUpdate();
 						
-						setcookie('installed_morph', 'true');
+						ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
 						$ret = '{'.$msg.'}';
 						echo $ret;
 					}
@@ -1712,8 +1676,8 @@ class ComConfiguratorControllerAbstract extends JController
 			// directory doesn't exist - install as per usual
 			@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
 			$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
-			db_update();
-			setcookie('installed_morph', 'true');
+			$this->_dbUpdate();
+			ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
 			$ret = '{'.$msg.'}';
 			echo $ret;
 		}
@@ -1800,7 +1764,7 @@ class ComConfiguratorControllerAbstract extends JController
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
 			
 			if($publish !== 'false'){
-				setcookie('installed_pubmorph', 'true');
+				ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
 				if(file_exists(JPATH_ADMINISTRATOR.'/components/com_configurator/installer/sql/set-template-as-default.sql')){
 					$this->parse_mysql_dump(JPATH_ADMINISTRATOR.'/components/com_configurator/installer/sql/set-template-as-default.sql');
 				}else{

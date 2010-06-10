@@ -7,38 +7,57 @@ $base = '.';
 }
 define('JURL', $base);
 define('JROOT', str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__)));
-function summaryclass($cookie){
-	if(isset($_COOKIE[$cookie])){
-		$class = ' class="tick-on"';
-	}else{
-		$class = ' class="tick-off"';
-	}
-	return $class;
-}
-function iType($cookie){
-	if(isset($_COOKIE[$cookie])){
-		$iType = 'Upgraded';
-	}else{
-		$iType = 'Installed';
-	}
-	return $iType;
-}
-/*$conditions = array(
-	'cfg'	=> 	array(
-					'installed' => true,
-					'text'		=> ' the Configurator component.'
-				)
+
+$themelet = ucwords(ComConfiguratorHelperUtilities::getInstallState('ins_themelet_name'));
+$conditions = array(
+	'cfg'			=> 	array(
+							'installed' => true,
+							'text'		=> ' the Configurator component.'
+						),
+	'morphcache'	=> 	array(
+							'text'		=> ' the Morph Cache system plugin.'
+						),
+	'bkpmorph'		=> 	array(
+							'method'	=> '',
+							'text'		=> 'Created a backup of the Morph template.'
+						),
+	'morph'			=> 	array(
+							'text'		=> ' the Morph template.'
+						),
+	'pubmorph'		=> 	array(
+							'method'	=> '',
+							'text'		=> 'Published the Morph template.'
+						),
+	'bkthemelet'	=>	array(
+							'installed'	=> ComConfiguratorHelperUtilities::getInstallState('installed_themelet') && ComConfiguratorHelperUtilities::getInstallState('upgrade_themelet'),
+							'method'	=> '',
+							'text'		=> sprintf(JText::_('Created a backup of the %s themelet.'), $themelet),
+							'translate'	=> false
+						),
+	'themelet'		=>	array(
+							'text'		=> sprintf(JText::_(' the %s themelet.'), $themelet),
+							'translate'	=> false
+							
+	),
+	'actthemelet'	=>	array(
+							'method'	=> '',
+							'text'		=> sprintf(JText::_('Activated the %s themelet.'), $themelet),
+							'translate'	=> false
+	),
+	'gzip'			=> 	array(
+							'installed'	=> ComConfiguratorHelperUtilities::getInstallState('installed_gzip'),
+							'method'	=> '',
+							'text'		=> "Enabled Joomla's GZIP compression."
+	),
 );
 foreach($conditions as $name => $condition)
 {
-		foreach((array) $condition['conditions'] as $check)
-		{
-			die('<pre>'.var_export($check, true).'</pre>');
-		}
+	if(!isset($condition['installed'])) $condition['installed'] = ComConfiguratorHelperUtilities::getInstallState('installed_'.$name);
+	else if(!$condition['installed']) continue;
 	
-	if(!isset($condition['method'])) $condition['method'] = iType('upgrade_'.$name);
-	$summary['tick-'.($condition['installed'] ? 'on' : 'off')] = 
-}*/
+	if(!isset($condition['method'])) $condition['method'] = ComConfiguratorHelperUtilities::getInstallState('upgrade_'.$name) ? 'Upgraded' : 'Installed';
+	$summary[] = (object) array('class' => 'tick-'.($condition['installed'] ? 'on' : 'off'), 'text' => JText::_($condition['method'] . $condition['text']));
+}
 ?>
 <div id="install-head">
 	<img src="<?php echo JURL; ?>/installer/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
@@ -54,22 +73,9 @@ foreach($conditions as $name => $condition)
 		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	
 		<h4>Summary of what has been done:</h4>
 		<ul id="install-summary">
-		<?php /*foreach($summary as $class => $text) : ?>
-			<li class="<?php echo $class ?>"><?php echo JText::_($text) ?></li>	
-		<?php endforeach*/ ?>
-			<li class="tick-on"><?php echo iType('upgrade_cfg'); ?> the Configurator component.</li>
-			<li<?php echo summaryclass('installed_morphcache'); ?>><?php echo iType('upgrade_morphcache'); ?> the Morph Cache system plugin.</li>
-			<?php if(isset($_COOKIE['installed_morph']) && isset($_COOKIE['installed_bkpmorph'])){ ?>
-			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created a backup of the Morph template.</li>
-			<?php } ?>
-			<li<?php echo summaryclass('installed_morph'); ?>><?php echo iType('upgrade_morph'); ?> the Morph template.</li>
-			<li<?php echo summaryclass('installed_pubmorph'); ?>>Published the Morph template.</li>
-			<?php if(isset($_COOKIE['installed_themelet']) && isset($_COOKIE['upgrade_themelet'])){ ?>
-			<li<?php echo summaryclass('installed_bkpmorph'); ?>>Created a backup of the <?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet.</li>
-			<?php } ?>
-			<li<?php echo summaryclass('installed_themelet'); ?>><?php echo iType('upgrade_themelet'); ?> the <?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet.</li>
-			<li<?php echo summaryclass('installed_actthemelet'); ?>>Activated the <?php if(isset($_COOKIE['ins_themelet_name'])) { echo ' '.ucwords($_COOKIE['ins_themelet_name']).' '; }else{ echo ' '; } ?>themelet.</li>
-			<?php if(isset($_COOKIE['installed_gzip'])) { ?><li<?php echo summaryclass('installed_gzip'); ?>>Enabled Joomla's GZIP compression.</li><?php } ?>
+		<?php foreach($summary as $item) : ?>
+			<li class="<?php echo $item->class ?>"><?php echo JText::_($item->text) ?></li>	
+		<?php endforeach ?>
 		</ul>
 	</div>
 	<div id="install-foot">

@@ -11,7 +11,7 @@
 		
 		upgrade();
 		
-		function assetsCreate(callback,step){
+		var assetsCreate = function(callback,step){
 			
 			ptOverlay('Processing...')
 			
@@ -83,7 +83,7 @@
 					}
 				}, 'json');
 		}
-		
+
 		function templateInstall(){
 			
 			if($('#publish_template').attr('checked')){
@@ -96,7 +96,7 @@
 			if($('#template-file').val() != ''){
 				ptOverlay('Processing...');				
 				$.ajaxFileUpload({
-					url: '?option=com_configurator&task=install_template&format=raw&backup=true&publish='+publish,
+					url: '?option=com_configurator&view=configuration&task=install_template&format=raw&backup=true&publish='+publish,
 					fileElementId:'template-file',
 					dataType: 'json',
 					success: function (data, status)
@@ -198,7 +198,7 @@
 				ptOverlay('Processing...');
 				
 				$.ajaxFileUpload({
-					url: '?option=com_configurator&task=install_themelet&format=raw&act_themelet='+actval,
+					url: '?option=com_configurator&view=configuration&task=install_themelet&format=raw&act_themelet='+actval,
 					fileElementId:'insfile',
 					dataType: 'json',
 					success: function (data, status)
@@ -260,7 +260,8 @@
 								
 								if(data.backuploc !== ''){ 
 									var backupmsg = '<p><strong>Your themelet files were backed up to: </strong><small>'+data.backuploc+'.gz</small></p>';
-									$.cookie('upgrade_themelet', true);
+									//@TODO figure out what this is doing
+									//$.cookie('upgrade_themelet', true);
 								} else { 
 									var backupmsg = ''; 
 								}

@@ -20,6 +20,19 @@ $mem_limit = ini_get('memory_limit');
 if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
 define('JINDEXURL', $base);
 
+// Reset instal state from previous installs
+ComConfiguratorHelperUtilities::resetInstallState();
+
+// remove cookies from previous installs
+// @TODO get rid of the cookies
+$cookies = array('nomorph', 'bkpdb', 'no_gzip');
+foreach ($cookies as $cookie){
+	if(isset($_COOKIE['installed_'.$cookie])) setcookie('installed_'.$cookie, '', time()-3600);
+}
+if(isset($_COOKIE['asset_exist'])) setcookie('asset_exist', '', time()-3600);
+if(isset($_COOKIE['upgrade-type'])) setcookie('upgrade-type', '', time()-3600);
+if(isset($_COOKIE['updates'])) setcookie('updates', '', time()-3600);
+
 //@TODO this doesn't work on 1.6, so only run on 1.5 and previous
 $version = new JVersion;
 if(version_compare('1.6', $version->RELEASE, '>'))
@@ -41,7 +54,7 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 		$plugin_exists = JFile::exists(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
 		if($plugin_exists)
 		{
-			setcookie('upgrade_morphcache', 'true');
+			ComConfiguratorHelperUtilities::setInstallState('upgrade_morphcache', true);
 			JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
 			JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.php');
 		}
@@ -68,18 +81,13 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 			return false;
 		}
 		
-		setcookie('installed_morphcache', 'true');
+		ComConfiguratorHelperUtilities::setInstallState('installed_morphcache', true);
 	}
 }
 
 // create assets folders
-//@TODO do this in an ajax call instead so the code is in a single place
-//ref: ComConfiguratorControllerAbstract::assets_create()
-JFolder::create(JPATH_ROOT . '/morph_recycle_bin');
-foreach(array('backups/db', 'logos', 'backgrounds', 'themelets', 'iphone') as $folder)
-{
-	JFolder::create(JPATH_ROOT . '/morph_assets/' . $folder);
-}
+ComConfiguratorControllerAbstract::assets_create();
+
 
 $document = JFactory::getDocument();
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/installer/js/install.js.php?v='.time());
@@ -90,30 +98,11 @@ $db = JFactory::getDBO();
 $query = $db->setQuery("select count(*) from #__configurator where template_name = 'morph';");
 $count_rows = $db->loadResult($query);
 
-// Reset instal state from previous installs
-ComConfiguratorHelperUtilities::resetInstallState();
-
-// remove cookies from previous installs
-// @TODO get rid of the cookies
-$cookies = array('cfg', 'nomorph', 'bkpmorph', 'morph', 'pubmorph', 'themelet', 'actthemelet', 'bkpdb', 'gzip', 'no_gzip');
-foreach ($cookies as $cookie){
-	if(isset($_COOKIE['installed_'.$cookie])) setcookie('installed_'.$cookie, '', time()-3600);
-}
-if(isset($_COOKIE['asset_exist'])) setcookie('asset_exist', '', time()-3600);
-if(isset($_COOKIE['ins_themelet_name'])) setcookie('ins_themelet_name', '', time()-3600);
-if(isset($_COOKIE['upgrade-type'])) setcookie('upgrade-type', '', time()-3600);
-if(isset($_COOKIE['upgrade_cfg'])) setcookie('upgrade_cfg', '', time()-3600);
-if(isset($_COOKIE['upgrade_morph'])) setcookie('upgrade_morph', '', time()-3600);
-if(isset($_COOKIE['upgrade_morphcache'])) setcookie('upgrade_morphcache', '', time()-3600);
-if(isset($_COOKIE['upgrade_themelet'])) setcookie('upgrade_themelet', '', time()-3600);
-if(isset($_COOKIE['updates'])) setcookie('updates', '', time()-3600);
-
 // check if a themelet is installed and if not set a cookie to hide the activation checkbox
 $query = $db->setQuery("select param_value from #__configurator where param_name = 'themelet';");
 $themelet_installed = $db->loadResult($query);
 if(!$themelet_installed)
 {
-	setcookie('is_themelet_installed', 'no');
 	ComConfiguratorHelperUtilities::setInstallState('themelet_installed', false);
 }
 
@@ -125,7 +114,6 @@ $controller = new $classname( );
 $controller->create_db_backup('full-database');
 
 // set cookie for configurator installer
-setcookie('installed_cfg', 'true');
 ComConfiguratorHelperUtilities::setInstallState('installed_cfg', true);
 
 // set permissions on templates, assets and components folder.
@@ -144,7 +132,6 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 			file_put_contents($path, $line);
 		}		
 		JPath::setPermissions($path, '0644');
-		setcookie('installed_gzip', 'true');
 		ComConfiguratorHelperUtilities::setInstallState('installed_gzip', true);
 	}
 }else{
@@ -157,7 +144,6 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 	<?php
 	if(!isset($_REQUEST['install'])){
 		if($count_rows > 0) :
-			setcookie('upgrade_cfg', 'true');
 			ComConfiguratorHelperUtilities::setInstallState('upgrade_cfg', true);
 			include 'installer/step1_upgrade.php';
 		else :

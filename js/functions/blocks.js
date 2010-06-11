@@ -1,7 +1,13 @@
 /**
+ * Configurator.Blocks.js, related to the block conditionals
+ * @TODO very much work in progress this file
+ */
+
+Configurator.Blocks = {};
+
+/**
  * Block Settings: Conditional Functions
  */
-$('#generalthemelet').parent().css('display', 'none');
 function LogoOptions(){
 	switcher($('#logologo_type > option:selected').val());
 	

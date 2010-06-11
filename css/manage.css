@@ -1,3 +1,10 @@
+/* @group Hide themelet select list */
+/* @TODO remember to solve this in a proper way */
+#general-options .first {
+	display: none;
+}
+/* @end */
+
 a:link,a:visited{text-decoration:underline;}
 .m{position:relative!important;}
 #cfg .ui-widget{padding:0;margin:0;background:none;border:0;position:relative;}

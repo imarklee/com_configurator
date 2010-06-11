@@ -17,6 +17,10 @@ function pageURL() {
 return $pageURL;
 }
 ?>
+
+// Configurator class
+var Configurator = {};
+
 //Preload spinner gif before domready
 jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
 

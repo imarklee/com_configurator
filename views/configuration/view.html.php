@@ -10,7 +10,7 @@
 /**
  * ComConfiguratorViewConfiguration
  *
- * Lists all the iphone background images
+ * Shows the main Configurator view
  *
  * @author Stian Didriksen <stian@prothemer.com>
  */
@@ -190,7 +190,8 @@ class ComConfiguratorViewConfiguration extends JView
 			($this->checkUser()) ? $uval = 1 : $uval = 0;
 			if(!isset($_COOKIE['unpack'])){
 				//$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
-				$js = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=js&getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
+				$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion();
+				$js = JRoute::_($js);
 				$document->addScript($js);
 				$css = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=css');
 				$document->addStyleSheet($css);

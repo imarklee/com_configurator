@@ -40,7 +40,7 @@ class ComConfiguratorControllerAbstract extends JController
 			if($isset['cookie'] || $isset['shortcut']) JFactory::getApplication()->redirect($redirect['url'], $redirect['msg']);
 		}
 		
-		$cache = JPATH_CACHE . '/com_configurator/install_cleanup.txt';
+		$cache = JPATH_ROOT . '/cache/com_configurator/install_cleanup.txt';
 
 		if(JFile::exists($cache)) return;
 
@@ -1764,11 +1764,13 @@ class ComConfiguratorControllerAbstract extends JController
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
 			
 			if($publish !== 'false'){
-				ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
-				if(file_exists(JPATH_ADMINISTRATOR.'/components/com_configurator/installer/sql/set-template-as-default.sql')){
-					$this->parse_mysql_dump(JPATH_ADMINISTRATOR.'/components/com_configurator/installer/sql/set-template-as-default.sql');
-				}else{
-					$error = 'error: "SQL file doesn\'t exist"';
+				$db = JFactory::getDBO();
+				$db->setQuery("UPDATE #__templates_menu SET template = 'morph' WHERE client_id = '0'");
+				
+				if($db->query()) {
+					ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
+				} else {
+					$error = 'error: "'.$db->getErrorMsg().'"';
 					return $error;
 				}
 			}
@@ -2020,7 +2022,7 @@ class ComConfiguratorControllerAbstract extends JController
 		return true;
 	}
 	
-	function clear_cache()
+	public function clear_cache()
 	{
 		$path = JPATH_ROOT.'/cache/morph';
 		if(JFolder::exists($path)) JFolder::delete($path);

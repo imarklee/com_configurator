@@ -17,12 +17,10 @@ function pageURL() {
 return $pageURL;
 }
 ?>
-jQuery.noConflict();
-(function($) {
-	//Preload spinner gif
-	$(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
+//Preload spinner gif before domready
+jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
 
-	$(document).ready(function(){
+jQuery.noConflict()(function($){
 		<?php include 'functions/common.js' ?>
 		$.preloadCssImages();
 		
@@ -1536,7 +1534,7 @@ jQuery.noConflict();
 		
 		<?php if($ul==1) include('functions/blocks.js'); ?>
 		<?php if($ul==1) include('functions/keyboard.js'); ?>
-		
+		document.body.adopt(new Element('div', {id: 'loading'}))
 		// ajax content for dialog
 	    // welcome screen
 	    function welcomeScreen(){
@@ -1549,9 +1547,6 @@ jQuery.noConflict();
 	   			modal: true, 
 	   			dialogClass: 'welcome',
 	   			title: 'Welcome to Configurator',
-	   			open: function(event, ui) {
-	   				$('#loading').fadeTo('slow', 0).remove();
-	   			},
 	   			overlay: {
 	   				'background-color': '#000', 
 	   				opacity: 0.8 
@@ -1939,6 +1934,5 @@ jQuery.noConflict();
 		});
 		
 		<?php include 'menuitems.js' ?>
-	});
 	<?php if($ul==1) include 'functions/loading.js'; ?>
-})(jQuery);
+});

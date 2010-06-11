@@ -17,11 +17,32 @@
 class ComConfiguratorDefines extends JObject
 {
 	/**
+	 * Configurator version
+	 *
+	 * @var version string
+	 */
+	protected static $_version;
+
+	/**
 	 * Path to configurator manifest
 	 *
 	 * @var dir
 	 */
 	protected static $_manifest_path;
+
+	/**
+	 * Gets the Configurator version
+	 *
+	 * @return dir
+	 */
+	public static function getVersion()
+	{
+		if(!isset(self::$_version)) {
+			self::$_version = (string) simplexml_load_file(self::getManifestPath())->version;
+		}
+
+		return self::$_version;
+	}
 
 	/**
 	 * Gets the path to the xml manifest

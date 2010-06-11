@@ -63,6 +63,7 @@
 	<!-- Deprecated files -->
 	<deprecated>
 		<folder>includes/assets</folder>
+		<folder>installer/sql</folder>
 		<file>admin.configurator.html.php</file>
 		<file>configuration.php</file>
 		<file>configurator.php</file>
@@ -70,6 +71,8 @@
 		<file>controller.php</file>
 		<file>includes/HTML_configuratorhelper_admin.php</file>
 		<file>includes/layout/livedocs.php</file>
+		<file>images/loading-ui.jpg</file>
+		<file>js/functions/loading.js</file>
 	</deprecated>
 	
 	<media />

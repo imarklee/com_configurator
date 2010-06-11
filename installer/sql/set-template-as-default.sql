@@ -1,1 +1,0 @@
-UPDATE #__templates_menu SET template = 'morph' WHERE client_id = '0';

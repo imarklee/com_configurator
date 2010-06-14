@@ -28,7 +28,7 @@ jQuery.noConflict()(function($){
 		<?php include 'functions/common.js' ?>
 		$.preloadCssImages();
 		
-		
+
 		$("input[type=text], textarea").focus(function(){
 		    this.select();
 		});
@@ -115,7 +115,7 @@ jQuery.noConflict()(function($){
 			var keepalive = function(){ $.ajax({method: 'get'}); };
 			var sessiontimer = setInterval(keepalive, <?php echo (int) max(($lt * 60000) / 2, 30000) ?>);
 		<?php endif ?>
-		
+
 		$('.itoggle-ready').iToggle({
 			easing:'easeOutExpo',
 			type:'toggle',
@@ -124,9 +124,9 @@ jQuery.noConflict()(function($){
 			speed:300
 		});
 
-		
+
 		<?php if($ul==1) include 'functions/user.js'; ?>
-	   	
+   	
 		/* Generic ----------------------------
 	    ------------------------------------ */
 		$("#submenu li:last").addClass("last");

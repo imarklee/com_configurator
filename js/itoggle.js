@@ -11,7 +11,7 @@
 
 (function($){
 	$.fn.iToggle = function(options) {
-		
+	
 		clickEnabled = true;
 		
 		var defaults = {
@@ -40,7 +40,7 @@
 					$this.prev('label').addClass('iToff');
 				}
 			}else{
-				$this.children('input:'+settings.type).each(function(){
+				$this.children(':radio, :checkbox').each(function(){
 					var id = $(this).attr('id');
 					if(settings.type == 'toggle' && $(this).attr('value') == 0) {
 						$(this).addClass('iT_checkbox iT_checkbox_off');
@@ -86,7 +86,7 @@
 					slide($(this));
 				}
 			}
-			//console.log('itoggle',$('#'+$(this).attr('for')).change())
+
 			return false;
 		});
 		$('label.ilabel').click(function(){

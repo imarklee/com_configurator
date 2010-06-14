@@ -1,6 +1,6 @@
 $('#assets-tabs').bind('tabsload', function(event, ui) {
 
-	var options = { path: '/', expires: 30 }
+	var options = { path: '/', expires: 30 };
 	$("#themelet-switch a.switch-view").toggle(function(){
 		$(this).addClass("swap");
 		$("#themelets-list").fadeOut("fast", function() {

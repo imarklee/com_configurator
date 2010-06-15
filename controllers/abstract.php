@@ -1880,8 +1880,9 @@ class ComConfiguratorControllerAbstract extends JController
 	{
         jimport('joomla.installer.helper');
         $db = JFactory::getDBO();
-        
-        $queries = JInstallerHelper::splitSql(gzuncompress(JFile::read($url)));
+        $raw = JFile::read($url);
+        if(JFile::getExt($url) == 'gz') $raw = gzuncompress($raw);
+        $queries = JInstallerHelper::splitSql($raw);
         foreach ($queries as $query)
         {
         	$query = trim($query);

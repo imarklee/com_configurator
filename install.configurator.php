@@ -41,7 +41,7 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 	$com = JTable::getInstance('component');
 	if($com->loadByOption('com_configurator'))
 	{
-		$com->link = null;
+		$com->link = '';
 		$com->store(true);
 	}
 

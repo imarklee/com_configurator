@@ -20,7 +20,6 @@ include('browser.js');
 include('showpassword.js');
 //} else {
 // manage
-include('accordion.js');
 include('colorpicker.js');
 include('form.js');
 include('fileupload.js');

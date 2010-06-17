@@ -1938,5 +1938,4 @@ jQuery.noConflict()(function($){
 		});
 		
 		<?php include 'menuitems.js' ?>
-	<?php if($ul==1) include 'functions/loading.js'; ?>
 });

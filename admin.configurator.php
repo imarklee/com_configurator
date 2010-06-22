@@ -26,7 +26,7 @@ include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
 if(!JRequest::getCmd('view') && !JRequest::getCmd('task') && !ComConfiguratorControllerAbstract::isAjax())
 {
 	$app = JFactory::getApplication();
-	$uri = JFactory::getURI();
+	$uri = clone JFactory::getURI();
 	$uri->setVar('view', 'configuration');
 	$app->redirect($uri->toString());
 	

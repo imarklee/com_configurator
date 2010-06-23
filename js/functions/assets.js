@@ -104,7 +104,6 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    	
    	/* Activate functions -----------------
     ------------------------------------ */
-    
     $('#generalthemelet').change(function(){
     	$.cookie('change_themelet', 'true');
     	$.cookie('ct_themelet_name', $(this).val());
@@ -125,7 +124,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	   		$('#templateform').submit(function(){
 	   			$(this).ajaxSubmit({
 	   				type: 'POST',
-	   				url: '?isajax=true&format=raw',
+	   				url: '?option=com_configurator&view=configuration&isajax=true&format=raw',
 	   				data: {
 	   					option: 'com_configurator',
 	   					task: 'applytemplate',
@@ -150,17 +149,22 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		   				a.parent().next().children().click(function(e){ e.preventDefault(); return false; });
 		   				
 		   				$.ajax({
-							url: '?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
-							method: 'post',
+							url: '?option=com_configurator&view=configuration&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
+							data: {
+								themelet_name: setThemelet
+							},
+							method: 'POST',
 							success: function(ts, data){
 								return true;
 							}
 						});
 						
 						$.ajax({
-							url: '?option=com_configurator&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
-							method: 'post',
-							dataType: 'json',
+							url: '?option=com_configurator&view=configuration&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
+							data: {
+								themelet_name: setThemelet
+							},
+							method: 'POST',
 							success: function(data, ts){
 								if(data.exists == 'true'){
 									close_ptOverlay();
@@ -195,8 +199,11 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 								   			'Previous Settings': function(){
 												$this = $(this);
 								   				$.ajax({
-													url: '?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
-													method: 'post',
+													url: '?option=com_configurator&view=configuration&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
+													data: {
+														themelet_name: setThemelet
+													},
+													method: 'POST',
 													success: function(data){
 														$this.dialog('close');
 														return true;

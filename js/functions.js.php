@@ -1235,14 +1235,14 @@ jQuery.noConflict()(function($){
 													   				},
 														   			success: function(data, textStatus){
 														   				$.ajax({
-																			url: '?option=com_configurator&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
+																			url: '?option=com_configurator&view=configuration&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
 																			method: 'post',
 																			success: function(ts, data){
 																				return true;
 																			}
 																		});
 																		$.ajax({
-																			url: '?option=com_configurator&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
+																			url: '?option=com_configurator&view=configuration&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
 																			method: 'post',
 																			dataType: 'json',
 																			success: function(data, ts){
@@ -1279,7 +1279,7 @@ jQuery.noConflict()(function($){
 																				   			'Previous Settings': function(){
 																								$this = $(this);
 																				   				$.ajax({
-																									url: '?option=com_configurator&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
+																									url: '?option=com_configurator&view=configuration&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
 																									method: 'post',
 																									success: function(data){
 																										$this.dialog('close');

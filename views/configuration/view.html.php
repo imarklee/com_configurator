@@ -37,10 +37,6 @@ class ComConfiguratorViewConfiguration extends JView
 			$templateBaseDir = JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template;
 	
 			$paramList = ComConfiguratorHelperUtilities::getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
-			foreach($paramList as $name => $default)
-			{
-				$paramList[] = $name.'='.$default;
-			}
 	
 				if ( $template ) {
 					// do stuff for existing records
@@ -62,7 +58,7 @@ class ComConfiguratorViewConfiguration extends JView
 					} 
 				
 					foreach ( (array) $template_params as $template_param ) {
-						$template_settings[] = $template_param['param_name'] . '=' . $template_param['param_value'] . "\n";
+						$template_settings[$template_param['param_name']] = $template_param['param_value'];
 					}
 				} else {
 					// do stuff for new records
@@ -74,7 +70,7 @@ class ComConfiguratorViewConfiguration extends JView
 				
 				if( count( $template_settings ) && empty($preset_choice) ) {
 					// Got settings from the DB.
-					$current_params = implode( "\n", $template_settings );
+					$current_params = $template_settings;
 				
 				//@TODO check if we can get rid of the $preset_values leftovers from possibly tatami
 				//} elseif( isset($preset_values) ) {
@@ -82,14 +78,15 @@ class ComConfiguratorViewConfiguration extends JView
 				//	$current_params = implode( "\n", $preset_values );
 				} else {
 					// Default empty.
-					$current_params = implode( "\n", $paramList );
+					$current_params = $paramList;
 				}
 		
 				// Create the morph params
-				$params = new JParameter($current_params, $templateBaseDir.'/core/morphDetails.xml');        
+				$params = new JParameter(null, $templateBaseDir.'/core/morphDetails.xml');        
+				$params->bind($current_params);
 				$params->name = $template;
 				//$params->merge($themelet_params);
-				
+
 				$lists = array();
 				
 				// Load presets from XML file.

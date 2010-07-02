@@ -322,7 +322,8 @@ class ComConfiguratorControllerAbstract extends JController
 		return $find === false ? false:$find + 1;
 	}  
 	
-	function makehash(){
+	public function makehash()
+	{
 		if(isset($_POST['tempuserpass'])){
 			$pass = $_POST['tempuserpass'];
 			if($pass){

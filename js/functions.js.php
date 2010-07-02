@@ -203,107 +203,107 @@ jQuery.noConflict()(function($){
 		);
 
 		$(".upload-themelet").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",4);
-		subtabs.tabs("select",0);
-		$('#install-type label.label-selected').removeClass('label-selected');
-		$("#upload_themelet").attr("checked",true).parent().addClass('label-selected');
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#tools-tabs").tabs();
+			maintabs.tabs("select",4);
+			subtabs.tabs("select",0);
+			$('#install-type label.label-selected').removeClass('label-selected');
+			$("#upload_themelet").attr("checked",true).parent().addClass('label-selected');
+			return false;
 		});
 				
 		$(".upload-logo").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",4);
-		subtabs.tabs("select",0);
-		$('#install-type label.label-selected').removeClass('label-selected');
-		$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#tools-tabs").tabs();
+			maintabs.tabs("select",4);
+			subtabs.tabs("select",0);
+			$('#install-type label.label-selected').removeClass('label-selected');
+			$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
+			return false;
 		});
 
 		$(".upload-bg").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",4);
-		subtabs.tabs("select",0);
-		$('#install-type label.label-selected').removeClass('label-selected');
-		$("#upload_background").attr("checked",true).parent().addClass('label-selected');
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#tools-tabs").tabs();
+			maintabs.tabs("select",4);
+			subtabs.tabs("select",0);
+			$('#install-type label.label-selected').removeClass('label-selected');
+			$("#upload_background").attr("checked",true).parent().addClass('label-selected');
+			return false;
 		});
 		
 		$(".upload-iphone").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#tools-tabs").tabs();
-		maintabs.tabs("select",4);
-		subtabs.tabs("select",0);
-		$('#install-type label.label-selected').removeClass('label-selected');
-		$("#upload_iphone").attr("checked",true).parent().addClass('label-selected');
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#tools-tabs").tabs();
+			maintabs.tabs("select",4);
+			subtabs.tabs("select",0);
+			$('#install-type label.label-selected').removeClass('label-selected');
+			$("#upload_iphone").attr("checked",true).parent().addClass('label-selected');
+			return false;
 		});
 
 		$(".logo-tab").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#customize-tabs").tabs();
-		maintabs.tabs("select",1);
-		subtabs.tabs("select",1);
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#customize-tabs").tabs();
+			maintabs.tabs("select",1);
+			subtabs.tabs("select",1);
+			return false;
 		});
 		
 		$(".masthead-tab").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#blocks-tabs").tabs();
-		maintabs.tabs("select",2);
-		subtabs.tabs("select",1);
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#blocks-tabs").tabs();
+			maintabs.tabs("select",2);
+			subtabs.tabs("select",1);
+			return false;
 		});		
 
 		$(".backgrounds-tab").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#customize-tabs").tabs();
-		maintabs.tabs("select",1);
-		subtabs.tabs("select",2);
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#customize-tabs").tabs();
+			maintabs.tabs("select",1);
+			subtabs.tabs("select",2);
+			return false;
 		});
 
 		$(".themelet-tab").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#customize-tabs").tabs();
-		maintabs.tabs("select",1);
-		subtabs.tabs("select",0);
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#customize-tabs").tabs();
+			maintabs.tabs("select",1);
+			subtabs.tabs("select",0);
+			return false;
 		});
 		
 		$(".topnav-tab").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#blocks-tabs").tabs();
-		maintabs.tabs("select",2);
-		subtabs.tabs("select",3);
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#blocks-tabs").tabs();
+			maintabs.tabs("select",2);
+			subtabs.tabs("select",3);
+			return false;
 		});		
 
 		$(".menu-tab").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#customize-tabs").tabs();
-		maintabs.tabs("select",1);
-		subtabs.tabs("select",3);
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#customize-tabs").tabs();
+			maintabs.tabs("select",1);
+			subtabs.tabs("select",3);
+			return false;
 		});	
 		
 		$("#utilities .menuitem").bind("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#site-tabs").tabs();
-		maintabs.tabs("select",0);
-		subtabs.tabs('select','menuitems-tab');
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#site-tabs").tabs();
+			maintabs.tabs("select",0);
+			subtabs.tabs('select','menuitems-tab');
+			return false;
 		});	
 
 		$(".sidebar-tab").live("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#blocks-tabs").tabs();
-		maintabs.tabs("select",2);
-		subtabs.tabs("select",7);
-		return false;
+			var maintabs = $("#tabs").tabs();
+			var subtabs = $("#blocks-tabs").tabs();
+			maintabs.tabs("select",2);
+			subtabs.tabs("select",7);
+			return false;
 		});	
 		
 		if($.cookie('fullscreen') == 'yes'){
@@ -1116,7 +1116,7 @@ jQuery.noConflict()(function($){
 				dataType: 'json',
 				success: function (data, status){
 					close_ptOverlay();
-					if(typeof(data.error) != 'undefined'){						
+					if(typeof(data.error) != 'undefined'){
 						if(data.error != ''){
 							hideScroll();
 							$('#upload-message').dialog({
@@ -1172,7 +1172,7 @@ jQuery.noConflict()(function($){
 										}
 									}
 								);
-								$('#upload-message').dialog('moveToTop').dialog('open');
+								$('#upload-message').dialog('open');
 							}
 							if(uploadType == 'themelet_assets'){
 								$('#upload-message').html(data.success);
@@ -1189,7 +1189,7 @@ jQuery.noConflict()(function($){
 										}
 									}
 								);
-								$('#upload-message').dialog('moveToTop').dialog('open');
+								$('#upload-message').dialog('open');
 							}
 							if(uploadType == 'themelet'){
 								var backupmsg;
@@ -1357,10 +1357,10 @@ jQuery.noConflict()(function($){
 										}
 									}
 								);
-								$('#upload-message').dialog('moveToTop').dialog('open');
+								$('#upload-message').dialog('open');
 							}
 							if(uploadType == 'background'){
-								$('#upload-message').html(data.success);
+								$('#upload-message').html('<div class="dialog-msg">'+data.success+'</div>');
 								$('#upload-message').dialog(
 									'option', 'buttons', { 
 										'Activate': function(){
@@ -1389,7 +1389,7 @@ jQuery.noConflict()(function($){
 										}
 									}
 								);
-								$('#upload-message').dialog('moveToTop').dialog('open');
+								$('#upload-message').dialog('open');
 							}
 							if(uploadType == 'favicon'){
 								if(typeof(data.overwrite) == 'undefined'){
@@ -1402,7 +1402,7 @@ jQuery.noConflict()(function($){
 											}
 										}
 									);
-									$('#upload-message').dialog('moveToTop').dialog('open');
+									$('#upload-message').dialog('open');
 								}else{
 									$('#upload-message').html(data.overwrite);
 									$('#upload-message').dialog('option', 'title', 'Overwrite Warning');
@@ -1418,7 +1418,7 @@ jQuery.noConflict()(function($){
 											}
 										}
 									);
-									$('#upload-message').dialog('moveToTop').dialog('open');
+									$('#upload-message').dialog('open');
 								}
 							}
 							if(uploadType == 'iphone'){
@@ -1431,7 +1431,7 @@ jQuery.noConflict()(function($){
 										}
 									}
 								);
-								$('#upload-message').dialog('moveToTop').dialog('open');
+								$('#upload-message').dialog('open');
 							}
 							if(uploadType == 'sample'){
 								$('#upload-message').html(data.success);
@@ -1443,7 +1443,7 @@ jQuery.noConflict()(function($){
 										}
 									}
 								);
-								$('#upload-message').dialog('moveToTop').dialog('open');
+								$('#upload-message').dialog('open');
 							}
 						}
 					}

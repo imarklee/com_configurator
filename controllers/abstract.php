@@ -334,12 +334,13 @@ class ComConfiguratorControllerAbstract extends JController
 		}
 	}
 	
-	function loaduser(){
+	public function loaduser()
+	{
 		$db = JFactory::getDBO();
 		$query = "insert into #__configurator_usertable values ('','".$_REQUEST['login']['user_name']."','".$_REQUEST['login']['member_id']."','".$_REQUEST['login']['member_name']."','".$_REQUEST['login']['member_surname']."','".$_REQUEST['login']['member_email']."');";
 		$db->setQuery($query);
-		$db->query() or die('{ error: "'.$db->getErrorMsg().'" }');
-		echo '{ success: "login successfull" }';
+		$db->query() or die(json_encode(array('error' => $db->getErrorMsg())));
+		echo json_encode(array('success' => 'login successfull'));
 		exit();
 	}
 	

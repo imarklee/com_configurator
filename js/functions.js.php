@@ -129,14 +129,20 @@ jQuery.noConflict()(function($){
    	
 		/* Generic ----------------------------
 	    ------------------------------------ */
+	    $("#tabs ol.forms li:first-child").addClass("first");
+	    
 		$("#submenu li:last").addClass("last");
-		$("#submenu li:first").addClass("dashboard");
 		$("#blocks-tabs .ui-tabs-nav li:last").addClass("last");
-		$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
-		$("#tabs ol.forms li:first-child").addClass("first");		
-		$("#tabs ol.forms li:last-child").addClass("last");		
-		$("#tabs ol.forms li:odd").addClass("alt");	
+		$("#tabs ol.forms li:last-child").addClass("last");
 		$("#preferences-form .prefs li:last").addClass("last");
+		
+		$("#submenu li:first").addClass("dashboard");
+		
+		$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
+				
+				
+		$("#tabs ol.forms li:odd").addClass("alt");	
+		
 		//$('#editor textarea.resizable:not(.processed)').TextAreaResizer();
 		<?php if($ul!==1){ ?>
 		$('#loginpass').showPassword('.sp-check', { name: 'show-password' });
@@ -979,7 +985,7 @@ jQuery.noConflict()(function($){
 								},
 								contentType: "application/json; charset=utf-8",
 								success: function(rdata, textstatus){
-								
+
 									if(rdata.retcode == 'fail'){
 										
 										$('#alf-image').css('display','none');
@@ -1008,7 +1014,6 @@ jQuery.noConflict()(function($){
 											}
 										});
 									}else{
-										
 										var member_id = rdata.data.member_id;
 										var member_data = rdata.data.sdata;
 										var member_email = rdata.data.email;
@@ -1025,7 +1030,7 @@ jQuery.noConflict()(function($){
 										
 										var dburl = 'http://www.joomlajunkie.com/secure/configurator/db.php?jsoncallback=?';
 		
-										ret = $.ajax({
+										$.ajax({
 											dataType: 'jsonp',
 											url: dburl,
 											data: {
@@ -1044,15 +1049,17 @@ jQuery.noConflict()(function($){
 											}
 										});
 										
-										ret = $.ajax({
+										$.ajax({
 											dataType: 'json',
 											url: '?option=com_configurator&task=loaduser&format=raw',
 											data: {
-												'login[user_name]': username,
-												'login[member_id]': member_id,
-												'login[member_name]': member_name,
-												'login[member_surname]': member_surname,
-												'login[member_email]': member_email
+												login: {
+													user_name: username,
+													member_id: member_id,
+													member_name: member_name,
+													member_surname: member_surname,
+													member_email: member_email
+												}
 											},
 											contentType: "application/json; charset=utf-8",
 											success: function(d){

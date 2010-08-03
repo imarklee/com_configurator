@@ -1545,7 +1545,7 @@ jQuery.noConflict()(function($){
 		
 		<?php if($ul==1) include('functions/blocks.js'); ?>
 		<?php if($ul==1) include('functions/keyboard.js'); ?>
-		document.body.adopt(new Element('div', {id: 'loading'}))
+
 		// ajax content for dialog
 	    // welcome screen
 	    function welcomeScreen(){

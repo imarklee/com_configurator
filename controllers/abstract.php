@@ -1351,10 +1351,10 @@ class ComConfiguratorControllerAbstract extends JController
 		if($action){
 			switch($action){
 				case 'delete':
-					if($type !== 'themelet'){
+					if($type !== 'themelet') {
 						JFile::delete($rb_root.'/'.$file);
 						return true;
-					}else{				
+					} else {				
 						JFolder::delete($rb_root.'/'.$file);
 						return true;
 					}
@@ -1415,18 +1415,8 @@ class ComConfiguratorControllerAbstract extends JController
 					$files = JFolder::files($rb_root, '', true, true, array('.git', '.idx', '.DS_Store'));
 					$folders = JFolder::folders($rb_root, '', true, true, array('.git'));
 					
-					if(!empty($files)){				
-						foreach($files as $file){
-							JPath::setPermissions($file, '0777');
-							JFile::delete($file);
-						}
-					}
-					if(!empty($folders)){
-						foreach($folders as $folder){
-							JPath::setPermissions($folder, '', '0777' );
-							JFolder::delete($folder);
-						}
-					}
+					if(!empty($files)) JFile::delete($files);			
+					if(!empty($folders)) JFolder::delete($folders);
 					return true;
 				break;
 			}

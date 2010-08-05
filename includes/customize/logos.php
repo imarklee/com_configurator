@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="logos-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="logo-options" class="options-panel">
 	    <h3>Logo Settings</h3>

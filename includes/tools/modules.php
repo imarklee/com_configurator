@@ -1,4 +1,4 @@
-<?php
+<?php defined('_JEXEC') or die('Restricted access');
 // set this to the number of inner and outer positions
 $new_count = 5;
 // define old positions

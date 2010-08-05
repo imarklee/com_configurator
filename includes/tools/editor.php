@@ -1,4 +1,4 @@
-<?php
+<?php defined('_JEXEC') or die('Restricted access');
 $template_dir = JPATH_SITE.'/templates/morph';
 $themelet_dir = JPATH_SITE.'/morph_assets/themelets';
 

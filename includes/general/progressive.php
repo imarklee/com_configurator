@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="progressive-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="progressive-options" class="options-panel">
 		<h3>Progressive Enhancements Settings</h3>

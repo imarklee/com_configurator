@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="error-assets" class="dialog-msg">
 	<p>Oops. It looks like Configurator was unable to create the required assets folders. 
 	<strong>Please note, these folders are required for Morph to function correctly.</strong></p>

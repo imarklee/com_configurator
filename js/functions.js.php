@@ -1,4 +1,4 @@
-<?php
+<?php defined('_JEXEC') or die('Restricted access');
 $ul = $_GET['getul'];
 $eh = $_GET['eh']; // editor highlighting
 $sk = $_GET['sk']; // Session keepalive

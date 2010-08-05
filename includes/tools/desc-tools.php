@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php if (!isset ($_COOKIE['tools-desc'])) { ?><div class="desc-overlay">&nbsp;</div><?php } ?>
 <div id="tools-desc" class="tab-desc"<?php if (isset ($_COOKIE['tools-desc'])) { ?> style="display:none;"<?php } ?>>
 	<div class="desc-inner">

@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div class="docs-wrap">
 	<h3>Memory Limit:</h3>
 	<p class="intro">For optimal performance, Configurator needs your servers php memory_limit to the be set to a minimum of 32mb.

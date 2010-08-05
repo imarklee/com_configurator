@@ -5,6 +5,8 @@
  * @author Stian Didriksen <stian@prothemer.com>
  */
 
+defined('_JEXEC') or die('Restricted access');
+
 JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
 JLoader::register('JFolder', JPATH_LIBRARIES.'/joomla/filesystem/folder.php');
 JLoader::register('JPath', JPATH_LIBRARIES.'/joomla/filesystem/path.php');

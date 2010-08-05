@@ -7,6 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
+defined('_JEXEC') or die('Restricted access');
+
 $recycle_dir = JPATH_ROOT.'/morph_recycle_bin';
 $recycle_url = JURI::root().'morph_recycle_bin';
 $ftype = '';

@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="preloader-tab" class="ui-tabs-hide">
 	<div id="preloader-options" class="options-panel">
 	    <h3>Preloader Settings</h3>

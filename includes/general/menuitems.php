@@ -1,4 +1,4 @@
-<?php
+<?php defined('_JEXEC') or die('Restricted access');
 function menu_items_list()
 {
 	$name = 'menuitem';

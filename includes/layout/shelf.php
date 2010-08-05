@@ -1,4 +1,4 @@
-<?php
+<?php defined('_JEXEC') or die('Restricted access');
 /**
 * @package   Configurator Component
 * @author    Prothemer http://www.prothemer.com

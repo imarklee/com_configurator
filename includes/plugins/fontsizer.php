@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="fontsizer-tab" class="ui-tabs-hide">
 	<div id="fontsizer-options" class="options-panel">
 	    <h3>Fontsizer Settings</h3>

@@ -1,4 +1,4 @@
-<?php 
+<?php defined('_JEXEC') or die('Restricted access');
 //@TODO this file shouldn't be requested by ajax outside of the mvc flow
 if(strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false){
 $base = './components/com_configurator';

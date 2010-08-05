@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="topnav-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="topnav-options" class="options-panel">
 	    <h3>Top Menu Settings</h3>

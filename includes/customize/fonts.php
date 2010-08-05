@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="fonts-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="fonts-options" class="options-panel">
 		<h3>Custom Fonts</h3>

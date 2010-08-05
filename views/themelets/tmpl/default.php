@@ -7,6 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
+defined('_JEXEC') or die('Restricted access');
+
 $themelet_dir = JPATH_ROOT.'/morph_assets/themelets';
 $themelet_url = JURI::root().'morph_assets/themelets/';
 if(is_dir($themelet_dir)) {

@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="reset-settings">
 	<h2>Reset Configurator's Settings</h2>
 	<div class="note">

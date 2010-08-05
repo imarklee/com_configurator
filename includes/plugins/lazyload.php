@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="lazyload-tab" class="ui-tabs-hide">
 	<div id="lazyload-options" class="options-panel">
 	    <h3>Lazyload Settings</h3>

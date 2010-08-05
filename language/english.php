@@ -1,4 +1,4 @@
-<?php
+<?php defined('_JEXEC') or die('Restricted access');
 // English language file for Ninjoomla Morph
 //
 // Distributed under the terms of the GNU General Public License

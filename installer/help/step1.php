@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="help-one" class="installer-help">
 <h3>Installing the Morph template:</h3>
 <p>Now that you have installed Configurator, you can proceed to installing the Morph template, which is where most of the framework files and functionality is kept.</p>

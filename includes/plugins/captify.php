@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="captify-tab" class="ui-tabs-hide">
 	<div id="captify-options" class="options-panel">
 	    <h3>Fancy Captions Settings</h3>

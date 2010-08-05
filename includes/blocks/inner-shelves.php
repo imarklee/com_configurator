@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="inner-shelves-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="user-options" class="options-panel">
    	    <h3>User1 Settings</h3>

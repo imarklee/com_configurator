@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php include '../includes/configurator.functions.php'; ?>
 <div id="splash">
 	<ul id="welcome-tabs">

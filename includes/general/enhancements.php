@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="enhancements-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="enhancements-options" class="options-panel">
 		<h3>Article view enhancements</h3>

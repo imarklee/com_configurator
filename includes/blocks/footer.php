@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="footer-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="footer-options" class="options-panel">
 	    <h3>Footer Block Options</h3>

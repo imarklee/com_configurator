@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="footer">
 	<a href="http://www.prothemer.com" target="_blank" class="ptlogo">ProThemer</a>
 	<ul class="footer-links">

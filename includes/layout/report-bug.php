@@ -1,4 +1,4 @@
-<?php
+<?php defined('_JEXEC') or die('Restricted access');
 
 $path = JPATH_SITE.'/';
 $urlpath = JURI::root();

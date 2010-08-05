@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div class="help-block1">
     <h3>Inline Help &amp; Documentation:</h3>
     <p>There is a lot of built in help through out Configurator. Hover over the <img src="components/com_configurator/images/tooltip-info.png" alt="info" 

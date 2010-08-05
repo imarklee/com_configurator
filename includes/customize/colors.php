@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="colors-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="color-options" class="options-panel">
 		<h3>Color Settings</h3>

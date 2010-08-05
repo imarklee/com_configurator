@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="tools-installer">
 	<div id="uploader">
 	    <h2>Universal Installer</h2>		

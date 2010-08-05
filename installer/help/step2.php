@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="help-two" class="installer-help">
 <h3>Not sure what a themelet is?</h3>
 <p>Themelets as the visual layer of Morph and what people visiting your site will actually see. Built on top of Morphs powerful intelligent engine, themelets inherit all of the underlying awesomeness that is Morph. Not only are themelets quicker to develop, but because they all sit on top of the same framework, which means you always have the same great features close at hand.</p>

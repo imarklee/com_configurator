@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="backgrounds-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="background-options" class="options-panel">
 		<h3>Body Background Settings</h3>

@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="insets-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="inset-options" class="options-panel">
 	    <h3>Inset1 Settings</h3>

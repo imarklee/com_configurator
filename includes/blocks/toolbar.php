@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="toolbar-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="toolbar-options" class="options-panel">
 	    <h3>Toolbar Block Settings</h3>

@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php $curr_themelet = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->param('themelet')->getItem()->value ?>
 <div id="database-manager">
 	<h2>Export / Import Manager</h2>

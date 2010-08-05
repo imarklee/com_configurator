@@ -1,4 +1,4 @@
-<?php
+<?php defined('_JEXEC') or die('Restricted access');
 //@TODO this doesn't work on 1.6, so only run on 1.5 and previous
 $version = new JVersion;
 if(version_compare('1.6', $version->RELEASE, '>'))

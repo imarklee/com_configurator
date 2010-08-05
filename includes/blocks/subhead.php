@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="subhead-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="subhead-options" class="options-panel">
 	    <h3>Sub Header Block</h3>

@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="lightbox-tab" class="ui-tabs-hide">
 	<div id="lightbox-options" class="options-panel">
 	    <h3>Colorbox Lightbox Settings</h3>

@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="inner-sidebar-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="inner-sidebar-options" class="options-panel">
 	    <h3>Inner Sidebar Defaults</h3>

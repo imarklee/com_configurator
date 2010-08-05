@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="jomsocial-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="jomsocial-options" class="options-panel">
 		<h3>JomSocial Integration Settings</h3>

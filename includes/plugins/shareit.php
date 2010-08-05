@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="shareit-tab" class="ui-tabs-hide">
 	<div id="shareit-options" class="options-panel">
 	    <h3>Shareit Settings</h3>

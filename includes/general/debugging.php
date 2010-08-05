@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="debugging-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="debugging-options" class="options-panel">
 		<h3>Debugging Settings</h3>

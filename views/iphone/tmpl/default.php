@@ -7,6 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
+defined('_JEXEC') or die('Restricted access');
+
 $iphone_dir = JPATH_ROOT.'/morph_assets/iphone';
 $iphone_url = JURI::root().'morph_assets/iphone';
 if(is_dir($iphone_dir)) {

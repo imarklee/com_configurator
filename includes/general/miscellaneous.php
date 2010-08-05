@@ -1,3 +1,4 @@
+<?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="miscellaneous-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="miscellaneous-options" class="options-panel">
 		<ol class="forms">

@@ -7,6 +7,8 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
+defined('_JEXEC') or die('Restricted access');
+
 $logo_dir = JPATH_ROOT.'/morph_assets/logos';
 $logo_url = JURI::root().'/morph_assets/logos';
 if(is_dir($logo_dir)) {

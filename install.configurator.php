@@ -125,13 +125,13 @@ $conf = JFactory::getConfig();
 if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 	if($conf->getValue('config.gzip') !== '1'){
 		$path = JPATH_CONFIGURATION.'/configuration.php';
-		JPath::setPermissions($path, '0777');
-		if(file_exists($path) && is_writable($path)){			
-			$str = file_get_contents($path);
-			$line = str_replace('var $gzip = \'0\';', 'var $gzip = \'1\';', $str);
-			file_put_contents($path, $line);
-		}		
-		JPath::setPermissions($path, '0644');
+		if(JFile::exists($path)) {
+			JPath::setPermissions($path, '0644');
+			$search  = JFile::read($path);
+			$replace = str_replace('var $gzip = \'0\';', 'var $gzip = \'1\';', $search);
+			JFile::write($path, $replace);
+			JPath::setPermissions($path, '0444');
+		}
 		ComConfiguratorHelperUtilities::setInstallState('installed_gzip', true);
 	}
 }else{

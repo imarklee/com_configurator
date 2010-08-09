@@ -30,7 +30,7 @@ jQuery.noConflict()(function($){
 	
 
 	$("input[type=text], textarea").focus(function(){
-	    this.select();
+		this.select();
 	});
 	
 	if($.cookie('save_msg')){
@@ -73,7 +73,7 @@ jQuery.noConflict()(function($){
 					modal: true, 
 					title: 'Your session is about to timeout',
 					overlay: {
-						backgroundColor: '#000',
+						backgroundColor: '#000', 
 						opacity: 0.5
 					},
 					close: function(){
@@ -128,9 +128,9 @@ jQuery.noConflict()(function($){
 	<?php if($ul==1) include 'functions/user.js'; ?>
 	
 	/* Generic ----------------------------
-    ------------------------------------ */
-    $("#tabs ol.forms li:first-child").addClass("first");
-    
+	------------------------------------ */
+	$("#tabs ol.forms li:first-child").addClass("first");
+	
 	$("#submenu li:last").addClass("last");
 	$("#blocks-tabs .ui-tabs-nav li:last").addClass("last");
 	$("#tabs ol.forms li:last-child").addClass("last");
@@ -155,10 +155,10 @@ jQuery.noConflict()(function($){
 	<?php } ?>
 	
 	$("#help").hover(function () {
-      $(this).switchClass("on", "off", 15000);
+	  $(this).switchClass("on", "off", 15000);
 		}, function() {
-      $(this).switchClass("off", "on", 15000);
-    });
+	  $(this).switchClass("off", "on", 15000);
+	});
 
 	$('#system-message').delay(3000, function(){
 		$('#system-message').fadeOut();
@@ -189,7 +189,7 @@ jQuery.noConflict()(function($){
 			$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+file, function(){
 				$('.toolguides').dialog('open');
 			});
-	    	return false;
+			return false;
 		});
 	}
 	
@@ -358,7 +358,7 @@ jQuery.noConflict()(function($){
    					task: 'saveprefs'
    				},
 	   			success: function(data, textStatus){
-	    			$('#tips').remove();
+					$('#tips').remove();
 	   			}
    			});
    			return false;
@@ -421,9 +421,9 @@ jQuery.noConflict()(function($){
 	$(this).parents("label.label-username,label.label-password").addClass("label-focus");
 	});
 	$("input, textarea", $("form")).blur(function(){
-	    $(this).removeClass("focus");
-	    $(this).parents("ol.forms").removeClass("cur");
-	    $(this).parents("label.label-username,label.label-password").removeClass("label-focus");
+		$(this).removeClass("focus");
+		$(this).parents("ol.forms").removeClass("cur");
+		$(this).parents("label.label-username,label.label-password").removeClass("label-focus");
 	});
 	
 $('#install-type input[type="radio"]').click( function(){
@@ -436,24 +436,24 @@ $('#install-type input[type="radio"]').click( function(){
 <?php if($ul==1) { ?> $('.text_area').simpleautogrow(); <?php } ?>
 		
 	   	/* Tabs -------------------------------
-    ------------------------------------ */
-    [
-    	{id: '#tabs',			cookie: 'main-tabs'},
-    	{id: '#site-tabs',		cookie: 'site-tabs'},
-    	{id: '#customize-tabs',	cookie: 'themelet-tabs'},
-    	{id: '#blocks-tabs',	cookie: 'block-tabs'},
-    	{id: '#plugins-tabs',	cookie: 'plugins-tabs'},
-    	{id: '#tools-tabs',		cookie: 'tools-tabs'},
-    	{id: '#assets-tabs',	cookie: 'assets-tabs'}
-    ].each(function(tab){
-    	$(tab.id).tabs({ 
-    		cookie: {
-    			name: tab.cookie,
-    			expires: 30,
-    			path: '/'
-    	 	}
-    	});
-    });
+	------------------------------------ */
+	[
+		{id: '#tabs',			cookie: 'main-tabs'},
+		{id: '#site-tabs',		cookie: 'site-tabs'},
+		{id: '#customize-tabs',	cookie: 'themelet-tabs'},
+		{id: '#blocks-tabs',	cookie: 'block-tabs'},
+		{id: '#plugins-tabs',	cookie: 'plugins-tabs'},
+		{id: '#tools-tabs',		cookie: 'tools-tabs'},
+		{id: '#assets-tabs',	cookie: 'assets-tabs'}
+	].each(function(tab){
+		$(tab.id).tabs({ 
+			cookie: {
+				name: tab.cookie,
+				expires: 30,
+				path: '/'
+		 	}
+		});
+	});
 
 	$('#tabs .ui-tabs-panel').removeClass("ui-corner-bottom");
 	$("#customize").removeClass("ui-widget-content");			
@@ -478,9 +478,9 @@ $('#install-type input[type="radio"]').click( function(){
 		$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
 			if($.cookie('info')){ $.cookie('info', null); }
 			var gstabs = $('#splash').tabs();
-	    	gstabs.tabs('select', 2);
+			gstabs.tabs('select', 2);
 			return welcomeScreen();
-	    });
+		});
 		return false;
 	});
 			
@@ -534,10 +534,10 @@ $('#install-type input[type="radio"]').click( function(){
 		
 		$('#feedbackform').submit(function(){
 			function validate(formData, jqForm, options) { 
-			    for (var i=0; i < formData.length; i++) { 
-			    	if (!formData[i].value) { 
-			            $('<div class="dialog-msg">All fields are required</div>').dialog({
-			            	bgiframe: true,
+				for (var i=0; i < formData.length; i++) { 
+					if (!formData[i].value) { 
+						$('<div class="dialog-msg">All fields are required</div>').dialog({
+							bgiframe: true,
 							autoOpen: true,
 							stack: true,
 							title: 'Error',
@@ -552,11 +552,11 @@ $('#install-type input[type="radio"]').click( function(){
 								opacity: 0.8
 							}
 						});
-			            return false; 
-			        } 
-			    }
-			    ptOverlay('Processing');
-			    return true; 
+						return false; 
+					} 
+				}
+				ptOverlay('Processing');
+				return true; 
 			}
 		
 			$(this).ajaxSubmit({
@@ -580,7 +580,7 @@ $('#install-type input[type="radio"]').click( function(){
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
-				            	bgiframe: true,
+								bgiframe: true,
 								autoOpen: true,
 								stack: true,
 								title: 'Error',
@@ -598,7 +598,7 @@ $('#install-type input[type="radio"]').click( function(){
 						}
 					}else{
 						$('<div class="dialog-msg">'+data.message+'</div>').dialog({
-			            	bgiframe: true,
+							bgiframe: true,
 							autoOpen: true,
 							stack: true,
 							title: 'Success',
@@ -620,7 +620,7 @@ $('#install-type input[type="radio"]').click( function(){
 				},
 				error: function(data){
 					$('<div>'+data+'</div>').dialog({
-		            	bgiframe: true,
+						bgiframe: true,
 						autoOpen: true,
 						stack: true,
 						title: 'Error',
@@ -642,45 +642,45 @@ $('#install-type input[type="radio"]').click( function(){
 		$('#feedbackform').trigger('submit');
 		return false;
 	});
- 	     	
+ 		 	
 	
 	/* Tooltips ----------------------
 	------------------------------- */
 	// info tooltip
-    $('.tt-inline').each(function(){
+	$('.tt-inline').each(function(){
 		$this = $(this);
-    	var thetitle = $(this).attr("title").split('::'); 
+		var thetitle = $(this).attr("title").split('::'); 
    		var qtTitle = thetitle[1];
    		$this.qtip({
 				content: qtTitle ,
 		   	show: 'mouseover',
 		   	hide: 'mouseout',
 			style: { 
-			      width: 300,
-			      padding: 10,
-			      background: '#9AC5DF',
-			      color: '#111',
-			      textAlign: 'left',
-			      border: {
-			         width: 1,
-			         radius: 5,
-			         color: '#006699'
-			      },
+				  width: 300,
+				  padding: 10,
+				  background: '#9AC5DF',
+				  color: '#111',
+				  textAlign: 'left',
+				  border: {
+					 width: 1,
+					 radius: 5,
+					 color: '#006699'
+				  },
 		   		tip: 'bottomLeft'
 		   	},
 		   	position: {
-		        corner: {
-		           tooltip: 'bottomLeft',
-		           target: 'topRight'
-		        }
-		     }
+				corner: {
+				   tooltip: 'bottomLeft',
+				   target: 'topRight'
+				}
+			 }
 		});
 		
 		$(this).attr('title', '');
-    });
-    // info tooltip
+	});
+	// info tooltip
    	$('.ttim').each(function(){
-    	var thetitle = $(this).attr("title");
+		var thetitle = $(this).attr("title");
    		
    		$(this).qtip({
 				content: thetitle ,
@@ -690,8 +690,8 @@ $('#install-type input[type="radio"]').click( function(){
 				width: 300,
 				padding: 10,
 		   		name: 'light',
-			    background: '#CAEFA5',			   		
-			    color: '#111',
+				background: '#CAEFA5',			   		
+				color: '#111',
 		   		border: {
 					width: 1,
 					radius: 5,
@@ -701,17 +701,17 @@ $('#install-type input[type="radio"]').click( function(){
 		   		margin: 0
 		   	},
 		   	position: {
-		        corner: {
-		           tooltip: 'bottomLeft',
-		           target: 'topRight'
-		        }
-		     }
+				corner: {
+				   tooltip: 'bottomLeft',
+				   target: 'topRight'
+				}
+			 }
 		});
 		$(this).attr('title', '');
-    });
-    	    
-    $('.tt-modal').click(function(){
-    	var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
+	});
+			
+	$('.tt-modal').click(function(){
+		var docroot = '../administrator/components/com_configurator/tooltips/'; // define doc root for pulling the docs
    		var thetitle = $(this).attr("title").split('::'); 
    		var qtTitle = thetitle[0];
    		var qtLink = docroot+thetitle[1];
@@ -779,17 +779,17 @@ $('#install-type input[type="radio"]').click( function(){
 	});
 			
 	/* Logo Options -----------------------
-    ------------------------------------ */
-    function logoPreview(elid, type){
-    	if($(elid).val() != null && type != 'bg'){
-	    	var imageTitle  = $(elid).val(); 
-	    	var updatedTitle = imageTitle;
-	    	$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span><span class="upload-logo-container">(<a href="#" class="upload-logo">Upload Logo</a>)</span>');
-	    	$('.logo-preview').each(function(){
+	------------------------------------ */
+	function logoPreview(elid, type){
+		if($(elid).val() != null && type != 'bg'){
+			var imageTitle  = $(elid).val(); 
+			var updatedTitle = imageTitle;
+			$(elid).after('<span class="logo-preview" title="'+imageTitle+'">&nbsp;<span>Preview</span></span><span class="upload-logo-container">(<a href="#" class="upload-logo">Upload Logo</a>)</span>');
+			$('.logo-preview').each(function(){
 				$(this).attr('title', '');
-	    		$(this).qtip({
-	       		    content: '<img class="logo-preview-image" src="../morph_assets/logos/'+updatedTitle+'" />',
-				    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
+				$(this).qtip({
+		   			content: '<img class="logo-preview-image" src="../morph_assets/logos/'+updatedTitle+'" />',
+					position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
 					style: { tip: { corner:'bottomMiddle' }, name: 'dark', background: '#fff', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' }
 				});
 			});
@@ -802,18 +802,18 @@ $('#install-type input[type="radio"]').click( function(){
 				$("#upload_logo").attr("checked",true).parent().addClass('label-selected');
 				return false;
 			});
-	    	$(elid).change(function(){
-	    		$(elid +' option:selected').each(function(){
-	    			$('.logo-preview').attr('title', $(this).val());
-	    			$('.logo-preview').qtip("destroy");
-	    			$('.logo-preview').attr('title', '');
-	    			$('.logo-preview').qtip({
+			$(elid).change(function(){
+				$(elid +' option:selected').each(function(){
+					$('.logo-preview').attr('title', $(this).val());
+					$('.logo-preview').qtip("destroy");
+					$('.logo-preview').attr('title', '');
+					$('.logo-preview').qtip({
 					   	content: '<img src="../morph_assets/logos/'+this.value+'" />',
-					    position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
-					    style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' }
+						position: { corner: { tooltip: 'bottomMiddle', target: 'topMiddle' } },
+						style: { tip: { corner:'bottomMiddle' }, name: 'dark', border: { width: 3, radius: 8 }, padding: '0px', margin: '0px' }
 					});
 					return updatedTitle = this.value;
-	    		});
+				});
 			});
 		}else{
 			if(type != 'bg'){
@@ -854,15 +854,15 @@ $('#install-type input[type="radio"]').click( function(){
 			}
 		}
 		
-    }
-    
-    logoPreview('#logologo_image');
-    logoPreview('#backgroundsbg_image', 'bg'); 
-    
-    /* Login ------------------------------
-    ------------------------------------ */
-    $('.alf-check').change(function(){
-    	$('#alf-warning').html('<p><span class="error-text"><strong>Selecting this will keep you logged in for an infinite period.</strong><br /><br />'
+	}
+	
+	logoPreview('#logologo_image');
+	logoPreview('#backgroundsbg_image', 'bg'); 
+	
+	/* Login ------------------------------
+	------------------------------------ */
+	$('.alf-check').change(function(){
+		$('#alf-warning').html('<p><span class="error-text"><strong>Selecting this will keep you logged in for an infinite period.</strong><br /><br />'
 								+'Please note that, a cookie will be set to keep you logged in until you log out manually or delete your '
 								+'cookies.</span></p>');
 		hideScroll();
@@ -893,13 +893,13 @@ $('#install-type input[type="radio"]').click( function(){
 		});
 	});
 		
-    function loginUser(){
-    	var username = $('input[name="am-username"]').val();
-    	var password = $('input[name="am-password"]').val();
-    	var setcookie = $('input[name="am-keep-login"]').attr('checked');
-    	
-    	if(username == '' || password == ''){
-    		$('#alf-warning').html('<div class="dialog-msg">Please enter a username and password in the fields below. Thanks.</div>');
+	function loginUser(){
+		var username = $('input[name="am-username"]').val();
+		var password = $('input[name="am-password"]').val();
+		var setcookie = $('input[name="am-keep-login"]').attr('checked');
+		
+		if(username == '' || password == ''){
+			$('#alf-warning').html('<div class="dialog-msg">Please enter a username and password in the fields below. Thanks.</div>');
 			hideScroll();
 			$('#alf-warning').dialog({
 	   			autoOpen: true, 
@@ -921,24 +921,24 @@ $('#install-type input[type="radio"]').click( function(){
 				}
 			});
 			return false;
-    	}
-    	
-    	if(username != 'username' || password != 'password'){
-    	    	
-    		$('#alf-image').css('display','block');
+		}
+		
+		if(username != 'username' || password != 'password'){
+				
+			$('#alf-image').css('display','block');
 			//$('#cl-inner').fadeTo("fast", 0.1);
-    	
-	    	$.ajax({
-	    		type: 'POST',
-	    		url: '?option=com_configurator&task=makehash&format=raw',
-	    		data: {
-	    			'tempuserpass': password
-	    		},
-	    		success: function(d,t){
-	    			if(d != ''){
-	    				
-	    				var passhash = d;
-	    				var retval;
+		
+			$.ajax({
+				type: 'POST',
+				url: '?option=com_configurator&task=makehash&format=raw',
+				data: {
+					'tempuserpass': password
+				},
+				success: function(d,t){
+					if(d != ''){
+						
+						var passhash = d;
+						var retval;
 						var rurl = 'http://www.joomlajunkie.com/secure/configurator/logging.php?jsoncallback=?';
 	
 						$.ajax({
@@ -1280,7 +1280,7 @@ $('#install-type input[type="radio"]').click( function(){
 
 												   			return false;
 												   		});
-												    	$('#templateform').trigger("submit");												
+														$('#templateform').trigger("submit");												
 												   	}
 												   	checkChanges(actThemelet);
 												},
@@ -1428,20 +1428,20 @@ $('#install-type input[type="radio"]').click( function(){
 	/* Tips ----------------------------
 	--------------------------------- */
 	fader = function (selector, speed, seconds) {
-        $(selector).hide();
-        var i = $(selector).length - 1;
-        var toggle = function() {
-                $(selector).eq(i).fadeOut(speed, function() {
-                        i = ++i % $(selector).length;
-                        $(selector).eq(i).fadeIn(speed, function() {
-                                setTimeout(toggle, seconds*1000)
-                        });
+		$(selector).hide();
+		var i = $(selector).length - 1;
+		var toggle = function() {
+				$(selector).eq(i).fadeOut(speed, function() {
+						i = ++i % $(selector).length;
+						$(selector).eq(i).fadeIn(speed, function() {
+								setTimeout(toggle, seconds*1000)
+						});
 
-                });
-        };                      
-        toggle();
-    };
-    new fader('#tips-content p', 'slow', 3);
+				});
+		};                      
+		toggle();
+	};
+	new fader('#tips-content p', 'slow', 3);
 	
 	/* Check for Changes ---------------
 	--------------------------------- */
@@ -1514,11 +1514,11 @@ $('#install-type input[type="radio"]').click( function(){
 	<?php if($ul==1) include('functions/keyboard.js'); ?>
 
 	// ajax content for dialog
-    // welcome screen
-    function welcomeScreen(){
-    	$('#getting-started').dialog({
-    		width: '920px',
-    		bgiframe: true,
+	// welcome screen
+	function welcomeScreen(){
+		$('#getting-started').dialog({
+			width: '920px',
+			bgiframe: true,
    			autoOpen: true,
    			minHeight: 20,
    			stack: false,
@@ -1534,9 +1534,9 @@ $('#install-type input[type="radio"]').click( function(){
    				showScroll();
    				$(this).dialog('destroy');
    			}
-    	});
-    	hideScroll();
-    	$(".close-welcome").click(function(){
+		});
+		hideScroll();
+		$(".close-welcome").click(function(){
 			$('#getting-started').dialog('destroy');
 			showScroll();
 			if($.cookie('info')){ $.cookie('info', null); }
@@ -1550,22 +1550,22 @@ $('#install-type input[type="radio"]').click( function(){
 				path: '/'
 		 	}
 		});
-    }
-    
-    $('.info-link').click(function(){
+	}
+	
+	$('.info-link').click(function(){
 		$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
-	    	return welcomeScreen();
-	    });
-	    return false;
+			return welcomeScreen();
+		});
+		return false;
 	});
 	
 	$('#toolbar-credits-link').click(function(){
 		$('<div id="credits-dialog"></div>').appendTo('body');
 		$('#credits-dialog').load('../administrator/components/com_configurator/tooltips/credits.html', function(){
-	    	hideScroll();
-		    $('#credits-dialog').dialog({
-	    		width: '800px',
-	    		bgiframe: true,
+			hideScroll();
+			$('#credits-dialog').dialog({
+				width: '800px',
+				bgiframe: true,
 	   			autoOpen: true,
 	   			minHeight: 20,
 	   			stack: false,
@@ -1580,24 +1580,24 @@ $('#install-type input[type="radio"]').click( function(){
 	   				showScroll();
 	   				$(this).dialog('destroy');
 	   			}
-	    	});
-	    });
-	    return false;
+			});
+		});
+		return false;
 	});
 
-    if(!$.cookie('welcome_screen')){
-    	$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
-	    	return welcomeScreen();
-	    });
-    	$.cookie('welcome_screen', 'hide', { expires: 360 });			
-    }
-    
-    // prefs
+	if(!$.cookie('welcome_screen')){
+		$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
+			return welcomeScreen();
+		});
+		$.cookie('welcome_screen', 'hide', { expires: 360 });			
+	}
+	
+	// prefs
 	function preferencesScreen(){
 		hideScroll();
-	    $('#preferences-screen').dialog({
-    		width: '450px',
-    		bgiframe: true,
+		$('#preferences-screen').dialog({
+			width: '450px',
+			bgiframe: true,
    			autoOpen: true,
    			minHeight: 20,
    			stack: false,
@@ -1613,8 +1613,8 @@ $('#install-type input[type="radio"]').click( function(){
    				$.cookie('prefs', null);
    				$(this).dialog('destroy');
    			}
-    	});
-    	$(".close-preferences").click(function(){
+		});
+		$(".close-preferences").click(function(){
 			$('#preferences-screen').dialog("close");
 			showScroll();
 			if($.cookie('prefs')){ $.cookie('prefs', null); }
@@ -1636,7 +1636,7 @@ $('#install-type input[type="radio"]').click( function(){
 	   				},
 		   			success: function(data, textStatus){
 		   				
-		    			window.location.reload(true);
+						window.location.reload(true);
 		   				return false;
 		   			}
 	   			});
@@ -1646,13 +1646,13 @@ $('#install-type input[type="radio"]').click( function(){
 	
 			return false;
 		});
-    }
-    
+	}
+	
 	$('td#toolbar-preferences a').click(function(){
 		if($.browser.name == 'opera'){
 			$('#cfgshort_keys1').parent().remove();
 		}
-	    preferencesScreen();
+		preferencesScreen();
 		return false;
 	});
 	
@@ -1663,9 +1663,9 @@ $('#install-type input[type="radio"]').click( function(){
 			$('#keyboard-screen').empty();
 			$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard-opera.php');
 		}
-	    $('#keyboard-screen').dialog({
-    		width: '700px',
-    		bgiframe: true,
+		$('#keyboard-screen').dialog({
+			width: '700px',
+			bgiframe: true,
    			autoOpen: true,
    			minHeight: 20,
    			draggable: false,
@@ -1682,13 +1682,13 @@ $('#install-type input[type="radio"]').click( function(){
    				$(this).dialog('destroy');
    			},
    			zIndex: 9999
-    	});
-    }
-    
+		});
+	}
+	
 	$('#keyboard-toggle').click(function(){ 
-    	$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard.php', function(){
-	    	return keyboardScreen();
-	    }); 
+		$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard.php', function(){
+			return keyboardScreen();
+		}); 
 		return false;
 	});
 	
@@ -1822,10 +1822,10 @@ $('#install-type input[type="radio"]').click( function(){
 		});
 		$('#sendpass').submit(function(){
 			function validate(formData, jqForm, options) { 
-			    for (var i=0; i < formData.length; i++) { 
-			    	if (!formData[i].value) { 
-			            $('<div><strong>Username or email address is required.</strong></div>').dialog({
-			            	bgiframe: true,
+				for (var i=0; i < formData.length; i++) { 
+					if (!formData[i].value) { 
+						$('<div><strong>Username or email address is required.</strong></div>').dialog({
+							bgiframe: true,
 							autoOpen: true,
 							stack: true,
 							title: 'Error',
@@ -1844,11 +1844,11 @@ $('#install-type input[type="radio"]').click( function(){
 								opacity: 0.8
 							}
 						});
-			            return false; 
-			        } 
-			    }
-			    ptOverlay('Processing...');				    
-			    return true; 
+						return false; 
+					} 
+				}
+				ptOverlay('Processing...');				    
+				return true; 
 			}
 			
 			$(this).ajaxSubmit({
@@ -1863,7 +1863,7 @@ $('#install-type input[type="radio"]').click( function(){
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
-				            	bgiframe: true,
+								bgiframe: true,
 								autoOpen: true,
 								stack: true,
 								title: 'Error',
@@ -1881,7 +1881,7 @@ $('#install-type input[type="radio"]').click( function(){
 						}
 					}else{
 						$('<div>'+data.success+'</div>').dialog({
-			            	bgiframe: truex,
+							bgiframe: truex,
 							autoOpen: true,
 							stack: true,
 							title: 'Success',

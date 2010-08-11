@@ -18,8 +18,10 @@ return $pageURL;
 }
 ?>
 
-// Configurator class
-var Configurator = {};
+// Configurator base class
+var Configurator = {
+	
+};
 
 //Preload spinner gif before domready
 jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
@@ -131,13 +133,9 @@ jQuery.noConflict()(function($){
 	------------------------------------ */
 	$("#tabs ol.forms li:first-child").addClass("first");
 	
-	$("#submenu li:last").addClass("last");
-	$("#blocks-tabs .ui-tabs-nav li:last").addClass("last");
-	$("#tabs ol.forms li:last-child").addClass("last");
-	$("#preferences-form .prefs li:last").addClass("last");
+	$("#submenu li:last, #blocks-tabs .ui-tabs-nav li:last, #tabs ol.forms li:last-child, #preferences-form .prefs li:last").addClass("last");
 	
 	$("#submenu li:first").addClass("dashboard");
-	
 	$("#tabs .options-panel").wrapInner('<div class="options-inner"></div>');
 
 

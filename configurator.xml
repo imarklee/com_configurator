@@ -73,6 +73,7 @@
 		<file>includes/layout/livedocs.php</file>
 		<file>images/loading-ui.jpg</file>
 		<file>js/functions/loading.js</file>
+		<file>tooltips/gettingstarted.php</file>
 	</deprecated>
 	
 	<media />

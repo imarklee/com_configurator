@@ -193,7 +193,7 @@ jQuery.noConflict()(function($){
 		});
 	}
 	
-	notice_dialog('Memory Limit', 'memory_limit.php', '#readmore-memory');
+	notice_dialog('Memory Limit', 'memory_limit.html', '#readmore-memory');
 
 	if ($("#toolbar-box div.header").val() == " Configurator "){
 		$("#toolbar-box div.header").text(" Configurator Manage ");
@@ -475,7 +475,7 @@ $('#install-type input[type="radio"]').click( function(){
 	});
 	
 	$('.updates-help-link').click(function(){
-		$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
+		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted', function(){
 			if($.cookie('info')){ $.cookie('info', null); }
 			var gstabs = $('#splash').tabs();
 			gstabs.tabs('select', 2);
@@ -1552,7 +1552,7 @@ $('#install-type input[type="radio"]').click( function(){
 	}
 	
 	$('.info-link').click(function(){
-		$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
+		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted', function(){
 			return welcomeScreen();
 		});
 		return false;
@@ -1585,7 +1585,7 @@ $('#install-type input[type="radio"]').click( function(){
 	});
 
 	if(!$.cookie('welcome_screen')){
-		$('#getting-started').load('../administrator/components/com_configurator/tooltips/gettingstarted.php', function(){
+		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted', function(){
 			return welcomeScreen();
 		});
 		$.cookie('welcome_screen', 'hide', { expires: 360 });			

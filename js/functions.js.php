@@ -21,6 +21,8 @@ return $pageURL;
 // Configurator base class
 var Configurator = {
 	
+	
+	
 };
 
 //Preload spinner gif before domready
@@ -736,9 +738,8 @@ $('#install-type input[type="radio"]').click( function(){
    	
    	
    	$('a.modal-link').click(function(){
-   		var $this = $(this);
    		hideScroll();
-   		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));	   		
+   		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));
    		$('.toolguides').dialog({
 			autoOpen: true,
 			bgiframe: true,

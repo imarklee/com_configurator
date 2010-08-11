@@ -109,10 +109,10 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 				<?php include dirname(__FILE__).'/../blocks/topnav.php' ?>
 				<?php include dirname(__FILE__).'/../blocks/outer-shelves.php' ?>
 				<?php include dirname(__FILE__).'/../blocks/inner-shelves.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/inset.php' ?>
 				<?php include dirname(__FILE__).'/../blocks/main.php' ?>
 				<?php include dirname(__FILE__).'/../blocks/outer-sidebar.php' ?>
 				<?php include dirname(__FILE__).'/../blocks/inner-sidebar.php' ?>
+				<?php include dirname(__FILE__).'/../blocks/inset.php' ?>
 				<?php include dirname(__FILE__).'/../blocks/footer.php' ?>
 			</div>
 		</div>

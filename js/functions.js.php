@@ -475,7 +475,7 @@ $('#install-type input[type="radio"]').click( function(){
 	});
 	
 	$('.updates-help-link').click(function(){
-		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted', function(){
+		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted&format=raw', function(){
 			if($.cookie('info')){ $.cookie('info', null); }
 			var gstabs = $('#splash').tabs();
 			gstabs.tabs('select', 2);
@@ -1552,7 +1552,7 @@ $('#install-type input[type="radio"]').click( function(){
 	}
 	
 	$('.info-link').click(function(){
-		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted', function(){
+		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted&format=raw', function(){
 			return welcomeScreen();
 		});
 		return false;
@@ -1585,7 +1585,7 @@ $('#install-type input[type="radio"]').click( function(){
 	});
 
 	if(!$.cookie('welcome_screen')){
-		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted', function(){
+		$('#getting-started').load('?option=com_configurator&view=help&layout=gettingstarted&format=raw', function(){
 			return welcomeScreen();
 		});
 		$.cookie('welcome_screen', 'hide', { expires: 360 });			

@@ -1715,7 +1715,7 @@ class ComConfiguratorControllerAbstract extends JController
 	
 	function unpackTemplate($p_filename, $publish = ''){
 		$type = 'upgraded';
-		$exists = JPATH_THEMES.'/morph/templateDetails.xml';
+		$exists = JPATH_ROOT.'/templates/morph/templateDetails.xml';
 		if(!file_exists($exists)) $type = 'installed';
 		$archivename = $p_filename;
 		$dirname = uniqid('tempins_');
@@ -1751,7 +1751,12 @@ class ComConfiguratorControllerAbstract extends JController
 				}
 			}
 		} else {
-			JFolder::move($extractdir, dirname($p_filename).'/'.$_templatedir);	
+			
+			//Fix for picking up language files
+			jimport('joomla.installer.installer');
+			$installer = JInstaller::getInstance();
+			$installer->install($extractdir);
+			JFolder::move($extractdir, dirname($p_filename).'/'.$_templatedir);
 		}
 		
 		if (JFolder::exists( dirname($p_filename).'/'.$_templatedir ) ) {
@@ -1772,6 +1777,7 @@ class ComConfiguratorControllerAbstract extends JController
 			
 			$success = 'msg: "Morph '.$type.' Successfully", success: "Morph '.$type.' successfully", error: ""';
 			return $success;
+			
 		}
 		
 	}

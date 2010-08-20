@@ -25,7 +25,11 @@ class ComConfiguratorHelperUtilities extends JObject
 	 */
 	public static function installCleanup()
 	{
-		$xml = simplexml_load_file(ComConfiguratorDefines::getManifestPath());
+		$path	= ComConfiguratorDefines::getManifestPath();
+
+		if(!JFile::exists($path)) return;
+		
+		$xml	= simplexml_load_file($path);
 
 		if(!isset($xml->deprecated)) return;
 

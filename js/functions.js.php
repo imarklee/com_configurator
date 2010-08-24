@@ -1647,7 +1647,7 @@ $('#install-type input[type="radio"]').click( function(){
 		});
 	}
 	
-	$('td#toolbar-preferences a').click(function(){
+	$('#toolbar-preferences a').click(function(){
 		if($.browser.name == 'opera'){
 			$('#cfgshort_keys1').parent().remove();
 		}
@@ -1660,7 +1660,7 @@ $('#install-type input[type="radio"]').click( function(){
 		ptOverlay();
 		if($.browser.name == 'opera'){
 			$('#keyboard-screen').empty();
-			$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard-opera.php');
+			$('#keyboard-screen').load('?option=com_configurator&view=help&layout=keyboard-opera&format=raw');
 		}
 		$('#keyboard-screen').dialog({
 			width: '700px',
@@ -1685,7 +1685,7 @@ $('#install-type input[type="radio"]').click( function(){
 	}
 	
 	$('#keyboard-toggle').click(function(){ 
-		$('#keyboard-screen').load('../administrator/components/com_configurator/includes/layout/keyboard.php', function(){
+		$('#keyboard-screen').load('?option=com_configurator&view=help&layout=keyboard&format=raw', function(){
 			return keyboardScreen();
 		}); 
 		return false;

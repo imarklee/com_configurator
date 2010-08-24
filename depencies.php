@@ -16,6 +16,7 @@ JLoader::register('JView', JPATH_LIBRARIES.'/joomla/application/component/view.p
 //JLoader::register('HTML_configurator_admin', JApplicationHelper::getPath('admin_html'));
 JLoader::register('ComConfiguratorDefines', JPATH_ADMINISTRATOR.'/components/com_configurator/defines.php');
 JLoader::register('ComConfiguratorHelperUtilities', JPATH_ADMINISTRATOR.'/components/com_configurator/helpers/utilities.php');
+JLoader::register('ComConfiguratorHelperBrowser', JPATH_ADMINISTRATOR.'/components/com_configurator/helpers/browser.php');
 JLoader::register('ComConfiguratorToolbarHtml', JPATH_ADMINISTRATOR.'/components/com_configurator/toolbar.configurator.html.php');
 
 // Controllers

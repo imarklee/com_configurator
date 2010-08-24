@@ -109,3 +109,6 @@ table.table .filename{text-align:left;padding:2px 5px;}
 #migrate-reset ul{list-style:none;overflow:hidden;}
 #migrate-reset li{width:422px;margin-right:10px;float:left;background:#fff;padding:10px;border:1px solid #ddd;}
 #migrate-reset p{margin:0 0 10px;}
+
+#cfg #uploader .upload-tool{width:495px;}
+#cfg #uploader .note{width:43%;}

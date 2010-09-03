@@ -59,7 +59,10 @@ class plgSystemMorphCache extends JPlugin
 			$uri = clone JFactory::getURI();
 			$itemid = isset($_SESSION['menuid']) ? $_SESSION['menuid'] : 0;
 			$user   = JFactory::getUser();
-			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath())).'.'.(int)$itemid.'.'.$user->gid.'.'.$format;
+			$option	= JRequest::getCmd('option', false);
+			$request_view	= JRequest::getCmd('view', false);
+			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath()));
+			$path = implode('.', array_filter(array($option, $request_view, (int)$itemid, $user->gid, $format)));
 			if(file_exists($path))
 			{
 				$created	= time()-date('U', filemtime($path));

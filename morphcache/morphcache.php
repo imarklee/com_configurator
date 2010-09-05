@@ -307,7 +307,17 @@ class plgSystemMorphCache extends JPlugin
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}
+		
+		//Use data uris if possible
+		if(!preg_match('/MSIE [0-7]/i', $_SERVER['HTTP_USER_AGENT'])) echo preg_replace_callback('/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i', array($this, 'encodeURLs'), ob_get_clean());//$this->encodeURLs(ob_get_clean());
+		
 		if($minify) echo $this->minifyCss(ob_get_clean());
+	}
+	
+	public function encodeURLs($parts)
+	{
+		return 'steve';
+		return $parts[1];
 	}
 	
 	protected function minifyCss($css)

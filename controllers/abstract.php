@@ -2028,5 +2028,8 @@ class ComConfiguratorControllerAbstract extends JController
 	{
 		$path = JPATH_ROOT.'/cache/morph';
 		if(JFolder::exists($path)) JFolder::delete($path);
+		
+		$path = JPATH_ROOT.'/cache/morph-sessions';
+		if(JFolder::exists($path)) JFolder::delete($path);
 	}
  }

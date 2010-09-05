@@ -33,11 +33,11 @@ class plgSystemMorphCache extends JPlugin
 					
 		$view = 'render'.ucfirst($format);
 		if(!method_exists($this, $view)) return;
-		
-		
+
 		if ($gzip) {
 			if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
-				if(!ob_start("ob_gzhandler")) ob_start();
+				//if(!ob_start("ob_gzhandler")) ob_start();
+				if(!ob_start(array($this, "ob_gzhandler"))) ob_start();
 			}else{
 				ob_start();
 			}
@@ -55,14 +55,14 @@ class plgSystemMorphCache extends JPlugin
 		$cache = JRequest::getInt('cache', false);
 		if ($cache)
 		{	
-			
 			$uri = clone JFactory::getURI();
-			$itemid = isset($_SESSION['menuid']) ? $_SESSION['menuid'] : 0;
+			$itemid = (int)JRequest::getInt('Itemid', 0);
 			$user   = JFactory::getUser();
 			$option	= JRequest::getCmd('option', false);
 			$request_view	= JRequest::getCmd('view', false);
 			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath()));
-			$path = $path.implode('.', array_filter(array($option, $request_view, (int)$itemid, $user->gid, $format)));
+			$path = implode('.', array_filter(array($path, $option, $request_view, $itemid, $user->gid, $format)));
+
 			if(file_exists($path))
 			{
 				$created	= time()-date('U', filemtime($path));
@@ -74,11 +74,23 @@ class plgSystemMorphCache extends JPlugin
 					$this->debug();
 					$content = ob_get_flush();
 					JFile::write($path, $content);
+					if(extension_loaded('zlib') && !ini_get('zlib.output_compression')) JFile::write($path.'.gz', gzcompress($content, 9));
 					return $this->close();
 				}
 				else
 				{
-					if(file_exists($path)) echo file_get_contents($path);
+					if(file_exists($path)) {
+						$can_compress = extension_loaded('zlib') && !ini_get('zlib.output_compression');
+						$gzip		  = $path.'.gz';
+						$gzip_exists  = file_exists($gzip);
+						if($can_compress && $this->_can_gzip() && $gzip_exists) {
+							$contents = file_get_contents($gzip);
+							$this->contents = file_get_contents($path);
+							echo substr($contents, 0, strlen($contents) - 4);
+						} else {
+							echo file_get_contents($path);
+						}
+					}
 					
 					ob_end_flush();
 					return $this->close();	
@@ -91,6 +103,7 @@ class plgSystemMorphCache extends JPlugin
 				$this->debug();
 				$content = ob_get_flush();
 				JFile::write($path, $content);
+				if(extension_loaded('zlib') && !ini_get('zlib.output_compression')) JFile::write($path.'.gz', gzcompress($content, 9));
 				return $this->close();
 			}
 		} else {
@@ -108,6 +121,28 @@ class plgSystemMorphCache extends JPlugin
 		
 		
 		return $this;
+	}
+	
+	private function _can_gzip()
+	{
+		return strstr($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip');
+	}
+	
+	public function ob_gzhandler($buffer)
+	{
+		//Do not send gzip headers if the client don't support gzip
+		if(!$this->_can_gzip()) return false;
+
+		ob_implicit_flush(0);
+		header('Content-Encoding: gzip');
+		
+		$crc = crc32($this->contents);
+		$size = strlen($this->contents);
+
+		return	"\x1f\x8b\x08\x00\x00\x00\x00\x00".
+				$buffer.
+				pack('V', $crc).
+				pack('V', $size);
 	}
 	
 	public function onAfterInitialise()
@@ -475,7 +510,26 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function loadMorph()
 	{
-		$path = JPATH_CACHE.'/morph/data.json';
+		//Generate name for the morph json formatted params that are passed to the css and js views
+		$uri	= clone JFactory::getURI();
+		//Remove parts of the url that morph adds
+		foreach(array('render', 'cache', 'gzip') as $remove) $uri->delVar($remove);
+		$base	= JPATH_CACHE.'/morph-sessions/'.session_id().'/';
+		$parts	= array_filter(explode('/', $uri->getPath()));
+		//Sometimes index.php are added even if not present in main url. So remove it just in case
+		if(end($parts) == 'index.php') array_pop($parts);
+		$parts[]= $uri->getHost();
+		$pre	= implode('.', $parts);
+		$path	= $base.$pre;
+		$data	= array();
+		$query	= array_flip($uri->getQuery(1));
+		asort($query);
+		foreach($query as $value => $key)
+		{
+			$data[] = $key.'='.$value;
+		}
+		$path = $path.'?'.implode('&', $data);
+
 		if(file_exists($path)) {
 			return json_decode(file_get_contents($path));
 		}

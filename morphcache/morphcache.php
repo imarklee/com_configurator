@@ -130,7 +130,7 @@ class plgSystemMorphCache extends JPlugin
 	public function ob_gzhandler($buffer)
 	{
 		//Do not send gzip headers if the client don't support gzip
-		if(!$this->_can_gzip()) return false;
+		if(!$this->_can_gzip() || !isset($this->contents)) return false;
 
 		ob_implicit_flush(0);
 		header('Content-Encoding: gzip');

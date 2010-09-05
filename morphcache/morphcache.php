@@ -62,7 +62,7 @@ class plgSystemMorphCache extends JPlugin
 			$option	= JRequest::getCmd('option', false);
 			$request_view	= JRequest::getCmd('view', false);
 			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath()));
-			$path = implode('.', array_filter(array($option, $request_view, (int)$itemid, $user->gid, $format)));
+			$path = $path.implode('.', array_filter(array($option, $request_view, (int)$itemid, $user->gid, $format)));
 			if(file_exists($path))
 			{
 				$created	= time()-date('U', filemtime($path));
@@ -139,22 +139,22 @@ class plgSystemMorphCache extends JPlugin
 		$template = JRequest::getCmd('template', JFilterInput::clean($template, 'cmd'));
 
 		if($template != 'morph') return;
-		
+
 		$loader = JPATH_ROOT . '/templates/morph/core/morphLoader.php';
 		if(file_exists($loader)) require_once $loader;
-		
+
+		//Allowing other extensions to check if morph is loading jquery
 		define('MORPH_JQUERY', 1);
-		
+
 		//This is purely because we love CB so much
 		define( 'J_JQUERY_LOADED', 1 );
 		//And of course, JomSocial as well
 		define( 'C_ASSETS_JQUERY', 1 );
-		
+
 		// If we are in configurator, make sure to update the overrides.
 		// @TODO we might not want to run this on every pageload in configurator.
 		if(!class_exists('Morph')) return;
 		if(JRequest::getCmd('option') == 'com_configurator' || JRequest::getBool('create_overrides')) Morph::createOverrides();
-		
 	}
 	
 	protected function configurator($render)

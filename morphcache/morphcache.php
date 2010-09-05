@@ -36,7 +36,6 @@ class plgSystemMorphCache extends JPlugin
 
 		if ($gzip) {
 			if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
-				//if(!ob_start("ob_gzhandler")) ob_start();
 				if(!ob_start(array($this, "ob_gzhandler"))) ob_start();
 			}else{
 				ob_start();

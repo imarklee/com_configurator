@@ -72,6 +72,7 @@ class plgSystemMorphCache extends JPlugin
 					$this->$view();
 					$this->debug();
 					$content = ob_get_flush();
+					if(isset($this->content)) $content = $this->content;
 					JFile::write($path, $content);
 					if(extension_loaded('zlib') && !ini_get('zlib.output_compression')) JFile::write($path.'.gz', gzcompress($content, 9));
 					return $this->close();
@@ -101,6 +102,7 @@ class plgSystemMorphCache extends JPlugin
 				$this->$view();
 				$this->debug();
 				$content = ob_get_flush();
+				if(isset($this->content)) $content = $this->content;
 				JFile::write($path, $content);
 				if(extension_loaded('zlib') && !ini_get('zlib.output_compression')) JFile::write($path.'.gz', gzcompress($content, 9));
 				return $this->close();
@@ -307,17 +309,39 @@ class plgSystemMorphCache extends JPlugin
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}
-		
+
 		//Use data uris if possible
-		if(!preg_match('/MSIE [0-7]/i', $_SERVER['HTTP_USER_AGENT'])) echo preg_replace_callback('/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i', array($this, 'encodeURLs'), ob_get_clean());//$this->encodeURLs(ob_get_clean());
-		
+		if(!preg_match('/MSIE [0-7]/i', $_SERVER['HTTP_USER_AGENT'])) {
+			$buffer = ob_get_contents();
+			ob_clean();
+			$buffer = preg_replace_callback('/url\(\s*([\S]*)\s*\)/i', array($this, 'encodeURLs'), $buffer);
+			echo $buffer;
+		}
+
 		if($minify) echo $this->minifyCss(ob_get_clean());
 	}
 	
 	public function encodeURLs($parts)
 	{
-		return 'steve';
-		return $parts[1];
+		$fail = sprintf('url(%s)', $parts[1]);
+
+		///*$image = realpath(rtrim($_filepath, '/').'/'.$matches[1]);
+		$url = realpath(str_replace(rtrim(JURI::root(1), '/'), JPATH_ROOT, $parts[1]));
+
+		//If the file extension don't match, then return
+		if(!preg_match('/\.(gif|jpg|png)$/i', $parts[1], $type)) return $fail;
+		$type = str_replace('jpg', 'jpeg', strtolower($type[1]));
+
+		//If image don't exist, just return the string
+		if(!file_exists($url)) return $fail;
+
+		 //IE8 don't support more than 32kB for data URIs
+		if(filesize($url) > 4096) return $fail;
+
+		//Image, base64 encoded
+		$image = base64_encode(file_get_contents($url));
+
+		return sprintf('url(data:image/%s;base64,%s)', $type, $image);
 	}
 	
 	protected function minifyCss($css)

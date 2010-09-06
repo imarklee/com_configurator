@@ -323,10 +323,11 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function encodeURLs($parts)
 	{
+		$url = JPATH_ROOT.substr($parts[1], strlen(JURI::root(1)));
 		$fail = sprintf('url(%s)', $parts[1]);
 
 		///*$image = realpath(rtrim($_filepath, '/').'/'.$matches[1]);
-		$url = realpath(str_replace(rtrim(JURI::root(1), '/'), JPATH_ROOT, $parts[1]));
+		//$url = realpath(str_replace(rtrim(JURI::root(1), '/'), JPATH_ROOT, $parts[1]));
 
 		//If the file extension don't match, then return
 		if(!preg_match('/\.(gif|jpg|png)$/i', $parts[1], $type)) return $fail;

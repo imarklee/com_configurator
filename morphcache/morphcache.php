@@ -33,11 +33,10 @@ class plgSystemMorphCache extends JPlugin
 					
 		$view = 'render'.ucfirst($format);
 		if(!method_exists($this, $view)) return;
-		
-		
+
 		if ($gzip) {
 			if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
-				if(!ob_start("ob_gzhandler")) ob_start();
+				if(!ob_start(array($this, "ob_gzhandler"))) ob_start();
 			}else{
 				ob_start();
 			}
@@ -55,11 +54,14 @@ class plgSystemMorphCache extends JPlugin
 		$cache = JRequest::getInt('cache', false);
 		if ($cache)
 		{	
-			
 			$uri = clone JFactory::getURI();
-			$itemid = isset($_SESSION['menuid']) ? $_SESSION['menuid'] : 0;
+			$itemid = (int)JRequest::getInt('Itemid', 0);
 			$user   = JFactory::getUser();
-			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath())).'.'.(int)$itemid.'.'.$user->gid.'.'.$format;
+			$option	= JRequest::getCmd('option', false);
+			$request_view	= JRequest::getCmd('view', false);
+			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath()));
+			$path = implode('.', array_filter(array($path, $option, $request_view, $itemid, $user->gid, $format)));
+
 			if(file_exists($path))
 			{
 				$created	= time()-date('U', filemtime($path));
@@ -70,12 +72,25 @@ class plgSystemMorphCache extends JPlugin
 					$this->$view();
 					$this->debug();
 					$content = ob_get_flush();
+					if(isset($this->content)) $content = $this->content;
 					JFile::write($path, $content);
+					if(extension_loaded('zlib') && !ini_get('zlib.output_compression')) JFile::write($path.'.gz', gzcompress($content, 9));
 					return $this->close();
 				}
 				else
 				{
-					if(file_exists($path)) echo file_get_contents($path);
+					if(file_exists($path)) {
+						$can_compress = extension_loaded('zlib') && !ini_get('zlib.output_compression');
+						$gzip		  = $path.'.gz';
+						$gzip_exists  = file_exists($gzip);
+						if($can_compress && $this->_can_gzip() && $gzip_exists) {
+							$contents = file_get_contents($gzip);
+							$this->contents = file_get_contents($path);
+							echo substr($contents, 0, strlen($contents) - 4);
+						} else {
+							echo file_get_contents($path);
+						}
+					}
 					
 					ob_end_flush();
 					return $this->close();	
@@ -87,7 +102,9 @@ class plgSystemMorphCache extends JPlugin
 				$this->$view();
 				$this->debug();
 				$content = ob_get_flush();
+				if(isset($this->content)) $content = $this->content;
 				JFile::write($path, $content);
+				if(extension_loaded('zlib') && !ini_get('zlib.output_compression')) JFile::write($path.'.gz', gzcompress($content, 9));
 				return $this->close();
 			}
 		} else {
@@ -105,6 +122,29 @@ class plgSystemMorphCache extends JPlugin
 		
 		
 		return $this;
+	}
+	
+	private function _can_gzip()
+	{
+		return strstr($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip');
+	}
+	
+	public function ob_gzhandler($buffer)
+	{
+		//Do not send gzip headers if the client don't support gzip
+		//@TODO the $this->contents check might cause the gzip to only work with caching off
+		if(!$this->_can_gzip() || !isset($this->contents)) return false;
+
+		ob_implicit_flush(0);
+		header('Content-Encoding: gzip');
+		
+		$crc = crc32($this->contents);
+		$size = strlen($this->contents);
+
+		return	"\x1f\x8b\x08\x00\x00\x00\x00\x00".
+				$buffer.
+				pack('V', $crc).
+				pack('V', $size);
 	}
 	
 	public function onAfterInitialise()
@@ -136,22 +176,22 @@ class plgSystemMorphCache extends JPlugin
 		$template = JRequest::getCmd('template', JFilterInput::clean($template, 'cmd'));
 
 		if($template != 'morph') return;
-		
+
 		$loader = JPATH_ROOT . '/templates/morph/core/morphLoader.php';
 		if(file_exists($loader)) require_once $loader;
-		
+
+		//Allowing other extensions to check if morph is loading jquery
 		define('MORPH_JQUERY', 1);
-		
+
 		//This is purely because we love CB so much
 		define( 'J_JQUERY_LOADED', 1 );
 		//And of course, JomSocial as well
 		define( 'C_ASSETS_JQUERY', 1 );
-		
+
 		// If we are in configurator, make sure to update the overrides.
 		// @TODO we might not want to run this on every pageload in configurator.
 		if(!class_exists('Morph')) return;
 		if(JRequest::getCmd('option') == 'com_configurator' || JRequest::getBool('create_overrides')) Morph::createOverrides();
-		
 	}
 	
 	protected function configurator($render)
@@ -269,7 +309,40 @@ class plgSystemMorphCache extends JPlugin
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}
+
+		//Use data uris if possible
+		if(!preg_match('/MSIE [0-7]/i', $_SERVER['HTTP_USER_AGENT'])) {
+			$buffer = ob_get_contents();
+			ob_clean();
+			$buffer = preg_replace_callback('/url\(\s*([\S]*)\s*\)/i', array($this, 'encodeURLs'), $buffer);
+			echo $buffer;
+		}
+
 		if($minify) echo $this->minifyCss(ob_get_clean());
+	}
+	
+	public function encodeURLs($parts)
+	{
+		$url = JPATH_ROOT.substr($parts[1], strlen(JURI::root(1)));
+		$fail = sprintf('url(%s)', $parts[1]);
+
+		///*$image = realpath(rtrim($_filepath, '/').'/'.$matches[1]);
+		//$url = realpath(str_replace(rtrim(JURI::root(1), '/'), JPATH_ROOT, $parts[1]));
+
+		//If the file extension don't match, then return
+		if(!preg_match('/\.(gif|jpg|png)$/i', $parts[1], $type)) return $fail;
+		$type = str_replace('jpg', 'jpeg', strtolower($type[1]));
+
+		//If image don't exist, just return the string
+		if(!file_exists($url)) return $fail;
+
+		 //IE8 don't support more than 32kB for data URIs
+		if(filesize($url) > 4096) return $fail;
+
+		//Image, base64 encoded
+		$image = base64_encode(file_get_contents($url));
+
+		return sprintf('url(data:image/%s;base64,%s)', $type, $image);
 	}
 	
 	protected function minifyCss($css)
@@ -472,7 +545,26 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function loadMorph()
 	{
-		$path = JPATH_CACHE.'/morph/data.json';
+		//Generate name for the morph json formatted params that are passed to the css and js views
+		$uri	= clone JFactory::getURI();
+		//Remove parts of the url that morph adds
+		foreach(array('render', 'cache', 'gzip') as $remove) $uri->delVar($remove);
+		$base	= JPATH_CACHE.'/morph-sessions/'.session_id().'/';
+		$parts	= array_filter(explode('/', $uri->getPath()));
+		//Sometimes index.php are added even if not present in main url. So remove it just in case
+		if(end($parts) == 'index.php') array_pop($parts);
+		$parts[]= $uri->getHost();
+		$pre	= implode('.', $parts);
+		$path	= $base.$pre;
+		$data	= array();
+		$query	= array_flip($uri->getQuery(1));
+		asort($query);
+		foreach($query as $value => $key)
+		{
+			$data[] = $key.'='.$value;
+		}
+		$path = $path.'?'.implode('&', $data);
+
 		if(file_exists($path)) {
 			return json_decode(file_get_contents($path));
 		}

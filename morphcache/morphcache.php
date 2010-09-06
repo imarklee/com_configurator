@@ -275,7 +275,7 @@ class plgSystemMorphCache extends JPlugin
 					$contents = file_get_contents(JPATH_ROOT.$css);
 				}
 
-				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), $contents);
+				echo str_replace(array('../../../../', '../'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/'), $contents);
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}
@@ -309,7 +309,7 @@ class plgSystemMorphCache extends JPlugin
 					$contents = file_get_contents(JPATH_ROOT.$css);
 				}
 				
-				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), $contents);
+				echo str_replace(array('../../../../', '../'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/'), $contents);
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}
@@ -329,7 +329,7 @@ class plgSystemMorphCache extends JPlugin
 	{
 		$path = trim($parts[1], "'".'"');
 		$url = realpath(JPATH_ROOT.substr($path, strlen(JURI::root(1))));
-		//if(!$url) $url = realpath(JPATH_ROOT.$path);
+		if(!$url) $url = realpath(JPATH_ROOT.$path);
 		$fail = sprintf('url(%s)', $path);
 		//@TODO debug echo below
 		//$fail = sprintf('realpath(%s) url(%s) old(%s) juri(%s) strlen(%s) test(%s) testlen(%s)', realpath($url), $url, $path, JURI::root(1), strlen(JURI::root(1)), substr($path, strlen(JURI::root(1))), strlen($path));
@@ -338,15 +338,15 @@ class plgSystemMorphCache extends JPlugin
 		//$url = realpath(str_replace(rtrim(JURI::root(1), '/'), JPATH_ROOT, $path));
 
 		//If the file extension don't match, then return
-		if(!preg_match('/\.(gif|jpg|png)$/i', $path, $type)) return $fail;
+		if(!preg_match('/\.(gif|jpg|png)$/i', $path, $type)) return $fail.'/*pm*/';
 		$type = str_replace('jpg', 'jpeg', strtolower($type[1]));
 
 		//If image don't exist, just return the string
-		if(!file_exists($url)) return $fail;
+		if(!file_exists($url)) return $fail.'/*fe*/';
 
 		 //IE8 don't support more than 32kB for data URIs
 		 //@TODO make ie8 specific data uri cache so other browsers don't have to suffer
-		//if(filesize($url) > 4096) return $fail;
+		if(filesize($url) > 4096) return $fail.'/*fs*/';
 
 		//Image, base64 encoded
 		$image = base64_encode(file_get_contents($url));

@@ -137,6 +137,7 @@ class plgSystemMorphCache extends JPlugin
 
 		ob_implicit_flush(0);
 		header('Content-Encoding: gzip');
+		header('Vary:Accept-Encoding');
 		
 		$crc = crc32($this->contents);
 		$size = strlen($this->contents);

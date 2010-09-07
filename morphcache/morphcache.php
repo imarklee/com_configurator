@@ -275,11 +275,15 @@ class plgSystemMorphCache extends JPlugin
 					$contents = file_get_contents(JPATH_ROOT.$css);
 				}
 
-				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), $contents);
+				echo str_replace(array('../../../../', '../'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/'), $contents);
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}
+
+		ob_start();
 		include JPATH_THEMES.'/morph/core/css/template.css.php';
+		$contents = ob_get_clean();
+		echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), $contents);
 
 		if($this->css->custom_css)
 		{
@@ -305,7 +309,7 @@ class plgSystemMorphCache extends JPlugin
 					$contents = file_get_contents(JPATH_ROOT.$css);
 				}
 				
-				echo str_replace(array('../../../../', '../images/'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/images/'), $contents);
+				echo str_replace(array('../../../../', '../'), array(JURI::root(1).'/', JURI::root(1).'/templates/morph/core/'), $contents);
 				echo PHP_EOL.' /* @end */ '.PHP_EOL;
 			}
 		}
@@ -323,21 +327,26 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function encodeURLs($parts)
 	{
-		$url = JPATH_ROOT.substr($parts[1], strlen(JURI::root(1)));
-		$fail = sprintf('url(%s)', $parts[1]);
+		$path = trim($parts[1], "'".'"');
+		$url = realpath(JPATH_ROOT.substr($path, strlen(JURI::root(1))));
+		if(!$url) $url = realpath(JPATH_ROOT.$path);
+		$fail = sprintf('url(%s)', $path);
+		//@TODO debug echo below
+		//$fail = sprintf('realpath(%s) url(%s) old(%s) juri(%s) strlen(%s) test(%s) testlen(%s)', realpath($url), $url, $path, JURI::root(1), strlen(JURI::root(1)), substr($path, strlen(JURI::root(1))), strlen($path));
 
 		///*$image = realpath(rtrim($_filepath, '/').'/'.$matches[1]);
-		//$url = realpath(str_replace(rtrim(JURI::root(1), '/'), JPATH_ROOT, $parts[1]));
+		//$url = realpath(str_replace(rtrim(JURI::root(1), '/'), JPATH_ROOT, $path));
 
 		//If the file extension don't match, then return
-		if(!preg_match('/\.(gif|jpg|png)$/i', $parts[1], $type)) return $fail;
+		if(!preg_match('/\.(gif|jpg|png)$/i', $path, $type)) return $fail.'/*pm*/';
 		$type = str_replace('jpg', 'jpeg', strtolower($type[1]));
 
 		//If image don't exist, just return the string
-		if(!file_exists($url)) return $fail;
+		if(!file_exists($url)) return $fail.'/*fe*/';
 
 		 //IE8 don't support more than 32kB for data URIs
-		if(filesize($url) > 4096) return $fail;
+		 //@TODO make ie8 specific data uri cache so other browsers don't have to suffer
+		if(filesize($url) > 4096) return $fail.'/*fs*/';
 
 		//Image, base64 encoded
 		$image = base64_encode(file_get_contents($url));
@@ -421,125 +430,6 @@ class plgSystemMorphCache extends JPlugin
 		$data->js_slider = array($data->toolbar_slider, $data->topshelf_slider, $data->bottomshelf_slider, $data->bottomshelf2_slider, $data->bottomshelf3_slider);
 		$data->js_equalize = array($data->toolbar_equalize, $data->masthead_equalize, $data->subhead_equalize, $data->topnav_equalize, $data->topshelf_equalize, $data->bottomshelf_equalize, $data->bottomshelf2_equalize, $data->bottomshelf3_equalize, $data->user1_equalize, $data->user2_equalize, $data->inset1_equalize, $data->inset2_equalize, $data->inset3_equalize, $data->inset4_equalize, $data->outer1_equalize, $data->outer2_equalize, $data->outer3_equalize, $data->outer4_equalize, $data->outer5_equalize, $data->inner1_equalize, $data->inner2_equalize, $data->inner3_equalize, $data->inner4_equalize, $data->inner5_equalize, $data->footer_equalize);
 		
-		/*if( $data->pack_css ){
-			$before = array();
-			$before['yui'] = $data->csspath.'/yui.css';
-			$cssfiles = array(
-				'topnav-default',
-				'topnav-topfish',
-				'topnav-topdrop',
-				'sidenav-default',
-				'sidenav-sidefish',
-				'tabs',
-				'accordions',
-				'typo',
-				'joomla',
-				'modules',
-				'modfx',
-				'themelet',
-				'simpleticker',
-				'simpletweet',
-				'simplecontact',
-				'simplesocial',
-				'custom'
-			);
-			foreach($cssfiles as $css)
-			{
-				$before[$css] = $data->path.'/css/'.$css.'.css';
-			}
-
-		    if( $data->lightbox_enabled == 1 ) $before['colorbox'] = $data->csspath.'/colorbox.css';
-		    if( $data->topnav_count < 1 )	unset($before['topnav-default']);
-		    if( $data->topfish < 1 )		unset($before['topnav-topfish']);
-		    if( $data->topdrop < 1 )		unset($before['topnav-topdrop']);
-		    if( $data->sidenav_count < 1 )	unset($before['sidenav-default']);
-		    if( $data->sidefish < 1 )		unset($before['sidenav-sidefish']);
-		    if( $data->tabscount < 1 )		unset($before['tabs']);
-		    if( $data->accordionscount < 1 )unset($before['accordions']);
-		    
-		    if( !$data->simpleticker )		unset($before['simpleticker']);
-		    if( !$data->simpletweet )		unset($before['simpletweet']);
-		    if( !$data->simplecontact )		unset($before['simplecontact']);
-		    if( !$data->simplesocial )		unset($before['simplesocial']);
-		    
-		    // add CSS to Morph for WP for Joomla
-		    // first if there is no wordpress component loading we still need the supporting files if the module is being used
-		    if(JRequest::getVar('option') != 'com_wordpress') {
-		    //Check 1 : must add check IF module "mod_wordpress_utility" is active on the page
-		    $before[] = 'images/wordpress/themes/morph/css/images.css'; // load if module or wordpress component
-		    $before[] = 'images/wordpress/themes/morph/css/modules.css'; // load if module
-		    //Check 2 : must add check IF module "mod_wordpress_widgetmod" is active on the page
-		    $before[] = 'images/wordpress/themes/morph/css/widgets.css';// load if widget module is used
-		    // now if WP is loading, then make sure the theme.css is also loaded as well as the above css files
-		    } else if(JRequest::getVar('option') == 'com_wordpress'){ 
-		    $before[] = 'images/wordpress/themes/morph/css/theme.css'; // only load if its the wordpress component/wptheme
-		    $before[] = 'images/wordpress/themes/morph/css/images.css'; // load if module or wordpress component
-		    $before[] = 'images/wordpress/themes/morph/css/modules.css'; // load if module is loaded
-		    }
-		    
-		    foreach($before as $css)
-		    {
-		    	if(file_exists($css)) $data->stylesheets->before[] = $css;
-		    }
-		} else {
-			$data->stylesheets->before = array();
-		}*/
-
-
-		/*if($data->pack_js)
-		{	
-			$after	= array();
-			$after[] = $data->path.'/js/themelet.js';
-			$after[] = $data->path.'/js/custom.js';
-			
-			foreach($after as $js)
-			{
-				if(file_exists($js)) $data->scripts->after[] = $js;
-			}
-		} else {
-			 $data->scripts->after = array();
-		}*/
-		
-		/*$cssfiles = array('rtl','browsers','safari','opera','firefox','chrome','webkit','ie','ie8','ie7','ie6');
-		foreach($cssfiles as $css)
-		{
-			$data->{'css_'.$css} = $data->path.'/css/'.$css.'.css';
-		}
-
-		
-		if($data->pack_css)
-		{	
-			// Uncomment for testing RTL
-			// $data->direction = 'rtl';
-			
-			$after	= array();
-			if($data->developer_toolbar == 1) $after[] = $data->csspath.'/devbar.css';
-			if($data->direction == 'rtl' && file_exists($data->css_rtl)) $after[] = $data->css_rtl;
-			elseif ($data->direction == 'rtl') $after[] = $data->csspath.'/rtl.css';
-			$after[] = $data->csspath.'/browsers.css';
-
-			if(preg_match('/MSIE 6/i', $_SERVER['HTTP_USER_AGENT'])) $after[] = $data->csspath.'/ie6.css';
-			
-			// browser specific
-			$after[] = $data->css_browsers;
-			if($data->browser == 'firefox')	$after[] = $data->css_firefox;
-			if($data->browser == 'safari')	$after[] = $data->css_safari;
-			if($data->browser == 'opera')	$after[] = $data->css_opera;
-			if($data->browser == 'chrome')	$after[] = $data->css_chrome;
-			if(($data->browser == 'chrome' || $data->browser == 'safari')) $after[] = $data->css_webkit;
-			if($data->browser == 'internetexplorer') $after[] = $data->css_ie;
-			if(preg_match('/MSIE 8/i', $_SERVER['HTTP_USER_AGENT'])) $after[] = $data->css_ie8;
-			if(preg_match('/MSIE 7/i', $_SERVER['HTTP_USER_AGENT'])) $after[] = $data->css_ie7;
-			if(preg_match('/MSIE 6/i', $_SERVER['HTTP_USER_AGENT'])) $after[] = $data->css_ie6;
-			
-			foreach($after as $css)
-			{
-				if(file_exists($css)) $data->stylesheets->after[] = $css;
-			}
-		} else {
-			 $data->stylesheets->after = array();
-		}*/
-		
 		return $data;
 	}
 	
@@ -567,6 +457,8 @@ class plgSystemMorphCache extends JPlugin
 
 		if(file_exists($path)) {
 			return json_decode(file_get_contents($path));
+		} else {
+			throw new Exception(sprintf('%s does not exist! Failed to read Morph configuration.', $path));
 		}
 		return array();
 	}

@@ -12,6 +12,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.plugin.plugin' );
 JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
+JLoader::register('MBrowser', JPATH_ROOT.'/templates/morph/core/browser.php');
 
 /**
  */
@@ -60,8 +61,15 @@ class plgSystemMorphCache extends JPlugin
 			$user   = JFactory::getUser();
 			$option	= JRequest::getCmd('option', false);
 			$request_view	= JRequest::getCmd('view', false);
-			$path = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath()));
-			$path = implode('.', array_filter(array($path, $option, $request_view, $itemid, $user->gid, $format)));
+			$path  = JPATH_CACHE.'/morph/'.$uri->getHost().implode('.', explode('/', $uri->getPath()));
+			
+			$sniffer = new MBrowser();
+			$browser = strtolower(preg_replace("/[^A-Za-z]/i", "", $sniffer->getBrowser()));
+			$version = $browser.$sniffer->getVersion();
+
+			$parts = array($path, $option, $request_view, $itemid, $user->gid, $version, $format);
+			
+			$path  = implode('.', array_filter($parts));
 
 			if(file_exists($path))
 			{
@@ -349,7 +357,7 @@ class plgSystemMorphCache extends JPlugin
 
 		 //IE8 don't support more than 32kB for data URIs
 		 //@TODO make ie8 specific data uri cache so other browsers don't have to suffer
-		if(filesize($url) > 4096) return $fail.'/*fs*/';
+		if(preg_match('/MSIE 8/i', @$_SERVER['HTTP_USER_AGENT']) && filesize($url) > 4096) return $fail.'/*fs*/';
 
 		//Image, base64 encoded
 		$image = base64_encode(file_get_contents($url));
@@ -366,7 +374,6 @@ class plgSystemMorphCache extends JPlugin
 	public function setConfigurations()
 	{
 		jimport('joomla.application.module.helper');
-		JLoader::import('templates.morph.core.browser', JPATH_ROOT);
 		
 		$data = (object) $this->loadMorph();
 
@@ -461,7 +468,13 @@ class plgSystemMorphCache extends JPlugin
 		if(file_exists($path)) {
 			return json_decode(file_get_contents($path));
 		} else {
-			throw new Exception(sprintf('%s does not exist! Failed to read Morph configuration.', $path));
+			//@todo merge morphFunctions with morphLoader
+			return array();
+		
+			//This is very slow, but is more useful than broken css
+			$this->morph();
+			require_once JPATH_ROOT.'/templates/morph/core/morphFunctions.php';
+			return Morph::getInstance();
 		}
 		return array();
 	}

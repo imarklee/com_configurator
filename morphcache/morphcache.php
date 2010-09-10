@@ -133,6 +133,9 @@ class plgSystemMorphCache extends JPlugin
 		return $this;
 	}
 	
+	/**
+	 * Checks if the browser can handle gzip
+	 */
 	private function _can_gzip()
 	{
 		return strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false;

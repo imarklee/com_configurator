@@ -67,7 +67,10 @@ function LogoOptions(){
 		if($('#logologo_autodimensions0').attr('checked')){ autoDimensions('on'); }
 		$('#logologo_autodimensions0').click( function(){ autoDimensions('on'); } );
 	}
-			
+	
+	$('#logo-options li #logologo_show_inblock').parent().css('display', 'block');
+	$('#logo-options li #logologowrap_height').parent().css('display', 'block');
+				
 	function switcher(v){
 		
 		$('#logo-options li').css('display', 'none');

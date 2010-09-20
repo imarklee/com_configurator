@@ -14,5 +14,7 @@
 		<p>The <strong>Debug Modules</strong> option will globabally change all modules to use 
 		the "outline" module chrome, giving you a visual breakdown of all the module 
 		positions that are being used.</p>
+		
+		<p>Change the <strong>Joomla SEF Setup</strong> option if you are using a 3rd party Search Engine Friendly urls extension and are having issues with Morph's css &amp; js loading.</p>
 	</div>
 </div>

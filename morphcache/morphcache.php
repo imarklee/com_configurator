@@ -15,9 +15,30 @@ JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
 JLoader::register('MBrowser', JPATH_ROOT.'/templates/morph/core/browser.php');
 
 /**
+ * plgSystemMorphCache
+ *
+ * This plugin is responsible for taking care of the css and js output of Morph, as well as Configurator.
+ * This plugin also autoloads the Morph class, allowing Morph APIs to be used externally
+ * 
+ * @author Stian Didriksen <stian@prothemer.com>
  */
 class plgSystemMorphCache extends JPlugin
 {
+	
+	/**
+	 * The view format, false if no valid format is defined
+	 *
+	 * @var string|boolean
+	 */
+	private $format = false;
+	
+	/**
+	 * The render method to call, false if no valid format is defined
+	 *
+	 * @var string|boolean
+	 */
+	private $_format = false;
+
 	/**
 	 * Catch the routed functions for 
 	 */
@@ -25,23 +46,23 @@ class plgSystemMorphCache extends JPlugin
 	{
 		parent::__construct($subject, $config);
 
+		//Checks if we're rendering Configurator css or js
 		$this->option = JRequest::getCmd('option');
 		$isConfigurator = $this->option  == 'com_configurator' && $render = JRequest::getCmd('render', false);
 		if($isConfigurator) return $this->configurator($render);
 		
-		$this->format = $format = JRequest::getCmd('render', false);
-		$gzip   = JRequest::getBool('gzip', false);
-					
-		$view = 'render'.ucfirst($format);
+		//Initializing variables
+		$this->format = $format	= JRequest::getCmd('render', false);
+		$gzip					= JRequest::getBool('gzip', false);
+		$cache					= JRequest::getInt('cache', false);
+		$view					= 'render'.ucfirst($format);
+		
+		
 		if(!method_exists($this, $view)) return;
 
-		if ($gzip) {
-			if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
-				if(!ob_start(array($this, "ob_gzhandler"))) ob_start();
-				//if(!ob_start("ob_gzhandler")) ob_start();
-			}else{
-				ob_start();
-			}
+		if ($this->_can_gzip()) {
+			if(!ob_start(array($this, "ob_gzhandler"))) ob_start();
+			//if(!ob_start("ob_gzhandler")) ob_start();
 			header("cache-control: must-revalidate");
 			$offset = 60 * 10000;
 			$expire = "expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
@@ -49,13 +70,16 @@ class plgSystemMorphCache extends JPlugin
 		}else{
 			ob_start();
 		}
+		
+		//Content type headers are necessary for the browser to detect the correct MIME type
 		if($format == 'css')	 header('Content-Type: text/css; charset=UTF-8');
 		else if($format == 'js') header('Content-Type: text/javascript; charset=UTF-8');
 		
 		
-		$cache = JRequest::getInt('cache', false);
+		//Starts the caching part
 		if ($cache)
-		{	
+		{
+			header('X-Morph-Cache: Yes');
 			$uri = clone JFactory::getURI();
 			$itemid = (int)JRequest::getInt('Itemid', 0);
 			$user   = JFactory::getUser();
@@ -73,10 +97,12 @@ class plgSystemMorphCache extends JPlugin
 
 			if(file_exists($path))
 			{
+				header('X-Morph-Cache-File-Exists: '.$path);
 				$created	= time()-date('U', filemtime($path));
 				$expire		= $cache * 60;
 				if($created > $expire)
 				{
+					header('X-Morph-Cache-Expired: Yes');
 					$this->$format = $this->setConfigurations();
 					$this->$view();
 					$this->debug();
@@ -88,25 +114,29 @@ class plgSystemMorphCache extends JPlugin
 				}
 				else
 				{
-					if(file_exists($path)) {
-						$can_compress = extension_loaded('zlib') && !ini_get('zlib.output_compression');
-						$gzip		  = $path.'.gz';
-						$gzip_exists  = file_exists($gzip);
-						if($can_compress && $this->_can_gzip() && $gzip_exists) {
-							$contents = file_get_contents($gzip);
-							$this->contents = file_get_contents($path);
-							echo substr($contents, 0, strlen($contents) - 4);
-						} else {
-							echo file_get_contents($path);
-						}
+					header('X-Morph-Cache-Expired: No');
+					$gzip		  = $path.'.gz';
+					$gzip_exists  = file_exists($gzip);
+					if($this->_can_gzip() && $gzip_exists)
+					{
+						header('X-Morph-Cache-Gzip: Yes');
+						$contents = file_get_contents($gzip);
+						$this->contents = file_get_contents($path);
+						echo substr($contents, 0, strlen($contents) - 4);
+					}
+					else
+					{
+						header('X-Morph-Cache-Gzip: No');
+						echo file_get_contents($path);
 					}
 					
-					ob_end_flush();
+					ob_flush();
 					return $this->close();	
 				}
 			}
 			else
 			{
+				header('X-Morph-Cache-File-Do-Not-Exists: '.$path);
 				$this->$format = $this->setConfigurations();
 				$this->$view();
 				$this->debug();
@@ -117,6 +147,7 @@ class plgSystemMorphCache extends JPlugin
 				return $this->close();
 			}
 		} else {
+			header('X-Morph-Cache: No');
 			$this->$format = $this->setConfigurations();
 			$this->$view();
 			$this->debug();
@@ -138,7 +169,11 @@ class plgSystemMorphCache extends JPlugin
 	 */
 	private function _can_gzip()
 	{
-		return strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false;
+		$gzip		= strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false;
+		$compress	= extension_loaded('zlib') && !ini_get('zlib.output_compression');
+		$enabled	= JRequest::getBool('gzip', false);
+	
+		return $gzip && $compress && $enabled;
 	}
 	
 	public function ob_gzhandler($buffer)
@@ -146,7 +181,7 @@ class plgSystemMorphCache extends JPlugin
 		//Do not send gzip headers if the client don't support gzip
 		//@TODO the $this->contents check might cause the gzip to only work with caching off
 		if(!$this->_can_gzip() || !isset($this->contents)) return false;
-
+		
 		ob_implicit_flush(0);
 		header('Content-Encoding: gzip');
 		header('Vary: Accept-Encoding');
@@ -219,8 +254,6 @@ class plgSystemMorphCache extends JPlugin
 	{
 		$app = JFactory::getApplication();
 		$app->close();
-		
-		return;
 	}
 	
 	public function debug()

@@ -79,7 +79,7 @@ class plgSystemMorphCache extends JPlugin
 		//Starts the caching part
 		if ($cache)
 		{
-			header('X-Morph-Cache: Yes');
+			//header('X-Morph-Cache: Yes');
 			$uri = clone JFactory::getURI();
 			$itemid = (int)JRequest::getInt('Itemid', 0);
 			$user   = JFactory::getUser();
@@ -97,12 +97,12 @@ class plgSystemMorphCache extends JPlugin
 
 			if(file_exists($path))
 			{
-				header('X-Morph-Cache-File-Exists: '.$path);
+				//header('X-Morph-Cache-File-Exists: Yes');
 				$created	= time()-date('U', filemtime($path));
 				$expire		= $cache * 60;
 				if($created > $expire)
 				{
-					header('X-Morph-Cache-Expired: Yes');
+					//header('X-Morph-Cache-Expired: Yes');
 					$this->$format = $this->setConfigurations();
 					$this->$view();
 					$this->debug();
@@ -114,19 +114,19 @@ class plgSystemMorphCache extends JPlugin
 				}
 				else
 				{
-					header('X-Morph-Cache-Expired: No');
+					//header('X-Morph-Cache-Expired: No');
 					$gzip		  = $path.'.gz';
 					$gzip_exists  = file_exists($gzip);
 					if($this->_can_gzip() && $gzip_exists)
 					{
-						header('X-Morph-Cache-Gzip: Yes');
+						//header('X-Morph-Cache-Gzip: Yes');
 						$contents = file_get_contents($gzip);
 						$this->contents = file_get_contents($path);
 						echo substr($contents, 0, strlen($contents) - 4);
 					}
 					else
 					{
-						header('X-Morph-Cache-Gzip: No');
+						//header('X-Morph-Cache-Gzip: No');
 						echo file_get_contents($path);
 					}
 					
@@ -136,7 +136,7 @@ class plgSystemMorphCache extends JPlugin
 			}
 			else
 			{
-				header('X-Morph-Cache-File-Do-Not-Exists: '.$path);
+				//header('X-Morph-Cache-File-Exists: No');
 				$this->$format = $this->setConfigurations();
 				$this->$view();
 				$this->debug();
@@ -147,7 +147,7 @@ class plgSystemMorphCache extends JPlugin
 				return $this->close();
 			}
 		} else {
-			header('X-Morph-Cache: No');
+			//header('X-Morph-Cache: No');
 			$this->$format = $this->setConfigurations();
 			$this->$view();
 			$this->debug();
@@ -159,7 +159,6 @@ class plgSystemMorphCache extends JPlugin
 		
 		///ob_get_length add way to serious overhead, we can't use it before we got clever caching
 		//header("Content-Length: ".ob_get_length());
-		
 		
 		return $this;
 	}
@@ -178,9 +177,15 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function ob_gzhandler($buffer)
 	{
+		if(!isset($this->contents))
+		{
+			$this->contents = $buffer;
+			$buffer			= gzcompress($buffer, 9);
+		}
+	
 		//Do not send gzip headers if the client don't support gzip
 		//@TODO the $this->contents check might cause the gzip to only work with caching off
-		if(!$this->_can_gzip() || !isset($this->contents)) return false;
+		if(!$this->_can_gzip()) return false;
 		
 		ob_implicit_flush(0);
 		header('Content-Encoding: gzip');

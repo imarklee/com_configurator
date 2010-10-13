@@ -106,12 +106,6 @@ if(!$themelet_installed)
 	ComConfiguratorHelperUtilities::setInstallState('themelet_installed', false);
 }
 
-
-//@TODO this shouldn't be necessary
-//$classname  = 'ComConfiguratorControllerDefault';
-//$controller = new $classname( );
-//$controller->create_db_backup('full-database');
-
 // set cookie for configurator installer
 ComConfiguratorHelperUtilities::setInstallState('installed_cfg', true);
 

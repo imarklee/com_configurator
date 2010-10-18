@@ -168,7 +168,7 @@ class plgSystemMorphCache extends JPlugin
 	 */
 	private function _can_gzip()
 	{
-		$gzip		= strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false;
+		$gzip		= strpos(@$_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false;
 		$compress	= extension_loaded('zlib') && !ini_get('zlib.output_compression');
 		$enabled	= JRequest::getBool('gzip', false);
 	
@@ -177,14 +177,7 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function ob_gzhandler($buffer)
 	{
-		if(!isset($this->contents))
-		{
-			$this->contents = $buffer;
-			$buffer			= gzcompress($buffer, 9);
-		}
-	
 		//Do not send gzip headers if the client don't support gzip
-		//@TODO the $this->contents check might cause the gzip to only work with caching off
 		if(!$this->_can_gzip()) return false;
 		
 		ob_implicit_flush(0);
@@ -192,11 +185,30 @@ class plgSystemMorphCache extends JPlugin
 		header('Vary: Accept-Encoding');
 		header('Transfer-Encoding: Identity');
 		
+		//if(!isset($this->i)) $this->i = 0;
+		//header('X-Morph-Gzip: '.++$this->i);
+		
+		if(empty($this->contents))
+		{
+			//header('X-Morph-Gzip-Contents: No');
+			$this->contents = $buffer;
+			$contents		= gzcompress($buffer, 9);
+			
+			//To prevent a bug where the ob handler is called twice for some reason, causing the output to be uncompressed
+			$this->compressed = $contents;
+		}
+		else
+		{
+			//header('X-Morph-Gzip-Contents: Yes');
+			//Precaution for when the handler is called twice
+			$contents = isset($this->compressed) ? $this->compressed : $buffer;
+		}
+		
 		$crc = crc32($this->contents);
 		$size = strlen($this->contents);
 
 		return	"\x1f\x8b\x08\x00\x00\x00\x00\x00".
-				$buffer.
+				$contents.
 				pack('V', $crc).
 				pack('V', $size);
 	}

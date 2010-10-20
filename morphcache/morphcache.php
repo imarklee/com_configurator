@@ -377,13 +377,35 @@ class plgSystemMorphCache extends JPlugin
 			}
 		}
 
-		if($minify) echo $this->minifyCss(ob_get_clean());
+		if($minify) {
+			$contents = ob_get_contents();
+			ob_clean();
+			
+			echo $this->minifyCss($contents);
+		}
 
 		//Use data uris if possible
-		if(!preg_match('/MSIE [0-7]/i', $_SERVER['HTTP_USER_AGENT'])) {
+		if(JRequest::getBool('data_uris', false) && !preg_match('/MSIE [0-7]/i', @$_SERVER['HTTP_USER_AGENT'])) {
 			$buffer = ob_get_contents();
 			ob_clean();
+			
+			//If caching is enabled then read from the dataURI cache
+			//if(JRequest::getBool('cache'))
+			//{
+				$json				= JPATH_CACHE.'/morph/data_uris.json';
+				$data_uris_cache	= file_exists($json) ? json_decode(file_get_contents($json), true) : array();
+				
+				$this->data_uris_cache = $data_uris_cache;
+			//}
+			
 			$buffer = preg_replace_callback('/url\(\s*([\S]*)\s*\)/i', array($this, 'encodeURLs'), $buffer);
+			
+			//If caching is enabled and changed then wride to the cache
+			if(/*JRequest::getBool('cache') && */count($this->data_uris_cache) !== count($data_uris_cache))
+			{
+				JFile::write(JPATH_CACHE.'/morph/data_uris.json', json_encode($this->data_uris_cache));
+			}
+			
 			echo $buffer;
 		}
 	}
@@ -411,8 +433,19 @@ class plgSystemMorphCache extends JPlugin
 		 //@TODO make ie8 specific data uri cache so other browsers don't have to suffer
 		if(preg_match('/MSIE 8/i', @$_SERVER['HTTP_USER_AGENT']) && filesize($url) > 4096) return $fail.'/*fs*/';
 
-		//Image, base64 encoded
-		$image = base64_encode(file_get_contents($url));
+		//If caching is enabled then read from the dataURI cache
+		if(isset($this->data_uris_cache))
+		{
+			if(!isset($this->data_uris_cache[$url]))
+			{
+				$this->data_uris_cache[$url] = base64_encode(file_get_contents($url));
+			}
+			$image = $this->data_uris_cache[$url];
+		}
+		else
+		{
+			$image = base64_encode(file_get_contents($url));
+		}
 
 		return sprintf('url(data:image/%s;base64,%s)', $type, $image);
 	}
@@ -500,7 +533,7 @@ class plgSystemMorphCache extends JPlugin
 		//Generate name for the morph json formatted params that are passed to the css and js views
 		$uri	= clone JFactory::getURI();
 		//Remove parts of the url that morph adds
-		foreach(array('render', 'cache', 'gzip') as $remove) $uri->delVar($remove);
+		foreach(array('render', 'cache', 'gzip', 'data_uris') as $remove) $uri->delVar($remove);
 		$base	= JPATH_CACHE.'/morph-sessions/'.session_id().'/';
 		$parts	= array_filter(explode('/', $uri->getPath()));
 		//Sometimes index.php are added even if not present in main url. So remove it just in case

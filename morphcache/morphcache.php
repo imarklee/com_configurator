@@ -130,7 +130,6 @@ class plgSystemMorphCache extends JPlugin
 						echo file_get_contents($path);
 					}
 					
-					ob_flush();
 					return $this->close();	
 				}
 			}
@@ -140,7 +139,7 @@ class plgSystemMorphCache extends JPlugin
 				$this->$format = $this->setConfigurations();
 				$this->$view();
 				$this->debug();
-				$content = ob_get_flush();
+				$content = ob_get_contents();
 				if(isset($this->content)) $content = $this->content;
 				JFile::write($path, $content);
 				if(extension_loaded('zlib') && !ini_get('zlib.output_compression')) JFile::write($path.'.gz', gzcompress($content, 9));

@@ -377,6 +377,8 @@ class plgSystemMorphCache extends JPlugin
 			}
 		}
 
+		if($minify) echo $this->minifyCss(ob_get_clean());
+
 		//Use data uris if possible
 		if(!preg_match('/MSIE [0-7]/i', $_SERVER['HTTP_USER_AGENT'])) {
 			$buffer = ob_get_contents();
@@ -384,8 +386,6 @@ class plgSystemMorphCache extends JPlugin
 			$buffer = preg_replace_callback('/url\(\s*([\S]*)\s*\)/i', array($this, 'encodeURLs'), $buffer);
 			echo $buffer;
 		}
-
-		if($minify) echo $this->minifyCss(ob_get_clean());
 	}
 	
 	public function encodeURLs($parts)

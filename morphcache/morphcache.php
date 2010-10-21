@@ -130,7 +130,6 @@ class plgSystemMorphCache extends JPlugin
 						echo file_get_contents($path);
 					}
 					
-					ob_flush();
 					return $this->close();	
 				}
 			}
@@ -140,7 +139,7 @@ class plgSystemMorphCache extends JPlugin
 				$this->$format = $this->setConfigurations();
 				$this->$view();
 				$this->debug();
-				$content = ob_get_flush();
+				$content = ob_get_contents();
 				if(isset($this->content)) $content = $this->content;
 				JFile::write($path, $content);
 				if(extension_loaded('zlib') && !ini_get('zlib.output_compression')) JFile::write($path.'.gz', gzcompress($content, 9));
@@ -168,7 +167,7 @@ class plgSystemMorphCache extends JPlugin
 	 */
 	private function _can_gzip()
 	{
-		$gzip		= strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false;
+		$gzip		= strpos(@$_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false;
 		$compress	= extension_loaded('zlib') && !ini_get('zlib.output_compression');
 		$enabled	= JRequest::getBool('gzip', false);
 	
@@ -177,14 +176,7 @@ class plgSystemMorphCache extends JPlugin
 	
 	public function ob_gzhandler($buffer)
 	{
-		if(!isset($this->contents))
-		{
-			$this->contents = $buffer;
-			$buffer			= gzcompress($buffer, 9);
-		}
-	
 		//Do not send gzip headers if the client don't support gzip
-		//@TODO the $this->contents check might cause the gzip to only work with caching off
 		if(!$this->_can_gzip()) return false;
 		
 		ob_implicit_flush(0);
@@ -192,11 +184,30 @@ class plgSystemMorphCache extends JPlugin
 		header('Vary: Accept-Encoding');
 		header('Transfer-Encoding: Identity');
 		
+		//if(!isset($this->i)) $this->i = 0;
+		//header('X-Morph-Gzip: '.++$this->i);
+		
+		if(empty($this->contents))
+		{
+			//header('X-Morph-Gzip-Contents: No');
+			$this->contents = $buffer;
+			$contents		= gzcompress($buffer, 9);
+			
+			//To prevent a bug where the ob handler is called twice for some reason, causing the output to be uncompressed
+			$this->compressed = $contents;
+		}
+		else
+		{
+			//header('X-Morph-Gzip-Contents: Yes');
+			//Precaution for when the handler is called twice
+			$contents = isset($this->compressed) ? $this->compressed : $buffer;
+		}
+		
 		$crc = crc32($this->contents);
 		$size = strlen($this->contents);
 
 		return	"\x1f\x8b\x08\x00\x00\x00\x00\x00".
-				$buffer.
+				$contents.
 				pack('V', $crc).
 				pack('V', $size);
 	}
@@ -366,15 +377,37 @@ class plgSystemMorphCache extends JPlugin
 			}
 		}
 
-		//Use data uris if possible
-		if(!preg_match('/MSIE [0-7]/i', $_SERVER['HTTP_USER_AGENT'])) {
-			$buffer = ob_get_contents();
+		if($minify) {
+			$contents = ob_get_contents();
 			ob_clean();
-			$buffer = preg_replace_callback('/url\(\s*([\S]*)\s*\)/i', array($this, 'encodeURLs'), $buffer);
-			echo $buffer;
+			
+			echo $this->minifyCss($contents);
 		}
 
-		if($minify) echo $this->minifyCss(ob_get_clean());
+		//Use data uris if possible
+		if(JRequest::getBool('data_uris', false) && !preg_match('/MSIE [0-7]/i', @$_SERVER['HTTP_USER_AGENT'])) {
+			$buffer = ob_get_contents();
+			ob_clean();
+			
+			//If caching is enabled then read from the dataURI cache
+			//if(JRequest::getBool('cache'))
+			//{
+				$json				= JPATH_CACHE.'/morph/data_uris.json';
+				$data_uris_cache	= file_exists($json) ? json_decode(file_get_contents($json), true) : array();
+				
+				$this->data_uris_cache = $data_uris_cache;
+			//}
+			
+			$buffer = preg_replace_callback('/url\(\s*([\S]*)\s*\)/i', array($this, 'encodeURLs'), $buffer);
+			
+			//If caching is enabled and changed then wride to the cache
+			if(/*JRequest::getBool('cache') && */count($this->data_uris_cache) !== count($data_uris_cache))
+			{
+				JFile::write(JPATH_CACHE.'/morph/data_uris.json', json_encode($this->data_uris_cache));
+			}
+			
+			echo $buffer;
+		}
 	}
 	
 	public function encodeURLs($parts)
@@ -400,8 +433,19 @@ class plgSystemMorphCache extends JPlugin
 		 //@TODO make ie8 specific data uri cache so other browsers don't have to suffer
 		if(preg_match('/MSIE 8/i', @$_SERVER['HTTP_USER_AGENT']) && filesize($url) > 4096) return $fail.'/*fs*/';
 
-		//Image, base64 encoded
-		$image = base64_encode(file_get_contents($url));
+		//If caching is enabled then read from the dataURI cache
+		if(isset($this->data_uris_cache))
+		{
+			if(!isset($this->data_uris_cache[$url]))
+			{
+				$this->data_uris_cache[$url] = base64_encode(file_get_contents($url));
+			}
+			$image = $this->data_uris_cache[$url];
+		}
+		else
+		{
+			$image = base64_encode(file_get_contents($url));
+		}
 
 		return sprintf('url(data:image/%s;base64,%s)', $type, $image);
 	}
@@ -489,7 +533,7 @@ class plgSystemMorphCache extends JPlugin
 		//Generate name for the morph json formatted params that are passed to the css and js views
 		$uri	= clone JFactory::getURI();
 		//Remove parts of the url that morph adds
-		foreach(array('render', 'cache', 'gzip') as $remove) $uri->delVar($remove);
+		foreach(array('render', 'cache', 'gzip', 'data_uris') as $remove) $uri->delVar($remove);
 		$base	= JPATH_CACHE.'/morph-sessions/'.session_id().'/';
 		$parts	= array_filter(explode('/', $uri->getPath()));
 		//Sometimes index.php are added even if not present in main url. So remove it just in case

@@ -28,7 +28,7 @@ function check_admin_session(action){
 		type: 'post',
 		url: '?option=com_configurator&view=configuration&task=check_admin_session&format=raw',
 		success: function(data){
-			if(data != 'active'){
+			if(data != 'active') {
 				$('body').append('<div id="session-error" class="dialog-msg"><strong>Your administration session has expired.</strong><br />You will need to login again to perform this action. Press OK to be redirected to the login page.</div>')
 				close_ptOverlay();
 				$('#session-error').dialog({
@@ -53,7 +53,6 @@ function check_admin_session(action){
 			   			}
 			   		}
 				});
-				
 			}else{
 				return action;
 			}
@@ -109,12 +108,15 @@ function ___getPageSize() {
 	return arrayPageSize;
 };
 
+//@TODO weird issue with hegith sometimes, resizing window solves it.
 function ptOverlay(msg, type){
 	
 	if(type != 'growl' || typeof type != 'undefined'){
-				
+		
+		hideScroll();
+		
 		$('#processing').remove();
-		if(typeof msg !== 'undefined'){
+		if(msg){
 			$('<div id="processing"><div><img src="../administrator/components/com_configurator/images/loader3.gif" height="16" width="16" border="0" align="center" alt="Loading" /><span>'+msg+'</span></div></div>')
 			.appendTo('body');
 		}else{
@@ -168,8 +170,6 @@ function ptOverlay(msg, type){
 				left: winWidthHalf - innerWidthHalf + oscrollLeft + 15
 			});
 		});
-	
-		hideScroll();
 	}
 	return false;
 }

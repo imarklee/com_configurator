@@ -366,7 +366,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$db = JFactory::getDBO();
 		$db->setQuery('truncate table #__configurator_usertable');
 		$db->query();
-		echo 'success: "true"';
+		echo json_encode(array('success' => 'true'));
 	}
 	
 	public function uni_installer()
@@ -374,7 +374,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$mem_limit = ini_get('memory_limit');
 		if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
 		
-			$return = '';		
+			$return = array();		
 			if( JRequest::getVar('do') && JRequest::getVar('do') == 'upload' ){
 				$install_type =  JRequest::getVar('itype');
 				$the_files = JRequest::getVar( 'insfile', null, 'files', 'array' );
@@ -407,23 +407,16 @@ class ComConfiguratorControllerAbstract extends JController
 							break;
 						}
 					}else{
-						$return = 'error: "No file has been selected. Please select a file in <strong>Step 2</strong> and try again."';
-						$ret = ' {'.$return.'}';
-						echo $ret;
-						return false;
+						$return['error'] = "No file has been selected. Please select a file in <strong>Step 2</strong> and try again.";
 					}
 				}else{
-					$return = 'error: "No install type has been selected. Please make a selection in <strong>Step 1</strong> and try again."';
-					$ret = ' {'.$return.'}';
-					echo $ret;
-					return false;
+					$return['error'] = "No install type has been selected. Please make a selection in <strong>Step 1</strong> and try again.";
 				}
 			}else{
-				$return = 'error: "Upload failed: No post data!"';
+				$return['error'] = "Upload failed: No post data!";
 			}
 			
-			$ret = '{'.$return.'}';
-			echo $ret;
+			echo json_encode($return);
 			die();
 	}
 	
@@ -441,8 +434,7 @@ class ComConfiguratorControllerAbstract extends JController
 		JPath::setPermissions($tempassets);
 		
 		if(!JFile::upload($file['tmp_name'], $tempassets.'/'.strtolower(basename($file['name']))) ){
-			$error = 'error: "Could not move file to required location!"';
-			return $error;
+			return array('error' => "Could not move file to required location!");
 		}
 		 		
 		$result = JArchive::extract( $tempassets.'/'.strtolower(basename($file['name'])), $tempassets);
@@ -469,7 +461,7 @@ class ComConfiguratorControllerAbstract extends JController
 		
 		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempassets);
 		$this->clear_cache();
-		return 'success: "Assets uploaded successfully.", error: ""';
+		return array('success' => "Assets uploaded successfully.", 'error' => '');
 	}
 	
 	function demo_upload(){
@@ -488,8 +480,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$this->create_db_backup('full-database');
 		
 		if( !JFile::upload($file['tmp_name'], $tempdir.'/'.strtolower(basename($file['name']))) ){
-			$error = 'error: "Could not move file to required location!"';
-			return $error;
+			return array('error' => "Could not move file to required location!");
 		}
 		
 		$result = JArchive::extract( $tempdir.'/'.strtolower(basename($file['name'])), $tempdir);
@@ -497,8 +488,7 @@ class ComConfiguratorControllerAbstract extends JController
 		
 		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempdir);
 		
-		$message = 'error: "", success: "Sample content successfully installed."';
-		return $message;
+		return array('error' => "", 'success' => 'Sample content successfully installed.');
 
 	}
 	
@@ -532,22 +522,18 @@ class ComConfiguratorControllerAbstract extends JController
 			$iphone_dir = JPATH_ROOT.'/morph_assets/iphone';
 			// errors
 			if( $file['error'] ){
-				$error = 'error: "Upload error ('.$file['error'].')"';
-				return $error;
+				return array('error' => 'Upload error ('.$file['error'].')');
 			}
-			if( !is_uploaded_file($file['tmp_name']) ){ 
-				$error = 'error: "Not an uploaded file! Hack attempt?"';
-				return $error;
+			if( !is_uploaded_file($file['tmp_name']) ){
+				return array('error' => 'Not an uploaded file! Hack attempt?');
 			}
 			if( file_exists($iphone_dir.'/'.strtolower(basename($file['name']))) ) {
-				$error = 'error: "A file with that name already exists!"';
-				return $error;
+				return array('error' => 'A file with that name already exists!');
 			}
 			if( !is_dir($iphone_dir) ) {
 				// Directory doesnt exist, try to create it.
 				if( !mkdir($iphone_dir) ){
-					$error = 'error: "Could not save file, directory does not exist!"';
-					return $error;
+					return array('error' => 'Could not save file, directory does not exist!');
 				}else{
 					JPath::setPermissions($iphone_dir);
 				}
@@ -555,20 +541,16 @@ class ComConfiguratorControllerAbstract extends JController
 				JPath::setPermissions($iphone_dir); 
 			}
 			if( !is_writable($iphone_dir) ){
-				$error = 'error: "Could not save file, permission error!"';
-				return $error;
+				return array('error' => 'Could not save file, permission error!');
 			}
 			if( !JFile::upload($file['tmp_name'], $iphone_dir.'/'.strtolower(basename($file['name']))) ){
-				$error = 'error: "Could not move file to required location!"';
-				return $error;
+				return array('error' => 'Could not move file to required location!');
 			}
 		
 			JPath::setPermissions($iphone_dir.'/'.strtolower(basename($file['name'])));
-			$msg = 'error: "", success:"File successfully uploaded."';
-			return $msg;
+			return array('error' => '', 'success' => 'File successfully uploaded.');
 		}
-		$error = 'error: "There was an error uploading the file. Please try again."';
-		return $error;
+		return array('error' => 'There was an error uploading the file. Please try again.');
 	}
 	
 	function template_upload(){
@@ -577,25 +559,21 @@ class ComConfiguratorControllerAbstract extends JController
 		$backupdir = JPATH_SITE.'/morph_assets/backups';
 		$backupfile = $backupdir.'/file_template_morph_' . time();
 		if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
-			// error creating archive
-			$error = 'error: "There was an error creating a backup archive. Upload failed"'; 
-			return $error;
+			return array('error' => 'There was an error creating a backup archive. Upload failed');
 		}else{
 			// remove existing
 			@JPath::setPermissions($templatesdir.'/morph');
 			if(!$this->deleteDirectory($templatesdir.'/morph')){
-				// fail: error removing existing folder
-				$error = 'error: "There was an error removing the old install. Upload failed"';	
-				return $error;
+				return array('error' => 'There was an error removing the old install. Upload failed');
 			}else{
 				if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
-					$error = 'error: "Could not move file to required location!"';
-					return $error;
+					return array('error' => 'Could not move file to required location!');
 				}
 				// directory doesn't exist - install as per usual
 				@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
 				$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
-				$msg .= ', backuploc: "'.$backupfile.'.gz"';
+				
+				$msg['backuploc'] = $backupfile.'.gz';
 				return $msg;
 			}
 		}
@@ -617,32 +595,27 @@ class ComConfiguratorControllerAbstract extends JController
 			
 			// errors
 			if( $themelet_details['error'] ){
-				$error = 'error: "Upload error ('.$themelet_details['error'].')"';
-				return $error;
+				return array('error' => 'Upload error ('.$themelet_details['error'].')');
 			}
 			if( !is_uploaded_file($themelet_details['tmp_name']) ){ 
-				$error = 'error: "Not an uploaded file! Hack attempt?"';
-				return $error;
+				return array('error' => 'Not an uploaded file! Hack attempt?');
 			}
 			
 			if( !is_dir($themelet_dir) ) {
 				// Directory doesnt exist, try to create it.
 				if( !mkdir($themelet_dir) ){
-					$error = 'error: "Could not save file, directory does not exist!"';
-					return $error;
+					return array('error' => 'Could not save file, directory does not exist!');
 				}else{
 					JPath::setPermissions($themelet_dir);
 				}
 			}
 			
 			if( !is_writable($themelet_dir) ){
-				$error = 'error: "Could not save file, permission error!"';
-				return $error;
+				return array('error' => 'Could not save file, permission error!');
 			}
 			
 			if( !JFile::upload($themelet_details['tmp_name'], $themelet_dir.'/'.strtolower(basename($themelet_details['name']))) ){
-				$error = 'error: "Could not move file to required location!"';
-				return $error;
+				return array('error' => 'Could not move file to required location!');
 			}
 			
 			$themelet_name = str_replace('themelet_', '', strtolower(basename($themelet_details['name'])));
@@ -651,8 +624,7 @@ class ComConfiguratorControllerAbstract extends JController
 				$backupdir = JPATH_SITE.'/morph_assets/backups';
 				$backupfile = $backupdir.'/file_themelet_'.$themelet_name . '_' . time();
 				if(!@Jarchive::create($backupfile, $themelet_dir.'/'.$themelet_name, 'gz', '', $themelet_dir, true)){
-					$error = 'error: "Could not backup themelet!"';
-					return $error;
+					return array('error' => 'Could not backup themelet!');
 				}
 				JFolder::delete($themelet_dir.'/'.$themelet_name);
 			}else{
@@ -704,8 +676,7 @@ class ComConfiguratorControllerAbstract extends JController
 			
 			return $msg;
 		}
-		$error = 'error: "There was an error uploading the file. Please try again."';
-		return $error;
+		return array('error' => 'There was an error uploading the file. Please try again.');
 	}
 	
 	function get_current_themelet(){
@@ -729,7 +700,7 @@ class ComConfiguratorControllerAbstract extends JController
 		foreach($files as $f){
 			if(preg_match('/'.$themelet.'/i', $f)){
 				if(file_exists($backupdir.'/'.$f)){
-					echo '{ exists: "true" }';
+					echo json_encode(array('exists' => 'true'));
 					return true;
 				}
 			}else{
@@ -737,7 +708,7 @@ class ComConfiguratorControllerAbstract extends JController
 			}
 		}
 		if(!$exists){
-			echo '{ exists: "false" }';
+			echo json_encode(array('exists' => 'false'));
 		}
 		
 	}
@@ -794,8 +765,7 @@ class ComConfiguratorControllerAbstract extends JController
 		JPath::setPermissions($tempdir);
 		
 		if( !JFile::upload($file['tmp_name'], $tempdir.'/'.strtolower(basename($file['name']))) ){
-			$error = 'error: "Could not move file to required location!"';
-			return $error;
+			return array('error' => 'Could not move file to required location!');
 		}
 		
 		$result = JArchive::extract( $tempdir.'/'.strtolower(basename($file['name'])), $tempdir);
@@ -803,7 +773,7 @@ class ComConfiguratorControllerAbstract extends JController
 		
 		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempdir);
 		
-		echo '{success: "SQL file imported successfully."}';
+		echo json_encode(array('success' => 'SQL file imported successfully.'));
 		return true;
 	}
 		
@@ -989,7 +959,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$themelet_dir = JPATH_ROOT.'/morph_assets/themelets';
 		
 		if(!isset($_GET['reset_type']) or $_GET['reset_type'] == '') {
-			echo 'error: "No reset type detected. Reset failed.", success: ""';
+			echo json_encode(array('error' => 'No reset type detected. Reset failed.', 'success' => ''));
 			return false;
 		}
 		
@@ -999,7 +969,7 @@ class ComConfiguratorControllerAbstract extends JController
 				$query = 'truncate table #__configurator_preferences';
 				$db->setQuery($query);
 				$db->query();
-				echo '{ type: "prefs", success: "Configurator preferences reset successfully", error: "" }';
+				echo json_encode(array('type' => 'prefs', 'success' => 'Configurator preferences reset successfully', 'error' => ''));
 				return true;
 			break;
 			case 'cfg':
@@ -1036,7 +1006,7 @@ class ComConfiguratorControllerAbstract extends JController
 					$setting->param_value = $param_value;
 
 					if (!$setting->store(TRUE)) {
-						echo '{ error: "' . $setting->getError() . '", success: "" }';
+						echo json_encode(array('error' => $setting->getError(), 'success' => ''));
 						die();
 					}
 
@@ -1060,7 +1030,7 @@ class ComConfiguratorControllerAbstract extends JController
 						$setting->source = 'themelet';
 
 						if (!$setting->store(TRUE)) {
-							echo '{ error: "' . $setting->getError() . '", success: "" }';
+							echo json_encode(array('error' => $setting->getError(), 'success' => ''));
 							die();
 						}
 
@@ -1074,7 +1044,7 @@ class ComConfiguratorControllerAbstract extends JController
 				$db->setQuery($query);
 				$db->query();
 				
-				echo '{ type: "cfg", success: "Configurator settings reset successfully", error: ""}';
+				echo json_encode(array('type' => 'cfg', 'success' => 'Configurator settings reset successfully', 'error' => ''));
 				return true;
 			break;
 		}
@@ -1100,8 +1070,7 @@ class ComConfiguratorControllerAbstract extends JController
 			$themelet_params = $this->parsexml_themelet_file($extractdir);
 		}else{
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
-			$error = 'error: "This is not a valid Themelet Package:<br />The file <strong>themeletDetails.xml</strong> doesn\'t exist or is incorrectly structured!"';
-			return $error;
+			return array('error' => 'This is not a valid Themelet Package:<br />The file <strong>themeletDetails.xml</strong> doesn\'t exist or is incorrectly structured!');
 		}
 		
 		//get install dir
@@ -1122,8 +1091,15 @@ class ComConfiguratorControllerAbstract extends JController
 		if (JFolder::exists( dirname($p_filename).'/'.$_themeletdir ) ) {
 			$retval['dir'] = $extractdir;
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
-			$success = 'success: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'", backuploc: "'.$b.'", error: "", msg: "Themelet Successfully Installed", themelet: "'.$_themeletdir.'"';
-			return $success;
+			return array(
+				'error'			=> '',
+				'success'		=> 'Themelet Successfully Installed',
+				'themelet'		=> $_themeletdir,
+				'backuploc'		=> $b,
+				'msg'			=> 'Themelet Successfully Installed',
+				
+				
+			);
 		}
 		
 	}
@@ -1170,8 +1146,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$allowed_types = array('image/jpeg','image/png', 'image/jpg', 'image/gif');
 	
 		if(!in_array($image_type, $allowed_types)){
-			$error = 'error: "This is not a valid logo file.<br />Please try again with a valid logo (png/gif/jpg)"';
-			return $error;
+			return array('error' => "This is not a valid logo file.<br />Please try again with a valid logo (png/gif/jpg)");
 		}else{
 			// if there is no file error then continue
 			if($logo_details['error'] != 4) {
@@ -1179,33 +1154,27 @@ class ComConfiguratorControllerAbstract extends JController
 				
 				// errors
 				if( $logo_details['error'] ){
-					$error = 'error: "Upload error ('.$logo_details['error'].')"';
-					return $error;
+					return array('error' => 'Upload error ('.$logo_details['error'].')');
 				}
 				if( !is_uploaded_file($logo_details['tmp_name']) ){ 
-					$error = 'error: "Not an uploaded file! Hack attempt?"';
-					return $error;
+					return array('error' => "Not an uploaded file! Hack attempt?");
 				}
 				if( file_exists($logo_dir.'/'.strtolower(basename($logo_details['name']))) ) {
-					$error = 'error: "A file with that name already exists!"';
-					return $error;
+					return array('error' => "A file with that name already exists!");
 				}
 				if( !is_dir($logo_dir) ) {
 					// Directory doesnt exist, try to create it.
 					if( !mkdir($logo_dir) ){
-						$error = 'error: "Could not save file, directory does not exist!"';
-						return $error;
+						return array('error' => "Could not save file, directory does not exist!");
 					}else{
 						JPath::setPermissions($logo_dir);
 					}
 				}
 				if( !is_writable($logo_dir) ){
-					$error = 'error: "Could not save file, permission error!"';
-					return $error;
+					return array('error' => "Could not save file, permission error!");
 				}
 				if( !JFile::upload($logo_details['tmp_name'], $logo_dir.'/'.strtolower(basename($logo_details['name']))) ){
-					$error = 'error: "Could not move file to required location!"';
-					return $error;
+					return array('error' => "Could not move file to required location!");
 				}
 			
 				JPath::setPermissions($logo_dir.'/'.strtolower( basename( $logo_details['name'] ) ) );
@@ -1215,12 +1184,10 @@ class ComConfiguratorControllerAbstract extends JController
 				$setting->loadByKey();
 				$setting->param_value = strtolower( basename( $logo_details['name'] ) );
 				$setting->store();
-				$msg = 'success: "Logo uploaded successfully!", error: "", logo: "'.$logo_details['name'].'"';
-				return $msg;
+				return array('success' => 'Logo uploaded successfully!', 'error' => '', 'logo' => $logo_details['name']);
 			}
 			
-			$error = 'error: "There was an error uploading the file. Please try again."';
-			return $error;
+			return array('error' => "There was an error uploading the file. Please try again.");
 		}
 	}
 	
@@ -1233,8 +1200,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$allowed_types = array('image/pjpeg','image/jpeg','image/png', 'image/jpg', 'image/gif');
 	
 		if(!in_array($image_type, $allowed_types)){
-			$error = 'error: "This is not a valid background file.<br />Please try again with a valid background (png/gif/jpg)"';
-			return $error;
+			return array('error' => 'This is not a valid background file.<br />Please try again with a valid background (png/gif/jpg)');
 		}else{
 			// if there is no file error then continue
 			if($background_details['error'] != 4) {
@@ -1242,33 +1208,27 @@ class ComConfiguratorControllerAbstract extends JController
 				
 				// errors
 				if( $background_details['error'] ){
-					$error = 'error: "Upload error ('.$background_details['error'].')"';
-					return $error;
+					return array('error' => 'Upload error ('.$background_details['error'].')');
 				}
 				if( !is_uploaded_file($background_details['tmp_name']) ){ 
-					$error = 'error: "Not an uploaded file! Hack attempt?"';
-					return $error;
+					return array('error' => 'Not an uploaded file! Hack attempt?');
 				}
 				if( file_exists($background_dir.'/'.strtolower(basename($background_details['name']))) ) {
-					$error = 'error: "A file with that name already exists!"';
-					return $error;
+					return array('error' => 'A file with that name already exists!');
 				}
 				if( !is_dir($background_dir) ) {
 					// Directory doesnt exist, try to create it.
 					if( !mkdir($background_dir) ){
-						$error = 'error: "Could not save file, directory does not exist!"';
-						return $error;
+						return array('error' => 'Could not save file, directory does not exist!');
 					}else{
 						JPath::setPermissions($background_dir);
 					}
 				}
 				if( !is_writable($background_dir) ){
-					$error = 'error: "Could not save file, permission error!"';
-					return $error;
+					return array('error' => 'Could not save file, permission error!');
 				}
 				if( !JFile::upload($background_details['tmp_name'], $background_dir.'/'.strtolower(basename($background_details['name']))) ){
-					$error = 'error: "Could not move file to required location!"';
-					return $error;
+					return array('error' => 'Could not move file to required location!');
 				}
 			
 				JPath::setPermissions($background_dir.'/'.strtolower( basename( $background_details['name'] ) ) );
@@ -1278,12 +1238,10 @@ class ComConfiguratorControllerAbstract extends JController
 				$setting->loadByKey();
 				$setting->param_value = strtolower( basename( $background_details['name'] ) );
 				$setting->store();
-				$msg = 'success: "Background Uploaded Successfully", error: "", background: "'.$background_details['name'].'"';
-				return $msg;
+				return array('error' => '', 'success' => 'Background Uploaded Successfully', 'background' => $background_details['name']);
 			}
 			
-			$error = 'error: "There was an error uploading the file. Please try again."';
-			return $error;
+			return array('error' => 'There was an error uploading the file. Please try again.');
 		}
 	}
 	
@@ -1297,8 +1255,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$allowed_types = array('image/png', 'image/gif', 'image/ico', 'image/x-icon', 'application/octet-stream');
 	
 		if(!in_array($image_type, $allowed_types)){
-			$error = 'error: "This is not a valid favicon file.<br />Please try again with a valid favicon (ico/gif/png)"';
-			return $error;
+			return array('error' => 'This is not a valid favicon file.<br />Please try again with a valid favicon (ico/gif/png)');
 		}else{
 			// if there is no file error then continue
 			if($favicon_details['error'] != 4) {
@@ -1306,42 +1263,34 @@ class ComConfiguratorControllerAbstract extends JController
 				
 				// errors
 				if( $favicon_details['error'] ){
-					$error = 'error: "Upload error ('.$favicon_details['error'].')"';
-					return $error;
+					return array('error' => 'Upload error ('.$favicon_details['error'].')');
 				}
 				if( !is_uploaded_file($favicon_details['tmp_name']) ){ 
-					$error = 'error: "Not an uploaded file! Hack attempt?"';
-					return $error;
+					return array('error' => 'Not an uploaded file! Hack attempt?');
 				}
 				if( file_exists($favicon_dir.'/'.strtolower(basename('favicon.ico'))) ) {
-					$overwrite = 'overwrite: "A favicon file already exists.<br />Overwrite?"';
-					return $overwrite;
+					return array('overwrite' => 'A favicon file already exists.<br />Overwrite?');
 				}
 				if( !is_dir($favicon_dir) ) {
 					// Directory doesnt exist, try to create it.
 					if( !mkdir($favicon_dir) ){
-						$error = 'error: "Could not save file, directory does not exist!"';
-						return $error;
+						return array('error' => 'Could not save file, directory does not exist!');
 					}else{
 						JPath::setPermissions($favicon_dir);
 					}
 				}
 				if( !is_writable($favicon_dir) ){
-					$error = 'error: "Could not save file, permission error!"';
-					return $error;
+					return array('error' => 'Could not save file, permission error!');
 				}
 				if( !JFile::upload($favicon_details['tmp_name'], $favicon_dir.'/'.strtolower(basename('favicon.ico'))) ){
-					$error = 'error: "Could not move file to required location!"';
-					return $error;
+					return array('error' => 'Could not move file to required location!');
 				}
 			
 				JPath::setPermissions($favicon_dir.'/'.strtolower( basename( $favicon_details['name'] ) ) );
-				$msg = 'success: "Favicon Uploaded Successfully", error: ""';
-				return $msg;
+				return array('error' => '', 'success' => 'Favicon Uploaded Successfully');
 			}
 			
-			$error = 'error: "There was an error uploading the file. Please try again."';
-			return $error;
+			return array('error' => 'There was an error uploading the file. Please try again.');
 		}
 	}
 	function handle_recycle(){
@@ -1508,8 +1457,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$activation = $_REQUEST['act_themelet'];
 		$return = $this->themelet_upload($newthemeletfile);
 		ComConfiguratorHelperUtilities::setInstallState('installed_themelet', true);
-		$themelet = explode(',', $return);
-		$themelet = str_replace(array('"', ':', 'themelet', ' '), '', $themelet[1]);
+		$themelet = $return['themelet'];
 		$themelet_name = str_replace('-',  ' ', $themelet);
 		ComConfiguratorHelperUtilities::setInstallState('ins_themelet_name', $themelet_name);
 		$db = JFactory::getDBO();
@@ -1537,8 +1485,7 @@ class ComConfiguratorControllerAbstract extends JController
 			$db->query($query);
 		}
 		
-		$ret = '{'.$return.'}';
-		echo $ret;
+		echo json_encode($return);
 	}
 	
 	public function assets_create()
@@ -1632,49 +1579,39 @@ class ComConfiguratorControllerAbstract extends JController
 				$backupfile = $backupdir.'/file_template_morph_' . time();
 				if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
 					// error creating archive
-					$error = 'There was an error creating the archive. Install failed'; 
-					$ret = '{'.$error.'}';
-					echo $ret;
+					echo json_encode(array('error' => 'There was an error creating the archive. Install failed'));
 				}else{
 					// remove existing
 					@JPath::setPermissions($templatesdir.'/morph');
 					if(!$this->deleteDirectory($templatesdir.'/morph')){
 						// fail: error removing existing folder
-						$error = 'There was an error removing the old install. Install failed';	
-						$ret = '{'.$error.'}';
-						echo $ret;
+						echo json_encode(array('error' => 'There was an error removing the old install. Install failed'));
 					}else{
 						if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
-							$error = 'error: "Could not move file to required location!"';
-							$ret = '{'.$error.'}';
-							echo $ret;
+							echo json_encode(array('error' => 'Could not move file to required location!'));
 						}
 						// directory doesn't exist - install as per usual
 						@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
 						$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
-						$msg .= ', backuploc: "'.$backupfile.'.gz"';
+						$msg['backuploc'] = $backupfile.'.gz';
 						
 						$this->_dbUpdate();
 						
 						ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
-						$ret = '{'.$msg.'}';
-						echo $ret;
+						echo json_encode($msg);
 					}
 				}
 			}
 		}else{
 			if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
-				$error = 'error: "Could not move file to required location!"';
-				$ret = '{'.$error.'}';
-				echo $ret;
+				echo json_encode(array('error' => 'Could not move file to required location!'));
 			}
 			// directory doesn't exist - install as per usual
 			@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
 			$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
 			$this->_dbUpdate();
 			ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
-			$ret = '{'.$msg.'}';
-			echo $ret;
+			echo json_encode($msg);
 		}
 	}
 	
@@ -1724,8 +1661,7 @@ class ComConfiguratorControllerAbstract extends JController
 		
 		$result = JArchive::extract( $archivename, $extractdir);
 		if ( !$result ) {
-			$error = 'error: "There was an error extracting the file! '.$extractdir.'"';
-			return $error;
+			return array('error' => 'There was an error extracting the file! '.$extractdir);
 		}
 	
 		$retval['extractdir'] = $extractdir;
@@ -1735,8 +1671,7 @@ class ComConfiguratorControllerAbstract extends JController
 			$template_params = $this->parsexml_template_file($extractdir);
 		}else{
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
-			$error = 'error: "This is not a valid Template Package:<br />The file <strong>templateDetails.xml</strong> doesn\'t exist or is incorrectly structured!"';
-			return $error;
+			return array('error' => 'This is not a valid Template Package:<br />The file <strong>templateDetails.xml</strong> doesn\'t exist or is incorrectly structured!');
 		}
 		
 		//get install dir
@@ -1770,14 +1705,15 @@ class ComConfiguratorControllerAbstract extends JController
 				if($db->query()) {
 					ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
 				} else {
-					$error = 'error: "'.$db->getErrorMsg().'"';
-					return $error;
+					return array('error' => $db->getErrorMsg());
 				}
 			}
 			
-			$success = 'msg: "Morph '.$type.' Successfully", success: "Morph '.$type.' successfully", error: ""';
-			return $success;
-			
+			return array(
+				'error'		=> '',
+				'msg'		=> 'Morph '.$type.' Successfully',
+				'success'	=> 'Morph '.$type.' successfully'
+			);
 		}
 		
 	}

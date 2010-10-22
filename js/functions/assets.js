@@ -184,7 +184,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 							   			close: function(){
 											$(this).dialog('destroy');
 											// change to assets tab
-											check_admin_session(ptOverlay('Reloading Management Interface...'));
+											ptOverlay('Reloading Management Interface...');
 											var mainTabs = $('#tabs').tabs();
 											var subTabs = $('#assets-tabs').tabs();
 											mainTabs.tabs('select', 5);
@@ -214,7 +214,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 								   	});
 								}else{
 									// change to assets tab
-									check_admin_session(ptOverlay('Processing...'));
+									ptOverlay('Processing...');
 									var mainTabs = $('#tabs').tabs();
 									var subTabs = $('#assets-tabs').tabs();
 									mainTabs.tabs('select', 5);

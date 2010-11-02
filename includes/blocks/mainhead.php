@@ -1,13 +1,13 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="mainhead-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="mainhead-options" class="options-panel">
-   	    <h3>Main Header Settings</h3>
+   	    <h3>Masthead Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('masthead', 'mastheaddata')); ?>
 		</ol>
 	</div>
 	<div id="mainhead-info" class="info-panel">
-		<h3>Main header</h3>
+		<h3>Masthead (Main Header)</h3>
 		<p class="teaser">This block is typically used for your sites branding / logo. Check the 
 		<a href="#" class="logo-tab">logo tab</a> to customize your logo settings.</p>
 		

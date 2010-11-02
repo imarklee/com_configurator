@@ -92,9 +92,9 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['blocks-desc'])) { include dirname(__FILE__).'/../blocks/desc-blocks.php'; } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab">Toolbar</a></li>
-					<li class="icon-mainhead"><a href="#mainhead-tab">Main Header</a></li>
-					<li class="icon-subhead"><a href="#subhead-tab">Sub Header</a></li>
-					<li class="icon-topnav"><a href="#topnav-tab">Top Menu</a></li>
+					<li class="icon-mainhead"><a href="#mainhead-tab">Masthead</a></li>
+					<li class="icon-subhead"><a href="#subhead-tab">Subhead</a></li>
+					<li class="icon-topnav"><a href="#topnav-tab">Topnav</a></li>
 					<li class="icon-oshelves"><a href="#outer-shelves-tab">Outer Shelves</a></li>
 					<li class="icon-ishelves"><a href="#inner-shelves-tab">Inner Shelves</a></li>
 					<li class="icon-main"><a href="#main-tab">Main Content</a></li>

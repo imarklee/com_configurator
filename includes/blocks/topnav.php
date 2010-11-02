@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="topnav-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="topnav-options" class="options-panel">
-	    <h3>Top Menu Settings</h3>
+	    <h3>Topnav Settings</h3>
 		<ol class="forms">
 			<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
 		</ol>

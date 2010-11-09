@@ -206,6 +206,9 @@ class plgSystemMorphCache extends JPlugin
 		$crc = crc32($this->contents);
 		$size = strlen($this->contents);
 
+		return "\x1f\x8b\x08\x00\x00\x00\x00\x00".$contents;
+
+		//@TODO we probably don't need this
 		return	"\x1f\x8b\x08\x00\x00\x00\x00\x00".
 				$contents.
 				pack('V', $crc).

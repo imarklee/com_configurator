@@ -16,19 +16,6 @@ function LogoOptions(){
 		switcher(logoType);
 	});
 	
-	function slogan(val) {
-		var display;
-		if(val == 'on'){ display='block'; }else{ display='none'; }
-		
-		$('#logo-options li #taglineslogan_text').parent().css('display', display);
-		$('#logo-options li #taglineslogan_textcolor').parent().css('display', display);
-		$('#logo-options li #taglineslogan_fontsize').parent().css('display', display);
-		$('#logo-options li #taglineslogan_fontfamily').parent().css('display', display);
-		$('#logo-options li #taglineslogan_top').parent().css('display', display);
-		$('#logo-options li #taglineslogan_left').parent().css('display', display);
-		$('#logo-options li #taglineslogan_stack').parent().css('display', display);
-	}
-	
 	function ielogo(val){
 		var display;
 		if(val == 'on'){ display='block'; }else{ display='none'; }
@@ -47,13 +34,7 @@ function LogoOptions(){
 		$('#logo-options li #logologo_width').parent().css('display', display);
 		$('#logo-options li #logologo_height').parent().css('display', display);
 	}
-
-	if($('#taglinedisplay_slogan0').attr('checked') == 'checked'){ slogan('off'); }
-	$('#taglinedisplay_slogan0').click( function(){ slogan('off'); } );
-
-	if($('#taglinedisplay_slogan1').attr('checked')){ slogan('on'); }
-	$('#taglinedisplay_slogan1').click( function(){ slogan('on'); } );
-
+	
 	function logoConditionals(){
 		if($('#logologo_ielogo1').attr('checked')){ ielogo('on'); }
 		$('#logologo_ielogo1').click( function(){ ielogo('on'); } );
@@ -70,7 +51,40 @@ function LogoOptions(){
 	
 	$('#logo-options li #logologo_block').parent().css('display', 'block');
 	$('#logo-options li #logologowrap_height').parent().css('display', 'block');
-				
+	
+	/* Slogan Conditional */
+	function slogan(val) {
+		var display;
+		if(val == 'on'){ display='block'; }else{ display='none'; }
+		
+		$('#logo-options li #taglineslogan_text').parent().css('display', display);
+		$('#logo-options li #taglineslogan_textcolor').parent().css('display', display);
+		$('#logo-options li #taglineslogan_fontsize').parent().css('display', display);
+		$('#logo-options li #taglineslogan_fontfamily').parent().css('display', display);
+		$('#logo-options li #taglineslogan_top').parent().css('display', display);
+		$('#logo-options li #taglineslogan_left').parent().css('display', display);
+		$('#logo-options li #taglineslogan_stack').parent().css('display', display);
+	}
+	if($('#taglinedisplay_slogan0').attr('checked') == 'checked'){ slogan('off'); }
+	$('#taglinedisplay_slogan0').click( function(){ slogan('off'); } );
+
+	if($('#taglinedisplay_slogan1').attr('checked')){ slogan('on'); }
+	$('#taglinedisplay_slogan1').click( function(){ slogan('on'); } );
+	
+	/* Google Fonts Conditional */
+	function googleFonts(val) {
+		var display;
+		if(val == 'on'){ display='block'; }else{ display='none'; }
+		$('#fonts-options li #googlefontsheading_font').parent().css('display', display);
+
+	}
+	if($('#googlefontsgooglefonts1').attr('checked')){ googleFonts('on'); }
+	$('#googlefontsgooglefonts1').click( function(){ googleFonts('on'); } );
+
+	if($('#googlefontsgooglefonts0').attr('checked')){ googleFonts('off'); }
+	$('#googlefontsgooglefonts0').click( function(){ googleFonts('off'); } )
+	
+			
 	function switcher(v){
 		
 		$('#logo-panel li').css('display', 'none');

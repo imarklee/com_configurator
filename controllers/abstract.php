@@ -211,7 +211,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$params[] = JRequest::getVar( 'subhead', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'topnav', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'topshelf', null, 'post', 'array' );
-		$params[] = JRequest::getVar( 'bottomshelf', null, 'post', 'array' );
+		$params[] = JRequest::getVar( 'bottomshelf1', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'bottomshelf2', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'bottomshelf3', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'user1', null, 'post', 'array' );

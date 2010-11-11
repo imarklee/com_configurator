@@ -74,14 +74,12 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
 					<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
 					<li class="icon-backgrounds"><a href="#backgrounds-tab">Background Settings</a></li>
-					<li class="icon-menus"><a href="#menus-tab">Menu Settings</a></li>
 					<li class="ui-tabs-selected icon-fonts"><a href="#fonts-tab">Custom Fonts</a></li>
 					<li class="icon-iphone"><a href="#iphone-tab">iPhone Compatibility</a></li>
 				</ul>
 				<?php include dirname(__FILE__).'/../customize/colors.php' ?>
 				<?php include dirname(__FILE__).'/../customize/logos.php' ?>
 				<?php include dirname(__FILE__).'/../customize/backgrounds.php' ?>
-				<?php include dirname(__FILE__).'/../customize/menus.php' ?>
 				<?php include dirname(__FILE__).'/../customize/fonts.php' ?>
 				<?php include dirname(__FILE__).'/../customize/iphone.php' ?>
 			</div>

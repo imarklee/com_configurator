@@ -60,6 +60,9 @@ class plgSystemMorphCache extends JPlugin
 		
 		if(!method_exists($this, $view)) return;
 
+		//To prevent parser errors
+		@ini_set('display_errors', 0);
+
 		if ($this->_can_gzip()) {
 			if(!ob_start(array($this, "ob_gzhandler"))) ob_start();
 			//if(!ob_start("ob_gzhandler")) ob_start();
@@ -202,11 +205,11 @@ class plgSystemMorphCache extends JPlugin
 			//Precaution for when the handler is called twice
 			$contents = isset($this->compressed) ? $this->compressed : $buffer;
 		}
-		
-		$crc = crc32($this->contents);
-		$size = strlen($this->contents);
 
 		return "\x1f\x8b\x08\x00\x00\x00\x00\x00".$contents;
+
+		$crc = crc32($this->contents);
+		$size = strlen($this->contents);
 
 		//@TODO we probably don't need this
 		return	"\x1f\x8b\x08\x00\x00\x00\x00\x00".
@@ -434,7 +437,7 @@ class plgSystemMorphCache extends JPlugin
 
 		 //IE8 don't support more than 32kB for data URIs
 		 //@TODO make ie8 specific data uri cache so other browsers don't have to suffer
-		if(preg_match('/MSIE 8/i', @$_SERVER['HTTP_USER_AGENT']) && filesize($url) > 4096) return $fail.'/*fs*/';
+		if(/*preg_match('/MSIE 8/i', @$_SERVER['HTTP_USER_AGENT']) && */filesize($url) > 409) return $fail.'/*fs*/';
 
 		//If caching is enabled then read from the dataURI cache
 		if(isset($this->data_uris_cache))

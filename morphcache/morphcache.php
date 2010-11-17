@@ -194,7 +194,7 @@ class plgSystemMorphCache extends JPlugin
 		{
 			//header('X-Morph-Gzip-Contents: No');
 			$this->contents = $buffer;
-			$contents		= gzcompress($buffer, 9);
+			$contents		= gzcompress($buffer, 5);
 			
 			//To prevent a bug where the ob handler is called twice for some reason, causing the output to be uncompressed
 			$this->compressed = $contents;
@@ -205,8 +205,10 @@ class plgSystemMorphCache extends JPlugin
 			//Precaution for when the handler is called twice
 			$contents = isset($this->compressed) ? $this->compressed : $buffer;
 		}
-
-		return "\x1f\x8b\x08\x00\x00\x00\x00\x00".$contents;
+		
+		$contents = "\x1f\x8b\x08\x00\x00\x00\x00\x00".$contents;
+		header('Content-Length: '.strlen($contents));
+		return $contents;
 
 		$crc = crc32($this->contents);
 		$size = strlen($this->contents);

@@ -244,7 +244,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$params[] = JRequest::getVar( 'jomsocialboxes', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'articleenhancements', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'blogenhancements', null, 'post', 'array' );
-		$params[] = JRequest::getVar( 'googlefonts', null, 'post', 'array' );
+		$params[] = JRequest::getVar( 'customfonts', null, 'post', 'array' );
 
 		$preset_name = JRequest::getVar('preset_coice', '');
 

@@ -185,8 +185,7 @@ $(function(){ backgroundsEnable(); });
 
 function fontsEnable(){	
 	function toggleProviders(val, suff){
-		var display;
-		if(val == 'on'){ display='block'; }else{ display='none'; }
+		var display = val == 'on' ? 'block' : 'none';
 		$('#customfontsfont_providers').parent().css('display', display);
 		$('#customfontsgooglefonts_font').parent().css('display', 'none');
 		$('#customfontsfontdeck_fontid').parent().css('display', 'none');

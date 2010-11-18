@@ -185,17 +185,22 @@ $(function(){ backgroundsEnable(); });
 
 function fontsEnable(){	
 	function toggleProviders(val, suff){
-		var display = val == 'on' ? 'block' : 'none';
-		$('#customfontsfont_providers').parent().css('display', display);
-		$('#customfontsgooglefonts_font').parent().css('display', 'none');
-		$('#customfontsfontdeck_fontid').parent().css('display', 'none');
-		$('#customfontsfontdeck_domain').parent().css('display', 'none');
-		$('#customfontsfontdeck_projectid').parent().css('display', 'none');
-		$('#customfontstypekit_id').parent().css('display', 'none');
-		$('#customfontsfontspring_id').parent().css('display', 'none');
-		$('#customfontsfontsdotcom_id').parent().css('display', 'none');
-		$('#customfontsfontslive_id').parent().css('display', 'none');
-		$('#customfontswebtype_id').parent().css('display', 'none');
+		if(val == 'on') {
+			$('#customfontsfont_providers').change().parent().show();
+		} else {
+			$([
+				'#customfontsfont_providers',
+				'#customfontsgooglefonts_font',
+				'#customfontsfontdeck_fontid',
+				'#customfontsfontdeck_domain',
+				'#customfontsfontdeck_projectid',
+				'#customfontstypekit_id',
+				'#customfontsfontspring_id',
+				'#customfontsfontsdotcom_id',
+				'#customfontsfontslive_id',
+				'#customfontswebtype_id'
+			].join(', ')).parent().hide();
+		}
 	}
 	if($('#customfontscustom_fonts1').attr('checked')){ toggleProviders('on', '#customfontsfont_providers'); }
 	$('#customfontscustom_fonts1').click( function(){ toggleProviders('on', '#customfontsfont_providers'); } );
@@ -216,95 +221,45 @@ function showFontOptions(elid, hideid){
 	switcher($(elid+' > option:selected').val());
 	
 	function switcher(v){
+		var id,
+			selector = [
+					'#customfontsgooglefonts_font',
+					'#customfontsfontdeck_fontid',
+					'#customfontsfontdeck_domain',
+					'#customfontsfontdeck_projectid',
+					'#customfontstypekit_id',
+					'#customfontsfontspring_id',
+					'#customfontsfontsdotcom_id',
+					'#customfontsfontslive_id',
+					'#customfontswebtype_id'
+			].join(', ');
 		switch(v){
 			case 'googlefonts':
-				$('#customfontsgooglefonts_font').parent().css('display', 'block');
-				$('#customfontsfontdeck_fontid').parent().css('display', 'none');
-				$('#customfontsfontdeck_domain').parent().css('display', 'none');
-				$('#customfontsfontdeck_projectid').parent().css('display', 'none');
-				$('#customfontstypekit_id').parent().css('display', 'none');
-				$('#customfontsfontspring_id').parent().css('display', 'none');
-				$('#customfontsfontsdotcom_id').parent().css('display', 'none');
-				$('#customfontsfontslive_id').parent().css('display', 'none');
-				$('#customfontswebtype_id').parent().css('display', 'none');
+				id = '#customfontsgooglefonts_font';
 			break;
 			case 'fontdeck':
-				$('#customfontsgooglefonts_font').parent().css('display', 'none');
-				$('#customfontsfontdeck_fontid').parent().css('display', 'block');
-				$('#customfontsfontdeck_domain').parent().css('display', 'block');
-				$('#customfontsfontdeck_projectid').parent().css('display', 'block');
-				$('#customfontstypekit_id').parent().css('display', 'none');
-				$('#customfontsfontspring_id').parent().css('display', 'none');
-				$('#customfontsfontsdotcom_id').parent().css('display', 'none');
-				$('#customfontsfontslive_id').parent().css('display', 'none');
-				$('#customfontswebtype_id').parent().css('display', 'none');
+				id = '#customfontsfontdeck_fontid, #customfontsfontdeck_domain, #customfontsfontdeck_projectid';
 			break;
 			case 'typekit':
-				$('#customfontsgooglefonts_font').parent().css('display', 'none');
-				$('#customfontsfontdeck_fontid').parent().css('display', 'none');
-				$('#customfontsfontdeck_domain').parent().css('display', 'none');
-				$('#customfontsfontdeck_projectid').parent().css('display', 'none');
-				$('#customfontstypekit_id').parent().css('display', 'block');
-				$('#customfontsfontspring_id').parent().css('display', 'none');
-				$('#customfontsfontsdotcom_id').parent().css('display', 'none');
-				$('#customfontsfontslive_id').parent().css('display', 'none');
-				$('#customfontswebtype_id').parent().css('display', 'none');
+				id = '#customfontstypekit_id';
 			break;
 			case 'fontspring':
-				$('#customfontsgooglefonts_font').parent().css('display', 'none');
-				$('#customfontsfontdeck_fontid').parent().css('display', 'none');
-				$('#customfontsfontdeck_domain').parent().css('display', 'none');
-				$('#customfontsfontdeck_projectid').parent().css('display', 'none');
-				$('#customfontstypekit_id').parent().css('display', 'none');
-				$('#customfontsfontspring_id').parent().css('display', 'block');
-				$('#customfontsfontsdotcom_id').parent().css('display', 'none');
-				$('#customfontsfontslive_id').parent().css('display', 'none');
-				$('#customfontswebtype_id').parent().css('display', 'none');
+				id = '#customfontsfontspring_id';
 			break;
 			case 'fontsdotcom':
-				$('#customfontsgooglefonts_font').parent().css('display', 'none');
-				$('#customfontsfontdeck_fontid').parent().css('display', 'none');
-				$('#customfontsfontdeck_domain').parent().css('display', 'none');
-				$('#customfontsfontdeck_projectid').parent().css('display', 'none');
-				$('#customfontstypekit_id').parent().css('display', 'none');
-				$('#customfontsfontspring_id').parent().css('display', 'none');
-				$('#customfontsfontsdotcom_id').parent().css('display', 'block');
-				$('#customfontsfontslive_id').parent().css('display', 'none');
-				$('#customfontswebtype_id').parent().css('display', 'none');
+				id = '#customfontsfontsdotcom_id';
 			break;
 			case 'fontslive':
-				$('#customfontsgooglefonts_font').parent().css('display', 'none');
-				$('#customfontsfontdeck_fontid').parent().css('display', 'none');
-				$('#customfontsfontdeck_domain').parent().css('display', 'none');
-				$('#customfontsfontdeck_projectid').parent().css('display', 'none');
-				$('#customfontstypekit_id').parent().css('display', 'none');
-				$('#customfontsfontspring_id').parent().css('display', 'none');
-				$('#customfontsfontsdotcom_id').parent().css('display', 'none');
-				$('#customfontsfontslive_id').parent().css('display', 'block');
-				$('#customfontswebtype_id').parent().css('display', 'none');
+				id = '#customfontsfontslive_id';
 			break;
 			case 'webtype':
-				$('#customfontsgooglefonts_font').parent().css('display', 'none');
-				$('#customfontsfontdeck_fontid').parent().css('display', 'none');
-				$('#customfontsfontdeck_domain').parent().css('display', 'none');
-				$('#customfontsfontdeck_projectid').parent().css('display', 'none');
-				$('#customfontstypekit_id').parent().css('display', 'none');
-				$('#customfontsfontspring_id').parent().css('display', 'none');
-				$('#customfontsfontsdotcom_id').parent().css('display', 'none');
-				$('#customfontsfontslive_id').parent().css('display', 'none');
-				$('#customfontswebtype_id').parent().css('display', 'block');
+				id = '#customfontswebtype_id';
 			break;
 			default:
-				$('#customfontsgooglefonts_font').parent().css('display', 'none');
-				$('#customfontsfontdeck_fontid').parent().css('display', 'none');
-				$('#customfontsfontdeck_domain').parent().css('display', 'none');
-				$('#customfontsfontdeck_projectid').parent().css('display', 'none');
-				$('#customfontstypekit_id').parent().css('display', 'none');
-				$('#customfontsfontspring_id').parent().css('display', 'none');
-				$('#customfontsfontsdotcom_id').parent().css('display', 'none');
-				$('#customfontsfontslive_id').parent().css('display', 'none');
-				$('#customfontswebtype_id').parent().css('display', 'none');
+				id = '';
 		}
+		$(id).parent().show();
+		$(selector).not(id).parent().hide();
 	}
 }
 $(function(){ 

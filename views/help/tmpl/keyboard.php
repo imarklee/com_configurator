@@ -21,7 +21,6 @@ will close it.</p>
 <li><strong><?php echo $key ?> 4</strong> Open the Troubleshooting guide</li>
 <li><strong><?php echo $key ?> E</strong> Send feedback (bug or suggestion)</li>
 <li><strong><?php echo $key ?> 5</strong> Open the ModuleFX guide</li>
-<li><strong><?php echo $key ?> L</strong> Logout of Configurator</li>
 <li><strong><?php echo $key ?> 6</strong> Open the PageFX guide</li>
 <li><strong><?php echo $key ?> F</strong> Toggle between fullscreen mode</li>
 <li><strong><?php echo $key ?> 7</strong> Open the MenuFX guide</li>

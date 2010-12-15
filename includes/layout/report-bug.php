@@ -25,26 +25,15 @@ $component_arr = (array) simplexml_load_file($component_xml);
 
 	<form id="feedbackform" method="post" action="">
 	<fieldset>
-		<?php if($this->checkuser()){ ?>
-			<span style="display: none;">
-			<label for="ff-name">Your name</label>
-			<input type="text" name="name" id="ff-name" class="text ui-widget-content ui-corner-all" value="<?php echo $user[0]['member_name']; ?> <?php echo $user[0]['member_surname']; ?>" />
-			
-			<label for="ff-email">Your email address</label>
-			<input type="text" name="email" id="ff-email" value="<?php echo $user[0]['member_email']; ?>" class="text ui-widget-content ui-corner-all" />
-			</span>
-		<?php } ?>
 		<ul>
-			<?php if(!$this->checkuser()){ ?>
-				<li class="fb-name">
-					<label for="fb-name">Your name:</label>
-					<input type="text" name="name" id="fb-name" value="" class="text ui-widget-content ui-corner-all" />
-				</li>
-				<li class="fb-email">
-					<label for="fb-email">Your email address</label>
-					<input type="text" name="email" id="fb-email" value="" class="text ui-widget-content ui-corner-all" />
-				</li>
-			<?php } ?>
+			<li class="fb-name">
+				<label for="fb-name">Your name:</label>
+				<input type="text" name="name" id="fb-name" value="" class="text ui-widget-content ui-corner-all" />
+			</li>
+			<li class="fb-email">
+				<label for="fb-email">Your email address</label>
+				<input type="text" name="email" id="fb-email" value="" class="text ui-widget-content ui-corner-all" />
+			</li>
 			<li class="fb-type">
 				<label for="feedback_type">Type of feedback:</label>
 				<ul class="inline">
@@ -63,7 +52,7 @@ $component_arr = (array) simplexml_load_file($component_xml);
 
 			<li class="fb-subject">
 				<label for="ff-title">Subject:</label>
-				<input type="text" name="title" id="ff-title" value="<?php if(!$this->checkuser()){ ?>Unable to login<?php } ?>" class="text ui-widget-content ui-corner-all" />
+				<input type="text" name="title" id="ff-title" value="" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-message">
 				<label for="ff-description">Message:</label>

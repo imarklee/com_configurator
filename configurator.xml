@@ -62,6 +62,13 @@
 	
 	<!-- Deprecated files -->
 	<deprecated>
+		<file>css/login.css</file>
+		<file>images/btn-configurator-login.png</file>
+		<file>images/input-bg.jpg</file>
+		<file>images/login-mascot.png</file>
+		<file>includes/layout/login.php</file>
+		<file>includes/layout/lost-password.php</file>
+		<file>js/showpassword.js</file>
 		<folder>includes/assets</folder>
 		<folder>installer/sql</folder>
 		<file>admin.configurator.html.php</file>

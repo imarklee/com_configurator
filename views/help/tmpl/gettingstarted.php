@@ -87,7 +87,6 @@
 			<strong><?php echo whichKey(get_os()); ?> + 4</strong> Open the Troubleshooting guide<br />
 			<strong><?php echo whichKey(get_os()); ?> + E</strong> Send feedback (bug or suggestion)<br />
 			<strong><?php echo whichKey(get_os()); ?> + 5</strong> Open the ModuleFX guide<br />
-			<strong><?php echo whichKey(get_os()); ?> + L</strong> Logout of Configurator<br />
 			<strong><?php echo whichKey(get_os()); ?> + 6</strong> Open the PageFX guide<br />
 			<strong><?php echo whichKey(get_os()); ?> + F</strong> Toggle between fullscreen mode<br />
 			<strong><?php echo whichKey(get_os()); ?> + 7</strong> Open the MenuFX guide<br />

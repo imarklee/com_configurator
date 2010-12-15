@@ -17,18 +17,6 @@ text-shadow: hsla(0, 0%, 0%, .8) 0px 1px 0;
 margin-top:7px;
 }
 
-#utilities .user,
-#utilities .logout{
-padding-left:30px;
-background:transparent url(../images/loggedin.png) no-repeat 7px 1px;
-}
-#utilities .logout{
-background:transparent url(../images/logout.png) no-repeat 8px 2px;
-}
-#utilities .logout a{
-color:#fff;
-text-decoration:underline;
-}
 #utilities .changes{
 margin-right:0;
 border-right:0;

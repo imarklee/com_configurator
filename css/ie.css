@@ -1,4 +1,4 @@
-#processing, #alf-image {
+#processing {
 	filter: alpha(opacity=75);
 	-ms-filter: "alpha(opacity=75)";
 }

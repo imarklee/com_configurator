@@ -50,24 +50,19 @@ class ComConfiguratorToolbarHtml extends JToolBar
 	 *
 	 * Toolbar buttons changes based on the user status
 	 *
-	 * @see    ComConfiguratorControllerDefault::checkUser()
 	 * @return void
 	 */
 	public function renderManageToolbar()
 	{
 		JToolBarHelper::title( JText::_( 'Configurator > <span>Manage</span>' ), 'configurator' );
 
-		if(ComConfiguratorControllerDefault::checkUser())
-		{
-			$this
-					->appendButton('apply', 'Save')
-					->appendButton('fullscreen', 'Fullscreen')
-					->appendButton('preferences', 'Preferences ')
-					->appendButton('report-bug-link', 'Feedback')
-					->appendButton('credits-link', 'Credits')
-					->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&view=help'));
-		} 
-		else $this->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&view=help'));
+		$this
+				->appendButton('apply', 'Save')
+				->appendButton('fullscreen', 'Fullscreen')
+				->appendButton('preferences', 'Preferences ')
+				->appendButton('report-bug-link', 'Feedback')
+				->appendButton('credits-link', 'Credits')
+				->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&view=help'));
 	}
 
 	/**

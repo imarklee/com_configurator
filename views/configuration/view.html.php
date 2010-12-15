@@ -186,10 +186,9 @@ class ComConfiguratorViewConfiguration extends JView
 			$thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 			$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
 
-			($this->checkUser()) ? $uval = 1 : $uval = 0;
 			if(!isset($_COOKIE['unpack'])){
 				//$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
-				$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion();
+				$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion();
 				$js = JRoute::_($js);
 				$document->addScript($js);
 				$css = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=css');
@@ -204,11 +203,6 @@ class ComConfiguratorViewConfiguration extends JView
 				$document->addScript($jspath . 'cookie.js');
 				$document->addScript($jspath . 'preload.js');
 				$document->addScript($jspath . 'browser.js');
-				//if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
-				// login
-				$document->addScript($jspath . 'showpassword.js');
-				//} else {
-				// manage
 				$document->addScript($jspath . 'accordion.js');
 				$document->addScript($jspath . 'colorpicker.js');
 				$document->addScript($jspath . 'form.js');
@@ -219,7 +213,7 @@ class ComConfiguratorViewConfiguration extends JView
 				$document->addScript($jspath . 'jsoncookie.js');
 				$document->addScript($jspath . 'itoggle.js');
 				//}
-				$document->addScript($jspath . 'functions.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
+				$document->addScript($jspath . 'functions.js.php?eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
 				/* unpacked css
 				*****************************************/
 				// global
@@ -232,14 +226,6 @@ class ComConfiguratorViewConfiguration extends JView
 				$document->addStyleSheet($csspath . 'manage.css');
 				$document->addStyleSheet($csspath . 'toplinks.css');
 				$document->addStyleSheet($csspath . 'feedback.css');
-						
-				// dashboard
-				// $document->addStyleSheet($csspath . 'dashboard/dashboard.css');
-				//if(!isset($_COOKIE['am_logged_in']) && !isset($_COOKIE['am_logged_in_user'])){
-				// login
-				$document->addStyleSheet($csspath . 'login.css');
-				//} else {
-				// manage
 				$document->addStyleSheet($csspath . 'welcome.css');
 				$document->addStyleSheet($csspath . 'assets.css');
 				$document->addStyleSheet($csspath . 'tabs.css');
@@ -305,28 +291,25 @@ class ComConfiguratorViewConfiguration extends JView
 				<?php
 			  	
 				// Show a specific template in editable mode.
-		        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>			
-				<?php if(!$this->checkUser()){
-					include JPATH_COMPONENT_ADMINISTRATOR.'/includes/layout/login.php';
-		        } else {
-					$user = $this->getuserdetails();
-		        	// auto updates
-			        if($cfg_pref->check_updates == 0){
-			        	setcookie('noupdates', 'true', time()+60*60*24*365);
-			        }else{
-			        	setcookie('noupdates', 'true', time()+3600);
-			        }
-					
-					if(function_exists('ini_set')){ ini_set('memory_limit', '32M'); 
-					}else{
-						$mem_limit = ini_get('memory_limit');
-						if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit.'.
-						'Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance.'.
-						'<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice', 'memory');
-					}
-					
-					include JPATH_COMPONENT_ADMINISTRATOR.'/includes/layout/manage.php';
-				} ?>
+		        if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':'';
+				
+				// auto updates
+		        if($cfg_pref->check_updates == 0){
+		        	setcookie('noupdates', 'true', time()+60*60*24*365);
+		        }else{
+		        	setcookie('noupdates', 'true', time()+3600);
+		        }
+				
+				if(function_exists('ini_set')){ ini_set('memory_limit', '32M'); 
+				}else{
+					$mem_limit = ini_get('memory_limit');
+					if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit.'.
+					'Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance.'.
+					'<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice', 'memory');
+				}
+				
+				include JPATH_COMPONENT_ADMINISTRATOR.'/includes/layout/manage.php';
+				?>
 				</div>
 				<?php include JPATH_COMPONENT_ADMINISTRATOR.'/includes/layout/report-bug.php';
 		 	}

@@ -324,53 +324,8 @@ class ComConfiguratorControllerAbstract extends JController
 		$file = array_map('trim', $file);
 		$find = array_search($str, $file);
 		return $find === false ? false:$find + 1;
-	}  
-	
-	public function makehash()
-	{
-		if(isset($_POST['tempuserpass'])){
-			$pass = $_POST['tempuserpass'];
-			if($pass){
-				$salt = 'we are the champions, my friend';
-				echo sha1(md5($pass.$salt));
-			}
-		}else{
-			die('no post data');
-		}
 	}
-	
-	public function loaduser()
-	{
-		$db = JFactory::getDBO();
-		$query = "insert into #__configurator_usertable values ('','".$_REQUEST['login']['user_name']."','".$_REQUEST['login']['member_id']."','".$_REQUEST['login']['member_name']."','".$_REQUEST['login']['member_surname']."','".$_REQUEST['login']['member_email']."');";
-		$db->setQuery($query);
-		$db->query() or die(json_encode(array('error' => $db->getErrorMsg())));
-		echo json_encode(array('success' => 'login successfull'));
-		exit();
-	}
-	
-	function checkuser(){
-		$db = JFactory::getDBO();
-		$db->setQuery('select count(*) from #__configurator_usertable');
-		$nums = $db->loadResult();
-		if($nums < 1) return false;
-		return true;
-	}
-	
-	function getuserdetails(){
-		$db = JFactory::getDBO();
-		$db->setQuery("select * from #__configurator_usertable;");
-		$res = $db->loadAssocList();
-		return $res;
-	}
-	
-	function luser(){
-		$db = JFactory::getDBO();
-		$db->setQuery('truncate table #__configurator_usertable');
-		$db->query();
-		echo json_encode(array('success' => 'true'));
-	}
-	
+
 	public function uni_installer()
 	{
 		$mem_limit = ini_get('memory_limit');

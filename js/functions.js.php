@@ -29,6 +29,7 @@ var Configurator = {
 jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
 
 jQuery.noConflict()(function($){
+	$('#innersidebarinner_width_type-lbl').parent().addClass('append-select');
 	<?php include 'functions/common.js' ?>
 	$.preloadCssImages();
 	

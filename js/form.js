@@ -65,3 +65,4 @@ this.reset();});};$.fn.enable=function(b){if(b==undefined)b=true;return this.eac
 this.checked=select;else if(this.tagName.toLowerCase()=='option'){var $sel=$(this).parent('select');if(select&&$sel[0]&&$sel[0].type=='select-one'){$sel.find('option').selected(false);}
 this.selected=select;}});};function log(){if($.fn.ajaxSubmit.debug&&window.console&&window.console.log)
 window.console.log('[jquery.form] '+Array.prototype.join.call(arguments,''));};})(jQuery);
+

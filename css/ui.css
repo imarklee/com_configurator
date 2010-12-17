@@ -61,7 +61,6 @@
 .ui-dialog .ui-dialog-content{border:0;background:none;overflow:auto;zoom:1;font-family:arial;-moz-border-radius-bottomleft:7px;-webkit-border-bottom-left-radius:7px;-moz-border-radius-bottomright:7px;-webkit-border-bottom-right-radius:7px;background:#fff url(../images/shelf-bg.jpg) repeat-x scroll 0 0;}
 .ui-dialog .ui-dialog-content h2{font-size:27px;margin:0 0 10px 0;}
 #minwidth-body .ui-dialog .ui-dialog-buttonpane{border:0;text-align:left;background-image:none;margin:-20px 0 0 0;padding:20px 20px 15px 40px;background:#fff;-moz-border-radius-bottomleft:7px;-webkit-border-bottom-left-radius:7px;-moz-border-radius-bottomright:7px;-webkit-border-bottom-right-radius:7px;}
-#alf-warning,
 #tips-dialog{margin:0!important;padding:20px 0 10px 20px;}
 .ui-dialog .ui-dialog-buttonpane button{float:right;margin:0 0 0 10px;cursor:pointer;padding:.2em .6em .3em .6em;line-height:1.4em;width:auto;overflow:visible;-moz-border-radius:5px;-webkit-border-radius:5px;}
 .ui-dialog .ui-resizable-se{width:14px;height:14px;right:3px;bottom:3px;}

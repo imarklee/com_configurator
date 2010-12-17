@@ -2,7 +2,7 @@ var arrPageSizes = ___getPageSize();
 
 function hideScroll(){
 	$('html').addClass('hide-scroll');
-	$('#processing, #alf-image').css({ width: arrPageSizes[0]+15 });
+	$('#processing').css({ width: arrPageSizes[0]+15 });
 	return true;
 }
 

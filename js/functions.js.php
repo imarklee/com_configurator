@@ -1,5 +1,4 @@
 <?php defined('_JEXEC') or die('Restricted access');
-$ul = $_GET['getul'];
 $eh = $_GET['eh']; // editor highlighting
 $sk = $_GET['sk']; // Session keepalive
 $lt = (int) $_GET['slt']; // Session time
@@ -29,6 +28,7 @@ var Configurator = {
 jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
 
 jQuery.noConflict()(function($){
+	$('#innersidebarinner_width_type-lbl').parent().addClass('append-select');
 	<?php include 'functions/common.js' ?>
 	$.preloadCssImages();
 	
@@ -44,7 +44,7 @@ jQuery.noConflict()(function($){
 	}
 	
 	<?php if($sk == 'warn' && $lt > 5) : ?>
-		<?php $timeout = ($lt - 5) * 60000 ?>
+		<?php $timeout = max(($lt - 5) * 60000, 300000) ?>
 		function endsession()
 		{
 			$.ajax({
@@ -129,7 +129,7 @@ jQuery.noConflict()(function($){
 	});
 
 
-	<?php if($ul==1) include 'functions/user.js'; ?>
+	<?php include 'functions/user.js'; ?>
 	
 	/* Generic ----------------------------
 	------------------------------------ */
@@ -143,16 +143,7 @@ jQuery.noConflict()(function($){
 
 	$("#tabs ol.forms li:odd").addClass("alt");	
 
-	//$('#editor textarea.resizable:not(.processed)').TextAreaResizer();
-	<?php if($ul!==1){ ?>
-	$('#loginpass').showPassword('.sp-check', { name: 'show-password' });
 
-	$('#login_user').focus(function(e){
-		$(this).parent().addClass('label-focus');
-	});
-	$('#login_user').focus();
-	$(window).mouseup(function(){ return false; });
-	<?php } ?>
 	
 	$("#help").hover(function () {
 	  $(this).switchClass("on", "off", 15000);
@@ -418,12 +409,10 @@ jQuery.noConflict()(function($){
 	$("input, textarea", $("form")).focus(function(){
 	$(this).addClass("focus");
 	$(this).parents("ol.forms").addClass("cur");
-	$(this).parents("label.label-username,label.label-password").addClass("label-focus");
 	});
 	$("input, textarea", $("form")).blur(function(){
 		$(this).removeClass("focus");
 		$(this).parents("ol.forms").removeClass("cur");
-		$(this).parents("label.label-username,label.label-password").removeClass("label-focus");
 	});
 	
 $('#install-type input[type="radio"]').click( function(){
@@ -433,7 +422,7 @@ $('#install-type input[type="radio"]').click( function(){
 });
 	
 
-<?php if($ul==1) { ?> $('.text_area').simpleautogrow(); <?php } ?>
+$('.text_area').simpleautogrow();
 		
 	   	/* Tabs -------------------------------
 	------------------------------------ */
@@ -857,223 +846,6 @@ $('#install-type input[type="radio"]').click( function(){
 	
 	logoPreview('#logologo_image');
 	logoPreview('#backgroundsbg_image', 'bg'); 
-	
-	/* Login ------------------------------
-	------------------------------------ */
-	$('.alf-check').change(function(){
-		$('#alf-warning').html('<p><span class="error-text"><strong>Selecting this will keep you logged in for an infinite period.</strong><br /><br />'
-								+'Please note that, a cookie will be set to keep you logged in until you log out manually or delete your '
-								+'cookies.</span></p>');
-		hideScroll();
-		$('#alf-warning').dialog({
-   			width: 500, 
-   			autoOpen: true, 
-   			bgiframe: true, 
-   			resizable: false,
-   			draggable: false,
-   			minHeight: 20,
-   			modal: true, 
-   			title: 'Warning',
-   			overlay: {
-   				backgroundColor: '#000', 
-   				opacity: 0.5 
-   			},
-			buttons: {
-				'OK': function(){
-					$(this).dialog('destroy');
-					showScroll();
-				},
-				'Uncheck': function(){
-					$(this).dialog('destroy');
-					showScroll();
-					$('.alf-check').attr('checked', false);
-				}
-			}
-		});
-	});
-		
-	function loginUser(){
-		var username = $('input[name="am-username"]').val();
-		var password = $('input[name="am-password"]').val();
-		var setcookie = $('input[name="am-keep-login"]').attr('checked');
-		
-		if(username == '' || password == ''){
-			$('#alf-warning').html('<div class="dialog-msg">Please enter a username and password in the fields below. Thanks.</div>');
-			hideScroll();
-			$('#alf-warning').dialog({
-	   			autoOpen: true, 
-	   			bgiframe: true, 
-	   			resizable: false,
-	   			draggable: false,
-	   			minHeight: 20,
-	   			modal: true, 
-	   			title: 'Error',
-	   			overlay: {
-	   				backgroundColor: '#000', 
-	   				opacity: 0.5 
-	   			},
-				buttons: {
-					'OK': function(){
-						$(this).dialog('destroy');
-						showScroll();
-					}
-				}
-			});
-			return false;
-		}
-		
-		if(username != 'username' || password != 'password'){
-				
-			$('#alf-image').css('display','block');
-			//$('#cl-inner').fadeTo("fast", 0.1);
-		
-			$.ajax({
-				type: 'POST',
-				url: '?option=com_configurator&task=makehash&format=raw',
-				data: {
-					'tempuserpass': password
-				},
-				success: function(d,t){
-					if(d != ''){
-						
-						var passhash = d;
-						var retval;
-						var rurl = 'http://www.joomlajunkie.com/secure/configurator/logging.php?jsoncallback=?';
-	
-						$.ajax({
-							dataType: 'jsonp',
-							url: rurl,
-							timeout: 1000,
-							data: {
-								'do': 'check',
-								'user': username,
-								'hash': passhash
-							},
-							contentType: "application/json; charset=utf-8",
-							success: function(rdata, textstatus){
-
-								if(rdata.retcode == 'fail'){
-									
-									$('#alf-image').css('display','none');
-									$('#cl-inner').fadeTo(10, 1);
-									
-									retval = 'Login Failed: '+rdata.message;
-									$('#alf-output').html('<p><span class="error-text">'+retval+'</span></p>');
-									hideScroll();
-									$('#alf-output').dialog({
-							   			autoOpen: true, 
-							   			bgiframe: true, 
-							   			resizable: false,
-							   			draggable: false,
-							   			minHeight: 20,
-							   			modal: true, 
-							   			title: 'Login Error',
-							   			overlay: {
-							   				backgroundColor: '#000', 
-							   				opacity: 0.5 
-							   			},
-										buttons: {
-											'OK': function(){
-												$(this).dialog('destroy');
-												showScroll();
-											}
-										}
-									});
-								}else{
-									var member_id = rdata.data.member_id;
-									var member_data = rdata.data.sdata;
-									var member_email = rdata.data.email;
-									var member_name = rdata.data.name_f;
-									var member_surname = rdata.data.name_l;
-									
-									// db
-									var mem_screen_res = screen.width+'x'+screen.height
-									var mem_browser = $.browser.name+' '+$.browser.version;
-									var mem_os = navigator.userAgent.split('; ');
-									var mem_os = mem_os[2];
-									var mem_jv = $('.h_green .version').text();
-									var mem_ip = "<?php echo $_SERVER['REMOTE_ADDR']; ?>";
-									
-									var dburl = 'http://www.joomlajunkie.com/secure/configurator/db.php?jsoncallback=?';
-	
-									$.ajax({
-										dataType: 'jsonp',
-										url: dburl,
-										data: {
-											'do': 'add_user',
-											'mem_screen_res': mem_screen_res,
-											'mem_browser': mem_browser,
-											'mem_os': mem_os,
-											'mem_jv': mem_jv,
-											'mem_ip': mem_ip,
-											'mem_name': member_name,
-											'mem_domain': '<?php echo pageURL(); ?>'
-										},
-										contentType: "application/json; charset=utf-8",
-										success: function(){
-											return true;
-										}
-									});
-									
-									$.ajax({
-										dataType: 'json',
-										url: '?option=com_configurator&task=loaduser&format=raw',
-										data: {
-											login: {
-												user_name: username,
-												member_id: member_id,
-												member_name: member_name,
-												member_surname: member_surname,
-												member_email: member_email
-											}
-										},
-										contentType: "application/json; charset=utf-8",
-										success: function(d){
-											if(d.error == '' || d.error == undefined){
-												window.location.reload(true);
-											}
-										}
-									});
-								}
-							}
-						});
-					}
-				}
-			});
-		}else{
-			$('#alf-warning').html('<p><span class="error-text">Please enter a username and password in the fields below. Thanks.</span></p>');
-			hideScroll();
-			$('#alf-warning').dialog({
-	   			autoOpen: true, 
-	   			bgiframe: true, 
-	   			resizable: false,
-	   			draggable: false,
-	   			minHeight: 20,
-	   			modal: true, 
-	   			title: 'Error',
-	   			overlay: {
-	   				backgroundColor: '#000', 
-	   				opacity: 0.5 
-	   			},
-				buttons: {
-					'OK': function(){
-						$(this).dialog('destroy');
-						showScroll();
-					}
-				}
-			});
-		}
-	return false;
-	}
-	$('.alf-login').click(loginUser);
-	
-	/* Logout --------------------------
-	--------------------------------- */
-	
-	$('a.logout-configurator').click(function(){
-		logoutCfg();
-		return false;
-	});
 
 	/* Uploader ------------------------
 	--------------------------------- */
@@ -1509,8 +1281,8 @@ $('#install-type input[type="radio"]').click( function(){
 		event.preventDefault();
 	});
 	
-	<?php if($ul==1) include('functions/blocks.js'); ?>
-	<?php if($ul==1) include('functions/keyboard.js'); ?>
+	<?php include('functions/blocks.js'); ?>
+	<?php include('functions/keyboard.js'); ?>
 
 	// ajax content for dialog
 	// welcome screen
@@ -1691,47 +1463,6 @@ $('#install-type input[type="radio"]').click( function(){
 		return false;
 	});
 	
-	function logoutCfg() {
-		$('#content-box').after('<div id="logout-message" class="dialog-msg" style="display:none;"><p>You are about to logout. Please ensure you have saved your changes.</p>'
-								+'<p><strong>Please remember: You will need to be connected to the internet to login again.</strong></p></div>');
-		hideScroll();
-		$('#logout-message').dialog({
-   			autoOpen: true, 
-   			bgiframe: true, 
-   			resizable: false,
-   			draggable: false,
-   			minHeight: 20,
-   			width: 350,
-   			modal: true, 
-   			title: 'Logout',
-   			overlay: {
-   				backgroundColor: '#000', 
-   				opacity: 0.5 
-   			},
-   			close: function(){
-   				$.ajax({
-					url: '?option=com_configurator&task=luser&format=raw',
-					success: function(d){
-						$.cookie('logout-toggle', null);
-						$(this).dialog('destroy');
-						ptOverlay('Logging out...')
-						window.location.reload(true);
-					}
-				});
-   			},
-			buttons: {
-				'Logout': function(){
-					$(this).dialog('close');
-				},
-				'Stay logged in': function(){
-					$.cookie('logout-toggle', null);
-					$(this).dialog('destroy');
-					showScroll();
-				}
-			}	
-		});
-	}
-	
 	function toolGuides(tid){
 		var toolPage;
 		var toolTitle;
@@ -1804,111 +1535,5 @@ $('#install-type input[type="radio"]').click( function(){
 	var editor_highlighting = <?php echo $eh . "\n"; ?>
 	<?php include 'functions/editor.js'; ?>
 	<?php include 'functions/migrator.js'; ?>
-	
-	/* Lost Password ------------------
-	-------------------------------- */
-	$('#lost-pass').click(function(){
-		hideScroll();
-		$('#lost-password-form').dialog({
-			autoOpen: true,
-			modal: true,
-			bgiframe: true,
-			width: 400,
-			close: function(){
-				showScroll();
-				$(this).dialog('destroy');
-			}
-		});
-		$('#sendpass').submit(function(){
-			function validate(formData, jqForm, options) { 
-				for (var i=0; i < formData.length; i++) { 
-					if (!formData[i].value) { 
-						$('<div><strong>Username or email address is required.</strong></div>').dialog({
-							bgiframe: true,
-							autoOpen: true,
-							stack: true,
-							title: 'Error',
-							buttons: {
-								'Ok': function(){
-									$(this).dialog('destroy');
-								}
-							},
-							close: function(){
-								$(this).dialog('destroy');
-								showScroll();
-							},
-							modal: true,
-							overlay: {
-								'background-color': '#000',
-								opacity: 0.8
-							}
-						});
-						return false; 
-					} 
-				}
-				ptOverlay('Processing...');				    
-				return true; 
-			}
-			
-			$(this).ajaxSubmit({
-				beforeSubmit: validate,
-				type: 'GET',
-				dataType: 'jsonp',
-				data: {
-					format: 'json'
-				},
-				success: function(data, status, error){
-					close_ptOverlay()
-					if(typeof(data.error) != 'undefined'){						
-						if(data.error != ''){
-							$('<div>'+data.error+'</div>').dialog({
-								bgiframe: true,
-								autoOpen: true,
-								stack: true,
-								title: 'Error',
-								buttons: {
-									'Ok': function(){
-										$(this).dialog('destroy');
-									}
-								},
-								modal: true,
-								overlay: {
-									'background-color': '#000',
-									opacity: 0.8
-								}
-							});
-						}
-					}else{
-						$('<div>'+data.success+'</div>').dialog({
-							bgiframe: truex,
-							autoOpen: true,
-							stack: true,
-							title: 'Success',
-							buttons: {
-								'Ok': function(){
-									showScroll();
-									$(this).dialog('destroy');
-									$('#lost-password-form').dialog('close');
-								}
-							},
-							close: function(){
-								$(this).dialog('destroy');
-								$('#lost-password-form').dialog('close');
-								showScroll();
-							},
-							modal: true,
-							overlay: {
-								'background-color': '#000',
-								opacity: 0.8
-							}
-						});
-					}
-				}
-			});
-			return false;
-		});
-		return false;
-	});
-	
 	<?php include 'menuitems.js' ?>
 });

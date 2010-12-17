@@ -31,12 +31,6 @@ setcookie('current_themelet', $params->get('themelet')); ?>
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 	<div id="utilities">
 		<ul>
-			<li class="user">
-			    Logged in as: <strong><?php echo $user[0]['user_name']; ?></strong>
-            </li>
-			<li class="logout">
-			    <a href="#" class="logout-configurator">Logout</a>
-			</li>
 			<?php $app = JFactory::getApplication() ?>
 			<?php if ($app->getUserState('configurator') > 0) : ?>
 			<?php $menu = JTable::getInstance('Menu') ?>

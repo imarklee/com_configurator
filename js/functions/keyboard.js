@@ -166,19 +166,6 @@ $(window).keydown(function(e){
 			return false;
 		}
 
-		function logout(){
-			if(!$.cookie('logout-toggle')){
-				logoutCfg();
-			    $.cookie('logout-toggle', 'show');
-			}else{
-				$.cookie('logout-toggle', null);
-				$('#logout-message').dialog('close');
-				showScroll();
-			}
-			e.preventDefault();
-			return false;
-		}
-
 		function toggletop(){
 			toggleShelf();
 			e.preventDefault();
@@ -199,7 +186,6 @@ $(window).keydown(function(e){
 				if(keycode == 191 && e.metaKey && !e.ctrlKey){ return previewTpl(); }
 				if(keycode == 69 && e.metaKey && !e.ctrlKey){ return bugreport(); }
 				if(keycode == 80 && e.metaKey && !e.ctrlKey){ return prefs(); }
-				if(keycode == 76 && e.metaKey && !e.ctrlKey){ return logout(); }
 				if(keycode == 48 && e.metaKey && !e.ctrlKey){ return toggletop(); }
 				if(keycode == 49 && e.metaKey && !e.ctrlKey){ return info(); }
 				if(keycode == 50 && e.metaKey && !e.ctrlKey){ return tooltip(2); }
@@ -225,7 +211,6 @@ $(window).keydown(function(e){
 				if(keycode == 191 && (e.ctrlKey || e.metaKey)){ return previewTpl(); }
 				if(keycode == 69 && (e.ctrlKey || e.metaKey)){ return bugreport(); }
 				if(keycode == 80 && (e.ctrlKey || e.metaKey)){ return prefs(); }
-				if(keycode == 76 && (e.ctrlKey || e.metaKey)){ return logout(); }
 				if(keycode == 48 && (e.ctrlKey || e.metaKey)){ return toggletop(); }
 				if(keycode == 49 && (e.ctrlKey || e.metaKey)){ return info(); }
 				if(keycode == 50 && (e.ctrlKey || e.metaKey)){ return tooltip(2); }

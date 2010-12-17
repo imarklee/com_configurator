@@ -8,10 +8,6 @@
 a:link,a:visited{text-decoration:underline;}
 .m{position:relative!important;}
 #cfg .ui-widget{padding:0;margin:0;background:none;border:0;position:relative;}
-#lost-password-form{padding:2em;}
-#sendpass label{font:normal 15px/20px arial;}
-#lost-password{-moz-border-radius:7px;-webkit-border-radius:7px;margin:5px 0 10px 0;}
-.btn-getpass{-moz-border-radius:7px;-webkit-border-radius:7px;padding:5px 10px;}
 #cfg.noshelf.nobranding #tabs{margin-top:1.5em;}
 #cfg.shelftop #shelf{padding-top:0;}
 #cfg.shelfbtm.nofooter.nobranding,

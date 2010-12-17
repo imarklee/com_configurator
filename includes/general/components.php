@@ -8,17 +8,23 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-
+include JPATH_ROOT.'/templates/morph/core/morphLayouts.php';
 function innerLayouts($id)
 {
-	include JPATH_ROOT.'/templates/morph/core/InnerLayout.php';
-	$select_option = array('default' => 'Inner Default',
+	$layouts = new morphLayouts();
+	$select_option = array(
+		'default' => 'Inner Default',
 		'None',
-		'50% Right',
-		'33% Right',
-		'25% Right',
-		'200px Left',
-		'200px Right'
+		implode("", $layouts->innerPageSuffix['1']),
+		implode("", $layouts->innerPageSuffix['2']),
+		implode("", $layouts->innerPageSuffix['3']),
+		implode("", $layouts->innerPageSuffix['4']),
+		implode("", $layouts->innerPageSuffix['5']),
+		implode("", $layouts->innerPageSuffix['6']),
+		implode("", $layouts->innerPageSuffix['7']),
+		implode("", $layouts->innerPageSuffix['8']),
+		implode("", $layouts->innerPageSuffix['9']),
+		implode("", $layouts->innerPageSuffix['10'])
 	);
 
 	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
@@ -29,7 +35,7 @@ function innerLayouts($id)
 		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Inner Default</option>'; } 
 		else { $select .= '<option value="default">Inner Default</option>'; }
 		
-		foreach($innerPageSuffix as $key => $val){
+		foreach($layouts->innerPageSuffix as $key => $val){
 			if($res !== NULL && $res !== 'default' && $res == $key){ $selected = ' selected="selected"'; }else{ $selected = ''; }
 			$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
 		}
@@ -37,7 +43,8 @@ function innerLayouts($id)
 	return $select;
 }
 function outerLayouts($id){
-	include JPATH_ROOT.'/templates/morph/core/OuterLayout.php';
+
+	$layouts = new morphLayouts();
 	$select_option = array(
 		'None',
 		'160px Left',
@@ -51,14 +58,13 @@ function outerLayouts($id){
 	);
 	
 	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
-	
 	$res = $table->param('od_'.$id)->getItem()->value;
 	
 	$select = '<select id="od_'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
 		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Outer Default</option>'; }
 		else { $select .= '<option value="default">Outer Default</option>'; }
 		
-		foreach($outerPageSuffix as $key => $val){
+		foreach($layouts->outerPageSuffix as $key => $val){
 			if($res !== NULL && $res !== 'default' && $res == $key){ $selected = ' selected="selected"'; }else{ $selected = ''; }
 			$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
 		}

@@ -557,7 +557,7 @@ class plgSystemMorphCache extends JPlugin
 		{
 			$data[] = $key.'='.$value;
 		}
-		$path = $path.'#'.implode('&', $data);
+		$path = $path.'&'.implode('&', $data);
 
 		if(file_exists($path)) {
 			return json_decode(file_get_contents($path));

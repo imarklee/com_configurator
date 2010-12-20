@@ -483,6 +483,30 @@ $(function(){
 });
 
 
+//function to conditionally load the inner sidebar options
+
+function innerSidebarOn(elid, hideid){
+	if($(elid).attr('checked')){
+		$(hideid).parent().css('display', 'block');
+	}
+	$(elid).click(function(){
+		$(hideid).parent().css('display', 'block');
+	});
+}
+function innerSidebarOff(elid, hideid){
+	if($(elid).attr('checked')){
+		$(hideid).parent().css('display', 'none');
+	}
+	$(elid).click(function(){
+		$(hideid).parent().css('display', 'none');
+	});
+}
+
+$(function(){
+	innerSidebarOn('#innersidebarinner_show1','#innersidebarinner_width, #innersidebarinner_width_type, #innersidebarinner_pos, #innersidebarinner_blockfx, #innersidebartertiary_inner1');
+	innerSidebarOff('#innersidebarinner_show0','#innersidebarinner_width,  #innersidebarinner_width_type, #innersidebarinner_pos, #innersidebarinner_blockfx, #innersidebartertiary_inner1');
+});
+
 function globalWrapOn(elid, hideid){
 	if($(elid).attr('checked')){
 		$(hideid).parent().css('display', 'block');

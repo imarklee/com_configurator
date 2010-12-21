@@ -1823,20 +1823,6 @@ class ComConfiguratorControllerAbstract extends JController
 		return true;
 	}
 	
-	function check_admin_session(){
-		return;
-		// Register the needed session variables
-	    $session = JFactory::getSession();
-		if($session->_state == 'active'){
-			echo "active";
-			return true;
-		}else{
-			echo "expired";
-			return false;
-		}
-		
-	}
-	
 	function get_modules_by_position(){
 		$ret = '';
 		$position = $_GET['position'];

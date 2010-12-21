@@ -27,11 +27,7 @@ class ComConfiguratorViewHelp extends JView
 	public function display($tpl = null)
 	{
 		$document 	= JFactory::getDocument();
-		$option 	= JRequest::getVar('option');
 		$csspath 	= JURI::root() . 'administrator/components/com_configurator/css/';
-		$jspath 	= JURI::root() . 'administrator/components/com_configurator/js/';
-		//$document->addScript($jspath . 'jquery.js');
-		//$document->addScript($jspath . 'livedocs.js');
 	
 		$document->addStyleSheet($csspath . 'toplinks.css');
 		$document->addStyleSheet($csspath . 'help-docs.css');

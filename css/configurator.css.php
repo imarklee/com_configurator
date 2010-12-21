@@ -1,4 +1,4 @@
-<?php defined('_JEXEC') or die('Restricted access');
+<?php
 header("content-type: text/css; charset: UTF-8");
 if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
 if(!ob_start("ob_gzhandler")) ob_start();
@@ -11,9 +11,13 @@ $expire = "expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($expire);
 
 // browser specific
-$browser = JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php';
-if(file_exists($browser)){
-include_once($browser);
+$browser = '../includes/browser.php';
+if(file_exists($browser)) {
+
+	//This is only to make it possible to include the browser class
+	define('_JEXEC', true);
+
+	include_once($browser);
 }
 
 $browser 	= new MBrowser();
@@ -62,7 +66,15 @@ switch($thebrowser){
 	case 'firefox': include('firefox.css'); break;
 }
 $buffer = ob_get_clean();
-$path = JURI::base(1).'/components/'.$this->option.'/';
+if (strpos(php_sapi_name(), 'cgi') !== false && !empty($_SERVER['REQUEST_URI'])) {
+	//Apache CGI
+	$path =  rtrim(dirname(str_replace(array('"', '<', '>', "'"), '', $_SERVER["PHP_SELF"])), '/\\');
+} else {
+	//Others
+	$path =  rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+}
+//Dirname removes the /css part
+$path = dirname($path).'/';
 $search = array('<,', '../');
 $replace = array('', $path);
 

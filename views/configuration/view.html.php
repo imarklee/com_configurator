@@ -191,9 +191,7 @@ class ComConfiguratorViewConfiguration extends JView
 				$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion();
 				$js = JRoute::_($js);
 				$document->addScript($js);
-				$css = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=css');
-				$document->addStyleSheet($css);
-				//$document->addStyleSheet($csspath . 'configurator.css.php');
+				$document->addStyleSheet($csspath . 'configurator.css.php');
 			} else {
 				/* unpacked js
 				*****************************************/

@@ -12,7 +12,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.plugin.plugin' );
 JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
-JLoader::register('MBrowser', JPATH_ROOT.'/templates/morph/core/browser.php');
+JLoader::register('MBrowser', JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php');
 
 /**
  * plgSystemMorphCache
@@ -278,7 +278,7 @@ class plgSystemMorphCache extends JPlugin
 	protected function close()
 	{
 		$app = JFactory::getApplication();
-		$app->close();
+		//$app->close();
 	}
 	
 	public function debug()

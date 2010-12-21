@@ -25,4 +25,4 @@ JLoader::register('ComConfiguratorControllerDispatch', JPATH_ADMINISTRATOR.'/com
 JLoader::register('ComConfiguratorControllerDefault', JPATH_ADMINISTRATOR.'/components/com_configurator/controllers/default.php');
 
 // Morph classes
-JLoader::register('MBrowser', JPATH_ROOT.'/templates/morph/core/browser.php');
+JLoader::register('MBrowser', JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php');

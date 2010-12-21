@@ -11,7 +11,7 @@ $expire = "expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($expire);
 
 // browser specific
-$browser = JPATH_ROOT.'/templates/morph/core/browser.php';
+$browser = JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php';
 if(file_exists($browser)){
 include_once($browser);
 }

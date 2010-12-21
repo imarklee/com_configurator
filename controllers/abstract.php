@@ -1824,7 +1824,6 @@ class ComConfiguratorControllerAbstract extends JController
 	}
 	
 	function check_admin_session(){
-		return;
 		// Register the needed session variables
 	    $session = JFactory::getSession();
 		if($session->_state == 'active'){
@@ -1834,7 +1833,6 @@ class ComConfiguratorControllerAbstract extends JController
 			echo "expired";
 			return false;
 		}
-		
 	}
 	
 	function get_modules_by_position(){

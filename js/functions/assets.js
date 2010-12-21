@@ -117,7 +117,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    		
    		function activateThemelet(){
 			
-	   		check_admin_session(ptOverlay('Processing...'));
+	   		ptOverlay('Processing...');
 		   	
 	   		$('#generalthemelet option[value="'+setThemelet+'"]').attr('selected', true).trigger('change');
 	   		$('#templateform input[name="task"]').remove();
@@ -588,14 +588,14 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 
 		if(action != 'download'){
 			if(action == 'restore'){
-				check_admin_session(ptOverlay('Processing...'));
+				ptOverlay('Processing...');
 				$('.dialog-msg').html('<p><strong>You are about to restore a database backup!</strong></p>Would you like to download a temporary database backup before restoring?');
 				$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
 				$('.dialog-msg').dialog('option', 'buttons', {
 					'Yes': function(){
 						window.location.href = '?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
 						$(this).dialog('close');
-						check_admin_session(ptOverlay('Processing...'));
+						ptOverlay('Processing...');
 						$.ajax({
 							type: 'POST',
 							url: burl,

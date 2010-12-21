@@ -23,43 +23,6 @@ var thisHeight = function(){
 	if($('#processing').children().is('div')) this.inner = $('#processing div').css('height').replace('px', '');
 }
 
-function check_admin_session(action){
-	$.ajax({
-		type: 'post',
-		url: '?option=com_configurator&view=configuration&task=check_admin_session&format=raw',
-		success: function(data){
-			if(data != 'active') {
-				$('body').append('<div id="session-error" class="dialog-msg"><strong>Your administration session has expired.</strong><br />You will need to login again to perform this action. Press OK to be redirected to the login page.</div>')
-				close_ptOverlay();
-				$('#session-error').dialog({
-					bgiframe: true,
-		   			autoOpen: true,
-		   			width: 300,
-		   			stack: false,
-		   			modal: true, 
-		   			title: 'Session Expired',
-		   			overlay: {
-		   				'background-color': '#000', 
-		   				opacity: 0.8 
-		   			},
-		   			close: function(){
-						$(this).dialog('destroy');
-						window.location.reload(true);
-		   			},
-					buttons: { 
-						'OK': function(){
-							var $this = $(this);
-							$this.dialog('close');
-			   			}
-			   		}
-				});
-			}else{
-				return action;
-			}
-		}
-	});
-}
-
 /**
 * getPageSize() by quirksmode.com
 * @return Array Return an array with page width, height and window width, height

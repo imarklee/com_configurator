@@ -1,4 +1,4 @@
-<?php defined('_JEXEC') or die('Restricted access');
+<?php
 $eh = $_GET['eh']; // editor highlighting
 $sk = $_GET['sk']; // Session keepalive
 $lt = (int) $_GET['slt']; // Session time

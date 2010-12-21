@@ -1,4 +1,4 @@
-<?php defined('_JEXEC') or die('Restricted access');
+<?php
 if(extension_loaded('zlib') && !ini_get('zlib.output_compression')){
 	if(!ob_start("ob_gzhandler")) ob_start();
 }else{

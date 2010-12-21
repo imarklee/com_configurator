@@ -1824,6 +1824,7 @@ class ComConfiguratorControllerAbstract extends JController
 	}
 	
 	function check_admin_session(){
+		return;
 		// Register the needed session variables
 	    $session = JFactory::getSession();
 		if($session->_state == 'active'){

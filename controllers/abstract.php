@@ -1,10 +1,10 @@
 <?php
 /**
-* @package   Configurator Component
-* @author    Prothemer http://www.prothemer.com
+* @package   Configurator Component
+* @author    Prothemer http://www.prothemer.com
 * @copyright Copyright (C) 2008 - 2010 Web Monkeys Design Studio CC.
-* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
+* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
 defined('_JEXEC') or die('Restricted access');
@@ -1821,18 +1821,6 @@ class ComConfiguratorControllerAbstract extends JController
 		
 		$this->clear_cache();
 		return true;
-	}
-	
-	function check_admin_session(){
-		// Register the needed session variables
-	    $session = JFactory::getSession();
-		if($session->_state == 'active'){
-			echo "active";
-			return true;
-		}else{
-			echo "expired";
-			return false;
-		}
 	}
 	
 	function get_modules_by_position(){

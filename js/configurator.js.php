@@ -25,7 +25,6 @@ include('jsoncookie.js');
 include('codemirror/codemirror.js');
 include('textarearesizer.js');
 include('itoggle.js');
-//}
 include('functions.js.php');
 ob_end_flush();
 ?>

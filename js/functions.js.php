@@ -423,24 +423,29 @@ $('#install-type input[type="radio"]').click( function(){
 	
 
 $('.text_area').simpleautogrow();
-		
+	
+	if(!$.cookie('configurator-tabs')) $.cookie('configurator-tabs', '{}', {expires: 30});
+	var tabs = $.parseJSON($.cookie('configurator-tabs'));
+
 	   	/* Tabs -------------------------------
 	------------------------------------ */
 	[
-		{id: '#tabs',			cookie: 'main-tabs'},
-		{id: '#site-tabs',		cookie: 'site-tabs'},
-		{id: '#customize-tabs',	cookie: 'themelet-tabs'},
-		{id: '#blocks-tabs',	cookie: 'block-tabs'},
-		{id: '#plugins-tabs',	cookie: 'plugins-tabs'},
-		{id: '#tools-tabs',		cookie: 'tools-tabs'},
-		{id: '#assets-tabs',	cookie: 'assets-tabs'}
+		'tabs',
+		'site-tabs',
+		'customize-tabs',
+		'blocks-tabs',
+		'plugins-tabs',
+		'tools-tabs',
+		'assets-tabs'
 	].each(function(tab){
-		$(tab.id).tabs({ 
-			cookie: {
-				name: tab.cookie,
-				expires: 30,
-				path: '/'
-		 	}
+		var selected = tabs[tab] ? tabs[tab] : 0;
+		$('#'+tab).tabs({ 
+			selected: selected,
+			select: function(event, ui){
+				var tabs = $.parseJSON($.cookie('configurator-tabs'));
+				tabs[tab] = ui.index;
+				$.cookie('configurator-tabs', $.toJSON(tabs));
+			}
 		});
 	});
 

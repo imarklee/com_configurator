@@ -191,6 +191,7 @@ function fontsEnable(){
 			$([
 				'#customfontsfont_providers',
 				'#customfontsgooglefonts_font',
+				'#customfontsgfont_selectors',
 				'#customfontsfontdeck_fontid',
 				'#customfontsfontdeck_domain',
 				'#customfontsfontdeck_projectid',
@@ -224,6 +225,7 @@ function showFontOptions(elid, hideid){
 		var id,
 			selector = [
 					'#customfontsgooglefonts_font',
+					'#customfontsgfont_selectors',
 					'#customfontsfontdeck_fontid',
 					'#customfontsfontdeck_domain',
 					'#customfontsfontdeck_projectid',
@@ -235,7 +237,7 @@ function showFontOptions(elid, hideid){
 			].join(', ');
 		switch(v){
 			case 'googlefonts':
-				id = '#customfontsgooglefonts_font';
+				id = '#customfontsgooglefonts_font, #customfontsgfont_selectors';
 			break;
 			case 'fontdeck':
 				id = '#customfontsfontdeck_fontid, #customfontsfontdeck_domain, #customfontsfontdeck_projectid';

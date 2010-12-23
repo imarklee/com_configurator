@@ -721,9 +721,9 @@ $('.text_area').simpleautogrow();
 			title: qtTitle,
 			zIndex: 5001,
 			close: function(){
+				$('.toolguides').dialog('destroy');
+				showScroll();
 				$('.toolguides').empty();
-				$(this).dialog('destroy');
-				showScroll();		
 			}
 		});
    		return false;
@@ -743,9 +743,9 @@ $('.text_area').simpleautogrow();
 			title: $(this).attr('title'),
 			zIndex: 5001,
 			close: function(){
+				$('.toolguides').dialog('destroy');
+				showScroll();
 				$('.toolguides').empty();
-				$(this).dialog('destroy');
-				showScroll();		
 			}
 		});
 		return false;
@@ -762,9 +762,9 @@ $('.text_area').simpleautogrow();
 			height: 730,
 			title: $(this).attr('title'),
 			zIndex: 5001,
-			close: function(){
+			close: function(event, ui){
 				$('.toolguides').empty();
-				$(this).dialog('destroy');
+				$('.toolguides').dialog('destroy');
 				showScroll();		
 			}
 		});
@@ -1512,7 +1512,7 @@ $('.text_area').simpleautogrow();
 			zIndex: 5001,
 			close: function(){
 				$.cookie('tooltip'+tid, null);
-				$(this).dialog('destroy');
+				$('.toolguides').dialog('destroy');
 				$('.toolguides').empty();
 				close_ptOverlay();
 				showScroll();		

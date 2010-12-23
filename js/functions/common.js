@@ -3,12 +3,10 @@ var arrPageSizes = ___getPageSize();
 function hideScroll(){
 	$('html').addClass('hide-scroll');
 	$('#processing').css({ width: arrPageSizes[0]+15 });
-	return true;
 }
 
 function showScroll(){
 	$('html').removeClass('hide-scroll');
-	return true;
 }
 
 var thisWidth = function(){

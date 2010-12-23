@@ -30,8 +30,8 @@ class ComConfiguratorControllerAbstract extends JController
 		{
 			$isset = array('cookie' => isset($_GET[$cookie]), 'shortcut' => isset($_GET[$shortcut]));
 
-			if($isset['cookie'])		setcookie($cookie, 'true', 0);
-			elseif($isset['shortcut'])	setcookie($cookie, 'true', time()-3600);
+			if($isset['cookie'])		setcookie($cookie, 'true', 0, '/');
+			elseif($isset['shortcut'])	setcookie($cookie, 'true', time()-3600, '/');
 
 			$uri->delVar($shortcut);
 			$uri->delVar($cookie);
@@ -276,18 +276,18 @@ class ComConfiguratorControllerAbstract extends JController
 		
 		if(isset($_COOKIE['change_themelet'])){
 			$this->themelet_activate($_COOKIE['ct_themelet_name']);
-			setcookie('change_themelet', '', time()-3600);
-			setcookie('ct_themelet_name', '', time()-3600);
+			setcookie('change_themelet', '', time()-3600, '/');
+			setcookie('ct_themelet_name', '', time()-3600, '/');
 		}
 		
 		if(!JRequest::getVar('isajax', null, 'post')){
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
-			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
+			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600, '/'); }
 			$mainframe->redirect("index.php?option={$option}&view=configuration",$msg);
 		}else{
 			// delete change cookie if exists
-			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600); }
+			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600, '/'); }
 			return true;
 		}
 	}

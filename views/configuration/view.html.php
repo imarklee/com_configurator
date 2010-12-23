@@ -260,19 +260,19 @@ class ComConfiguratorViewConfiguration extends JView
 	        
 	        // keyboard shortcuts
 	        if($cfg_pref->short_keys == 0){
-	        	setcookie('noshortkey', 'true');
+	        	setcookie('noshortkey', 'true', 0, '/');
 	        }else{
-	        	setcookie('noshortkey', '', time()-3600);
+	        	setcookie('noshortkey', '', time()-3600, '/');
 	        }
 	
 	
 			// toggle settings effect
 	        if($cfg_pref->settings_effect == 'toggle'){
-	        	setcookie('settings_effect', 'toggle');
+	        	setcookie('settings_effect', 'toggle', 0, '/');
 	        }elseif($cfg_pref->settings_effect == 'accordion'){
-	        	setcookie('settings_effect', 'accordion');
+	        	setcookie('settings_effect', 'accordion', 0, '/');
 	        }else{
-				setcookie('settings_effect', 'all');
+				setcookie('settings_effect', 'all', 0, '/');
 			}
 			
 	        if (!$morph_installed){
@@ -294,9 +294,9 @@ class ComConfiguratorViewConfiguration extends JView
 				
 				// auto updates
 		        if($cfg_pref->check_updates == 0){
-		        	setcookie('noupdates', 'true', time()+60*60*24*365);
+		        	setcookie('noupdates', 'true', time()+60*60*24*365, '/');
 		        }else{
-		        	setcookie('noupdates', 'true', time()+3600);
+		        	setcookie('noupdates', 'true', time()+3600, '/');
 		        }
 				
 				if(function_exists('ini_set')){ ini_set('memory_limit', '32M'); 

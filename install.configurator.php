@@ -27,11 +27,11 @@ ComConfiguratorHelperUtilities::resetInstallState();
 // @TODO get rid of the cookies
 $cookies = array('nomorph', 'bkpdb', 'no_gzip');
 foreach ($cookies as $cookie){
-	if(isset($_COOKIE['installed_'.$cookie])) setcookie('installed_'.$cookie, '', time()-3600);
+	if(isset($_COOKIE['installed_'.$cookie])) setcookie('installed_'.$cookie, '', time()-3600, '/');
 }
-if(isset($_COOKIE['asset_exist'])) setcookie('asset_exist', '', time()-3600);
-if(isset($_COOKIE['upgrade-type'])) setcookie('upgrade-type', '', time()-3600);
-if(isset($_COOKIE['updates'])) setcookie('updates', '', time()-3600);
+if(isset($_COOKIE['asset_exist'])) setcookie('asset_exist', '', time()-3600, '/');
+if(isset($_COOKIE['upgrade-type'])) setcookie('upgrade-type', '', time()-3600, '/');
+if(isset($_COOKIE['updates'])) setcookie('updates', '', time()-3600, '/');
 
 //@TODO this doesn't work on 1.6, so only run on 1.5 and previous
 $version = new JVersion;
@@ -128,7 +128,7 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 		ComConfiguratorHelperUtilities::setInstallState('installed_gzip', true);
 	}
 }else{
-	setcookie('installed_no_gzip', 'true');
+	setcookie('installed_no_gzip', 'true', 0, '/');
 	ComConfiguratorHelperUtilities::setInstallState('installed_no_gzip', true);
 }
 ?>

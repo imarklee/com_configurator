@@ -26,7 +26,7 @@ $template_arr = (array) simplexml_load_file($template_xml);
 $themelet_arr = (array) simplexml_load_file($themelet_xml) ? (array) simplexml_load_file($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
 $component_arr = (array) simplexml_load_file($component_xml);
 
-setcookie('current_themelet', $params->get('themelet')); ?>
+setcookie('current_themelet', $params->get('themelet'), 0, '/'); ?>
 
 <div id="shelf" class="<?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'open'; }else{ echo 'closed'; } ?>">
 	<div id="utilities">

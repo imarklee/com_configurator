@@ -12,7 +12,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.plugin.plugin' );
 JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
-JLoader::register('MBrowser', JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php');
+JLoader::register('MBrowser', JPATH_ROOT.'/templates/morph/core/browser.php');
 
 /**
  * plgSystemMorphCache

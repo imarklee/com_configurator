@@ -34,7 +34,7 @@ function getUpdates(checknow){
 
 function showUpdates(e, callback){	
 	if(window.localStorage) {
-		if('updates' in window.localStorage == false) return false;
+		if(!window.localStorage['updates']) return false;
 		var json = $.secureEvalJSON(window.localStorage['updates']);
 	} else {
 		if(!$.cookie('updates')) return false;
@@ -89,7 +89,7 @@ function showUpdates(e, callback){
 	return;		
 }
 //@TODO commented out for debugging
-if(window.localStorage ? 'cookies' in window.localStorage : $.cookie('updates')) { showUpdates(updEl); }else{ getUpdates(true); }
+if(window.localStorage ? window.localStorage['updates'] : $.cookie('updates')) { showUpdates(updEl); }else{ getUpdates(true); }
 
 // refresh versions on click
 $('.updates-refresh-link').click(function(){

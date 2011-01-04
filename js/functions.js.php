@@ -1319,12 +1319,7 @@ $('.text_area').simpleautogrow();
 			return false;
 		});
 		$('#splash').tabs({
-			fx: { opacity: 'toggle' },
-			cookie: {
-				name: 'welcome-screen',
-				expires: 30,
-				path: '/'
-		 	}
+			fx: { opacity: 'toggle' }
 		});
 	}
 	

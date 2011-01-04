@@ -24,6 +24,16 @@ var Configurator = {
 	
 };
 
+function submitform(pressbutton){
+    if (pressbutton) {
+        jQuery('[name=action]', document.adminForm).attr('value', pressbutton);
+    }
+    if (typeof document.adminForm.onsubmit == "function") {
+        document.adminForm.onsubmit();
+    }
+    document.adminForm.submit();
+}
+
 //Preload spinner gif before domready
 jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
 

@@ -3,27 +3,27 @@
 	<div id="inner-sidebar-options" class="options-panel">
 	    <h3>Inner Sidebar Defaults</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('innersidebar', 'innersidebardata')); ?>
+			<?= @params(array('name' => 'innsersidebar')) ?>
 		</ol>
 	    <h3>Inner1 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inner1', 'inner1data')); ?>
+			<?= @params(array('name' => 'inner1')) ?>
 		</ol>
 	    <h3>Inner2 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inner2', 'inner2data')); ?>
+			<?= @params(array('name' => 'inner2')) ?>
 		</ol>
 	    <h3>Inner3 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inner3', 'inner3data')); ?>
+			<?= @params(array('name' => 'inner3')) ?>
 		</ol>
 	    <h3>Inner4 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inner4', 'inner4data')); ?>
+			<?= @params(array('name' => 'inner4')) ?>
 		</ol>
 	    <h3>Inner5 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inner5', 'inner5data')); ?>
+			<?= @params(array('name' => 'inner5')) ?>
 		</ol>
 	</div>
 	<div id="inner-sidebar-info" class="info-panel">

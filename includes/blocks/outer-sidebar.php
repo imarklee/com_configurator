@@ -3,27 +3,27 @@
 	<div id="outer-sidebar-options" class="options-panel">
 	    <h3>Outer Sidebar Defaults</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('outersidebar', 'outersidebardata')); ?>
+			<?= @params(array('name' => 'outersidebar')) ?>
 		</ol>
 	    <h3>Outer1 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('outer1', 'outer1data')); ?>
+			<?= @params(array('name' => 'outer1')) ?>
 		</ol>
 	    <h3>Outer2 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('outer2', 'outer2data')); ?>
+			<?= @params(array('name' => 'outer2')) ?>
 		</ol>
 	    <h3>Outer3 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('outer3', 'outer3data')); ?>
+			<?= @params(array('name' => 'outer3')) ?>
 		</ol>
 	    <h3>Outer4 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('outer4', 'outer4data')); ?>
+			<?= @params(array('name' => 'outer4')) ?>
 		</ol>
 	    <h3>Outer5 Position</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('outer5', 'outer5data')); ?>
+			<?= @params(array('name' => 'outer5')) ?>
 		</ol>
 	</div>
 	<div id="outer-sidebar-info" class="info-panel">

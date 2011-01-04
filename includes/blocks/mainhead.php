@@ -3,7 +3,7 @@
 	<div id="mainhead-options" class="options-panel">
    	    <h3>Masthead Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('masthead', 'mastheaddata')); ?>
+			<?= @params(array('name' => 'masthead')) ?>
 		</ol>
 	</div>
 	<div id="mainhead-info" class="info-panel">

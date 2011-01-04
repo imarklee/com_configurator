@@ -3,19 +3,19 @@
 	<div id="inset-options" class="options-panel">
 	    <h3>Inset1 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inset1', 'inset1data')); ?>
+			<?= @params(array('name' => 'inset1')) ?>
 		</ol>
 	    <h3>Inset2 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inset2', 'inset2data')); ?>
+			<?= @params(array('name' => 'inset2')) ?>
 		</ol>
 	    <h3>Inset3 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inset3', 'inset3data')); ?>
+			<?= @params(array('name' => 'inset3')) ?>
 		</ol>
 	    <h3>Inset4 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('inset4', 'inset4data')); ?>
+			<?= @params(array('name' => 'inset4')) ?>
 		</ol>
 	</div>
 	<div id="inset-info" class="info-panel">
@@ -28,3 +28,4 @@
 		map" border="0" width="355" height="168" /></p>
 	</div>
 </div>
+

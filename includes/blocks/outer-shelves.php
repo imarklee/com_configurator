@@ -3,27 +3,27 @@
 	<div id="shelf-options" class="options-panel">
    	    <h3>Top Shelf 1 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('topshelf1', 'topshelf1data')); ?>
+			<?= @params(array('name' => 'topshelf1')) ?>
 		</ol>
 		<h3>Top Shelf 2 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('topshelf2', 'topshelf2data')); ?>
+			<?= @params(array('name' => 'topshelf2')) ?>
 		</ol>
 		<h3>Top Shelf 3 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('topshelf3', 'topshelf3data')); ?>
+			<?= @params(array('name' => 'topshelf3')) ?>
 		</ol>
    	    <h3>Bottom Shelf 1 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('bottomshelf1', 'bottomshelf1data')); ?>
+			<?= @params(array('name' => 'bottomshelf1')) ?>
 		</ol>
 		<h3>Bottom Shelf 2 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('bottomshelf2', 'bottomshelf2data')); ?>
+			<?= @params(array('name' => 'bottomshelf2')) ?>
 		</ol>
 		<h3>Bottom Shelf 3 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('bottomshelf3', 'bottomshelf3data')); ?>
+			<?= @params(array('name' => 'bottomshelf3')) ?>
 		</ol>
 	</div>
 	<div id="shelves-info" class="info-panel">

@@ -3,11 +3,11 @@
 	<div id="user-options" class="options-panel">
    	    <h3>User1 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('user1', 'user1data')); ?>
+			<?= @params(array('name' => 'user1')) ?>
 		</ol>
    	    <h3>User2 Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('user2', 'user2data')); ?>
+			<?= @params(array('name' => 'user2')) ?>
 		</ol>
 	</div>
 	<div id="inner-shelves-info" class="info-panel">

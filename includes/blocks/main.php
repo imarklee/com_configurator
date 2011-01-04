@@ -3,7 +3,7 @@
 	<div id="main-options" class="options-panel">
 	    <h3>Main Block Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('main', 'maindata')); ?>
+			<?= @params(array('name' => 'main')) ?>
 		</ol>
 	</div>
 	<div id="main-info" class="info-panel">

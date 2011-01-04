@@ -3,19 +3,10 @@
 #cfg #tabs .options-inner{border:1px solid #999;border-top:0;float:left;width:523px;}
 #cfg #tabs ol.forms{border:0;border-top:1px solid #999;border-bottom:1px solid #999;list-style-type:none;margin:-1px 0 0 0;padding:0;width:523px;}
 #cfg #tabs ol.forms li{border-bottom:1px solid #ddd;border-top:1px solid #fff;clear:both;color:#222;float:left;margin:0;padding:0 10px;position:relative;width:503px;font:normal 13px/30px arial;background:#fff url(../images/form-bg2.jpg) repeat-y;}
-
-#cfg #tabs ol.forms li.append-select {
-	border: none;
-	height: 0
-}
-
-#innersidebarinner_width_type {
-	position: absolute;
-	right: 14px;
-	top: -26px;
-}
-
-
+#cfg #tabs ol.forms li.append-select{border:none;height:0;}
+#innersidebarinner_width{bottom:-5px;position:relative;width:90px;}
+#innersidebarinner_width_type {position:absolute;right:55px;top:-28px;}
+#innersidebarinner_pos{position:relative;bottom:-2px;}
 #cfg #tabs ol.forms li.alt{background:#FEFDEE url(../images/form-bg3.jpg) repeat-y;}
 #cfg #tabs ol.forms li.first{border-top:0;}
 #cfg #tabs ol.forms li.last{border-bottom:0;}

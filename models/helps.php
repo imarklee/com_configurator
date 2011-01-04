@@ -10,13 +10,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * ComConfiguratorModelAbstract
- *
- * Our base abstract model, containing auto code soon to be replaced with Koowa
+ * ComConfiguratorModelHelps
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-class ComConfiguratorModelAbstract extends KModelAbstract
+class ComConfiguratorModelHelps extends KModelAbstract
 {
 	
 }

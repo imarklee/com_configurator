@@ -16,7 +16,42 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-class ComConfiguratorModelConfigurations extends ComConfiguratorModelDefault
+class ComConfiguratorModelConfigurations extends KModelTable
 {
+	/**
+	 * Constructor
+     *
+     * @param 	object 	An optional KConfig object with configuration options
+	 */
+	public function __construct(KConfig $config)
+	{
+		parent::__construct($config);
+
+		// Set the static states
+		$this->_state
+			->insert('template'    , 'cmd', 'morph');
+	}
 	
+	/**
+	 * Builds a WHERE clause for the query
+	 */
+	protected function _buildQueryWhere(KDatabaseQuery $query)
+	{
+		parent::_buildQueryWhere($query);
+		
+		$query->where('tbl.template_name', '=', $this->_state->template);
+	}
+
+	 /**
+     * Override getItem to call getList
+     *
+     * We don't have singular and plural views for configurations.
+     * So we need to forward getItem() calls to getList()
+     *
+     * @return KDatabaseRowset
+     */
+    public function getItem()
+    {
+        return $this->getList();
+    }
 }

@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-class ComConfiguratorDefines extends JObject
+class ComConfiguratorDefines
 {
 	/**
 	 * Configurator version

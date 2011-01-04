@@ -10,18 +10,15 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+// Check if Koowa is active
+if(!defined('KOOWA')) {
+    JError::raiseWarning(0, JText::_("Koowa wasn't found. Please install the Koowa plugin and enable it."));
+    return;
+}
+
 // Register depencies
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/depencies.php';
 
-// Prepare the tables
-JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
-
-require_once JApplicationHelper::getPath('class');
-
-//@TODO upgrade to the native INI format asap!
-include_once JPATH_COMPONENT_ADMINISTRATOR.'/language/english.php';
-
-if(!JRequest::getCmd('view')) JRequest::setVar('view', 'configuration');
-
 // Dispatch Configurator
-new ComConfiguratorControllerDispatch(JRequest::getCmd('task', 'default'));
+KFactory::get('admin::com.configurator.dispatcher')
+	->dispatch(KRequest::get('get.view', 'cmd', 'configuration'));

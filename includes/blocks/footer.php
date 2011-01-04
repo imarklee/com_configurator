@@ -3,7 +3,7 @@
 	<div id="footer-options" class="options-panel">
 	    <h3>Footer Block Options</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('footer', 'footerdata')); ?>
+			<?= @params(array('name' => 'footer')) ?>
 		</ol>
 	</div>
 	<div id="footer-info" class="info-panel">

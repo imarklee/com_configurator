@@ -18,11 +18,15 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-class ComConfiguratorControllerAbstract extends JController
+class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 {
-	public function __construct($options = array())
+	public function __construct(KConfig $config)
 	{
-		parent::__construct($options);
+		$config->request->append(array(
+			'template' => 'morph'
+		));
+
+		parent::__construct($config);
 
 		$uri = clone JFactory::getURI();		
 		$shortcuts = array('unpack' => 'pack', 'noshortkey' => 'shortkey', 'noupdates' => 'updates');
@@ -50,6 +54,22 @@ class ComConfiguratorControllerAbstract extends JController
 		$content = 'Cleanup executed: ' . gmdate('Y-m-d h:m:s');
 		JFile::write($cache, $content);
 	}
+	
+	protected function _initialize(KConfig $config)
+	{
+		$config->append(array(
+			'request' => array('layout' => 'default')
+		));
+
+		parent::_initialize($config);
+	}
+	
+	public function displayView(KCommandContext $context)
+	{
+        KRequest::set('get.hidemainmenu', 0);
+
+        return parent::displayView($context);
+    }
 	
 	function pt_proxy(){
 		$url = urldecode($_GET['url']);
@@ -187,6 +207,83 @@ class ComConfiguratorControllerAbstract extends JController
 		
 		return true;
 	}
+	
+	/*
+	 * Generic apply action
+	 *
+	 *	@param	mixed 	Either a scalar, an associative array, an object
+	 * 					or a KDatabaseRow
+	 * @return 	KDatabaseRow 	A row object containing the saved data
+	 */
+	protected function _actionApply($data)
+	{
+		$filtered	= array();
+		$groups		= array(
+			'general',
+			'logo',
+			'tagline',
+			'htmlbackgrounds',
+			'bodybackgrounds',
+			'color',
+			'progressive',
+			'menu',
+			'iphone',
+			'performance',
+			'debugging',
+			'toolbar',
+			'masthead',
+			'subhead',
+			'topnav',
+			'topshelf',
+			'bottomshelf',
+			'bottomshelf2',
+			'bottomshelf3',
+			'user1',
+			'user2',
+			'inset1',
+			'inset2',
+			'inset3',
+			'inset4',
+			'main',
+			'innersidebar',
+			'inner1',
+			'inner2',
+			'inner3',
+			'inner4',
+			'inner5',	
+			'outersidebar',
+			'outer1',
+			'outer2',
+			'outer3',
+			'outer4',
+			'outer5',
+			'footer',
+			'components_inner',
+			'components_outer',
+			'mootoolscompat',
+			'captify',
+			'lightbox',
+			'preloader',
+			'jomsocial',
+			'jomsocialboxes',
+			'articleenhancements',
+			'blogenhancements',
+			'googlefonts'
+		);
+		foreach($groups as $group)
+		{
+			foreach($data[$group] as $key => $value)
+			{
+				$filtered[$key] = $value;
+			}
+		}
+	
+		$rowset = $this->execute('edit', $data);
+
+		$this->_redirect = 'view='.$this->_identifier->name;
+		return $rowset;
+	}
+	
 	
 	function applytemplate() {
 		global $mainframe;

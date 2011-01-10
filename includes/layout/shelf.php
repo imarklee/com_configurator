@@ -49,21 +49,21 @@ setcookie('current_themelet', $params->get('themelet'), 0, '/'); ?>
 			<?php endif ?>
 			<?php if(isset($_COOKIE['formChanges'])){ ?>
 			<li class="changes">
-			    <span class="shelf-notice">You have unsaved changes</span>
+			    <span class="shelf-notice"><?= @text('You have unsaved changes') ?></span>
 			</li>
 			<?php } ?>
 			<li class="toggle-shelf">
 			    <a href="#" <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'toggle="show"'; }else{ echo 'toggle="hide"'; } ?> title="" id="toggle-shelf">
-			    <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo 'Hide Shelf'; }else{ echo 'Show Shelf'; } ?></a>
+			    <?php if(!isset($_COOKIE['shelf']) || $_COOKIE['shelf'] == 'show'){ echo @text('Hide Shelf'); }else{ echo @text('Show Shelf'); } ?></a>
 			</li>
 		</ul>
 	</div>
 	<div id="shelf-contents">
 		<div id="updates-summary">
-			<h3>Updates summary</h3>
+			<h3><?= @text('Updates summary') ?></h3>
 			<p class="updates-help">
-				<a href="#" class="tt-inline updates-help-link" title="Help::Get help on the Configurator inline updating system">help</a>
-				<a href="#" class="tt-inline updates-refresh-link" title="Check for Updates::Check for updates on Configurator, Morph and installed themelet.">check for updates</a>
+				<a href="#" class="tt-inline updates-help-link" title="Help::<?= @text('Get help on the Configurator inline updating system') ?>"><?= @text('help') ?></a>
+				<a href="#" class="tt-inline updates-refresh-link" title="Check for Updates::<?= @text('Check for updates on Configurator, Morph and installed themelet.') ?>"><? @text('check for updates') ?></a>
 			</p>
 				<dl>
 					<dt name="com_configurator" type="shelf" id="us-configurator">Configurator</dt>

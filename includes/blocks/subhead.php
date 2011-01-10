@@ -3,7 +3,7 @@
 	<div id="subhead-options" class="options-panel">
 	    <h3>Subheader Block</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('subhead', 'subheaddata')); ?>
+			<?= @params(array('name' => 'subhead')) ?>
 		</ol>
 	</div>
 	<div id="subhead-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="iphone-options" class="options-panel">
 		<h3>iPhone Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('iphone', 'iphonedata')); ?>
+			<?= @params(array('name' => 'iphone')) ?>
 		</ol>
 	</div>
 	<div id="iphone-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="toolbar-options" class="options-panel">
 	    <h3>Toolbar Block Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?>
+			<?= @params(array('name' => 'toolbar')) ?>
 		</ol>
 	</div>
 	<div id="toolbar-info" class="info-panel">

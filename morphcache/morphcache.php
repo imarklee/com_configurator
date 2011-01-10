@@ -278,7 +278,7 @@ class plgSystemMorphCache extends JPlugin
 	protected function close()
 	{
 		$app = JFactory::getApplication();
-		//$app->close();
+		$app->close();
 	}
 	
 	public function debug()

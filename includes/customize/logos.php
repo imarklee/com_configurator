@@ -3,11 +3,11 @@
 	<div id="logo-options" class="options-panel">
 	    <h3>Logo Settings</h3>
 		<ol class="forms" id="logo-panel">
-			<?php echo renderParams($params->renderToArray('logo', 'logodata')); ?>
+			<?= @params(array('name' => 'logo')) ?>
 		</ol>
 	    <h3>Tagline Settings</h3>
 		<ol class="forms" id="tagline-panel">
-			<?php echo renderParams($params->renderToArray('tagline', 'taglinedata')); ?>
+			<?= @params(array('name' => 'tagline')) ?>
 		</ol>
 	</div>
 	

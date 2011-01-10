@@ -3,11 +3,11 @@
 	<div id="topnav-options" class="options-panel">
 		<h3>Menu Block Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('topnav', 'topnavdata')); ?>
+			<?= @params(array('name' => 'topnav')) ?>
 		</ol>
 		<h3>Menu Customization Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('menu', 'menudata')); ?>
+			<?= @params(array('name' => 'menu')) ?>
 		</ol>
 	</div>
 	<div id="topnav-info" class="info-panel">

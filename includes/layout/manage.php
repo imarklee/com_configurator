@@ -6,6 +6,36 @@
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
+$template_dir = JPATH_SITE.'/templates/morph';
+$jVer 		= new JVersion();
+$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
+?>
+<div id="browser-wrap" class="<?php echo $browser->name . ' ' . $browser->name.$browser->version; ?>">
+<?php
+	
+// Show a specific template in editable mode.
+if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>			
+<?php 
+//if(!$this->checkUser()){
+//@TODO move this into the view instead
+if(false) {
+	include JPATH_COMPONENT_ADMINISTRATOR.'/includes/layout/login.php';
+} else {
+	// auto updates
+    if($cfg_pref->check_updates == 0){
+    	setcookie('noupdates', 'true', time()+60*60*24*365);
+    }else{
+    	setcookie('noupdates', 'true', time()+3600);
+    }
+	
+	if(function_exists('ini_set')){ ini_set('memory_limit', '32M'); 
+	}else{
+		$mem_limit = ini_get('memory_limit');
+		if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit.'.
+		'Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance.'.
+		'<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice', 'memory');
+	}
+
 $db=& JFactory::getDBO();
 $query = "SELECT COUNT(*) FROM `#__components` WHERE `name` = 'Jom Social' AND `enabled` = '1'";
 $db->setQuery( $query ); 
@@ -25,15 +55,15 @@ $app		     = JFactory::getApplication();
 $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : null;
 
 ?>
-<form action="index.php?option=com_configurator&amp;view=configuration" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
+<form action="<?= @route() ?>" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
 <div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?><?php echo $menuitem_active ?>" data-active-menuitems="<?php echo implode(',', JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->getActiveMenuitemParams()) ?>">
 	
-	<?php if($cfg_pref->show_branding == 1){include dirname(__FILE__) . '/top.php'; } ?>
-	<?php if($cfg_pref->shelf_position == 1){include dirname(__FILE__) . '/shelf.php'; } ?>
+	<? if($cfg_pref->show_branding) echo @template('default_top') ?>
+	<? if($cfg_pref->shelf_position) echo @template('default_shelf') ?>
 
 	<div class="clear spacer">&nbsp;</div>
 
-	<div id="tabs" class="ui-tabs ui-widget ui-widget-content <?php echo $cfg_pref->settings_effect; ?>">
+	<div id="tabs" class="ui-tabs ui-widget ui-widget-content <?= $cfg_pref->settings_effect ?>">
 		<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
 			<li class="site-icon ui-tabs-selected"><a href="#site">General</a></li>
 			<li class="themelet-icon"><a href="#customize">Customize</a></li>

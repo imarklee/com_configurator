@@ -3,7 +3,7 @@
 	<div id="color-options" class="options-panel">
 		<h3>Color Settings</h3>
 		<ol class="forms">
-			<?= @params(array('name' => 'color')) ?>
+			<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>
 		</ol>
 	</div>
 	<div id="color-info" class="info-panel">

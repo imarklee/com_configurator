@@ -25,6 +25,11 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 	{
 		parent::__construct($config);
 		
+		//Add paths
+		$this->getTemplate()->addPath(JPATH_COMPONENT.'/includes/layout');
+		
+		$this->setLayout('manage');
+		
 	    //Add alias filter for @params helper
 		KFactory::get($this->getTemplate())->getFilter('alias')->append(
 			array('@params(array(' => '$this->loadHelper(\'admin::com.configurator.helper.html.params\', array(\'params\' => $params, '), KTemplateFilter::MODE_READ
@@ -310,20 +315,18 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		$this->assign(array(
 			'cfg_pref'	=> $cfg_pref,
 			'params'	=> $params,
-			'user'		=> KFactory::get('admin::com.configurator.model.users')
-							->getList()
-							->current()
-							->getData(),
 			'pref_xml'	=> $pref_xml,
 			'overlays'	=> $overlays
 		));
 		
         if (!$morph_installed){
 	        $this->setLayout('default_nomorph');
-	        
+
 	        return parent::display();
 	        //if found morph	
-        } else {	
+        } else {
+        	$this->setLayout('manage');
+
 	        return parent::display();
 	 	}
 	}

@@ -13,7 +13,7 @@ function mootools($extension, $index, $app)
 	if(in_array($extension['option'], $restricted)) return;
 	extract($extension);
 	
-	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+	$table = KFactory::get('admin::com.configurator.database.table.templatesettings');
 	
 	$value = $table->param('load_mootools_'.$option)->getItem()->value;
 	

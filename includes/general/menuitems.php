@@ -101,7 +101,7 @@ function menu_items_list()
 
 	$value = JFactory::getApplication()->getUserState('configurator');
 	
-	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+	$table = KFactory::get('admin::com.configurator.database.table.templatesettings');
 	
 	$menuitems = $table->getMenuItems();
 	$search    = array();

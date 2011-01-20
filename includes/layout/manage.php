@@ -56,7 +56,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 ?>
 <form action="<?= @route() ?>" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
-<div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?><?php echo $menuitem_active ?>" data-active-menuitems="<?php echo implode(',', JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->getActiveMenuitemParams()) ?>">
+<div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?><?php echo $menuitem_active ?>" data-active-menuitems="<?php echo implode(',', KFactory::get('admin::com.configurator.database.table.templatesettings')->getActiveMenuitemParams()) ?>">
 	
 	<? if($cfg_pref->show_branding) echo @template('top') ?>
 	<? if($cfg_pref->shelf_position) echo @template('shelf') ?>
@@ -195,7 +195,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 		</div>
 		
 		<div id="help" class="ui-tabs-panel ui-tabs-hide off">
-			<?= @template('admin::com.configurator.help.help'); ?>
+			<?= @template('help'); ?>
 		</div>
 	</div>
 

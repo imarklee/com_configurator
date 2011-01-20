@@ -27,7 +27,7 @@ function innerLayouts($id)
 		implode("", $layouts->innerPageSuffix['10'])
 	);
 
-	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+	$table = KFactory::get('admin::com.configurator.database.table.templatesettings');
 	
 	$res = $table->param('id_'.$id)->getItem()->value;
 	
@@ -57,7 +57,7 @@ function outerLayouts($id){
 		'200px Right'
 	);
 	
-	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
+	$table = KFactory::get('admin::com.configurator.database.table.templatesettings');
 	$res = $table->param('od_'.$id)->getItem()->value;
 	
 	$select = '<select id="od_'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';

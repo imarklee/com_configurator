@@ -9,8 +9,18 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class ComConfiguratorDatabaseTemplatesettings extends KDatabaseTableDefault
-{  
+class ComConfiguratorDatabaseTableTemplatesettings extends KDatabaseTableDefault
+{
+	/**
+	 * Joomla DBO object
+	 *
+	 * @TODO temporary legacy
+	 *
+	 * @var object
+	 */
+	protected $_db;
+
+
     public $id;
     public $template_name = 'morph';
     public $param_name;
@@ -47,6 +57,9 @@ class ComConfiguratorDatabaseTemplatesettings extends KDatabaseTableDefault
 		$config->identity_column	= 'id';
 
 		parent::__construct($config);
+
+		//@TODO temporary fix
+		$this->_db = JFactory::getDBO();
 
 		return $this;
     	//@TODO this code is from the joomla version, change to nooku equivalent to support menu item settings

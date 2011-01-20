@@ -9,7 +9,7 @@ define('JURL', $base);
 define('JROOT', str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__)));
 
 //@TODO we can't use this yet until this part is mvc, so we use a dirtier temporary workaround
-$themelet_installed = ComConfiguratorHelperUtilities::getInstallState('themelet_installed');
+$themelet_installed = KFactory::get('admin::com.configurator.helper.utilities')->getInstallState('themelet_installed');
 ?>
 <form id="install-themelet" class="step2" method="post" action="#">
 	<div id="install-head">

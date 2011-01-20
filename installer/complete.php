@@ -8,7 +8,7 @@ $base = '.';
 define('JURL', $base);
 define('JROOT', str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__)));
 
-$themelet = ucwords(ComConfiguratorHelperUtilities::getInstallState('ins_themelet_name'));
+$themelet = ucwords(KFactory::get('admin::com.configurator.helper.utilities')->getInstallState('ins_themelet_name'););
 $conditions = array(
 	'cfg'			=> 	array(
 							'installed' => true,
@@ -29,7 +29,7 @@ $conditions = array(
 							'text'		=> 'Published the Morph template.'
 						),
 	'bkthemelet'	=>	array(
-							'installed'	=> ComConfiguratorHelperUtilities::getInstallState('installed_themelet') && ComConfiguratorHelperUtilities::getInstallState('upgrade_themelet'),
+							'installed'	=> KFactory::get('admin::com.configurator.helper.utilities')->getInstallState('installed_themelet') && KFactory::get('admin::com.configurator.helper.utilities')->getInstallState('upgrade_themelet'),
 							'method'	=> '',
 							'text'		=> sprintf(JText::_('Created a backup of the %s themelet.'), $themelet),
 							'translate'	=> false
@@ -45,17 +45,17 @@ $conditions = array(
 							'translate'	=> false
 	),
 	'gzip'			=> 	array(
-							'installed'	=> ComConfiguratorHelperUtilities::getInstallState('installed_gzip'),
+							'installed'	=> KFactory::get('admin::com.configurator.helper.utilities')->getInstallState('installed_gzip'),
 							'method'	=> '',
 							'text'		=> "Enabled Joomla's GZIP compression."
 	),
 );
 foreach($conditions as $name => $condition)
 {
-	if(!isset($condition['installed'])) $condition['installed'] = ComConfiguratorHelperUtilities::getInstallState('installed_'.$name);
+	if(!isset($condition['installed'])) $condition['installed'] = KFactory::get('admin::com.configurator.helper.utilities')->getInstallState('installed_'.$name);
 	else if(!$condition['installed']) continue;
 	
-	if(!isset($condition['method'])) $condition['method'] = ComConfiguratorHelperUtilities::getInstallState('upgrade_'.$name) ? 'Upgraded' : 'Installed';
+	if(!isset($condition['method'])) $condition['method'] = KFactory::get('admin::com.configurator.helper.utilities')->getInstallState('upgrade_'.$name) ? 'Upgraded' : 'Installed';
 	$summary[] = (object) array('class' => 'tick-'.($condition['installed'] ? 'on' : 'off'), 'text' => JText::_($condition['method'] . $condition['text']));
 }
 ?>

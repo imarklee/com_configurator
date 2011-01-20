@@ -86,14 +86,14 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
                     <!--<li class="icon-menuitems"><a href="#menuitems-tab">Menu Items</a></li>-->
                     <li class="icon-enhancements"><a href="#enhancements-tab">Core Enhancements</a></li>
 				</ul>
-				<?= @template('admin::com.configurator.includes.general') ?>
-				<?= @template('admin::com.configurator.includes.performance') ?>
-				<?= @template('admin::com.configurator.includes.debugging') ?>
-				<?= @template('admin::com.configurator.includes.components') ?>
-				<?= @template('admin::com.configurator.includes.mootools') ?>
-				<!--<?php //if($jomsocial_installed == 1) @template('admin::com.configurator.includes.jomsocial') ?>-->
-				<?= @template('admin::com.configurator.includes.menuitems') ?>
-				<?= @template('admin::com.configurator.includes.enhancements') ?>
+				<?= @template('admin::com.configurator.includes.general.general') ?>
+				<?= @template('admin::com.configurator.includes.general.performance') ?>
+				<?= @template('admin::com.configurator.includes.general.debugging') ?>
+				<?= @template('admin::com.configurator.includes.general.components') ?>
+				<?= @template('admin::com.configurator.includes.general.mootools') ?>
+				<!--<?php //if($jomsocial_installed == 1) @template('admin::com.configurator.includes.general.jomsocial') ?>-->
+				<?= @template('admin::com.configurator.includes.general.menuitems') ?>
+				<?= @template('admin::com.configurator.includes.general.enhancements') ?>
 			</div>
 		</div>
 

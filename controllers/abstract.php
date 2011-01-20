@@ -50,7 +50,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 
 		if(JFile::exists($cache)) return;
 
-		ComConfiguratorHelperUtilities::installCleanup();
+		KFactory::get('admin::com.configurator.helper.utilities')->installCleanup();
 		$content = 'Cleanup executed: ' . gmdate('Y-m-d h:m:s');
 		JFile::write($cache, $content);
 	}
@@ -1510,16 +1510,16 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$activation = $_REQUEST['act_themelet'];
 		$return = $this->themelet_upload($newthemeletfile);
-		ComConfiguratorHelperUtilities::setInstallState('installed_themelet', true);
+		KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_themelet', true);
 		$themelet = $return['themelet'];
 		$themelet_name = str_replace('-',  ' ', $themelet);
-		ComConfiguratorHelperUtilities::setInstallState('ins_themelet_name', $themelet_name);
+		KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('ins_themelet_name', $themelet_name);
 		$db = JFactory::getDBO();
 		
 		if(isset($activation) && $activation == 'true'){
 		
 			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install' || !isset($_COOKIE['upgrade-type']))	{ $this->themelet_activate($themelet); }
-			ComConfiguratorHelperUtilities::setInstallState('installed_actthemelet', true);
+			KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_actthemelet', true);
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
 			$query = $db->query($query);
 			$themelet_num = $db->getNumRows($query);
@@ -1625,10 +1625,10 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				
 		
 		if(is_dir($templatesdir.'/morph')){
-			ComConfiguratorHelperUtilities::setInstallState('upgrade_morph', true);
+			KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('upgrade_morph', true);
 			// template folder
 			if($_REQUEST['backup'] == 'true'){
-				ComConfiguratorHelperUtilities::setInstallState('installed_bkpmorph', true);
+				KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_bkpmorph', true);
 				// backup existing
 				$backupfile = $backupdir.'/file_template_morph_' . time();
 				if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
@@ -1651,7 +1651,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 						
 						$this->_dbUpdate();
 						
-						ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
+						KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_morph', true);
 						echo json_encode($msg);
 					}
 				}
@@ -1664,7 +1664,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
 			$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
 			$this->_dbUpdate();
-			ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
+			KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_morph', true);
 			echo json_encode($msg);
 		}
 	}
@@ -1757,7 +1757,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				$db->setQuery("UPDATE #__templates_menu SET template = 'morph' WHERE client_id = '0'");
 				
 				if($db->query()) {
-					ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
+					KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_pubmorph', true);
 				} else {
 					return array('error' => $db->getErrorMsg());
 				}

@@ -20,5 +20,4 @@ if(!defined('KOOWA')) {
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/depencies.php';
 
 // Dispatch Configurator
-KFactory::get('admin::com.configurator.dispatcher')
-	->dispatch(KRequest::get('get.view', 'cmd', 'configuration'));
+KFactory::get('admin::com.configurator.dispatcher')->dispatch(KRequest::get('get.view', 'cmd', 'configuration'));

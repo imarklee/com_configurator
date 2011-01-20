@@ -35,7 +35,7 @@ class configuratorLoader {
       // Get the parameters and their default values from the XML file.
       
       if( isset($morph_installed) ) {
-          $xml_params = ComConfiguratorHelperUtilities::getTemplateParamList( dirname(__FILE__).'/morphDetails.xml', TRUE );
+          $xml_params = KFactory::get('admin::com.configurator.helper.utilities')->getTemplateParamList( dirname(__FILE__).'/morphDetails.xml', TRUE );
           // Convert to a associative array.
           foreach ($xml_params as $key => $value) {
               $default_params[$key] = $balue;

@@ -28,7 +28,7 @@ defined('_JEXEC') or die('Restricted access');
  		if(!$task) return parent::__construct();
 
  		// Create the controller
- 		$controller = new ComConfiguratorControllerDefault();
+ 		KFactory::get('admin::com.configurator.controller.default');
  		
  		// Perform the Request task
  		$controller->execute($task);

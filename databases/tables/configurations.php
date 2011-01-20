@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class ComConfiguratorTableConfigurations extends KDatabaseTableDefault
+class ComConfiguratorDatabaseTableConfigurations extends KDatabaseTableDefault
 {
 	public function __construct(KConfig $config)
 	{

@@ -75,7 +75,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 		</ul>
 		<div id="site" class="ui-tabs-panel">
 			<div id="site-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['site-desc'])) include dirname(__FILE__).'/../general/desc-site.php' ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['site-desc'])) @template('admin::com.configurator.includes.general.desc-site') ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
 					<li class="icon-performance"><a href="#performance-tab">Performance</a></li>
@@ -99,7 +99,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 		<div id="customize" class="ui-tabs-panel ui-tabs-hide">
 			<div id="customize-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['themelet-desc'])) { include dirname(__FILE__).'/../customize/desc-customize.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['themelet-desc'])) { @template('admin::com.configurator.includes.customize.desc-customize'); } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
 					<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
@@ -107,17 +107,17 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="ui-tabs-selected icon-fonts"><a href="#fonts-tab">Custom Fonts</a></li>
 					<li class="icon-iphone"><a href="#iphone-tab">iPhone Compatibility</a></li>
 				</ul>
-				<?php include dirname(__FILE__).'/../customize/colors.php' ?>
-				<?php include dirname(__FILE__).'/../customize/logos.php' ?>
-				<?php include dirname(__FILE__).'/../customize/backgrounds.php' ?>
-				<?php include dirname(__FILE__).'/../customize/fonts.php' ?>
-				<?php include dirname(__FILE__).'/../customize/iphone.php' ?>
+				<?= @template('admin::com.configurator.includes.customize.colors') ?>
+				<?= @template('admin::com.configurator.includes.customize.logos') ?>
+				<?= @template('admin::com.configurator.includes.customize.backgrounds') ?>
+				<?= @template('admin::com.configurator.includes.customize.fonts') ?>
+				<?= @template('admin::com.configurator.includes.customize.iphone') ?>
 			</div>
 		</div>
 
 		<div id="blocks" class="ui-tabs-panel ui-tabs-hide">
 			<div id="blocks-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['blocks-desc'])) { include dirname(__FILE__).'/../blocks/desc-blocks.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['blocks-desc'])) { @template('admin::com.configurator.blocks.desc-blocks'); } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab">Toolbar</a></li>
 					<li class="icon-mainhead"><a href="#mainhead-tab">Masthead</a></li>
@@ -131,37 +131,37 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="icon-insets"><a href="#insets-tab">Insets</a></li>
 					<li class="icon-footer"><a href="#footer-tab">Footer</a></li>
 				</ul>
-				<?php include dirname(__FILE__).'/../blocks/toolbar.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/mainhead.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/subhead.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/topnav.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/outer-shelves.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/inner-shelves.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/main.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/outer-sidebar.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/inner-sidebar.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/inset.php' ?>
-				<?php include dirname(__FILE__).'/../blocks/footer.php' ?>
+				<?= @template('admin::com.configurator.includes.blocks.toolbar') ?>
+				<?= @template('admin::com.configurator.includes.blocks.mainhead') ?>
+				<?= @template('admin::com.configurator.includes.blocks.subhead') ?>
+				<?= @template('admin::com.configurator.includes.blocks.topnav') ?>
+				<?= @template('admin::com.configurator.includes.blocks.outer-shelves') ?>
+				<?= @template('admin::com.configurator.includes.blocks.inner-shelves') ?>
+				<?= @template('admin::com.configurator.includes.blocks.main') ?>
+				<?= @template('admin::com.configurator.includes.blocks.outer-sidebar') ?>
+				<?= @template('admin::com.configurator.includes.blocks.inner-sidebar') ?>
+				<?= @template('admin::com.configurator.includes.blocks.inset') ?>
+				<?= @template('admin::com.configurator.includes.blocks.footer') ?>
 			</div>
 		</div>
 
 		<div id="plugins" class="ui-tabs-panel ui-tabs-hide">
 			<div id="plugins-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['plugins-desc'])) { include dirname(__FILE__).'/../plugins/desc-plugins.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['plugins-desc'])) { @template('admin::com.configurator.plugins/desc-plugins'); } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab">Fancy Captions</a></li>
 					<li class="icon-lightbox"><a href="#lightbox-tab">Lightbox</a></li>
 					<li class="icon-preloader"><a href="#preloader-tab">Preloader</a></li>
 				</ul>
-				<?php include dirname(__FILE__).'/../plugins/captify.php' ?>
-				<?php include dirname(__FILE__).'/../plugins/lightbox.php' ?>
-				<?php include dirname(__FILE__).'/../plugins/preloader.php' ?>
+				<?= @template('admin::com.configurator.includes.plugins.captify') ?>
+				<?= @template('admin::com.configurator.includes.plugins.lightbox') ?>
+				<?= @template('admin::com.configurator.includes.plugins.preloader') ?>
 			</div>
 		</div>
 
 		<div id="tools" class="ui-tabs-panel ui-tabs-hide">
 			<div id="tools-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['tools-desc'])) { include dirname(__FILE__).'/../tools/desc-tools.php'; } ?>
+				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['tools-desc'])) { @template('admin::com.configurator.tools.desc-tools'); } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
 					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
@@ -169,11 +169,11 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="icon-editor"><a href="#editor-wrap">Code Editor</a></li>
 					<li class="icon-modules"><a href="#module-migrator">Module Migrator</a></li>
 				</ul>
-				<?php include dirname(__FILE__).'/../tools/uploader.php'; ?>
-				<?php include dirname(__FILE__).'/../tools/database.php'; ?>
-				<?php include dirname(__FILE__).'/../tools/reset.php'; ?>
-				<?php include dirname(__FILE__).'/../tools/editor.php'; ?>
-				<?php include dirname(__FILE__).'/../tools/modules.php'; ?>
+				<?= @template('admin::com.configurator.includes.tools.uploader') ?>
+				<?= @template('admin::com.configurator.includes.tools.database') ?>
+				<?= @template('admin::com.configurator.includes.tools.reset') ?>
+				<?= @template('admin::com.configurator.includes.tools.editor') ?>
+				<?= @template('admin::com.configurator.includes.tools.modules') ?>
 			</div>
 		</div>
 
@@ -195,13 +195,13 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 		</div>
 		
 		<div id="help" class="ui-tabs-panel ui-tabs-hide off">
-			<?php include dirname(__FILE__).'/../help/help.php'; ?>
+			<?= @template('admin::com.configurator.help.help'); ?>
 		</div>
 	</div>
 
 	<div class="clear">&nbsp;</div>
-	<?php if($cfg_pref->shelf_position == 2){ include dirname(__FILE__).'/shelf.php'; } ?>
-	<?php if($cfg_pref->show_footer == 1){ include dirname(__FILE__).'/footer.php'; } ?>					
+	<?php if($cfg_pref->shelf_position == 2){ @template('admin::com.configurator.includes.layout.shelf'); } ?>
+	<?php if($cfg_pref->show_footer == 1){ @template('admin::com.configurator.includes.footer'); } ?>					
 						
 </div>
 <?php
@@ -214,7 +214,7 @@ if($cfg_pref->bottom_save >= 1){ ?>
 </form>
 
 <div id="getting-started" style="display:none;"></div>
-<div id="preferences-screen" style="display:none;"><?php include dirname(__FILE__).'/preferences.php'; ?></div>
+<div id="preferences-screen" style="display:none;"><?php @template('admin::com.configurator.includes.preferences'); ?></div>
 <div id="keyboard-screen" style="display:none;"></div>
 <div class="toolguides" style="display:none;"></div>
 <? } ?>

@@ -14,8 +14,8 @@ $jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
 <?php
 	
 // Show a specific template in editable mode.
-if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':''; ?>			
-<?php 
+if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':'';		
+
 //if(!$this->checkUser()){
 //@TODO move this into the view instead
 if(false) {
@@ -217,3 +217,4 @@ if($cfg_pref->bottom_save >= 1){ ?>
 <div id="preferences-screen" style="display:none;"><?php include dirname(__FILE__).'/preferences.php'; ?></div>
 <div id="keyboard-screen" style="display:none;"></div>
 <div class="toolguides" style="display:none;"></div>
+<? } ?>

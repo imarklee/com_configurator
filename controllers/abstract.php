@@ -64,13 +64,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		parent::_initialize($config);
 	}
 	
-	public function displayView(KCommandContext $context)
-	{
-        KRequest::set('get.hidemainmenu', 0);
-
-        return parent::displayView($context);
-    }
-	
 	function pt_proxy(){
 		$url = urldecode($_GET['url']);
 		$content = file_get_contents($url);

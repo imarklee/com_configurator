@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class TableConfiguratorPreferences extends JTable {
+class TableConfiguratorDatabasePreferences extends JTable {
     
     var $id = null;
     var $custom_name = null;

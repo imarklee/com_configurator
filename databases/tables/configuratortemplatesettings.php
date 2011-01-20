@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class TableConfiguratorTemplateSettings extends JTable
+class ComConfiguratorDatabaseTemplatesettings extends KDatabaseTableDefault
 {  
     public $id;
     public $template_name = 'morph';
@@ -35,9 +35,21 @@ class TableConfiguratorTemplateSettings extends JTable
      * @var int|boolean
      */
     protected $__itemid;
-    
-    public function __construct($db)
-    {
+
+	/**
+	 * Constructor
+	 *
+	 * @param 	object 	An optional KConfig object with configuration options
+	 */
+	public function __construct(KConfig $config)
+	{
+		$config->name				= 'configurator';
+		$config->identity_column	= 'id';
+
+		parent::__construct($config);
+
+		return $this;
+    	//@TODO this code is from the joomla version, change to nooku equivalent to support menu item settings
     	$app		  = JFactory::getApplication();
 		if($app->isAdmin())
 		{

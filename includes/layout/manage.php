@@ -58,8 +58,8 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 <form action="<?= @route() ?>" method="post" name="adminForm" id="templateform" enctype="multipart/form-data">    	
 <div id="cfg" class="container_16<?php if($cfg_pref->shelf_position == 0){ ?> noshelf<?php } if($cfg_pref->shelf_position == 1){ ?> shelftop<?php } if($cfg_pref->shelf_position == 2){ ?> shelfbtm<?php } if($cfg_pref->show_footer == 0 ){ ?> nofooter<?php } if($cfg_pref->show_footer == 1 ){ ?> footer<?php } if($cfg_pref->show_branding == 0){ ?> nobranding<?php } if($cfg_pref->show_branding == 1){ ?> branding<?php } ?><?php echo $menuitem_active ?>" data-active-menuitems="<?php echo implode(',', JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->getActiveMenuitemParams()) ?>">
 	
-	<? if($cfg_pref->show_branding) echo @template('default_top') ?>
-	<? if($cfg_pref->shelf_position) echo @template('default_shelf') ?>
+	<? if($cfg_pref->show_branding) echo @template('top') ?>
+	<? if($cfg_pref->shelf_position) echo @template('shelf') ?>
 
 	<div class="clear spacer">&nbsp;</div>
 
@@ -86,14 +86,14 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
                     <!--<li class="icon-menuitems"><a href="#menuitems-tab">Menu Items</a></li>-->
                     <li class="icon-enhancements"><a href="#enhancements-tab">Core Enhancements</a></li>
 				</ul>
-				<?php include dirname(__FILE__).'/../general/general.php' ?>
-				<?php include dirname(__FILE__).'/../general/performance.php' ?>
-				<?php include dirname(__FILE__).'/../general/debugging.php' ?>
-				<?php include dirname(__FILE__).'/../general/components.php' ?>
-				<?php include dirname(__FILE__).'/../general/mootools.php' ?>
-				<!--<?php //if($jomsocial_installed == 1) include dirname(__FILE__).'/../general/jomsocial.php' ?>-->
-				<?php include dirname(__FILE__).'/../general/menuitems.php' ?>
-				<?php include dirname(__FILE__).'/../general/enhancements.php' ?>
+				<?= @template('admin::com.configurator.includes.general') ?>
+				<?= @template('admin::com.configurator.includes.performance') ?>
+				<?= @template('admin::com.configurator.includes.debugging') ?>
+				<?= @template('admin::com.configurator.includes.components') ?>
+				<?= @template('admin::com.configurator.includes.mootools') ?>
+				<!--<?php //if($jomsocial_installed == 1) @template('admin::com.configurator.includes.jomsocial') ?>-->
+				<?= @template('admin::com.configurator.includes.menuitems') ?>
+				<?= @template('admin::com.configurator.includes.enhancements') ?>
 			</div>
 		</div>
 

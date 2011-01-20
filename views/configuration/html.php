@@ -26,7 +26,13 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		parent::__construct($config);
 		
 		//Add paths
-		$this->getTemplate()->addPath(JPATH_COMPONENT.'/includes/layout');
+		$this->getTemplate()
+							->addPath(JPATH_COMPONENT.'/includes/blocks')
+							->addPath(JPATH_COMPONENT.'/includes/customize')
+							->addPath(JPATH_COMPONENT.'/includes/general')
+							->addPath(JPATH_COMPONENT.'/includes/layout')
+							->addPath(JPATH_COMPONENT.'/includes/plugins')
+							->addPath(JPATH_COMPONENT.'/includes/tools');
 		
 		$this->setLayout('manage');
 		

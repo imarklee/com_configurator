@@ -3,11 +3,11 @@
 	<div id="jomsocial-options" class="options-panel">
 		<h3>JomSocial Integration Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('jomsocial', 'jomsocialdata')); ?>
+			<?= @params(array('jomsocial' => 'jomsocialdata')); ?>
 		</ol>
 		<h3>JomSocial Box Styles</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('jomsocialboxes', 'jomsocialboxesdata')); ?>
+			<?= @params(array('jomsocialboxes' => 'jomsocialboxesdata')); ?>
 		</ol>
 	</div>
 	<div id="jomsocial-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="progressive-options" class="options-panel">
 		<h3>Progressive Enhancements Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('progressive', 'progressivedata')); ?>
+			<?= @params(array('progressive' => 'progressivedata')); ?>
 		</ol>
 	</div>
 	<div id="progressive-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="fontsizer-options" class="options-panel">
 	    <h3>Fontsizer Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('fontsizer', 'fontsizerdata')); ?>
+			<?= @params(array('fontsizer' => 'fontsizerdata')); ?>
 		</ol>
 	</div>
 	<div id="fontsizer-info" class="info-panel">

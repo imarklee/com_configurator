@@ -3,7 +3,7 @@
 	<div id="performance-options" class="options-panel">
 		<h3>Performance Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('performance', 'performancedata')); ?>
+			<?= @params(array('performance' => 'performancedata')); ?>
 		</ol>
 	</div>
 	<div id="performance-info" class="info-panel">

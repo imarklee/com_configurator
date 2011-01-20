@@ -3,11 +3,11 @@
 	<div id="enhancements-options" class="options-panel">
 		<h3>Article view enhancements</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('articleenhancements', 'articleenhancementsdata')); ?>
+			<?= @params(array('articleenhancements' => 'articleenhancementsdata')); ?>
 		</ol>
 		<h3>Blog view enhancements</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('blogenhancements', 'blogenhancementsdata')); ?>
+			<?= @params(array('blogenhancements' => 'blogenhancementsdata')); ?>
 		</ol>
 	</div>
 	<div id="enhancements-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="lightbox-options" class="options-panel">
 	    <h3>Colorbox Lightbox Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('lightbox', 'lightboxdata')); ?>
+			<?= @params(array('lightbox' => 'lightboxdata')); ?>
 		</ol>
 	</div>
 	<div id="lightbox-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="shareit-options" class="options-panel">
 	    <h3>Shareit Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('shareit', 'shareitdata')); ?>
+			<?= @params(array('shareit' => 'shareitdata')); ?>
 		</ol>
 	</div>
 	<div id="shareit-info" class="info-panel">

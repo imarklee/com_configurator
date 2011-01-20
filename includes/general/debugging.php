@@ -3,7 +3,7 @@
 	<div id="debugging-options" class="options-panel">
 		<h3>Debugging Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('debugging', 'debuggingdata')); ?>
+			<?= @params(array('debugging' => 'debuggingdata')) ?>
 		</ol>
 	</div>
 	<div id="debugging-info" class="info-panel">

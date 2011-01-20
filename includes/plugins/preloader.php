@@ -3,7 +3,7 @@
 	<div id="preloader-options" class="options-panel">
 	    <h3>Preloader Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('preloader', 'preloaderdata')); ?>
+			<?= @params(array('preloader' => 'preloaderdata')); ?>
 		</ol>
 	</div>
 	<div id="preloader-info" class="info-panel">

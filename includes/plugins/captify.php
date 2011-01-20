@@ -3,7 +3,7 @@
 	<div id="captify-options" class="options-panel">
 	    <h3>Fancy Captions Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('captify', 'captifydata')); ?>
+			<?= @params(array('captify' => 'captifydata')); ?>
 		</ol>
 	</div>
 	<div id="captify-info" class="info-panel">

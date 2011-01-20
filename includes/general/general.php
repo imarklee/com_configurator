@@ -3,7 +3,7 @@
 	<div id="general-options" class="options-panel">
 		<h3>General Settings</h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('general', 'generaldata')); ?>
+			<?= @params(array('general' => 'generaldata')); ?>
 		</ol>
 	</div>
 	<div id="general-info" class="info-panel">

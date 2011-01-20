@@ -2,7 +2,7 @@
 <div id="miscellaneous-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="miscellaneous-options" class="options-panel">
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('miscellaneous', 'miscellaneousdata')); ?>
+			<?= @params(array('miscellaneous' => 'miscellaneousdata')); ?>
 		</ol>
 	</div>
 	<div id="miscellaneous-info" class="info-panel">

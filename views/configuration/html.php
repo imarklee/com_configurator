@@ -102,7 +102,7 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		$database->setQuery( $query );
 		$pref_params = $database->loadObjectList();
 					
-		$pref_list = ComConfiguratorHelperUtilities::getTemplateParamList( JPATH_COMPONENT_ADMINISTRATOR . '/views/configuration/tmpl/default_preferences.xml', TRUE );
+		$pref_list = KFactory::get('admin::com.configurator.helper.utilities')->getTemplateParamList( JPATH_COMPONENT_ADMINISTRATOR . '/views/configuration/tmpl/default_preferences.xml', TRUE );
 		foreach ($pref_list as $pref => $val) {
 			$defpref_params[$pref] = $val;
 		}
@@ -159,7 +159,7 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		// Check if the user have authenticated
 		$this->checkuser = (bool) KFactory::get('admin::com.configurator.model.users')->getTotal();
 		if(!isset($_COOKIE['unpack'])){
-			$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&getul='.(int)$this->checkuser.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion();
+			$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&getul='.(int)$this->checkuser.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.KFactory::get('admin::com.configurator.defines')->getVersion();
 			$js = JRoute::_($js);
 			$document->addScript($js);
 			$css = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=css');
@@ -326,14 +326,5 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
         } else {	
 	        return parent::display();
 	 	}
-	}
-	
-	/**
-	 * Temporary solution for controller code
-	 * @TODO get rid of this
-	 */
-	public function __call($name, $arguments)
-	{
-		return call_user_func_array(array('ComConfiguratorControllerAbstract', $name), $arguments);
 	}
 }

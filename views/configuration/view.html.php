@@ -38,7 +38,7 @@ class ComConfiguratorViewConfiguration extends JView
 
 			$templateBaseDir = JPath::clean( JPATH_ROOT.'/templates' ).'/'.$template;
 	
-			$paramList = ComConfiguratorHelperUtilities::getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
+			$paramList = KFactory::get('admin::com.configurator.helper.utilities')->getTemplateParamList( $templateBaseDir.'/core/morphDetails.xml' );
 	
 				if ( $template ) {
 					// do stuff for existing records
@@ -131,7 +131,7 @@ class ComConfiguratorViewConfiguration extends JView
 			$database->setQuery( $query );
 			$pref_params = $database->loadObjectList();
 						
-			$pref_list = ComConfiguratorHelperUtilities::getTemplateParamList( JPATH_COMPONENT_ADMINISTRATOR . '/includes/layout/preferences.xml', TRUE );
+			$pref_list = KFactory::get('admin::com.configurator.helper.utilities')->getTemplateParamList( JPATH_COMPONENT_ADMINISTRATOR . '/includes/layout/preferences.xml', TRUE );
 			foreach ($pref_list as $pref => $val) {
 				$defpref_params[$pref] = $val;
 			}
@@ -191,7 +191,7 @@ class ComConfiguratorViewConfiguration extends JView
 				//$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion();
 				//$js = JRoute::_($js);
 				//$document->addScript($js);
-				$document->addScript($jspath . 'configurator.js.php?eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion());
+				$document->addScript($jspath . 'configurator.js.php?eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.KFactory::get('admin::com.configurator.defines')->getVersion());
 				$document->addStyleSheet($csspath . 'configurator.css.php');
 			} else {
 				/* unpacked js
@@ -312,14 +312,5 @@ class ComConfiguratorViewConfiguration extends JView
 				</div>
 				<?php include JPATH_COMPONENT_ADMINISTRATOR.'/includes/layout/report-bug.php';
 		 	}
-	}
-	
-	/**
-	 * Temporary solution for controller code
-	 *
-	 */
-	public function __call($name, $arguments)
-	{
-		return call_user_func_array(array('ComConfiguratorControllerAbstract', $name), $arguments);
 	}
 }

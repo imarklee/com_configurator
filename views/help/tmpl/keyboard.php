@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 
-<?php $key = ComConfiguratorHelperBrowser::getKeyboardKey() ?>
+<?php $key = KFactory::get('admin::com.configurator.helper.browser')->getKeyboardKey() ?>
 
 <h2>Configurator's Keyboard Shortcuts:</h2>
 <p>All of the below shortcuts can be used to toggle between the 

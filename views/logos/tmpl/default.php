@@ -42,7 +42,7 @@ $activelogo = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->para
 				$logo_size = getimagesize($logo_dir.'/'.$logo);
 				$logo_width =  $logo_size[0];
 				$logo_height =  $logo_size[1];
-				$logo_size = ComConfiguratorHelperUtilities::formatBytes(filesize($logo_dir.'/'.$logo));
+				$logo_size = KFactory::get('admin::com.configurator.helper.utilities')->formatBytes(filesize($logo_dir.'/'.$logo));
 				
 				if( $logo !== $activelogo ) { $logo_class = 'tl-inactive'; } else { $logo_class = 'tl-active'; }
 			?>	

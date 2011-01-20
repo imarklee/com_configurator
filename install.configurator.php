@@ -21,7 +21,7 @@ if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }
 define('JINDEXURL', $base);
 
 // Reset instal state from previous installs
-ComConfiguratorHelperUtilities::resetInstallState();
+KFactory::get('admin::com.configurator.helper.utilities')->resetInstallState();
 
 // remove cookies from previous installs
 // @TODO get rid of the cookies
@@ -54,7 +54,7 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 		$plugin_exists = JFile::exists(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
 		if($plugin_exists)
 		{
-			ComConfiguratorHelperUtilities::setInstallState('upgrade_morphcache', true);
+			KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('upgrade_morphcache', true);;
 			JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
 			JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.php');
 		}
@@ -81,13 +81,12 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 			return false;
 		}
 		
-		ComConfiguratorHelperUtilities::setInstallState('installed_morphcache', true);
+		KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_morphcache', true);
 	}
 }
 
 // create assets folders
-ComConfiguratorControllerAbstract::assets_create();
-
+KFactory::get('admin::com.configurator.controller.abstract')->assets_create();
 
 $document = JFactory::getDocument();
 $document->addScript(JURI::root() . 'administrator/components/com_configurator/installer/js/install.js.php?v='.time());
@@ -103,11 +102,11 @@ $query = $db->setQuery("select param_value from #__configurator where param_name
 $themelet_installed = $db->loadResult($query);
 if(!$themelet_installed)
 {
-	ComConfiguratorHelperUtilities::setInstallState('themelet_installed', false);
+	KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('themelet_installed', false);
 }
 
 // set cookie for configurator installer
-ComConfiguratorHelperUtilities::setInstallState('installed_cfg', true);
+KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_cfg', true);
 
 // set permissions on templates, assets and components folder.
 JPath::setPermissions(JPATH_ROOT.'/templates');
@@ -125,11 +124,11 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 			JFile::write($path, $replace);
 			JPath::setPermissions($path, '0444');
 		}
-		ComConfiguratorHelperUtilities::setInstallState('installed_gzip', true);
+		KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_gzip', true);
 	}
 }else{
 	setcookie('installed_no_gzip', 'true', 0, '/');
-	ComConfiguratorHelperUtilities::setInstallState('installed_no_gzip', true);
+	KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_no_gzip', true);
 }
 ?>
 <div id="install-wrap">
@@ -137,7 +136,7 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 	<?php
 	if(!isset($_REQUEST['install'])){
 		if($count_rows > 0) :
-			ComConfiguratorHelperUtilities::setInstallState('upgrade_cfg', true);
+			KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('upgrade_cfg', true);
 			include 'installer/step1_upgrade.php';
 		else :
 			include 'installer/step1.php';

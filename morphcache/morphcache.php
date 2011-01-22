@@ -14,6 +14,7 @@ jimport( 'joomla.plugin.plugin' );
 JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
 JLoader::register('MBrowser', JPATH_ROOT.'/templates/morph/core/browser.php');
 JLoader::register('Morph', JPATH_ROOT.'/templates/morph/core/morphLoader.php');
+JLoader::register('MorphLoaderAdapterMorph', JPATH_ROOT.'/templates/morph/core/loader/adapter/morph.php');
 
 /**
  * plgSystemMorphCache
@@ -46,6 +47,25 @@ class plgSystemMorphCache extends JPlugin
 	public function __construct(& $subject, $config)
 	{
 		parent::__construct($subject, $config);
+
+		//Checks if we can run Morph, and if we can, then prepare some adapters
+		if(!defined('KOOWA') || JFactory::getApplication()->getCfg('dbtype') != 'mysqli')
+		{
+			jimport('joomla.filesystem.file');
+			$file_exists	= JFile::exists(JPATH_PLUGINS.'/system/koowa.php');
+			$mysqli_exists	= class_exists('mysqli');
+			$min_php		= version_compare(phpversion(), '5.2', '>=');
+			if($file_exists && $mysqli_exists && $min_php)
+			{
+				$plugin = (object)array('type' => 'system', 'name' => 'koowa');
+				JPluginHelper::_import($plugin, 1, 1);
+				
+				if(!defined('KOOWA')) return;
+
+				KLoader::addAdapter(new MorphLoaderAdapterMorph());
+				//KFactory::addAdapter(new KFactoryAdapterJoomla());
+			}
+		}
 
 		//Checks if we're rendering Configurator css or js
 		$this->option = JRequest::getCmd('option');

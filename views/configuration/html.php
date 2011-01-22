@@ -72,8 +72,6 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		$morph_installed = JFolder::exists(JPATH_ROOT.'/templates/'.$template);
 		if ($morph_installed)
 		{
-			require_once JPATH_COMPONENT_ADMINISTRATOR.'/configurator.common.php';
-
 			$configuration = KFactory::get($this->getModel())->getItem();
 			$template_settings = array();
 			

@@ -45,8 +45,6 @@
 			<folder>tooltips</folder>
 			<folder>views</folder>
 			<file>admin.configurator.php</file>
-			<file>configurator.common.php</file>
-			<file>configurator.loader.php</file>
 			<file>defines.php</file>
 			<file>depencies.php</file>
 			<file>index.html</file>
@@ -61,6 +59,8 @@
 	
 	<!-- Deprecated files -->
 	<deprecated>
+		<file>configurator.loader.php</file>
+		<file>configurator.common.php</file>
 		<file>configurator.class.php</file>
 		<folder>tables</folder>
 		<file>css/login.css</file>

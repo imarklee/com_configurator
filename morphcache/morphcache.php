@@ -249,8 +249,9 @@ class plgSystemMorphCache extends JPlugin
 		// Allows for overriding the active template from the request
 		$template = JRequest::getCmd('template', JFilterInput::clean($template, 'cmd'));
 
-		if($template != 'morph') return;
-
+		//if($template != 'morph') return;
+		// @TODO this breaks configurator if Morph is not the current template. Need to revise.
+		
 		$loader = JPATH_ROOT . '/templates/morph/core/morphLoader.php';
 		if(file_exists($loader)) require_once $loader;
 
@@ -264,7 +265,8 @@ class plgSystemMorphCache extends JPlugin
 
 		// If we are in configurator, make sure to update the overrides.
 		// @TODO we might not want to run this on every pageload in configurator.
-		if(!class_exists('Morph')) return;
+		//if(!class_exists('Morph')) return;
+		// @TODO this breaks the frontend html overrides if Morph is not the default template. Need to revise.
 		if(JRequest::getCmd('option') == 'com_configurator' || JRequest::getBool('create_overrides')) Morph::createOverrides();
 	}
 	

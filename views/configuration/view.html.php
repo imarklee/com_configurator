@@ -51,7 +51,7 @@ class ComConfiguratorViewConfiguration extends JView
 					$themelet = isset($template_params['themelet']) ? $template_params['themelet']['param_value'] : false;
 					$themelet_xml_params = array();
 					$themelet_path	= JPATH_ROOT.'/morph_assets/themelets/'.$themelet.'/themeletDetails.xml';
-					if(file_exists($themelet_path)) $xml_param_loader = new morphXMLLoader($themelet_path);
+					if(file_exists($themelet_path)) $xml_param_loader = new ComConfiguratorHelperParamLoader($themelet_path);
 					if(!empty($xml_param_loader)) {
 						$themelet_xml_params = $xml_param_loader->getParamDefaults();	
 						foreach($themelet_xml_params as $param_name => $param_value){
@@ -92,7 +92,7 @@ class ComConfiguratorViewConfiguration extends JView
 				$lists = array();
 				
 				// Load presets from XML file.
-				$xml_param_loader = new morphXMLLoader($templateBaseDir.'/core/morphDetails.xml');
+				$xml_param_loader = new ComConfiguratorHelperParamLoader($templateBaseDir.'/core/morphDetails.xml');
 				$main_xml_params = $xml_param_loader->getParamDefaults();
 							
 				$params->use_favicons = $xml_param_loader->use_favicons;

@@ -914,7 +914,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 
 			$template_xml = $template_dir.'/core/morphDetails.xml';
 			
-			$xml_param_loader = new morphXMLLoader($template_xml);
+			$xml_param_loader = new ComConfiguratorHelperParamLoader($template_xml);
 			$template_xml_params = $xml_param_loader->getParamDefaults();
 			
 			$removeParams = array(
@@ -969,7 +969,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		
 		$themelet = $themelet_dir.'/'.$themelet;
 		if(is_file($themelet.'/themeletDetails.xml')){
-			$xml_param_loader = new morphXMLLoader($themelet.'/themeletDetails.xml');
+			$xml_param_loader = new ComConfiguratorHelperParamLoader($themelet.'/themeletDetails.xml');
 			$themelet_xml_params = $xml_param_loader->getParamDefaults();
 			
 			foreach($themelet_xml_params as $param_name => $param_value){
@@ -1033,7 +1033,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				
 				// add morphDetails.xml defaults
 				$template_xml = $template_dir.'/core/morphDetails.xml';
-				$xml_param_loader = new morphXMLLoader($template_xml);
+				$xml_param_loader = new ComConfiguratorHelperParamLoader($template_xml);
 				$template_xml_params = $xml_param_loader->getParamDefaults();
 
 				// remove the elements grouping from being added to the database
@@ -1064,7 +1064,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				// add themeletDetails.xml to the database
 				$themelet = $themelet_dir.'/'.$c_themelet;
 				if(is_file($themelet.'/themeletDetails.xml')){
-					$xml_param_loader = new morphXMLLoader($themelet.'/themeletDetails.xml');
+					$xml_param_loader = new ComConfiguratorHelperParamLoader($themelet.'/themeletDetails.xml');
 					$themelet_xml_params = $xml_param_loader->getParamDefaults();
 
 					foreach($themelet_xml_params as $param_name => $param_value){
@@ -1554,7 +1554,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 	private function _dbUpdate(){
 		if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
 			$templatesdir = JPATH_SITE.'/templates';
-			$xml_param_loader = new morphXMLLoader($templatesdir.'/morph/core/morphDetails.xml');
+			$xml_param_loader = new ComConfiguratorHelperParamLoader($templatesdir.'/morph/core/morphDetails.xml');
 			$main_xml_params = $xml_param_loader->getParamDefaults();
 			
 			$removeParams = array(

@@ -80,7 +80,7 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 			// themelet
 			$themelet_xml_params = array();
 			$themelet_path	= JPATH_ROOT.'/morph_assets/themelets/'.$configuration->themelet.'/themeletDetails.xml';
-			if(file_exists($themelet_path)) $xml_param_loader = new morphXMLLoader($themelet_path);
+			if(file_exists($themelet_path)) $xml_param_loader = new ComConfiguratorHelperParamLoader($themelet_path);
 			if(!empty($xml_param_loader))
 			{
 				$themelet_xml_params = $xml_param_loader->getParamDefaults();	

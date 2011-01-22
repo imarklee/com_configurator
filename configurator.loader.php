@@ -42,7 +42,7 @@ class configuratorLoader {
           }
       } else {
           // Morph not installed.
-          $temp_params = new morphXMLParams(dirname(__FILE__).'/morphDetails.xml');
+          $temp_params = new ComConfiguratorHelperParamDefault(dirname(__FILE__).'/morphDetails.xml');
           $xml_params = $temp_params->getTemplateParamList(TRUE);
           foreach ($xml_params as $key => $value) {
               $default_params[$key] = $value;

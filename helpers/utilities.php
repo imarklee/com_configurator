@@ -74,7 +74,7 @@ class ComConfiguratorHelperUtilities extends JObject
 	public static function getTemplateParamList( $file = false )
 	{
 		if( !$file ) return array();
-		$xml = new morphXMLParams( $file );
+		$xml = new ComConfiguratorHelperParamDefault( $file );
 		return $xml->getData();
 	}
 	

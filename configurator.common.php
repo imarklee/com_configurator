@@ -12,12 +12,12 @@ defined('_JEXEC') or die('Restricted access');
 function getTemplateParamList( $file = false )
 {
     if( !$file ) return array();
-    $xml = new morphXMLParams( $file );
+    $xml = new ComConfiguratorHelperParamDefault( $file );
     return $xml->getData();
 }
 
 function getPresetParamList( $file, $name ) {
-    $xml = new morphXMLPresets( $file );
+    $xml = new ComConfiguratorHelperParamPresets( $file );
     return $xml->getData( $name );
 }
 

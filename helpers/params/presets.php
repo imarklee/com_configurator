@@ -7,11 +7,7 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 
-defined( '_JEXEC' ) or die( 'Restricted access' );
-
-class morphXMLParams extends ComConfiguratorHelperParamAbstract {}
-
-class morphXMLPresets extends ComConfiguratorHelperParamAbstract {
+class ComConfiguratorHelperParamPresets extends ComConfiguratorHelperParamAbstract {
     
     /**
      * Get the presets, if it's the right preset

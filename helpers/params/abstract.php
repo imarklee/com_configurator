@@ -24,7 +24,7 @@ abstract class ComConfiguratorHelperParamAbstract {
     protected $_data = array();
     
     /**
-     * Initialise morphXMLParams, and if a path is passed with it, prepare the data list
+     * Initialise ComConfiguratorHelperParamDefault, and if a path is passed with it, prepare the data list
      *
      * @param $path
      */

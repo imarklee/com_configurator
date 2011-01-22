@@ -3,11 +3,11 @@
 	<div id="background-options" class="options-panel">
 		<h3>Body Background Settings</h3>
 		<ol class="forms" id="body-panel">
-			<?= @params(array('name' => 'bodybackgrounds')) ?>
+			<?php echo renderParams($params->renderToArray('bodybackgrounds', 'bodybackgroundsdata')); ?>
 		</ol>
 		<h3>Html Background Settings</h3>
 		<ol class="forms" id="html-panel">
-			<?= @params(array('name' => 'htmlbackgrounds')) ?>
+			<?php echo renderParams($params->renderToArray('htmlbackgrounds', 'htmlbackgroundsdata')); ?>
 		</ol>
 	</div>
 	<div id="background-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="fonts-options" class="options-panel">
 		<h3>Custom Fonts</h3>
 		<ol class="forms">
-			<?= @params(array('name' => 'customfonts')) ?>
+			<?php echo renderParams($params->renderToArray('customfonts', 'customfontsdata')); ?>
 		</ol>
 	</div>
 	<div id="fonts-info" class="info-panel">

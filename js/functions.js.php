@@ -991,6 +991,7 @@ $('.text_area').simpleautogrow();
 												   				data: {
 												   					option: 'com_configurator',
 												   					task: 'applytemplate',
+												   					action: 'apply',
 												   					isajax: 'true'
 												   				},
 													   			success: function(data, textStatus){

@@ -27,9 +27,8 @@ function innerLayouts($id)
 		implode("", $layouts->innerPageSuffix['10'])
 	);
 
-	$table = KFactory::get('admin::com.configurator.database.table.templatesettings');
-	
-	$res = $table->param('id_'.$id)->getItem()->value;
+	$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
+	$res = $configuration->{'id_'.$id};
 	
 	$select = '<select id="id_'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
 		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Inner Default</option>'; } 
@@ -57,8 +56,8 @@ function outerLayouts($id){
 		'200px Right'
 	);
 	
-	$table = KFactory::get('admin::com.configurator.database.table.templatesettings');
-	$res = $table->param('od_'.$id)->getItem()->value;
+	$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
+	$res = $configuration->{'od_'.$id};
 	
 	$select = '<select id="od_'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
 		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Outer Default</option>'; }

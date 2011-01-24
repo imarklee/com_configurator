@@ -3,7 +3,7 @@
 	<div id="fontsizer-options" class="options-panel">
 	    <h3>Fontsizer Settings</h3>
 		<ol class="forms">
-			<?= @params(array('fontsizer' => 'fontsizerdata')); ?>
+			<?= @params(array('name' => 'fontsizer')); ?>
 		</ol>
 	</div>
 	<div id="fontsizer-info" class="info-panel">

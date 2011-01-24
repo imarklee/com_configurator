@@ -13,9 +13,9 @@ function mootools($extension, $index, $app)
 	if(in_array($extension['option'], $restricted)) return;
 	extract($extension);
 	
-	$table = KFactory::get('admin::com.configurator.database.table.templatesettings');
+	$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
 	
-	$value = $table->param('load_mootools_'.$option)->getItem()->value;
+	$value = isset($configuration->{'load_mootools_'.$option}) ? $configuration->{'load_mootools_'.$option} : 0;
 	
 //	$xml = & JFactory::getXMLParser('Simple');
 //	$xml->loadFile($app->getPath('com_xml', $option));

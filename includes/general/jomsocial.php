@@ -3,11 +3,11 @@
 	<div id="jomsocial-options" class="options-panel">
 		<h3>JomSocial Integration Settings</h3>
 		<ol class="forms">
-			<?= @params(array('jomsocial' => 'jomsocialdata')); ?>
+			<?= @params(array('name' => 'jomsocial')); ?>
 		</ol>
 		<h3>JomSocial Box Styles</h3>
 		<ol class="forms">
-			<?= @params(array('jomsocialboxes' => 'jomsocialboxesdata')); ?>
+			<?= @params(array('name' => 'jomsocialboxes')); ?>
 		</ol>
 	</div>
 	<div id="jomsocial-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="performance-options" class="options-panel">
 		<h3>Performance Settings</h3>
 		<ol class="forms">
-			<?= @params(array('performance' => 'performancedata')); ?>
+			<?= @params(array('name' => 'performance')); ?>
 		</ol>
 	</div>
 	<div id="performance-info" class="info-panel">

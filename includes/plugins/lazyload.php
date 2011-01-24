@@ -3,7 +3,7 @@
 	<div id="lazyload-options" class="options-panel">
 	    <h3>Lazyload Settings</h3>
 		<ol class="forms">
-			<?= @params(array('lazyload' => 'lazyloaddata')); ?>
+			<?= @params(array('name' => 'lazyload')); ?>
 		</ol>
 	</div>
 	<div id="lazyload-info" class="info-panel">

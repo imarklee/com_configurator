@@ -3,7 +3,7 @@
 	<div id="debugging-options" class="options-panel">
 		<h3>Debugging Settings</h3>
 		<ol class="forms">
-			<?= @params(array('debugging' => 'debuggingdata')) ?>
+			<?= @params(array('name' => 'debugging')) ?>
 		</ol>
 	</div>
 	<div id="debugging-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="preloader-options" class="options-panel">
 	    <h3>Preloader Settings</h3>
 		<ol class="forms">
-			<?= @params(array('preloader' => 'preloaderdata')); ?>
+			<?= @params(array('name' => 'preloader')); ?>
 		</ol>
 	</div>
 	<div id="preloader-info" class="info-panel">

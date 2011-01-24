@@ -13,7 +13,7 @@ class ComConfiguratorDatabaseTableConfigurations extends KDatabaseTableDefault
 {
 	public function __construct(KConfig $config)
 	{
-		$config->name = $config->base = 'configurator';
+		$config->name = 'configurator';
 
 		parent::__construct($config);
 

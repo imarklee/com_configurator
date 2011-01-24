@@ -24,23 +24,6 @@ class ComConfiguratorDatabaseRowsetConfigurations extends KDatabaseRowsetAbstrac
 	 * @var array
 	 */
 	protected $_params = array();
-	
-	/**
-	 * Constructor
-	 *
-	 * @param 	object 	An optional KConfig object with configuration options.
-	 */
-	public function __construct(KConfig $config = null)
-	{
-		parent::__construct($config);
-
-		foreach($this as $param)
-		{
-			$this->_params[$param->name] = $param->value;
-		}
-		
-		return $this;
-	}
 
 	/**
      * Retrieve a param value from a row
@@ -108,5 +91,21 @@ class ComConfiguratorDatabaseRowsetConfigurations extends KDatabaseRowsetAbstrac
 		if(isset($data['enabled'])) $new['enabled'] = $data['enabled'];
 		if(isset($data['source'])) $new['source'] = $data['source'];
 		return parent::setData($new, $modified);
+	}
+
+	/**
+	 * Add a row in the rowset
+	 * 
+	 * The row will be stored by it's identity_column if set or otherwise by
+	 * it's object handle.
+	 *
+	 * @param  object 	A KDatabaseRow object to be inserted
+	 * @return KDatabaseRowsetAbstract
+	 */
+	public function addRow(KDatabaseRowInterface $row)
+	{
+		$this->_params[$row->name] = $row->value;
+
+		return parent::addRow($row);
 	}
 }

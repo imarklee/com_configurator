@@ -6,6 +6,7 @@
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
+
 $template_dir = JPATH_SITE.'/templates/morph';
 $jVer 		= new JVersion();
 $jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;

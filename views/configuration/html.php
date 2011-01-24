@@ -72,7 +72,7 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		$morph_installed = JFolder::exists(JPATH_ROOT.'/templates/'.$template);
 		if ($morph_installed)
 		{
-			$configuration = KFactory::get($this->getModel())->getItem();
+			$configuration = $this->getModel()->getList();
 			$template_settings = array();
 			
 			// themelet
@@ -169,11 +169,12 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		// Check if the user have authenticated
 		$this->checkuser = (bool) KFactory::get('admin::com.configurator.model.users')->getTotal();
 		if(!isset($_COOKIE['unpack'])){
-			$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&getul='.(int)$this->checkuser.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.KFactory::get('admin::com.configurator.defines')->getVersion();
-			$js = JRoute::_($js);
-			$document->addScript($js);
-			$css = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=css');
-			$document->addStyleSheet($css);
+			//$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&getul='.(int)$this->checkuser.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.KFactory::get('admin::com.configurator.defines')->getVersion();
+			//$js = JRoute::_($js);
+			//$document->addScript($js);
+			//$css = JRoute::_('&option='.JRequest::getCmd('option').'&task=manage&render=css');
+			$document->addScript($jspath . 'configurator.js.php?eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.KFactory::get('admin::com.configurator.defines')->getVersion());
+			$document->addStyleSheet($csspath . 'configurator.css.php');
 		} else {
 			/* unpacked js
 			*****************************************/

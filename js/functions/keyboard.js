@@ -47,7 +47,7 @@ $(window).keydown(function(e){
 								        width: arrPageSizes[0],
 										height: arrPageSizes[1]
 									});
-									setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+									setTimeout(function(){ submitbutton('apply'); }, 1000);
 					   			},
 								buttons: { 
 									'Themelet Defaults': function(){
@@ -75,12 +75,12 @@ $(window).keydown(function(e){
 						        width: arrPageSizes[0],
 								height: arrPageSizes[1]
 							});
-							setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+							setTimeout(function(){ submitbutton('apply'); }, 1000);
 						}
 					}
 				});
 			}else{
-				setTimeout(function(){ submitbutton('applytemplate'); }, 1000);
+				setTimeout(function(){ submitbutton('apply'); }, 1000);
 			}
 			e.preventDefault();
 			return false;

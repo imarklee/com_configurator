@@ -208,8 +208,9 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 	 * 					or a KDatabaseRow
 	 * @return 	KDatabaseRow 	A row object containing the saved data
 	 */
-	protected function _actionApply($data)
+	protected function _actionApply(KCommandContext $context)
 	{
+		$data		= $context->data;
 		$filtered	= array();
 		$groups		= array(
 			'general',
@@ -265,18 +266,18 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		);
 		foreach($groups as $group)
 		{
-			foreach($data[$group] as $key => $value)
+			if(!isset($data->$group)) continue;
+			foreach($data->$group as $key => $value)
 			{
 				$filtered[$key] = $value;
 			}
 		}
 	
-		$rowset = $this->execute('edit', $data);
+		$rowset = $this->execute('edit', $filtered);
 
 		$this->_redirect = 'view='.$this->_identifier->name;
 		return $rowset;
-	}
-	
+	}	
 	
 	function applytemplate() {
 		global $mainframe;

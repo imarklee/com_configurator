@@ -202,7 +202,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 	<div class="clear">&nbsp;</div>
 	<?php if($cfg_pref->shelf_position == 2){ @template('admin::com.configurator.includes.layout.shelf'); } ?>
-	<?php if($cfg_pref->show_footer == 1){ @template('admin::com.configurator.includes.footer'); } ?>					
+	<?php if($cfg_pref->show_footer == 1){ @template('admin::com.configurator.includes.shelf_footer'); } ?>					
 						
 </div>
 <?php
@@ -212,6 +212,7 @@ if($cfg_pref->bottom_save >= 1){ ?>
 <input type="hidden" name="option" value="<?php echo JRequest::getCmd('option', 'com_configurator'); ?>"/>
 <input type="hidden" name="t" value="morph"/>
 <input type="hidden" name="task" value="" />
+<input type="hidden" name="action" value="apply" />
 </form>
 
 <div id="getting-started" style="display:none;"></div>

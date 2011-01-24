@@ -16,7 +16,7 @@ if(is_dir($themelet_dir)) {
 } else {
 	$lists['themelets'] = 'test';
 }
-$ct = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->param('themelet')->getItem()->value;
+$ct = KFactory::get('admin::com.configurator.model.configurations')->getItem()->themelet;
 ?>
 <div id="assets-themelets">
 	<div id="themelet-switch" class="switch">

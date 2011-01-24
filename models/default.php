@@ -18,5 +18,16 @@ defined('_JEXEC') or die('Restricted access');
  */
 class ComConfiguratorModelDefault extends ComConfiguratorModelAbstract
 {
-	
+	/**
+	 * Constructor
+     *
+     * @param 	object 	An optional KConfig object with configuration options
+	 */
+	public function __construct(KConfig $config)
+	{
+		parent::__construct($config);
+
+		// Set the limit state to avoid exceptions
+		$this->_state->insert('limit', 'int', 20);
+	}
 }

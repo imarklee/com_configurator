@@ -61,17 +61,17 @@ foreach($conditions as $name => $condition)
 ?>
 <div id="install-head">
 	<img src="<?php echo JURL; ?>/installer/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
-	<p class="steps"><strong>Installation Complete </strong>Everything installed successfully</p>
+	<p class="steps"><?= @text('<strong>Installation Complete </strong>Everything installed successfully') ?></p>
 </div>
 <div id="install-shadow">
 <div id="install-main">	
 	<div id="install-title">
-		<h2>Installation complete!</h2>
+		<h2><?= @text('Installation complete!') ?></h2>
 	</div>
 	<div id="install-body" class="complete">
-		<h3>Congratulations! Your installation was successful!</h3>
-		<p>Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.</p>	
-		<h4>Summary of what has been done:</h4>
+		<h3><?= @text('Congratulations! Your installation was successful!') ?></h3>
+		<p><?= @text('Want to get up and running quickly? Grab a cup of coffee and read through the "<strong>Getting started with Morph &amp; Configurator</strong>" help window that is displayed the first time you load Configurator.') ?></p>	
+		<h4><?= @text('Summary of what has been done:') ?></h4>
 		<ul id="install-summary">
 		<?php foreach($summary as $item) : ?>
 			<li class="<?php echo $item->class ?>"><?php echo JText::_($item->text) ?></li>	
@@ -80,9 +80,9 @@ foreach($conditions as $name => $condition)
 	</div>
 	<div id="install-foot">
 		<ul id="action">
-			<li class="previous"><a href="#" class="btn-skip back-step2"><span>&raquo; </span>Previous step</a></li>
-			<li class="skip">Skip this step<span> &raquo;</span></li>
-			<li class="next"><a href="index.php?option=com_configurator&view=configuration" class="launch-cfg btn-install" title="click here to get started with configurator">Launch Configurator</a></li>
+			<li class="previous"><a href="#" class="btn-skip back-step2"><span>&raquo; </span><?= @text('Previous step') ?></a></li>
+			<li class="skip"><?= @text('Skip this step') ?><span> &raquo;</span></li>
+			<li class="next"><a href="index.php?option=com_configurator&view=configuration" class="launch-cfg btn-install" title="click here to get started with configurator"><?= @text('Launch Configurator') ?></a></li>
 		</ul>
 	</div>
 </div>	

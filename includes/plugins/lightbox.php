@@ -3,7 +3,7 @@
 	<div id="lightbox-options" class="options-panel">
 	    <h3><?= @text('Colorbox Lightbox Settings') ?></h3>
 		<ol class="forms">
-			<?= @params(array('lightbox' => 'lightboxdata')); ?>
+			<?= @params(array('name' => 'lightbox')); ?>
 		</ol>
 	</div>
 	<div id="lightbox-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="progressive-options" class="options-panel">
 		<h3><?= @text('Progressive Enhancements Settings') ?></h3>
 		<ol class="forms">
-			<?= @params(array('progressive' => 'progressivedata')); ?>
+			<?= @params(array('name' => 'progressive')); ?>
 		</ol>
 	</div>
 	<div id="progressive-info" class="info-panel">

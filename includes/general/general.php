@@ -3,7 +3,7 @@
 	<div id="general-options" class="options-panel">
 		<h3><?= @text('General Settings') ?></h3>
 		<ol class="forms">
-			<?= @params(array('general' => 'generaldata')); ?>
+			<?= @params(array('name' => 'general')); ?>
 		</ol>
 	</div>
 	<div id="general-info" class="info-panel">

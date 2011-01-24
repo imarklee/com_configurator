@@ -3,7 +3,7 @@
 	<div id="captify-options" class="options-panel">
 	    <h3><?= @text('Fancy Captions Settings') ?></h3>
 		<ol class="forms">
-			<?= @params(array('captify' => 'captifydata')); ?>
+			<?= @params(array('name' => 'captify')); ?>
 		</ol>
 	</div>
 	<div id="captify-info" class="info-panel">

@@ -3,7 +3,7 @@
 	<div id="shareit-options" class="options-panel">
 	    <h3><?= @text('Shareit Settings') ?></h3>
 		<ol class="forms">
-			<?= @params(array('shareit' => 'shareitdata')); ?>
+			<?= @params(array('name' => 'shareit')); ?>
 		</ol>
 	</div>
 	<div id="shareit-info" class="info-panel">

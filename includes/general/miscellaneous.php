@@ -2,7 +2,7 @@
 <div id="miscellaneous-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="miscellaneous-options" class="options-panel">
 		<ol class="forms">
-			<?= @params(array('miscellaneous' => 'miscellaneousdata')); ?>
+			<?= @params(array('name' => 'miscellaneous')); ?>
 		</ol>
 	</div>
 	<div id="miscellaneous-info" class="info-panel">

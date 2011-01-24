@@ -21,46 +21,47 @@ $component_arr = (array) simplexml_load_file($component_xml);
 ?>
 
 <div id="report-bug" title="Send us your feedback">
-	<p class="teaser">Your feedback and suggestions are important to us. If there is anything that could be done better, or improved on - even the terminology we use, we want to know! Fill in the form below, with as much detail as possible.</p>
+	<p class="teaser"><?= @text('Your feedback and suggestions are important to us. If there is anything that could be done better, or improved on - 
+	even the terminology we use, we want to know! Fill in the form below, with as much detail as possible.') ?></p>
 
 	<form id="feedbackform" method="post" action="">
 	<fieldset>
 		<ul>
 			<li class="fb-name">
-				<label for="fb-name">Your name:</label>
+				<label for="fb-name"><?= @text('Your name:') ?></label>
 				<input type="text" name="name" id="fb-name" value="" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-email">
-				<label for="fb-email">Your email address</label>
+				<label for="fb-email"><?= @text('Your email address') ?></label>
 				<input type="text" name="email" id="fb-email" value="" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-type">
-				<label for="feedback_type">Type of feedback:</label>
+				<label for="feedback_type"><?= @text('Type of feedback:') ?></label>
 				<ul class="inline">
-					<li class="fb-suggestion"><label for="type_suggestion"><input type="radio" name="type" id="type_suggestion" value="enhancement" /><span>Suggestion</span></label></li>
-					<li class="fb-bug"><label for="type_bug"><input type="radio" name="type" value="bug"  id="type_bug"/> <span>Bug</span></label></li>
+					<li class="fb-suggestion"><label for="type_suggestion"><input type="radio" name="type" id="type_suggestion" value="enhancement" /><span><?= @text('Suggestion') ?></span></label></li>
+					<li class="fb-bug"><label for="type_bug"><input type="radio" name="type" value="bug"  id="type_bug"/> <span><?= @text('Bug') ?></span></label></li>
 				</ul>
 			</li>
 		
 			<li class="fb-product">
 				<label>In relation to:</label>
 				<ul class="inline">
-					<li class="fb-cfg"><label for="product_configurator"><input type="radio" name="category" value="7637" id="product_configurator" /><span>Configurator</span></label></li>
-					<li class="fb-morph"><label for="product_morph"><input type="radio" name="category" value="7635" id="product_morph" /><span>Morph</span></label></li>
+					<li class="fb-cfg"><label for="product_configurator"><input type="radio" name="category" value="7637" id="product_configurator" /><span><?= @text('Configurator') ?></span></label></li>
+					<li class="fb-morph"><label for="product_morph"><input type="radio" name="category" value="7635" id="product_morph" /><span><?= @text('Morph') ?></span></label></li>
 				</ul>
 			</li>
 
 			<li class="fb-subject">
-				<label for="ff-title">Subject:</label>
+				<label for="ff-title"><?= @text('Subject:') ?></label>
 				<input type="text" name="title" id="ff-title" value="" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-message">
-				<label for="ff-description">Message:</label>
+				<label for="ff-description"><?= @text('Message:') ?></label>
 				<textarea name="description" id="ff-description" rows="4" cols="40" class="text ui-widget-content ui-corner-all"></textarea>
 			</li>
 			<li class="fb-buttons">
-				<a href="#" class="btn-primary ff-submit"><span><strong>Send</strong> Feedback</span></a>
-				<a href="#" id="ff-reset">Cancel</a>
+				<a href="#" class="btn-primary ff-submit"><span><?= @text('<strong>Send</strong> Feedback') ?></span></a>
+				<a href="#" id="ff-reset"><?= @text('Cancel') ?></a>
 			</li>
 		</ul>
 	</fieldset>

@@ -32,7 +32,7 @@ function mootools($extension, $index, $app)
 
 <div id="mootools-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="mootools-options" class="options-panel">
-		<h3>Toggle which of your installed components to load Mootools on</h3>
+		<h3><?= @text('Toggle which of your installed components to load Mootools on') ?></h3>
 		<ol class="forms">
 			<?php
 			$options = array();
@@ -48,10 +48,10 @@ function mootools($extension, $index, $app)
 		</ol>
 	</div>
 	<div id="mootools-info" class="info-panel">
-		<h3>Selective loading of Mootools</h3>
-		<p class="teaser">Some Joomla extensions are built using the Mootools javascript library, which is included with Joomla by default. Due to the size of the library (75kb) 
+		<h3><?= @text('Selective loading of Mootools') ?></h3>
+		<p class="teaser"><?= @text('Some Joomla extensions are built using the Mootools javascript library, which is included with Joomla by default. Due to the size of the library (75kb) 
 		and the fact that Morph is built using jQuery, we prevent the Mootools file from loading to make your site as fast loading as possible. This feature lets you enable Mootools 
-		for specific components that require it.</p>
-		<p>This means that you no longer need to load Mootools globally through out your site and individual cache files will be created to ensure that only what is needed is ever loaded.</p>
+		for specific components that require it.') ?></p>
+		<p><?= @text('This means that you no longer need to load Mootools globally through out your site and individual cache files will be created to ensure that only what is needed is ever loaded.') ?></p>
 	</div>
 </div>

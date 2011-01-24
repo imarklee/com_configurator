@@ -10,16 +10,16 @@ $themelet_is_editable = array('custom.php', 'custom.js.php', 'custom.css.php', '
 $files = array('custom.php' => 'custom php', 'custom.js.php' => 'custom js', 'custom.css.php' => 'custom css', 'script.php' => 'custom footer code');
 ?>
 <div id="editor-wrap">
-	<h2>Code Editor</h2>
+	<h2><?= @text('Code Editor') ?></h2>
 	<div id="editor-desc">
-		<p>The code editor is used to add your own custom css, javascript or php and will save your custom code in the database, protecting your changes from upgrades. If you find the editor sluggish, try disabling the syntax highlighting in the Configurator preferences.</p>
+		<p><?= @text('The code editor is used to add your own custom css, javascript or php and will save your custom code in the database, protecting your changes from upgrades. If you find the editor sluggish, try disabling the syntax highlighting in the Configurator preferences.') ?></p>
 	</div>
 	<ul>
 		
 	    <li class="file-list">
 	        <span>
     	        <select name="editor-list" id="editor-list" size="1">
-    	       		<option value="">select file to edit</option>
+    	       		<option value=""><?= @text('select file to edit') ?></option>
     	            <optgroup label="Template files">
 						<?php 
 						foreach($template_files as $file){
@@ -50,15 +50,15 @@ $files = array('custom.php' => 'custom php', 'custom.js.php' => 'custom js', 'cu
     	        </select>
 	        </span>
 	    </li>
-		<li class="editor-controls"><a action="cancel" href="#" class="btn-link">Cancel</a></li>
-		<li class="editor-controls"><a action="apply" href="#" class="btn-link">Apply</a></li>
-		<li class="editor-controls"><a action="save" href="#" class="btn-link">Save</a></li>
+		<li class="editor-controls"><a action="cancel" href="#" class="btn-link"><?= @text('Cancel') ?></a></li>
+		<li class="editor-controls"><a action="apply" href="#" class="btn-link"><?= @text('Apply') ?></a></li>
+		<li class="editor-controls"><a action="save" href="#" class="btn-link"><?= @text('Save') ?></a></li>
 		<li><div id="editor-notification"><span>saving</span><img src="../administrator/components/com_configurator/images/ajax-loader.gif" height="31" width="31" /></div></li>
 	</ul>
     <div id="editor">
         <textarea name="editor" id="custom-code" rows="20" cols="113" style="display:none;"></textarea>
 		<div id="select-info">
-			<p>To begin editing a file, select a file from the menu above.</p>
+			<p><?= @text('To begin editing a file, select a file from the menu above.') ?></p>
 		</div>
     </div>
 </div>

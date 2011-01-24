@@ -66,26 +66,26 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 	<div id="tabs" class="ui-tabs ui-widget ui-widget-content <?= $cfg_pref->settings_effect ?>">
 		<ul class="primary ui-tabs-nav ui-helper-reset ui-helper-clearfix">
-			<li class="site-icon ui-tabs-selected"><a href="#site">General</a></li>
-			<li class="themelet-icon"><a href="#customize">Customize</a></li>
-			<li class="blocks-icon"><a href="#blocks">Building Blocks</a></li>
-			<li class="plugins-icon"><a href="#plugins">Plugins</a></li>
-			<li class="tools-icon"><a href="#tools">Tools</a></li>
-			<li class="assets-icon"><a href="#assets">Your Assets</a></li>
-			<li class="help-icon last"><a href="#help">Help</a></li>
+			<li class="site-icon ui-tabs-selected"><a href="#site"><?= @text('General') ?></a></li>
+			<li class="themelet-icon"><a href="#customize"><?= @text('Customize') ?></a></li>
+			<li class="blocks-icon"><a href="#blocks"><?= @text('Building Blocks') ?></a></li>
+			<li class="plugins-icon"><a href="#plugins"><?= @text('Plugins') ?></a></li>
+			<li class="tools-icon"><a href="#tools"><?= @text('Tools') ?></a></li>
+			<li class="assets-icon"><a href="#assets"><?= @text('Your Assets') ?></a></li>
+			<li class="help-icon last"><a href="#help"><?= @text('Help') ?></a></li>
 		</ul>
 		<div id="site" class="ui-tabs-panel">
 			<div id="site-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['site-desc'])) @template('admin::com.configurator.includes.general.desc-site') ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab">General</a></li>
-					<li class="icon-performance"><a href="#performance-tab">Performance</a></li>
-					<li class="icon-debugging"><a href="#debugging-tab">Debugging</a></li>
-                    <li class="icon-components"><a href="#components-tab">Component Layouts</a></li>
-                    <li class="icon-comperformance"><a href="#mootools-tab">Mootools Compatibility</a></li>
-                    <!--<?php if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab">JomSocial Integration</a></li><?php } ?>-->
-                    <!--<li class="icon-menuitems"><a href="#menuitems-tab">Menu Items</a></li>-->
-                    <li class="icon-enhancements"><a href="#enhancements-tab">Core Enhancements</a></li>
+					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab"><?= @text('General') ?></a></li>
+					<li class="icon-performance"><a href="#performance-tab"><?= @text('Performance') ?></a></li>
+					<li class="icon-debugging"><a href="#debugging-tab"><?= @text('Debugging') ?></a></li>
+                    <li class="icon-components"><a href="#components-tab"><?= @text('Component Layouts') ?></a></li>
+                    <li class="icon-comperformance"><a href="#mootools-tab"><?= @text('Mootools Compatibility') ?></a></li>
+                    <!--<?php if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab"><?= @text('JomSocial Integration') ?></a></li><?php } ?>-->
+                    <!--<li class="icon-menuitems"><a href="#menuitems-tab"><?= @text('Menu Items') ?></a></li>-->
+                    <li class="icon-enhancements"><a href="#enhancements-tab"><?= @text('Core Enhancements') ?></a></li>
 				</ul>
 				<?= @template('admin::com.configurator.includes.general.general') ?>
 				<?= @template('admin::com.configurator.includes.general.performance') ?>
@@ -102,11 +102,11 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			<div id="customize-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['themelet-desc'])) { @template('admin::com.configurator.includes.customize.desc-customize'); } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab">Color Settings</a></li>
-					<li class="icon-logos"><a href="#logos-tab">Logo Settings</a></li>
-					<li class="icon-backgrounds"><a href="#backgrounds-tab">Background Settings</a></li>
-					<li class="ui-tabs-selected icon-fonts"><a href="#fonts-tab">Custom Fonts</a></li>
-					<li class="icon-iphone"><a href="#iphone-tab">iPhone Compatibility</a></li>
+					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab"><?= @text('Color Settings') ?></a></li>
+					<li class="icon-logos"><a href="#logos-tab"><?= @text('Logo Settings') ?></a></li>
+					<li class="icon-backgrounds"><a href="#backgrounds-tab"><?= @text('Background Settings') ?></a></li>
+					<li class="ui-tabs-selected icon-fonts"><a href="#fonts-tab"><?= @text('Custom Fonts') ?></a></li>
+					<li class="icon-iphone"><a href="#iphone-tab"><?= @text('iPhone Compatibility') ?></a></li>
 				</ul>
 				<?= @template('admin::com.configurator.includes.customize.colors') ?>
 				<?= @template('admin::com.configurator.includes.customize.logos') ?>
@@ -120,17 +120,17 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			<div id="blocks-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['blocks-desc'])) { @template('admin::com.configurator.blocks.desc-blocks'); } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab">Toolbar</a></li>
-					<li class="icon-mainhead"><a href="#mainhead-tab">Masthead</a></li>
-					<li class="icon-subhead"><a href="#subhead-tab">Subhead</a></li>
-					<li class="icon-topnav"><a href="#topnav-tab">Topnav</a></li>
-					<li class="icon-oshelves"><a href="#outer-shelves-tab">Outer Shelves</a></li>
-					<li class="icon-ishelves"><a href="#inner-shelves-tab">Inner Shelves</a></li>
-					<li class="icon-main"><a href="#main-tab">Main Content</a></li>
-					<li class="icon-sidebars"><a href="#outer-sidebar-tab">Outer Sidebar</a></li>
-					<li class="icon-sidebars"><a href="#inner-sidebar-tab">Inner Sidebar</a></li>
-					<li class="icon-insets"><a href="#insets-tab">Insets</a></li>
-					<li class="icon-footer"><a href="#footer-tab">Footer</a></li>
+					<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab"><?= @text('Toolbar') ?></a></li>
+					<li class="icon-mainhead"><a href="#mainhead-tab"><?= @text('Masthead') ?></a></li>
+					<li class="icon-subhead"><a href="#subhead-tab"><?= @text('Subhead') ?></a></li>
+					<li class="icon-topnav"><a href="#topnav-tab"><?= @text('Topnav') ?></a></li>
+					<li class="icon-oshelves"><a href="#outer-shelves-tab"><?= @text('Outer Shelves') ?></a></li>
+					<li class="icon-ishelves"><a href="#inner-shelves-tab"><?= @text('Inner Shelves') ?></a></li>
+					<li class="icon-main"><a href="#main-tab"><?= @text('Main Content') ?></a></li>
+					<li class="icon-sidebars"><a href="#outer-sidebar-tab"><?= @text('Outer Sidebar') ?></a></li>
+					<li class="icon-sidebars"><a href="#inner-sidebar-tab"><?= @text('Inner Sidebar') ?></a></li>
+					<li class="icon-insets"><a href="#insets-tab"><?= @text('Insets') ?></a></li>
+					<li class="icon-footer"><a href="#footer-tab"><?= @text('Footer') ?></a></li>
 				</ul>
 				<?= @template('admin::com.configurator.includes.blocks.toolbar') ?>
 				<?= @template('admin::com.configurator.includes.blocks.mainhead') ?>
@@ -150,9 +150,9 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			<div id="plugins-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['plugins-desc'])) { @template('admin::com.configurator.plugins/desc-plugins'); } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab">Fancy Captions</a></li>
-					<li class="icon-lightbox"><a href="#lightbox-tab">Lightbox</a></li>
-					<li class="icon-preloader"><a href="#preloader-tab">Preloader</a></li>
+					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab"><?= @text('Fancy Captions') ?></a></li>
+					<li class="icon-lightbox"><a href="#lightbox-tab"><?= @text('Lightbox') ?></a></li>
+					<li class="icon-preloader"><a href="#preloader-tab"><?= @text('Preloader') ?></a></li>
 				</ul>
 				<?= @template('admin::com.configurator.includes.plugins.captify') ?>
 				<?= @template('admin::com.configurator.includes.plugins.lightbox') ?>
@@ -164,11 +164,11 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			<div id="tools-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['tools-desc'])) { @template('admin::com.configurator.tools.desc-tools'); } ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-installer"><a href="#tools-installer">Universal Installer</a></li>
-					<li class="icon-db"><a href="#database-manager">Import / Export</a></li>
-					<li class="icon-reset"><a href="#reset-settings">Reset Settings</a></li>
-					<li class="icon-editor"><a href="#editor-wrap">Code Editor</a></li>
-					<li class="icon-modules"><a href="#module-migrator">Module Migrator</a></li>
+					<li class="icon-installer"><a href="#tools-installer"><?= @text('Universal Installer') ?></a></li>
+					<li class="icon-db"><a href="#database-manager"><?= @text('Import / Export') ?></a></li>
+					<li class="icon-reset"><a href="#reset-settings"><?= @text('Reset Settings') ?></a></li>
+					<li class="icon-editor"><a href="#editor-wrap"><?= @text('Code Editor') ?></a></li>
+					<li class="icon-modules"><a href="#module-migrator"><?= @text('Module Migrator') ?></a></li>
 				</ul>
 				<?= @template('admin::com.configurator.includes.tools.uploader') ?>
 				<?= @template('admin::com.configurator.includes.tools.database') ?>
@@ -182,15 +182,15 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			<div id="assets-tabs" class="subtabs">
 				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['assets-desc'])) include JPATH_COMPONENT_ADMINISTRATOR.'/views/help/tmpl/desc_assets.php' ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-themelets"><a href="<?php echo JRoute::_('?option=com_configurator&amp;view=themelets&amp;format=raw') ?>">Themelets</a></li>
-					<li class="icon-logos"><a href="?option=com_configurator&amp;view=logos&amp;format=raw">Logos</a></li>
-					<li class="icon-backgrounds"><a href="?option=com_configurator&amp;view=backgrounds&amp;format=raw">Backgrounds</a></li>
-					<li class="icon-iphone"><a href="?option=com_configurator&amp;view=iphone&amp;format=raw">iPhone</a></li>
-					<li class="icon-backupmgr"><a href="?option=com_configurator&amp;view=backups&amp;format=raw">Backups</a></li>
-					<li class="icon-recycle"><a href="?option=com_configurator&amp;view=recycle&amp;format=raw">Recycle Bin</a></li>
+					<li class="icon-themelets"><a href="<?php echo JRoute::_('?option=com_configurator&amp;view=themelets&amp;format=raw') ?>"><?= @text('Themelets') ?></a></li>
+					<li class="icon-logos"><a href="?option=com_configurator&amp;view=logos&amp;format=raw"><?= @text('Logos') ?></a></li>
+					<li class="icon-backgrounds"><a href="?option=com_configurator&amp;view=backgrounds&amp;format=raw"><?= @text('Backgrounds') ?></a></li>
+					<li class="icon-iphone"><a href="?option=com_configurator&amp;view=iphone&amp;format=raw"><?= @text('iPhone') ?></a></li>
+					<li class="icon-backupmgr"><a href="?option=com_configurator&amp;view=backups&amp;format=raw"><?= @text('Backups') ?></a></li>
+					<li class="icon-recycle"><a href="?option=com_configurator&amp;view=recycle&amp;format=raw"><?= @text('Recycle Bin') ?></a></li>
 				</ul>
 				<div class="icon-backup"> 
-					<span><a href="?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball">Download a Backup</a></span>				
+					<span><a href="?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball"><?= @text('Download a Backup') ?></a></span>				
 				</div>
 			</div>
 		</div>
@@ -207,7 +207,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 </div>
 <?php
 if($cfg_pref->bottom_save >= 1){ ?>
-<div id="bottom-save"<?php echo bs_class($cfg_pref->bottom_save); ?> style="display:none;"><a href="#" title="you can configure how this save bar is displayed in the configurator preferences">Save your settings</a></div>
+<div id="bottom-save"<?php echo bs_class($cfg_pref->bottom_save); ?> style="display:none;"><a href="#" title="you can configure how this save bar is displayed in the configurator preferences"><?= @text('Save your settings') ?></a></div>
 <?php } ?>
 <input type="hidden" name="option" value="<?php echo JRequest::getCmd('option', 'com_configurator'); ?>"/>
 <input type="hidden" name="t" value="morph"/>

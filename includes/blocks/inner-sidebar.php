@@ -1,39 +1,39 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <div id="inner-sidebar-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="inner-sidebar-options" class="options-panel">
-	    <h3>Inner Sidebar Defaults</h3>
+	    <h3><?= @text('Inner Sidebar Defaults') ?></h3>
 		<ol class="forms">
 			<?= @params(array('name' => 'innsersidebar')) ?>
 		</ol>
-	    <h3>Inner1 Position</h3>
+	    <h3><?= @text('Inner1 Position') ?></h3>
 		<ol class="forms">
 			<?= @params(array('name' => 'inner1')) ?>
 		</ol>
-	    <h3>Inner2 Position</h3>
+	    <h3><?= @text('Inner2 Position') ?></h3>
 		<ol class="forms">
 			<?= @params(array('name' => 'inner2')) ?>
 		</ol>
-	    <h3>Inner3 Position</h3>
+	    <h3><?= @text('Inner3 Position') ?></h3>
 		<ol class="forms">
 			<?= @params(array('name' => 'inner3')) ?>
 		</ol>
-	    <h3>Inner4 Position</h3>
+	    <h3><?= @text('Inner4 Position') ?></h3>
 		<ol class="forms">
 			<?= @params(array('name' => 'inner4')) ?>
 		</ol>
-	    <h3>Inner5 Position</h3>
+	    <h3><?= @text('Inner5 Position') ?></h3>
 		<ol class="forms">
 			<?= @params(array('name' => 'inner5')) ?>
 		</ol>
 	</div>
 	<div id="inner-sidebar-info" class="info-panel">
-		<h3>Inner Sidebar</h3>
-		<p class="teaser">The concept of the inner &amp; outer layouts require a bit of understanding to 
+		<h3><?= @text('Inner Sidebar') ?></h3>
+		<p class="teaser"><?= @text('The concept of the inner &amp; outer layouts require a bit of understanding to 
 		grasp, but once you do you will have unparalelled flexibility at your finger tips.</p>
 		<p>Based on commonly accepted <em>best practices</em>, we refer to your sites main content as your 
 		<strong>primary content</strong> &amp; likewise your two optional sidebars are referred to as your 
 		<strong>secondary &amp; tertiary content</strong>. This naming convention relates to the importance 
-		of the content &amp; is ordered accordingly in your sites source code.</p>
+		of the content &amp; is ordered accordingly in your sites source code.') ?></p>
 		
         <!-- <h4>Understanding the Inner &amp; Outer layouts</h4>
 		<p>The <strong>outer layout</strong> refers to the width and position of your <strong>secondary content</strong>,

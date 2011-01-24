@@ -99,13 +99,13 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 		</ol>
 	</div>
 	<div id="components-info" class="info-panel">
-		<h3>Setting component default layouts</h3>
-		<p class="teaser">These options allow you to set the default inner and outer layouts for each of your installed components.</p>
+		<h3><?= @text('Setting component default layouts') ?></h3>
+		<p class="teaser"><?= @text('These options allow you to set the default inner and outer layouts for each of your installed components.') ?></p>
 		
-		<p>The term "inner &amp; outer layouts" refers to the widths and positions (left or right) of the templates two sidebars.</p>
-		<p>The outer layout comes second (after the main content) in the templates source order and houses the <strong>splitleft</strong>, 
-		<strong>topleft</strong>, <strong>left</strong> &amp; <strong>bottomleft</strong> module positions.</p>
-		<p>The inner layout, or right sidebar, houses the <strong>splitright</strong>, 
-		<strong>topright</strong>, <strong>right</strong> &amp; <strong>bottomright</strong> module positions.</p>
+		<p><?= @text('The term "inner &amp; outer layouts" refers to the widths and positions (left or right) of the templates two sidebars.') ?></p>
+		<p><?= @text('The outer layout comes second (after the main content) in the templates source order and houses the <strong>splitleft</strong>, 
+		<strong>topleft</strong>, <strong>left</strong> &amp; <strong>bottomleft</strong> module positions.') ?></p>
+		<p><?= @text('The inner layout, or right sidebar, houses the <strong>splitright</strong>, 
+		<strong>topright</strong>, <strong>right</strong> &amp; <strong>bottomright</strong> module positions.') ?></p>
 	</div>
 </div>

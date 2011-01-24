@@ -120,18 +120,22 @@ function menu_items_list()
 
 <div id="menuitems-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="menuitems-options" class="options-panel">
-		<h3>Menu level customization</h3>
+		<h3><?= @text('Menu level customization') ?></h3>
 		<div class="inner">
-		<p>Select a menu item to edit, then click the "<strong>Customize</strong>" button. This will reload the page and let you customize specific options for your selected menu item. Options need to be "unlocked" in order to override the default (simply click the lock icon to the right of the option and then make your change).</p>
+		<p><?= @text('Select a menu item to edit, then click the "<strong>Customize</strong>" button. This will reload the page and 
+		let you customize specific options for your selected menu item. Options need to be "unlocked" in order to override the default 
+		(simply click the lock icon to the right of the option and then make your change).') ?></p>
 		<?php echo menu_items_list() ?>
-		<a href="#" class="save-and-reload btn-link">Customize</a>
-		<a href="#" class="reset-menuitems btn-link">Reset</a>
+		<a href="#" class="save-and-reload btn-link"><?= @text('Customize') ?></a>
+		<a href="#" class="reset-menuitems btn-link"><?= @text('Reset') ?></a>
 		</div>
 	</div>
 	
 	<div id="menuitems-info" class="info-panel">
-		<h3>Set options per menu item.</h3>
-		<p class="teaser">This feature lets you set alternate configurations on a per menu item level. Whether its displaying a different background color for each sections of your site, or switching your module chromes on different pages, this feature really takes Morph to a whole new level.</p>
+		<h3><?= @text('Set options per menu item.') ?></h3>
+		<p class="teaser"><?= @text('This feature lets you set alternate configurations on a per menu item level. Whether its displaying 
+		a different background color for each sections of your site, or switching your module chromes on different pages, this feature 
+		really takes Morph to a whole new level.') ?></p>
 		<p></p>
 	</div>
 </div>

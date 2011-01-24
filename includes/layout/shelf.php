@@ -49,7 +49,7 @@ setcookie('current_themelet', $params->get('themelet'), 0, '/'); ?>
 			<?php endif ?>
 			<?php if(isset($_COOKIE['formChanges'])){ ?>
 			<li class="changes">
-			    <span class="shelf-notice">You have unsaved changes</span>
+			    <span class="shelf-notice"><?= @text('You have unsaved changes') ?></span>
 			</li>
 			<?php } ?>
 			<li class="toggle-shelf">
@@ -60,10 +60,10 @@ setcookie('current_themelet', $params->get('themelet'), 0, '/'); ?>
 	</div>
 	<div id="shelf-contents">
 		<div id="updates-summary">
-			<h3>Updates summary</h3>
+			<h3><?= @text('Updates summary') ?></h3>
 			<p class="updates-help">
-				<a href="#" class="tt-inline updates-help-link" title="Help::Get help on the Configurator inline updating system">help</a>
-				<a href="#" class="tt-inline updates-refresh-link" title="Check for Updates::Check for updates on Configurator, Morph and installed themelet.">check for updates</a>
+				<a href="#" class="tt-inline updates-help-link" title="Help::Get help on the Configurator inline updating system"><?= @text('help') ?></a>
+				<a href="#" class="tt-inline updates-refresh-link" title="Check for Updates::Check for updates on Configurator, Morph and installed themelet."><?= @text('check for updates') ?></a>
 			</p>
 				<dl>
 					<dt name="com_configurator" type="shelf" id="us-configurator">Configurator</dt>
@@ -88,25 +88,25 @@ setcookie('current_themelet', $params->get('themelet'), 0, '/'); ?>
 		<div id="current-themelet">
 			<h3>Current themelet</h3>
 			<ul>
-				<li class="ct-name"><span>Name: </span><?php echo $themelet_arr['name']; ?></li>
-				<li class="ct-author"><span>Author: </span><a href="<?php echo $themelet_arr['authorUrl']; ?>" target="_blank" title="View all themelets by this provider"><?php echo $themelet_arr['author']; ?></a></li>
-				<li class="ct-version"><span>Version: </span><?php echo $themelet_arr['version']; ?></li>
+				<li class="ct-name"><span><?= @text('Name:') ?> </span><?php echo $themelet_arr['name']; ?></li>
+				<li class="ct-author"><span><?= @text('Author:') ?> </span><a href="<?php echo $themelet_arr['authorUrl']; ?>" target="_blank" title="View all themelets by this provider"><?php echo $themelet_arr['author']; ?></a></li>
+				<li class="ct-version"><span><?= @text('Version:') ?> </span><?php echo $themelet_arr['version']; ?></li>
 				<li class="thumb ct-thumb"><span>&nbsp;</span>
 				<img src="<?php echo $themelet_urlpath . $params->get('themelet'); ?>/themelet_thumb.png" width="108" height="72" align="middle" alt="<?php echo $themelet_arr['name']; ?>" />
 				</li>
 			</ul>
 		</div>
 		<div id="visual-refs">
-			<h3>Quick reference guides <span>(<a href="#" title="" id="keyboard-toggle">Keyboard Shortcuts</a>)</span></h3>
+			<h3><?= @text('Quick reference guides') ?> <span>(<a href="#" title="" id="keyboard-toggle"><?= @text('Keyboard Shortcuts') ?></a>)</span></h3>
 			<ul class="buttons">
-				<li><a class="info-link btn-link" href="gettingstarted.html" title="Morph Quick Start Guide">Quick Start</a></li>
-				<li><a class="modal-link-img btn-link" href="visual-blocks.html" title="Visual Reference: Building Blocks">Blocks Reference</a></li>
-				<li><a class="modal-link-img btn-link" href="visual-positions.html" title="Visual Reference: Module Positions">Module Positions</a></li>
-				<li><a class="modal-link btn-link" href="modfx.html" title="Introduction to ModuleFX">ModuleFX</a></li>
-				<li><a class="modal-link btn-link" href="pagefx.html" title="Introduction to PageFX">PageFX</a></li>
-				<li><a class="modal-link btn-link" href="menufx.html" title="Introduction to MenuFX">MenuFX</a></li>
-				<li><a class="modal-link btn-link" href="contentfx.html" title="Introduction to ContentFX">ContentFX</a></li>
-				<li><a class="modal-link btn-link" href="chromefx.html" title="Introduction to ChromeFX">ChromeFX</a></li>
+				<li><a class="info-link btn-link" href="gettingstarted.html" title="Morph Quick Start Guide"><?= @text('Quick Start') ?></a></li>
+				<li><a class="modal-link-img btn-link" href="visual-blocks.html" title="Visual Reference: Building Blocks"><?= @text('Blocks Reference') ?></a></li>
+				<li><a class="modal-link-img btn-link" href="visual-positions.html" title="Visual Reference: Module Positions"><?= @text('Module Positions') ?></a></li>
+				<li><a class="modal-link btn-link" href="modfx.html" title="Introduction to ModuleFX"><?= @text('ModuleFX') ?></a></li>
+				<li><a class="modal-link btn-link" href="pagefx.html" title="Introduction to PageFX"><?= @text('PageFX') ?></a></li>
+				<li><a class="modal-link btn-link" href="menufx.html" title="Introduction to MenuFX"><?= @text('MenuFX') ?></a></li>
+				<li><a class="modal-link btn-link" href="contentfx.html" title="Introduction to ContentFX"><?= @text('ContentFX') ?></a></li>
+				<li><a class="modal-link btn-link" href="chromefx.html" title="Introduction to ChromeFX"><?= @text('ChromeFX') ?></a></li>
 			</ul>
 		</div>
 	</div>

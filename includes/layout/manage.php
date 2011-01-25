@@ -216,7 +216,7 @@ if($cfg_pref->bottom_save >= 1){ ?>
 </form>
 
 <div id="getting-started" style="display:none;"></div>
-<div id="preferences-screen" style="display:none;"><?php @template('admin::com.configurator.includes.preferences'); ?></div>
+<div id="preferences-screen" style="display:none;"><?= @template('admin::com.configurator.includes.preferences'); ?></div>
 <div id="keyboard-screen" style="display:none;"></div>
 <div class="toolguides" style="display:none;"></div>
 <? } ?>

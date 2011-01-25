@@ -311,7 +311,7 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		{
 			
 			$overlays->$name = $cfg_pref->show_intros 
-				? $this->loadTemplate('default_desc', array(
+				? $this->getTemplate()->loadIdentifier('default_desc', array(
 					'name'	=> $name,
 					'title' => $parts['title'],
 					'text'	=> $parts['text']

@@ -353,10 +353,10 @@ jQuery.noConflict()(function($){
 		$('#preferences-form').submit(function(){
    			$(this).ajaxSubmit({
    				type: 'POST',
-   				url: '?format=raw',
+   				url: '?option=com_configurator&view=configuration&format=raw',
    				data: {
    					option: 'com_configurator',
-   					task: 'saveprefs'
+   					action: 'saveprefs'
    				},
 	   			success: function(data, textStatus){
 					$('#tips').remove();
@@ -1411,10 +1411,10 @@ $('.text_area').simpleautogrow();
 			$('#preferences-form').submit(function(){
 	   			$(this).ajaxSubmit({
 	   				type: 'POST',
-	   				url: '?format=raw',
+	   				url: '?option=com_configurator&view=configuration&format=raw',
 	   				data: {
 	   					option: 'com_configurator',
-	   					task: 'saveprefs'
+	   					action: 'saveprefs'
 	   				},
 		   			success: function(data, textStatus){
 		   				

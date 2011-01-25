@@ -175,7 +175,23 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		
 		if( file_exists( $full_filename ) ) @unlink( $full_filename );
 		$mainframe->redirect("index2.php?option={$option}&task=manage", "Favicon ({$icon_file}) removed." );
-	}  
+	}
+
+	/**
+	 * @TODO move this into a separate controller
+	 */
+	protected function _actionSaveprefs(KCommandContext $context)
+	{
+		$table	= KFactory::get('admin::com.configurator.database.table.preferences');
+		$data	= $context->data->cfg;
+
+		foreach($data as $key => $value)
+		{
+			$table->select(array('pref_name' => $key))->setData(array('pref_value' => $value))->save();
+		}
+
+		$this->_redirect = KRequest::url();
+	}
 	
 	function saveprefs(){
 		global $mainframe;

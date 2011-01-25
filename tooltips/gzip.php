@@ -1,5 +1,6 @@
+<?php ?>
 <div id="docs-gzip" class="docs-wrap">
-<h3>Gzip Explained:</h3>
+<h3><?= @text('Gzip Explained:') ?></h3>
 <p class="intro"></p>
 
 <h4></h4>

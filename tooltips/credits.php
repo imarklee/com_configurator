@@ -1,23 +1,24 @@
+<?php ?>
 <div id="credits">
-<h2>Credits for the Morph Toolset</h2>
+<h2><?= @text('Credits for the Morph Toolset') ?></h2>
 
 <div id="credits-block1">
-<h3>Configurator</h3>
-<p>The Configurator component is based on Tatami from <a href="http://www.ninjaforge.com" target="_blank">Ninja Forge</a>.</p>
+<h3><?= @text('Configurator') ?></h3>
+<p><?= @text('The Configurator component is based on Tatami from <a href="http://www.ninjaforge.com" target="_blank">Ninja Forge</a>.') ?></p>
 
-<h3>Morph Development Team</h3>
+<h3><?= @text('Morph Development Team') ?></h3>
 <ul>
     <li>Chris Rault (<a href="http://www.prothemer.com" target="_blank">link</a>)</li>
-    <li>Stian Didriksen (<a href="http://www.ninjaforge.com" target="_blank">link</a>)</li>    
     <li>Andrew Neale (<a href="http://www.prothemer.com" target="_blank">link</a>)</li>    
+    <li>Stian Didriksen (<a href="http://www.ninjaforge.com" target="_blank">link</a>)</li>    
 </ul>
-<h3>Other Contributors</h3>
+<h3><?= @text('Other Contributors') ?></h3>
 <ul>
     <li>Carlos Guimaraes (<a href="http://www.open4g.com" target="_blank">link</a>)</li>
     <li>Ben Hornedo (<a href="http://www.uptown4.com" target="_blank">link</a>)</li>    
     <li>Byron Rode (<a href="http://www.byronrode.co.za" target="_blank">link</a>)</li>    
 </ul>
-<h3>Images/icons used in Configurator</h3>
+<h3><?= @text('Images/icons used in Configurator') ?></h3>
 <ul>
     <li>Fugue Icons by <em>Yusuke Kamiyamane</em> (<a href="http://www.pinvoke.com/" target="_blank">link</a>)</li>
     <li>Developer Icons by <em>Olivier Charavel</em> (<a href="http://sekkyumu.deviantart.com/art/Developpers-Icons-63052312" target="_blank">link</a>)</li>
@@ -29,14 +30,14 @@
 </div>
 
 <div id="credits-block2">
-<h3>Integrated Libraries</h3>
+<h3><?= @text('Integrated Libraries') ?></h3>
 <ul>
     <li>jQuery Javascript Library (<a href="http://www.jquery.com/" target="_blank">link</a>)</li>
     <li>jQuery ui css library (<a href="http://www.jqueryui.com/" target="_blank">link</a>)</li>    
     <li>YUI CSS Library (<a href="http://developer.yahoo.com/yui" target="_blank">link</a>)</li>    
     <li>Browers Detection (<a href="http://chrisschuld.com" target="_blank">link</a>)</li>
 </ul>
-<h3>jQuery Plugins</h3>
+<h3><?= @text('jQuery Plugins') ?></h3>
 <ul>
     <li>jQuery ui tabs plugin (<a href="http://www.jqueryui.com/" target="_blank">link</a>)</li>
     <li>jQuery ui accordion plugin (<a href="http://www.jqueryui.com/" target="_blank">link</a>)</li>

@@ -1,5 +1,6 @@
+<?php ?>
 <div id="docs-slider" class="docs-wrap">
-<h3> Explained:</h3>
+<h3><?= @text('Slider Explained:') ?></h3>
 <p class="intro"></p>
 
 <h4></h4>

@@ -1,5 +1,6 @@
+<?php ?>
 <div id="docs-csspack" class="docs-wrap">
-<h3>Introduction to CSS Packing:</h3>
+<h3><?= @text('Introduction to CSS Packing:') ?></h3>
 <p class="intro"></p>
 
 <h4></h4>

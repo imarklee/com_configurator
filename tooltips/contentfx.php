@@ -1,0 +1,26 @@
+<?php ?>
+<div id="docs-modfx" class="docs-wrap">
+<h2><?= @text('Understanding ContentFX:') ?></h2>
+<p class="intro"><?= @text('A number of content enhancements can be applied by adding classes to your xhtml to add effects from rounded corners to emphasis on first letters and paragraphs of text.') ?></p>
+
+<h3></h3>
+<p></p>
+
+<dl class="options-list">
+
+<dt></dt>
+<dd></dd>
+
+</dl>
+
+ </div>
+ 
+
+
+
+
+
+
+
+
+

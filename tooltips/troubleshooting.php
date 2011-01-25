@@ -1,0 +1,15 @@
+<?php ?>
+<div id="docs-troubleshooting" class="docs-wrap">
+<h2><?= @text('Troubleshooting Morph') ?></h2>
+<p class="intro"><?= @text("The content from this page is currently on vacation in the bahamas. We're hoping it'll come home soon. In the mean time, feel free to <a href='http://www.joomlajunkie.com/member' title='click here to open our forums in a new window' target='_blank'>post in the forums</a> if you have any questions.") ?></p>
+</div>
+ 
+
+
+
+
+
+
+
+
+

@@ -92,7 +92,7 @@ class ComConfiguratorDatabaseTableTemplatesettings extends KDatabaseTableDefault
 		$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
 		$template = strtolower($template);
 		$this->_db->setQuery("SELECT * FROM #__configurator WHERE `template_name` = '{$template}' AND `param_name` = '{$this->param_name}'");
-		$this->setProperties($this->_db->loadAssoc());
+		$this->setData($this->_db->loadAssoc());
 
     	return $this;
     }

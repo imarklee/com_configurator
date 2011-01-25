@@ -1,5 +1,5 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
-<?php $curr_themelet = KFactory::get('admin::com.configurator.database.table.templatesettings')->param('themelet')->getItem()->value ?>
+<?php $curr_themelet = KFactory::get('admin::com.configurator.model.configurations')->getItem()->themelet ?>
 <div id="database-manager">
 	<h2>Export / Import Manager</h2>
 	<ul>

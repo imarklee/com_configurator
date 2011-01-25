@@ -990,7 +990,7 @@ $('.text_area').simpleautogrow();
 												   				url: '?format=raw',
 												   				data: {
 												   					option: 'com_configurator',
-												   					task: 'applytemplate',
+												   					task: 'apply',
 												   					action: 'apply',
 												   					isajax: 'true'
 												   				},
@@ -1097,7 +1097,7 @@ $('.text_area').simpleautogrow();
 										function actLogo(){
 											var setLogo = data.logo;
 											var logoOption = $('#logologo_image option:last').after('<option selected="selected" value="'+setLogo+'">'+setLogo+'</option>');
-		   									submitbutton('applytemplate');
+		   									submitbutton('apply');
 		   									var $tabs = $('#tabs').tabs();
 											var logoTabs = $('#customize-tabs').tabs();
 											$tabs.tabs('select', 1);
@@ -1129,7 +1129,7 @@ $('.text_area').simpleautogrow();
 										function actBg(){
 											var setBg = data.background;
 											var logoBg = $('#backgroundsbg_image option:last').after('<option selected="selected" value="'+setBg+'">'+setBg+'</option>');
-		   									submitbutton('applytemplate');
+		   									submitbutton('apply');
 		   									var $tabs = $('#tabs').tabs();
 											var bgTabs = $('#customize-tabs').tabs();
 											$tabs.tabs('select', 1);
@@ -1281,7 +1281,7 @@ $('.text_area').simpleautogrow();
 	
 	$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(event){
 		ptOverlay('Saving Settings...');
-		submitbutton('applytemplate');
+		submitbutton('apply');
 		event.preventDefault();
 	});
 	

@@ -127,7 +127,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	   				url: '?option=com_configurator&view=configuration&isajax=true&format=raw',
 	   				data: {
 	   					option: 'com_configurator',
-	   					task: 'applytemplate',
+	   					action: 'apply',
 	   					isajax: 'true'
 	   				},
 		   			success: function(data, textStatus){
@@ -280,7 +280,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	   				url: '?format=raw',
 	   				data: {
 	   					option: 'com_configurator',
-	   					task: 'applytemplate',
+	   					action: 'apply',
 	   					isajax: 'true'
 	   				},
 	   				success: function(data, textStatus){
@@ -353,7 +353,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	   				url: '?format=raw',
 	   				data: {
 	   					option: 'com_configurator',
-	   					task: 'applytemplate',
+	   					action: 'apply',
 	   					isajax: 'true'
 	   				},
 		   			success: function(data, textStatus){

@@ -17,7 +17,7 @@ if(is_dir($logo_dir)) {
 	$lists['logos'] = null;
 }
 
-$activelogo = JTable::getInstance('ConfiguratorTemplateSettings', 'Table')->param('logo_image')->getItem()->value;
+$activelogo = KFactory::get('admin::com.configurator.model.configurations')->getItem()->themelet;
 ?>
 <div id="assets-logos">
 	<div id="logos-switch" class="switch">

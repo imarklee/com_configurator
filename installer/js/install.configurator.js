@@ -15,8 +15,12 @@
 			
 			ptOverlay('Processing...')
 			
-			$.get(
-				'?option=com_configurator&view=configuration&task=assets_create&format=raw', '',
+			$.post(
+				'?option=com_configurator&view=configuration&format=raw',
+				{
+					action: 'assets_create',
+					_token: $('input[name=_token]').val()
+				},
 				function(data, status){
 					if(typeof data.error != 'undefined'){
 						if(data.error != ''){

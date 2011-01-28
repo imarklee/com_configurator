@@ -1396,7 +1396,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		echo json_encode($return);
 	}
 	
-	public function assets_create()
+	protected function _actionAssets_create()
 	{
 		$recycle = JPATH_ROOT . '/morph_recycle_bin';
 		if(!JFolder::exists($recycle)) JFolder::create($recycle);

@@ -193,30 +193,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		$this->_redirect = KRequest::url();
 	}
 	
-	function saveprefs(){
-		global $mainframe;
-		$db = JFactory::getDBO();
-		
-		$prefs = JRequest::getVar('cfg', null, 'post', 'array');
-		
-		foreach($prefs as $pref_key => $pref_value){
-			$setting = JTable::getInstance('ConfiguratorPreferences','Table');
-			$setting->pref_name = $pref_key;			
-			$setting->loadByKey();
-			$setting->pref_value = $pref_value;
-			
-			if (!$setting->store()) {
-				return $setting->getError();
-				die();
-			}
-
-			unset($setting);
-			$setting = null;
-		}
-		
-		return true;
-	}
-	
 	/*
 	 * Generic apply action
 	 *
@@ -1893,28 +1869,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				$result = $db->query() or die($json ? json_encode(array('error' => 'MySQL error!<br />Line: <small>'.$sql_line.'</small><br />File: '.$url.'<br />Error: '.$db->getErrorMsg())) : $db->getErrorMsg());
 			}
 		}
-	}
-
-	function save_editor_file(){
-		$db = JFactory::getDBO();
-		$type	  = $db->Quote(JRequest::getCmd('type'));
-		$parent	  = $db->Quote(JRequest::getCmd('parent'));
-		$contents = $db->Quote($_POST['contents']);
-		$filename = $db->Quote(JRequest::getCmd('file'));
-		
-		$query = "DELETE FROM `#__configurator_customfiles` ".
-				 "WHERE `type` = $type AND `parent_name` = $parent AND `filename` = $filename";
-		$db->setQuery($query);
-		$db->query() or die('Unable to save the following query: '.$query);
-		
-		$query = "INSERT INTO `#__configurator_customfiles` ".
-				 "(`type`, `parent_name`, `filename`, `last_edited`, `contents`) ".
-				 "VALUES ($type,$parent,$filename,NOW(),$contents)";
-		$db->setQuery($query);
-		$db->query() or die('Unable to save the following query: '.$query);
-		
-		$this->clear_cache();
-		return true;
 	}
 	
 	function get_modules_by_position(){

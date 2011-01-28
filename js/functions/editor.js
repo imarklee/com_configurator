@@ -109,39 +109,36 @@ $('#editor-list').live('change', function(ev){
 				}
 
 				var xhr = $.ajax({
-					url: '?option=com_configurator&task=save_editor_file&format=raw',
+					url: '?option=com_configurator&view=customfile&format=json&file='+filename+'&type='+file_type+'&parent='+parent_name,
 					type: 'POST',
 					data: {
 						contents: editor_contents,
-						parent:	  parent_name,
-						type:	  file_type,
-						file:	  filename
+						_token: $('input[name=_token]').val()
+					},
+					error: function(request){
+						$('#editor-notification img').attr('src', '../administrator/components/com_configurator/images/icon_error.gif')
+						$('#editor-notification span').addClass('error').html('<strong>error</strong>: '+request.statusText);
 					},
 					success: function(data){					
-						if(data == ''){
-							$('#editor-notification img').attr('src', '../administrator/components/com_configurator/images/icon_success.gif')
-							$('#editor-notification span').removeClass('error').html('saved successfully');
-							setTimeout(function(){
-								$('#editor-notification').fadeOut('fast');
-								if($t.attr('action') == 'save'){
-									$('#editor-list option[value=""]').attr('selected', true);
-									if(editor_highlighting == 1){
-										$('.CodeMirror-wrapping').fadeOut('500', function(){
-											$(this).remove();
-											$('#select-info').show(); 
-										});
-									}
-									if(editor_highlighting == 0){
-										$('#custom-code').fadeOut('500', function(){
-											$('#select-info').show();
-										});
-									}
+						$('#editor-notification img').attr('src', '../administrator/components/com_configurator/images/icon_success.gif')
+						$('#editor-notification span').removeClass('error').html('saved successfully');
+						setTimeout(function(){
+							$('#editor-notification').fadeOut('fast');
+							if($t.attr('action') == 'save'){
+								$('#editor-list option[value=""]').attr('selected', true);
+								if(editor_highlighting == 1){
+									$('.CodeMirror-wrapping').fadeOut('500', function(){
+										$(this).remove();
+										$('#select-info').show(); 
+									});
 								}
-							}, 1000);
-						}else{
-							$('#editor-notification img').attr('src', '../administrator/components/com_configurator/images/icon_error.gif')
-							$('#editor-notification span').addClass('error').html('<strong>error</strong>: '+data);
-						}
+								if(editor_highlighting == 0){
+									$('#custom-code').fadeOut('500', function(){
+										$('#select-info').show();
+									});
+								}
+							}
+						}, 1000);
 					}
 				});
 			

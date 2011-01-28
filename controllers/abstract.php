@@ -262,7 +262,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
 		$reset = $table->resetMenuItems();
 		$msg   = !$reset ? JText::_('There were no menu item settings to reset.') : sprintf(JText::_('%s menu items settings reset'), $reset);
-		if(!$this->isAjax()) $app->redirect('?option=com_configurator&view=configuration&task=manage', $msg);
+		if(!$this->isAjax()) $app->redirect('?option=com_configurator&view=configuration', $msg);
 		return true;
 	}
 	
@@ -277,7 +277,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		return $find === false ? false:$find + 1;
 	}
 
-	public function uni_installer()
+	protected function _actionUni_installer()
 	{
 		$mem_limit = ini_get('memory_limit');
 		if(str_replace('M', '', $mem_limit) < 128){ ini_set('memory_limit', '128M'); }

@@ -871,7 +871,7 @@ $('.text_area').simpleautogrow();
 		
 		var uploadType = $('input[type="radio"]:checked','#install-type').val();
 		$.ajaxFileUpload({
-			url: '?option=com_configurator&view=configuration&task=uni_installer&format=raw&do=upload&itype='+uploadType,
+			url: '?option=com_configurator&view=configuration&format=raw&do=upload&itype='+uploadType,
 			fileElementId:'insfile',
 			dataType: 'json',
 			success: function (data, status){
@@ -1209,6 +1209,10 @@ $('.text_area').simpleautogrow();
 					}
 				}
 			}
+		//Callback that adds the token and action
+		}, function(form){
+			form.append($('<input />', {name: 'action', value: 'uni_installer'}))
+				.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 		});
 	});	
 	

@@ -9,7 +9,8 @@ define('JURL', $base);
 define('JROOT', str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__)));
 if(is_dir(JROOT . '/morph_assets')){ echo '<div id="assets_folder_exists" style="display:none;"></div>'; }
 ?>
-<form id="install-template" class="step1" method="post" action="?option=com_configurator&view=configuration&task=installTemplate&format=raw&backup=false" enctype="multipart/form-data">
+<form id="install-template" class="step1" method="post" action="?option=com_configurator&view=configuration&format=raw&backup=false" enctype="multipart/form-data">
+	<input type="hidden" name="action" value="install_template" />
 	<div id="install-head">
 		<img src="<?php echo JURL; ?>/installer/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
 		<p class="steps"><?= @text('<strong>Step 1 of 2: </strong>Install &amp; publish Morph') ?></p>

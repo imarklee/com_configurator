@@ -85,7 +85,7 @@ $('#database-manager ul li.action a').click(function(){
 					$(this).dialog('close');
 					ptOverlay('Processing...');
 					$.ajaxFileUpload({
-						url: '../?option=com_configurator&format=raw&task=import_db',
+						url: '../?option=com_configurator&view=configuration&format=raw',
 						dataType: 'json',
 						fileElementId:'import_file',
 						success: function (data, status){
@@ -101,6 +101,10 @@ $('#database-manager ul li.action a').click(function(){
 							});
 							$('.dialog-msg').dialog('open');
 
+						//Callback that adds the token and action
+						}, function(form){
+							form.append($('<input />', {name: 'action', value: 'import_db'}))
+								.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 						}
 					});
 				},
@@ -108,7 +112,7 @@ $('#database-manager ul li.action a').click(function(){
 					$(this).dialog('close');
 					ptOverlay('Processing...');
 					$.ajaxFileUpload({
-						url: '?option=com_configurator&format=raw&task=import_db',
+						url: '?option=com_configurator&view=configuration&format=raw',
 						dataType: 'json',
 						fileElementId:'import_file',
 						success: function (data, status){
@@ -125,6 +129,10 @@ $('#database-manager ul li.action a').click(function(){
 							});
 							$('.dialog-msg').dialog('open');
 
+						//Callback that adds the token and action
+						}, function(form){
+							form.append($('<input />', {name: 'action', value: 'import_db'}))
+								.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 						}
 					});
 				}

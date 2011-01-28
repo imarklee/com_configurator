@@ -96,7 +96,7 @@
 			if($('#template-file').val() != ''){
 				ptOverlay('Processing...');				
 				$.ajaxFileUpload({
-					url: '?option=com_configurator&view=configuration&task=install_template&format=raw&backup=true&publish='+publish,
+					url: '?option=com_configurator&view=configuration&format=raw&backup=true&publish='+publish,
 					fileElementId:'template-file',
 					dataType: 'json',
 					success: function (data, status)
@@ -161,6 +161,10 @@
 								$('#dialog').dialog('open');
 	                        }
 	                    }
+	                //Callback that adds the token and action
+	                }, function(form){
+	                	form.append($('<input />', {name: 'action', value: 'install_template'}))
+	                		.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 	                }
 				});
 			}else{
@@ -198,7 +202,7 @@
 				ptOverlay('Processing...');
 				
 				$.ajaxFileUpload({
-					url: '?option=com_configurator&view=configuration&task=install_themelet&format=raw&act_themelet='+actval,
+					url: '?option=com_configurator&view=configuration&format=raw&act_themelet='+actval,
 					fileElementId:'insfile',
 					dataType: 'json',
 					success: function (data, status)
@@ -269,6 +273,10 @@
 								$('#dialog').dialog('open');
 	                        }
 	                    }
+	                //Callback that adds the token and action
+	                }, function(form){
+	                	form.append($('<input />', {name: 'action', value: 'install_template'}))
+	                		.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 	                }
 				});
 			}else{

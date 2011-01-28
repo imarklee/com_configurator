@@ -165,11 +165,11 @@
 								$('#dialog').dialog('open');
 	                        }
 	                    }
-	                //Callback that adds the token and action
-	                }, function(form){
-	                	form.append($('<input />', {name: 'action', value: 'install_template'}))
-	                		.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 	                }
+				//Callback that adds the token and action
+				}, function(form){
+					form.append($('<input />', {name: 'action', value: 'install_template'}))
+						.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 				});
 			}else{
 				hideScroll();
@@ -277,11 +277,11 @@
 								$('#dialog').dialog('open');
 	                        }
 	                    }
-	                //Callback that adds the token and action
-	                }, function(form){
-	                	form.append($('<input />', {name: 'action', value: 'install_template'}))
-	                		.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 	                }
+				//Callback that adds the token and action
+				}, function(form){
+					form.append($('<input />', {name: 'action', value: 'install_template'}))
+						.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 				});
 			}else{
 				hideScroll();

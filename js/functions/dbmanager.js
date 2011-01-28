@@ -101,11 +101,11 @@ $('#database-manager ul li.action a').click(function(){
 							});
 							$('.dialog-msg').dialog('open');
 
-						//Callback that adds the token and action
-						}, function(form){
-							form.append($('<input />', {name: 'action', value: 'import_db'}))
-								.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 						}
+					//Callback that adds the token and action
+					}, function(form){
+						form.append($('<input />', {name: 'action', value: 'import_db'}))
+							.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 					});
 				},
 				'No':function(){
@@ -129,11 +129,11 @@ $('#database-manager ul li.action a').click(function(){
 							});
 							$('.dialog-msg').dialog('open');
 
-						//Callback that adds the token and action
-						}, function(form){
-							form.append($('<input />', {name: 'action', value: 'import_db'}))
-								.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 						}
+					//Callback that adds the token and action
+					}, function(form){
+						form.append($('<input />', {name: 'action', value: 'import_db'}))
+							.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 					});
 				}
 			});

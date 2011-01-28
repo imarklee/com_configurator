@@ -63,21 +63,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 
 		parent::_initialize($config);
 	}
-	
-	function pt_proxy(){
-		$url = urldecode($_GET['url']);
-		$content = file_get_contents($url);
-		if(!$content){ ?>
-			<div id="proxy-warning">
-				<p><strong>Warning: </strong>A required PHP function (file_get_contents) has been disallowed on your server.<br />
-					To gain the full experience of our Inline Documentation, please request that this be enabled from your host.</p>
-			</div>
-			<iframe id="pt_iframe" name="pt_iframe" src="<?php echo $url; ?>" height="<?php echo $ih; ?>" width="<?php echo $iw; ?>" frameborder="0" scrolling="<?php echo $is; ?>"></iframe>
-		<?php 
-		}else{
-			echo $content;
-		}
-	}
 
 	function assets_backup(){
 		$assets = JPATH_ROOT.'/morph_assets';

@@ -14,17 +14,13 @@ class ComConfiguratorDatabaseTableConfigurations extends KDatabaseTableDefault
 	public function __construct(KConfig $config)
 	{
 		$config->name = 'configurator';
+		$config->column_map = array(
+			'template'	=> 'template_name',
+			'name'		=> 'param_name',
+			'value'		=> 'param_value',
+			'enabled'	=> 'published'
+		);
 
 		parent::__construct($config);
-
-		$this->_column_map = array_merge(
-			$this->_column_map,
-			array(
-				'template'	=> 'template_name',
-				'name'		=> 'param_name',
-				'value'		=> 'param_value',
-				'enabled'	=> 'published'
-			)
-		);
     }
 }

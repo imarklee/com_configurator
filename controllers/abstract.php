@@ -738,16 +738,8 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 	{
 		$themelet = isset($context->data->themelet) ? $context->data->themelet : '';
 	
-		global $mainframe;
-		$db = JFactory::getDBO();
-		
-		if($themelet == ''){
-			if(isset($_REQUEST['themelet_name'])){
-				$themelet = $_REQUEST['themelet_name'];
-			}else{
-				return false;
-			}
-		}
+		$db		= JFactory::getDBO();
+		$table	= $this->getModel()->getTable();
 		
 		$template_dir = JPATH_ROOT.'/templates/morph';
 		$themelet_dir = JPATH_ROOT.'/morph_assets/themelets';
@@ -811,22 +803,21 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			$db->query();
 			
 			// update original themelet values with
-			foreach($defaults as $param_name => $param_value){
-				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				$setting->template_name = 'morph';
-				$setting->published = '1';
-				$setting->source = 'template';
-				$setting->param_name = $param_name;
-				$setting->loadByKey();
-				$setting->param_value = $param_value;
-				
-				if (!$setting->store(TRUE)) {
-					echo $setting->getError();
-					die();
-				}
-	
-				unset($setting);
-				$setting = null;
+			foreach($defaults as $param_name => $param_value)
+			{
+				$query	= KFactory::tmp('lib.koowa.database.query')
+																	->where('template_name', '=', 'morph')
+																	->where('published',	 '=', 1)
+																	->where('source',		 '=', 'template')
+																	->where('param_name',	 '=', $param_name);
+				$row			= $table->select($query, KDatabase::FETCH_ROW);
+
+				$row->template	= 'morph';
+				$row->source	= 'template';
+				$row->name		= $param_name;
+				$row->value		= $param_value;
+
+				$row->save();
 			}
 		
 		}
@@ -836,22 +827,21 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			$xml_param_loader = new ComConfiguratorHelperParamLoader($themelet.'/themeletDetails.xml');
 			$themelet_xml_params = $xml_param_loader->getParamDefaults();
 			
-			foreach($themelet_xml_params as $param_name => $param_value){
-				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				$setting->template_name = 'morph';
-				$setting->published = '1';
-				$setting->param_name = $param_name;
-				$setting->loadByKey();
-				$setting->param_value = $param_value;
-				$setting->source = 'themelet';
-				
-				if (!$setting->store(TRUE)) {
-					echo $setting->getError();
-					die();
-				}
-	
-				unset($setting);
-				$setting = null;
+			foreach($themelet_xml_params as $param_name => $param_value)
+			{
+				$query	= KFactory::tmp('lib.koowa.database.query')
+																	->where('template_name', '=', 'morph')
+																	->where('published',	 '=', 1)
+																	->where('source',		 '=', 'template')
+																	->where('param_name',	 '=', $param_name);
+				$row			= $table->select($query, KDatabase::FETCH_ROW);
+
+				$row->template	= 'morph';
+				$row->source	= 'template';
+				$row->name		= $param_name;
+				$row->value		= $param_value;
+
+				$row->save();
 			}
 		}
 		

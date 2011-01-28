@@ -163,19 +163,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			echo 'File doesn\'t exist';
 		}
 	}
-	
-	function removeicon() {
-		global $mainframe;
-		$option = JRequest::getVar('option');
-		$template = JRequest::getVar('t',null);
-		$icon_file = JRequest::getVar('f',null);
-		
-		if( is_null($template) || is_null($icon_file) ) $mainframe->redirect("index2.php?option={$option}&task=dashboard");
-		$full_filename = JPATH_ROOT.'/templates/'.$template.'/favicons/'.$icon_file;
-		
-		if( file_exists( $full_filename ) ) @unlink( $full_filename );
-		$mainframe->redirect("index2.php?option={$option}&task=manage", "Favicon ({$icon_file}) removed." );
-	}
 
 	/**
 	 * @TODO move this into a separate controller

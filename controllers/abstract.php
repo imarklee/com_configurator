@@ -733,8 +733,11 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		
 		return $backupdir.'/'.$backupfile;
 	}
+
+	protected function _actionThemelet_activate(KCommandContext $context)
+	{
+		$themelet = isset($context->data->themelet) ? $context->data->themelet : '';
 	
-	function themelet_activate($themelet = ''){
 		global $mainframe;
 		$db = JFactory::getDBO();
 		
@@ -1372,7 +1375,10 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		
 		if(isset($activation) && $activation == 'true'){
 		
-			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install' || !isset($_COOKIE['upgrade-type']))	{ $this->themelet_activate($themelet); }
+			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install' || !isset($_COOKIE['upgrade-type']))
+			{
+				$this->themelet_activate(array('themelet' => $themelet));
+			}
 			KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_actthemelet', true);
 			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
 			$query = $db->query($query);

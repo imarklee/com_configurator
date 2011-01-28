@@ -996,12 +996,17 @@ $('.text_area').simpleautogrow();
 												   				},
 													   			success: function(data, textStatus){
 													   				$.ajax({
-																		url: '?option=com_configurator&view=configuration&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
-																		method: 'post',
-																		success: function(ts, data){
-																			return true;
-																		}
-																	});
+													   					url: '?option=com_configurator&view=configuration&themelet='+setThemelet+'&format=raw',
+													   					data: {
+													   						themelet: setThemelet,
+													   						action: 'themelet_activate',
+													   						_token: $('input[name=_token]').val()
+													   					},
+													   					type: 'POST',
+													   					success: function(ts, data){
+													   						return true;
+													   					}
+													   				});
 																	$.ajax({
 																		url: '?option=com_configurator&view=configuration&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
 																		method: 'post',

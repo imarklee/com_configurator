@@ -11,8 +11,13 @@ $(window).keydown(function(e){
 			ptOverlay('Saving Settings...');
 			if($.cookie('change_themelet')){
 				$.ajax({
-					url: '?option=com_configurator&task=themelet_activate&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-					method: 'post',
+					url: '?option=com_configurator&view=configuration&themelet='+$.cookie('ct_themelet_name')+'&format=raw',
+					data: {
+						themelet: setThemelet,
+						action: 'themelet_activate',
+						_token: $('input[name=_token]').val()
+					},
+					type: 'POST',
 					success: function(ts, data){
 						return true;
 					}

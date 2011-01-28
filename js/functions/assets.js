@@ -149,11 +149,13 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		   				a.parent().next().children().click(function(e){ e.preventDefault(); return false; });
 		   				
 		   				$.ajax({
-							url: '?option=com_configurator&view=configuration&task=themelet_activate&themelet_name='+setThemelet+'&format=raw',
+							url: '?option=com_configurator&view=configuration&themelet='+setThemelet+'&format=raw',
 							data: {
-								themelet_name: setThemelet
+								themelet: setThemelet,
+								action: 'themelet_activate',
+								_token: $('input[name=_token]').val()
 							},
-							method: 'POST',
+							type: 'POST',
 							success: function(ts, data){
 								return true;
 							}
@@ -164,7 +166,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 							data: {
 								themelet_name: setThemelet
 							},
-							method: 'POST',
+							type: 'POST',
 							success: function(data, ts){
 								if(data.exists == 'true'){
 									close_ptOverlay();

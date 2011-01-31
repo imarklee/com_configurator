@@ -106,10 +106,10 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		exit();
 	}
 	
-	function handle_backup(){
-		$action = $_REQUEST['action'];
-		$filename = $_REQUEST['filename'];
-		$type = $_REQUEST['type'];
+	protected function _actionHandle_backup(){
+		$action = $context->data->do;
+		$filename = $context->data->filename;
+		$type = $context->data->type;
 		$fp = '';
 		switch($type){
 			case 'db':

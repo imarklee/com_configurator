@@ -593,7 +593,13 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		var action = $(this).attr('action');
 		var filename = $(this).attr('name');
 		var btype = $(this).attr('bu_type');
-		var burl = '?option=com_configurator&format=raw&task=handle_backup&action='+action+'&filename='+filename+'&type='+btype;
+		var burl = '?option=com_configurator&view=configuration&format=raw&do='+action+'&filename='+filename+'&type='+btype;
+		var bdata = {
+			action: 'handle_backup',
+			'do': action,
+			filename: filename,
+			type: btype
+		};
 
 		$('<div class="dialog-msg"></div>').dialog({
 			bgiframe: true,
@@ -626,6 +632,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 						$.ajax({
 							type: 'POST',
 							url: burl,
+							data: bdata,
 							success: function(data){
 								close_ptOverlay();
 								hideScroll();
@@ -649,6 +656,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 						$.ajax({
 							type: 'POST',
 							url: burl,
+							data: bdata,
 							success: function(data){
 								close_ptOverlay();
 								hideScroll();
@@ -673,6 +681,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 				$.ajax({
 					type: 'POST',
 					url: burl,
+					data: bdata,
 					success: function(data, status){
 						$('.dialog-msg').html(data);
 						if(action == 'delete'){
@@ -693,7 +702,11 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 				});
 			}
 		}else{
-			window.location.href = burl;
+			$.ajax({
+				url: burl,
+				data: bdata,
+				type: 'POST'
+			});
 		}
 		return false;
 	});

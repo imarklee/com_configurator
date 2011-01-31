@@ -1266,9 +1266,11 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			}
 		}
 	}
-	function deleteAsset(){
-		$type = $_GET['deltype'];
-		$asset = $_GET['asset'];
+
+	protected function _actionDelete_asset(KCommandContext $context)
+	{
+		$type = $context->data->deltype;
+		$asset = $context->data->asset;
 		$assetsdir = JPATH_SITE.'/morph_assets';
 		$recyclebin = JPATH_SITE.'/morph_recycle_bin';
 		

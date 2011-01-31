@@ -38,6 +38,12 @@ function submitform(pressbutton){
 jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
 
 jQuery.noConflict()(function($){
+
+	//Define the Nooku token for all ajax requests, by grabbing the value of the DOM for now
+	$.ajaxSetup({beforeSend: function(xhr){
+		xhr.setRequestHeader('X-Token', $('input[name=_token]').val());
+	}});
+
 	$('#innersidebarinner_width_type-lbl').parent().addClass('append-select');
 	<?php include 'functions/common.js' ?>
 	$.preloadCssImages();

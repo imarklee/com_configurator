@@ -390,8 +390,13 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    	$('li.themelet-item.tl-inactive ul li.btn-delete a').click(function(){
    		var setThemelet = $(this).attr('name');
    		$.ajax({
-			type: 'GET',
-			url: '?option=com_configurator&format=raw&task=deleteAsset&deltype=themelet&asset='+setThemelet,
+			type: 'POST',
+			url: '?option=com_configurator&view=configuration&format=raw&deltype=themelet&asset='+setThemelet,
+			data: {
+				action: 'delete_asset',
+				deltype: 'themelet',
+				asset: setThemelet
+			},
 			success: function(data, textStatus){
 				if(textStatus == 'success'){
 					$('a[name="'+setThemelet+'"]').parent().parent().parent().parent().fadeOut('slow', function(){
@@ -424,8 +429,13 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    	$('li.background-item ul li.btn-delete a').click(function(){
    		var setBackground = $(this).attr('name');
 		$.ajax({
-			type: 'GET',
-			url: '?option=com_configurator&format=raw&task=deleteAsset&deltype=background&asset='+setBackground,
+			type: 'POST',
+			url: '?option=com_configurator&view=configuration&format=raw&deltype=background&asset='+setBackground,
+			data: {
+				action: 'delete_asset',
+				deltype: 'background',
+				asset: setBackground
+			},
 			success: function(data, textStatus){
 				if(textStatus == 'success'){
 					$('a[name="'+setBackground+'"]').parent().parent().parent().parent().fadeOut('slow', function(){
@@ -458,8 +468,13 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    	$('li.logo-item ul li.btn-delete a').click(function(){
    		var setLogo = $(this).attr('name');
 		$.ajax({
-			type: 'GET',
-			url: '?option=com_configurator&format=raw&task=deleteAsset&deltype=logo&asset='+setLogo,
+			type: 'POST',
+			url: '?option=com_configurator&view=configuration&format=raw&deltype=logo&asset='+setLogo,
+			data: {
+				action: 'delete_asset',
+				deltype: 'logo',
+				asset: setLogo
+			},
 			success: function(data, textStatus){
 				if(textStatus == 'success'){			   						
 					$('a[name="'+setLogo+'"]').parent().parent().parent().parent().fadeOut('slow', function(){
@@ -492,8 +507,13 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	$('li.iphone-item ul li.btn-delete a').click(function(){
 		var setiphone = $(this).attr('name');
 		$.ajax({
-			type: 'GET',
-			url: '?option=com_configurator&format=raw&task=deleteAsset&deltype=iphone&asset='+setiphone,
+			type: 'POST',
+			url: '?option=com_configurator&view=configuration&format=raw&deltype=iphone&asset='+setiphone,
+			data: {
+				action: 'delete_asset',
+				deltype: 'iphone',
+				asset: setiphone
+			},
 			success: function(data, textStatus){
 				if(textStatus == 'success'){			   						
 					$('a[name="'+setiphone+'"]').parent().parent().parent().parent().fadeOut('slow', function(){

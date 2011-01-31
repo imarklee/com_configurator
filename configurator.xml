@@ -59,6 +59,16 @@
 	
 	<!-- Deprecated files -->
 	<deprecated>
+		<file>controllers/dispatch.php</file>
+		<file>toolbar.configurator.html.php</file>
+		<file>toolbar.configurator.php</file>
+		<file>views/backgrounds/view.raw.php</file>
+		<file>views/backups/view.raw.php</file>
+		<file>views/help/view.html.php</file>
+		<file>views/iphone/view.raw.php</file>
+		<file>views/logos/view.raw.php</file>
+		<file>views/recycle/view.raw.php</file>
+		<file>views/themelets/view.raw.php</file>
 		<file>configurator.loader.php</file>
 		<file>configurator.common.php</file>
 		<file>configurator.class.php</file>

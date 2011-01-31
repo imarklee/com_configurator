@@ -162,9 +162,11 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 						});
 						
 						$.ajax({
-							url: '?option=com_configurator&view=configuration&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
+							url: '?option=com_configurator&view=configuration&themelet='+setThemelet+'&format=raw',
 							data: {
-								themelet_name: setThemelet
+								themelet: setThemelet,
+								action: 'themelet_check_existing',
+								_token: $('input[name=_token]').val()
 							},
 							type: 'POST',
 							success: function(data, ts){

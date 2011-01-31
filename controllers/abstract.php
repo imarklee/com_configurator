@@ -594,62 +594,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		echo $c_themelet;
 		return true;
 	}
-	
-	function themelet_check_existing($themelet = ''){
-		if($themelet == ''){
-			if(isset($_REQUEST['themelet_name'])){
-				$themelet = $_REQUEST['themelet_name'];
-			}else{
-				return false;
-			}
-		}
-		$backupdir = JPATH_SITE.'/morph_assets/backups/db';
-		$files = JFolder::files($backupdir);
-		foreach($files as $f){
-			if(preg_match('/'.$themelet.'/i', $f)){
-				if(file_exists($backupdir.'/'.$f)){
-					echo json_encode(array('exists' => 'true'));
-					return true;
-				}
-			}else{
-				$exists = false;
-			}
-		}
-		if(!$exists){
-			echo json_encode(array('exists' => 'false'));
-		}
-		
-	}
-	
-	function themelet_activate_existing($themelet=''){
-		$db = JFactory::getDBO();
-		$query = $db->setQuery("DELETE FROM `#__configurator` where source='themelet';");
-		$db->query($query);
-		
-		if($themelet == ''){
-			if(isset($_REQUEST['themelet_name'])){
-				$themelet = $_REQUEST['themelet_name'];
-			}else{
-				return false;
-			}
-		}
 
-		$backupdir = JPATH_SITE.'/morph_assets/backups/db';		
-		$files = JFolder::files($backupdir);
-		foreach($files as $f){
-			if(preg_match('/'.$themelet.'/i', $f)){
-				JArchive::extract($backupdir.'/'.$f, $backupdir);
-				if(file_exists($backupdir.'/'.str_replace('.gz', '', $f))){
-					$this->parse_mysql_dump($backupdir.'/'.str_replace('.gz', '', $f));
-					JFile::delete($backupdir.'/'.str_replace('.gz', '', $f));
-					return true;
-				}
-			}
-		}
-		
-		$this->clear_cache();
-	}
-	
 	function export_db(){
 		$data = $_POST['export_data'];
 		foreach($data as $d){
@@ -842,6 +787,58 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				$row->value		= $param_value;
 
 				$row->save();
+			}
+		}
+		
+		$this->clear_cache();
+	}
+
+	protected function _actionThemelet_check_existing(KCommandContext $context)
+	{
+		if(!isset($context->data->themelet)) return false;
+		$themelet = $context->data->themelet;
+		
+		$backupdir = JPATH_SITE.'/morph_assets/backups/db';
+		$files = JFolder::files($backupdir);
+		foreach($files as $f){
+			if(preg_match('/'.$themelet.'/i', $f)){
+				if(file_exists($backupdir.'/'.$f)){
+					echo json_encode(array('exists' => 'true'));
+					return true;
+				}
+			}else{
+				$exists = false;
+			}
+		}
+		if(!$exists){
+			echo json_encode(array('exists' => 'false'));
+		}
+		
+	}
+	
+	function themelet_activate_existing($themelet=''){
+		$db = JFactory::getDBO();
+		$query = $db->setQuery("DELETE FROM `#__configurator` where source='themelet';");
+		$db->query($query);
+		
+		if($themelet == ''){
+			if(isset($_REQUEST['themelet_name'])){
+				$themelet = $_REQUEST['themelet_name'];
+			}else{
+				return false;
+			}
+		}
+
+		$backupdir = JPATH_SITE.'/morph_assets/backups/db';		
+		$files = JFolder::files($backupdir);
+		foreach($files as $f){
+			if(preg_match('/'.$themelet.'/i', $f)){
+				JArchive::extract($backupdir.'/'.$f, $backupdir);
+				if(file_exists($backupdir.'/'.str_replace('.gz', '', $f))){
+					$this->parse_mysql_dump($backupdir.'/'.str_replace('.gz', '', $f));
+					JFile::delete($backupdir.'/'.str_replace('.gz', '', $f));
+					return true;
+				}
 			}
 		}
 		

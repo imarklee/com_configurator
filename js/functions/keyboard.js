@@ -23,8 +23,13 @@ $(window).keydown(function(e){
 					}
 				});
 				$.ajax({
-					url: '?option=com_configurator&task=themelet_check_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-					method: 'post',
+					url: '?option=com_configurator&view=configuration&themelet='+$.cookie('ct_themelet_name')+'&format=raw',
+					data: {
+						themelet: $.cookie('ct_themelet_name'),
+						action: 'themelet_check_existing',
+						_token: $('input[name=_token]').val()
+					},
+					type: 'POST',
 					dataType: 'json',
 					success: function(data, ts){
 						if(data.exists == 'true'){

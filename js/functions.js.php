@@ -1008,8 +1008,13 @@ $('.text_area').simpleautogrow();
 													   					}
 													   				});
 																	$.ajax({
-																		url: '?option=com_configurator&view=configuration&task=themelet_check_existing&themelet_name='+setThemelet+'&format=raw',
-																		method: 'post',
+																		url: '?option=com_configurator&view=configuration&themelet='+setThemelet+'&format=raw',
+																		type: 'POST',
+																		data: {
+																			themelet: setThemelet,
+																			action: 'themelet_check_existing',
+																			_token: $('input[name=_token]').val()
+																		},
 																		dataType: 'json',
 																		success: function(data, ts){
 																			if(data.exists == 'true'){

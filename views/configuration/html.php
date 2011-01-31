@@ -173,7 +173,7 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 			//$js = JRoute::_($js);
 			//$document->addScript($js);
 			//$css = JRoute::_('&option='.JRequest::getCmd('option').'&render=css');
-			$document->addScript($jspath . 'configurator.js.php?eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.KFactory::get('admin::com.configurator.defines')->getVersion());
+			$document->addScript($jspath . 'configurator.js.php?eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.KFactory::get('admin::com.configurator.defines')->getVersion().'&r='.rand());
 			$document->addStyleSheet($csspath . 'configurator.css.php');
 		} else {
 			/* unpacked js

@@ -1050,8 +1050,13 @@ $('.text_area').simpleautogrow();
 																			   			'Previous Settings': function(){
 																							$this = $(this);
 																			   				$.ajax({
-																								url: '?option=com_configurator&view=configuration&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
-																								method: 'post',
+																								url: '?option=com_configurator&view=configuration&themelet='+setThemelet+'&format=raw',
+																								data: {
+																									themelet: setThemelet,
+																									action: 'themelet_activate_existing',
+																									_token: $('input[name=_token]').val()
+																								},
+																								type: 'POST',
 																								success: function(data){
 																									$this.dialog('close');
 																									return true;

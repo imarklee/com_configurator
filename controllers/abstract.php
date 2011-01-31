@@ -816,18 +816,14 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		
 	}
 	
-	function themelet_activate_existing($themelet=''){
+	protected function _actionThemelet_activate_existing(KCommandContext $context)
+	{
 		$db = JFactory::getDBO();
 		$query = $db->setQuery("DELETE FROM `#__configurator` where source='themelet';");
 		$db->query($query);
 		
-		if($themelet == ''){
-			if(isset($_REQUEST['themelet_name'])){
-				$themelet = $_REQUEST['themelet_name'];
-			}else{
-				return false;
-			}
-		}
+		if(!isset($context->data->themelet)) return false;
+		$themelet = $context->data->themelet;
 
 		$backupdir = JPATH_SITE.'/morph_assets/backups/db';		
 		$files = JFolder::files($backupdir);

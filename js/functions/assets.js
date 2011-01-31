@@ -169,6 +169,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 								_token: $('input[name=_token]').val()
 							},
 							type: 'POST',
+							dataType: 'json',
 							success: function(data, ts){
 								if(data.exists == 'true'){
 									close_ptOverlay();
@@ -203,11 +204,13 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 								   			'Previous Settings': function(){
 												$this = $(this);
 								   				$.ajax({
-													url: '?option=com_configurator&view=configuration&task=themelet_activate_existing&themelet_name='+setThemelet+'&format=raw',
+													url: '?option=com_configurator&view=configuration&themelet='+setThemelet+'&format=raw',
 													data: {
-														themelet_name: setThemelet
+														themelet: setThemelet,
+														action: 'themelet_activate_existing',
+														_token: $('input[name=_token]').val()
 													},
-													method: 'POST',
+													type: 'POST',
 													success: function(data){
 														$this.dialog('close');
 														return true;

@@ -65,8 +65,13 @@ $(window).keydown(function(e){
 						   			},
 						   			'Previous Settings': function(){
 						   				$.ajax({
-											url: '?option=com_configurator&task=themelet_activate_existing&themelet_name='+$.cookie('ct_themelet_name')+'&format=raw',
-											method: 'post',
+											url: '?option=com_configurator&themelet='+$.cookie('ct_themelet_name')+'&format=raw',
+											data: {
+												themelet: $.cookie('ct_themelet_name'),
+												action: 'themelet_activate_existing',
+												_token: $('input[name=_token]').val()
+											},
+											type: 'POST',
 											success: function(data){
 												return true;
 											}

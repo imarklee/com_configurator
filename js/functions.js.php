@@ -955,8 +955,12 @@ $('.text_area').simpleautogrow();
 							var backupmsg;
 							// check if uploaded themelet is the same as the active themelet.
 							$.ajax({
-								url: '?option=com_configurator&task=get_current_themelet&format=raw',
-								method: 'get',
+								url: '?option=com_configurator&view=configuration&format=raw',
+								data: {
+									action: 'get_current_themelet',
+									_token: $('input[name=_token]').val()
+								},
+								type: 'POST',
 								success: function(d){
 									if(data.themelet == d){
 										close_ptOverlay();

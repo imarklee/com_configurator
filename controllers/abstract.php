@@ -587,11 +587,10 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		return array('error' => 'There was an error uploading the file. Please try again.');
 	}
 	
-	function get_current_themelet(){
-		$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
-		$c_themelet = $table->param('themelet')->getItem()->value;
+	protected function _actionGet_current_themelet(){
+		$themelet = $this->getModel()->getItem()->themelet;
 		
-		echo $c_themelet;
+		echo $themelet;
 		return true;
 	}
 

@@ -32,7 +32,12 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 				$('#recycle-message').dialog('option', 'buttons', {
 					'Yes': function(){
 						$.ajax({
-							url: '?option=com_configurator&task=handle_recycle&format=raw&action=empty&type=null&file=null',
+							type: 'POST',
+							url: '?option=com_configurator&view=configuration&format=raw&do=empty',
+							data: {
+								action: 'handle_recycle',
+								'do': 'empty'
+							},
 							success: function(d){
 								$('#recycle-message').dialog('close');
 								ptOverlay('Reloading Interface...');
@@ -53,7 +58,14 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 				$('#recycle-message').dialog('option', 'buttons', {
 					'Yes': function(){
 						$.ajax({
-							url: '?option=com_configurator&task=handle_recycle&format=raw&action=delete&type='+r_type+'&file='+r_file,
+							type: 'POST',
+							url: '?option=com_configurator&view=configuration&format=raw&do=delete&type='+r_type+'&file='+r_file,
+							data: {
+								action: 'handle_recycle',
+								'do': 'delete',
+								type: r_type,
+								file: r_file
+							},
 							success: function(d){
 								$this.parent().parent().remove();
 								if($("#recycle-list tbody tr").length > 0){
@@ -78,7 +90,14 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 			break;
 			case 'restore':
 				$.ajax({
-					url: '?option=com_configurator&task=handle_recycle&format=raw&action=restore&type='+r_type+'&file='+r_file,
+					type: 'POST',
+					url: '?option=com_configurator&view=configuration&format=raw&do=restore&type='+r_type+'&file='+r_file,
+					data: {
+						action: 'handle_recycle',
+						'do': 'restore',
+						type: r_type,
+						file: r_file
+					},
 					success: function(d){
 						$this.parent().parent().fadeOut('slow', function(){
 							$(this).remove();

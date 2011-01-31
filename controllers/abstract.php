@@ -1186,10 +1186,12 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			return array('error' => 'There was an error uploading the file. Please try again.');
 		}
 	}
-	function handle_recycle(){
-		$action = $_GET['action'];
-		if(isset($_GET['file'])) $file = $_GET['file'];
-		if(isset($_GET['type'])) $type = $_GET['type'];
+
+	protected function _actionHandle_recycle(KCommandContext $context)
+	{
+		$action = $context->data->do;
+		if(isset($context->data->file)) $file = $context->data->file;
+		if(isset($context->data->type)) $type = $context->data->type;
 		$rb_root = JPATH_SITE.'/morph_recycle_bin';
 		
 		if($action){

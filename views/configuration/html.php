@@ -112,7 +112,7 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		$database->setQuery( $query );
 		$pref_params = $database->loadObjectList();
 					
-		$pref_list = KFactory::get('admin::com.configurator.helper.utilities')->getTemplateParamList( JPATH_COMPONENT_ADMINISTRATOR . '/views/configuration/tmpl/default_preferences.xml', TRUE );
+		$pref_list = KFactory::get('admin::com.configurator.helper.utilities')->getTemplateParamList( JPATH_COMPONENT_ADMINISTRATOR . '/includes/layout/preferences.xml', TRUE );
 		foreach ($pref_list as $pref => $val) {
 			$defpref_params[$pref] = $val;
 		}

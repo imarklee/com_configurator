@@ -56,9 +56,12 @@ $('#reset-settings ul li.action a').click(function(){
 		for(i=0;i<checkVal.length;i++){
 			if(checkVal[i] != 'true'){
 				$.ajax({
-					type: 'GET',
+					type: 'POST',
 					dataType: 'json',
-					url: '?option=com_configurator&task=reset_database&format=raw&reset_type='+checkVal[i],
+					url: '?option=com_configurator&view=configuration&format=raw&reset_type='+checkVal[i],
+					data: {
+						action: 'reset_database'
+					},
 					success: function(data){
 						if(data.error == ''){
 							successmsg.push(data.success);

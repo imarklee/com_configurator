@@ -846,8 +846,10 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		}
 	}
 	
-	function reset_database(){
+	protected function _actionReset_database(KCommandContext $context)
+	{
 		$db = JFactory::getDBO();
+		$table	= $this->getModel()->getTable();
 		$template_dir = JPATH_ROOT.'/templates/morph';
 		$themelet_dir = JPATH_ROOT.'/morph_assets/themelets';
 		
@@ -889,22 +891,21 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				}
 				
 				// add morphDetails.xml defaults to the CFG table
-				foreach($template_xml_params as $param_name => $param_value){
-					$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-					$setting->template_name = 'morph';
-					$setting->published = '1';
-					$setting->source = 'templatexml';
-					$setting->param_name = $param_name;
-					$setting->loadByKey();
-					$setting->param_value = $param_value;
-
-					if (!$setting->store(TRUE)) {
-						echo json_encode(array('error' => $setting->getError(), 'success' => ''));
-						die();
-					}
-
-					unset($setting);
-					$setting = null;
+				foreach($template_xml_params as $param_name => $param_value)
+				{
+					$query	= KFactory::tmp('lib.koowa.database.query')
+																		->where('template_name', '=', 'morph')
+																		->where('published',	 '=', 1)
+																		->where('source',		 '=', 'templatexml')
+																		->where('param_name',	 '=', $param_name);
+					$row			= $table->select($query, KDatabase::FETCH_ROW);
+	
+					$row->template	= 'morph';
+					$row->source	= 'templatexml';
+					$row->name		= $param_name;
+					$row->value		= $param_value;
+	
+					$row->save();
 				}
 				
 				// add themeletDetails.xml to the database
@@ -913,22 +914,21 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 					$xml_param_loader = new ComConfiguratorHelperParamLoader($themelet.'/themeletDetails.xml');
 					$themelet_xml_params = $xml_param_loader->getParamDefaults();
 
-					foreach($themelet_xml_params as $param_name => $param_value){
-						$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-						$setting->template_name = 'morph';
-						$setting->published = '1';
-						$setting->param_name = $param_name;
-						$setting->loadByKey();
-						$setting->param_value = $param_value;
-						$setting->source = 'themelet';
-
-						if (!$setting->store(TRUE)) {
-							echo json_encode(array('error' => $setting->getError(), 'success' => ''));
-							die();
-						}
-
-						unset($setting);
-						$setting = null;
+					foreach($themelet_xml_params as $param_name => $param_value)
+					{
+						$query	= KFactory::tmp('lib.koowa.database.query')
+																			->where('template_name', '=', 'morph')
+																			->where('published',	 '=', 1)
+																			->where('source',		 '=', 'themelet')
+																			->where('param_name',	 '=', $param_name);
+						$row			= $table->select($query, KDatabase::FETCH_ROW);
+		
+						$row->template	= 'morph';
+						$row->source	= 'themelet';
+						$row->name		= $param_name;
+						$row->value		= $param_value;
+		
+						$row->save();
 					}
 				}
 				
@@ -1071,12 +1071,19 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				}
 			
 				JPath::setPermissions($logo_dir.'/'.strtolower( basename( $logo_details['name'] ) ) );
-				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				$setting->template_name = $template;
-				$setting->param_name = 'templatelogo';
-				$setting->loadByKey();
-				$setting->param_value = strtolower( basename( $logo_details['name'] ) );
-				$setting->store();
+				$query	= KFactory::tmp('lib.koowa.database.query')
+																	->where('template_name', '=', 'morph')
+																	->where('published',	 '=', 1)
+																	->where('source',		 '=', 'themelet')
+																	->where('param_name',	 '=', 'templatelogo');
+				$row			= $this->getModel()->getTable()->select($query, KDatabase::FETCH_ROW);
+
+				$row->template	= 'morph';
+				$row->source	= 'themelet';
+				$row->name		= 'templatelogo';
+				$row->value		= strtolower( basename( $logo_details['name'] ) );
+
+				$row->save();
 				return array('success' => 'Logo uploaded successfully!', 'error' => '', 'logo' => $logo_details['name']);
 			}
 			
@@ -1125,12 +1132,19 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				}
 			
 				JPath::setPermissions($background_dir.'/'.strtolower( basename( $background_details['name'] ) ) );
-				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				$setting->template_name = $template;
-				$setting->param_name = 'templatebackground';
-				$setting->loadByKey();
-				$setting->param_value = strtolower( basename( $background_details['name'] ) );
-				$setting->store();
+				$query	= KFactory::tmp('lib.koowa.database.query')
+																	->where('template_name', '=', 'morph')
+																	->where('published',	 '=', 1)
+																	->where('source',		 '=', 'themelet')
+																	->where('param_name',	 '=', 'templatebackground');
+				$row			= $this->getModel()->getTable()->select($query, KDatabase::FETCH_ROW);
+
+				$row->template	= 'morph';
+				$row->source	= 'themelet';
+				$row->name		= 'templatebackground';
+				$row->value		= strtolower( basename( $background_details['name'] ) );
+
+				$row->save();
 				return array('error' => '', 'success' => 'Background Uploaded Successfully', 'background' => $background_details['name']);
 			}
 			
@@ -1427,22 +1441,22 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 				unset($main_xml_params[$r]);
 			}
 			
-			foreach($main_xml_params as $param_name => $param_value){
-				$setting = JTable::getInstance('ConfiguratorTemplateSettings','Table');
-				$setting->source = 'template';
-				$setting->template_name = 'morph';
-				$setting->published = '1';
-				$setting->param_name = $param_name;
-				$setting->loadByKey();
-				$setting->param_value = $param_value;
-				
-				if (!$setting->store(TRUE)) {
-					echo $setting->getError();
-					die();
-				}
-	
-				unset($setting);
-				$setting = null;
+			$table = $this->getModel()->getTable();
+			foreach($main_xml_params as $param_name => $param_value)
+			{
+				$query	= KFactory::tmp('lib.koowa.database.query')
+																	->where('template_name', '=', 'morph')
+																	->where('published',	 '=', 1)
+																	->where('source',		 '=', 'template')
+																	->where('param_name',	 '=', $param_name);
+				$row			= $table->select($query, KDatabase::FETCH_ROW);
+
+				$row->template	= 'morph';
+				$row->source	= 'template';
+				$row->name		= $param_name;
+				$row->value		= $param_value;
+
+				$row->save();
 			}
 		}else{
 			return true;

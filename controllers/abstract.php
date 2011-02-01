@@ -1745,7 +1745,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		}
 	}
 	
-	function get_modules_by_position(){
+	protected function _actionGet_modules_by_position(){
 		$ret = '';
 		$position = $_GET['position'];
 		if($position == ''){ return false; }

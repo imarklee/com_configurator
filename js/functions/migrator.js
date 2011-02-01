@@ -46,7 +46,11 @@ function show_positions(selector, list, act){
 		}
 
 		$.ajax({
-			url: '?option=com_configurator&task=get_modules_by_position&format=raw&position='+$(this).val(),
+			type: 'POST',
+			url: '?option=com_configurator&view=configuration&format=raw&position='+$(this).val(),
+			data: {
+				action: 'get_modules_by_position'
+			},
 			success: function(data){
 				if(data == ''){
 					return false;

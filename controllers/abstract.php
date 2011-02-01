@@ -1811,7 +1811,8 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		return false;
 	}
 	
-	function reset_modules(){
+	protected function _actionReset_modules()
+	{
 		$db = JFactory::getDBO();
 		$position = $_GET['position'];
 		if($position == ''){ return false; }

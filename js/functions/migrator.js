@@ -235,7 +235,11 @@ function migrate_reset(link_el){
 		switch($(this).attr('action')){
 			case 'outer':
 				$.ajax({
-					url: '?option=com_configurator&format=raw&task=reset_modules&position=left',
+					type: 'POST',
+					url: '?option=com_configurator&view=configuration&format=raw&position=left',
+					data: {
+						action: 'reset_modules'
+					},
 					success: function(){
 						close_ptOverlay();
 						$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully reset your modules.</li></ul></dd></dl>');	
@@ -245,7 +249,11 @@ function migrate_reset(link_el){
 			break;
 			case 'inner':
 				$.ajax({
-					url: '?option=com_configurator&format=raw&task=reset_modules&position=right',
+					type: 'POST',
+					url: '?option=com_configurator&view=configuration&format=raw&position=right',
+					data: {
+						action: 'reset_modules'
+					},
 					success: function(){
 						close_ptOverlay();
 						$('#element-box').before('<dl id="system-message"><dt class="message">Message</dt><dd class="message message fade"><ul><li>Successfully reset your modules.</li></ul></dd></dl>');	

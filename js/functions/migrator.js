@@ -197,9 +197,10 @@ $('#migrate-submit a').live('click', function(){
 	});
 	
 	$.ajax({
-		url: '?option=com_configurator&format=raw&task=migrate_modules',
-		type: 'post',
+		url: '?option=com_configurator&view=configuration&format=raw',
+		type: 'POST',
 		data: {
+			action: 'migrate_modules',
 			position: position,
 			old_pos: old_position,
 			id: mod_id,

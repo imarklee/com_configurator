@@ -1771,11 +1771,13 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		echo $ret;
 	}
 	
-	function migrate_modules(){
-		$position = $_REQUEST['position'];
-		$old_position = $_REQUEST['old_pos'];
-		$modules = $_REQUEST['modules'];
-		$modid = $_REQUEST['id'];
+	//@TODO clean this up
+	protected function _actionMigrate_modules()
+	{
+		$position = KRequest::get('post.position', 'cmd');
+		$old_position = KRequest::get('post.old_post', 'cmd');
+		$modules = KRequest::get('post.modules', 'string');
+		$modid = KRequest::get('post.id', 'string');
 		
 		$db = JFactory::getDBO();
 		

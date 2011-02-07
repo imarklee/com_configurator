@@ -594,7 +594,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		return true;
 	}
 
-	function export_db(){
+	protected function _actionExport_db(){
 		$data = $_POST['export_data'];
 		foreach($data as $d){
 			if(!preg_match('/ /i', $d)){
@@ -628,7 +628,9 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		echo json_encode(array('success' => 'SQL file imported successfully.'));
 		return true;
 	}
-		
+	
+	//@TODO clean this up and move it all into a proper action or method
+	//or better yet just leave backups to Akeeba
 	function create_db_backup($type='', $name='', $download=''){
 	
 		$db = JFactory::getDBO();

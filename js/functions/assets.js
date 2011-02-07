@@ -626,6 +626,7 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 				$('.dialog-msg').dialog('option', 'title', 'Restore Warning');
 				$('.dialog-msg').dialog('option', 'buttons', {
 					'Yes': function(){
+						//@TODO needs larger refactor
 						window.location.href = '?option=com_configurator&task=create_db_backup&format=raw&type=full-database&download=true&url';
 						$(this).dialog('close');
 						ptOverlay('Processing...');

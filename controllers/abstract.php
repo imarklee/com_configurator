@@ -46,6 +46,19 @@ class ComConfiguratorControllerAbstract extends JController
 
 		if(JFile::exists($cache)) return;
 
+
+
+		//This should be moved to its own file
+		$db = JFactory::getDBO();
+		$fields = $db->getTableFields(array('#__configurator'), true);
+		if($fields['#__configurator']['param_value'] == 'varchar')
+		{
+			$db->setQuery("ALTER TABLE #__configurator CHANGE COLUMN `param_value` `param_value` TEXT DEFAULT NULL");
+			$db->query();
+		}
+		
+		
+		
 		ComConfiguratorHelperUtilities::installCleanup();
 		$content = 'Cleanup executed: ' . gmdate('Y-m-d h:m:s');
 		JFile::write($cache, $content);

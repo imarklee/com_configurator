@@ -41,7 +41,6 @@
 			<folder>language</folder>
 			<folder>models</folder>
 			<folder>morphcache</folder>
-			<folder>tables</folder>
 			<folder>tooltips</folder>
 			<folder>views</folder>
 			<file>admin.configurator.php</file>
@@ -49,8 +48,6 @@
 			<file>depencies.php</file>
 			<file>index.html</file>
 			<file>install.sql</file>
-			<file>toolbar.configurator.html.php</file>
-			<file>toolbar.configurator.php</file>
 			<file>uninstall.sql</file>
 		</files>
 		

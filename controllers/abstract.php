@@ -22,8 +22,10 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 {
 	public function __construct(KConfig $config)
 	{
-		$config->request->append(array(
-			'template' => 'morph'
+		$config->append(array(
+			'request' => array(
+				'template' => 'morph'
+			)
 		));
 
 		parent::__construct($config);

@@ -58,7 +58,7 @@ foreach($conditions as $name => $condition)
 }
 ?>
 <div id="install-head">
-	<img src="<?php echo JURL; ?>/installer/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
+	<img src="<?php echo $base; ?>/installer/images/morphlogo.png" alt="morph logo" width="182" height="59" border="0" class="logo" />
 	<p class="steps"><?php echo JText::_('<strong>Installation Complete </strong>Everything installed successfully') ?></p>
 </div>
 <div id="install-shadow">

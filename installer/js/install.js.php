@@ -13,6 +13,10 @@ include '../../js/cookie.js';
 jQuery.noConflict();
 (function($){
 	$(document).ready(function(){
+	//Define the Nooku token for all ajax requests, by grabbing the value of the DOM for now
+	$.ajaxSetup({beforeSend: function(xhr){
+		xhr.setRequestHeader('X-Token', $('input[name=_token]').val());
+	}});
 	<?php
 	include '../../js/functions/common.js';
 	include 'install.configurator.js';

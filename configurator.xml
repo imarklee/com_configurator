@@ -33,14 +33,17 @@
 		<files>
 			<folder>controllers</folder>
 			<folder>css</folder>
+			<folder>databases</folder>
 			<folder>helpers</folder>
 			<folder>images</folder>
 			<folder>includes</folder>
 			<folder>installer</folder>
 			<folder>js</folder>
 			<folder>language</folder>
+			<folder>languages</folder>
 			<folder>models</folder>
 			<folder>morphcache</folder>
+			<folder>toolbars</folder>
 			<folder>tooltips</folder>
 			<folder>views</folder>
 			<file>admin.configurator.php</file>

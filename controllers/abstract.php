@@ -1478,7 +1478,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		}
 	}
 	
-	public function install_template()
+	protected function _actionInstall_template()
 	{
 		$db = JFactory::getDBO();
 	
@@ -1542,6 +1542,9 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_morph', true);
 			echo json_encode($msg);
 		}
+		
+		//@TODO temp fix
+		die;
 	}
 	
 	function deleteDirectory($dir) {

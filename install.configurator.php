@@ -131,6 +131,10 @@ if(substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
 	KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_no_gzip', true);
 }
 ?>
+
+<?php /* Used by ajax */ ?>
+<input type="hidden" name="_token" value="<?php echo JUtility::getToken() ?>" />
+
 <div id="install-wrap">
 	<div id="installer">
 	<?php

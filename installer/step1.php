@@ -36,7 +36,7 @@ if(is_dir($root . '/morph_assets')){ echo '<div id="assets_folder_exists" style=
 				
 			<div id="install-foot">
 				<ul id="action">
-					<?php if(is_dir($root . 'morph_assets')){ ?><li class="next"><input class="action install-template btn-install" type="submit" value="submit" /></li><?php } ?>
+					<li class="next"><input class="action install-template btn-install" type="submit" value="submit" /></li>
 					<li class="previous"><span>&laquo; </span><?php echo JText::_('Previous step') ?></li>
 					<li class="skip"><a href="#" class="btn-skip skip-step1"><?php echo JText::_('Skip this step') ?><span> &raquo;</span></a></li>
 				</ul>

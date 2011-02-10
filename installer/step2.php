@@ -5,7 +5,6 @@ $base = './components/com_configurator';
 }else{
 $base = '.';
 }
-$root = str_replace(array('administrator/components/com_configurator/installer','administrator\components\com_configurator\installer'), '', dirname(__FILE__));
 
 //@TODO we can't use this yet until this part is mvc, so we use a dirtier temporary workaround
 $themelet_installed = KFactory::get('admin::com.configurator.helper.utilities')->getInstallState('themelet_installed');
@@ -34,7 +33,7 @@ $themelet_installed = KFactory::get('admin::com.configurator.helper.utilities')-
 		</div>	
 		<div id="install-foot">
 			<ul id="action">
-				<?php if(is_dir($root . 'morph_assets')){ ?><li class="next"><input class="action install-themelet btn-install" type="submit" value="submit" /></li><?php } ?>
+				<li class="next"><input class="action install-themelet btn-install" type="submit" value="submit" /></li>
 				<li class="previous"><a href="#" class="btn-skip back-step1"><span>&raquo; </span><?php echo JText::_('Previous step') ?></a></li>
 				<li class="skip"><a href="#" class="btn-skip skip-step2"><?php echo JText::_('Skip this step') ?><span> &raquo;</span></a></li>
 			</ul>

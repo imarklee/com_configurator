@@ -1374,7 +1374,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		}		
 	}
 	
-	public function install_themelet()
+	protected function _actionInstall_themelet()
 	{
 		$mem_limit = ini_get('memory_limit');
 		if(str_replace('M', '', $mem_limit) < 64){ ini_set('memory_limit', '64M'); }
@@ -1415,6 +1415,9 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		}
 		
 		echo json_encode($return);
+		
+		//@TODO temp fix
+		die;
 	}
 	
 	protected function _actionAssets_create()

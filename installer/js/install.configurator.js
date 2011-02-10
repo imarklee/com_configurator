@@ -280,7 +280,7 @@
 	                }
 				//Callback that adds the token and action
 				}, function(form){
-					form.append($('<input />', {name: 'action', value: 'install_template'}))
+					form.append($('<input />', {name: 'action', value: 'install_themelet'}))
 						.append($('<input />', {name: '_token', value: $('input[name=_token]').val()}));
 				});
 			}else{

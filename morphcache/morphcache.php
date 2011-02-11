@@ -62,8 +62,11 @@ class plgSystemMorphCache extends JPlugin
 				
 				if(!defined('KOOWA')) return;
 
-				KLoader::addAdapter(new MorphLoaderAdapterMorph());
-				//KFactory::addAdapter(new KFactoryAdapterJoomla());
+				if(class_exists('MorphLoaderAdapterMorph'))
+				{
+					KLoader::addAdapter(new MorphLoaderAdapterMorph());
+				}
+				//KFactory::addAdapter(new KFactoryAdapterMorph());
 			}
 		}
 

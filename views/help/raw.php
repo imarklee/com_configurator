@@ -24,9 +24,14 @@ class ComConfiguratorViewHelpRaw extends ComDefaultViewHtml
 	 */
 	public function display()
 	{
+		
+		$layout = JPATH_ROOT . '/administrator/components/com_configurator/installer/help/'.$this->getLayout().'.php';
+	
+		if(!file_exists($layout)) return parent::display();
+	
 		//Load the template object
 		$this->output = $this->getTemplate()
-				->loadPath(JPATH_ROOT . '/administrator/components/com_configurator/installer/help/'.$this->getLayout().'.php', $this->_data)
+				->loadPath($layout, $this->_data)
 				->render(true);
 						
 		return parent::display();

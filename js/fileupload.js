@@ -21,10 +21,10 @@ jQuery.extend({
         document.body.appendChild(c);
         return c
     },
-    createUploadForm: function (g, b, callback) {
+    createUploadForm: function (g, b, url, callback) {
         var e = "jUploadForm" + g;
         var a = "jUploadFile" + g;
-        var d = jQuery('<form  action="" method="POST" name="' + e + '" id="' + e + '" enctype="multipart/form-data"></form>');
+        var d = jQuery('<form  action="'+url+'" method="POST" name="' + e + '" id="' + e + '" enctype="multipart/form-data"></form>');
         var c = jQuery("#" + b);
         var f = jQuery(c).clone();
         jQuery(c).attr("id", a);
@@ -43,7 +43,7 @@ jQuery.extend({
     ajaxFileUpload: function (k, callback) {
         k = jQuery.extend({}, jQuery.ajaxSettings, k);
         var a = new Date().getTime();
-        var b = jQuery.createUploadForm(a, k.fileElementId, callback);
+        var b = jQuery.createUploadForm(a, k.fileElementId, k.url, callback);
         var i = jQuery.createUploadIframe(a, k.secureuri);
         var h = "jUploadFrame" + a;
         var j = "jUploadForm" + a;
@@ -120,15 +120,15 @@ jQuery.extend({
         }
         try {
             var b = jQuery("#" + j);
-            jQuery(b).attr("action", k.url);
-            jQuery(b).attr("method", "POST");
-            jQuery(b).attr("target", h);
+            b.attr("action", k.url);
+            b.attr("method", "POST");
+            b.attr("target", h);
             if (b.encoding) {
                 b.encoding = "multipart/form-data"
             } else {
                 b.enctype = "multipart/form-data"
             }
-            jQuery(b).submit()
+            b.submit()
         } catch (g) {
             jQuery.handleError(k, f, null, g)
         }

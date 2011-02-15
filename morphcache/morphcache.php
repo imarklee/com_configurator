@@ -264,6 +264,9 @@ class plgSystemMorphCache extends JPlugin
 		define( 'J_JQUERY_LOADED', 1 );
 		//And of course, JomSocial as well
 		define( 'C_ASSETS_JQUERY', 1 );
+		
+		//Follow the conventions for loading jquery as most other 3rd parties
+		JFactory::getApplication()->set('jquery', true);
 
 		// If we are in configurator, make sure to update the overrides.
 		// @TODO we might not want to run this on every pageload in configurator.

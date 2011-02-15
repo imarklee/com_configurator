@@ -208,7 +208,6 @@ function fontsEnable(){
 	if($('#customfontscustom_fonts0').attr('checked')){ toggleProviders('off', '#customfontsfont_providers'); }
 	$('#customfontscustom_fonts0').click( function(){ toggleProviders('off', '#customfontsfont_providers'); } );
 }
-$(function(){ fontsEnable(); });
 
 
 
@@ -266,6 +265,7 @@ function showFontOptions(elid, hideid){
 }
 $(function(){ 
 	showFontOptions('#customfontsfont_providers','#fonts-options');
+	fontsEnable();
 });
 
 

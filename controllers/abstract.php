@@ -252,7 +252,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 	
 		$rowset = $this->execute('edit', $filtered);
 
-		$this->_redirect = 'view='.$this->_identifier->name;
+		$this->_redirect = 'index.php?option=com_configurator&view='.$this->_identifier->name;
 		return $rowset;
 	}
 

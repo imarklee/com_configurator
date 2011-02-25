@@ -1,23 +1,10 @@
-<?php defined('_JEXEC') or die('Restricted access');
-/**
-* @package   Configurator Component
-* @author    Prothemer http://www.prothemer.com
-* @copyright Copyright (C) 2008 - 2010 Web Monkeys Design Studio CC.
-* @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
-*/
-
-$template_dir = JPATH_SITE.'/templates/morph';
-$jVer 		= new JVersion();
-$jVer_curr  = $jVer->RELEASE.'.'.$jVer->DEV_LEVEL;
-?>
-<div id="browser-wrap" class="<?php echo $browser->name . ' ' . $browser->name.$browser->version; ?>">
+<? defined('KOOWA') or die('Restricted access') ?>
+<div id="browser-wrap" class="<?= $browser->name . ' ' . $browser->name.$browser->version; ?>">
 <?php
 	
 // Show a specific template in editable mode.
 if(isset($lists['err_messages'])) echo count($lists['err_messages'])?'<span style="color:#fff;background-color:#FF0000;font-weight:bold;">'.implode(',', $lists['err_messages']).'</span>':'';		
 
-//if(!$this->checkUser()){
 //@TODO move this into the view instead
 if(false) {
 	include JPATH_COMPONENT_ADMINISTRATOR.'/includes/layout/login.php';
@@ -92,7 +79,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 				<?= @template('admin::com.configurator.includes.general.debugging') ?>
 				<?= @template('admin::com.configurator.includes.general.components') ?>
 				<?= @template('admin::com.configurator.includes.general.mootools') ?>
-				<!--<?php //if($jomsocial_installed == 1) @template('admin::com.configurator.includes.general.jomsocial') ?>-->
+				<!--<?php //if($jomsocial_installed) echo @template('admin::com.configurator.includes.general.jomsocial') ?>-->
 				<?= @template('admin::com.configurator.includes.general.menuitems') ?>
 				<?= @template('admin::com.configurator.includes.general.enhancements') ?>
 			</div>
@@ -216,7 +203,7 @@ if($cfg_pref->bottom_save >= 1){ ?>
 </form>
 
 <div id="getting-started" style="display:none;"></div>
-<div id="preferences-screen" style="display:none;"><?= @template('admin::com.configurator.includes.preferences'); ?></div>
+<div id="preferences-screen" style="display:none;"><?= @template('admin::com.configurator.includes.preferences') ?></div>
 <div id="keyboard-screen" style="display:none;"></div>
 <div class="toolguides" style="display:none;"></div>
 <? } ?>

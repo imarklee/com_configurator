@@ -76,7 +76,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 		</ul>
 		<div id="site" class="ui-tabs-panel">
 			<div id="site-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['site-desc'])) @template('admin::com.configurator.includes.general.desc-site') ?>
+				<?= $overlays->site ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab"><?= @text('General') ?></a></li>
 					<li class="icon-performance"><a href="#performance-tab"><?= @text('Performance') ?></a></li>
@@ -100,7 +100,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 		<div id="customize" class="ui-tabs-panel ui-tabs-hide">
 			<div id="customize-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['themelet-desc'])) { @template('admin::com.configurator.includes.customize.desc-customize'); } ?>
+				<?= $overlays->themelet ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab"><?= @text('Color Settings') ?></a></li>
 					<li class="icon-logos"><a href="#logos-tab"><?= @text('Logo Settings') ?></a></li>
@@ -118,7 +118,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 		<div id="blocks" class="ui-tabs-panel ui-tabs-hide">
 			<div id="blocks-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['blocks-desc'])) { @template('admin::com.configurator.blocks.desc-blocks'); } ?>
+				<?= $overlays->blocks ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab"><?= @text('Toolbar') ?></a></li>
 					<li class="icon-mainhead"><a href="#mainhead-tab"><?= @text('Masthead') ?></a></li>
@@ -148,7 +148,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 		<div id="plugins" class="ui-tabs-panel ui-tabs-hide">
 			<div id="plugins-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['plugins-desc'])) { @template('admin::com.configurator.plugins/desc-plugins'); } ?>
+				<?= $overlays->plugins ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab"><?= @text('Fancy Captions') ?></a></li>
 					<li class="icon-lightbox"><a href="#lightbox-tab"><?= @text('Lightbox') ?></a></li>
@@ -162,7 +162,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 		<div id="tools" class="ui-tabs-panel ui-tabs-hide">
 			<div id="tools-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['tools-desc'])) { @template('admin::com.configurator.tools.desc-tools'); } ?>
+				<?= $overlays->tools ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-installer"><a href="#tools-installer"><?= @text('Universal Installer') ?></a></li>
 					<li class="icon-db"><a href="#database-manager"><?= @text('Import / Export') ?></a></li>
@@ -180,7 +180,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 
 		<div id="assets" class="ui-tabs-panel ui-tabs-hide">
 			<div id="assets-tabs" class="subtabs">
-				<?php if ($cfg_pref->show_intros == 1 && !isset($_COOKIE['assets-desc'])) include JPATH_COMPONENT_ADMINISTRATOR.'/views/help/tmpl/desc_assets.php' ?>
+				<?= $overlays->assets ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
 					<li class="icon-themelets"><a href="<?php echo JRoute::_('?option=com_configurator&amp;view=themelets&amp;format=raw') ?>"><?= @text('Themelets') ?></a></li>
 					<li class="icon-logos"><a href="?option=com_configurator&amp;view=logos&amp;format=raw"><?= @text('Logos') ?></a></li>
@@ -196,13 +196,13 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 		</div>
 		
 		<div id="help" class="ui-tabs-panel ui-tabs-hide off">
-			<?= @template('help'); ?>
+			<?= @template('help') ?>
 		</div>
 	</div>
 
 	<div class="clear">&nbsp;</div>
-	<?php if($cfg_pref->shelf_position == 2){ @template('admin::com.configurator.includes.layout.shelf'); } ?>
-	<?php if($cfg_pref->show_footer == 1){ @template('admin::com.configurator.includes.shelf_footer'); } ?>					
+	<? if($cfg_pref->shelf_position == 2) echo @template('admin::com.configurator.includes.layout.shelf') ?>
+	<? if($cfg_pref->show_footer == 1) echo @template('admin::com.configurator.includes.shelf_footer') ?>					
 						
 </div>
 <?php

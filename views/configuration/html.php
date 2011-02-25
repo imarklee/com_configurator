@@ -269,11 +269,9 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		$descriptions	= array(
 			'site'	=> array(
 				'title'	=> 'About the general settings tab',
-				'text'	=> 'The options in the general settings tab are those 
-				which are specific to your site and will not change when you assign 
-				a new themelet. We have tried to make the options as easy to 
-				understand as possible, but if there is anything that you think 
-				could be improved, please be sure to let us know.'
+				'text'	=> 'The options in the general settings tab are those which are specific to your site 
+				and will not change when you assign a new themelet. We have tried to make the options as easy to understand 
+				as possible, but if there is anything that you think could be improved, please be sure to let us know.'
 			),
 			'themelet'	=> array(
 				'title'	=> 'About the themelet settings tab',
@@ -309,15 +307,15 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		$overlays = new KObject;
 		foreach($descriptions as $name => $parts)
 		{
-			
-			$overlays->$name = $cfg_pref->show_intros 
-				? $this->getTemplate()->loadIdentifier('default_desc', array(
+			$overlays->$name = $cfg_pref->show_intros && !KRequest::has('cookie.'.$name.'-desc')
+				? $this->getTemplate()->loadIdentifier('admin::com.configurator.view.configuration.default_desc', array(
 					'name'	=> $name,
 					'title' => $parts['title'],
 					'text'	=> $parts['text']
-				)) 
+				))->render(true)
 				: false;
 		}
+		
 		$this->assign(array(
 			'cfg_pref'	=> $cfg_pref,
 			'params'	=> $params,

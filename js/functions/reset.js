@@ -1,4 +1,4 @@
-$('#reset-settings ul li.action a').click(function(){
+$('#reset-settings-tab ul li.action a').click(function(){
 	// create dialog
 	$('<div class="dialog-msg"></div>').dialog({
 		bgiframe: true,
@@ -14,7 +14,7 @@ $('#reset-settings ul li.action a').click(function(){
 	ptOverlay('Processing...');
 	var error = false;
 	var checkVal = [];	
-	$('#reset-settings ul li input').each(function(){
+	$('#reset-settings-tab ul li input').each(function(){
 		if($(this).is(':checked')){
 			checkVal.push($(this).val());
 		}

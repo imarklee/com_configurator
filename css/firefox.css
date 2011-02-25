@@ -23,8 +23,8 @@ div#element-box div.m,
 #browser-wrap .cfg-message p a.close-msg{-moz-border-radius:10px;}
 #minwidth-body #content-box #element-box .m,
 #browser-wrap,#minwidth-body .m #templateform{-moz-border-radius:7px;}
-#database-manager .action a,
-#database-manager ul{-moz-border-radius:5px;}
+#database-tab .action a,
+#database-tab ul{-moz-border-radius:5px;}
 #cfg #tools .tools-btn{-moz-border-radius:10px;}
 #preferences-screen select{width:135px;}
 a.btn-primary{-moz-border-radius: 20px;-moz-box-shadow:0 0 5px #999;}

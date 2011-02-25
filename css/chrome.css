@@ -20,8 +20,8 @@ ul.assets-headers,
 #shelf.closed #utilities{-webkit-border-radius:7px;}
 #browser-wrap .cfg-message p{-webkit-border-radius:15px;}
 #browser-wrap .cfg-message p a.close-msg{-webkit-border-radius:10px;}
-#database-manager .action a,
-#database-manager ul{-webkit-border-radius:5px;}
+#database-tab .action a,
+#database-tab ul{-webkit-border-radius:5px;}
 #cfg #tools .tools-btn{-webkit-border-radius:10px;}
 a.btn-primary{-webkit-border-radius: 20px;-webkit-box-shadow:0 0 5px #999;}
 a.btn-primary:hover{-webkit-box-shadow:0 0 5px #598C13;}

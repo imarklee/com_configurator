@@ -1,6 +1,6 @@
 #minwidth-body.fullscreen #toolbar-box #toolbar table.toolbar{width:434px;}
 .win #minwidth-body.fullscreen #toolbar-box #toolbar table.toolbar{width:600px;}
-#database-manager label input,
+#database-tab label input,
 .radio-item input{border:0;}
 #cfg #tabs ol.forms li{padding:5px 10px 0px 10px;}
 #cfg .list-view ul.assets-headers li{list-style:none;}

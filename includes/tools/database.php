@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php $curr_themelet = KFactory::get('admin::com.configurator.model.configurations')->getItem()->themelet ?>
-<div id="database-manager">
+<div id="database-tab">
 	<h2>Export / Import Manager</h2>
 	<ul>
 	    <li><label><input type="radio" name="dbmanage" value="export" /> <?= @text('Export') ?></label>

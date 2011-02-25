@@ -1,10 +1,10 @@
-$('#database-manager ul li ul').css('display', 'none');
-$('#database-manager ul li input[type="radio"]').click(function(){
-	$('#database-manager ul li ul').css('display', 'none');
+$('#database-tab-tab ul li ul').css('display', 'none');
+$('#database-tab-tab ul li input[type="radio"]').click(function(){
+	$('#database-tab-tab ul li ul').css('display', 'none');
 	$(this).parent().next().css('display', 'block');
 });
 
-$('#database-manager ul li ul li input').click(function(){
+$('#database-tab-tab ul li ul li input').click(function(){
 	if($(this).is(':checked')){
 		$(this).parent().css('font-weight', 'bold');
 	}else{
@@ -12,8 +12,8 @@ $('#database-manager ul li ul li input').click(function(){
 	}
 });
 
-$('#database-manager ul li.action a').click(function(){
-	var action = $('#database-manager ul li input[type="radio"]:checked').val();
+$('#database-tab-tab ul li.action a').click(function(){
+	var action = $('#database-tab-tab ul li input[type="radio"]:checked').val();
 
 	$('<div class="dialog-msg"></div>').dialog({
 		bgiframe: true,
@@ -32,7 +32,7 @@ $('#database-manager ul li.action a').click(function(){
 	if(action == 'export'){
 		var checkVal = [];
 
-		$('#database-manager ul li ul li input').each(function(){
+		$('#database-tab-tab ul li ul li input').each(function(){
 			if($(this).is(':checked')){
 				checkVal.push($(this).val());
 			}

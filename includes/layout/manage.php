@@ -109,21 +109,13 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 		</div>
 
 		<div id="tools" class="ui-tabs-panel ui-tabs-hide">
-			<div id="tools-tabs" class="subtabs">
-				<?= $overlays->tools ?>
-				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-installer"><a href="#tools-installer"><?= @text('Universal Installer') ?></a></li>
-					<li class="icon-db"><a href="#database-manager"><?= @text('Import / Export') ?></a></li>
-					<li class="icon-reset"><a href="#reset-settings"><?= @text('Reset Settings') ?></a></li>
-					<li class="icon-editor"><a href="#editor-wrap"><?= @text('Code Editor') ?></a></li>
-					<li class="icon-modules"><a href="#module-migrator"><?= @text('Module Migrator') ?></a></li>
-				</ul>
-				<?= @template('admin::com.configurator.includes.tools.uploader') ?>
-				<?= @template('admin::com.configurator.includes.tools.database') ?>
-				<?= @template('admin::com.configurator.includes.tools.reset') ?>
-				<?= @template('admin::com.configurator.includes.tools.editor') ?>
-				<?= @template('admin::com.configurator.includes.tools.modules') ?>
-			</div>
+			<?= @tabs('tools', 'admin::com.configurator.includes.tools.', array(
+				'uploader' => 'Universal Installer',
+				'database' => 'Import / Export',
+				'reset-settings' => 'Reset Settings',
+				'editor-wrap' => 'Code Editor',
+				'module-migrator' => 'Module Migrator',
+			)) ?>
 		</div>
 
 		<div id="assets" class="ui-tabs-panel ui-tabs-hide">

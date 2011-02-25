@@ -93,49 +93,19 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 				'outer-shelves' => 'Outer Shelves',
 				'inner-shelves' => 'Inner Shelves',
 				'main' => 'Main Content',
-				'main' => 'Main Content',
+				'outer-sidebar' => 'Outer Sidebar',
+				'inner-sidebar' => 'Inner Sidebar',
+				'insets' => 'Insets',
+				'footer' => 'Footer'
 			)) ?>
-			<div id="blocks-tabs" class="subtabs">
-				<?= $overlays->blocks ?>
-				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-toolbar ui-tabs-selected"><a href="#toolbar-tab"><?= @text('Toolbar') ?></a></li>
-					<li class="icon-mainhead"><a href="#mainhead-tab"><?= @text('Masthead') ?></a></li>
-					<li class="icon-subhead"><a href="#subhead-tab"><?= @text('Subhead') ?></a></li>
-					<li class="icon-topnav"><a href="#topnav-tab"><?= @text('Topnav') ?></a></li>
-					<li class="icon-outer-shelves"><a href="#outer-shelves-tab"><?= @text('Outer Shelves') ?></a></li>
-					<li class="icon-inner-shelves"><a href="#inner-shelves-tab"><?= @text('Inner Shelves') ?></a></li>
-					<li class="icon-main"><a href="#main-tab"><?= @text('Main Content') ?></a></li>
-					<li class="icon-outer-sidebar"><a href="#outer-sidebar-tab"><?= @text('Outer Sidebar') ?></a></li>
-					<li class="icon-inner-sidebar"><a href="#inner-sidebar-tab"><?= @text('Inner Sidebar') ?></a></li>
-					<li class="icon-insets"><a href="#insets-tab"><?= @text('Insets') ?></a></li>
-					<li class="icon-footer"><a href="#footer-tab"><?= @text('Footer') ?></a></li>
-				</ul>
-				<?= @template('admin::com.configurator.includes.blocks.toolbar') ?>
-				<?= @template('admin::com.configurator.includes.blocks.mainhead') ?>
-				<?= @template('admin::com.configurator.includes.blocks.subhead') ?>
-				<?= @template('admin::com.configurator.includes.blocks.topnav') ?>
-				<?= @template('admin::com.configurator.includes.blocks.outer-shelves') ?>
-				<?= @template('admin::com.configurator.includes.blocks.inner-shelves') ?>
-				<?= @template('admin::com.configurator.includes.blocks.main') ?>
-				<?= @template('admin::com.configurator.includes.blocks.outer-sidebar') ?>
-				<?= @template('admin::com.configurator.includes.blocks.inner-sidebar') ?>
-				<?= @template('admin::com.configurator.includes.blocks.inset') ?>
-				<?= @template('admin::com.configurator.includes.blocks.footer') ?>
-			</div>
 		</div>
 
 		<div id="plugins" class="ui-tabs-panel ui-tabs-hide">
-			<div id="plugins-tabs" class="subtabs">
-				<?= $overlays->plugins ?>
-				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab"><?= @text('Fancy Captions') ?></a></li>
-					<li class="icon-lightbox"><a href="#lightbox-tab"><?= @text('Lightbox') ?></a></li>
-					<li class="icon-preloader"><a href="#preloader-tab"><?= @text('Preloader') ?></a></li>
-				</ul>
-				<?= @template('admin::com.configurator.includes.plugins.captify') ?>
-				<?= @template('admin::com.configurator.includes.plugins.lightbox') ?>
-				<?= @template('admin::com.configurator.includes.plugins.preloader') ?>
-			</div>
+			<?= @tabs('plugins', 'admin::com.configurator.includes.plugins.', array(
+				'captify' => 'Fancy Captions',
+				'lightbox' => 'Lightbox',
+				'preloader' => 'Preloader',
+			)) ?>
 		</div>
 
 		<div id="tools" class="ui-tabs-panel ui-tabs-hide">

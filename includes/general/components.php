@@ -8,67 +8,73 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-include JPATH_ROOT.'/templates/morph/core/morphLayouts.php';
-function innerLayouts($id)
+include_once JPATH_ROOT.'/templates/morph/core/morphLayouts.php';
+if(!function_exists('innerLayouts'))
 {
-	$layouts = new morphLayouts();
-	$select_option = array(
-		'default' => 'Inner Default',
-		'None',
-		implode("", $layouts->innerPageSuffix['1']),
-		implode("", $layouts->innerPageSuffix['2']),
-		implode("", $layouts->innerPageSuffix['3']),
-		implode("", $layouts->innerPageSuffix['4']),
-		implode("", $layouts->innerPageSuffix['5']),
-		implode("", $layouts->innerPageSuffix['6']),
-		implode("", $layouts->innerPageSuffix['7']),
-		implode("", $layouts->innerPageSuffix['8']),
-		implode("", $layouts->innerPageSuffix['9']),
-		implode("", $layouts->innerPageSuffix['10'])
-	);
-
-	$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
-	$res = $configuration->{'id_'.$id};
+	function innerLayouts($id)
+	{
+		$layouts = new morphLayouts();
+		$select_option = array(
+			'default' => 'Inner Default',
+			'None',
+			implode("", $layouts->innerPageSuffix['1']),
+			implode("", $layouts->innerPageSuffix['2']),
+			implode("", $layouts->innerPageSuffix['3']),
+			implode("", $layouts->innerPageSuffix['4']),
+			implode("", $layouts->innerPageSuffix['5']),
+			implode("", $layouts->innerPageSuffix['6']),
+			implode("", $layouts->innerPageSuffix['7']),
+			implode("", $layouts->innerPageSuffix['8']),
+			implode("", $layouts->innerPageSuffix['9']),
+			implode("", $layouts->innerPageSuffix['10'])
+		);
 	
-	$select = '<select id="id_'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
-		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Inner Default</option>'; } 
-		else { $select .= '<option value="default">Inner Default</option>'; }
+		$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
+		$res = $configuration->{'id_'.$id};
 		
-		foreach($layouts->innerPageSuffix as $key => $val){
-			if($res !== NULL && $res !== 'default' && $res == $key){ $selected = ' selected="selected"'; }else{ $selected = ''; }
-			$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
-		}
-	$select .= '</select>';
-	return $select;
+		$select = '<select id="id_'.$id.'" name="components_inner[id_'.str_replace('-', '_', $id).']">';
+			if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Inner Default</option>'; } 
+			else { $select .= '<option value="default">Inner Default</option>'; }
+			
+			foreach($layouts->innerPageSuffix as $key => $val){
+				if($res !== NULL && $res !== 'default' && $res == $key){ $selected = ' selected="selected"'; }else{ $selected = ''; }
+				$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
+			}
+		$select .= '</select>';
+		return $select;
+	}
 }
-function outerLayouts($id){
-
-	$layouts = new morphLayouts();
-	$select_option = array(
-		'None',
-		'160px Left',
-		'180px Left',
-		'300px Left',
-		'180px Right',
-		'240px Right',
-		'300px Right',
-		'200px Left',
-		'200px Right'
-	);
+if(!function_exists('outerLayouts'))
+{
+	function outerLayouts($id){
 	
-	$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
-	$res = $configuration->{'od_'.$id};
-	
-	$select = '<select id="od_'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
-		if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Outer Default</option>'; }
-		else { $select .= '<option value="default">Outer Default</option>'; }
+		$layouts = new morphLayouts();
+		$select_option = array(
+			'None',
+			'160px Left',
+			'180px Left',
+			'300px Left',
+			'180px Right',
+			'240px Right',
+			'300px Right',
+			'200px Left',
+			'200px Right'
+		);
 		
-		foreach($layouts->outerPageSuffix as $key => $val){
-			if($res !== NULL && $res !== 'default' && $res == $key){ $selected = ' selected="selected"'; }else{ $selected = ''; }
-			$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
-		}
-	$select .= '</select>';
-	return $select;
+		$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
+		$res = $configuration->{'od_'.$id};
+		
+		$select = '<select id="od_'.$id.'" name="components_outer[od_'.str_replace('-', '_', $id).']">';
+			if($res !== NULL && $res == 'default' || $res == NULL){ $select .= '<option value="default" selected="selected">Outer Default</option>'; }
+			else { $select .= '<option value="default">Outer Default</option>'; }
+			
+			foreach($layouts->outerPageSuffix as $key => $val){
+				if($res !== NULL && $res !== 'default' && $res == $key){ $selected = ' selected="selected"'; }else{ $selected = ''; }
+				$select .= '<option value="'.$key.'"'. $selected .'>'.$select_option[$key].'</option>';
+			}
+		$select .= '</select>';
+		return $select;
+	}
 }
 // do not show these options
 $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_jupdateman');

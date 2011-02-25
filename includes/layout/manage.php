@@ -62,48 +62,39 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			<li class="help-icon last"><a href="#help"><?= @text('Help') ?></a></li>
 		</ul>
 		<div id="site" class="ui-tabs-panel">
-			<div id="site-tabs" class="subtabs">
-				<?= $overlays->site ?>
-				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-general ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#general-tab"><?= @text('General') ?></a></li>
-					<li class="icon-performance"><a href="#performance-tab"><?= @text('Performance') ?></a></li>
-					<li class="icon-debugging"><a href="#debugging-tab"><?= @text('Debugging') ?></a></li>
-                    <li class="icon-components"><a href="#components-tab"><?= @text('Component Layouts') ?></a></li>
-                    <li class="icon-comperformance"><a href="#mootools-tab"><?= @text('Mootools Compatibility') ?></a></li>
-                    <!--<?php if($jomsocial_installed == 1) { ?><li class="icon-jomsocial"><a href="#jomsocial-tab"><?= @text('JomSocial Integration') ?></a></li><?php } ?>-->
-                    <!--<li class="icon-menuitems"><a href="#menuitems-tab"><?= @text('Menu Items') ?></a></li>-->
-                    <li class="icon-enhancements"><a href="#enhancements-tab"><?= @text('Core Enhancements') ?></a></li>
-				</ul>
-				<?= @template('admin::com.configurator.includes.general.general') ?>
-				<?= @template('admin::com.configurator.includes.general.performance') ?>
-				<?= @template('admin::com.configurator.includes.general.debugging') ?>
-				<?= @template('admin::com.configurator.includes.general.components') ?>
-				<?= @template('admin::com.configurator.includes.general.mootools') ?>
-				<!--<?php //if($jomsocial_installed) echo @template('admin::com.configurator.includes.general.jomsocial') ?>-->
-				<?= @template('admin::com.configurator.includes.general.menuitems') ?>
-				<?= @template('admin::com.configurator.includes.general.enhancements') ?>
-			</div>
+			<?= @tabs('site', 'admin::com.configurator.includes.general.', array(
+				'general' => 'General',
+				'performance' => 'Performance',
+				'debugging' => 'Debugging',
+				'components' => 'Component Layouts',
+				'mootools' => 'Mootools Compatibility',
+				//'jomsocial' => 'JomSocial Integration' //if($jomsocial_installed)
+				//'menuitems' => 'Menu Items',
+				'enhancements' => 'Core Enhancements'
+			)) ?>
 		</div>
 
 		<div id="customize" class="ui-tabs-panel ui-tabs-hide">
-			<div id="customize-tabs" class="subtabs">
-				<?= $overlays->themelet ?>
-				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="ui-tabs-selected icon-colors"><a href="#colors-tab"><?= @text('Color Settings') ?></a></li>
-					<li class="icon-logos"><a href="#logos-tab"><?= @text('Logo Settings') ?></a></li>
-					<li class="icon-backgrounds"><a href="#backgrounds-tab"><?= @text('Background Settings') ?></a></li>
-					<li class="ui-tabs-selected icon-fonts"><a href="#fonts-tab"><?= @text('Custom Fonts') ?></a></li>
-					<li class="icon-iphone"><a href="#iphone-tab"><?= @text('iPhone Compatibility') ?></a></li>
-				</ul>
-				<?= @template('admin::com.configurator.includes.customize.colors') ?>
-				<?= @template('admin::com.configurator.includes.customize.logos') ?>
-				<?= @template('admin::com.configurator.includes.customize.backgrounds') ?>
-				<?= @template('admin::com.configurator.includes.customize.fonts') ?>
-				<?= @template('admin::com.configurator.includes.customize.iphone') ?>
-			</div>
+			<?= @tabs('customize', 'admin::com.configurator.includes.customize.', array(
+				'colors' => 'Color Settings',
+				'logos' => 'Logo Settings',
+				'backgrounds' => 'Background Settings',
+				'fonts' => 'Custom Fonts',
+				'iphone' => 'iPhone Compatibility'
+			), $overlays->themelet) ?>
 		</div>
 
 		<div id="blocks" class="ui-tabs-panel ui-tabs-hide">
+			<?= @tabs('blocks', 'admin::com.configurator.includes.blocks.', array(
+				'toolbar' => 'Toolbar',
+				'mainhead' => 'Masthead',
+				'subhead' => 'Subhead',
+				'topnav' => 'Topnav',
+				'outer-shelves' => 'Outer Shelves',
+				'inner-shelves' => 'Inner Shelves',
+				'main' => 'Main Content',
+				'main' => 'Main Content',
+			)) ?>
 			<div id="blocks-tabs" class="subtabs">
 				<?= $overlays->blocks ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
@@ -111,11 +102,11 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="icon-mainhead"><a href="#mainhead-tab"><?= @text('Masthead') ?></a></li>
 					<li class="icon-subhead"><a href="#subhead-tab"><?= @text('Subhead') ?></a></li>
 					<li class="icon-topnav"><a href="#topnav-tab"><?= @text('Topnav') ?></a></li>
-					<li class="icon-oshelves"><a href="#outer-shelves-tab"><?= @text('Outer Shelves') ?></a></li>
-					<li class="icon-ishelves"><a href="#inner-shelves-tab"><?= @text('Inner Shelves') ?></a></li>
+					<li class="icon-outer-shelves"><a href="#outer-shelves-tab"><?= @text('Outer Shelves') ?></a></li>
+					<li class="icon-inner-shelves"><a href="#inner-shelves-tab"><?= @text('Inner Shelves') ?></a></li>
 					<li class="icon-main"><a href="#main-tab"><?= @text('Main Content') ?></a></li>
-					<li class="icon-sidebars"><a href="#outer-sidebar-tab"><?= @text('Outer Sidebar') ?></a></li>
-					<li class="icon-sidebars"><a href="#inner-sidebar-tab"><?= @text('Inner Sidebar') ?></a></li>
+					<li class="icon-outer-sidebar"><a href="#outer-sidebar-tab"><?= @text('Outer Sidebar') ?></a></li>
+					<li class="icon-inner-sidebar"><a href="#inner-sidebar-tab"><?= @text('Inner Sidebar') ?></a></li>
 					<li class="icon-insets"><a href="#insets-tab"><?= @text('Insets') ?></a></li>
 					<li class="icon-footer"><a href="#footer-tab"><?= @text('Footer') ?></a></li>
 				</ul>

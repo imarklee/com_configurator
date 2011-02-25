@@ -6,27 +6,29 @@
 * @license   http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
-
-function mootools($extension, $index, $app)
+if(!function_exists('mootools'))
 {
-	$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
-	if(in_array($extension['option'], $restricted)) return;
-	extract($extension);
+	function mootools($extension, $index, $app)
+	{
+		$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
+		if(in_array($extension['option'], $restricted)) return;
+		extract($extension);
+		
+		$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
+		
+		$value = isset($configuration->{'load_mootools_'.$option}) ? $configuration->{'load_mootools_'.$option} : 0;
+		
+	//	$xml = & JFactory::getXMLParser('Simple');
+	//	$xml->loadFile($app->getPath('com_xml', $option));
 	
-	$configuration = KFactory::get('admin::com.configurator.model.configurations')->getItem();
+		$node = new JSimpleXMLElement('param');
+	//	$node->addAttribute('tooltip', 'inline');
+		$node->addChild('option', array('value' => 1))->setData('Yes');
+		$node->addChild('option', array('value' => 0))->setData('No');
 	
-	$value = isset($configuration->{'load_mootools_'.$option}) ? $configuration->{'load_mootools_'.$option} : 0;
-	
-//	$xml = & JFactory::getXMLParser('Simple');
-//	$xml->loadFile($app->getPath('com_xml', $option));
-
-	$node = new JSimpleXMLElement('param');
-//	$node->addAttribute('tooltip', 'inline');
-	$node->addChild('option', array('value' => 1))->setData('Yes');
-	$node->addChild('option', array('value' => 0))->setData('No');
-
-	echo JElementItoggle::fetchTooltip($name, null /*htmlspecialchars($xml->description)*/, $node, 'mootoolscompat', 'load_mootools_'.$option);
-	echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, $node, 'mootoolscompat');
+		echo JElementItoggle::fetchTooltip($name, null /*htmlspecialchars($xml->description)*/, $node, 'mootoolscompat', 'load_mootools_'.$option);
+		echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, $node, 'mootoolscompat');
+	}
 }
 ?>
 

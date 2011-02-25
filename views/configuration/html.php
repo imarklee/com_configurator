@@ -38,9 +38,10 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		$this->setLayout('manage');
 		
 	    //Add alias filter for @params helper
-		KFactory::get($this->getTemplate())->getFilter('alias')->append(
-			array('@params(array(' => '$this->loadHelper(\'admin::com.configurator.helper.html.params\', array(\'params\' => $params, '), KTemplateFilter::MODE_READ
-		);
+		KFactory::get($this->getTemplate())->getFilter('alias')->append(array(
+			'@params(array(' => '$this->loadHelper(\'admin::com.configurator.helper.html.params\', array(\'params\' => $params, ',
+			'@tabs(' => '$this->getView()->createTabs('
+		), KTemplateFilter::MODE_READ);
 	}
 
 	public function display()
@@ -333,5 +334,17 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 
 	        return parent::display();
 	 	}
+	}
+
+	public function createTabs($name, $template_path, array $tabs, $overlay = null)
+	{
+		$data = array_merge($this->_data, array(
+			'name'	=> $name,
+			'template_path' => $template_path,
+			'tabs'	=> $tabs,
+			'overlay' => $overlay !== null ? $overlay : $this->overlays->$name
+		)); 
+	
+		return $this->getTemplate()->loadIdentifier('admin::com.configurator.view.configuration.default_tabs', $data)->render(true);
 	}
 }

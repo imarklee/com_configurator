@@ -78,7 +78,6 @@ jQuery.noConflict()(function($){
 			
 			hideScroll();
 			$('#session-message').dialog(Configurator.dialog({
-					bgiframe: true, 
 					resizable: false,
 					draggable: false,
 					width: 350,
@@ -169,7 +168,6 @@ jQuery.noConflict()(function($){
 	
 	function notice_dialog(title, file, link_id){
 		$('<div class="toolguides"></div>').dialog(Configurator.dialog({
-			bgiframe: true,
 			autoOpen: false,
 			width: 400,
 			height: 280,
@@ -328,7 +326,6 @@ jQuery.noConflict()(function($){
 	$('#quicktips a').click(function(){
 		$(this).after('<div id="tips-dialog">Tips can be re-enabled in the Preferences.</div>');
 		$('#tips-dialog').dialog({
-			bgiframe: true,
 			modal: true,
 			maxHeight: 100,
 			buttons: {
@@ -506,7 +503,6 @@ $('.text_area').simpleautogrow();
 	<?php include 'functions/assets.js'; ?> 
 
 	$("#report-bug").dialog({
-		bgiframe: true,
 		autoOpen: false,
 		minHeight: 300,
 		buttons: false,
@@ -535,7 +531,6 @@ $('.text_area').simpleautogrow();
 				for (var i=0; i < formData.length; i++) { 
 					if (!formData[i].value) { 
 						$('<div class="dialog-msg">All fields are required</div>').dialog({
-							bgiframe: true,
 							autoOpen: true,
 							stack: true,
 							title: 'Error',
@@ -578,7 +573,6 @@ $('.text_area').simpleautogrow();
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
-								bgiframe: true,
 								autoOpen: true,
 								stack: true,
 								title: 'Error',
@@ -596,7 +590,6 @@ $('.text_area').simpleautogrow();
 						}
 					}else{
 						$('<div class="dialog-msg">'+data.message+'</div>').dialog({
-							bgiframe: true,
 							autoOpen: true,
 							stack: true,
 							title: 'Success',
@@ -618,7 +611,6 @@ $('.text_area').simpleautogrow();
 				},
 				error: function(data){
 					$('<div>'+data+'</div>').dialog({
-						bgiframe: true,
 						autoOpen: true,
 						stack: true,
 						title: 'Error',
@@ -718,7 +710,6 @@ $('.text_area').simpleautogrow();
    		$('.toolguides').load(qtLink);
    		$('.toolguides').dialog({
 			autoOpen: true,
-			bgiframe: true,
 			modal: true,
 			width: 700,
 			height: 700,
@@ -740,7 +731,6 @@ $('.text_area').simpleautogrow();
    		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));
    		$('.toolguides').dialog({
 			autoOpen: true,
-			bgiframe: true,
 			modal: true,
 			width: 700,
 			height: 700,
@@ -760,7 +750,6 @@ $('.text_area').simpleautogrow();
 		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));
 		$('.toolguides').dialog({
 			autoOpen: true,
-			bgiframe: true,
 			modal: true,
 			width: 661,
 			height: 730,
@@ -874,7 +863,6 @@ $('.text_area').simpleautogrow();
 					if(data.error != ''){
 						hideScroll();
 						$('#upload-message').dialog(Configurator.dialog({
-				   			bgiframe: true, 
 				   			resizable: false,
 				   			draggable: false,
 				   			width: 350,
@@ -897,7 +885,6 @@ $('.text_area').simpleautogrow();
 
 						hideScroll();
 						$('#upload-message').dialog(Configurator.dialog({
-				   			bgiframe: true, 
 				   			resizable: false,
 				   			draggable: false,
 					   		width: 350,
@@ -1014,7 +1001,6 @@ $('.text_area').simpleautogrow();
 																				close_ptOverlay();
 																				hideScroll();
 																				$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog(Configurator.dialog({
-																		   			bgiframe: true,
 																		   			width: 500,
 																		   			title: 'Activate',
 																		   			overlay: {
@@ -1258,7 +1244,6 @@ $('.text_area').simpleautogrow();
 		if($.cookie('formChanges')){			
 			$('<div id="changesDialog"><p>You have made some changes to Configurator that will be saved upon activation of this themelet. Are you sure you want to activate this themelet and save these changes?</p></div>').dialog({
 				autoOpen: true,
-				bgiframe: true,
 				modal: true,
 				width: 350,
 				title: 'Warning!',
@@ -1313,7 +1298,6 @@ $('.text_area').simpleautogrow();
 	function welcomeScreen(){
 		$('#getting-started').dialog(Configurator.dialog({
 			width: '920px',
-			bgiframe: true,
    			dialogClass: 'welcome',
    			title: 'Welcome to Configurator',
    			overlay: {
@@ -1351,7 +1335,6 @@ $('.text_area').simpleautogrow();
 			hideScroll();
 			$('#credits-dialog').dialog(Configurator.dialog({
 				width: '800px',
-				bgiframe: true,
 	   			dialogClass: 'credits', 
 	   			title: 'Credits',
 	   			overlay: {
@@ -1379,7 +1362,6 @@ $('.text_area').simpleautogrow();
 		hideScroll();
 		$('#preferences-screen').dialog(Configurator.dialog({
 			width: '450px',
-			bgiframe: true,
    			dialogClass: 'preferences', 
    			title: 'Configurator Preferences',
    			overlay: {
@@ -1443,7 +1425,6 @@ $('.text_area').simpleautogrow();
 		}
 		$('#keyboard-screen').dialog(Configurator.dialog({
 			width: '700px',
-			bgiframe: true,
    			draggable: false,
    			//modal: true,
    			dialogClass: 'keyboard', 
@@ -1505,7 +1486,6 @@ $('.text_area').simpleautogrow();
 		
 		$('.toolguides').dialog({
 			autoOpen: false,
-			bgiframe: true,
 			width: 700,
 			height: 700,
 			title: toolTitle,

@@ -8,7 +8,6 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		$('body').append('<div id="recycle-message" class="dialog-msg" style="display:none;">');
 		$('#recycle-message').dialog({
 			autoOpen: false, 
-			bgiframe: true, 
 			resizable: false,
 			draggable: false,
 			minHeight: 20,

@@ -27,7 +27,6 @@
 							close_ptOverlay();
 							hideScroll();
 							$('#dialog').dialog({
-					   			bgiframe: true, 
 					   			resizable: false,
 					   			draggable: false,
 					   			minHeight: 20,
@@ -56,7 +55,6 @@
 							close_ptOverlay();
 							hideScroll();
 							$('#dialog').dialog({
-					   			bgiframe: true, 
 					   			resizable: false,
 					   			draggable: false,
 					   			minHeight: 20,
@@ -112,7 +110,6 @@
 	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({
-						   			bgiframe: true, 
 						   			resizable: false,
 						   			draggable: false,
 						   			minHeight: 20,
@@ -139,7 +136,6 @@
 	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({
-						   			bgiframe: true, 
 						   			resizable: false,
 						   			draggable: false,
 						   			minHeight: 20,
@@ -174,7 +170,6 @@
 			}else{
 				hideScroll();
 				$('<div class="dialog-msg">All fields are required.</div>').dialog({
-	            	bgiframe: true,
 					autoOpen: true,
 					stack: true,
 					title: 'Error',
@@ -218,7 +213,6 @@
 	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({
-						   			bgiframe: true, 
 						   			resizable: false,
 						   			draggable: false,
 						   			minHeight: 20,
@@ -244,7 +238,6 @@
 	                            close_ptOverlay();
 	                            hideScroll();
 								$('#dialog').dialog({
-						   			bgiframe: true, 
 						   			resizable: false,
 						   			draggable: false,
 						   			minHeight: 20,
@@ -286,7 +279,6 @@
 			}else{
 				hideScroll();
 				$('<div class="dialog-msg">All fields are required.</div>').dialog({
-	            	bgiframe: true,
 					autoOpen: true,
 					stack: true,
 					title: 'Error',
@@ -324,7 +316,6 @@
 			$('.help-step1').click(function(){	
 				$('#help-dialog').dialog({
 					autoOpen: true,
-					bgiframe: true, 
 		   			resizable: false,
 		   			draggable: false,
 		   			minHeight: 20,
@@ -354,7 +345,6 @@
 			$('.help-step2').click(function(){
 				$('#help-dialog').dialog({
 					autoOpen: true,
-					bgiframe: true, 
 		   			resizable: false,
 		   			draggable: false,
 		   			minHeight: 20,
@@ -414,7 +404,6 @@
 						}else{
 							hideScroll();
 							$('<div class="dialog-msg"><p>Please select an upgrade option.</p></div>').dialog({
-				            	bgiframe: true,
 								autoOpen: true,
 								stack: true,
 								title: 'Error',
@@ -491,7 +480,6 @@
 		$('.back-step2').click(function(){ loadstep2(themelet); return false; });
 		
 		$('#error-assets').dialog({
-			bgiframe: true,
 			autoOpen: false,
 			resizable: false,
 			draggable: false,

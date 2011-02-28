@@ -1,7 +1,6 @@
 $('#reset-settings-tab ul li.action a').click(function(){
 	// create dialog
 	$('<div class="dialog-msg"></div>').dialog({
-		bgiframe: true,
 		autoOpen: false,
 		minHeight: 20,
 		stack: false,

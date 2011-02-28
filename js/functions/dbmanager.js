@@ -16,7 +16,6 @@ $('#database-tab-tab ul li.action a').click(function(){
 	var action = $('#database-tab-tab ul li input[type="radio"]:checked').val();
 
 	$('<div class="dialog-msg"></div>').dialog({
-		bgiframe: true,
 		autoOpen: false,
 		minHeight: 20,
 		stack: false,

@@ -35,7 +35,6 @@ $(window).keydown(function(e){
 						if(data.exists == 'true'){
 							close_ptOverlay();
 							$('<div class="dialog-msg">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
-					   			bgiframe: true,
 					   			autoOpen: true,
 					   			minHeight: 20,
 					   			width: 500,

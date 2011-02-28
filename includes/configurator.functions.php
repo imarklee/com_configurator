@@ -9,18 +9,6 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-function get_os(){
-	$agent = $_SERVER['HTTP_USER_AGENT'];
-	$os = "unknown";
-	
-	if (preg_match("/win/i", $agent)) $os = "windows";
-    elseif (preg_match("/mac/i", $agent)) $os = "mac";
-    elseif (preg_match("/linux/i", $agent)) $os = "linux";
-    elseif (preg_match("/OS\/2/i", $agent)) $os = "OS/2";
-    elseif (preg_match("/BeOS/i", $agent)) $os = "beos";
-        
-return $os;
-}
 function bs_class($bs_op){
 	$bs_class = '';
 	switch($bs_op){
@@ -30,11 +18,6 @@ function bs_class($bs_op){
 		case '4':$bs_class = ' class="unsaved_topsave"';break;
 	}
 return $bs_class;
-}
-function whichKey($os){
-	if($os == 'mac') $key = '&#x2318;';
-	else $key = 'Ctrl';
-	return $key;
 }
 function array_shuffle($array) {
     if (shuffle($array)) {

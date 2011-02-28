@@ -1,5 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
-<?php include JPATH_COMPONENT.'/includes/configurator.functions.php'; ?>
+<? $key = KFactory::get('admin::com.configurator.helper.browser')->getKeyboardKey() ?>
+
 <div id="splash">
 	<ul id="welcome-tabs">
 		<li class="splash-start"><a href="#splashtab-start">Getting started</a></li>
@@ -77,26 +78,26 @@
 			<p class="intro">We all love keyboard shortcuts, as they often boost your productivity. With this in mind, we have added a number of different keyboard shortcuts to increase your productivity when using Configurator.</p>
 			<p><img src="../administrator/components/com_configurator/images/splash-shortcuts-bg.png" alt="maskot" border="0" align="right" style="margin: 0px 0px 0 15px" /></p>
 			<p>
-			<strong><?php echo whichKey(get_os()); ?> + P</strong> Preferences<br />
-			<strong><?php echo whichKey(get_os()); ?> + 1</strong> Open the Quick Start guide<br />
-			<strong><?php echo whichKey(get_os()); ?> + O</strong> Open your site in new window<br />
-			<strong><?php echo whichKey(get_os()); ?> + 2</strong> Open the Blocks reference map<br />
-			<strong><?php echo whichKey(get_os()); ?> + /</strong> Preview your sites module positions<br />
-			<strong><?php echo whichKey(get_os()); ?> + 3</strong> Open the Position reference map<br />
-			<strong><?php echo whichKey(get_os()); ?> + S</strong> Save your changes<br />				
-			<strong><?php echo whichKey(get_os()); ?> + 4</strong> Open the Troubleshooting guide<br />
-			<strong><?php echo whichKey(get_os()); ?> + E</strong> Send feedback (bug or suggestion)<br />
-			<strong><?php echo whichKey(get_os()); ?> + 5</strong> Open the ModuleFX guide<br />
-			<strong><?php echo whichKey(get_os()); ?> + 6</strong> Open the PageFX guide<br />
-			<strong><?php echo whichKey(get_os()); ?> + F</strong> Toggle between fullscreen mode<br />
-			<strong><?php echo whichKey(get_os()); ?> + 7</strong> Open the MenuFX guide<br />
-			<strong><?php echo whichKey(get_os()); ?> + 0</strong> Toggle the top shelf<br />
-			<strong><?php echo whichKey(get_os()); ?> + 8</strong> Open the ContentFX guide<br />			
+			<strong><?= $key ?> + P</strong> Preferences<br />
+			<strong><?= $key ?> + 1</strong> Open the Quick Start guide<br />
+			<strong><?= $key ?> + O</strong> Open your site in new window<br />
+			<strong><?= $key ?> + 2</strong> Open the Blocks reference map<br />
+			<strong><?= $key ?> + /</strong> Preview your sites module positions<br />
+			<strong><?= $key ?> + 3</strong> Open the Position reference map<br />
+			<strong><?= $key ?> + S</strong> Save your changes<br />				
+			<strong><?= $key ?> + 4</strong> Open the Troubleshooting guide<br />
+			<strong><?= $key ?> + E</strong> Send feedback (bug or suggestion)<br />
+			<strong><?= $key ?> + 5</strong> Open the ModuleFX guide<br />
+			<strong><?= $key ?> + 6</strong> Open the PageFX guide<br />
+			<strong><?= $key ?> + F</strong> Toggle between fullscreen mode<br />
+			<strong><?= $key ?> + 7</strong> Open the MenuFX guide<br />
+			<strong><?= $key ?> + 0</strong> Toggle the top shelf<br />
+			<strong><?= $key ?> + 8</strong> Open the ContentFX guide<br />			
 			</p>			
 		</div>
 		<div id="splashtab-prefs" class="splashtabs">
 			<h3>Setting your preferences</h3>
-			<p class="intro">The preferences pane can be accessed from either the link in the top shelf or using the built in keyboard shortcut <strong><?php echo whichKey(get_os()); ?> + P</strong>.</p>			
+			<p class="intro">The preferences pane can be accessed from either the link in the top shelf or using the built in keyboard shortcut <strong><?= $key ?> + P</strong>.</p>			
 			<h4>Preferences options:</h4>
 			<ul>
 			<li>Enable / disable quick tips</li>
@@ -110,7 +111,7 @@
 			<h3>Submitting a bug or suggestion</h3>
 			<p class="intro">We believe that submitting a bug or sending a suggestion should be super easy and NOT take you away from the interface you are providing feedback on. </p>
 			<p><img src="../administrator/components/com_configurator/images/splash-feedback-bg.png" alt="maskot" border="0" align="right" style="margin: -5px 0px 0 15px" /> With this in mind we built a quick and easy way for you to submit a bug or suggestion.</p>
-			<p>You can either click on the <strong>Send Feedback</strong> link in the top shelf, or use the built in keyboard shortcut <strong><?php echo whichKey(get_os()); ?> + E</strong>.</p>
+			<p>You can either click on the <strong>Send Feedback</strong> link in the top shelf, or use the built in keyboard shortcut <strong><?= $key ?> + E</strong>.</p>
 			<p class="important">Due to the vast number of users, we are not able to reply to emails received through Configurator. If you requires a response, please use <a href="http://www.joomlajunkie.com/member">the support forum</a> instead.</p>
 		</div>
 		<div id="splashtab-docs" class="splashtabs">

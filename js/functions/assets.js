@@ -120,7 +120,6 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 	   		ptOverlay('Processing...');
 		   	
 	   		$('#generalthemelet option[value="'+setThemelet+'"]').attr('selected', true).trigger('change');
-	   		$('#templateform input[name="task"]').remove();
 	   		$('#templateform').submit(function(){
 	   			$(this).ajaxSubmit({
 	   				type: 'POST',

@@ -145,13 +145,9 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 	<? if($cfg_pref->show_footer == 1) echo @template('admin::com.configurator.includes.shelf_footer') ?>					
 						
 </div>
-<?php
-if($cfg_pref->bottom_save >= 1){ ?>
-<div id="bottom-save"<?php echo bs_class($cfg_pref->bottom_save); ?> style="display:none;"><a href="#" title="you can configure how this save bar is displayed in the configurator preferences"><?= @text('Save your settings') ?></a></div>
-<?php } ?>
-<input type="hidden" name="option" value="<?php echo JRequest::getCmd('option', 'com_configurator'); ?>"/>
-<input type="hidden" name="t" value="morph"/>
-<input type="hidden" name="task" value="" />
+<? if($cfg_pref->bottom_save >= 1) : ?>
+<div id="bottom-save"<?= bs_class($cfg_pref->bottom_save) ?> style="display:none;"><a href="#" title="you can configure how this save bar is displayed in the configurator preferences"><?= @text('Save your settings') ?></a></div>
+<? endif ?>
 <input type="hidden" name="action" value="apply" />
 </form>
 

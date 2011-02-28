@@ -988,7 +988,6 @@ $('.text_area').simpleautogrow();
 												   				url: '?format=raw',
 												   				data: {
 												   					option: 'com_configurator',
-												   					task: 'apply',
 												   					action: 'apply',
 												   					isajax: 'true'
 												   				},

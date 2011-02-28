@@ -58,6 +58,7 @@
 	
 	<!-- Deprecated files -->
 	<deprecated>
+		<file>depencies.php</file>
 		<file>controllers/dispatch.php</file>
 		<file>toolbar.configurator.html.php</file>
 		<file>toolbar.configurator.php</file>

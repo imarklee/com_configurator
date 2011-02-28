@@ -152,7 +152,8 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 						
 </div>
 <? if($cfg_pref->bottom_save >= 1) : ?>
-<div id="bottom-save"<?= bs_class($cfg_pref->bottom_save) ?> style="display:none;"><a href="#" title="you can configure how this save bar is displayed in the configurator preferences"><?= @text('Save your settings') ?></a></div>
+<? $classes = array(1 => 'always', 2 => 'unsaved', 3 => 'topsave', 4 => 'unsaved_topsave') ?>
+<div id="bottom-save" class="<?= $classes[$cfg_pref->bottom_save] ?>" style="display:none;"><a href="#" title="you can configure how this save bar is displayed in the configurator preferences"><?= @text('Save your settings') ?></a></div>
 <? endif ?>
 <input type="hidden" name="action" value="apply" />
 </form>

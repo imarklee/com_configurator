@@ -146,8 +146,6 @@ class ComConfiguratorViewConfigurationHtml extends ComDefaultViewHtml
 		
 		$pref_xml = new JParameter($current_prefs, JPATH_COMPONENT_ADMINISTRATOR.'/includes/layout/preferences.xml');
 		
-		include_once(JPATH_COMPONENT_ADMINISTRATOR.'/includes/configurator.functions.php');
-		
 		$document 	= JFactory::getDocument();
         			
 		$conf = JFactory::getConfig();

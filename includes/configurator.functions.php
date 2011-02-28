@@ -43,29 +43,6 @@ function array_shuffle($array) {
         return FALSE;
     }
 } 
-function renderParams($array){
-
-	foreach ($array as $value){
-		$params[] = $value;
-	}
-	
-	$x = count($params);	
-	for($i=0; $i < $x; $i++){
-	
-		$heading = $params[$i][5];
-	
-		if(!preg_match('/heading/i', $heading)){
-			$class = ( ($i % 2) ? 'class="row alt"' : 'class="row"');
-		}else{
-			$class = 'class="row-heading"';
-		}
-	
-		for($n = 0; $n < 2; $n++){
-			echo "\t\t\t".$params[$i][$n]."\n";
-		}
-	}
-}
-
 function decode_data($data){
 	return (array)unserialize(str_replace('\\', '', urldecode($data)));
 }

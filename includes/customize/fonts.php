@@ -1,9 +1,10 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
+
 <div id="fonts-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="fonts-options" class="options-panel">
 		<h3><?= @text('Custom Fonts') ?></h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('customfonts', 'customfontsdata')); ?>
+			<?= @params(array('name' => 'customfonts')) ?>
 		</ol>
 	</div>
 	<div id="fonts-info" class="info-panel">

@@ -1,13 +1,14 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
+
 <div id="logos-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="logo-options" class="options-panel">
 	    <h3><?= @text('Logo Settings') ?></h3>
 		<ol class="forms" id="logo-panel">
-			<?php echo renderParams($params->renderToArray('logo', 'logodata')); ?>
+			<?= @params(array('name' => 'logo')) ?>
 		</ol>
 	    <h3><?= @text('Tagline Settings') ?></h3>
 		<ol class="forms" id="tagline-panel">
-			<?php echo renderParams($params->renderToArray('tagline', 'taglinedata')); ?>
+			<?= @params(array('name' => 'tagline')) ?>
 		</ol>
 	</div>
 	

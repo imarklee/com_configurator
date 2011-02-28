@@ -1,9 +1,10 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
+
 <div id="subhead-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="subhead-options" class="options-panel">
 	    <h3><?= @text('Subheader Block') ?></h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('subhead', 'subheaddata')); ?>
+			<?= @params(array('name' => 'subhead')) ?>
 		</ol>
 	</div>
 	<div id="subhead-info" class="info-panel">

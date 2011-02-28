@@ -1,13 +1,14 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
+
 <div id="backgrounds-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="background-options" class="options-panel">
 		<h3><?= @text('Body Background Settings') ?></h3>
 		<ol class="forms" id="body-panel">
-			<?php echo renderParams($params->renderToArray('bodybackgrounds', 'bodybackgroundsdata')); ?>
+			<?= @params(array('name' => 'bodybackgrounds')) ?>
 		</ol>
 		<h3><?= @text('Html Background Settings') ?></h3>
 		<ol class="forms" id="html-panel">
-			<?php echo renderParams($params->renderToArray('htmlbackgrounds', 'htmlbackgroundsdata')); ?>
+			<?= @params(array('name' => 'htmlbackgrounds')) ?>
 		</ol>
 	</div>
 	<div id="background-info" class="info-panel">

@@ -1,9 +1,10 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
+
 <div id="colors-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="color-options" class="options-panel">
 		<h3><?= @text('Color Settings') ?></h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('color', 'colordata')); ?>
+			<?= @params(array('name' => 'color')) ?>
 		</ol>
 	</div>
 	<div id="color-info" class="info-panel">

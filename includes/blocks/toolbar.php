@@ -1,9 +1,10 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
+
 <div id="toolbar-tab" class="ui-tabs-hide ui-tabs-panel">
 	<div id="toolbar-options" class="options-panel">
 	    <h3><?= @text('Toolbar Block Settings') ?></h3>
 		<ol class="forms">
-			<?php echo renderParams($params->renderToArray('toolbar', 'toolbardata')); ?>
+			<?= @params(array('name' => 'toolbar')) ?>
 		</ol>
 	</div>
 	<div id="toolbar-info" class="info-panel">

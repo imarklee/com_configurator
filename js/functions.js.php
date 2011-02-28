@@ -5,12 +5,21 @@ $lt = (int) $_GET['slt']; // Session time
 header('content-type: text/javascript; charset: UTF-8');
 ?>
 
+(function($){
 // Configurator base class
-var Configurator = {
+this.Configurator = {
 	
-	
+	//Utility function for reducing the amount of repeated code when initiating a dialog
+	dialog: function(options){
+		return $.extend({
+			minHeight: 20,
+			modal: true,
+			stack: false,
+		}, options);
+	}
 	
 };
+})(jQuery);
 
 function submitform(pressbutton){
     if (pressbutton) {
@@ -68,14 +77,11 @@ jQuery.noConflict()(function($){
 				countdown = setTimeout(function(){ endsession(); }, 300000);
 			
 			hideScroll();
-			$('#session-message').dialog({
-					autoOpen: true, 
+			$('#session-message').dialog(Configurator.dialog({
 					bgiframe: true, 
 					resizable: false,
 					draggable: false,
-					minHeight: 20,
 					width: 350,
-					modal: true, 
 					title: 'Your session is about to timeout',
 					overlay: {
 						backgroundColor: '#000', 
@@ -103,7 +109,7 @@ jQuery.noConflict()(function($){
 						var sessiontimer = setTimeout(keepalive, <?php echo $timeout ?>);
 					}
 				}
-			});
+			}));
 			var sectimer = setInterval(function(){
 				if(seconds == 0) seconds = 60;
 				if(seconds == 60 && minutes > 0) $('#keepalive-minutes').text('0'+(--minutes));
@@ -162,12 +168,9 @@ jQuery.noConflict()(function($){
 	})
 	
 	function notice_dialog(title, file, link_id){
-		$('<div class="toolguides"></div>').dialog({
+		$('<div class="toolguides"></div>').dialog(Configurator.dialog({
 			bgiframe: true,
 			autoOpen: false,
-			minHeight: 20,
-			stack: false,
-			modal: true, 
 			width: 400,
 			height: 280,
 			title: title,
@@ -175,7 +178,7 @@ jQuery.noConflict()(function($){
 				'background-color': '#000', 
 				opacity: 0.8 
 			}
-	   	});
+	   	}));
 	
 		$('a'+link_id).click(function(){
 			$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+file, function(){
@@ -870,14 +873,12 @@ $('.text_area').simpleautogrow();
 				if(typeof(data.error) != 'undefined'){
 					if(data.error != ''){
 						hideScroll();
-						$('#upload-message').dialog({
+						$('#upload-message').dialog(Configurator.dialog({
 				   			bgiframe: true, 
 				   			resizable: false,
 				   			draggable: false,
-				   			minHeight: 20,
 				   			width: 350,
 							autoOpen: false,
-				   			modal: true,
 				   			title: 'Error',
 		   					overlay: {
 		   						backgroundColor: '#000000', 
@@ -889,19 +890,17 @@ $('.text_area').simpleautogrow();
 									showScroll();
 								}
 							}
-						});
+						}));
 						$('#upload-message').html('<p>'+data.error+'</p>');
 						$('#upload-message').dialog('open');
 					}else{
 
 						hideScroll();
-						$('#upload-message').dialog({
+						$('#upload-message').dialog(Configurator.dialog({
 				   			bgiframe: true, 
 				   			resizable: false,
 				   			draggable: false,
-				   			minHeight: 20,
 					   		width: 350,
-				   			modal: true,
 							autoOpen: false,
 				   			title: 'Success',
 				   			close: function(){
@@ -911,7 +910,7 @@ $('.text_area').simpleautogrow();
 		   						backgroundColor: '#000', 
 		   						opacity: 0.8 
 		   					}
-		   				});
+		   				}));
 		   				
 		   				if(uploadType == 'template'){
 							$('#upload-message').html(data.success);
@@ -1014,13 +1013,9 @@ $('.text_area').simpleautogrow();
 																			if(data.exists == 'true'){
 																				close_ptOverlay();
 																				hideScroll();
-																				$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
+																				$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog(Configurator.dialog({
 																		   			bgiframe: true,
-																		   			autoOpen: true,
-																		   			minHeight: 20,
 																		   			width: 500,
-																		   			stack: false,
-																		   			modal: true, 
 																		   			title: 'Activate',
 																		   			overlay: {
 																		   				'background-color': '#000', 
@@ -1058,7 +1053,7 @@ $('.text_area').simpleautogrow();
 																							});
 																			   			}
 																			   		}
-																			   	});
+																			   	}));
 																			}else{
 																				// change to assets tab
 																				ptOverlay('Processing...');
@@ -1316,13 +1311,9 @@ $('.text_area').simpleautogrow();
 	// ajax content for dialog
 	// welcome screen
 	function welcomeScreen(){
-		$('#getting-started').dialog({
+		$('#getting-started').dialog(Configurator.dialog({
 			width: '920px',
 			bgiframe: true,
-   			autoOpen: true,
-   			minHeight: 20,
-   			stack: false,
-   			modal: true, 
    			dialogClass: 'welcome',
    			title: 'Welcome to Configurator',
    			overlay: {
@@ -1334,7 +1325,7 @@ $('.text_area').simpleautogrow();
    				showScroll();
    				$(this).dialog('destroy');
    			}
-		});
+		}));
 		hideScroll();
 		$(".close-welcome").click(function(){
 			$('#getting-started').dialog('destroy');
@@ -1358,13 +1349,9 @@ $('.text_area').simpleautogrow();
 		$('<div id="credits-dialog"></div>').appendTo('body');
 		$('#credits-dialog').load('../administrator/components/com_configurator/tooltips/credits.html', function(){
 			hideScroll();
-			$('#credits-dialog').dialog({
+			$('#credits-dialog').dialog(Configurator.dialog({
 				width: '800px',
 				bgiframe: true,
-	   			autoOpen: true,
-	   			minHeight: 20,
-	   			stack: false,
-	   			modal: true,
 	   			dialogClass: 'credits', 
 	   			title: 'Credits',
 	   			overlay: {
@@ -1375,7 +1362,7 @@ $('.text_area').simpleautogrow();
 	   				showScroll();
 	   				$(this).dialog('destroy');
 	   			}
-			});
+			}));
 		});
 		return false;
 	});
@@ -1390,13 +1377,9 @@ $('.text_area').simpleautogrow();
 	// prefs
 	function preferencesScreen(){
 		hideScroll();
-		$('#preferences-screen').dialog({
+		$('#preferences-screen').dialog(Configurator.dialog({
 			width: '450px',
 			bgiframe: true,
-   			autoOpen: true,
-   			minHeight: 20,
-   			stack: false,
-   			modal: true,
    			dialogClass: 'preferences', 
    			title: 'Configurator Preferences',
    			overlay: {
@@ -1408,7 +1391,7 @@ $('.text_area').simpleautogrow();
    				$.cookie('prefs', null);
    				$(this).dialog('destroy');
    			}
-		});
+		}));
 		$(".close-preferences").click(function(){
 			$('#preferences-screen').dialog("close");
 			showScroll();
@@ -1458,11 +1441,9 @@ $('.text_area').simpleautogrow();
 			$('#keyboard-screen').empty();
 			$('#keyboard-screen').load('?option=com_configurator&view=help&layout=keyboard-opera&format=raw');
 		}
-		$('#keyboard-screen').dialog({
+		$('#keyboard-screen').dialog(Configurator.dialog({
 			width: '700px',
 			bgiframe: true,
-   			autoOpen: true,
-   			minHeight: 20,
    			draggable: false,
    			//modal: true,
    			dialogClass: 'keyboard', 
@@ -1477,7 +1458,7 @@ $('.text_area').simpleautogrow();
    				$(this).dialog('destroy');
    			},
    			zIndex: 9999
-		});
+		}));
 	}
 	
 	$('#keyboard-toggle').click(function(){ 

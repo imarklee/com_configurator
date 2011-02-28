@@ -19,6 +19,3 @@ function bs_class($bs_op){
 	}
 return $bs_class;
 }
-function decode_data($data){
-	return (array)unserialize(str_replace('\\', '', urldecode($data)));
-}

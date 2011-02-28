@@ -174,8 +174,6 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 									close_ptOverlay();
 									hideScroll();
 									$('<div class="dialog-msg check">It seems that you have used this themelet before.<br />Would you like to restore your <strong>previous settings</strong>, or would you like to use the <strong>themelet defaults</strong></div>').dialog({
-							   			bgiframe: true,
-							   			autoOpen: true,
 							   			minHeight: 20,
 							   			width: 500,
 							   			stack: false,
@@ -248,7 +246,6 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    		var a = $(this);
    		function activateLogo(){
 	   		$('<div class="dialog-msg">Your new logo is activated. <br />Would you like to configure the logo options?</div>').dialog({
-	   			bgiframe: true,
 	   			autoOpen: false,
 	   			minHeight: 20,
 	   			stack: false,
@@ -318,7 +315,6 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
    		function activateBg(){
    			
 	   		$('<div class="dialog-msg">Your new background is activated. <br />Would you like to configure the background options?</div>').dialog({
-	   			bgiframe: true,
 	   			autoOpen: false,
 	   			minHeight: 20,
 	   			stack: false,
@@ -601,7 +597,6 @@ $('#assets-tabs').bind('tabsload', function(event, ui) {
 		};
 
 		$('<div class="dialog-msg"></div>').dialog({
-			bgiframe: true,
 			autoOpen: false,
 			minHeight: 20,
 			stack: false,

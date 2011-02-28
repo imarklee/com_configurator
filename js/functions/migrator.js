@@ -16,7 +16,6 @@ function show_positions(selector, list, act){
 			$('#mod-dialog').html('You have selected to migrate modules to a new destination but have not yet saved. <br />Would you like to save or clear these changes?');
 			$('#mod-dialog').dialog({
 				title: 'Warning',
-				autoOpen: true,
 				modal: true,
 				open: function(){
 					hideScroll();
@@ -212,7 +211,6 @@ $('#migrate-submit a').live('click', function(){
 			$('#mod-dialog').html(data);
 			$('#mod-dialog').dialog({
 				title: 'Success',
-				autoOpen: true,
 				modal: true,
 				open: function(){
 					hideScroll();

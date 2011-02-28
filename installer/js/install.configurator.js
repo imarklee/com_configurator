@@ -170,7 +170,6 @@
 			}else{
 				hideScroll();
 				$('<div class="dialog-msg">All fields are required.</div>').dialog({
-					autoOpen: true,
 					stack: true,
 					title: 'Error',
 					buttons: {
@@ -279,7 +278,6 @@
 			}else{
 				hideScroll();
 				$('<div class="dialog-msg">All fields are required.</div>').dialog({
-					autoOpen: true,
 					stack: true,
 					title: 'Error',
 					buttons: {
@@ -315,7 +313,6 @@
 			$('#help-dialog').load('?option=com_configurator&view=help&format=raw&layout=step1');
 			$('.help-step1').click(function(){	
 				$('#help-dialog').dialog({
-					autoOpen: true,
 		   			resizable: false,
 		   			draggable: false,
 		   			minHeight: 20,
@@ -344,7 +341,6 @@
 			$('#help-dialog').load('?option=com_configurator&view=help&format=raw&layout=step2');
 			$('.help-step2').click(function(){
 				$('#help-dialog').dialog({
-					autoOpen: true,
 		   			resizable: false,
 		   			draggable: false,
 		   			minHeight: 20,
@@ -404,7 +400,6 @@
 						}else{
 							hideScroll();
 							$('<div class="dialog-msg"><p>Please select an upgrade option.</p></div>').dialog({
-								autoOpen: true,
 								stack: true,
 								title: 'Error',
 								buttons: {

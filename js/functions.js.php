@@ -531,7 +531,6 @@ $('.text_area').simpleautogrow();
 				for (var i=0; i < formData.length; i++) { 
 					if (!formData[i].value) { 
 						$('<div class="dialog-msg">All fields are required</div>').dialog({
-							autoOpen: true,
 							stack: true,
 							title: 'Error',
 							buttons: {
@@ -573,7 +572,6 @@ $('.text_area').simpleautogrow();
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
-								autoOpen: true,
 								stack: true,
 								title: 'Error',
 								buttons: {
@@ -590,7 +588,6 @@ $('.text_area').simpleautogrow();
 						}
 					}else{
 						$('<div class="dialog-msg">'+data.message+'</div>').dialog({
-							autoOpen: true,
 							stack: true,
 							title: 'Success',
 							buttons: {
@@ -611,7 +608,6 @@ $('.text_area').simpleautogrow();
 				},
 				error: function(data){
 					$('<div>'+data+'</div>').dialog({
-						autoOpen: true,
 						stack: true,
 						title: 'Error',
 						buttons: {
@@ -709,7 +705,6 @@ $('.text_area').simpleautogrow();
    		hideScroll();
    		$('.toolguides').load(qtLink);
    		$('.toolguides').dialog({
-			autoOpen: true,
 			modal: true,
 			width: 700,
 			height: 700,
@@ -730,7 +725,6 @@ $('.text_area').simpleautogrow();
    		hideScroll();
    		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));
    		$('.toolguides').dialog({
-			autoOpen: true,
 			modal: true,
 			width: 700,
 			height: 700,
@@ -749,7 +743,6 @@ $('.text_area').simpleautogrow();
 		hideScroll();
 		$('.toolguides').load('../administrator/components/com_configurator/tooltips/'+$(this).attr('href'));
 		$('.toolguides').dialog({
-			autoOpen: true,
 			modal: true,
 			width: 661,
 			height: 730,
@@ -1243,7 +1236,6 @@ $('.text_area').simpleautogrow();
 		var $this = $(this);
 		if($.cookie('formChanges')){			
 			$('<div id="changesDialog"><p>You have made some changes to Configurator that will be saved upon activation of this themelet. Are you sure you want to activate this themelet and save these changes?</p></div>').dialog({
-				autoOpen: true,
 				modal: true,
 				width: 350,
 				title: 'Warning!',

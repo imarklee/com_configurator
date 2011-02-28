@@ -165,7 +165,6 @@ $('#editor-list').live('change', function(ev){
 		
 		$('body').append('<div id="editor-msg" class="dialog-msg">There are unsaved changes in current file. Are you sure you want to open a new file for editing?<br /><br />Press Cancel to review and save the changes, or press OK to discard the changes and change files.');
 		$('#editor-msg').dialog({
-			autoOpen: true,
 			width: 300,
 			modal: true,
 			bgIframe: true,

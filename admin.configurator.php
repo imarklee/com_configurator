@@ -17,7 +17,11 @@ if(!defined('KOOWA')) {
 }
 
 // Register depencies
-require_once JPATH_COMPONENT_ADMINISTRATOR . '/depencies.php';
+JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
+JLoader::register('JFolder', JPATH_LIBRARIES.'/joomla/filesystem/folder.php');
+JLoader::register('JPath', JPATH_LIBRARIES.'/joomla/filesystem/path.php');
+JLoader::register('JArchive', JPATH_LIBRARIES.'/joomla/filesystem/archive.php');
+JLoader::register('MBrowser', JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php');
 
 // Dispatch Configurator
 echo KFactory::get('admin::com.configurator.dispatcher')

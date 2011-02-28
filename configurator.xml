@@ -48,7 +48,6 @@
 			<folder>views</folder>
 			<file>admin.configurator.php</file>
 			<file>defines.php</file>
-			<file>depencies.php</file>
 			<file>index.html</file>
 			<file>install.sql</file>
 			<file>uninstall.sql</file>

@@ -22,9 +22,6 @@ function submitform(pressbutton){
     document.adminForm.submit();
 }
 
-//Preload spinner gif before domready
-jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
-
 jQuery.noConflict()(function($){
 
 	//Define the Nooku token for all ajax requests, by grabbing the value of the DOM for now

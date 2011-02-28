@@ -1,4 +1,10 @@
 <? defined('KOOWA') or die('Restricted access') ?>
+
+<script type="text/javascript">
+//Preload spinner gif before domready
+jQuery(new Image()).attr('src', 'components/com_configurator/images/loader3.gif');
+</script>
+
 <div id="browser-wrap" class="<?= $browser->name . ' ' . $browser->name.$browser->version; ?>">
 <?php
 	
@@ -122,12 +128,12 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			<div id="assets-tabs" class="subtabs">
 				<?= $overlays->assets ?>
 				<ul class="ui-helper-clearfix ui-tabs-nav">
-					<li class="icon-themelets"><a href="<?php echo JRoute::_('?option=com_configurator&amp;view=themelets&amp;format=raw') ?>"><?= @text('Themelets') ?></a></li>
-					<li class="icon-logos"><a href="?option=com_configurator&amp;view=logos&amp;format=raw"><?= @text('Logos') ?></a></li>
-					<li class="icon-backgrounds"><a href="?option=com_configurator&amp;view=backgrounds&amp;format=raw"><?= @text('Backgrounds') ?></a></li>
-					<li class="icon-iphone"><a href="?option=com_configurator&amp;view=iphone&amp;format=raw"><?= @text('iPhone') ?></a></li>
-					<li class="icon-backupmgr"><a href="?option=com_configurator&amp;view=backups&amp;format=raw"><?= @text('Backups') ?></a></li>
-					<li class="icon-recycle"><a href="?option=com_configurator&amp;view=recycle&amp;format=raw"><?= @text('Recycle Bin') ?></a></li>
+					<li class="icon-themelets"><a href="<?= @route('view=themelets&format=raw') ?>"><?= @text('Themelets') ?></a></li>
+					<li class="icon-logos"><a href="<?= @route('view=logos&format=raw') ?>"><?= @text('Logos') ?></a></li>
+					<li class="icon-backgrounds"><a href="<?= @route('view=backgrounds&format=raw') ?>"><?= @text('Backgrounds') ?></a></li>
+					<li class="icon-iphone"><a href="<?= @route('view=iphone&format=raw') ?>"><?= @text('iPhone') ?></a></li>
+					<li class="icon-backupmgr"><a href="<?= @route('view=backups&format=raw') ?>"><?= @text('Backups') ?></a></li>
+					<li class="icon-recycle"><a href="<?= @route('view=recycle&format=raw') ?>"><?= @text('Recycle Bin') ?></a></li>
 				</ul>
 				<div class="icon-backup"> 
 					<span><a href="?option=com_configurator&amp;task=assets_backup&amp;format=raw&amp;type=gzip" title="click here to download a full backup of your assets folder as a gzipped tarball"><?= @text('Download a Backup') ?></a></span>				

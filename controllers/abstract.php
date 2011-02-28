@@ -262,7 +262,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		$app         = JFactory::getApplication();
 		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
 		$app->setUserState('configurator', $menu_item);
-		if(!$this->isAjax()) $app->redirect('index.php?option=com_configurator&view=configuration', JText::_('Current menu item changed'));
+		if(KRequest::type() != 'AJAX') $app->redirect('index.php?option=com_configurator&view=configuration', JText::_('Current menu item changed'));
 		return true;
 	}
 	
@@ -275,12 +275,8 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
 		$reset = $table->resetMenuItems();
 		$msg   = !$reset ? JText::_('There were no menu item settings to reset.') : sprintf(JText::_('%s menu items settings reset'), $reset);
-		if(!$this->isAjax()) $app->redirect('?option=com_configurator&view=configuration', $msg);
+		if(KRequest::type() != 'AJAX') $app->redirect('?option=com_configurator&view=configuration', $msg);
 		return true;
-	}
-	
-	function isAjax() {
-		return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
 	}
 
 	function findLine($filename, $str){
@@ -1430,7 +1426,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			if(!JFolder::exists($dir)) JFolder::create($dir);
 		}
 		
-		if(self::isAjax()) echo json_encode(array(
+		if(KRequest::type() == 'AJAX') echo json_encode(array(
 			'error'   => '',
 			'success' => JText::_('Assets folder structure successfully created. You may continue with the installation.')
 		));

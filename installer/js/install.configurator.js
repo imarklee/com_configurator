@@ -170,7 +170,6 @@
 			}else{
 				hideScroll();
 				$('<div class="dialog-msg">All fields are required.</div>').dialog({
-					stack: true,
 					title: 'Error',
 					buttons: {
 						'Ok': function(){
@@ -278,7 +277,6 @@
 			}else{
 				hideScroll();
 				$('<div class="dialog-msg">All fields are required.</div>').dialog({
-					stack: true,
 					title: 'Error',
 					buttons: {
 						'Ok': function(){
@@ -400,7 +398,6 @@
 						}else{
 							hideScroll();
 							$('<div class="dialog-msg"><p>Please select an upgrade option.</p></div>').dialog({
-								stack: true,
 								title: 'Error',
 								buttons: {
 									'Ok': function(){

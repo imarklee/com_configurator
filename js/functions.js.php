@@ -531,7 +531,6 @@ $('.text_area').simpleautogrow();
 				for (var i=0; i < formData.length; i++) { 
 					if (!formData[i].value) { 
 						$('<div class="dialog-msg">All fields are required</div>').dialog({
-							stack: true,
 							title: 'Error',
 							buttons: {
 								'Ok': function(){
@@ -572,7 +571,6 @@ $('.text_area').simpleautogrow();
 					if(typeof(data.error) != 'undefined'){						
 						if(data.error != ''){
 							$('<div>'+data.error+'</div>').dialog({
-								stack: true,
 								title: 'Error',
 								buttons: {
 									'Ok': function(){
@@ -588,7 +586,6 @@ $('.text_area').simpleautogrow();
 						}
 					}else{
 						$('<div class="dialog-msg">'+data.message+'</div>').dialog({
-							stack: true,
 							title: 'Success',
 							buttons: {
 								'Ok': function(){
@@ -608,7 +605,6 @@ $('.text_area').simpleautogrow();
 				},
 				error: function(data){
 					$('<div>'+data+'</div>').dialog({
-						stack: true,
 						title: 'Error',
 						buttons: {
 							'Ok': function(){

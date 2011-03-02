@@ -15,7 +15,6 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 	
 	
 	require_once 'controllers/abstract.php';
-	require_once 'controllers/dispatch.php';
 	require_once 'controllers/default.php';
 }
 ob_start();

@@ -13,8 +13,6 @@
     <version>2.0.0</version>
     
 	<installfile>install.configurator.php</installfile>
-	<!-- For j1.6 -->
-	<scriptfile>install.configurator.php</scriptfile>
 	<uninstallfile>uninstall.configurator.php</uninstallfile>
 	
     <install>

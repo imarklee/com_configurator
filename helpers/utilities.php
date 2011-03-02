@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-class ComConfiguratorHelperUtilities extends JObject
+class ComConfiguratorHelperUtilities
 {
 	/**
 	 * Cleans up deprecated files

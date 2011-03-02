@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-class ComConfiguratorHelperBrowser extends JObject
+class ComConfiguratorHelperBrowser
 {
 	/**
 	 * Gets the platform keyword, useful for css classes

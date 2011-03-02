@@ -38,7 +38,7 @@ if(isset($_COOKIE['updates'])) setcookie('updates', '', time()-3600, '/');
 
 //@TODO this doesn't work on 1.6, so only run on 1.5 and previous
 $version = new JVersion;
-if(version_compare('1.6', $version->RELEASE, '>'))
+if(!JVersion::isCompatible('1.6.0'))
 {
 	// The following is to avoid configurator from showing up in the frontend menu manager
 	$com = JTable::getInstance('component');

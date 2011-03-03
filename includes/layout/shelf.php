@@ -32,21 +32,6 @@ setcookie('current_themelet', $params->get('themelet'), 0, '/'); ?>
 	<div id="utilities">
 		<ul>
 			<?php $app = JFactory::getApplication() ?>
-			<?php if ($app->getUserState('configurator') > 0) : ?>
-			<?php $menu = JTable::getInstance('Menu') ?>
-			<?php $menu->id = $app->getUserState('configurator') ?>
-			<?php $menu->load() ?>
-			<?php $menutype = JTable::getInstance('Menutypes') ?>
-			<?php $menutype->menutype = $menu->menutype ?>
-			<?php $menutype->_tbl_key = 'menutype' ?>
-			<?php $menutype->load() ?>
-			<li class="menuitem" title="You are currently editing the '<?php echo $menu->name ?>' menu item, which is located in the <?php echo $menutype->title ?>.">
-
-					<?php echo $menutype->title ?>
-					&#10095;
-					<?php echo $menu->name ?>				
-			</li>
-			<?php endif ?>
 			<?php if(isset($_COOKIE['formChanges'])){ ?>
 			<li class="changes">
 			    <span class="shelf-notice"><?= @text('You have unsaved changes') ?></span>

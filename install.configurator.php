@@ -9,6 +9,10 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 	JLoader::register('JPath', JPATH_LIBRARIES.'/joomla/filesystem/path.php');
 	JLoader::register('JArchive', JPATH_LIBRARIES.'/joomla/filesystem/archive.php');
 	JLoader::register('MBrowser', JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php');
+	
+	//Dirty, but works around major 1.6 installer limitation where only the echoed output in the component scope is preserved and rendered on page
+	echo '<link rel="stylesheet" href="'.JURI::root() . 'administrator/components/com_configurator/installer/css/install.css.php" />';
+	echo '<script type="text/javascript" src="'.JURI::root() . 'administrator/components/com_configurator/installer/js/install.js.php?v='.time().'"></script>';
 } else {
 	require_once 'defines.php';
 	require_once 'helpers/utilities.php';

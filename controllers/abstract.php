@@ -255,6 +255,7 @@ class ComConfiguratorControllerAbstract extends JController
 		$params[] = JRequest::getVar( 'captify', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'lightbox', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'preloader', null, 'post', 'array' );
+		$params[] = JRequest::getVar( 'megamenu', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'jomsocial', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'jomsocialboxes', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'articleenhancements', null, 'post', 'array' );

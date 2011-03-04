@@ -122,10 +122,12 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 					<li class="icon-toolbar ui-tabs-selected"><a href="#captify-tab">Fancy Captions</a></li>
 					<li class="icon-lightbox"><a href="#lightbox-tab">Lightbox</a></li>
 					<li class="icon-preloader"><a href="#preloader-tab">Preloader</a></li>
+					<li class="icon-megamenu"><a href="#megamenu-tab">Mega Shelf Menu</a></li>
 				</ul>
 				<?php include dirname(__FILE__).'/../plugins/captify.php' ?>
 				<?php include dirname(__FILE__).'/../plugins/lightbox.php' ?>
 				<?php include dirname(__FILE__).'/../plugins/preloader.php' ?>
+				<?php include dirname(__FILE__).'/../plugins/megamenu.php' ?>
 			</div>
 		</div>
 

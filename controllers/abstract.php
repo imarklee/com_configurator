@@ -61,8 +61,28 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			$db->query();
 		}
 		
-		
-		
+		//This is should also be in its own file
+		if(JFolder::exists(JPATH_ROOT.'/templates/morph'))
+		{
+			$version 	= new JVersion;
+			$target		= JPATH_ROOT.'/templates/morph/html';
+			$source		= JPATH_ROOT.'/templates/morph/html_j'.str_replace('.', '', $version->RELEASE);
+			if(JFolder::exists($source))
+			{
+				foreach(JFolder::folders($source) as $folder)
+				{
+					$destination = $target.'/'.$folder;
+					if(!JFolder::exists($destination)) JFolder::copy($source.'/'.$folder, $destination);
+				}
+
+				foreach(JFolder::files($source) as $file)
+				{
+					$destination = $target.'/'.$file;
+					if(!JFile::exists($destination)) JFile::copy($source.'/'.$file, $destination);
+				}
+			}
+		}
+
 		KFactory::get('admin::com.configurator.helper.utilities')->installCleanup();
 		$content = 'Cleanup executed: ' . gmdate('Y-m-d h:m:s');
 		JFile::write($cache, $content);

@@ -111,6 +111,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 				'captify' => 'Fancy Captions',
 				'lightbox' => 'Lightbox',
 				'preloader' => 'Preloader',
+				'megamenu' => 'Mega Shelf Menu'
 			)) ?>
 		</div>
 

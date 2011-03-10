@@ -56,17 +56,37 @@
 	
 	<!-- Deprecated files -->
 	<deprecated>
+		<file>admin.configurator.html.php</file>
+		<file>configuration.php</file>
+		<file>configurator.class.php</file>
+		<file>configurator.common.php</file>
+		<file>configurator.html.php</file>
+		<file>configurator.loader.php</file>
+		<file>configurator.php</file>
+		<file>controller.php</file>
+		<file>controllers/dispatch.php</file>
+		<file>css/login.css</file>
 		<file>css/menuitems.css</file>
-		<file>js/menuitems.js</file>
-		<file>includes/general/menuitems.php</file>
+		<file>databases/tables/configuratorcustomcode.php</file>
 		<file>databases/tables/configuratorpreferences.php</file>
 		<file>databases/tables/templatesettings.php</file>
-		<file>databases/tables/configuratorcustomcode.php</file>
-		<file>includes/configurator.functions.php</file>
 		<file>depencies.php</file>
-		<file>controllers/dispatch.php</file>
+		<file>images/btn-configurator-login.png</file>
+		<file>images/input-bg.jpg</file>
+		<file>images/loading-ui.jpg</file>
+		<file>images/login-mascot.png</file>
+		<file>includes/HTML_configuratorhelper_admin.php</file>
+		<file>includes/configurator.functions.php</file>
+		<file>includes/general/menuitems.php</file>
+		<file>includes/layout/livedocs.php</file>
+		<file>includes/layout/login.php</file>
+		<file>includes/layout/lost-password.php</file>
+		<file>js/functions/loading.js</file>
+		<file>js/menuitems.js</file>
+		<file>js/showpassword.js</file>
 		<file>toolbar.configurator.html.php</file>
 		<file>toolbar.configurator.php</file>
+		<file>tooltips/gettingstarted.php</file>
 		<file>views/backgrounds/view.raw.php</file>
 		<file>views/backups/view.raw.php</file>
 		<file>views/help/view.html.php</file>
@@ -74,29 +94,9 @@
 		<file>views/logos/view.raw.php</file>
 		<file>views/recycle/view.raw.php</file>
 		<file>views/themelets/view.raw.php</file>
-		<file>configurator.loader.php</file>
-		<file>configurator.common.php</file>
-		<file>configurator.class.php</file>
-		<folder>tables</folder>
-		<file>css/login.css</file>
-		<file>images/btn-configurator-login.png</file>
-		<file>images/input-bg.jpg</file>
-		<file>images/login-mascot.png</file>
-		<file>includes/layout/login.php</file>
-		<file>includes/layout/lost-password.php</file>
-		<file>js/showpassword.js</file>
 		<folder>includes/assets</folder>
 		<folder>installer/sql</folder>
-		<file>admin.configurator.html.php</file>
-		<file>configuration.php</file>
-		<file>configurator.php</file>
-		<file>configurator.html.php</file>
-		<file>controller.php</file>
-		<file>includes/HTML_configuratorhelper_admin.php</file>
-		<file>includes/layout/livedocs.php</file>
-		<file>images/loading-ui.jpg</file>
-		<file>js/functions/loading.js</file>
-		<file>tooltips/gettingstarted.php</file>
+		<folder>tables</folder>
 	</deprecated>
 	
 	<media />

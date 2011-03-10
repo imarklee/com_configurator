@@ -54,4 +54,20 @@ class ComConfiguratorModelConfigurations extends KModelTable
     {
         return $this->getList();
     }
+
+	public function getParams()
+	{
+		$database	= KFactory::get('lib.joomla.database');
+		$query		= KFactory::tmp('lib.koowa.database.query')->select('*')->from('configurator');
+
+		$query1		= clone $query;
+		$database->setQuery($query1->where('template_name', '=', $this->_state->template));
+		$overrides	= (array) $database->loadObjectList('param_name');
+
+		$query2		= clone $query;
+		$database->setQuery($query2->where('template_name', '=', 'morph'));
+		$defaults	= $database->loadObjectList('param_name');
+
+		return array_merge($defaults, $overrides);
+	}
 }

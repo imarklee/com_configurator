@@ -56,6 +56,12 @@
 	
 	<!-- Deprecated files -->
 	<deprecated>
+		<file>css/menuitems.css</file>
+		<file>js/menuitems.js</file>
+		<file>includes/general/menuitems.php</file>
+		<file>databases/tables/configuratorpreferences.php</file>
+		<file>databases/tables/templatesettings.php</file>
+		<file>databases/tables/configuratorcustomcode.php</file>
 		<file>includes/configurator.functions.php</file>
 		<file>depencies.php</file>
 		<file>controllers/dispatch.php</file>

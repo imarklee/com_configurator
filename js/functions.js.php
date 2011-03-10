@@ -287,15 +287,7 @@ jQuery.noConflict()(function($){
 		maintabs.tabs("select",1);
 		subtabs.tabs("select",3);
 		return false;
-	});	
-	
-	$("#utilities .menuitem").bind("click", function(){
-		var maintabs = $("#tabs").tabs();
-		var subtabs = $("#site-tabs").tabs();
-		maintabs.tabs("select",0);
-		subtabs.tabs('select','menuitems-tab');
-		return false;
-	});	
+	});
 
 	$(".sidebar-tab").live("click", function(){
 		var maintabs = $("#tabs").tabs();
@@ -1266,18 +1258,6 @@ $('.text_area').simpleautogrow();
 		event.preventDefault();
 	});
 	
-	/* @TODO make this fully ajax later */
-	$('#menuitems-options .save-and-reload').click(function(event){
-		ptOverlay('Changing current menu item&hellip;');
-		submitbutton('setMenuItem');
-		event.preventDefault();
-	});
-	$('#menuitems-options .reset-menuitems').click(function(event){
-		ptOverlay('Resetting menu item settings&hellip;');
-		submitbutton('resetMenuItems');
-		event.preventDefault();
-	});
-	
 	<?php include('functions/blocks.js'); ?>
 	<?php include('functions/keyboard.js'); ?>
 
@@ -1508,5 +1488,4 @@ $('.text_area').simpleautogrow();
 	var editor_highlighting = <?php echo $eh . "\n"; ?>
 	<?php include 'functions/editor.js'; ?>
 	<?php include 'functions/migrator.js'; ?>
-	<?php include 'menuitems.js' ?>
 });

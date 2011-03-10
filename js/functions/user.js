@@ -183,7 +183,6 @@ showSettings('#progressive-options', $.cookie('settings_effect'));
 showSettings('#performance-options', $.cookie('settings_effect'));
 showSettings('#debugging-options', $.cookie('settings_effect'));
 showSettings('#components-options', $.cookie('settings_effect'));
-showSettings('#menuitems-options', $.cookie('settings_effect'));
 showSettings('#mootools-options', $.cookie('settings_effect'));
 showSettings('#jomsocial-options', $.cookie('settings_effect'));
 showSettings('#enhancements-tab', $.cookie('settings_effect'));

@@ -54,7 +54,6 @@ include('fullscreen.css');
 include('tips.css');
 include('editor.css');
 include('itoggle.css');
-include('menuitems.css');
 //}
 
 // browser stylesheets

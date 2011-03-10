@@ -276,29 +276,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		return $rowset;
 	}
 
-	function setMenuItem()
-	{
-		// Set the current active menu item
-		$app         = JFactory::getApplication();
-		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
-		$app->setUserState('configurator', $menu_item);
-		if(KRequest::type() != 'AJAX') $app->redirect('index.php?option=com_configurator&view=configuration', JText::_('Current menu item changed'));
-		return true;
-	}
-	
-	function resetMenuItems()
-	{
-		// Set the current active menu item
-		$app         = JFactory::getApplication();
-		$menu_item   = JRequest::getInt('menuitem', $app->getUserState('configurator'));
-		$app->setUserState('configurator', 0);
-		$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
-		$reset = $table->resetMenuItems();
-		$msg   = !$reset ? JText::_('There were no menu item settings to reset.') : sprintf(JText::_('%s menu items settings reset'), $reset);
-		if(KRequest::type() != 'AJAX') $app->redirect('?option=com_configurator&view=configuration', $msg);
-		return true;
-	}
-
 	function findLine($filename, $str){
 		$file = file($filename);
 		$file = array_map('trim', $file);

@@ -101,7 +101,3 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
 #credits-block1{width:49%;float:left;}
 #credits-block2{width:49%;float:right;}
 option.have-configs{background:yellow;border:1px solid #222;padding:2px;}
-#tabs #menuitems-options .inner{width:495px;font:normal 13px/18px Arial;color:#555;padding:1em;}
-#utilities ul .menuitem{border:0;background:orange;margin-left:10px;}
-#tabs select#paramsmenuitem{background:#fff;border:1px solid;border-color:#ddd #eee #eee #ddd;padding:1px;}
-#tabs select#paramsmenuitem option{padding:0;font:normal 12px Arial;padding:2px;}

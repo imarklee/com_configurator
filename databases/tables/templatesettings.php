@@ -96,26 +96,7 @@ class ComConfiguratorDatabaseTableTemplatesettings extends KDatabaseTableDefault
 
     	return $this;
     }
-    
-    public function getMenuItems()
-    {
-		//$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
-		$this->_db->setQuery("SELECT DISTINCT CAST(`template_name` AS SIGNED) AS itemid FROM #__configurator WHERE `template_name` LIKE '%.%'");
-		$items = $this->_db->loadResultArray();
 
-    	return $items;
-    }
-    
-    public function resetMenuItems()
-    {
-		//$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
-		$this->_db->setQuery("SELECT DISTINCT CAST(`template_name` AS SIGNED) AS itemid FROM #__configurator WHERE `template_name` LIKE '%.%'");
-		$count = count($this->_db->loadResultArray());
-
-		$this->_db->execute("DELETE FROM #__configurator WHERE `template_name` LIKE '%.%'");
-
-    	return $count;
-    }
     
     public function getParams()
     {
@@ -135,17 +116,7 @@ class ComConfiguratorDatabaseTableTemplatesettings extends KDatabaseTableDefault
 		
 		return $this->_db->loadAssocList('param_name');
     }
-    
-    public function getActiveMenuitemParams()
-    {
-    	if(!$this->__itemid) return array();
-    	$template = $this->__itemid . '.' . $this->template_name;
-    	$template = strtolower($template);
-    	$query="SELECT param_name FROM #__configurator AS t WHERE t.template_name='{$template}'";
-    	$this->_db->setQuery( $query );
-    	return (array) $this->_db->loadResultArray();
-    }
-    
+
     public function getConfigs()
     {
     	if(!isset($this->template_name) ) return array();
@@ -173,12 +144,6 @@ class ComConfiguratorDatabaseTableTemplatesettings extends KDatabaseTableDefault
     	{
     		$this->_db->execute("DELETE FROM #__configurator WHERE `template_name` = '{$this->template}' AND `param_name` = '{$this->param_name}' AND `id` != '{$this->id}'");
     	}
-    	
-    	if($this->__itemid)
-    	{
-    		$active_items = JRequest::getVar( 'menuitem_active', null, 'post', 'array' );
-			if(!array_key_exists($this->param_name, $active_items)) return parent::delete();
-		}
 
     	return parent::store();
     }

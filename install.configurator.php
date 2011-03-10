@@ -1,14 +1,18 @@
 <?php defined('_JEXEC') or die('Restricted access');
+
+//We can't install without Nooku Framework
+if(!defined('KOOWA')) return JError::raiseWarning(0, JText::_('You need to install Nooku Framework before installing Morph.'));
+
+JLoader::register('MBrowser', JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php');
 //@TODO this doesn't work on 1.6, so only run on 1.5 and previous
 $version = new JVersion;
-if(version_compare('1.6', $version->RELEASE, '>'))
+if(JVersion::isCompatible('1.6.0'))
 {
 	// Register depencies
 	JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
 	JLoader::register('JFolder', JPATH_LIBRARIES.'/joomla/filesystem/folder.php');
 	JLoader::register('JPath', JPATH_LIBRARIES.'/joomla/filesystem/path.php');
 	JLoader::register('JArchive', JPATH_LIBRARIES.'/joomla/filesystem/archive.php');
-	JLoader::register('MBrowser', JPATH_ADMINISTRATOR.'/components/com_configurator/includes/browser.php');
 	
 	//Dirty, but works around major 1.6 installer limitation where only the echoed output in the component scope is preserved and rendered on page
 	echo '<link rel="stylesheet" href="'.JURI::root() . 'administrator/components/com_configurator/installer/css/install.css.php" />';

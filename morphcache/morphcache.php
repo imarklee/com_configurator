@@ -534,12 +534,16 @@ class plgSystemMorphCache extends JPlugin
 		$pre	= implode('.', $parts);
 		$path	= $base.$pre;
 		$data	= array();
-		$query	= array_flip($uri->getQuery(1));
-		asort($query);
-		foreach($query as $value => $key)
-		{
-			$data[] = $key.'='.$value;
+		$query	= $uri->getQuery(1);
+		foreach($query as $i => $v) {
+			if(is_array($v)) unset($query[$i]);
 		}
+		$query	= array_flip($query); 
+		asort($query); 
+		foreach($query as $value => $key) 
+		{ 
+		    $data[] = $key.'='.$value; 
+		} 
 		$path = $path.'&'.implode('&', $data).'.json';
 
 		if(file_exists($path)) {

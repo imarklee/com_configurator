@@ -258,8 +258,9 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 			'jomsocial',
 			'jomsocialboxes',
 			'articleenhancements',
+			//'articlepositions',
 			'blogenhancements',
-			'googlefonts'
+			'customfonts'
 		);
 		foreach($groups as $group)
 		{

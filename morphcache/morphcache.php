@@ -13,8 +13,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.plugin.plugin' );
 JLoader::register('JFile', JPATH_LIBRARIES.'/joomla/filesystem/file.php');
 JLoader::register('MBrowser', JPATH_ROOT.'/templates/morph/core/browser.php');
-JLoader::register('Morph', JPATH_ROOT.'/templates/morph/core/morphLoader.php');
+JLoader::register('Morph', JPATH_ROOT.'/templates/morph/core/morph.php');
 JLoader::register('MorphLoaderAdapterMorph', JPATH_ROOT.'/templates/morph/core/loader/adapter/morph.php');
+JLoader::register('MorphFactoryAdapterMorph', JPATH_ROOT.'/templates/morph/core/factory/adapter/morph.php');
 
 /**
  * plgSystemMorphCache
@@ -66,7 +67,11 @@ class plgSystemMorphCache extends JPlugin
 				{
 					KLoader::addAdapter(new MorphLoaderAdapterMorph());
 				}
-				//KFactory::addAdapter(new KFactoryAdapterMorph());
+				if(class_exists('MorphFactoryAdapterMorph'))
+				{
+					KLoader::addAdapter(new MorphLoaderAdapterMorph());
+					KFactory::addAdapter(new MorphFactoryAdapterMorph());
+				}
 			}
 		}
 

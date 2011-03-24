@@ -220,4 +220,113 @@ class ComConfiguratorControllerBackup extends ComConfiguratorControllerDefault
 		return;
 	}
 
+	function get_structure($table='', $where='', $structure='', $delete='') {
+		
+        $sql = null;
+		$sql_structure = null;
+		$sql_data = null;
+		$i = 0;
+		if($table == '') $table = array();
+		
+		if(isset($_GET['url'])){
+			if(isset($_GET['table'])) $table = $_GET['table'];
+			if(isset($_GET['where'])) $where = stripslashes($_GET['where']);
+			if(isset($_GET['structure'])) {
+				if($_GET['structure'] == 'true'){
+					$structure = true;
+				}else{
+					$structure = false;
+				}
+			}
+		}
+		
+		$db = JFactory::getDBO();
+		if($table == '' || empty($table)) { $td = $db->getTableList(); } else { $td = $table; }
+		$r = str_replace('CREATE TABLE `', 'CREATE TABLE IF NOT EXISTS `', $db->getTableCreate($td));
+		$r = array_filter($r, array($this, 'filter_table_views'));
+
+		if($r){
+			foreach($r as $k => $v){
+				$sql_structure .= 'DROP TABLE IF EXISTS `'. $k . "`;\n" . $v . ";\n\n";
+				if(is_array($table)) $table[] = $k;
+			}
+		}
+		
+		if($structure == false) $sql_structure = null;
+		
+		if(is_array($table)){
+			foreach($table as $t){
+				if($where !== '') { 
+					$db->setQuery("SELECT * FROM `$t` where " . $where . ";"); }else{ $db->setQuery("SELECT * FROM `$t`"); 
+				}
+				
+				$data = $db->loadAssocList();
+				if(!empty($data)){
+					foreach ($data as $v){
+						if($where !== '') $v['id'] = '';
+						$v = $this->clean($v);
+						$sql_data .= "INSERT IGNORE INTO `$t` VALUES(";
+					    $sql_data .= "'".implode("','",$v)."'";
+						$sql_data .= ");\n";	
+					}
+					if ($i++>0) $sql_data .="\n";
+				}
+			}
+		}else{
+			if($where !== '') { 
+				$db->setQuery("SELECT * FROM `$table` WHERE " . $where . ";"); }else{ $db->setQuery("SELECT * FROM `$table`"); 
+			}
+			$data = $db->loadAssocList();
+			
+			if($delete){
+				$sql_data .= "DELETE FROM `$table` WHERE source = 'themelet';" . "\n\n";
+			}
+			
+			if(!empty($data)){
+				foreach ($data as $v){
+					if($where !== '') $v['id'] = '';
+					$v = $this->clean($v);
+					$sql_data .= "INSERT IGNORE INTO `$table` VALUES(";
+				    $sql_data .= "'".implode("','",$v)."'";
+					$sql_data .= ");\n";	
+				}
+				if ($i++>0) $sql_data .="\n";
+			}
+		}
+		
+		if($sql_structure !== null) { $sql = '#--- Create Database Structure' . "\n\n" . $sql_structure  . "\n"; };
+		$sql .= '#--- Create Inserts' . "\n\n" . $sql_data;
+		
+		if(isset($_GET['echo'])) echo $sql;
+		return $sql; 
+	}
+	
+	protected function filter_table_views($create_table_syntax)
+	{
+		return strstr($create_table_syntax, 'CREATE TABLE');
+	}
+	
+	function create_sql_file($filename, $str){
+		JFile::write($filename, gzcompress($str, 9));
+		return true;
+	}
+	
+	function parse_mysql_dump($url, $json = false)
+	{
+        jimport('joomla.installer.helper');
+        $db = JFactory::getDBO();
+        $raw = JFile::read($url);
+        if(JFile::getExt($url) == 'gz') $raw = gzuncompress($raw);
+        $queries = JInstallerHelper::splitSql($raw);
+        foreach ($queries as $query)
+        {
+        	$query = trim($query);
+        	if ($query != '' && $query{0} != '#')
+        	{
+        		$db->setQuery($query);
+				$result = $db->query() or die($json ? json_encode(array('error' => 'MySQL error!<br />Line: <small>'.$sql_line.'</small><br />File: '.$url.'<br />Error: '.$db->getErrorMsg())) : $db->getErrorMsg());
+			}
+		}
+	}
+
 }

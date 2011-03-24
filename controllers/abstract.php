@@ -277,13 +277,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		return $rowset;
 	}
 
-	function findLine($filename, $str){
-		$file = file($filename);
-		$file = array_map('trim', $file);
-		$find = array_search($str, $file);
-		return $find === false ? false:$find + 1;
-	}
-
 	protected function _actionUni_installer()
 	{
 		$mem_limit = ini_get('memory_limit');

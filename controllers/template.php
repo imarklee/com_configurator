@@ -179,4 +179,29 @@ class ComConfiguratorControllerTemplate extends ComConfiguratorControllerDefault
 		return $data;
 	}
 
+	function template_upload(){
+		$newtemplatefile = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$templatesdir = JPATH_SITE.'/templates';
+		$backupdir = JPATH_SITE.'/morph_assets/backups';
+		$backupfile = $backupdir.'/file_template_morph_' . time();
+		if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
+			return array('error' => 'There was an error creating a backup archive. Upload failed');
+		}else{
+			// remove existing
+			if(!JFolder::delete($templatesdir.'/morph')){
+				return array('error' => 'There was an error removing the old install. Upload failed');
+			}else{
+				if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
+					return array('error' => 'Could not move file to required location!');
+				}
+				// directory doesn't exist - install as per usual
+				@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
+				$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
+				
+				$msg['backuploc'] = $backupfile.'.gz';
+				return $msg;
+			}
+		}
+	}
+
 }

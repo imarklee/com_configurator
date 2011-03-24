@@ -201,4 +201,23 @@ class ComConfiguratorControllerBackup extends ComConfiguratorControllerDefault
 		}
 		return;
 	}
+
+	function restore_db_backup(){
+	
+		$filename = $_REQUEST['filename'];
+		$backupdir 	= JPATH_SITE.'/morph_assets/backups/db';
+		$tempdir 	= JPATH_SITE.'/morph_assets/backups/db/temp';
+
+		if(!is_dir($tempdir)){JFolder::create($tempdir);}
+		JPath::setPermissions($tempdir);
+		
+		$this->parse_mysql_dump($backupdir . '/' .$filename );
+		
+		$this->cleanupThemeletInstall(strtolower($filename), $tempdir);
+		
+		$message = '<strong>'.$filename.'</strong> restored successfully.';
+		echo $message;
+		return;
+	}
+
 }

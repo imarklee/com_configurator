@@ -57,7 +57,7 @@ $('#reset-settings-tab ul li.action a').click(function(){
 				$.ajax({
 					type: 'POST',
 					dataType: 'json',
-					url: '?option=com_configurator&view=configuration&format=raw&reset_type='+checkVal[i],
+					url: '?option=com_configurator&view=backup&format=raw&reset_type='+checkVal[i],
 					data: {
 						action: 'reset_database'
 					},

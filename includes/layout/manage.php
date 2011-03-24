@@ -25,9 +25,13 @@ if(false) {
 	if(function_exists('ini_set')){ ini_set('memory_limit', '32M'); 
 	}else{
 		$mem_limit = ini_get('memory_limit');
-		if(str_replace('M', '', $mem_limit) < 32) echo $this->show_error('We are unable to adjust your memory limit.'.
-		'Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance.'.
-		'<a href="#" id="readmore-memory">click here</a> to find out more.', 'notice', 'memory');
+		if(str_replace('M', '', $mem_limit) < 32) {
+			if(isset($_COOKIE['notice']) && $_COOKIE['notice'] !== 'memory' || !isset($_COOKIE['notice'])) {
+				echo '<div class="cfg-message"><p class="notice">We are unable to adjust your memory limit.'.
+				'Your current memory limit is '.$mem_limit.', which is less than what is required for optimal performance.'.
+				'<a href="#" id="readmore-memory">click here</a> to find out more.<a href="#" class="close-msg">close</a></p></div>';
+			}
+		}
 	}
 
 $db=& JFactory::getDBO();

@@ -840,13 +840,7 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		
 		$this->clear_cache();
 	}
-	
-	function show_error($err, $type, $cookie){
-		if(isset($_COOKIE['notice']) && $_COOKIE['notice'] !== $cookie || !isset($_COOKIE['notice'])) {
-			return '<div class="cfg-message"><p class="'.$type.'">'.$err.'<a href="#" class="close-msg">close</a></p></div>';
-		}
-	}
-	
+
 	function unpackThemelet($p_filename='', $b){
 
 		$archivename = $p_filename;

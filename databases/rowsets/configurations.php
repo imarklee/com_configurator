@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-class ComConfiguratorDatabaseRowsetConfigurations extends KDatabaseRowsetAbstract
+class ComConfiguratorDatabaseRowsetConfigurations extends KDatabaseRowsetDefault
 {
 	/**
 	 * The configuration params

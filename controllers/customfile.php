@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
- class ComConfiguratorControllerCustomfile extends ComDefaultControllerDefault
- {
- 	// Do nothing here yet
- }
+class ComConfiguratorControllerCustomfile extends ComDefaultControllerDefault
+{
+	// Do nothing here yet
+}

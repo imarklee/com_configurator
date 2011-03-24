@@ -236,34 +236,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		return array('success' => "Assets uploaded successfully.", 'error' => '');
 	}
 	
-	function demo_upload(){
-	
-		$backupdir 	= JPATH_SITE.'/morph_assets/backups/db';
-		$tempdir 	= JPATH_SITE.'/morph_assets/backups/db/temp';
-		$message 	= array();
-		$file 		= JRequest::getVar( 'insfile', '', 'files', 'array' );
-
-		if(!is_dir($tempdir)){JFolder::create($tempdir);}
-		JPath::setPermissions($tempdir);
-		
-		$conf = JFactory::getConfig();
-		$database = $conf->getValue('config.db');
-		
-		$this->create_db_backup('full-database');
-		
-		if( !JFile::upload($file['tmp_name'], $tempdir.'/'.strtolower(basename($file['name']))) ){
-			return array('error' => "Could not move file to required location!");
-		}
-		
-		$result = JArchive::extract( $tempdir.'/'.strtolower(basename($file['name'])), $tempdir);
-		$this->parse_mysql_dump($tempdir.'/'.str_replace('.zip', '', strtolower(basename($file['name']))) );
-		
-		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempdir);
-		
-		return array('error' => "", 'success' => 'Sample content successfully installed.');
-
-	}
-	
 	function iphone_upload(){
 		$msg = '';
 		$error = '';

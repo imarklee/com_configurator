@@ -154,4 +154,29 @@ class ComConfiguratorControllerTemplate extends ComConfiguratorControllerDefault
 		
 	}
 
+	function parsexml_template_file($templateDir){
+		// Check if the xml file exists
+		if(!is_file($templateDir.'/templateDetails.xml')) {
+			return false;
+		}
+		
+		$xml = JApplicationHelper::parseXMLInstallFile($templateDir.'/templateDetails.xml');
+		
+		if ($xml['type'] != 'template') {
+			return false;
+		}
+		
+		$data = new StdClass();
+		$data->directory = $templateDir;
+		
+		foreach($xml as $key => $value) {
+			$data->$key = $value;
+		}
+		
+		$data->checked_out = 0;
+		$data->mosname = JString::strtolower(str_replace(' ', '_', $data->name));
+		
+		return $data;
+	}
+
 }

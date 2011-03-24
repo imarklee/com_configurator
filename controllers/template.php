@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
-class ComConfiguratorControllerTemplate extends ComConfiguratorControllerDefault
+class ComConfiguratorControllerTemplate extends ComConfiguratorControllerAsset
 {
 	protected function _actionInstall_template()
 	{

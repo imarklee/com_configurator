@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
- class ComConfiguratorControllerThemelet extends ComConfiguratorControllerDefault
+ class ComConfiguratorControllerThemelet extends ComConfiguratorControllerAsset
  {
  	function themelet_upload($file = '', $activate = '') {
 		$msg = '';

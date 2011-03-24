@@ -16,9 +16,95 @@ defined('_JEXEC') or die('Restricted access');
  * 
  * @author Stian Didriksen <stian@prothemer.com>
  */
- class ComConfiguratorControllerBackup extends ComConfiguratorControllerDefault
- {
- 	protected function _actionReset_database(KCommandContext $context)
+class ComConfiguratorControllerBackup extends ComConfiguratorControllerDefault
+{
+	protected function _actionExport_db(){
+		$data = $_POST['export_data'];
+		foreach($data as $d){
+			if(!preg_match('/ /i', $d)){
+				$this->create_db_backup($d);
+			}else{
+				$t = explode(' ', $d);
+				$this->create_db_backup($t[0], $t[1]);
+			}
+		}
+		echo '<strong>Database Export Successfull</strong><br />Your files have been exported into the Morph Assets folder and can be managed in the Database Backups tool in Configurator.';
+		return;
+	}
+	
+	function import_db(){
+		$backupdir 	= JPATH_SITE.'/morph_assets/backups/db';
+		$tempdir 	= JPATH_SITE.'/morph_assets/backups/db/temp';
+		$file 		= JRequest::getVar( 'import_file', '', 'files', 'array' );
+		
+		if(!is_dir($tempdir)){JFolder::create($tempdir);}
+		JPath::setPermissions($tempdir);
+		
+		if( !JFile::upload($file['tmp_name'], $tempdir.'/'.strtolower(basename($file['name']))) ){
+			return array('error' => 'Could not move file to required location!');
+		}
+		
+		$result = JArchive::extract( $tempdir.'/'.strtolower(basename($file['name'])), $tempdir);
+		$this->parse_mysql_dump($tempdir.'/'.str_replace('.gz', '', strtolower(basename($file['name']))) );
+		
+		$this->cleanupThemeletInstall(strtolower(basename($file['name'])), $tempdir);
+		
+		echo json_encode(array('success' => 'SQL file imported successfully.'));
+		return true;
+	}
+	
+	//@TODO clean this up and move it all into a proper action or method
+	//or better yet just leave backups to Akeeba
+	function create_db_backup($type='', $name='', $download=''){
+	
+		$db = JFactory::getDBO();
+		$pref = $db->getPrefix();
+		$n = '';
+		
+		if(isset($_REQUEST['url'])){
+			if(isset($_REQUEST['type'])) $type = $_REQUEST['type'];
+			if(isset($_REQUEST['name'])) $name = $_REQUEST['name'];
+			if(isset($_REQUEST['download'])) $download = $_REQUEST['download'];
+		}
+		
+		$backupdir = JPATH_SITE.'/morph_assets/backups/db';
+		if(!is_dir($backupdir)) mkdir($backupdir);
+		JPath::setPermissions($backupdir);
+		if($name !== '') $n = $name.'_';
+		$backupfile = 'db_'.$type.'_'.$n.time().'.sql.gz';
+		
+		switch($type){
+			case 'themelet-settings':
+				$files = JFolder::files($backupdir);
+				foreach($files as $f){
+					if(preg_match('/'.$name.'/i', $f)){
+						$backup = $backupdir.'/'.$f;
+						if(file_exists($backup)) JFile::delete($backup);
+					}	
+				}
+				$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure($pref . 'configurator', "source='themelet'", false, true));
+			break;
+			case 'full-database':
+				if(isset($download) && $download == 'true'){
+					header('Content-disposition: attachment; filename='.$backupfile);
+					header('Content-type: application/x-gzip');
+					echo gzencode($this->get_structure('','',true, false), 9);
+				}else{
+					$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure('','',true, false));
+				}
+			break;
+			case 'configurator-settings':
+				$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure($pref . 'configurator', '', true, false));	
+			break;
+			case 'configurator-preferences':
+				$this->create_sql_file($backupdir.'/'.$backupfile, $this->get_structure($pref . 'configurator_preferences', '', true, false));
+			break;
+		}
+		
+		return $backupdir.'/'.$backupfile;
+	}
+
+	protected function _actionReset_database(KCommandContext $context)
 	{
 		$db = JFactory::getDBO();
 		$table	= $this->getModel()->getTable();
@@ -115,4 +201,4 @@ defined('_JEXEC') or die('Restricted access');
 		}
 		return;
 	}
- }
+}

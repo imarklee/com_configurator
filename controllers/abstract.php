@@ -1037,22 +1037,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 		die;
 	}
 	
-	protected function _actionAssets_create()
-	{
-		$recycle = JPATH_ROOT . '/morph_recycle_bin';
-		if(!JFolder::exists($recycle)) JFolder::create($recycle);
-		foreach(array('backups/db', 'logos', 'backgrounds', 'themelets', 'iphone') as $folder)
-		{
-			$dir = JPATH_ROOT . '/morph_assets/' . $folder;
-			if(!JFolder::exists($dir)) JFolder::create($dir);
-		}
-		
-		if(KRequest::type() == 'AJAX') echo json_encode(array(
-			'error'   => '',
-			'success' => JText::_('Assets folder structure successfully created. You may continue with the installation.')
-		));
-	}
-	
 	private function _dbUpdate(){
 		if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install'){
 			$templatesdir = JPATH_SITE.'/templates';

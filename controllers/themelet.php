@@ -372,4 +372,50 @@ defined('_JEXEC') or die('Restricted access');
 
 		return (object) $data;
 	}
+	
+	protected function _actionInstall_themelet()
+	{
+		$mem_limit = ini_get('memory_limit');
+		if(str_replace('M', '', $mem_limit) < 64){ ini_set('memory_limit', '64M'); }
+		
+		$newthemeletfile = JRequest::getVar( 'insfile', null, 'files', 'array' );
+		$activation = $_REQUEST['act_themelet'];
+		$return = $this->themelet_upload($newthemeletfile);
+		KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_themelet', true);
+		$themelet = $return['themelet'];
+		$themelet_name = str_replace('-',  ' ', $themelet);
+		KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('ins_themelet_name', $themelet_name);
+		$db = JFactory::getDBO();
+		
+		if(isset($activation) && $activation == 'true'){
+		
+			if(isset($_COOKIE['upgrade-type']) && $_COOKIE['upgrade-type'] === 'fresh-install' || !isset($_COOKIE['upgrade-type']))
+			{
+				$this->themelet_activate(array('themelet' => $themelet));
+			}
+			KFactory::get('admin::com.configurator.helper.utilities')->setInstallState('installed_actthemelet', true);
+			$query = $db->setQuery("select * from #__configurator where param_name = 'themelet'");
+			$query = $db->query($query);
+			$themelet_num = $db->getNumRows($query);
+			if($themelet_num == '0'){
+				$new_query = "INSERT INTO #__configurator VALUES ('' , 'morph', 'themelet', '".$db->getEscaped($themelet)."', '1', 'themelet');";
+			}else{
+				$new_query = "UPDATE #__configurator SET param_value = '".$db->getEscaped($themelet)."' where param_name = 'themelet';";
+			}
+			$query = $db->setQuery( $new_query );
+			$db->query($query) or die($db->getErrorMsg());
+		}
+		
+		// temporary step to remove GZIP from CFG if the browser doesnt allow it.
+		if(isset($_COOKIE['installed_no_gzip'])){
+			$gzip_query = "UPDATE #__configurator SET param_value = '0' where param_name = 'gzip_compression';";
+			$query = $db->setQuery($gzip_query);
+			$db->query($query);
+		}
+		
+		echo json_encode($return);
+		
+		//@TODO temp fix
+		die;
+	}
  }

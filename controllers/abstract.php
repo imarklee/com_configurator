@@ -96,22 +96,6 @@ class ComConfiguratorControllerAbstract extends ComDefaultControllerDefault
 
 		parent::_initialize($config);
 	}
-
-	/**
-	 * @TODO move this into a separate controller
-	 */
-	protected function _actionSaveprefs(KCommandContext $context)
-	{
-		$table	= KFactory::get('admin::com.configurator.database.table.preferences');
-		$data	= $context->data->cfg;
-
-		foreach($data as $key => $value)
-		{
-			$table->select(array('pref_name' => $key))->setData(array('pref_value' => $value))->save();
-		}
-
-		$this->_redirect = KRequest::url();
-	}
 	
 	/*
 	 * Generic apply action

@@ -84,7 +84,20 @@ function LogoOptions(){
 	if($('#googlefontsgooglefonts0').attr('checked')){ googleFonts('off'); }
 	$('#googlefontsgooglefonts0').click( function(){ googleFonts('off'); } )
 	
-			
+	
+	/* Google Fonts Custom Selectors */
+	function googleFontsSelectors(val) {
+		var display;
+		if(val == 'off'){ display='block'; }else{ display='none'; }
+		$('#fonts-options li #customfontsgfont_selectors').parent().css('display', display);
+
+	}
+	if($('#customfontsgfont_text_enabled1').attr('checked')){ googleFontsSelectors('on'); }
+	$('#customfontsgfont_text_enabled1').click( function(){ googleFontsSelectors('on'); } );
+
+	if($('#customfontsgfont_text_enabled0').attr('checked')){ googleFontsSelectors('off'); }
+	$('#customfontsgfont_text_enabled0').click( function(){ googleFontsSelectors('off'); } )
+		
 	function switcher(v){
 		
 		$('#logo-panel li').css('display', 'none');
@@ -96,7 +109,7 @@ function LogoOptions(){
 			$('#logo-panel li #logologo_block').parent().css('display', 'block');
 			$('#logo-panel li #logologo_type').parent().css('display', 'block');
 			$('#logo-panel li #logologowrap_height').parent().css('display', 'block');
-			$('#logo-panel li #logologo0_text').parent().css('display', 'block');
+			$('#logo-panel li #logologo_text').parent().css('display', 'block');
 			$('#logo-panel li #logologo0_fontfamily').parent().css('display', 'block');
 			$('#logo-panel li #logologo0_textsize').parent().css('display', 'block');
 			$('#logo-panel li #logologo0_textcolor').parent().css('display', 'block');
@@ -111,13 +124,13 @@ function LogoOptions(){
 			$('#logo-panel li #logologo_block').parent().css('display', 'block');
 			$('#logo-panel li #logologo_type').parent().css('display', 'block');
 			$('#logo-panel li #logologowrap_height').parent().css('display', 'block');
+			$('#logo-panel li #logologo_text').parent().css('display', 'block');
 			$('#logo-panel li #logologo_image').parent().css('display', 'block');
 			$('#logo-panel li #logologo_autodimensions0').parent().css('display', 'block');
 			$('#logo-panel li #logologo_width').parent().css('display', 'block');
 			$('#logo-panel li #logologo_height').parent().css('display', 'block');
 			$('#logo-panel li #logologo_ielogo0').parent().css('display', 'block');
 			$('#logo-panel li #logologo_ielogo_image').parent().css('display', 'block');
-			$('#logo-panel li #logologo1_text').parent().css('display', 'block');
 			$('#logo-panel li #logologo1_linktitle').parent().css('display', 'block');
 			$('#logo-panel li #logologo1_top').parent().css('display', 'block');
 			$('#logo-panel li #logologo1_left').parent().css('display', 'block');
@@ -130,6 +143,7 @@ function LogoOptions(){
 			$('#logo-panel li #logologo_block').parent().css('display', 'block');
 			$('#logo-panel li #logologo_type').parent().css('display', 'block');
 			$('#logo-panel li #logologowrap_height').parent().css('display', 'block');
+			$('#logo-panel li #logologo_text').parent().css('display', 'block');
 			$('#logo-panel li #logologo_image').parent().css('display', 'block');
 			$('#logo-panel li #logologo_autodimensions0').parent().css('display', 'block');
 			$('#logo-panel li #logologo_width').parent().css('display', 'block');

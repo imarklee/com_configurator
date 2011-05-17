@@ -41,7 +41,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			<li class="plugins-icon"><a href="#plugins">Plugins</a></li>
 			<li class="tools-icon"><a href="#tools">Tools</a></li>
 			<li class="assets-icon"><a href="#assets">Your Assets</a></li>
-			<li class="help-icon last"><a href="#help">Help</a></li>
+			<li class="help-icon last"><a href="#resources">Help</a></li>
 		</ul>
 		<div id="site" class="ui-tabs-panel">
 			<div id="site-tabs" class="subtabs">
@@ -166,7 +166,7 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 			</div>
 		</div>
 		
-		<div id="help" class="ui-tabs-panel ui-tabs-hide off">
+		<div id="resources" class="ui-tabs-panel ui-tabs-hide off">
 			<?php include dirname(__FILE__).'/../help/help.php'; ?>
 		</div>
 	</div>

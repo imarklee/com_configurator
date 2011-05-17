@@ -236,6 +236,11 @@ class plgSystemMorphCache extends JPlugin
 
 		//Allowing other extensions to check if morph is loading jquery
 		define('MORPH_JQUERY', 1);
+		define('MORPH_JQUERYUI', 1);
+		define('MORPH_JQUERYUI_TABS', 1);
+		define('MORPH_JQUERYUI_ACCORDION', 1);
+		define('MORPH_COOKIE', 1);
+		define('MORPH_COLORBOX', 1);
 
 		//This is purely because we love CB so much
 		define( 'J_JQUERY_LOADED', 1 );

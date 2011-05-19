@@ -252,7 +252,9 @@ class plgSystemMorphCache extends JPlugin
 		$app		= JFactory::getApplication();
 		$template	= $app->getTemplate();
         JFactory::getApplication()->set('jquery', true); 
-		if($template === 'morph') {
+		$isMorph = $template === 'morph';
+		$isMorphNoJS = ($isMorph && $morph->nojs) ? 1 : 0;
+		if($isMorph && !$isMorphNoJS) {
 			//lets first set an ismorph variable
 			JFactory::getApplication()->set('ismorph', true);
 			//check to see if jquery core is loaded by morph, if so, set morph_jquery and jquery to TRUE

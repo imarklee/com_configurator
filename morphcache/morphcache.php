@@ -248,11 +248,10 @@ class plgSystemMorphCache extends JPlugin
 		define( 'C_ASSETS_JQUERY', 1 );
 		
 		// logic to create hooks for developers to check if our scripts are loaded.
-		$morph = Morph::getInstance();
+		$morph 		= Morph::getInstance();
 		$app		= JFactory::getApplication();
 		$template	= $app->getTemplate();
-        JFactory::getApplication()->set('jquery', true); 
-		$isMorph = $template === 'morph';
+		$isMorph = ($template === 'morph') ? 1 : 0;
 		$isMorphNoJS = ($isMorph && $morph->nojs) ? 1 : 0;
 		if($isMorph && !$isMorphNoJS) {
 			//lets first set an ismorph variable

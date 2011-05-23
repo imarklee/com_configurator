@@ -10,7 +10,7 @@
     <authorUrl>http://www.joomlajunkie.com</authorUrl>
     <copyright>Copyright 2009 - 2010 Web Monkeys</copyright>
     <license>Commercial</license>
-    <version>2.0.1</version>
+    <version>2.1.0</version>
     
 	<installfile>install.configurator.php</installfile>
 	<!-- For j1.6 -->

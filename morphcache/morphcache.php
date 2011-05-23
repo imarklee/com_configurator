@@ -248,28 +248,29 @@ class plgSystemMorphCache extends JPlugin
 		define( 'C_ASSETS_JQUERY', 1 );
 		
 		// logic to create hooks for developers to check if our scripts are loaded.
-		$morph 		= Morph::getInstance();
-		$app		= JFactory::getApplication();
-		$template	= $app->getTemplate();
-		$isMorph = ($template === 'morph') ? 1 : 0;
-		$isMorphNoJS = ($isMorph && $morph->nojs) ? 1 : 0;
-		if($isMorph && !$isMorphNoJS) {
-			//lets first set an ismorph variable
-			JFactory::getApplication()->set('ismorph', true);
-			//check to see if jquery core is loaded by morph, if so, set morph_jquery and jquery to TRUE
-			$morph->jquery_core ? JFactory::getApplication()->set('morph_jquery', true) : JFactory::getApplication()->set('morph_jquery', false);
-			$morph->jquery_core ? JFactory::getApplication()->set('jquery', true) : JFactory::getApplication()->set('jquery', false);
-			//check to see if there are any morph tabs loaded, if so, set morph_jquery_ui_tabs to TRUE
-			$morph->tabscount() ? JFactory::getApplication()->set('morph_jquery_ui_tabs', true) : JFactory::getApplication()->set('morph_jquery_ui_tabs', false);
-			$morph->accordionscount() ? JFactory::getApplication()->set('morph_jquery_ui_accordions', true) : JFactory::getApplication()->set('morph_jquery_ui_accordions', false);
-			//check to see if lightbox is enabled, if enabled then set morph_jquery_colorbox to TRUE
-			$morph->lightbox_enabled ? JFactory::getApplication()->set('morph_jquery_colorbox', true) : JFactory::getApplication()->set('morph_jquery_colorbox', false);
-			if ($morph->tabscount() || $morph->accordionscount()) {
-				JFactory::getApplication()->set('morph_jquery_ui', true);
-				JFactory::getApplication()->set('morph_jquery_cookie', true);
-			} else {
-				JFactory::getApplication()->set('morph_jquery_ui', false);
-				JFactory::getApplication()->set('morph_jquery_cookie', false);
+		$template = $app->getTemplate();
+		$isMorph  = ($template === 'morph') ? 1 : 0;
+		if($isMorph) {
+			$morph = Morph::getInstance();
+			$isMorphNoJS = ($isMorph && $morph->nojs) ? 1 : 0;
+			if (!$isMorphNoJS) {
+				//lets first set an ismorph variable
+				JFactory::getApplication()->set('ismorph', true);
+				//check to see if jquery core is loaded by morph, if so, set morph_jquery and jquery to TRUE
+				$morph->jquery_core ? JFactory::getApplication()->set('morph_jquery', true) : JFactory::getApplication()->set('morph_jquery', false);
+				$morph->jquery_core ? JFactory::getApplication()->set('jquery', true) : JFactory::getApplication()->set('jquery', false);
+				//check to see if there are any morph tabs loaded, if so, set morph_jquery_ui_tabs to TRUE
+				$morph->tabscount() ? JFactory::getApplication()->set('morph_jquery_ui_tabs', true) : JFactory::getApplication()->set('morph_jquery_ui_tabs', false);
+				$morph->accordionscount() ? JFactory::getApplication()->set('morph_jquery_ui_accordions', true) : JFactory::getApplication()->set('morph_jquery_ui_accordions', false);
+				//check to see if lightbox is enabled, if enabled then set morph_jquery_colorbox to TRUE
+				$morph->lightbox_enabled ? JFactory::getApplication()->set('morph_jquery_colorbox', true) : JFactory::getApplication()->set('morph_jquery_colorbox', false);
+				if ($morph->tabscount() || $morph->accordionscount()) {
+					JFactory::getApplication()->set('morph_jquery_ui', true);
+					JFactory::getApplication()->set('morph_jquery_cookie', true);
+				} else {
+					JFactory::getApplication()->set('morph_jquery_ui', false);
+					JFactory::getApplication()->set('morph_jquery_cookie', false);
+				}
 			}
 		} else {
 			// if its not morph, lets set all these values to false but not jquery as other extensions may be using this

@@ -84,6 +84,25 @@
 	</deprecated>
 	
 	<media />
-	
 	<languages />
+	
+	<restorepoint>
+		<customdirs>
+			<dir>plugins/system/morphcache</dir>
+			<dir>morph_assets</dir>
+			<dir>morph_recycle_bin</dir>
+			<dir>templates/morph</dir>
+		</customdirs>
+		<customfiles>
+			<file>plugins/system/morphcache.php</file>
+			<file>plugins/system/morphcache.xml</file>
+		</customfiles>
+		<langfiles>
+			<lang>plg_system_morphcache</lang>
+			<lang>tpl_morph</lang>
+		</langfiles>
+		<customtables>
+			<table>configurator</table>
+		</customtables>
+	</restorepoint>
 </install>

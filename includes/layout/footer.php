@@ -6,7 +6,7 @@
 			<h4>Stay updated</h4>
 			<ul>
 				<li><a href="http://getmorph.org/blog" target="_blank">Morph blog</a></li>
-				<li><a href="http://list-manage.com/subscribe?u=716086a59f94568360e58ed2d&amp;id=2519c95511" target="_blank">Subscribe to newsletter</a></li>
+				<li><a href="http://eepurl.com/fabdg" target="_blank">Subscribe to newsletter</a></li>
 				<li><a href="http://www.joomlajunkie.com/secure" target="_blank">Login to the club</a></li>
 			</ul>
 		</li>

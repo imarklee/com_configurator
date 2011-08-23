@@ -27,6 +27,6 @@
 #minwidth-body.fullscreen #border-top,
 #minwidth-body.fullscreen #toolbar-box .t,
 #minwidth-body.fullscreen #header-box{display:none;}
-#minwidth-body.fullscreen #cfg.nofooter{margin-bottom:0;}
+#minwidth-body.fullscreen #cfg.nofooter{padding-bottom:0;}
 /*@TODO figure out why the scrollbar was removed, and if we can delete this line */
 /*#minwidth-body.fullscreen{overflow:hidden;}*/

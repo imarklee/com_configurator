@@ -11,12 +11,10 @@ a:link,a:visited{text-decoration:underline;}
 #cfg.noshelf.nobranding #tabs{margin-top:1.5em;}
 #cfg.shelftop #shelf{padding-top:0;}
 #cfg.shelfbtm.nofooter.nobranding,
-#cfg.shelftop.nobranding #shelf{float:left;margin-top:1.5em;overflow:hidden;width:100%;}
+#cfg.shelftop.nobranding #shelf{padding-top:1.5em;}
+#cfg.shelfbtm.nofooter{padding-bottom:1px;}
 #cfg.shelfbtm #shelf{margin-top:1.5em;}
-#cfg.nofooter{margin-bottom:1.5em;}
-#cfg.footer{}
-#cfg.nobranding{}
-#cfg.branding{}
+#cfg.nofooter{padding-bottom:1.5em;}
 #element-box .t,#element-box .b{display:none;}
 #element-box .m{background:#000 url(../images/bg.jpg) no-repeat scroll 40% -2%;padding:15px 0;border:0;}
 button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner{border:none;}

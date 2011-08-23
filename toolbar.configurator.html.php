@@ -44,7 +44,7 @@ class ComConfiguratorToolbarHtml extends JToolBar
 
 		return parent::__construct($toolbar);
 	}
-
+	
 	/**
 	 * Renders the main toolbar
 	 *
@@ -62,7 +62,7 @@ class ComConfiguratorToolbarHtml extends JToolBar
 				->appendButton('preferences', 'Preferences ')
 				->appendButton('report-bug-link', 'Feedback')
 				->appendButton('credits-link', 'Credits')
-				->appendButton('help-link', 'Help', JRoute::_('?option=com_configurator&view=help'));
+				->appendButton('help-link', 'Help');
 	}
 
 	/**

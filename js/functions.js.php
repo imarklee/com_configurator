@@ -32,7 +32,13 @@ jQuery.noConflict()(function($){
 	<?php include 'functions/common.js' ?>
 	$.preloadCssImages();
 	
-
+	$('#toolbar-help-link a')
+	  .attr({
+	    href: "http://getmorph.org/documentation", 
+	    target: "_blank", 
+	    title: "Open Morph's documentation on Getmorph.org"
+	 });
+	  
 	$("input[type=text], textarea").focus(function(){
 		this.select();
 	});
@@ -127,8 +133,7 @@ jQuery.noConflict()(function($){
 		easing:'easeInExpo',
 		speed:300
 	});
-
-
+	
 	<?php include 'functions/user.js'; ?>
 	
 	/* Generic ----------------------------

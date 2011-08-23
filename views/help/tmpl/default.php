@@ -1,2 +1,0 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' ) ?>
-<iframe id="livedocs" name="livedocs" class="autoHeight" scrolling="auto" frameborder="0" width="100%" height="580px" src="http://www.prothemer.com/morph/livedocs/"></iframe>

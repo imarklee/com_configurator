@@ -5,12 +5,12 @@
     <shortname>configurator</shortname>
     <foldername>com_configurator</foldername>
     <creationDate>May 2009</creationDate>
-    <author>JoomlaJunkie</author>
-    <authorEmail>norepy@joomlajunkie.com</authorEmail>
-    <authorUrl>http://www.joomlajunkie.com</authorUrl>
-    <copyright>Copyright 2009 - 2010 Web Monkeys</copyright>
-    <license>Commercial</license>
-    <version>2.1.1</version>
+    <author>Web Monkeys</author>
+    <authorEmail>norepy@getmorph.org</authorEmail>
+    <authorUrl>http://getmorph.org</authorUrl>
+    <copyright>(C) 2007-2011 Web Monkeys. All rights reserved.</copyright>
+    <license>GNU GPLv3</license>
+    <version>2.1.2</version>
     
 	<installfile>install.configurator.php</installfile>
 	<!-- For j1.6 -->

@@ -9,11 +9,7 @@
 	</div>
 	<div id="iphone-info" class="info-panel">
 		<h3><?= @text('About iPhone compatibility') ?></h3>
-		<p class="teaser"><?= @text('These options let you customize how your site looks when it is 
-		viewed on an iPhone.') ?></p>
-
-		<p><?= @text('We will be adding an option to let you upload your iPhone graphics from the installer, 
-		but until then you will need to upload them manually to your "morph_assets/iphone" folder. 
-		More options coming soon :)') ?></p>
+		<p class="teaser"><?= @text('These options let you customize how your site looks when it is viewed on an iPhone.</p>
+		<p>We will be adding an option to let you upload your iPhone graphics from the installer, but until then you will need to upload them manually to your "morph_assets/iphone" folder.') ?></p>
 	</div>
 </div>

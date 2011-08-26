@@ -14,16 +14,16 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 	<h2><?= @text('Sidebar Module Migrator') ?></h2>
 	<div class="note">
 	    <div class="note-inner">
-    	    <h3><?= @text('About this tool:') ?></h3>
+    	    <h3><?= @text('About this tool') ?>:</h3>
 	        <p><?= @text('Morph has taken a bold step in moving away from the default module position names for it’s sidebars. 
 	        We feel that the new names are more appropriate considering all of different layout combination’s that 
-	        are possible.') ?></p>            <p><?= @text('This tool helps you move your modules to the new positions. It works both ways, so whether you are moving 
-            to the new positions or moving back, we have you covered ;)') ?></p>
+	        are possible.</p>            <p>This tool helps you move your modules to the new positions. It works both ways, so whether you are moving 
+            to the new positions or moving back, we have you covered.') ?></p>
 	    </div>
 	</div>	
 	<div id="mp-source" class="select-cont">
 		<div class="heading">
-			<label for="old-positions"><?= @text('Source:') ?></label>
+			<label for="old-positions"><?= @text('Source') ?>:</label>
 			<select name="old-positions" id="old-positions">
 				<option value=""><?= @text('Select a position') ?></option>
 				<?php
@@ -45,7 +45,7 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 	
 	<div id="mp-dest" class="select-cont">
 		<div class="heading">
-			<label for="new-positions"><?= @text('Destination:') ?></label>
+			<label for="new-positions"><?= @text('Destination') ?>:</label>
 			<select name="new-positions" id="new-positions" disabled="disabled">
 				<option value=""><?= @text('Select a position') ?></option>
 				<?php
@@ -57,7 +57,7 @@ for($i=1;$i<=$new_count;$i++){ $new_module_positions[] = 'outer'.$i; }
 		</div>
 		<div class="contents">
 			<div class="tooltip">
-				<p><?= @text('Please select a <strong>destination</strong> module position from the dropdown above :)') ?></p>
+				<p><?= @text('Please select a <strong>destination</strong> module position from the drop down above') ?></p>
 			</div>
 			<select name="new-modules[]" id="new-modules" multiple="multiple" class="multiselect">
 			</select>

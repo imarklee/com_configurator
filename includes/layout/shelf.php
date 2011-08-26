@@ -73,9 +73,9 @@ setcookie('current_themelet', $params->get('themelet'), 0, '/'); ?>
 		<div id="current-themelet">
 			<h3>Current themelet</h3>
 			<ul>
-				<li class="ct-name"><span><?= @text('Name:') ?> </span><?php echo $themelet_arr['name']; ?></li>
-				<li class="ct-author"><span><?= @text('Author:') ?> </span><a href="<?php echo $themelet_arr['authorUrl']; ?>" target="_blank" title="View all themelets by this provider"><?php echo $themelet_arr['author']; ?></a></li>
-				<li class="ct-version"><span><?= @text('Version:') ?> </span><?php echo $themelet_arr['version']; ?></li>
+				<li class="ct-name"><span><?= @text('Name') ?>: </span><?php echo $themelet_arr['name']; ?></li>
+				<li class="ct-author"><span><?= @text('Author') ?>: </span><a href="<?php echo $themelet_arr['authorUrl']; ?>" target="_blank" title="View all themelets by this provider"><?php echo $themelet_arr['author']; ?></a></li>
+				<li class="ct-version"><span><?= @text('Version') ?>: </span><?php echo $themelet_arr['version']; ?></li>
 				<li class="thumb ct-thumb"><span>&nbsp;</span>
 				<img src="<?php echo $themelet_urlpath . $params->get('themelet'); ?>/themelet_thumb.png" width="108" height="72" align="middle" alt="<?php echo $themelet_arr['name']; ?>" />
 				</li>

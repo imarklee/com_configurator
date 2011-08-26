@@ -24,10 +24,10 @@
 		</div>
     	<div class="note">
     	    <div class="note-inner">
-    	        <h3><?= @text('About this tool:') ?></h3>
+    	        <h3><?= @text('About this tool') ?>:</h3>
         		<p><?= @text('Select the type of file you would like to install below. Once you have installed your chosen file type, 
-        		open the "customization settings" tab on the left.') ?></p>
-        		<p><?= @text("All of these files (including backups) are located in your template's 'assets' folder.") ?></p>
+        		open the "customization settings" tab on the left.</p>
+        		<p>All of these files (including backups) are located in your themelet_assets folder.') ?></p>
             </div>
         </div>
 	</div>

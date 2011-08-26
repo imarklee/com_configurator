@@ -74,7 +74,6 @@ if($db->loadResult())
 				'debugging' => 'Debugging',
 				'components' => 'Component Layouts',
 				'mootools' => 'Mootools Compatibility',
-				//'jomsocial' => 'JomSocial Integration' //if($jomsocial_installed)
 				'enhancements' => 'Core Enhancements'
 			)) ?>
 		</div>

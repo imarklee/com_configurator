@@ -53,7 +53,7 @@ if(!function_exists('mootools'))
 		<h3><?= @text('Selective loading of Mootools') ?></h3>
 		<p class="teaser"><?= @text('Some Joomla extensions are built using the Mootools javascript library, which is included with Joomla by default. Due to the size of the library (75kb) 
 		and the fact that Morph is built using jQuery, we prevent the Mootools file from loading to make your site as fast loading as possible. This feature lets you enable Mootools 
-		for specific components that require it.') ?></p>
-		<p><?= @text('This means that you no longer need to load Mootools globally through out your site and individual cache files will be created to ensure that only what is needed is ever loaded.') ?></p>
+		for specific components that require it.</p>
+		<p>This means that you no longer need to load Mootools globally through out your site and individual cache files will be created to ensure that only what is needed is ever loaded.') ?></p>
 	</div>
 </div>

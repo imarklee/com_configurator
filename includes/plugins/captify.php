@@ -8,15 +8,15 @@
 	</div>
 	<div id="captify-info" class="info-panel">
 		<h3><?= @text('Fancy captions') ?></h3>
-		<p class="teaser"><?= @text('This plugin lets you easily add fancy captions to any of your contents images.') ?></p>
-		<p><?= @text('To use, simply add an image to your Joomla article using the default insert image button, then in the image lightbox:') ?></p>
+		<?= @text('This plugin lets you easily add fancy captions to any of your contents images.</p>
+		<p>To use, simply add an image to your Joomla article using the default insert image button, then in the image lightbox:</p>
 	    <ol>
-    		<li><?= @text('Add the text you would like displayed in the <strong>image description</strong> input.') ?></li>
-    		<li><?= @text('Optionally add a <strong>title</strong> describing the image (recommended).') ?></li>
-    		<li><?= @text('Tick the <strong>caption</strong> checkbox.') ?></li>
-    		<li><?= @text('Set the <strong>image alignment</strong>.') ?></li>
-    		<li><?= @text('Click the <strong>insert</strong> button on the top right of the popup.') ?></li>
-        </ol>
+    		<li>Add the text you would like displayed in the <strong>image description</strong> input.</li>
+    		<li>Optionally add a <strong>title</strong> describing the image (recommended).</li>
+    		<li>Tick the <strong>caption</strong> checkbox.</li>
+    		<li>Set the <strong>image alignment</strong>.</li>
+    		<li>Click the <strong>insert</strong> button on the top right of the popup.</li>
+        </ol>') ?>
 	</div>
 </div>
 

@@ -16,10 +16,10 @@
 		<p class="teaser"><?= @text('Morph gives you a number of different menus to choose from as well 
 		as the ability to customize how they work.<br /><br />The menu can be positioned before or after 
 		any of Morphs blocks. Simply select where you would like the menu to output via the Topnav 
-		position setting.') ?></p>
-		<p><?= @text('Most of Morphs menu settings are here, but in order to activate one of the different 
+		position setting.</p>
+		<p>Most of Morphs menu settings are here, but in order to activate one of the different 
 		menu types, you need to add the appropriate module suffix.') ?></p>
-		<p><a href="menufx.html" title="Understanding Morphs menus" 
+		<p><a href="menufx.html" title="<?= @text('Understanding Morphs menus') ?>" 
 		class="topnav-tab btn-link modal-link"><?= @text('Learn more') ?></a></p>
 	</div>
 </div>

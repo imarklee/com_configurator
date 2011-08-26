@@ -28,15 +28,15 @@ $component_arr = (array) simplexml_load_file($component_xml);
 	<fieldset>
 		<ul>
 			<li class="fb-name">
-				<label for="fb-name"><?= @text('Your name:') ?></label>
+				<label for="fb-name"><?= @text('Your name') ?>:</label>
 				<input type="text" name="name" id="fb-name" value="" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-email">
-				<label for="fb-email"><?= @text('Your email address') ?></label>
+				<label for="fb-email"><?= @text('Your email address') ?>:</label>
 				<input type="text" name="email" id="fb-email" value="" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-type">
-				<label for="feedback_type"><?= @text('Type of feedback:') ?></label>
+				<label for="feedback_type"><?= @text('Type of feedback') ?>:</label>
 				<ul class="inline">
 					<li class="fb-suggestion"><label for="type_suggestion"><input type="radio" name="type" id="type_suggestion" value="enhancement" /><span><?= @text('Suggestion') ?></span></label></li>
 					<li class="fb-bug"><label for="type_bug"><input type="radio" name="type" value="bug"  id="type_bug"/> <span><?= @text('Bug') ?></span></label></li>
@@ -52,11 +52,11 @@ $component_arr = (array) simplexml_load_file($component_xml);
 			</li>
 
 			<li class="fb-subject">
-				<label for="ff-title"><?= @text('Subject:') ?></label>
+				<label for="ff-title"><?= @text('Subject') ?>:</label>
 				<input type="text" name="title" id="ff-title" value="" class="text ui-widget-content ui-corner-all" />
 			</li>
 			<li class="fb-message">
-				<label for="ff-description"><?= @text('Message:') ?></label>
+				<label for="ff-description"><?= @text('Message') ?>:</label>
 				<textarea name="description" id="ff-description" rows="4" cols="40" class="text ui-widget-content ui-corner-all"></textarea>
 			</li>
 			<li class="fb-buttons">

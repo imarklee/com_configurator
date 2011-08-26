@@ -3,7 +3,7 @@
 	<h2><?= @text("Reset Configurator's Settings") ?></h2>
 	<div class="note">
 	    <div class="note-inner">
-    	    <h3><?= @text('About this tool:') ?></h3>
+    	    <h3><?= @text('About this tool') ?>:</h3>
 	        <p><?= @text('You can use this tool to reset your Configurator Settings and/or Preferences. This tool is not recommended on production
 	        sites as it will revert your install back to its initial setup.') ?></p>
 	        <p><?= @text('A backup will be created and will be available to download or reset from the Backup Manager tab.') ?></p>

@@ -14,7 +14,7 @@
     
 	<installfile>install.configurator.php</installfile>
 	<!-- For j1.6 -->
-	<scriptfile>install.configurator.php</scriptfile>
+	<!--<scriptfile>install.configurator.php</scriptfile>-->
 	<uninstallfile>uninstall.configurator.php</uninstallfile>
 	
     <install>
@@ -55,6 +55,9 @@
 			<file>toolbar.configurator.html.php</file>
 			<file>toolbar.configurator.php</file>
 			<file>uninstall.sql</file>
+			<!-- new -->
+			<file>j15params.php</file>
+			<file>j17params.php</file>
 		</files>
 		
 		<languages />
@@ -86,7 +89,7 @@
 	<media />
 	<languages />
 	
-	<restorepoint>
+	<!--<restorepoint>
 		<customdirs>
 			<dir>plugins/system/morphcache</dir>
 			<dir>morph_assets</dir>
@@ -104,5 +107,5 @@
 		<customtables>
 			<table>configurator</table>
 		</customtables>
-	</restorepoint>
+	</restorepoint>-->
 </install>

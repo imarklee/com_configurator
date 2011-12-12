@@ -17,9 +17,15 @@ function menu_items_list()
 
 	// load the list of menu types
 	// TODO: move query to model
+	if(JVERSION >= '1.6.0'){
 	$query = 'SELECT menutype, title' .
 			' FROM #__menu_types' .
 			' ORDER BY title';
+				}else{
+		$query = 'SELECT menutype, title' .
+			' FROM #__menu_types' .
+			' ORDER BY title';
+	}
 	$db->setQuery( $query );
 	$menuTypes = $db->loadObjectList();
 
@@ -29,11 +35,20 @@ function menu_items_list()
 
 	// load the list of menu items
 	// TODO: move query to model
+	if(JVERSION >= '1.6.0'){
+		$query = 'SELECT id, parent_id, title, menutype, type' .
+			' FROM #__menu' .
+			$where .
+			' ORDER BY menutype, parent_id, ordering'
+			;
+
+	}else{
 	$query = 'SELECT id, parent, name, menutype, type' .
 			' FROM #__menu' .
 			$where .
 			' ORDER BY menutype, parent, ordering'
 			;
+			}
 
 	$db->setQuery($query);
 	$menuItems = $db->loadObjectList();

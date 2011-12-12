@@ -39,8 +39,8 @@ class TableConfiguratorTemplateSettings extends JTable
     public function __construct($db)
     {
     	$app		  = JFactory::getApplication();
-		if($app->isAdmin())
-		{
+    	if($app->isAdmin())
+		{	
 			$itemid		  = $app->getUserState('configurator');
 			$this->__itemid = $itemid > 0 ? $itemid : false;
 		}
@@ -95,13 +95,16 @@ class TableConfiguratorTemplateSettings extends JTable
     public function getParams()
     {
 		if(!isset($this->template_name) ) return array();
-		$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		//@TODO start changed by vivek
+		//$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		$template =$this->template_name;
+		//@TODO start changed by vivek
 		$template = strtolower($template);
 		$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
 		$this->_db->setQuery( $query );
 		
 		if($this->__itemid)
-		{
+		{	
 			$override = $this->_db->loadAssocList('param_name');
 			$query="SELECT * FROM #__configurator AS t WHERE t.template_name='morph'";
 			$this->_db->setQuery( $query );
@@ -124,7 +127,10 @@ class TableConfiguratorTemplateSettings extends JTable
     public function getConfigs()
     {
     	if(!isset($this->template_name) ) return array();
-    	$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+    	//@TODO start changed by vivek
+		//$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+    	$template =  $this->template_name;
+    	//@TODO end changed by vivek
     	$template = strtolower($template);
     	$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
     	$this->_db->setQuery( $query );

@@ -81,10 +81,18 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 		<ol class="forms">
 			<?php
 			$db = JFactory::getDBO();
+			if(JVERSION >= '1.6.0'){
+			//@TODO
+			$query = $db->setQuery('select c.extension_id, c.name, c.element AS `option`' .
+							' FROM #__extensions AS c' .
+							' WHERE c.client_id =1 AND c.enabled = 1' .
+							' ORDER BY c.name');
+			}else{
 			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
-							' WHERE c.link <> "" AND parent = 0 AND enabled = 1' .
+							' WHERE c.link <> "" AND parent = 0 AND c.enabled = 1' .
 							' ORDER BY c.name');
+			}
 			$res = $db->loadAssocList($query);
 			foreach($res as $r){
 				if(!in_array($r['option'], $restricted)){

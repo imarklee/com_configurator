@@ -206,7 +206,9 @@ class ComConfiguratorControllerAbstract extends JController
 		$database = JFactory::getDBO();
 		$template_name = JRequest::getVar('t');
 		$option = JRequest::getVar('option');
-
+		//@TODO start added by Viivek
+		$app = JFactory::getApplication();
+		//@TODO end added by Viivek
 		//$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'general', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'logo', null, 'post', 'array' );
@@ -299,7 +301,12 @@ class ComConfiguratorControllerAbstract extends JController
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600, '/'); }
+			//@TODO start changed by Vivek
+			if(JVERSION>='1.6.0')
+			$app->redirect("index.php?option={$option}&view=configuration",$msg);
+			else
 			$mainframe->redirect("index.php?option={$option}&view=configuration",$msg);
+			//@TODO end changed by Vivek
 		}else{
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600, '/'); }

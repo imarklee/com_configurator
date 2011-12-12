@@ -26,6 +26,19 @@
 #toolbar .toolbar td#toolbar-help-link a{background-position:50% -251px;}
 #toolbar .toolbar td#toolbar-credits-link a{background-position:50% -206px;}
 #toolbar .toolbar td#toolbar-configurator a{background-position:50% -300px;}
-
+/*@TODO added by vivek*/
+#toolbar-box #toolbar li a{background:transparent url(../images/cfg-icons.png) no-repeat 50% -4px;padding-top:34px;}
+#toolbar li a span{display:none;}
+#toolbar li#toolbar-fullscreen a{background-position:50% -52px;}
+#toolbar li#toolbar-preferences a{background-position:50% -106px;}
+#toolbar li#toolbar-report-bug-email-link a,
+#toolbar li#toolbar-report-bug-link a{background-position:50% -157px;}
+#toolbar li#toolbar-configurator a,
+#toolbar li#toolbar-help-link a,
+#toolbar li#toolbar-apply a{padding-left:10px;padding-right:10px;}
+#toolbar li#toolbar-help-link a{background-position:50% -251px;}
+#toolbar li#toolbar-credits-link a{background-position:50% -206px;}
+#toolbar li#toolbar-configurator a{background-position:50% -300px;}
+/*@TODO end added by vivek*/
 .header.icon-48-configurator-help,
 .header.icon-48-configurator {color:#999;font-size:2.2em;font-weight:normal;padding:3px 0 0 60px;}

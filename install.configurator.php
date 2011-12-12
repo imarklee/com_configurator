@@ -1,10 +1,11 @@
 <?php defined('_JEXEC') or die('Restricted access');
 //@TODO this doesn't work on 1.6, so only run on 1.5 and previous
 $version = new JVersion;
+
 if(version_compare('1.6', $version->RELEASE, '>'))
 {
 	require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
-} else {
+}else{
 	require_once 'defines.php';
 	require_once 'helpers/utilities.php';
 	require_once 'toolbar.configurator.html.php';
@@ -13,6 +14,7 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 	require_once 'controllers/abstract.php';
 	require_once 'controllers/dispatch.php';
 	require_once 'controllers/default.php';
+	require_once JPATH_ADMINISTRATOR . '/components/com_configurator/depencies.php';
 }
 ob_start();
 (strpos($_SERVER['SCRIPT_NAME'], 'install.configurator.php') === false) ? $base = './components/com_configurator' : $base = '.';
@@ -62,7 +64,7 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 		JFile::move($admin_path.'/morphcache.xml',  $plugins_path.'/morphcache.xml', JPATH_ROOT);
 		JFile::move($admin_path.'/morphcache.php',  $plugins_path.'/morphcache.php', JPATH_ROOT);
 		
-		$status = new JObject();
+		$status = new JObject();//@TODO ?? not used
 		
 		$db = JFactory::getDBO();
 		// Check to see if a plugin by the same name is already installed
@@ -83,17 +85,99 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 		
 		ComConfiguratorHelperUtilities::setInstallState('installed_morphcache', true);
 	}
-}
+}else
+{
+// The following is to avoid configurator from showing up in the frontend menu manager
+	/*
+	$com = JTable::getInstance('extensions');
+	if($com->loadByOption('com_configurator'))
+	{
+		$com->link = '';
+		$com->store(true);
+	}
+*/
+	
+	jimport('joomla.installer.installer');
+	$db = & JFactory::getDBO();
+	$install_source = $this->parent->getPath('source');
+
+	//echo JText::_('<br/><span style="font-weight:bold; font-size:medium; color:blue;">Installing plugins:</span>');
+	/*install plugin and publish it*/
+	$installer = new JInstaller;
+	$result = $installer->install($install_source.DS.'morphcache17');
+	if($result)
+	{
+		if(JVERSION >= '1.6.0')
+		{
+			$query = "UPDATE #__extensions SET enabled=1 WHERE element='morphcache' AND folder='system'";
+			//$query = "UPDATE #__extensions SET enabled=1 WHERE element='plg_sys_jbolo_asset' AND folder='system'";
+			$db->setQuery($query);
+			$db->query();
+			ComConfiguratorHelperUtilities::setInstallState('upgrade_morphcache', true);
+		}
+		else
+		{
+			//$query = "UPDATE #__plugins SET published=1 WHERE element='plg_sys_jbolo_asset' AND folder='system'";
+			
+			//$db->setQuery($query);
+			//$db->query();
+		}
+	}
+	// Move the cache plugin
+	/*
+	$admin_path = 'administrator/components/com_configurator/morphcache';
+	$plugins_path = 'plugins/system/morphcache';
+	if(JFolder::exists(JPATH_ROOT.'/'.$admin_path))
+	{
+		echo "1";
+		$plugin_exists = JFile::exists(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
+		if($plugin_exists)
+		{
+			echo "2";
+			ComConfiguratorHelperUtilities::setInstallState('upgrade_morphcache', true);
+			JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.xml');
+			JFile::delete(JPATH_ROOT.'/'.$plugins_path.'/morphcache.php');
+		}
+		
+		JFile::move($admin_path.'/morphcache.xml',  $plugins_path.'/morphcache.xml', JPATH_ROOT);
+		JFile::move($admin_path.'/morphcache.php',  $plugins_path.'/morphcache.php', JPATH_ROOT);
+		
+		$status = new JObject();//@TODO ?? not used
+		
+		$db = JFactory::getDBO();
+		// Check to see if a plugin by the same name is already installed
+		//$query = "DELETE FROM `#__extensions` WHERE element = 'morphcache' AND folder='system'";
+		$query = "UPDATE #__extensions SET enabled=1 WHERE element='morphcache' AND folder='system'";
+		$db->setQuery($query);
+		$db->Query();
+		// Insert in database
+		//$row = JTable::getInstance('plugin');
+		//$row->name = 'System - Morph Cache';
+		//$row->folder = 'system';
+		//$row->element = 'morphcache';
+		//$row->published = 1;
+		//if (!$row->store()) {
+			// Install failed, roll back changes
+			//$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
+			//return false;
+		//}
+		echo "3";
+		*/
+		ComConfiguratorHelperUtilities::setInstallState('installed_morphcache', true);
+		
+	//}
+}//else 
 
 // create assets folders
 ComConfiguratorControllerAbstract::assets_create();
-
-
-$document = JFactory::getDocument();
-$document->addScript(JURI::root() . 'administrator/components/com_configurator/installer/js/install.js.php?v='.time());
-$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/installer/css/install.css.php');
+//$document = JFactory::getDocument();
+//$document->addScript(JURI::root() . 'administrator/components/com_configurator/installer/js/install.js.php?v='.time());
+//$document->addStyleSheet(JURI::root() . 'administrator/components/com_configurator/installer/css/install.css.php');
+?>
+<script type="text/javascript" src="<?php echo JURI::root().'administrator/components/com_configurator/installer/js/install.js.php?v='.time(); ?>"></script>
+<link type="text/css" href="<?php echo JURI::root().'administrator/components/com_configurator/installer/css/install.css.php'; ?>" rel="stylesheet">
+<?php
 $db = JFactory::getDBO();
-
 // count number of param values stored in the db for upgrade purposes
 $query = $db->setQuery("select count(*) from #__configurator where template_name = 'morph';");
 $count_rows = $db->loadResult($query);

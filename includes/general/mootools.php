@@ -38,10 +38,18 @@ function mootools($extension, $index, $app)
 			$options = array();
 			$db = JFactory::getDBO();
 			//foreach($restricted as $r) $options[] = "'".$r."'";
+			if(JVERSION >= '1.6.0'){
+			//@TODO create function for this
+			$query = $db->setQuery('select extension_id, name, element' .
+							' FROM #__extensions' .
+							' WHERE client_id =1 AND enabled = 1' .
+							' ORDER BY name');
+			}else{
 			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
 							' WHERE c.link <> "" AND parent = 0 AND enabled = 1' .
 							' ORDER BY c.name');
+			}
 			$res = $db->loadAssocList($query);
 //			die('<pre>'.print_r($query, true).'</pre>');
 			array_walk($res, 'mootools', JFactory::getApplication()); ?>

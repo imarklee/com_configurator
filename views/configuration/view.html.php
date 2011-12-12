@@ -185,7 +185,9 @@ class ComConfiguratorViewConfiguration extends JView
 			$browser 	= new MBrowser();
 			$thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 			$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
-
+			//@TODO start added by manoj
+			JHTML::_('behavior.mootools');
+			//@TODO end added by manoj
 			if(!isset($_COOKIE['unpack'])){
 				//$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
 				//$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion();

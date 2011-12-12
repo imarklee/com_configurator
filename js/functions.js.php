@@ -1273,11 +1273,20 @@ $('.text_area').simpleautogrow();
 		}
 	}
 	
-	$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(event){
-		ptOverlay('Saving Settings...');
+	<?php/*@TODO start changed By Vivek*/?>
+	
+	$('li#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(event){
+	ptOverlay('Saving Settings...');
 		submitbutton('applytemplate');
 		event.preventDefault();
 	});
+	
+	$('td#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(event){
+	ptOverlay('Saving Settings...');
+		submitbutton('applytemplate');
+		event.preventDefault();
+	});
+	<?php/*@TODO end changed By Vivek*/?>
 	
 	/* @TODO make this fully ajax later */
 	$('#menuitems-options .save-and-reload').click(function(event){

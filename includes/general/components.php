@@ -83,17 +83,24 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 			$db = JFactory::getDBO();
 			if(JVERSION >= '1.6.0'){
 			//@TODO
-			$query = $db->setQuery('select c.extension_id, c.name, c.element AS `option`' .
+			//@TODO changed by Manoj
+			$query = $db->setQuery('select c.extension_id AS `id`, c.name, c.element AS `option`,c.element AS `link` ' .
 							' FROM #__extensions AS c' .
-							' WHERE c.client_id =1 AND c.enabled = 1' .
+							" WHERE c.client_id =1 AND c.enabled = 1 AND c.type='component'".
 							' ORDER BY c.name');
+			//@TODO changed by Manoj
 			}else{
 			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
 							' WHERE c.link <> "" AND parent = 0 AND c.enabled = 1' .
 							' ORDER BY c.name');
 			}
+			//@TODO changed by Vivek
+			if(JVERSION >= '1.6.0')
+			$res = $db->loadAssocList();
+			else
 			$res = $db->loadAssocList($query);
+			//@TODO end changed by Vivek
 			foreach($res as $r){
 				if(!in_array($r['option'], $restricted)){
 					$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>

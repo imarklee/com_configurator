@@ -62,7 +62,12 @@ function menu_items_list()
 		// first pass - collect children
 		foreach ($menuItems as $v)
 		{
+			//@TODO changed by Vivek
+			if(JVERSION>'1.6.0')
+			$pt 	= $v->parent_id;
+			else 
 			$pt 	= $v->parent;
+			//@TODO changed by Vivek
 			$list 	= @$children[$pt] ? $children[$pt] : array();
 			array_push( $list, $v );
 			$children[$pt] = $list;

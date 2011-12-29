@@ -1677,15 +1677,34 @@ class ComConfiguratorControllerAbstract extends JController
 			$retval['dir'] = $extractdir;
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
 			
-			if($publish !== 'false'){
-				$db = JFactory::getDBO();
-				$db->setQuery("UPDATE #__templates_menu SET template = 'morph' WHERE client_id = '0'");
-				
-				if($db->query()) {
-					ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
-				} else {
-					return array('error' => $db->getErrorMsg());
+			if($publish !== 'false')
+			{ //@TODO start changed by Vivek
+				if(JVERSION>='1.6.0')
+				{	$db = JFactory::getDBO();
+					$db->setQuery("SELECT id FROM #__template_styles WHERE template = 'morph'");
+					if($db->query()) 
+					{
+						ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
+					} else 
+					{
+						return array('error' => $db->getErrorMsg());
+					}
 				}
+				else
+				{
+					$db = JFactory::getDBO();
+					$db->setQuery("UPDATE #__templates_menu SET template = 'morph' WHERE client_id = '0'");
+				
+					if($db->query()) 
+					{
+						ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
+					} 
+					else 
+					{
+						return array('error' => $db->getErrorMsg());
+					}
+				}
+				//@TODO end changed by Vivek
 			}
 			
 			return array(

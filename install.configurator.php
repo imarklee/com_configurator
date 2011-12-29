@@ -40,7 +40,12 @@ $version = new JVersion;
 if(version_compare('1.6', $version->RELEASE, '>'))
 {
 	// The following is to avoid configurator from showing up in the frontend menu manager
+	//@TODO changed by vivek
+	if(JVERSION>='1.6.0')
+	$com = JTable::getInstance('extensions');
+	else
 	$com = JTable::getInstance('component');
+	//@TODO changed by vivek
 	if($com->loadByOption('com_configurator'))
 	{
 		$com->link = '';
@@ -68,15 +73,33 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 		
 		$db = JFactory::getDBO();
 		// Check to see if a plugin by the same name is already installed
+		//@TODO start changed by vivek
+		if(JVERSION>='1.6.0')
+		$query = "DELETE FROM `#__extensions` WHERE element = 'morphcache'";
+		else
 		$query = "DELETE FROM `#__plugins` WHERE element = 'morphcache'";
+		//@TODO end changed by vivek
 		$db->setQuery($query);
 		$db->Query();
 		// Insert in database
+		//@TODO start changed by vivek
+		if(JVERSION>='1.6.0')
+		{
+		$row = JTable::getInstance('extensions');
+		$row->name = 'plg_system_morphcache';
+		$row->folder = 'system';
+		$row->element = 'morphcache';
+		$row->enabled = 1;
+		}
+		else
+		{
 		$row = JTable::getInstance('plugin');
 		$row->name = 'System - Morph Cache';
 		$row->folder = 'system';
 		$row->element = 'morphcache';
 		$row->published = 1;
+		}
+		//@TODO end changed by vivek
 		if (!$row->store()) {
 			// Install failed, roll back changes
 			$this->parent->abort(JText::_('Plugin').' '.JText::_('Install').': '.$db->stderr(true));
@@ -104,7 +127,9 @@ if(version_compare('1.6', $version->RELEASE, '>'))
 	//echo JText::_('<br/><span style="font-weight:bold; font-size:medium; color:blue;">Installing plugins:</span>');
 	/*install plugin and publish it*/
 	$installer = new JInstaller;
-	$result = $installer->install($install_source.DS.'morphcache17');
+	//@TODO changed by vivek
+	$result = $installer->install($install_source.DS.'morphcache');
+	//@TODO changed by vivek
 	if($result)
 	{
 		if(JVERSION >= '1.6.0')

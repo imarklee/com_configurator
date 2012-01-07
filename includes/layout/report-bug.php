@@ -16,9 +16,10 @@ $themelet_xml = $themelet_path . $params->get('themelet') .'/themeletDetails.xml
 $component_xml = $component_path . 'configurator.xml';
 
 $template_arr = (array) simplexml_load_file($template_xml);
-//@TODO changed by vivek
-$themelet_arr = @simplexml_load_file($themelet_xml) ? (array) simplexml_load_file($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
 //@TODO start changed by vivek
+//$themelet_arr = (array) simplexml_load_file($themelet_xml) ? (array) simplexml_load_file($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
+$themelet_arr = @simplexml_load_file($themelet_xml) ? (array) simplexml_load_file($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
+//@TODO end changed by vivek
 $component_arr = (array) simplexml_load_file($component_xml);
 ?>
 

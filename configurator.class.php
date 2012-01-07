@@ -8,11 +8,13 @@
 */
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
+//@TODO start changed by manoj
+//important We have moved class "configuratorParameters" from this file to 2 separate files as included below
 if(JVERSION >= '1.6.0')
-require_once(JPATH_ADMINISTRATOR.'/components/com_configurator/j17params.php');
+	require_once(JPATH_ADMINISTRATOR.'/components/com_configurator/j17params.php');
 else
-require_once(JPATH_ADMINISTRATOR.'/components/com_configurator/j15params.php');
+	require_once(JPATH_ADMINISTRATOR.'/components/com_configurator/j15params.php');
+//@TODO end changed by manoj
 
 abstract class abstractXMLParams {
     
@@ -144,12 +146,6 @@ abstract class abstractXMLParams {
     	return false;
     }   
 }
-
-/**
-* Configurator parameters handler
-* @package Configurator
-*/
-
 
 class morphXMLLoader {
     var $_xml_file = null;

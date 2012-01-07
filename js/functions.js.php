@@ -1272,7 +1272,6 @@ $('.text_area').simpleautogrow();
 			action();
 		}
 	}
-	
 	<?php/*@TODO start changed By Vivek*/?>
 	
 	$('li#toolbar-apply a, #bottom-save a').attr('onclick', '').click(function(event){

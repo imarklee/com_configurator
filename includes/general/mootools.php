@@ -38,28 +38,22 @@ function mootools($extension, $index, $app)
 			$options = array();
 			$db = JFactory::getDBO();
 			//foreach($restricted as $r) $options[] = "'".$r."'";
-			if(JVERSION >= '1.6.0'){
-			//@TODO create function for this
-			//@TODO added by Vivek
-			$query = $db->setQuery('select c.extension_id AS `id`, c.name, c.element AS `option`,c.element AS `link` ' .
+			//@TODO start added by Vivek
+			if(JVERSION >= '1.6.0')
+			{
+				$query = $db->setQuery('select c.extension_id AS `id`, c.name, c.element AS `option`,c.element AS `link` ' .
 							' FROM #__extensions AS c' .
 							" WHERE c.client_id =1 AND c.enabled = 1 AND c.type='component'".
 							' ORDER BY c.name');
-			//@TODO  end added by Vivek
+				$res = $db->loadAssocList();
 			}else{
-			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
+				$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
 							' WHERE c.link <> "" AND parent = 0 AND enabled = 1' .
 							' ORDER BY c.name');
+				$res = $db->loadAssocList($query);
 			}
-			
-			//@TODO changed by Vivek
-			if(JVERSION >= '1.6.0')
-			$res = $db->loadAssocList();
-			else
-			$res = $db->loadAssocList($query);
-			//@TODO end changed by Vivek
-//			die('<pre>'.print_r($query, true).'</pre>');
+			//@TODO end added by Vivek
 			array_walk($res, 'mootools', JFactory::getApplication()); ?>
 		</ol>
 	</div>

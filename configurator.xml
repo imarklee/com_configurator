@@ -55,9 +55,10 @@
 			<file>toolbar.configurator.html.php</file>
 			<file>toolbar.configurator.php</file>
 			<file>uninstall.sql</file>
-			<!-- new -->
+			<!-- //@TODO start added by manoj -->
 			<file>j15params.php</file>
 			<file>j17params.php</file>
+			<!-- //@TODO end added by manoj -->
 		</files>
 		
 		<languages />
@@ -89,7 +90,7 @@
 	<media />
 	<languages />
 	
-	<!--<restorepoint>
+	<restorepoint>
 		<customdirs>
 			<dir>plugins/system/morphcache</dir>
 			<dir>morph_assets</dir>
@@ -107,5 +108,5 @@
 		<customtables>
 			<table>configurator</table>
 		</customtables>
-	</restorepoint>-->
+	</restorepoint>
 </install>

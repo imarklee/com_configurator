@@ -23,7 +23,8 @@ $themelet_xml = $themelet_path . $params->get('themelet').'/themeletDetails.xml'
 $component_xml = $component_path . 'configurator.xml';
 
 $template_arr = (array) simplexml_load_file($template_xml);
-//@TODO changed by Vivek
+//@TODO start changed by Vivek
+//$themelet_arr = (array) simplexml_load_file($themelet_xml) ? (array) simplexml_load_file($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
 $themelet_arr = @simplexml_load_file($themelet_xml) ? (array) simplexml_load_file($themelet_xml) : array('name' => 'No themelet', 'foldername' => 'none', 'version' => null, 'author' => null, 'authorUrl' => '#');
 //@TODO end changed by Vivek
 $component_arr = (array) simplexml_load_file($component_xml);
@@ -34,28 +35,35 @@ setcookie('current_themelet', $params->get('themelet'), 0, '/'); ?>
 	<div id="utilities">
 		<ul>
 			<?php $app = JFactory::getApplication() ?>
-			<?php //@TODO start changed by vivek
+			<?php 
+			//@TODO start changed by vivek
 			//if ($app->getUserState('configurator') ) : 
 			if(JVERSION >='1.6.0')
 			{
-				if ($app->getUserState('configurator') ) 
+				if ($app->getUserState('configurator') ) //note this is array now
 				{
 				?>
 				<?php $menu = JTable::getInstance('Menu') ?>
-				<?php $menu->id = $app->getUserState('configurator') ?>
+				<?php 
+				//@TODO not sure if this is right
+				$menu->id =0// $app->getUserState('configurator') 
+				?>
 				<?php $menu->load() ?>
-				<?php $menutype = JTable::getInstance('Menutypes') ?>
+				<?php 
+				//changed from Menutypes to Menutype in joomla 1.7
+				$menutype = JTable::getInstance('Menutype');
+				 ?>
 				<?php $menutype->menutype = $menu->menutype ?>
-				<?php $menutype->_tbl_key = 'menutype' ?>
+				<?php 
+				//@TODO this is remaining (code commented is remaining) 
+				//$menutype->_tbl_key = 'menutype' ?>
 				<?php $menutype->load() ?>
-				<li class="menuitem" title="You are currently editing the '<?php echo $menu->name ?>' menu item, which is located in the <?php echo $menutype->title ?>.">
-
-						<?php echo $menutype->title ?>
+				<li class="menuitem" title="You are currently editing the '<?php //echo $menu->name ?>' menu item, which is located in the <?php //echo $menutype->title ?>.">
+						<?php //echo $menutype->title; ?>
 						&#10095;
-						<?php echo $menu->name ?>				
+						<?php //echo $menu->name; ?>				
 				</li>
 				<?php 
-			
 				//endif 
 				}
 			}

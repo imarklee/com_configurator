@@ -87,7 +87,13 @@ class ComConfiguratorControllerAbstract extends JController
 		}else{
 			$type = 'gzip';
 		}
-		
+		//@TODO START CHANGED BY MANOJ
+		//@TODO JArchive::create is deprecated in joomla 1.7 so change type to zip for now
+		//@TODO need to check if it works
+		if(JVERSION >='1.6.0'){
+			$type='zip';
+		}
+		//@TODO END CHANGED BY MANOJ
 		switch($type){
 			case 'gzip':
 			JArchive::create(JPATH_ROOT.'/morph_assets',$assets, 'gz', '', JPATH_ROOT, true);
@@ -165,7 +171,9 @@ class ComConfiguratorControllerAbstract extends JController
 	}
 	
 	function removeicon() {
-		global $mainframe;
+		/* global $mainframe; */ 
+		//@TODO changed by manoj 
+		$mainframe=JFactory::getApplication();
 		$option = JRequest::getVar('option');
 		$template = JRequest::getVar('t',null);
 		$icon_file = JRequest::getVar('f',null);
@@ -178,7 +186,9 @@ class ComConfiguratorControllerAbstract extends JController
 	}  
 	
 	function saveprefs(){
-		global $mainframe;
+		/* global $mainframe; */ 
+		//@TODO changed by manoj 
+		$mainframe=JFactory::getApplication();
 		$db = JFactory::getDBO();
 		
 		$prefs = JRequest::getVar('cfg', null, 'post', 'array');
@@ -202,13 +212,12 @@ class ComConfiguratorControllerAbstract extends JController
 	}
 	
 	function applytemplate() {
-		global $mainframe;
+		/* global $mainframe; */ 
+		//@TODO changed by manoj 
+		$mainframe=JFactory::getApplication();
 		$database = JFactory::getDBO();
 		$template_name = JRequest::getVar('t');
 		$option = JRequest::getVar('option');
-		//@TODO start added by Viivek
-		$app = JFactory::getApplication();
-		//@TODO end added by Viivek
 		//$params[0] = JRequest::getVar( 'params', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'general', null, 'post', 'array' );
 		$params[] = JRequest::getVar( 'logo', null, 'post', 'array' );
@@ -301,12 +310,7 @@ class ComConfiguratorControllerAbstract extends JController
 			$msg = JText::_('Successfully saved your settings');
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600, '/'); }
-			//@TODO start changed by Vivek
-			if(JVERSION>='1.6.0')
-			$app->redirect("index.php?option={$option}&view=configuration",$msg);
-			else
 			$mainframe->redirect("index.php?option={$option}&view=configuration",$msg);
-			//@TODO end changed by Vivek
 		}else{
 			// delete change cookie if exists
 			if(isset($_COOKIE['formChanges'])){ setcookie('formChanges', 'false', time()-3600, '/'); }
@@ -536,26 +540,64 @@ class ComConfiguratorControllerAbstract extends JController
 		$newtemplatefile = JRequest::getVar( 'insfile', null, 'files', 'array' );
 		$templatesdir = JPATH_SITE.'/templates';
 		$backupdir = JPATH_SITE.'/morph_assets/backups';
-		$backupfile = $backupdir.'/file_template_morph_' . time();
-		if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
-			return array('error' => 'There was an error creating a backup archive. Upload failed');
-		}else{
-			// remove existing
-			@JPath::setPermissions($templatesdir.'/morph');
-			if(!$this->deleteDirectory($templatesdir.'/morph')){
-				return array('error' => 'There was an error removing the old install. Upload failed');
+		$backupfile = $backupdir.'/file_template_morph_' . time().'.zip';
+		
+		//@TODO Jarchive::create deprecated in joomla 1.7
+		//need to check for backup format
+		//start changed by manoj (only code inside if(JVERSION >='1.6.0') part is changed )
+		if(JVERSION >='1.6.0')
+		{
+			$zip_array = array();
+			$zip = JArchive::getAdapter('zip');
+			$files = JFolder::files($templatesdir.'/morph', '', true, true, array('.DS_Store', 'Thumbs.db', '.git'));
+			foreach($files as $file){
+				$data = JFile::read($file);
+				$zip_array[] = array('name' => $file, 'data' => $data);
+			}
+			if(!@$zip->create($backupfile,$zip_array)){
+				return array('error' => 'There was an error creating a backup archive. Upload failed');
 			}else{
-				if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
-					return array('error' => 'Could not move file to required location!');
+				// remove existing
+				@JPath::setPermissions($templatesdir.'/morph');
+				if(!$this->deleteDirectory($templatesdir.'/morph')){
+					return array('error' => 'There was an error removing the old install. Upload failed');
+				}else{
+					if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
+						return array('error' => 'Could not move file to required location!');
+					}
+					// directory doesn't exist - install as per usual
+					@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
+					$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
+			
+					$msg['backuploc'] = $backupfile;
+					return $msg;
 				}
-				// directory doesn't exist - install as per usual
-				@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
-				$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
-				
-				$msg['backuploc'] = $backupfile.'.gz';
-				return $msg;
 			}
 		}
+		else
+		{
+			if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
+				return array('error' => 'There was an error creating a backup archive. Upload failed');
+			}else{
+				// remove existing
+				@JPath::setPermissions($templatesdir.'/morph');
+				if(!$this->deleteDirectory($templatesdir.'/morph')){
+					return array('error' => 'There was an error removing the old install. Upload failed');
+				}else{
+					if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
+						return array('error' => 'Could not move file to required location!');
+					}
+					// directory doesn't exist - install as per usual
+					@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
+					$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
+				
+					$msg['backuploc'] = $backupfile.'.gz';
+					return $msg;
+				}
+			}
+		}
+		//end changed by manoj
+		
 	}
 	
 	function themelet_upload($file = '', $activate = '') {
@@ -600,11 +642,33 @@ class ComConfiguratorControllerAbstract extends JController
 			$themelet_name = str_replace('themelet_', '', strtolower(basename($themelet_details['name'])));
 			$themelet_name = str_replace(strstr($themelet_name, '_'), '', $themelet_name);
 			if(is_dir($themelet_dir.'/'.$themelet_name)){
-				$backupdir = JPATH_SITE.'/morph_assets/backups';
-				$backupfile = $backupdir.'/file_themelet_'.$themelet_name . '_' . time();
-				if(!@Jarchive::create($backupfile, $themelet_dir.'/'.$themelet_name, 'gz', '', $themelet_dir, true)){
-					return array('error' => 'Could not backup themelet!');
+				//@TODO Jarchive::create deprecated in joomla 1.7
+				//need to check for backup format
+				//start changed by manoj (only code inside if(JVERSION >='1.6.0') part is changed )
+				if(JVERSION>='1.6.0')
+				{
+					$backupdir = JPATH_SITE.'/morph_assets/backups';
+					$backupfile = $backupdir.'/file_themelet_'.$themelet_name . '_' . time().'.zip';
+					$zip_array = array();
+					$zip = JArchive::getAdapter('zip');
+					$files = JFolder::files($themelet_dir.'/'.$themelet_name,'', true, true, array('.DS_Store', 'Thumbs.db', '.git'));
+					foreach($files as $file){
+						$data = JFile::read($file);
+						$zip_array[] = array('name' => $file, 'data' => $data);
+					}
+					if(!@$zip->create($backupfile,$zip_array)){
+						return array('error' => 'There was an error creating a backup archive. Upload failed');
+					}
 				}
+				else
+				{
+					$backupdir = JPATH_SITE.'/morph_assets/backups';
+					$backupfile = $backupdir.'/file_themelet_'.$themelet_name . '_' . time();
+					if(!@Jarchive::create($backupfile, $themelet_dir.'/'.$themelet_name, 'gz', '', $themelet_dir, true)){
+						return array('error' => 'Could not backup themelet!');
+					}
+				}
+				//@TODO end changed by manoj 
 				JFolder::delete($themelet_dir.'/'.$themelet_name);
 			}else{
 				$backupfile = '';
@@ -806,7 +870,9 @@ class ComConfiguratorControllerAbstract extends JController
 	}
 	
 	function themelet_activate($themelet = ''){
-		global $mainframe;
+		/* global $mainframe; */ 
+		//@TODO changed by manoj 
+		$mainframe=JFactory::getApplication();
 		$db = JFactory::getDBO();
 		
 		if($themelet == ''){
@@ -1554,32 +1620,76 @@ class ComConfiguratorControllerAbstract extends JController
 			// template folder
 			if($_REQUEST['backup'] == 'true'){
 				ComConfiguratorHelperUtilities::setInstallState('installed_bkpmorph', true);
-				// backup existing
-				$backupfile = $backupdir.'/file_template_morph_' . time();
-				if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
-					// error creating archive
-					echo json_encode(array('error' => 'There was an error creating the archive. Install failed'));
-				}else{
-					// remove existing
-					@JPath::setPermissions($templatesdir.'/morph');
-					if(!$this->deleteDirectory($templatesdir.'/morph')){
-						// fail: error removing existing folder
-						echo json_encode(array('error' => 'There was an error removing the old install. Install failed'));
-					}else{
-						if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
-							echo json_encode(array('error' => 'Could not move file to required location!'));
+				//@TODO Jarchive::create deprecated in joomla 1.7
+				//need to check for backup format
+				//start changed by manoj (only code inside if part is changed )
+				if(JVERSION>='1.6.0')
+				{
+					// backup existing
+					$backupfile = $backupdir.'/file_template_morph_' . time().'.zip';
+					$zip_array = array();
+					$zip = JArchive::getAdapter('zip');
+					$files = JFolder::files($templatesdir.'/morph', '', true, true, array('.DS_Store', 'Thumbs.db', '.git'));
+					foreach($files as $file){
+						$data = JFile::read($file);
+						$zip_array[] = array('name' => $file, 'data' => $data);
+					}
+					if(!@$zip->create($backupfile,$zip_array)){
+						return array('error' => 'There was an error creating a backup archive. Upload failed');
+					}
+					else{
+						// remove existing
+						@JPath::setPermissions($templatesdir.'/morph');
+						if(!$this->deleteDirectory($templatesdir.'/morph')){
+							// fail: error removing existing folder
+							echo json_encode(array('error' => 'There was an error removing the old install. Install failed'));
+						}else{
+							if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
+								echo json_encode(array('error' => 'Could not move file to required location!'));
+							}
+							// directory doesn't exist - install as per usual
+							@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
+							$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+							$msg['backuploc'] = $backupfile.'.gz';
+						
+							$this->_dbUpdate();
+						
+							ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
+							echo json_encode($msg);
 						}
-						// directory doesn't exist - install as per usual
-						@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
-						$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
-						$msg['backuploc'] = $backupfile.'.gz';
-						
-						$this->_dbUpdate();
-						
-						ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
-						echo json_encode($msg);
 					}
 				}
+				else
+				{
+					// backup existing
+					$backupfile = $backupdir.'/file_template_morph_' . time();
+					if(!@Jarchive::create($backupfile, $templatesdir.'/morph', 'gz', '', $templatesdir, true)){
+						// error creating archive
+						echo json_encode(array('error' => 'There was an error creating the archive. Install failed'));
+					}else{
+						// remove existing
+						@JPath::setPermissions($templatesdir.'/morph');
+						if(!$this->deleteDirectory($templatesdir.'/morph')){
+							// fail: error removing existing folder
+							echo json_encode(array('error' => 'There was an error removing the old install. Install failed'));
+						}else{
+							if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
+								echo json_encode(array('error' => 'Could not move file to required location!'));
+							}
+							// directory doesn't exist - install as per usual
+							@JPath::setPermissions($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])));
+							$msg = $this->unpackTemplate($templatesdir.'/'.strtolower(basename($newtemplatefile['name'])), $_REQUEST['publish']);
+							$msg['backuploc'] = $backupfile.'.gz';
+						
+							$this->_dbUpdate();
+						
+							ComConfiguratorHelperUtilities::setInstallState('installed_morph', true);
+							echo json_encode($msg);
+						}
+					}
+				}
+				//@TODO end changed by manoj
+				
 			}
 		}else{
 			if( !JFile::upload($newtemplatefile['tmp_name'], $templatesdir.'/'.strtolower(basename($newtemplatefile['name']))) ){
@@ -1678,33 +1788,23 @@ class ComConfiguratorControllerAbstract extends JController
 			$this->cleanupThemeletInstall($retval['packagefile'], $retval['extractdir']);
 			
 			if($publish !== 'false')
-			{ //@TODO start changed by Vivek
-				if(JVERSION>='1.6.0')
-				{	$db = JFactory::getDBO();
-					$db->setQuery("SELECT id FROM #__template_styles WHERE template = 'morph'");
-					if($db->query()) 
-					{
-						ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
-					} else 
-					{
-						return array('error' => $db->getErrorMsg());
-					}
+			{ 	
+				$db = JFactory::getDBO();
+				//@TODO start changed by Vivek
+				if(JVERSION>='1.6.0'){
+					$db->setQuery("UPDATE #__template_styles SET client_id='0' WHERE template='morph'");//@TODO is this right??
 				}
-				else
-				{
-					$db = JFactory::getDBO();
+				else{
 					$db->setQuery("UPDATE #__templates_menu SET template = 'morph' WHERE client_id = '0'");
-				
-					if($db->query()) 
-					{
-						ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
-					} 
-					else 
-					{
-						return array('error' => $db->getErrorMsg());
-					}
 				}
 				//@TODO end changed by Vivek
+				if($db->query()) 
+				{
+					ComConfiguratorHelperUtilities::setInstallState('installed_pubmorph', true);
+				} else 
+				{
+					return array('error' => $db->getErrorMsg());
+				}
 			}
 			
 			return array(

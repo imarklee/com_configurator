@@ -81,26 +81,28 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 		<ol class="forms">
 			<?php
 			$db = JFactory::getDBO();
-			if(JVERSION >= '1.6.0'){
-			//@TODO
-			//@TODO changed by Manoj
-			$query = $db->setQuery('select c.extension_id AS `id`, c.name, c.element AS `option`,c.element AS `link` ' .
+			//@TODO start changed by Manoj
+			if(JVERSION >= '1.6.0')
+			{
+				//@TODO need to fetch actual component names from lang. file 
+				//can reuse joomla code that is used to show all component names in backend in j1.7
+				//@TODO filtering is remaining
+				$query = $db->setQuery('select c.extension_id AS `id`, c.name, c.element AS `option`,c.element AS `link` ' .
 							' FROM #__extensions AS c' .
 							" WHERE c.client_id =1 AND c.enabled = 1 AND c.type='component'".
 							' ORDER BY c.name');
-			//@TODO changed by Manoj
-			}else{
-			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
+				$res = $db->loadAssocList();
+			}
+			else
+			{
+				$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
 							' WHERE c.link <> "" AND parent = 0 AND c.enabled = 1' .
 							' ORDER BY c.name');
+				$res = $db->loadAssocList($query);
 			}
-			//@TODO changed by Vivek
-			if(JVERSION >= '1.6.0')
-			$res = $db->loadAssocList();
-			else
-			$res = $db->loadAssocList($query);
-			//@TODO end changed by Vivek
+			//@TODO changed by Manoj
+
 			foreach($res as $r){
 				if(!in_array($r['option'], $restricted)){
 					$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>

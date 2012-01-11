@@ -103,3 +103,8 @@ option.have-configs{background:yellow;border:1px solid #222;padding:2px;}
 #utilities ul .menuitem{border:0;background:orange;margin-left:10px;}
 #tabs select#paramsmenuitem{background:#fff;border:1px solid;border-color:#ddd #eee #eee #ddd;padding:1px;}
 #tabs select#paramsmenuitem option{padding:0;font:normal 12px Arial;padding:2px;}
+
+.help-block1,
+.help-block2{width:50%;float:left;font-family:Arial;}
+#resources h3{margin:0 0 5px;}
+#resources p{margin:0 0 20px 0;width:90%;}

@@ -1791,10 +1791,27 @@ class ComConfiguratorControllerAbstract extends JController
 			{ 	
 				$db = JFactory::getDBO();
 				//@TODO start changed by Vivek
-				if(JVERSION>='1.6.0'){
-					$db->setQuery("UPDATE #__template_styles SET client_id='0' WHERE template='morph'");//@TODO is this right??
+				if(JVERSION>='1.6.0')
+				{
+					//@TODO  New start changed by Vivek			
+					// Reset the home fields for the client_id.
+					
+					$db->setQuery("UPDATE #__template_styles SET home = '0' WHERE client_id = '0' AND home = '1'");
+					
+					if (!$db->query()) 
+					{
+								throw new Exception($db->getErrorMsg());
+					}
+					
+					$db->setQuery("DELETE FROM #__template_styles WHERE template='morph' AND id < (SELECT MAX(a.id) FROM (SELECT * FROM #__template_styles) AS a WHERE a.template='morph')");
+					if($db->query());
+					
+					$db->setQuery("UPDATE #__template_styles SET home='1' WHERE template='morph'");
+					//@TODO New end changed by Vivek
+					//$db->setQuery("UPDATE #__template_styles SET client_id='0' WHERE template='morph'");//@TODO is this right??
 				}
-				else{
+				else
+				{
 					$db->setQuery("UPDATE #__templates_menu SET template = 'morph' WHERE client_id = '0'");
 				}
 				//@TODO end changed by Vivek

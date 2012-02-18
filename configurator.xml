@@ -65,7 +65,7 @@
 		<language tag="en-GB">en-GB/en-GB.com_configurator.ini</language>
 		<language tag="en-GB">en-GB/en-GB.com_configurator.menu.ini</language>
 		<language tag="en-GB">en-GB/en-GB.com_configurator.sys.ini</language>
-		<languages />
+		</languages>
 	</administration>
 	
 	<!-- Deprecated files -->

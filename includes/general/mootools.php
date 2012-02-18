@@ -47,7 +47,7 @@ function mootools($extension, $index, $app)
 			if(JVERSION >= '1.6.0')
 			{	
 				//@TODO start added by Vivek 1st Feb
-				$query = $db->setQuery('SELECT m.id, m.title, m.alias, m.link, m.parent_id, m.img, e.element AS `option` FROM jos_menu AS m LEFT JOIN jos_extensions AS e ON m.component_id = e.extension_id WHERE m.client_id = 1 AND e.enabled = 1 AND m.id > 1 AND m.parent_id=1 ORDER BY m.lft');
+				$query = $db->setQuery('SELECT m.id, m.title, m.alias, m.link, m.parent_id, m.img, e.element AS `option` FROM #__menu AS m LEFT JOIN #__extensions AS e ON m.component_id = e.extension_id WHERE m.client_id = 1 AND e.enabled = 1 AND m.id > 1 AND m.parent_id=1 ORDER BY m.lft');
 				//@TODO end added by Vivek 1st Feb
 				/*$query = $db->setQuery('select c.extension_id AS `id`, c.name, c.element AS `option`,c.element AS `link` ' .
 							' FROM #__extensions AS c' .

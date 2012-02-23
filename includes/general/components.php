@@ -72,7 +72,7 @@ function outerLayouts($id){
 	return $select;
 }
 // do not show these options
-$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_jupdateman');
+$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman', 'com_installer', 'com_nonumbermanager', 'com_oscontent', 'com_akeeba', 'com_admintools', 'com_redirect', 'com_messages');
 ?>
 
 <div id="components-tab" class="ui-tabs-hide ui-tabs-panel">

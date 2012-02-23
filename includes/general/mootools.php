@@ -9,7 +9,7 @@
 
 function mootools($extension, $index, $app)
 {
-	$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
+	$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman', 'com_installer', 'com_nonumbermanager', 'com_oscontent', 'com_akeeba', 'com_admintools', 'com_redirect', 'com_messages');
 	if(in_array($extension['option'], $restricted)) return;
 	extract($extension);
 	

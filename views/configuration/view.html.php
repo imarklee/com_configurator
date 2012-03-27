@@ -20,7 +20,10 @@ class ComConfiguratorViewConfiguration extends JView
 {
 	public function display()
 	{
-		global $mainframe;
+		//@TODO start changed by manoj
+		/* global $mainframe; */ 
+		$mainframe=JFactory::getApplication();
+		//@TODO end changed by manoj
 		$database = JFactory::getDBO();
 		$option = JRequest::getVar('option');
 		$template = 'morph';
@@ -152,7 +155,7 @@ class ComConfiguratorViewConfiguration extends JView
 			$database->setQuery( $query );
 			$prefs_params = $database->loadAssocList('pref_name');
 			$prefs_settings = array();
-			$current_prefs = '';
+			$current_prefs = ''; 
 			
 			foreach ( (array) $prefs_params as $prefs_param ) {
 				$prefs_settings[] = $prefs_param['pref_name'] . '=' . $prefs_param['pref_value'] . "\n";
@@ -185,7 +188,10 @@ class ComConfiguratorViewConfiguration extends JView
 			$browser 	= new MBrowser();
 			$thebrowser	= str_replace(' ','-', strtolower($browser->getBrowser()));
 			$browserver	= str_replace('.', '', substr($browser->getVersion(),0, 3));
-
+			//@TODO start added by manoj
+			//this is important for joomla 1.7
+			JHTML::_('behavior.mootools');
+			//@TODO end added by manoj
 			if(!isset($_COOKIE['unpack'])){
 				//$document->addScript($jspath . 'configurator.js.php?getul='.$uval.'&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime);
 				//$js = '&option='.JRequest::getCmd('option').'&task=manage&render=js&eh='.$cfg_pref->syntax_highlighting.'&sk='.$cfg_pref->session_keepalive.'&slt='.$lifetime.'&version='.ComConfiguratorDefines::getVersion();

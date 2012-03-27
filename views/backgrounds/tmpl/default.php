@@ -1,7 +1,10 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ) ?>
 <?php /* Turn stuff we set as $this->foo in our view, into $foo in the layout */ ?>
-<?php extract($this->getPublicProperties(), EXTR_SKIP) ?>
-
+<?php
+//@TODO startchanged by Vivek
+//extract($this->getPublicProperties(), EXTR_SKIP)
+//@TODO end changed by Vivek 
+?>
 <div id="assets-backgrounds">
 	<div id="backgrounds-switch" class="switch">
 		<h2>Manage your assets: <strong>Backgrounds</strong></h2>

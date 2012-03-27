@@ -2,7 +2,7 @@
 <!DOCTYPE install SYSTEM "http://www.joomla.org/xml/dtd/1.5/component-install.dtd">
 <install type="component" version="1.5.0" method="upgrade" overwrite="true" client="administrator">
     <name>Configurator</name>
-    <shortname>configurator</shortname>
+    <shortname>Configurator</shortname>
     <foldername>com_configurator</foldername>
     <creationDate>May 2009</creationDate>
     <author>Web Monkeys</author>
@@ -14,7 +14,7 @@
     
 	<installfile>install.configurator.php</installfile>
 	<!-- For j1.6 -->
-	<scriptfile>install.configurator.php</scriptfile>
+	<!--<scriptfile>install.configurator.php</scriptfile>-->
 	<uninstallfile>uninstall.configurator.php</uninstallfile>
 	
     <install>
@@ -29,7 +29,7 @@
 	</uninstall>
 
 	<administration>
-		<menu img="components/com_configurator/images/icon-16-configurator.png">Configurator</menu>
+		<menu img="components/com_configurator/images/icon-16-configurator.png">COM_CONFIGURATOR</menu>
 		<files>
 			<folder>controllers</folder>
 			<folder>css</folder>
@@ -55,9 +55,17 @@
 			<file>toolbar.configurator.html.php</file>
 			<file>toolbar.configurator.php</file>
 			<file>uninstall.sql</file>
+			<!-- //@TODO start added by manoj -->
+			<file>j15params.php</file>
+			<file>j17params.php</file>
+			<!-- //@TODO end added by manoj -->
 		</files>
-		
-		<languages />
+		<languages folder="languages">
+
+		<language tag="en-GB">en-GB/en-GB.com_configurator.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_configurator.menu.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_configurator.sys.ini</language>
+		</languages>
 	</administration>
 	
 	<!-- Deprecated files -->

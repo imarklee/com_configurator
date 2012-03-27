@@ -39,10 +39,15 @@ class TableConfiguratorTemplateSettings extends JTable
     public function __construct($db)
     {
     	$app		  = JFactory::getApplication();
-		if($app->isAdmin())
-		{
+    	if($app->isAdmin())
+		{	
 			$itemid		  = $app->getUserState('configurator');
-			$this->__itemid = $itemid > 0 ? $itemid : false;
+			//@TODO start changed by vivek
+			if(JVERSION>'1.6.0')
+				$this->__itemid = !empty($itemid ) ? $itemid : false;
+			else
+				$this->__itemid = $itemid > 0 ? $itemid : false;
+			//@TODO end changed by vivek
 		}
 		else
 		{
@@ -55,7 +60,13 @@ class TableConfiguratorTemplateSettings extends JTable
     public function loadByKey()
     {
         if( !isset($this->template_name) || !isset($this->param_name) ) return null;
-        $template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+        //@TODO start changed by vivek
+        if(JVERSION>='1.6.0')
+       	 	$template =$this->template_name;
+        else
+        	$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+        //@TODO end changed by vivek
+        $template = strtolower($template);
         $template = strtolower($template);
         $this->_db->setQuery("SELECT id FROM #__configurator WHERE `template_name` = '{$template}' AND `param_name` = '{$this->param_name}' LIMIT 1");
         $this->load( $this->_db->loadResult() );
@@ -64,7 +75,12 @@ class TableConfiguratorTemplateSettings extends JTable
     public function getItem()
     {
 		if(!isset($this->param_name) ) return (object) array();
-		$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		//@TODO start changed by vivek
+		if(JVERSION>='1.6.0')
+			$template =$this->template_name;
+		else
+			$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		//@TODO end changed by vivek
 		$template = strtolower($template);
 		$this->_db->setQuery("SELECT * FROM #__configurator WHERE `template_name` = '{$template}' AND `param_name` = '{$this->param_name}'");
 		$this->setProperties($this->_db->loadAssoc());
@@ -95,13 +111,18 @@ class TableConfiguratorTemplateSettings extends JTable
     public function getParams()
     {
 		if(!isset($this->template_name) ) return array();
-		$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		//@TODO start changed by vivek
+		if(JVERSION>='1.6.0')
+			$template =$this->template_name;
+		else
+			$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+		//@TODO end changed by vivek
 		$template = strtolower($template);
 		$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
 		$this->_db->setQuery( $query );
 		
 		if($this->__itemid)
-		{
+		{	
 			$override = $this->_db->loadAssocList('param_name');
 			$query="SELECT * FROM #__configurator AS t WHERE t.template_name='morph'";
 			$this->_db->setQuery( $query );
@@ -114,7 +135,13 @@ class TableConfiguratorTemplateSettings extends JTable
     public function getActiveMenuitemParams()
     {
     	if(!$this->__itemid) return array();
-    	$template = $this->__itemid . '.' . $this->template_name;
+    	
+    	//@TODO start changed by manoj
+    	if(JVERSION>='1.6.0')
+    		$template = $this->template_name;
+    	else
+    		$template = $this->__itemid . '.' . $this->template_name;
+    	//@TODO end changed by manoj
     	$template = strtolower($template);
     	$query="SELECT param_name FROM #__configurator AS t WHERE t.template_name='{$template}'";
     	$this->_db->setQuery( $query );
@@ -124,7 +151,12 @@ class TableConfiguratorTemplateSettings extends JTable
     public function getConfigs()
     {
     	if(!isset($this->template_name) ) return array();
+    	//@TODO start changed by vivek
+    	if(JVERSION>='1.6.0')
+    		$template =  $this->template_name;
+    		else
     	$template = $this->__itemid ? $this->__itemid . '.' . $this->template_name : $this->template_name;
+    	//@TODO end changed by vivek
     	$template = strtolower($template);
     	$query="SELECT * FROM #__configurator AS t WHERE t.template_name='{$template}'";
     	$this->_db->setQuery( $query );
@@ -139,7 +171,12 @@ class TableConfiguratorTemplateSettings extends JTable
     public function store()
     {
     	$template = end(explode('.', $this->template_name));
-    	$this->template = $this->__itemid ? $this->__itemid . '.' . $template : $template;
+    	//@TODO start changed by vivek
+    	if(JVERSION>='1.6.0')
+    		$this->template = $template;
+    	else
+    		$this->template = $this->__itemid ? $this->__itemid . '.' . $template : $template;
+    	//@TODO end changed by vivek
     	
     	// Avoid duplicates
     	$this->_db->setQuery("SELECT COUNT(*) FROM #__configurator WHERE `template_name` = '{$this->template}' AND `param_name` = '{$this->param_name}'");
@@ -152,7 +189,15 @@ class TableConfiguratorTemplateSettings extends JTable
     	if($this->__itemid)
     	{
     		$active_items = JRequest::getVar( 'menuitem_active', null, 'post', 'array' );
-			if(!array_key_exists($this->param_name, $active_items)) return parent::delete();
+			//@TODO start changed by Vivek
+    		if(JVERSION>='1.6.0')
+    		{
+    			if($active_items) if(!array_key_exists($this->param_name, $active_items)) return parent::delete();
+    		}
+    		else{
+    			if(!array_key_exists($this->param_name, $active_items)) return parent::delete();
+    		}
+    		//@TODO end changed by Vivek
 		}
 
     	return parent::store();

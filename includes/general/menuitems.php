@@ -17,9 +17,18 @@ function menu_items_list()
 
 	// load the list of menu types
 	// TODO: move query to model
-	$query = 'SELECT menutype, title' .
+	//@TODO start changed by vivek
+	if(JVERSION >= '1.6.0')
+	{
+		$query = 'SELECT menutype, title' .
 			' FROM #__menu_types' .
 			' ORDER BY title';
+	}else{
+		$query = 'SELECT menutype, title' .
+			' FROM #__menu_types' .
+			' ORDER BY title';
+	}
+	//@TODO end changed by vivek
 	$db->setQuery( $query );
 	$menuTypes = $db->loadObjectList();
 
@@ -29,12 +38,24 @@ function menu_items_list()
 
 	// load the list of menu items
 	// TODO: move query to model
-	$query = 'SELECT id, parent, name, menutype, type' .
+	//@TODO start changed by vivek
+	if(JVERSION >= '1.6.0')
+	{
+		$query = 'SELECT id, parent_id, title, menutype, type' .
+			' FROM #__menu' .
+			$where .
+			' ORDER BY menutype, parent_id, ordering'
+			;
+	}
+	else
+	{
+		$query = 'SELECT id, parent, name, menutype, type' .
 			' FROM #__menu' .
 			$where .
 			' ORDER BY menutype, parent, ordering'
 			;
-
+	}
+	//@TODO end changed by vivek
 	$db->setQuery($query);
 	$menuItems = $db->loadObjectList();
 
@@ -47,7 +68,12 @@ function menu_items_list()
 		// first pass - collect children
 		foreach ($menuItems as $v)
 		{
-			$pt 	= $v->parent;
+			//@TODO changed by Vivek
+			if(JVERSION>'1.6.0')
+				$pt 	= $v->parent_id;
+			else 
+				$pt 	= $v->parent;
+			//@TODO changed by Vivek
 			$list 	= @$children[$pt] ? $children[$pt] : array();
 			array_push( $list, $v );
 			$children[$pt] = $list;
@@ -99,7 +125,14 @@ function menu_items_list()
 		}
 	}
 
-	$value = JFactory::getApplication()->getUserState('configurator');
+	//@TODO start changed by manoj
+	if(JVERSION >='1.6.0'){
+		//@TODO not sure if this is right way. but works for now
+		$value = 0;
+	}else{
+		$value = JFactory::getApplication()->getUserState('configurator');
+	}
+	//@TODO end changed by manoj
 	
 	$table = JTable::getInstance('ConfiguratorTemplateSettings', 'Table');
 	

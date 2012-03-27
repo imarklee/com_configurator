@@ -7,8 +7,15 @@
 * @desc      Originally based on Tatami from Ninja Forge. http://www.ninjaforge.com
 */
 $db=& JFactory::getDBO();
-$query = "SELECT COUNT(*) FROM `#__components` WHERE `name` = 'Jom Social' AND `enabled` = '1'";
+//@TODO start changed by manoj
+if(JVERSION >= '1.6.0'){
+	$query = "SELECT COUNT(*) FROM `#__extensions` WHERE `element` = 'com_community' AND `enabled` = '1' AND `type`='component'";
+}else{
+	$query = "SELECT COUNT(*) FROM `#__components` WHERE `name` = 'Jom Social' AND `enabled` = '1'";
+}
+//@TODO end changed by manoj
 $db->setQuery( $query ); 
+
 $jomsocial_installed = false;
 if($db->loadResult())
 {
@@ -20,7 +27,6 @@ if($db->loadResult())
 		$jomsocial_installed = 'morph' == $jomsocial->getValue('template');
 	}
 }
-
 $app		     = JFactory::getApplication();
 $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : null;
 
@@ -180,7 +186,10 @@ $menuitem_active = $app->getUserState('configurator') ? ' menuitem_active' : nul
 if($cfg_pref->bottom_save >= 1){ ?>
 <div id="bottom-save"<?php echo bs_class($cfg_pref->bottom_save); ?> style="display:none;"><a href="#" title="you can configure how this save bar is displayed in the configurator preferences">Save your settings</a></div>
 <?php } ?>
-<input type="hidden" name="option" value="<?php echo JRequest::getCmd('option', 'com_configurator'); ?>"/>
+<!-- start changed by manoj -->
+<!--<input type="hidden" name="option" value="<?php echo JRequest::getCmd('option', 'com_configurator'); ?>"/>-->
+<input type="hidden" name="option" value="com_configurator"/>
+<!-- end changed by manoj -->
 <input type="hidden" name="t" value="morph"/>
 <input type="hidden" name="task" value="" />
 </form>

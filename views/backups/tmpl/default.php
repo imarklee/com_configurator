@@ -51,12 +51,12 @@
 							break;
 						}
 						if(array_key_exists(3, $splitfile)) :
-							$timestamp = str_replace(array('.sql.gz', '.gz'), '', $splitfile[3]);
+							$timestamp = str_replace(array('.sql.gz', '.gz','.zip'), '', $splitfile[3]);//@TODO changed by vivek
 							$date = date('d M y', $timestamp);
 							$time = date('H:i', $timestamp);
 							$name = $splitfile[2];
 						else:
-							$timestamp = str_replace(array('.sql.gz', '.gz'), '', $splitfile[2]);
+							$timestamp = str_replace(array('.sql.gz', '.gz','.zip'), '', $splitfile[2]);//@TODO changed by vivek
 							$date = date('d M y', $timestamp);
 							$time = date('H:i', $timestamp);
 							$name = '';

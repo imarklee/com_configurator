@@ -89,7 +89,7 @@ function showUpdates(e, callback){
 	return;		
 }
 //@TODO commented out for debugging
-if(window.localStorage ? window.localStorage['updates'] : $.cookie('updates')) { showUpdates(updEl); }else{ getUpdates(true); }
+//if(window.localStorage ? window.localStorage['updates'] : $.cookie('updates')) { showUpdates(updEl); }else{ getUpdates(true); }
 
 // refresh versions on click
 $('.updates-refresh-link').click(function(){

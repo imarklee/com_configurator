@@ -79,45 +79,49 @@ class ComConfiguratorControllerAbstract extends JController
 		}
 	}
 
-	function assets_backup(){
-		$assets = JPATH_ROOT.'/morph_assets';
-		
-		if(isset($_GET['type'])){ 
-			$type = $_GET['type'];
-		}else{
-			$type = 'gzip';
+	/**
+	 * Creates a zip archive of the assets folder.
+	 *
+	 * @since	2.0
+	 * @param	null
+	 */
+	function assets_backup()
+	{
+		$assets 	= JPATH_ROOT . DS . 'morph_assets';
+		$zip		= JArchive::getAdapter( 'zip' );
+		$exclusion	= array( '.DS_Store' , 'Thumbs.db' , '.git' );
+		$result 	= JFolder::files( $assets , '' , true , true , $exclusion );
+		$files		= array();
+
+		// Temporary storage.
+		$storage 	= JPATH_ROOT . DS . 'tmp';
+
+		foreach( $result as $file )
+		{
+			$contents 	= JFile::read( $file );
+			$files[]	= array( 'name' => $file , 'data' => $contents );
 		}
-		
-		switch($type){
-			case 'gzip':
-			JArchive::create(JPATH_ROOT.'/morph_assets',$assets, 'gz', '', JPATH_ROOT, true);
-			$filename = 'morph_assets.gz';
-			header('Content-Type: application/x-gzip');
-			break;
-			case 'zip':
-			$zip_array = array();
-			$zip = JArchive::getAdapter('zip');
-			$files = JFolder::files($assets, '', true, true, array('.DS_Store', 'Thumbs.db', '.git'));
-			foreach($files as $file){
-				$data = JFile::read($file);
-				$zip_array[] = array('name' => $file, 'data' => $data);
-			}
-			$zip->create(JPATH_ROOT.'/morph_assets',$zip_array);
-			$filename = 'morph_assets.zip';
-			header('Content-Type: application/zip');
-			break;
-		}
-		
-		
+
+
+		$zip->create( $storage . DS . 'morph_assets.zip' , $files );
+
+
+		$fileName	= 'morph_assets.zip';
+		$fileSize 	= filesize( $storage . DS . $fileName );
+
+		header('Content-Type: application/zip');				
 		header('Pragma: public');
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 		header('Cache-Control: private',false);
-		header('Content-Disposition: attachment; filename="'.basename(JPATH_ROOT.'/'.$filename).'"');
+		header('Content-Disposition: attachment; filename="'. $fileName .'"');
 		header('Content-Transfer-Encoding: binary');
-		header('Content-Length: '.filesize(JPATH_ROOT.'/'.$filename)); 
-		readfile(JPATH_ROOT.'/'.$filename);
-		JFile::delete(JPATH_ROOT.'/'.$filename);
+		header('Content-Length: ' . $fileSize ); 
+
+		readfile( $storage . DS . $fileName );
+
+		// Delete the temporary file.
+		@JFile::delete( $storage . DS . $fileName );
 		exit();
 	}
 	

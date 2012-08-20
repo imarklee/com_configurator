@@ -58,9 +58,9 @@ class ComConfiguratorToolbarHtml extends JToolBar
 
 		$this
 				->appendButton('apply', 'Save')
-				->appendButton('fullscreen', 'Fullscreen')
+				//->appendButton('fullscreen', 'Fullscreen')
 				->appendButton('preferences', 'Preferences ')
-				->appendButton('report-bug-link', 'Feedback')
+				//->appendButton('report-bug-link', 'Feedback')
 				->appendButton('credits-link', 'Credits')
 				->appendButton('help-link', 'Help');
 	}
@@ -89,7 +89,7 @@ class ComConfiguratorToolbarHtml extends JToolBar
 	 */
 	public function appendButton($action, $title, $link = '#')
 	{
-		$this->getToolbar()->appendButton('Custom', '<a href="'.$link.'" class="toolbar">'.JText::_($title).'</a>', $action);
+		$this->getToolbar()->appendButton('Custom', '<a href="'.$link.'" class="toolbar"><span></span>'.JText::_($title).'</a>', $action);
 
 		return $this;
 	}

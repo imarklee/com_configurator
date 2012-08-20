@@ -9,7 +9,7 @@
 
 function mootools($extension, $index, $app)
 {
-	$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman');
+	$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman', 'com_installer', 'com_nonumbermanager', 'com_oscontent', 'com_akeeba', 'com_admintools', 'com_redirect', 'com_messages');
 	if(in_array($extension['option'], $restricted)) return;
 	extract($extension);
 	
@@ -25,7 +25,12 @@ function mootools($extension, $index, $app)
 	$node->addChild('option', array('value' => 1))->setData('Yes');
 	$node->addChild('option', array('value' => 0))->setData('No');
 
+	//@TODO start added by Vivek 1st Feb
+	if(JVERSION >= '1.6.0')
+	echo JElementItoggle::fetchTooltip($title, null /*htmlspecialchars($xml->description)*/, $node, 'mootoolscompat', 'load_mootools_'.$option);
+	else
 	echo JElementItoggle::fetchTooltip($name, null /*htmlspecialchars($xml->description)*/, $node, 'mootoolscompat', 'load_mootools_'.$option);
+	//@TODO end added by Vivek 1st Feb
 	echo JElementItoggle::fetchElement('load_mootools_'.$option, $value, $node, 'mootoolscompat');
 }
 ?>
@@ -38,12 +43,25 @@ function mootools($extension, $index, $app)
 			$options = array();
 			$db = JFactory::getDBO();
 			//foreach($restricted as $r) $options[] = "'".$r."'";
-			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
+			//@TODO start added by Vivek
+			if(JVERSION >= '1.6.0')
+			{	
+				//@TODO start added by Vivek 1st Feb
+				$query = $db->setQuery('SELECT m.id, m.title, m.alias, m.link, m.parent_id, m.img, e.element AS `option` FROM #__menu AS m LEFT JOIN #__extensions AS e ON m.component_id = e.extension_id WHERE m.client_id = 1 AND e.enabled = 1 AND m.id > 1 AND m.parent_id=1 ORDER BY m.lft');
+				//@TODO end added by Vivek 1st Feb
+				/*$query = $db->setQuery('select c.extension_id AS `id`, c.name, c.element AS `option`,c.element AS `link` ' .
+							' FROM #__extensions AS c' .
+							" WHERE c.client_id =1 AND c.enabled = 1 AND c.type='component'".
+							' ORDER BY c.name');*/
+				$res = $db->loadAssocList();
+			}else{
+				$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
 							' WHERE c.link <> "" AND parent = 0 AND enabled = 1' .
 							' ORDER BY c.name');
-			$res = $db->loadAssocList($query);
-//			die('<pre>'.print_r($query, true).'</pre>');
+				$res = $db->loadAssocList($query);
+			}
+			//@TODO end added by Vivek
 			array_walk($res, 'mootools', JFactory::getApplication()); ?>
 		</ol>
 	</div>

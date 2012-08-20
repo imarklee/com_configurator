@@ -72,7 +72,7 @@ function outerLayouts($id){
 	return $select;
 }
 // do not show these options
-$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_jupdateman');
+$restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninjaxplorer', 'com_extplorer', 'com_jupdateman', 'com_installer', 'com_nonumbermanager', 'com_oscontent', 'com_akeeba', 'com_admintools', 'com_redirect', 'com_messages');
 ?>
 
 <div id="components-tab" class="ui-tabs-hide ui-tabs-panel">
@@ -81,21 +81,67 @@ $restricted = array('com_configurator', 'com_jce', 'com_masscontent', 'com_ninja
 		<ol class="forms">
 			<?php
 			$db = JFactory::getDBO();
-			$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
+			//@TODO start changed by Manoj
+			if(JVERSION >= '1.6.0')
+			{
+				//@TODO start changed by Vivek 1st Feb
+				$lang	= JFactory::getLanguage();
+				//@TODO need to fetch actual component names from lang. file 
+				//can reuse joomla code that is used to show all component names in backend in j1.7
+				//@TODO filtering is remaining
+				$query = $db->setQuery('SELECT m.id, m.title, m.alias, m.link, m.parent_id, m.img, e.element AS `option` FROM #__menu AS m LEFT JOIN #__extensions AS e ON m.component_id = e.extension_id WHERE m.client_id = 1 AND e.enabled = 1 AND m.id > 1 AND m.parent_id=1 ORDER BY m.lft');
+				/*$query = $db->setQuery('select c.extension_id AS `id`, c.name, c.element AS `option`,c.element AS `link` ' .
+							' FROM #__extensions AS c' .
+							" WHERE c.client_id =1 AND c.enabled = 1 AND c.type='component'".
+							' ORDER BY c.name');*/
+				$res = $db->loadAssocList();
+				
+				foreach($res as $r){
+					if(!in_array($r['option'], $restricted))
+					{
+						if (!empty($r['option'])) 
+						{
+							// Load the core file then
+							// Load extension-local file.
+							$lang->load($r['option'].'.sys', JPATH_BASE, null, false, false)
+						||	$lang->load($r['option'].'.sys', JPATH_ADMINISTRATOR.'/components/'.$r['option'], null, false, false)
+						||	$lang->load($r['option'].'.sys', JPATH_BASE, $lang->getDefault(), false, false)
+						||	$lang->load($r['option'].'.sys', JPATH_ADMINISTRATOR.'/components/'.$r['option'], $lang->getDefault(), false, false);
+						}
+						$r['text'] = $lang->hasKey($r['title']) ? JText::_($r['title']) : $r['alias'];
+						$rlab = strtolower(str_replace(' ', '-', $r['title'])); ?>
+						<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab ?>">	
+						<?php echo $r['text'] ?></label>
+						<?php echo innerLayouts($r['option']) ?>
+						<?php echo outerLayouts($r['option']) ?>
+						</li>
+				<?php }
+				}
+			} 
+			//@TODO end changed by Vivek 1st Feb
+			else
+			{
+				$query = $db->setQuery('select c.id, c.name, c.link, c.option' .
 							' FROM #__components AS c' .
-							' WHERE c.link <> "" AND parent = 0 AND enabled = 1' .
+							' WHERE c.link <> "" AND parent = 0 AND c.enabled = 1' .
 							' ORDER BY c.name');
-			$res = $db->loadAssocList($query);
-			foreach($res as $r){
-				if(!in_array($r['option'], $restricted)){
-					$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>
-					<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab ?>">	
-					<?php echo $r['name'] ?></label>
-					<?php echo innerLayouts($r['option']) ?>
-					<?php echo outerLayouts($r['option']) ?>
-					</li>
-			<?php }
-			} ?>
+				$res = $db->loadAssocList($query);
+			
+				//@TODO changed by Manoj
+
+				foreach($res as $r)
+				{
+					if(!in_array($r['option'], $restricted))
+					{
+						$rlab = strtolower(str_replace(' ', '-', $r['name'])); ?>
+						<li><label id="components<?php echo $rlab; ?>-lbl" class="to-label" for="<?php echo $rlab ?>">	
+						<?php echo $r['name'] ?></label>
+						<?php echo innerLayouts($r['option']) ?>
+						<?php echo outerLayouts($r['option']) ?>
+						</li>
+				<?php }
+				} 
+			}?>
 		</ol>
 	</div>
 	<div id="components-info" class="info-panel">
